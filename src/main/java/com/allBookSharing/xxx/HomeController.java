@@ -29,11 +29,11 @@ public class HomeController {
 
 		return mav;
 	}
-  
+
 	@RequestMapping(value = "/")
-	public String home(Locale locale, Model model) {
+	public String home() {
 		
-		return "home";
+		return "index";
 	}
 	
 	@PreAuthorize("isAnonymous()")
