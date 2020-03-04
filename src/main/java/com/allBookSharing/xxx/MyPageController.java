@@ -5,6 +5,7 @@ import java.util.Locale;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -20,6 +21,15 @@ public class MyPageController {
 	MemberManagement mm;
 	
 	ModelAndView mav=new ModelAndView();
+	
+	
+	
+	@RequestMapping(value = "/mypage")
+	public String idFindFrm() {
+		
+		return "myPage";
+	}
+	
 	
 	@RequestMapping(value = "/show/wishlist", method = RequestMethod.GET)
 	public ModelAndView showWishList(HttpServletRequest req) {
