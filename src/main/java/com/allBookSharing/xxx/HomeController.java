@@ -20,26 +20,12 @@ public class HomeController {
 
 	private ModelAndView mav;
 
-	@RequestMapping(value = "/", method = RequestMethod.GET)
-	public String home(Locale locale, Model model) {
-
-		return "home";
-	}
-
+	
 	@PreAuthorize("isAnonymous()") // 로그인 안했을때 접근 불가
 	@RequestMapping(value = "/joinfrm", method = RequestMethod.GET)
 	public ModelAndView joinFrm() {
 		mav = new ModelAndView();
 		mav.setViewName("joinFrm");
-
-		return mav;
-	}
-
-	// 회원가입
-	@RequestMapping(value = "/memberjoin", method = RequestMethod.POST)
-	public ModelAndView memberjoin(Member mb) {
-
-		mav = mm.memberjoin(mb);
 
 		return mav;
 	}
