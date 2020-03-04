@@ -24,24 +24,25 @@
 			@PreAuthorize, @PostAuthorize, @PreFilter, @PostFilter를 사용하기 위해
 		2-2.시큐리티 annotation 사용 -->
 		
-	<bean id="passwordEncoder" class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder" />
+	<!-- <bean id="passwordEncoder" class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder" /> -->
+	<bean id="passwordEncoder" class="org.springframework.security.crypto.password.NoOpPasswordEncoder" />
+	
 	<sec:http auto-config="true">
 		<sec:form-login 
-			username-parameter="username"
-			password-parameter="password" 
-			login-page="/sy
-			stem/login"
-			login-processing-url="/system/login"
+			username-parameter="m_id"
+			password-parameter="m_pw" 
+			login-page="/common/login"
+			login-processing-url="/login"
 			default-target-url="/" 
-			authentication-failure-url="/system/login/?fail=true"
+			authentication-failure-url="/login/?fail=true"
 			/>
 		<sec:logout 
-			logout-url="/system/logout" 
+			logout-url="/logout" 
 			logout-success-url="/"
 			/>
 	</sec:http>
 	
-	<!-- <sec:authentication-manager>
+	<sec:authentication-manager>
 		<sec:authentication-provider>
 			<sec:user-service>
 				<sec:user name="admin" password="1234" authorities="ROLE_USER, ROLE_MANAGER, ROLE_ADMIN" />
@@ -51,15 +52,15 @@
 			<sec:password-encoder ref="passwordEncoder" />
 		</sec:authentication-provider>
 	</sec:authentication-manager>
-	 -->
+	
 	 
 	<!-- JDBC를 이용한 로그인  -->
-	<sec:authentication-manager>
+	<!-- <sec:authentication-manager>
 		<sec:authentication-provider>
 			<sec:jdbc-user-service data-source-ref="dataSource"
 				users-by-username-query="select username, password, enabled FROM users WHERE username=?"
 				authorities-by-username-query="select username, authority FROM authorities WHERE username= ?" />
 		</sec:authentication-provider>
-	</sec:authentication-manager>
+	</sec:authentication-manager> -->
 	
 </beans>
