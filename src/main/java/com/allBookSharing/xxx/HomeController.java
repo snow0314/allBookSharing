@@ -33,5 +33,18 @@ public class HomeController {
 		return "commom/login";
 	}
 	
+	@PreAuthorize("isAnonymous()")
+	@RequestMapping(value = "/idfindfrm")
+	public String idFindFrm() {
+		
+		return "commom/idFind";
+	}
+	
+	@PreAuthorize("isAnonymous()")
+	@RequestMapping(value = "/pwfindfrm")
+	public String pwFindFrm() {
+		
+		return "commom/pwFind";
+	}
 	
 }

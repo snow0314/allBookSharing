@@ -69,11 +69,11 @@
 						</div>
 
 						<div>
-							<a href="#" class="txt3">
+							<a href="idfindfrm" class="txt3">
 								아이디 찾기
 							</a>
 							/
-							<a href="#" class="txt3">
+							<a href="pwfindfrm" class="txt3">
 								비밀번호 찾기
 							</a>
 						
