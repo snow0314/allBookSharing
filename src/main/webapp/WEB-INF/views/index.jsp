@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>        
 <!DOCTYPE HTML>
 <!--
 	Horizons by TEMPLATED
@@ -94,6 +95,7 @@
 
 
         <!--header-->
+        <sec:authorize access="isAnonymous()">
         <div class="container2">
         <div class="button-7">
             <div class="eff-7"></div>
@@ -101,9 +103,26 @@
          </div>
          <div class="button-7">
             <div class="eff-7"></div>
-            <a href="#"> 로그인 </a>         
+            <a href="loginfrm"> 로그인 </a>         
          </div>
         </div>
+        </sec:authorize>
+        
+        <sec:authorize access="isAuthenticated()">
+        <div class="container2">
+        
+        <form action="logout" method="post">
+         <!-- <div class="button-7"> -->
+            <div class="eff-7"></div>
+            <input class="button-7" type="submit" value="로그아웃" >
+            <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>     
+            	<!-- </div> -->
+            </form>
+            
+         </div>
+        </div>
+        </sec:authorize>
+        
 		<!-- banner -->
 			<div id="header">
 			
@@ -115,7 +134,7 @@
 					<!-- Nav -->
 						<nav id="nav">
 							<ul>
-								<li><a href="index.html">Home</a></li>
+								<li><a href="./">Home</a></li>
 								<li>
 									<a href="">나의 도서관</a>
 									<ul>
