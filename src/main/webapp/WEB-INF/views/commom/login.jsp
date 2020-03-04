@@ -27,6 +27,13 @@
 	<link rel="stylesheet" type="text/css" href="resources/css/util.css">
 	<link rel="stylesheet" type="text/css" href="resources/css/main.css">
 <!--===============================================================================================-->
+<style type="text/css">
+	#msg{
+		margin-top: 0;
+		margin-bottom: 20px;
+	}
+</style>
+
 </head>
 <body>
 	
@@ -69,18 +76,25 @@
 							<a href="#" class="txt3">
 								비밀번호 찾기
 							</a>
+						
 						</div>
+						
 					</div>
+					<p id="msg"></p>
 					<input type="hidden" name="_csrf" value="${_csrf.token}"><br>
 					<div class="container-login100-form-btn">
 						<input type="submit" class="login100-form-btn" value="Login">
 					</div>
-
+					
 				</form>
+		
 			</div>
 		</div>
 	</div>
-	
+
+
+
+
 
 	<div id="dropDownSelect1"></div>
 	
@@ -100,6 +114,17 @@
 	<script src="resources/vendor/countdowntime/countdowntime.js"></script>
 <!--===============================================================================================-->
 	<script src="resources/js/main.js"></script>
+
+<script type="text/javascript">
+	$(function () {
+		if(location.search.substr(6) == "true"){
+			$("#msg").text("${sessionScope['SPRING_SECURITY_LAST_EXCEPTION'].message}").css("color","red");
+		}
+	});
+	
+
+</script>
+
 
 </body>
 </html>
