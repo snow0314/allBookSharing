@@ -14,8 +14,8 @@
 			value="jdbc:log4jdbc:oracle:thin:@192.168.0.209:1521:XE" />
 		<property name="driverClassName"
 			value="net.sf.log4jdbc.DriverSpy" />
-		<property name="username" value="icia" />
-		<property name="password" value="1111" />
+		<property name="username" value="ONBOOK" />
+		<property name="password" value="1234" />
 	</bean>
 
 	<!-- sqlSessionFactory::mybatis가 사용 -->

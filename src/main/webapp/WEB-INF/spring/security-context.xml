@@ -42,7 +42,7 @@
 			/>
 	</sec:http>
 	
-	<sec:authentication-manager>
+	<!-- <sec:authentication-manager>
 		<sec:authentication-provider>
 			<sec:user-service>
 				<sec:user name="admin" password="1234" authorities="ROLE_USER, ROLE_MANAGER, ROLE_ADMIN" />
@@ -51,16 +51,16 @@
 			</sec:user-service>
 			<sec:password-encoder ref="passwordEncoder" />
 		</sec:authentication-provider>
-	</sec:authentication-manager>
+	</sec:authentication-manager> -->
 	
 	 
 	<!-- JDBC를 이용한 로그인  -->
-	<!-- <sec:authentication-manager>
+	<sec:authentication-manager>
 		<sec:authentication-provider>
 			<sec:jdbc-user-service data-source-ref="dataSource"
-				users-by-username-query="select username, password, enabled FROM users WHERE username=?"
-				authorities-by-username-query="select username, authority FROM authorities WHERE username= ?" />
+				users-by-username-query="select MB_ID, MB_PW, ENABLED FROM MEMBER WHERE MB_ID=?"
+				authorities-by-username-query="select ID, authority FROM authorities WHERE ID=?" />
 		</sec:authentication-provider>
-	</sec:authentication-manager> -->
+	</sec:authentication-manager>
 	
 </beans>
