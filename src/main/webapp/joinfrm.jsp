@@ -202,7 +202,7 @@ form {
 
 <body>
 	<h1>회원가입 페이지</h1>
-
+	
 	<form name="joinForm" action="memberjoin">
 		<img id="show_profile" height="240">
 

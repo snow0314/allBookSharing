@@ -30,7 +30,6 @@ public class HomeController {
 		return mav;
 	}
 
-
 	@RequestMapping(value = "/")
 	public String home() {
 		
