@@ -203,16 +203,17 @@ form {
 <body>
 	<h1>회원가입 페이지</h1>
 	
+	
 	<form name="joinForm" action="memberjoin">
 		<img id="show_profile" height="240">
 
 		<div class="form-group">
 			<label for="profile">프로필 사진</label> <span class="help-block"
-				id="helper_profile">1m이하만 가능</span> <input type="file" id="profile"
+				id="helper_profile">1mb이하만 가능</span><br> <input type="file" id="profile"
 				class="form-control" name="profile"
 				accept=".jpg,.jpeg,.png,.gif,.bmp">
 		</div>
-
+         <br>
 		<tr>
 			<td><b>이름:</b><input id="name" name="name" type="text"
 				placeholder="이름" class="txt" /></td>
