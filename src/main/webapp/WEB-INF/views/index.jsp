@@ -110,16 +110,13 @@
         
         <sec:authorize access="isAuthenticated()">
         <div class="container2">
-        
         <form action="logout" method="post">
-         <!-- <div class="button-7"> -->
-            <div class="eff-7"></div>
+        
             <input class="button-7" type="submit" value="로그아웃" >
+            <div class="eff-7"></div>
             <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>     
-            	<!-- </div> -->
+
             </form>
-            
-         </div>
         </div>
         </sec:authorize>
         
@@ -138,7 +135,7 @@
 								<li>
 									<a href="">나의 도서관</a>
 									<ul>
-										<li><a href="#">마이페이지</a></li>
+										<li><a href="move/mypage">마이페이지</a></li>
 										<li><a href="#">배송목록</a></li>
 										<li><a href="#">대출목록</a></li>
 										<li><a href="">희망도서목록</a></li>
