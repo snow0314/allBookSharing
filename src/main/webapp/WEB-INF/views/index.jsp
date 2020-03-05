@@ -29,6 +29,10 @@
 		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js" type="text/javascript"></script>
 		<style>
+			.container3{
+               padding:50px 10px;
+                margin:50px 10px;
+            }
             #logo:hover{
                 text-decoration: none;
                 color:white;
@@ -82,6 +86,14 @@
               padding-right: 30px;
               background-color: white;
                 }    
+            .recoimg{
+                width:auto;
+                height:500px;
+            }
+            .text{
+                margin-top:-30px;
+                margin-bottom: 30px;
+            }
             
             </style>
 	</head>
@@ -234,35 +246,35 @@
     
 		<!-- Featured -->
 			<div class="wrapper style2" >
-				<section class="container" >
+				<section class="container3" >
 					<div class="row no-collapse-1">
-						<section class="4u">
-						    <h2>추천도서</h2>
+						<section class="4u" >
+						    <h2 class='text'>추천도서</h2>
 							
                             <div id="demo" class="carousel slide" data-ride="carousel"> 
                                 <div class="carousel-inner"> 
 							<!-- 슬라이드 쇼 --> 
 							<div class="carousel-item active"> 
 							<!--가로--> 
-							<img class="d-block w-100" src="images/reco1.jpg" alt="First slide"> 
+							<img class="recoimg" src="images/reco1.jpg" alt="First slide"> 
 				
 							</div> 
 							<div class="carousel-item"> 
-							<img class="d-block w-100" src="images/reco2.jpg" alt="Second slide"> 
+							<img class="recoimg" src="images/reco2.jpg" alt="Second slide"> 
 							
 							</div> 
 							<div class="carousel-item"> 
-							<img class="d-block w-100" src="images/reco3.jpg" alt="Third slide"> 
+							<img class="recoimg" src="images/reco3.jpg" alt="Third slide"> 
 							
 							</div> 
 							
 							<div class="carousel-item"> 
-							<img class="d-block w-100" src="images/reco4.jpg" alt="Forth slide"> 
+							<img class="recoimg" src="images/reco4.jpg" alt="Forth slide"> 
 							
 							</div>
 							
 							 <div class="carousel-item"> 
-							<img class="d-block w-100" src="images/reco5.jpg" alt="Fifth slide"> 
+							<img class="recoimg" src="images/reco5.jpg" alt="Fifth slide"> 
 				
 							</div>  
 							
@@ -294,8 +306,13 @@
                         </section>
 						
                          <section class="4u">
-						     <h2>인기도서</h2>
-							<div id="popular" style="border:1px solid;width:700px;height:88%;"></div>
+						     <h2 class='text'>인기도서</h2>
+							<div id="popular" ></div>
+							
+						</section>
+						<section class="4u">
+						     <h2 class='text'>지도</h2>
+							<div id="popular"></div>
 							
 						</section>
 					</div>
