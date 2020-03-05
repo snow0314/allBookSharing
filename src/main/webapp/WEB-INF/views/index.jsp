@@ -27,8 +27,7 @@
 		</noscript>
 		<!--[if lte IE 8]><link rel="stylesheet" href="css/ie/v8.css" /><![endif]-->
 		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js" type="text/javascript"></script>
 		<style>
             #logo:hover{
                 text-decoration: none;
@@ -109,15 +108,16 @@
         </sec:authorize>
         
         <sec:authorize access="isAuthenticated()">
-        <div class="container2">
-        <form action="logout" method="post">
+       <div class="container2">
         
-            <input class="button-7" type="submit" value="로그아웃" >
+         <div class="button-7">
             <div class="eff-7"></div>
-            <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>     
-
-            </form>
+            <a id="logout" href="#" onclick="logoutGo()"> 로그아웃 </a>         
+         </div>
         </div>
+        <form action="logout" name="logoutform" method="post">
+        <input id="csrf" type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/> 
+        </form>
         </sec:authorize>
         
 		<!-- banner -->
@@ -371,4 +371,23 @@
 			</div>
 
 	</body>
+	<script type="text/javascript">
+		function logoutGo() {
+			/* $.ajax({
+				url: "logout",
+				method: "post",
+				beforeSend : function(xhr)
+                {   
+                    xhr.setRequestHeader("${_csrf.headerName}", "${_csrf.token}");
+                }
+			}).done((result)=> {
+				console.log("result=",result);
+			}).fail((xhr)=> console.log(xhr)); */
+			var logoutform=document.logoutform;
+			logoutform.submit();
+			
+		}
+	
+	</script>
+	
 </html>
