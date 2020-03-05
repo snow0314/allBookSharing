@@ -11,7 +11,7 @@ public class librayBookController {
 	private ModelAndView mav;
 	
 	//@PreAuthorize("isAnonymous()")
-	@RequestMapping(value = "/lrest/libray/book/insertmove")
+	@RequestMapping(value = "/lrestlibraybookinsertmove")
 	public String bookInsertMove() {
 		
 		return "librarian/bookinsert";

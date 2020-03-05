@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.allBookSharing.xxx.dao.IlibrayBookManagementDao">
+	
+	<resultMap type="classification" id="big">
+		<result property="bigNum" column="BG_NUM" />
+		<result property="category" column="BG_CATE" />
+	</resultMap>
+	
+	<select id="getBigGroup" resultType="classification" resultMap="big">
+		SELECT * FROM BIGGROUP
+	</select>
+
+	<resultMap type="classification" id="small">
+		<result property="bigNum" column="SG_BG_NUM" />
+		<result property="smallNum" column="SG_NUM" />
+		<result property="category" column="SG_CATE" />
+	</resultMap>
+
+	<select id="getSmallGroup" resultType="classification" resultMap="small">
+		SELECT * FROM SMALLGROUP
+	</select>
+
+</mapper>
