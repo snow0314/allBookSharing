@@ -24,14 +24,21 @@ public class MyPageController {
 	
 	
 	
-	@RequestMapping(value = "move/mypage")
-	public ModelAndView idFindFrm(HttpServletRequest req) {
-		mav=mm.moveMypage(req);
+	@RequestMapping(value = "/movemypage")
+	public ModelAndView idFindFrm() {
+		mav=mm.moveMypage();
+		return mav;
+	}
+	
+	@RequestMapping(value = "/modifyprofile", method = RequestMethod.GET)
+	public ModelAndView modifyprofile() {
+		mav=mm.modifyprofile();
+		
 		return mav;
 	}
 	
 	
-	@RequestMapping(value = "/show/wishlist", method = RequestMethod.GET)
+	@RequestMapping(value = "/showwishlist", method = RequestMethod.GET)
 	public ModelAndView showWishList(HttpServletRequest req) {
 		mav=mm.showWishList(req);
 		

@@ -9,9 +9,9 @@
 </head>
 
 <body>
-<h1>찜목록</h1>
 
-
+			<jsp:include page="header.jsp" />
+		
 
 </body>
 
