@@ -201,7 +201,7 @@ table {
 
 	function getSmallGroup() {
 		var a=$("#bk_bg_num").val();
-		console.log(a.);
+		console.log(a.charAt(0));
 		$.ajax({
 			url : "getsmallgroup",
 			type : "get",
