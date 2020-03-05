@@ -24,10 +24,10 @@ public class MyPageController {
 	
 	
 	
-	@RequestMapping(value = "/mypage")
-	public String idFindFrm() {
-		
-		return "myPage";
+	@RequestMapping(value = "move/mypage")
+	public ModelAndView idFindFrm(HttpServletRequest req) {
+		mav=mm.moveMypage(req);
+		return mav;
 	}
 	
 	
