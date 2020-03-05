@@ -29,7 +29,12 @@ public class HomeController {
 
 		return mav;
 	}
-
+	@RequestMapping(value ="/idcheck",method = RequestMethod.GET)
+	public String idCheck() {
+         mav = new ModelAndView();
+         
+	
+	}
 	@RequestMapping(value = "/")
 	public String home() {
 		

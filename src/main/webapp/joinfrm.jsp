@@ -432,9 +432,9 @@ form {
 			var buyerid = $("#buyerid").val();
 			$.ajax({
 				type : 'POST',
-				url :"/memberjoin",
+				url :"/idcheck",
 				data : {
-					buyerid : buyerid
+				"buyerid" : buyerid
 				},
 				success : function(result) {
 					if (result == 1) {
@@ -661,7 +661,7 @@ form {
 					}).open();
 		}
 		$("#cancel1").on('click', function() {
-			location.href = "adminPage.jsp"
+			location.href = "index.jsp"
 		});
 	</script>
 </body>

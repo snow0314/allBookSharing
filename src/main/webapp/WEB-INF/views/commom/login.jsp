@@ -76,6 +76,12 @@
 							<a href="pwfindfrm" class="txt3">
 								비밀번호 찾기
 							</a>
+							/
+							<a href="joinfrm.jsp" class="txt3">
+								회원가입
+							</a>
+							
+							
 						
 						</div>
 						
