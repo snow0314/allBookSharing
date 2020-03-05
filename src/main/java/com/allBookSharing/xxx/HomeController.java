@@ -13,7 +13,7 @@ public class HomeController {
 	private ModelAndView mav;
 
 	
-	@PreAuthorize("isAnonymous()") // 로그인 안했을때 접근 불가
+	@PreAuthorize("isAnonymous()") 
 	@RequestMapping(value = "/joinfrm", method = RequestMethod.GET)
 	public ModelAndView joinFrm() {
 		mav = new ModelAndView();
@@ -21,7 +21,7 @@ public class HomeController {
 
 		return mav;
 	}
-	
+
 	@RequestMapping(value = "/")
 	public String home() {
 		

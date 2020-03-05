@@ -147,7 +147,7 @@
 								<li>
 									<a href="">나의 도서관</a>
 									<ul>
-										<li><a href="move/mypage">마이페이지</a></li>
+										<li><a href="movemypage">마이페이지</a></li>
 										<li><a href="#">배송목록</a></li>
 										<li><a href="#">대출목록</a></li>
 										<li><a href="">희망도서목록</a></li>
