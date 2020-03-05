@@ -6,8 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <title>회원가입</title>
-<link rel="stylesheet"
-	href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" />
+
 <script
 	src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
 <script
@@ -17,8 +16,8 @@
 
 <script type="text/javascript"
 	src="//dapi.kakao.com/v2/maps/sdk.js?appkey=04cfe5f1eb29416b59e4313a6acea9b8&libraries=services">
-	
 </script>
+ 
 
 <style>
 
@@ -209,13 +208,13 @@ form {
 
 		<div class="form-group">
 			<label for="profile">프로필 사진</label> <span class="help-block"
-				id="helper_profile">1mb이하만 가능</span><br> <input type="file" id="profile"
-				class="form-control" name="profile"
+				id="helper_profile">1mb이하만 가능</span><br> <input type="file" id="profile" 
+				class="form-control" name="us_image"
 				accept=".jpg,.jpeg,.png,.gif,.bmp">
 		</div>
          <br>
 		<tr>
-			<td><b>이름:</b><input id="name" name="name" type="text"
+			<td><b>이름:</b><input id="name" name="mb_name" type="text"
 				placeholder="이름" class="txt" /></td>
 			<input type="radio" name="gener" checked="checked" />
 			<span class="up">남자</span>&nbsp;&nbsp;
@@ -225,7 +224,7 @@ form {
 
 			<br>
 		</tr>
-		<tr>
+		<!-- <tr>
 			<b>생년월일:</b>
 			<td><select name="year" id="year" class="foot1">
 					<option value="">년도</option>
@@ -340,9 +339,9 @@ form {
 					<option value="31">31</option>
 			</select></td>
 			<br>
-		</tr>
+		</tr> -->
 		<tr>
-			<td><b>이메일:</b><input id="email" name="email" type="text"
+			<td><b>이메일:</b><input id="email" name="us_email" type="text"
 				placeholder="이메일" class="txt" />@ <input type="text" name="email2"
 				id="str_email02" disabled value="선택하세요"> <select
 				name="email1" id="email1">
@@ -355,14 +354,15 @@ form {
 			</select></td>
 			<br>
 			<b>아이디:</b>
-			<input id="buyerid" name="buyerid" type="text" placeholder="아이디"
+			
+			<input id="buyerid" name="us_id" type="text" placeholder="아이디"
 				class="username_input" />
 			<button type="button" id="checkbtn" onclick="checkbtn"
 				class="btn btn-default">중복확인</button>
-			<img id="id_check_sucess" style="display: none;">
+			<div id="result"></div>
 			<br>
 			<b>비밀번호:</b>
-			<input id="pw" name="pw" type="password" placeholder="비밀번호"
+			<input id="pw" name="mb_pw" type="password" placeholder="비밀번호"
 				class="txt" />
 			<br>
 			<b>비밀번호확인:</b>
@@ -372,7 +372,7 @@ form {
 		</tr>
 		<div id="pwdiv"></div>
 		<tr>
-			<td><b>전화번호</b><select name="phone" id="phone" class="foot1">
+			<td><b>전화번호</b><select name="us_phone" id="phone" class="foot1">
 					<option value="010">010</option>
 					<option value="011">011</option>
 					<option value="016">016</option>
@@ -387,7 +387,7 @@ form {
 		</tr>
 		<tr>
 			<td><b>주소<b></b><br> <input type="text"
-					id="sample4_postcode" placeholder="우편번호"> <input
+					id="sample4_postcode" name="us_address" placeholder="우편번호"> <input
 					type="button" onclick="sample4_execDaumPostcode()" value="우편번호 찾기"><br>
 					<input type="text" id="sample4_roadAddress" placeholder="도로명주소"
 					name="branchaddress"> <input type="text"
@@ -428,54 +428,66 @@ form {
 		$("#cancel1").on('click', function() {
 			location.href = 'history.back()';
 		});
-		$('#checkbtn').on('click', function() {
+		
+		
+		let idck=0;
+		$('#checkbtn').on('click', function() { //아이디 중복 검사
 			var buyerid = $("#buyerid").val();
 			$.ajax({
-				type : 'POST',
-				url :"/idcheck",
-				data : {
-				"buyerid" : buyerid
-				},
-				success : function(result) {
-					if (result == 1) {
-						$('.username_input').attr("check_result", "success");
-						$('#id_check_sucess').show();
-						$('.btn btn-default').hide();
-					} else if (result == 0) {
-						alert('아이디가 중복입니다.');
-					} else {
-						alert('아이디가 입력되지 않았습니다');
-					}
-				}
+				type : 'get',
+				url :"idcheck",
+				data :"id="+buyerid,
+				success : function(data) {
+                    $('#result').html(data).css('color', 'red');
+                    console.log("data=",data);
+                    /* console.log("data=", result);
+                    console.log("status=", status);
+                    console.log("xhr=", xhr); */
+
+                 },
+				error : function(xhr, status) {
+					$('#result').html(xhr.responseText).css('color', 'green');
+                    console.log("xhr=", xhr);
+                    console.log("status=", status);
+                    if(status=="error"){
+                    	idck=0;
+                    }
+                    else{
+                    	idck=1;
+                    }
+                 }
+				
 			}); //end ajax    
 		}); //end on   
 
 		$("#subbtn1").on('click', function() {
 			var joinForm = document.joinForm; //joinForm=form 태그의 name값
-			var name = joinForm.name.value;
-			var year = joinForm.year.value;
+			var name = joinForm.mb_name.value;
+			/* var year = joinForm.year.value;
 			var birth = joinForm.birth.value;
-			var day = joinForm.day.value;
-			var email = joinForm.email.value;
+			var day = joinForm.day.value; */
+			var email = joinForm.us_email.value;
 			var email2 = joinForm.email2.value;
 			var email1 = joinForm.email1.value;
-			var id = joinForm.buyerid.value;
-			var pw = joinForm.pw.value; //pw=비밀번호input태그의 name값 (응용해서 아이디도 사용가능)
+			var id = joinForm.us_id.value;
+			var pw = joinForm.mb_pw.value; //pw=비밀번호input태그의 name값 (응용해서 아이디도 사용가능)
 			var pw1 = joinForm.pw1.value;//위와같지만 pw1은 비밀번호 input태그의 name값임
-			var phone1 = joinForm.phone1.value;
+			var phone1 = joinForm.us_phone.value;
 			var phone2 = joinForm.phone2.value;
-
+			
+			var sample4_postcode = joinForm.us_address.value;
+           console.log(sample4_postcode);
 			if (!name) {
 				alert("이름을 입력해 주세요")
-			} else if (!year || !birth || !day) {
-				alert("생년월일을 선택해주세요")
+			/* } else if (!year || !birth || !day) {
+				alert("생년월일을 선택해주세요") */
 			} else if (!email || !email1 || !email2) {
 				alert("이메일을 입력해주세요")
 			} else if (email2 == "선택하세요") {
 				alert("이메일을 선택하거나 직접 입력하여주세요")
 			} else if (!id) {
 				alert("아이디를 입력해주세요")
-			} else if ($('.username_input').attr("check_result") == "fail") {
+			} else if (idck==0) {
 				alert("아이디 중복체크를 해주시기 바랍니다.");
 				$('.username_input').focus();
 				return false;
@@ -495,7 +507,9 @@ form {
 				alert("비밀번호는 20자 이하이어야 합니다.");
 			} else if (!phone1 || !phone2) {
 				alert("전화번호를 입력해주세요")
-			} else {
+			} else if (sample4_postcode==""){
+				alert("주소를 입력해주세요");
+			}    else {
 				alert("회원가입이 완료되었습니다.")
 				joinForm.submit();
 			}
