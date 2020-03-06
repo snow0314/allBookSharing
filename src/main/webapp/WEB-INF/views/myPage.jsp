@@ -10,7 +10,7 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js" type="text/javascript"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
   
@@ -63,6 +63,9 @@ color: blue;
  padding-top: 5px;
  font-size: 16px;
 }
+#table_rest{
+width: 400px;
+}
 </style>
 
 
@@ -72,7 +75,7 @@ color: blue;
 
 
 <body>
-<jsp:include page="header.jsp" />
+ <jsp:include page="header.jsp" />
 
 	<div class="container">
 		<div id='topDiv'>
@@ -110,13 +113,13 @@ color: blue;
 			</div>
 
 			<div id="myProfile_rest">
-				<table>
+				<table id="table_rest">
 					<tr>
-						<td class="table_box">대출건수</td>
-						<td class="table_box">연체건수</td>
+						<td class="table_box">대출건수 <span id="borrowcnt"></span>회</td>
+						<td class="table_box">연체건수 <span id="arrearscnt"></span>회</td>
 					</tr>
 					<tr>
-						<td class="table_box">독서횟수</td>
+						<td class="table_box">독서횟수 <span id="reviewcnt"></span>회</td>
 						<td class="table_box">누적연체일수</td>
 					</tr>
 					<tr>
@@ -206,15 +209,68 @@ color: blue;
 	</div>
 
 <script>
-/* 
- $.ajax({
-   crossOrigin:true, 
-   url:"http://192.168.0.99/cha_board/api/users" ,
-   method:"post",
-   dataType:json,
- }).done((result)=>toastr.success(result,"서버 메시지"))
-   .fail((xhr)=>printError(xhr,"대출현황불러오기 실패")); 
-*/
+
+	
+//대출건수 조회
+$.ajax({
+	type : 'get',
+	url :"borrowcnt",
+	success : function(data) {
+        $('#borrowcnt').html(data).css('color', 'black').css('font-weight','bold');
+        console.log("data=",data);
+        /* console.log("data=", result);
+        console.log("status=", status);
+        console.log("xhr=", xhr); */
+
+     },
+	error : function(xhr, status) {
+        console.log("xhr=", xhr);
+        console.log("status=", status);
+     }
+	
+}); //end ajax 
+
+
+
+//연체건수 조회
+$.ajax({
+	type : 'get',
+	url :"arrearscnt",
+	success : function(data) {
+        $('#arrearscnt').html(data).css('color', 'black').css('font-weight','bold');
+        console.log("data=",data);
+        console.log("status=", status);
+        console.log("xhr=", xhr); 
+
+     },
+	error : function(xhr, status) {
+        console.log("xhr=", xhr);
+        console.log("status=", status);
+     }
+	
+}); //end ajax  
+
+
+
+//독서횟수(리뷰 쓴 횟수) 조회
+$.ajax({
+	type : 'get',
+	url :"reviewcnt",
+	success : function(data) {
+        $('#reviewcnt').html(data).css('color', 'black').css('font-weight','bold');
+        console.log("data=",data);
+        console.log("status=", status);
+        console.log("xhr=", xhr); 
+
+     },
+	error : function(xhr, status) {
+        console.log("xhr=", xhr);
+        console.log("status=", status);
+     }
+	
+}); //end ajax  
+
+
 
 </script>
 
