@@ -20,11 +20,19 @@ public class librayBookRestController {
 	librayBookManagement lmm;
 	
 	@RequestMapping(value = "/getbiggroup" ,produces = "application/json;charset=UTF-8")
-	public @ResponseBody List<Classification> getClassification() {
+	public @ResponseBody List<Classification> getBigGroup() {
 		
-		System.out.println("분류표 컨트롤러1");
 		List<Classification> blist=lmm.getBigGroup();
 		
+		return blist;
+	}
+	
+	
+	@RequestMapping(value = "/getsmallgroup" ,produces = "application/json;charset=UTF-8")
+	public @ResponseBody List<Classification> getSmallGroup(Integer bigNum) {
+		System.out.println("bigNum="+bigNum);
+		List<Classification> blist=lmm.getSmallGroup(bigNum);
+		System.out.println("blist"+blist);
 		return blist;
 	}
 	

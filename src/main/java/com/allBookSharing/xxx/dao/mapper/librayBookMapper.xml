@@ -19,7 +19,8 @@
 	</resultMap>
 
 	<select id="getSmallGroup" resultType="classification" resultMap="small">
-		SELECT * FROM SMALLGROUP
+		SELECT * FROM SMALLGROUP WHERE SG_NUM LIKE #{BigNum}||'%'
+		
 	</select>
 
 </mapper>

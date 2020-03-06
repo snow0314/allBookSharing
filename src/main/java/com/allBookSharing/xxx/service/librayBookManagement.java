@@ -1,12 +1,8 @@
 package com.allBookSharing.xxx.service;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import com.allBookSharing.xxx.dao.IlibrayBookManagementDao;
 import com.allBookSharing.xxx.dto.Classification;
 
@@ -21,6 +17,15 @@ public class librayBookManagement {
 		List<Classification> bList=lDao.getBigGroup();
 		
 		return bList;
+	}
+
+	public List<Classification> getSmallGroup(Integer bigNum) {
+		
+	
+		
+		List<Classification> sList=lDao.getSmallGroup(bigNum);
+		
+		return sList;
 	}
 
 }

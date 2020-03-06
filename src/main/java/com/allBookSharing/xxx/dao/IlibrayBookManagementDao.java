@@ -12,6 +12,6 @@ public interface IlibrayBookManagementDao {
 
 	List<Classification> getBigGroup();
 
-	List<Classification> getSmallGroup();
+	List<Classification> getSmallGroup(Integer BigNum);
 
 }
