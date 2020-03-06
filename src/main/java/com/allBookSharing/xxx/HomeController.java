@@ -6,6 +6,7 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -71,4 +72,14 @@ public class HomeController {
 		return "commom/pwFind";
 	}
 	
+	@PreAuthorize("isAnonymous()")
+	@RequestMapping(value = "/totalsearch")
+	public String totalSearch() {
+		
+		return "totalSearch";
+	}
+	
 }
+
+}
+
