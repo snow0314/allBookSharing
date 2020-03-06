@@ -30,6 +30,7 @@ public class MyPageController {
 		return mav;
 	}
 	
+	
 	@RequestMapping(value = "/modifyprofile", method = RequestMethod.GET)
 	public ModelAndView modifyprofile() {
 		mav=mm.modifyprofile();
