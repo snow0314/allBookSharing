@@ -7,8 +7,9 @@ function list(data) {
 		var $td=$("<td>").appendTo($tr);
 		var  $("<div>").addClass("input-group mb-3 input-group-sm").appendTo($td);*/
 		console.log("list",data);
+		$("#contents").empty();
 		var str="";
-		for(var i=0;i<3;i++){
+		for(var i=0;i<data.length;i++){
 			var temp=data[i];
 			str+="<div class='container p-3 my-3 border'>";
 			str+="<table>";
@@ -48,12 +49,9 @@ function list(data) {
 	        str+="</table>";       
 	        str+="</div>";
 		}
-	
-		
-		
         
-        $(str).appendTo($(".modal-body"));
-        //var str="";         
+        $(str).appendTo($("#contents"));
+        str="";         
 	}
 	
 	

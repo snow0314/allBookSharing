@@ -43,6 +43,7 @@ table {
 	width: 100%;
 	border-spacing: 50px;
 }
+
 </style>
 </head>
 
@@ -205,7 +206,10 @@ table {
                             <button class="btn btn-success" type="button" onclick="bookSearch()">Go</button>
                         </div>
                     </div>
+                    <div id="contents">
+						                    
                     
+                    </div>
                   <div id="pagination"></div>
                 </div>
                 <!--Footer-->
