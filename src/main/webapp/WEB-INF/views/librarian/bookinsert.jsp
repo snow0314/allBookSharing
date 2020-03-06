@@ -303,7 +303,6 @@ table {
 		            callback: function (data, pagination) { //데이터 찍어주는 부분
 		            	console.log("data=",data);
 		            	
-		            	
 		            	list(data);
 		                
 		            }
