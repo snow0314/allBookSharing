@@ -27,8 +27,7 @@
 		</noscript>
 		<!--[if lte IE 8]><link rel="stylesheet" href="css/ie/v8.css" /><![endif]-->
 		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js" type="text/javascript"></script>
 		<style>
 			.container3{
                padding:50px 10px;
@@ -111,7 +110,7 @@
         <div class="container2">
         <div class="button-7">
             <div class="eff-7"></div>
-            <a href="joinfrm.jsp"> 회원가입 </a>         
+            <a href="joinfrm"> 회원가입 </a>         
          </div>
          <div class="button-7">
             <div class="eff-7"></div>
@@ -121,15 +120,16 @@
         </sec:authorize>
         
         <sec:authorize access="isAuthenticated()">
-        <div class="container2">
-        <form action="logout" method="post">
+       <div class="container2">
         
-            <input class="button-7" type="submit" value="로그아웃" >
+         <div class="button-7">
             <div class="eff-7"></div>
-            <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>     
-
-            </form>
+            <a id="logout" href="#" onclick="logoutGo()"> 로그아웃 </a>         
+         </div>
         </div>
+        <form action="logout" name="logoutform" method="post">
+        <input id="csrf" type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/> 
+        </form>
         </sec:authorize>
         
 	<!-- banner -->
@@ -147,7 +147,7 @@
 								<li>
 									<a href="">나의 도서관</a>
 									<ul>
-										<li><a href="move/mypage">마이페이지</a></li>
+										<li><a href="movemypage">마이페이지</a></li>
 										<li><a href="#">배송목록</a></li>
 										<li><a href="#">대출목록</a></li>
 										<li><a href="">희망도서목록</a></li>
@@ -388,4 +388,23 @@
 			</div>
 
 	</body>
+	<script type="text/javascript">
+		function logoutGo() {
+			/* $.ajax({
+				url: "logout",
+				method: "post",
+				beforeSend : function(xhr)
+                {   
+                    xhr.setRequestHeader("${_csrf.headerName}", "${_csrf.token}");
+                }
+			}).done((result)=> {
+				console.log("result=",result);
+			}).fail((xhr)=> console.log(xhr)); */
+			var logoutform=document.logoutform;
+			logoutform.submit();
+			
+		}
+	
+	</script>
+	
 </html>

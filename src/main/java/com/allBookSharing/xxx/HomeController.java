@@ -1,36 +1,50 @@
 package com.allBookSharing.xxx;
 
-import java.util.Locale;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
+import java.util.HashMap;
+import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
+import com.allBookSharing.xxx.dto.Member;
+import com.allBookSharing.xxx.service.JoinManagement;
+import com.allBookSharing.xxx.service.MemberManagement;
 
 @Controller
 public class HomeController {
 
-	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
+	@Autowired
+	JoinManagement jm; 
 
 	private ModelAndView mav;
-
 	
-	@PreAuthorize("isAnonymous()") // 로그인 안했을때 접근 불가
+	@PreAuthorize("isAnonymous()") 
 	@RequestMapping(value = "/joinfrm", method = RequestMethod.GET)
 	public ModelAndView joinFrm() {
 		mav = new ModelAndView();
-		mav.setViewName("joinFrm");
+		mav.setViewName("joinfrm");
 
 		return mav;
 	}
 
+	@RequestMapping(value = "/memberjoin", method = RequestMethod.GET)
+	public ModelAndView memberJoin(Member mb) {
+		
+		mav= jm.memberJoin(mb);
+
+		return mav;
+	}
+	
 	@RequestMapping(value = "/")
 	public String home() {
 		
@@ -65,5 +79,7 @@ public class HomeController {
 		return "totalSearch";
 	}
 	
+}
 
 }
+
