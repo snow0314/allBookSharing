@@ -61,7 +61,10 @@ width: 200px;
 height: 250px;
 text-align: center;
 }
-#pw{
+#pw1{
+width: 200px;
+}
+#pw2{
 width: 200px;
 }
 #div_btn{
@@ -71,6 +74,12 @@ margin-left: 550px;
 padding:5px;
 width: 50px;
 }
+#pw_btn{
+	padding: 5px;
+	margin-top: 5px;
+	width: 100px;
+	font-size: 15px;
+}
 </style>
 </head>
 <body>
@@ -79,32 +88,33 @@ width: 50px;
 <jsp:include page="header.jsp" />
 
 <div id="div_body">
-<form action="">
+<form action="profilecomplet" method="post">
 <table id="table" class="table table-bordered">
     <tbody>
     
      <tr>
-        <td id="pro_img"><label for="profile"><img id="show_profile" height="240" alt="프로필 사진"></label></td>
-        <td><input type="file" id="profile" class="form-control" name="us_image" accept=".jpg,.jpeg,.png,.gif,.bmp"><span class="help-block"
+        <td id="pro_img"><label for="profile"><img id="show_profile" src="profile/${mb.us_image }" width="150" height="220" alt="프로필 사진"/></label></td>
+        <td colspan="2"><input type="file" id="profile" class="form-control" name="us_image" accept=".jpg,.jpeg,.png,.gif,.bmp"><span class="help-block"
 				id="helper_profile">1mb이하만 가능</span></td>
       </tr>
     
       <tr>
         <th>아이디</th>
-        <td><input id="mb_id" type="text"  value="${mb.mb_id}" readOnly></td>
+        <td colspan="2"><input id="mb_id" type="text" name="mb_id"  value="${mb.mb_id}" readOnly></td>
       </tr>
       <tr>
         <td>비밀번호</td>
-        <td><input type="text" id="pw" ></td>
+        <td colspan="2"><input type="password" name="mb_pw" id="pw1" ></td>
       </tr>
       <tr>
         <td>비밀번호 확인</td>
-        <td><input type="text" id="pw" ></td>
+        <td colspan="2"><input type="password" id="pw2" ><span id="pwCheck"></span><input type="button" id='pw_btn' value='비밀번호 변경' /></td>
       </tr>
       
       <tr>
             <td><b>지역선택:</b></td>
-            <td><select name="mb_area" id="mb_area" class="foot1">
+            <td><input type="text" id='area' readOnly name="mb_area" value="${mb.mb_area}" /></td>
+            <td><select id="mb_area" class="foot1">
                   <option value="">선택</option>
                   <option value="서울">서울</option>
                   <option value="인천">인천</option>
@@ -127,28 +137,70 @@ width: 50px;
       
       <tr>
         <td>주소</td>
-        <td><input type="text" value="${mb.us_address}" ></td>
+        <td colspan="2"><input type="text" name="us_address" value="${mb.us_address}" required ></td>
       </tr>
       
       <tr>
         <td>핸드폰</td>
-        <td><input type="text" value="${mb.us_phone}"></td>
+        <td colspan="2"><input type="text" name="us_phone" value="${mb.us_phone}" required></td>
       </tr>
       
       <tr>
         <td>이메일</td>
-        <td><input type="text" value="${mb.us_email}"></td>
+        <td colspan="2"><input type="text" name="us_email" value="${mb.us_email}" required></td>
       </tr>
       
       
     </tbody>
   </table>
+        <input type="hidden" id="_csrf" value="${_csrf.token}">
   <div id="div_btn">
   <input id="btn" type="submit" value="수정" />
   <input id="btn" type="submit" value="취소" formaction="movemypage" />
   </div>
 </form>
 </div>
+
+<script>
+//지역선택
+$("#mb_area").on('change', function(){
+	
+	console.log($("#mb_area").val());
+	$("#area").val($("#mb_area").val());
+});
+
+//비밀번호 변경
+$("#pw_btn").on("click",function(){
+	$("#pw1").val();
+	$("#pw2").val();
+	console.log($("#pw1").val());
+	console.log($("#pw2").val());
+	console.log($("#_csrf").val());
+	if($("#pw1").val()!=$("#pw2").val()){
+		
+	$('#pwCheck').html("비밀번호가 일치하지 않습니다.").css('color', 'red').css('font-weight','bold');
+	}
+	else{
+		
+ 	$.ajax({
+		type : "POST",
+		url :"updatepassword",
+		data:{pw:$("#pw1").val(),_csrf:$("#_csrf").val()},
+		success : function(data) {
+	        alert("비밀번호가 변경되었습니다.");
+
+	     },
+		error : function(xhr, status) {
+			alert("에러");
+	     }
+		
+	}); //end ajax  
+	
+	}
+		
+	
+});
+</script>
 
 </body>
 </html>

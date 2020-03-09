@@ -1,5 +1,6 @@
 package com.allBookSharing.xxx;
 
+import java.security.Principal;
 import java.util.Locale;
 
 import javax.servlet.http.HttpServletRequest;
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.allBookSharing.xxx.dto.Member;
 import com.allBookSharing.xxx.service.MemberManagement;
 
 @Controller
@@ -25,15 +27,15 @@ public class MyPageController {
 	
 	
 	@RequestMapping(value = "/movemypage")
-	public ModelAndView idFindFrm() {
-		mav=mm.moveMypage();
+	public ModelAndView moveMypage(Principal principal) {
+		mav=mm.moveMypage(principal);
 		return mav;
 	}
 	
 	
 	@RequestMapping(value = "/modifyprofile", method = RequestMethod.GET)
-	public ModelAndView modifyprofile() {
-		mav=mm.modifyprofile();
+	public ModelAndView modifyprofile(Principal principal) {
+		mav=mm.modifyprofile(principal);
 		
 		return mav;
 	}
@@ -42,6 +44,13 @@ public class MyPageController {
 	@RequestMapping(value = "/showwishlist", method = RequestMethod.GET)
 	public ModelAndView showWishList(HttpServletRequest req) {
 		mav=mm.showWishList(req);
+		
+		return mav;
+	}
+	
+	@RequestMapping(value = "/profilecomplet", method = RequestMethod.GET)
+	public ModelAndView profileComplet(Principal principal,Member mb) {
+		mav=mm.profileComplet(principal);
 		
 		return mav;
 	}
