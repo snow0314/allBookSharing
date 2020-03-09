@@ -12,7 +12,10 @@
 <!-- Latest compiled and minified CSS -->
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
-
+<link rel="stylesheet"
+   href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" />
+<script
+   src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
 <!-- jQuery library -->
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
@@ -44,6 +47,11 @@ table {
 	border-spacing: 50px;
 }
 
+.container p-3 my-3 border:hover{
+	background-color: blue;
+	
+}
+
 </style>
 </head>
 
@@ -55,7 +63,7 @@ table {
 
 	<div class="container p-3 my-3 border">
 
-		<form class="well form-horizontal" action=" " method="post"
+		<form class="well form-horizontal" action="libraybookinsert" method="post"
 			id="contact_form">
 			<fieldset>
 
@@ -69,17 +77,20 @@ table {
 								<div class="input-group-prepend">
 									<span class="input-group-text">소속도서관</span>
 								</div>
-								<input id="lb_name" name="lb_name" type="text"
-									class="form-control"> <input type="hidden"
-									id="bk_lcode" name="bk_lcode" value="">
+								<input id="bk_lname" name="bk_lname" type="text"
+									class="form-control"> 
+									<!-- 도서관 이름 및 도서관 코드 가져오기 -->
+									<input type="hidden" id="bk_lcode" name="bk_lcode" value="1" >
 							</div>
 						</td>
 						<td></td>
 						<td rowspan="4" colspan="2"
-							style="padding-left: 50px; border: 1px;"><img id="bk_image"
-							name="bk_image"
+							style="padding-left: 50px; border: 1px;"><img id="bk_image2"
 							src="images/default.jpg"
-							class="rounded" alt="Cinque Terre"></td>
+							class="rounded" alt="Cinque Terre">
+							<input type="hidden" name="bk_image" id="bk_image" value="">
+							</td>
+							
 					</tr>
 					<tr>
 						<td colspan="2">
@@ -101,7 +112,8 @@ table {
 								<input id="bk_name" name="bk_name" type="text"
 									class="form-control">
 								<div class="input-group-append">
-									<button class="btn btn-success" type="button" onclick="bookSearch()">검색</button>
+									<button class="btn btn-success" type="button" data-toggle="modal"
+									        data-target="#modalCart">검색</button>
 								</div>
 							</div>
 						</td>
@@ -126,6 +138,11 @@ table {
 								<input id="bk_publicday" name="bk_publicday" type="text"
 									class="form-control">
 
+							</div>
+						</td>
+						<td rowspan="3" colspan="2">
+							<div class="form-group purple-border">
+  							<textarea class="form-control" id="bk_introduction" name="bk_introduction" rows="7"></textarea>
 							</div>
 						</td>
 					</tr>
@@ -170,9 +187,11 @@ table {
 					</tr>
 					<tr>
 						<td colspan="2" style="text-align: right">
-							<button id="insertBtn" type="button"
-								class="btn btn-primary btn-lg" onclick="bookInsert()">등록</button>
+							<input type="submit" id="insertBtn"
+								class="btn btn-primary btn-lg" value="등록">
+							<input type="hidden" name="_csrf" value="${_csrf.token}">	
 						</td>
+						
 					</tr>
 
 				</table>
@@ -183,13 +202,9 @@ table {
 
 	<!-- /.container -->
 
-
-<!-- Button trigger modal-->
-    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalCart">Launch modal</button>
-
     <!-- Modal: modalCart -->
     <div class="modal fade" id="modalCart" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
+        <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
                 <!--Header-->
                 <div class="modal-header">
@@ -223,10 +238,18 @@ table {
     <!-- Modal: modalCart -->
 
 
-
+${bookInsertMsg}
 </body>
-<script type="text/javascript" src="js/bookInsert.js"></script>
+<script type="text/javascript" src="js/bookInsert.js?ver2"></script>
 <script type="text/javascript">
+	var temp;
+	
+	if(location.search.substr(15)=="true"){
+		toastr.success('성공', '도서 등록에 성공하셨습니다.');
+	}else if(location.search.substr(15)=="false"){
+		toastr.error("실패", "도서 등록에 실패하셨습니다.");
+	}
+
 	$(function() {
 		$.ajax({ //대분류 가져오는 메소드
 			url : "getbiggroup",
@@ -237,7 +260,7 @@ table {
 		console.log("result=",result);
 		var bigGroup=result;
 		for(var i=0;i<bigGroup.length;i++){
-			$("<option>").text(bigGroup[i].bigNum+":"+bigGroup[i].category).appendTo($("#bk_bg_num"));
+			$("<option>").text(bigGroup[i].bigNum+":"+bigGroup[i].category).attr("value",bigGroup[i].bigNum).appendTo($("#bk_bg_num"));
 		} 
 		
 	}).fail((xhr) => {
@@ -264,7 +287,7 @@ table {
 		var smallGroup=result;
 		$("#bk_sg_num").empty();
 		for(var i=0;i<smallGroup.length;i++){
-			$("<option>").text(smallGroup[i].bigNum+":"+smallGroup[i].category).appendTo($("#bk_sg_num"));
+			$("<option>").text(smallGroup[i].bigNum+":"+smallGroup[i].category).attr("value",smallGroup[i].bigNum).appendTo($("#bk_sg_num"));
 		} 
 		
 		
@@ -283,7 +306,8 @@ table {
 				'Authorization' : 'KakaoAK ' + key
 			},
 			type : "get",
-			data: "query="+bookName ,
+			data: {"query" : bookName, 
+				   "size" : 50 },
 			success : function(result) {
 				console.log(result);
 				var data = result;
@@ -301,14 +325,14 @@ table {
 				      
 				let container = $('#pagination');
 		        container.pagination({
-		        	locator: 'data',
+		        	
 		            dataSource: data.documents, //받아온 데이터
 		            pageSize: 3,
 		            callback: function (data, pagination) { //데이터 찍어주는 부분
 		            	console.log("data=",data);
+		            	temp=data;
+		            	listShow(data);
 		            	
-		            	list(data);
-		                
 		            }
 		        })	      
 				
@@ -316,6 +340,8 @@ table {
 		});
 	}
 
+
+	
 	function bookInsert() { //도서 등록하는 메소드
 
 	}

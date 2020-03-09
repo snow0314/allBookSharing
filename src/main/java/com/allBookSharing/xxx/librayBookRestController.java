@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.allBookSharing.xxx.dto.Books;
 import com.allBookSharing.xxx.dto.Classification;
 import com.allBookSharing.xxx.service.librayBookManagement;
 
@@ -30,10 +31,12 @@ public class librayBookRestController {
 	
 	@RequestMapping(value = "/getsmallgroup" ,produces = "application/json;charset=UTF-8")
 	public @ResponseBody List<Classification> getSmallGroup(Integer bigNum) {
-		System.out.println("bigNum="+bigNum);
+		
 		List<Classification> blist=lmm.getSmallGroup(bigNum);
-		System.out.println("blist"+blist);
+		
 		return blist;
 	}
+	
+	
 	
 }
