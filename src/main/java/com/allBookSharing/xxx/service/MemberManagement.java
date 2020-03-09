@@ -1,7 +1,9 @@
 package com.allBookSharing.xxx.service;
 
+import java.security.Principal;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -13,6 +15,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.allBookSharing.xxx.dao.IMemberDao;
+import com.allBookSharing.xxx.dto.Classification;
+import com.allBookSharing.xxx.dto.Loan;
 import com.allBookSharing.xxx.dto.Member;
 
 @Service
@@ -26,7 +30,7 @@ public class MemberManagement {
 	
 	
 	
-	
+	//찜목록
 	public ModelAndView showWishList(HttpServletRequest req) {
 		mav = new ModelAndView();
 		
@@ -34,14 +38,11 @@ public class MemberManagement {
 		return mav;
 	}
 
-	public ModelAndView moveMypage() {
+	//마이페이지 이동(내정보불러오기)
+	public ModelAndView moveMypage(Principal principal) {
 		mav = new ModelAndView();
 		
-		Authentication authentication = SecurityContextHolder.getContext().getAuthentication(); 
-		User username = (User) authentication.getPrincipal();
-		System.out.println("user="+username.getUsername());
-		String id=username.getUsername();
-		
+		String id=principal.getName();
 		System.out.println("id="+id);
 		
 		Member mb=mDao.getMyPage(id);
@@ -50,14 +51,10 @@ public class MemberManagement {
 		return mav;
 	}
 
-	public ModelAndView modifyprofile() {
+	//내정보수정하기페이지
+	public ModelAndView modifyprofile(Principal principal) {
 		mav = new ModelAndView();
-		
-		Authentication authentication = SecurityContextHolder.getContext().getAuthentication(); 
-		User username = (User) authentication.getPrincipal();
-		System.out.println("user="+username.getUsername());
-		String id=username.getUsername();
-		
+		String id=principal.getName();		
 		System.out.println("id="+id);
 		Member mb=mDao.getMyPage(id);
 		mav.addObject("mb",mb);
@@ -65,12 +62,9 @@ public class MemberManagement {
 		return mav;
 	}
 
-	public int getBorrowCnt() {
-		Authentication authentication = SecurityContextHolder.getContext().getAuthentication(); 
-		User username = (User) authentication.getPrincipal();
-		System.out.println("user="+username.getUsername());
-		String id=username.getUsername();
-		
+	//대출횟수
+	public int getBorrowCnt(Principal principal) {
+		String id=principal.getName();
 		System.out.println("id="+id);
 		
 		int cnt=mDao.getBorrowCnt(id);
@@ -78,54 +72,73 @@ public class MemberManagement {
 		return cnt;
 	}
 
-	public int getArrearsCnt() {
-		Authentication authentication = SecurityContextHolder.getContext().getAuthentication(); 
-		User username = (User) authentication.getPrincipal();
-		System.out.println("user="+username.getUsername());
-		String id=username.getUsername();
+	
+	//연체횟수
+	public int getArrearsCnt(Principal principal) {
+		String id=principal.getName();
 		System.out.println("id="+id);
-		SimpleDateFormat format1 = new SimpleDateFormat ("yyyy-MM-dd");
 		
 		int cnt=0;
+		cnt=mDao.getArrearsCnt(id);
 		
-		Date date=mDao.getArrearsCnt(id);
-		
-		System.out.println("date="+date);
-		
-		String date1=format1.format(date);
-		System.out.println("date1="+date1);
-		
-		String[] date2=date1.split("-");
-		
-		String date3=date2[0]+date2[1]+date2[2];
-		System.out.println("date3="+date3);
-		int arrearDay=Integer.parseInt(date3);
-		
-		Date today1=new Date();
-		String[] today2=format1.format(today1).split("-");
-		String today3=today2[0]+today2[1]+today2[2];
-		int today=Integer.parseInt(today3);
-		System.out.println("today="+today);
-		int day=arrearDay-today;
-		System.out.println("day="+day);
-		
-		if(day<0) {
-		cnt=mDao.getArrearsCnt2(id);
 		System.out.println("cnt="+cnt);
-		}
-
-	
+			
 		return cnt;
 	}
 
-	public int getReviewCnt() {
-		Authentication authentication = SecurityContextHolder.getContext().getAuthentication(); 
-		User username = (User) authentication.getPrincipal();
-		System.out.println("user="+username.getUsername());
-		String id=username.getUsername();
+	
+	public int getReviewCnt(Principal principal) {
+		String id=principal.getName();
 		System.out.println("id="+id);
 		
 		int cnt=mDao.getReviewcntCnt(id);
 		return cnt;
+	}
+
+	public int getArrearsDay(Principal principal) {
+//		Authentication authentication = SecurityContextHolder.getContext().getAuthentication(); 
+//		User username = (User) authentication.getPrincipal();
+//		System.out.println("user="+username.getUsername());
+//		System.out.println("id="+id);
+		String id=principal.getName();
+		System.out.println("id="+id);
+		
+		//누적 연체일수
+		int arrearsDay=mDao.getArrearsDay(id)*-1;
+		
+		System.out.println("연체 일수 ="+arrearsDay);
+		
+		
+		return arrearsDay;
+	}
+
+	//대출현황
+	public List<Loan> getLoanList(Principal principal) {
+		String id=principal.getName();
+		System.out.println("id="+id);
+		List<Loan> lList=mDao.getLoanList(id);
+		return lList;
+	}
+
+	//연체목록
+	public List<Loan> getArrearsList(Principal principal) {
+		String id=principal.getName();
+		System.out.println("id="+id);
+		List<Loan> lList=mDao.getArrearsList(id);
+		return lList;
+	}
+	
+	
+	//비밀번호 변경
+	public boolean updatePassword(Principal principal, String pw) {
+		String id=principal.getName();
+		boolean result=mDao.updatePassword(id,pw);
+		
+		return result;
+	}
+
+	public ModelAndView profileComplet(Principal principal) {
+		
+		return null;
 	}
 }

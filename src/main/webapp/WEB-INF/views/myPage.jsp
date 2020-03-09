@@ -18,15 +18,7 @@
  
 <style>
 
-.myinfo {
-	border-right: none;
-	border-left: none;
-	border-top: none;
-	border-bottom: 1px solid black;
-}
-
 .table_box {
-	border: 1px solid black;
 	padding: 10px;
 	margin: 10px;
 	width: 100px;
@@ -34,11 +26,11 @@
 
 #myProfile {
 	float: left;
-	margin-right: 100px;
+	margin-right: 270px;
 }
 
 #myProfile_rest {
-	/*  float: left; */
+	margin-bottom: 300px;
 	
 }
 
@@ -66,6 +58,9 @@ color: blue;
 #table_rest{
 width: 400px;
 }
+.container{
+	margin-top: 50px;
+}
 </style>
 
 
@@ -82,30 +77,33 @@ width: 400px;
 
 			<div id="myProfile">
 			<form action="modifyprofile" method="get">
-				<table>
+				<table class="table table-striped" >
 					<tr>
-						<td>아이디</td>
-						<td><input type="text" class="myinfo" readOnly value="${mb.mb_id}" /></td>
+						<td>아이디 : </td>
+						<td>${mb.mb_id}</td>
+						<td rowspan="6">
+<img src="profile/${mb.us_image }" width="150" height="220" alt="프로필 사진" />						
+						</td>
 					</tr>
 					<tr>
-						<td>이름</td>
-						<td><input type="text" class="myinfo" readOnly value="${mb.mb_name }"/></td>
+						<td>이름 : </td>
+						<td>${mb.mb_name }</td>
 					</tr>
 					<tr>
-						<td>핸드폰</td>
-						<td><input type="text" class="myinfo" readOnly value="${mb.us_phone }"/></td>
+						<td>핸드폰 : </td>
+						<td><${mb.us_phone }</td>
 					</tr>
 					<tr>
-						<td>이메일</td>
-						<td><input type="text" class="myinfo" readOnly value="${mb.us_email }"/></td>
+						<td>이메일 : </td>
+						<td>${mb.us_email }</td>
 					</tr>
 					<tr>
-						<td>내지역</td>
-						<td><input type="text" class="myinfo" readOnly value="${mb.mb_area }" /></td>
+						<td>내지역 : </td>
+						<td>${mb.mb_area }</td>
 					</tr>
 					<tr>
-						<td>내등급</td>
-						<td><input type="text" class="myinfo" readOnly value="${mb.us_grade }"/></td>
+						<td>내등급 : </td>
+						<td>${mb.us_grade }</td>
 					</tr>
 				</table>
 				<input id='btn' type="submit" value="개인정보 변경"/>
@@ -113,14 +111,14 @@ width: 400px;
 			</div>
 
 			<div id="myProfile_rest">
-				<table id="table_rest">
+				<table id="table_rest" class="table table-striped">
 					<tr>
-						<td class="table_box">대출건수 <span id="borrowcnt"></span>회</td>
-						<td class="table_box">연체건수 <span id="arrearscnt"></span>회</td>
+						<td class="table_box">대출건수 <span id="borrowCnt"></span>회</td>
+						<td class="table_box">연체건수 <span id="arrearsCnt"></span>회</td>
 					</tr>
 					<tr>
-						<td class="table_box">독서횟수 <span id="reviewcnt"></span>회</td>
-						<td class="table_box">누적연체일수</td>
+						<td class="table_box">독서횟수 <span id="reviewCnt"></span>회</td>
+						<td class="table_box">누적연체일수 <span id="arrearsDay"></span>일</td>
 					</tr>
 					<tr>
 						<td class="table_box" style="cursor: pointer;"><a id="wishList" href="showwishlist">찜목록</a></td>
@@ -157,7 +155,7 @@ width: 400px;
 					<td style="width: 400px;">자료명</td>
 					<td style="width: 200px;">대출일</td>
 					<td style="width: 200px;">반납일</td>
-					<td style="width: 50px;">대출가능날짜</td>
+					<td style="width: 50px;">연체일수</td>
 				</tr>
 				</thead>
 				
@@ -216,16 +214,10 @@ $.ajax({
 	type : 'get',
 	url :"borrowcnt",
 	success : function(data) {
-        $('#borrowcnt').html(data).css('color', 'black').css('font-weight','bold');
-        console.log("data=",data);
-        /* console.log("data=", result);
-        console.log("status=", status);
-        console.log("xhr=", xhr); */
+        $('#borrowCnt').html(data).css('color', 'black').css('font-weight','bold');
 
      },
 	error : function(xhr, status) {
-        console.log("xhr=", xhr);
-        console.log("status=", status);
      }
 	
 }); //end ajax 
@@ -237,15 +229,10 @@ $.ajax({
 	type : 'get',
 	url :"arrearscnt",
 	success : function(data) {
-        $('#arrearscnt').html(data).css('color', 'black').css('font-weight','bold');
-        console.log("data=",data);
-        console.log("status=", status);
-        console.log("xhr=", xhr); 
+        $('#arrearsCnt').html(data).css('color', 'black').css('font-weight','bold');
 
      },
 	error : function(xhr, status) {
-        console.log("xhr=", xhr);
-        console.log("status=", status);
      }
 	
 }); //end ajax  
@@ -257,11 +244,52 @@ $.ajax({
 	type : 'get',
 	url :"reviewcnt",
 	success : function(data) {
-        $('#reviewcnt').html(data).css('color', 'black').css('font-weight','bold');
-        console.log("data=",data);
-        console.log("status=", status);
-        console.log("xhr=", xhr); 
+        $('#reviewCnt').html(data).css('color', 'black').css('font-weight','bold');
 
+     },
+	error : function(xhr, status) {
+     }
+	
+}); //end ajax  
+
+//누적 연체일수 조회
+$.ajax({
+	type : 'get',
+	url :"arrearsday",
+	success : function(data) {
+        $('#arrearsDay').html(data).css('color', 'red').css('font-weight','bold');
+     },
+	error : function(xhr, status) {
+     }
+	
+}); //end ajax  
+
+//연체목록
+$.ajax({
+	type : 'get',
+	url :"arrearslist",
+	dataType:'json',
+	success : function(data) {
+       
+        console.log("data=",data);
+     },
+	error : function(xhr, status) {
+        console.log("xhr=", xhr);
+        console.log("status=", status);
+     }
+	
+}); //end ajax
+
+
+
+//대출현황
+$.ajax({
+	type : 'get',
+	url :"loanlist",
+	dataType:'json',
+	success : function(data) {
+       
+        console.log("data2=",data);
      },
 	error : function(xhr, status) {
         console.log("xhr=", xhr);
@@ -269,9 +297,6 @@ $.ajax({
      }
 	
 }); //end ajax  
-
-
-
 </script>
 
 
