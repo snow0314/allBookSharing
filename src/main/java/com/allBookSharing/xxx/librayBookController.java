@@ -17,12 +17,25 @@ public class librayBookController {
 	
 	ModelAndView mav;
 	
+	@RequestMapping(value = "/librarymain")
+	public String libraryMain() { //사서 메인페이지 이동
+		
+		return "librarian/librarymain";
+	}
+	
 	//@PreAuthorize("isAnonymous()")
 	@RequestMapping(value = "/libraybookinsertmove")
-	public String bookInsertMove() {
+	public String bookInsertMove() { //책 등록 페이지 이동
 		
 		return "librarian/bookinsert";
 	}
+	
+	//@PreAuthorize("isAnonymous()")
+		@RequestMapping(value = "/libraybooklistmove")
+		public String bookListMove() { //책 등록 페이지 이동
+			
+			return "librarian/bookslist";
+		}
 	
 	
 	@RequestMapping(value = "/libraybookinsert")
@@ -34,5 +47,7 @@ public class librayBookController {
 		
 		return mav;
 	}
+	
+	
 	
 }
