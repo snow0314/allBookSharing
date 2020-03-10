@@ -1,15 +1,15 @@
 package com.allBookSharing.xxx.dao;
 
-import java.util.Date;
+
 import java.util.List;
 
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
-import org.jboss.logging.Param;
+import org.springframework.stereotype.Service;
 
 import com.allBookSharing.xxx.dto.Loan;
 import com.allBookSharing.xxx.dto.Member;
-
+@Service
 public interface IMemberDao {
 	
 	@Select("SELECT * FROM VIEW_MEMBER WHERE MB_ID=#{id}")
@@ -41,6 +41,12 @@ public interface IMemberDao {
 	
 	@Update("update member set mb_pw=#{pw} where mb_id=#{id}")
 	boolean updatePassword(@org.apache.ibatis.annotations.Param("id") String id,@org.apache.ibatis.annotations.Param("pw") String pw);
+	
+	
+	void updateprofileUs(Member mb1);
+
+	void updateprofileMb(Member mb1);
+	
 	
 	
 	

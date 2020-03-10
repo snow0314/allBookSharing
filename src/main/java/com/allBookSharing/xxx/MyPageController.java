@@ -33,7 +33,7 @@ public class MyPageController {
 	}
 	
 	
-	@RequestMapping(value = "/modifyprofile", method = RequestMethod.GET)
+	@RequestMapping(value = "/modifyprofile")
 	public ModelAndView modifyprofile(Principal principal) {
 		mav=mm.modifyprofile(principal);
 		
@@ -48,9 +48,10 @@ public class MyPageController {
 		return mav;
 	}
 	
-	@RequestMapping(value = "/profilecomplet", method = RequestMethod.GET)
+	@RequestMapping(value = "/profilecomplet")
 	public ModelAndView profileComplet(Principal principal,Member mb) {
-		mav=mm.profileComplet(principal);
+		System.out.println("mb="+mb);
+		mav=mm.profileComplet(principal,mb);
 		
 		return mav;
 	}

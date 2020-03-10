@@ -76,13 +76,13 @@ width: 400px;
 		<div id='topDiv'>
 
 			<div id="myProfile">
-			<form action="modifyprofile" method="get">
+			<form action="modifyprofile" method="post">
 				<table class="table table-striped" >
 					<tr>
 						<td>아이디 : </td>
 						<td>${mb.mb_id}</td>
 						<td rowspan="6">
-<img src="profile/${mb.us_image }" width="150" height="220" alt="프로필 사진" />						
+						<img src="profile/${mb.us_image }" width="150" height="220" alt="프로필 사진" />						
 						</td>
 					</tr>
 					<tr>
@@ -91,7 +91,7 @@ width: 400px;
 					</tr>
 					<tr>
 						<td>핸드폰 : </td>
-						<td><${mb.us_phone }</td>
+						<td>${mb.us_phone }</td>
 					</tr>
 					<tr>
 						<td>이메일 : </td>
@@ -107,6 +107,7 @@ width: 400px;
 					</tr>
 				</table>
 				<input id='btn' type="submit" value="개인정보 변경"/>
+				<input type="hidden" id="_csrf" name="_csrf" value="${_csrf.token}">
 			</form>
 			</div>
 

@@ -137,8 +137,16 @@ public class MemberManagement {
 		return result;
 	}
 
-	public ModelAndView profileComplet(Principal principal) {
+	public ModelAndView profileComplet(Principal principal, Member mb1) {
+		mav = new ModelAndView();
+		String id=principal.getName();
+		mDao.updateprofileUs(mb1);
+		mDao.updateprofileMb(mb1);
 		
-		return null;
+		Member mb=mDao.getMyPage(id);
+		mav.addObject("mb",mb);
+		
+		mav.setViewName("myPage");
+		return mav;
 	}
 }

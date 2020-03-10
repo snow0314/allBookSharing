@@ -153,7 +153,7 @@ width: 50px;
       
     </tbody>
   </table>
-        <input type="hidden" id="_csrf" value="${_csrf.token}">
+        <input type="hidden" id="_csrf" name="_csrf" value="${_csrf.token}">
   <div id="div_btn">
   <input id="btn" type="submit" value="수정" />
   <input id="btn" type="submit" value="취소" formaction="movemypage" />
@@ -164,7 +164,6 @@ width: 50px;
 <script>
 //지역선택
 $("#mb_area").on('change', function(){
-	
 	console.log($("#mb_area").val());
 	$("#area").val($("#mb_area").val());
 });
