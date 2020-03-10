@@ -72,20 +72,27 @@ $(document).ready( function () {
 			url: "libraybooklist",
 			dataSrc: ""
 		},
-		columns: [
+		columnDefs: [
 			{
-	            'data': '',
+	            'targets': 0,
 	            'checkboxes': {
 	               'selectRow': true
 	            }
-	         },	
-        { data: 'bk_bg_num' }, //대분류
-        { data: 'bk_sg_num' }, //소분류
-        { data: 'bk_code' }, // ISBN 코드
-        { data: 'bk_name' }, //책 제목 
-        { data: 'bk_writer' }, //저자
-        { data: 'bk_Quantity' }, //소유 권수
-        { data: 'bk_booklend' } //대출중인 권수
+	         },
+        { data: 'bk_bg_num',
+            targets: 1}, //대분류
+        { data: 'bk_sg_num', 
+        	targets: 2}, //소분류
+        { data: 'bk_code', 
+        	targets: 3}, // ISBN 코드
+        { data: 'bk_name', 
+        	targets: 4}, //책 제목 
+        { data: 'bk_writer', 
+        	targets: 5}, //저자
+        { data: 'bk_Quantity', 
+        	targets: 6}, //소유 권수
+        { data: 'bk_booklend',
+        	targets: 7} //대출중인 권수
     ],
     dom: 'Bfrtip',
     buttons: [
@@ -99,14 +106,7 @@ $(document).ready( function () {
             }
         }
     ],
-    'columnDefs': [
-        {
-           'targets': 0,
-           'checkboxes': {
-              'selectRow': true
-           }
-        }
-     ],
+     
      'select': {
         'style': 'multi'
      },
