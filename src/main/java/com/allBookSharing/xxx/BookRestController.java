@@ -21,10 +21,14 @@ public class BookRestController {
 	ModelAndView mav;
 	
 	@GetMapping(value="/booksearch",produces="application/json;charset=UTF-8")
-	public List<Books> bookSearch(String bk_search) {
+	public List<Books> bookSearch(String bk_search,String selectval) {
 		System.out.println("검색1");
-		List<Books> bList=bm.bookSearch(bk_search);
+		System.out.println(bk_search);
+		System.out.println(selectval);
+		
+		List<Books> bList=bm.bookSearch(bk_search,selectval);
 		return bList;
 	} 
+	
 
 }

@@ -1,21 +1,46 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.allBookSharing.xxx.dao.IBookDao.bookSearch">
+<mapper namespace="com.allBookSharing.xxx.dao.IBookDao">
 
 
  <resultMap type="books" id="booksearch">
     <result property="bk_lname" column="LB_NAME" />
     <result property="bk_name" column="BK_NAME" />
     <result property="bk_image" column="BK_IMAGE" />
-    <result property="bk_writer" column="BK_WRISTER" />
+    <result property="bk_writer" column="BK_WRITER" />
     <result property="bk_publisher" column="BK_PUBLISHER" />
     <result property="bk_publicday" column="BK_PUBLICDAY" />
+    <result property="bk_code" column="BK_CODE" />
+    <result property="bk_bg_cate" column="BG_CATE" />
+    <result property="bk_sg_cate" column="SG_CATE" />
+    <result property="bk_introduction" column="BK_INTRODUCTION" />
+    <result property="bk_Quantity" column="BK_QUANTITY" />
+    <result property="bk_booklend" column="BK_BOOKLEND" />
  </resultMap>
+
  
-<select id="getbookList" parameterType="string" resultType="books" resultMap="booksearch">
-	SELECT L.LB_NAME,B.BK_NAME,B.BK_IMAGE,B.BK_WRITER,BK_PUBLISHER,BK_PUBLICDAY
-	FROM BOOKS B INNER JOIN LIBRARY L ON B.BK_LCODE=L.LB_CODE WHERE B.BK_NAME LIKE '%'||#{bk_search}||'%'
+<select id="bookSearch"  resultType="books" resultMap="booksearch">
+	SELECT L.LB_NAME,B.BK_NAME,B.BK_IMAGE,B.BK_WRITER,BK_PUBLISHER,BK_PUBLICDAY,BK_CODE
+	FROM BOOKS B INNER JOIN LIBRARY L ON B.BK_LCODE=L.LB_CODE WHERE ${selectval} LIKE '%'||#{bk_search}||'%'
+</select>
+
+<select id="bookDetailPage" resultType="books" resultMap="booksearch">
+   SELECT L.LB_NAME,B.BK_NAME,B.BK_IMAGE,B.BK_WRITER,B.BK_PUBLISHER,B.BK_PUBLICDAY,
+          B.BK_CODE,A.BG_CATE,A.SG_CATE,B.BK_INTRODUCTION,B.BK_QUANTITY,B.BK_BOOKLEND
+   FROM BOOKS B
+   JOIN ALLGROUP A
+   ON B.BK_SG_NUM =A.SG_BG_NUM
+   JOIN library L
+   ON B.BK_LCODE=L.LB_CODE
+   WHERE B.BK_CODE=#{bk_code}
+</select>
+
+<select id="bookReviewList" resultType="review" >
+ SELECT RV_BCODE,RV_ID,RV_CONTENTS,RV_GRADE
+ FROM REVIEW 
+ WHERE RV_BCODE=#{bk_code}
+ 
 </select>
 
 
