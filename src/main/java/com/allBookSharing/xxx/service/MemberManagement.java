@@ -1,19 +1,19 @@
 package com.allBookSharing.xxx.service;
 
+
+import java.io.PrintWriter;
 import java.security.Principal;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
-
 import javax.servlet.http.HttpServletRequest;
-
+import javax.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Service;
 import org.springframework.web.servlet.ModelAndView;
-
 import com.allBookSharing.xxx.dao.IMemberDao;
 import com.allBookSharing.xxx.dto.Classification;
 import com.allBookSharing.xxx.dto.Loan;
@@ -72,7 +72,6 @@ public class MemberManagement {
 		return cnt;
 	}
 
-	
 	//연체횟수
 	public int getArrearsCnt(Principal principal) {
 		String id=principal.getName();

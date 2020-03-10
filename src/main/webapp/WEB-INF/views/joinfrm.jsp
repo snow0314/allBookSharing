@@ -171,7 +171,49 @@ width: 200px;
 	</div>
 
    <script>
+      //전화번호
+          function getTypeCheck(s, spc) {
+        var i;
+        
+        for (i = 0; i < s.length; i++) {
+            if (spc.indexOf(s.substring(i, i + 1)) < 0) {
+                return false;
+            }
       
+        return true;
+      }
+      
+          function onlyNum(obj,n) {
+              var re = /[^0-9]/gi;
+              var NUM = "0123456789";
+              var str_space = /\s/;
+           
+              if(n == undefined || n == null) {
+                  var n = "";
+                  var n2 = "";
+              } 
+              else {
+                  if(n == "") {
+                      var n = "";
+                      var n2 = "";
+                  } 
+                  else {
+                      var n = eval(n);
+                      var n2 = n;
+                  }
+              }
+           
+              if(!getTypeCheck(obj.value, NUM)) {
+                  alert("숫자를 입력해주세요.");
+                  
+                  obj.value = obj.value.replace(re,"");
+                  obj.value = n2;
+                  
+                  obj.focus();
+                  
+                  return false;
+              }
+          }
 
    </script>
 </body>

@@ -24,7 +24,9 @@ public class Member {
 	int us_point;			//포인트
 	String us_image;		//이미지
 	String us_grade;		//회원등급 : "일반", "우수"
-	
+	String approval_status;
+	String approval_key;
+
 	
 	
 }
