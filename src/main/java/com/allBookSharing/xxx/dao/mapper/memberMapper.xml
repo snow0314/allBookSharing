@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.allBookSharing.xxx.dao.IMemberDao">
+
+<update id="updateprofileUs" parameterType="member">
+
+UPDATE VEIW_MEMBER SET US_ADDRESS=#{us_address},US_PHONE=#{us_phone},US_EMAIL=#{us_email} WHERE MB_ID=#{mb_id}
+</update>
+
+<update id="updateprofileMb" parameterType="member">
+
+UPDATE VEIW_MEMBER SET MB_AREA=#{mb_area} WHERE MB_ID=#{mb_id}
+</update>
+
+</mapper>

@@ -55,6 +55,12 @@ public class JoinManagement {
 	      mav.setViewName(view);
 	      return mav;
 	   }
+
+	public String getIdFind(String email) {
+		String idSerch=jdao.getIdFind(email);
+		System.out.println("id="+idSerch);
+		return idSerch;
+	}
 	  
 
 }

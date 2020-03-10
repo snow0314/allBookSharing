@@ -3,6 +3,15 @@
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.allBookSharing.xxx.dao.IBookDao">
 
+<resultMap type="books" id="search">
+		<result property="bk_lname" column="LB_NAME" />
+		<result property="bk_name" column="BK_NAME" />
+		<result property="bk_image" column="BK_IMAGE" />
+		<result property="bk_writer" column="BK_WRITER" />
+		<result property="bk_publisher" column="BK_PUBLISHER" />
+		<result property="bk_publicday" column="BK_PUBLICDAY" />
+</resultMap>
+
 
  <resultMap type="books" id="booksearch">
     <result property="bk_lname" column="LB_NAME" />
@@ -41,13 +50,11 @@
  FROM REVIEW 
  WHERE RV_BCODE=#{bk_code}
  
+<select id="bookSearch" parameterType="String" resultType="books" resultMap="search">
+	SELECT L.LB_NAME,B.BK_NAME,B.BK_IMAGE,B.BK_WRITER,BK_PUBLISHER,BK_PUBLICDAY
+	FROM BOOKS B INNER JOIN LIBRARY L ON B.BK_LCODE=L.LB_CODE 
+
 </select>
-
-
-
-
-
-
 
 
 </mapper>
