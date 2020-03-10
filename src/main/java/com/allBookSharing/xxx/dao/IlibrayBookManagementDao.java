@@ -17,4 +17,10 @@ public interface IlibrayBookManagementDao {
 
 	boolean bookInsert(Books book);
 
+	int getLibraryCode(String id);
+
+	List<Books> getBookList(Integer LibraryCode);
+
+	Map<String, Object> getLibrayCodeName(String id);
+
 }

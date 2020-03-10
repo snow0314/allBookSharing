@@ -57,12 +57,13 @@ function listShow(data) {
 	
 function listSelect(index){
 	console.log(temp[index]);
+	
 	$("#bk_image").attr("value", temp[index].thumbnail);
 	$("#bk_image2").attr("src", temp[index].thumbnail);
 	$("#bk_code").attr("value", temp[index].isbn);
 	$("#bk_name").attr("value", temp[index].title);
 	$("#bk_writer").attr("value", temp[index].authors);
-	$("#bk_publicday").attr("value", temp[index].datetime);
+	$("#bk_publicday").attr("value", temp[index].datetime.substring(0, 10));
 	$("#bk_publisher").attr("value", temp[index].publisher);
 	$("#bk_introduction").text(temp[index].contents);
 	

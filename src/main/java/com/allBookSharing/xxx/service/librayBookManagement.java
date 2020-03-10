@@ -1,6 +1,9 @@
 package com.allBookSharing.xxx.service;
 
+import java.security.Principal;
 import java.util.List;
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.servlet.ModelAndView;
@@ -48,6 +51,22 @@ public class librayBookManagement {
 		
 		
 		return mav;
+	}
+
+	public List<Books> getBookList(Principal principal) { //도서관 코드만 조회
+		String id=principal.getName();
+		int LibraryCode=lDao.getLibraryCode(id);
+		//System.out.println("사서 도서관코드:"+LibraryCode);
+		List<Books> bList=lDao.getBookList(LibraryCode);
+		//System.out.println("도서관 책 목록:"+bList.toString());
+		
+		return bList;
+	}
+
+	public Map<String, Object> getLibrayCodeName(Principal principal) { //도서관 코드, 이름 조회
+		String id=principal.getName();
+		Map<String, Object> lMap=lDao.getLibrayCodeName(id);
+		return lMap;
 	}
 
 }

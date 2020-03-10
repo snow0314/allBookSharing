@@ -33,4 +33,19 @@
 		
 	</insert>
 
+	<select id="getLibraryCode" resultType="int">
+		SELECT LA_LCODE FROM librarian WHERE la_id=#{id}
+	</select>
+	
+	<select id="getBookList" resultType="Books">
+		SELECT * FROM BOOKS WHERE BK_LCODE=#{LibraryCode}
+	</select>
+	
+	<select id="getLibrayCodeName" resultType="Map">
+		SELECT library.lb_code,library.lb_name FROM librarian
+		JOIN LIBRARY
+		ON librarian.la_lcode=library.lb_code
+		WHERE librarian.LA_ID=#{id}
+	</select>
+
 </mapper>

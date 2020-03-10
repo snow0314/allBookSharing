@@ -64,7 +64,7 @@ table {
 	<div class="container p-3 my-3 border">
 
 		<form class="well form-horizontal" action="libraybookinsert" method="post"
-			id="contact_form">
+			id="contact_form" onsubmit="return check()">
 			<fieldset>
 
 				<!-- Form Name -->
@@ -78,7 +78,7 @@ table {
 									<span class="input-group-text">소속도서관</span>
 								</div>
 								<input id="bk_lname" name="bk_lname" type="text"
-									class="form-control"> 
+									class="form-control" readonly="readonly"> 
 									<!-- 도서관 이름 및 도서관 코드 가져오기 -->
 									<input type="hidden" id="bk_lcode" name="bk_lcode" value="1" >
 							</div>
@@ -99,7 +99,7 @@ table {
 									<span class="input-group-text">ISBN 코드</span>
 								</div>
 								<input id="bk_code" name="bk_code" type="text"
-									class="form-control">
+									class="form-control" required>
 							</div>
 						</td>
 					</tr>
@@ -110,7 +110,7 @@ table {
 									<span class="input-group-text">도서명</span>
 								</div>
 								<input id="bk_name" name="bk_name" type="text"
-									class="form-control">
+									class="form-control" required>
 								<div class="input-group-append">
 									<button class="btn btn-success" type="button" data-toggle="modal"
 									        data-target="#modalCart">검색</button>
@@ -125,7 +125,7 @@ table {
 									<span class="input-group-text">저자</span>
 								</div>
 								<input id="bk_writer" name="bk_writer" type="text"
-									class="form-control">
+									class="form-control" required>
 							</div>
 						</td>
 					</tr>
@@ -136,7 +136,7 @@ table {
 									<span class="input-group-text">출판일</span>
 								</div>
 								<input id="bk_publicday" name="bk_publicday" type="text"
-									class="form-control">
+									class="form-control" required>
 
 							</div>
 						</td>
@@ -153,7 +153,7 @@ table {
 									<span class="input-group-text">출판사</span>
 								</div>
 								<input id="bk_publisher" name="bk_publisher" type="text"
-									class="form-control">
+									class="form-control" required>
 							</div>
 						</td>
 					</tr>
@@ -163,8 +163,8 @@ table {
 								<div class="input-group-prepend">
 									<span class="input-group-text">권수</span>
 								</div>
-								<input id="bk_Quantity" name="bk_Quantity" type="text"
-									class="form-control">
+								<input id="bk_Quantity" name="bk_Quantity" type="number"
+									class="form-control" value="1 required">
 							</div>
 						</td>
 					</tr>
@@ -238,10 +238,29 @@ table {
     <!-- Modal: modalCart -->
 
 
-${bookInsertMsg}
+
 </body>
 <script type="text/javascript" src="js/bookInsert.js?ver2"></script>
 <script type="text/javascript">
+
+$(document).ready( function () {
+	$.ajax({ 
+		url : "getlibraycode",
+		type : "get",
+		dataType:'json'
+		
+}).done((result) => {
+	console.log("result=",result);
+	$("#bk_lname").attr("value",result.LB_NAME);
+	$("#bk_lcode").attr("value",result.LB_CODE);
+	
+}).fail((xhr) => {
+	console.log("xhr=",xhr);
+}); 
+	
+	
+});
+
 	var temp;
 	
 	if(location.search.substr(15)=="true"){
@@ -340,11 +359,18 @@ ${bookInsertMsg}
 		});
 	}
 
-
 	
-	function bookInsert() { //도서 등록하는 메소드
-
+	function check() {
+		if($("#bk_bg_num").val()=="대분류"){
+			toastr.error("대분류", "대분류를 선택해 주세요");
+			return false;
+		}else if($("#bk_sg_num").val()=="소분류"){
+			toastr.error("소분류", "소분류를 선택해 주세요");
+			return false;
+		}
+		return true;
 	}
+	
 	
 	
 	
