@@ -11,4 +11,5 @@
 		INTO AUTHORITIES VALUES(#{authority},#{mb_id})
 		SELECT * FROM DUAL
 	</insert>
+
 	</mapper>

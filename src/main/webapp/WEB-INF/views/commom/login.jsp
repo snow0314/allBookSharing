@@ -77,7 +77,7 @@
 								비밀번호 찾기
 							</a>
 							/
-							<a href="joinfrm.jsp" class="txt3">
+							<a href="joinfrm" class="txt3">
 								회원가입
 							</a>
 							

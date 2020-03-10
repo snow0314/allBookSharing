@@ -10,3 +10,6 @@ public interface IMemberDao {
 	Member getMyPage(String id);
 
 }
+
+
+

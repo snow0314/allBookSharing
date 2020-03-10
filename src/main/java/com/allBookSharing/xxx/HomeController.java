@@ -1,12 +1,15 @@
 package com.allBookSharing.xxx;
 
-
 import java.util.HashMap;
 import java.util.Map;
+
+import javax.servlet.http.HttpServletResponse;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.stereotype.Service;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -23,11 +26,11 @@ import com.allBookSharing.xxx.service.MemberManagement;
 public class HomeController {
 
 	@Autowired
-	JoinManagement jm; 
+	JoinManagement jm;
 
 	private ModelAndView mav;
-	
-	@PreAuthorize("isAnonymous()") 
+
+	@PreAuthorize("isAnonymous()")
 	@RequestMapping(value = "/joinfrm", method = RequestMethod.GET)
 	public ModelAndView joinFrm() {
 		mav = new ModelAndView();
@@ -38,37 +41,40 @@ public class HomeController {
 
 	@RequestMapping(value = "/memberjoin", method = RequestMethod.GET)
 	public ModelAndView memberJoin(Member mb) {
-		
-		mav= jm.memberJoin(mb);
+
+		mav = jm.memberJoin(mb);
 
 		return mav;
 	}
-	
+
 	@RequestMapping(value = "/")
 	public String home() {
-		
+
 		return "index";
 	}
+
 	
 	@PreAuthorize("isAnonymous()")
 	@RequestMapping(value = "/loginfrm")
 	public String loginFrm() {
-		
+
 		return "commom/login";
 	}
-	
+
 	@PreAuthorize("isAnonymous()")
 	@RequestMapping(value = "/idfindfrm")
 	public String idFindFrm() {
-		
+
 		return "commom/idFind";
 	}
+
 	
+	// 비밀번호 찾기 폼
 	@PreAuthorize("isAnonymous()")
 	@RequestMapping(value = "/pwfindfrm")
-	public String pwFindFrm() {
-		
+	public String pwFindFrm() throws Exception{
 		return "commom/pwFind";
 	}
 	
+
 }
