@@ -150,22 +150,23 @@
 				<ul>
 					<li><a href="#">도서관 관리</a>
 						<ul>
-							<li><a href="libraryAdd">도서관 등록</a></li>
+							<li><a href="libraryinsertmove">도서관 등록</a></li>
+							<li><a href="">도서관 수정</a></li>
+							<li><a href="">도서관 삭제</a></li>
 						</ul></li>
 						
 					<li><a href="">사서 관리</a>
 						<ul>
-							<li><a href="#">추천도서</a></li>
+							<li><a href="#">사서 계정 등록</a></li>
+							<li><a href="#">사서 계정 수정</a></li>
 						</ul></li>
 						
 					<li><a href="">추천도서 관리</a>
 						<ul>
-							<li><a href="">도서관 일정안내</a></li>
 						</ul></li>
 						
 					<li><a href="no-sidebar.html">도서관별 대출 현황</a>
 						<ul>
-							<li><a href="#">열람실 예약</a></li>
 						</ul></li>
 				</ul>
 			</nav>
