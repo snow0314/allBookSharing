@@ -134,7 +134,7 @@
 
 
 <div id="header">
-<h1><a href="#" id="logo">온책나누리</a></h1>
+<h1><a href="./" id="logo">온책나누리</a></h1>
 
 <!-- Nav -->
 						<nav id="nav">
@@ -151,7 +151,7 @@
 								</li>
 								<li><a href="left-sidebar.html">자료검색</a>
 								     <ul>
-										<li><a href="#">통합검색</a></li>
+										<li><a href="movetotalsearch">통합검색</a></li>
 										<li><a href="#">인기도서</a></li>
 										<li><a href="#">추천도서</a></li>
 									</ul>
