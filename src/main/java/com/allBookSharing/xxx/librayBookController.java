@@ -21,7 +21,10 @@ public class librayBookController {
 
 
 	@Autowired
-	librayBookManagement lmm;
+	private librayBookManagement lmm;
+	
+	@Autowired
+	private BookManagement bm;
 	
 	ModelAndView mav;
 	
