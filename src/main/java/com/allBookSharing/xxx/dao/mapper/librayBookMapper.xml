@@ -19,7 +19,33 @@
 	</resultMap>
 
 	<select id="getSmallGroup" resultType="classification" resultMap="small">
-		SELECT * FROM SMALLGROUP
+		SELECT * FROM SMALLGROUP WHERE SG_NUM LIKE #{BigNum}||'%'
+		
+	</select>
+
+
+	<insert id="bookInsert" parameterType="Books" >
+		INSERT INTO BOOKS(BK_CODE,BK_LCODE,BK_BG_NUM,BK_SG_NUM,BK_NAME,BK_INTRODUCTION,BK_PUBLICDAY,
+						  BK_PUBLISHER,BK_WRITER,BK_IMAGE,BK_QUANTITY,BK_BOOKLEND) 
+						  VALUES(#{bk_code},#{bk_lcode},#{bk_bg_num},#{bk_sg_num},#{bk_name},
+						  		 #{bk_introduction},#{bk_publicday},#{bk_publisher},
+						  		 #{bk_writer},#{bk_image},#{bk_Quantity},#{bk_Quantity})
+		
+	</insert>
+
+	<select id="getLibraryCode" resultType="int">
+		SELECT LA_LCODE FROM librarian WHERE la_id=#{id}
+	</select>
+	
+	<select id="getBookList" resultType="Books">
+		SELECT * FROM BOOKS WHERE BK_LCODE=#{LibraryCode}
+	</select>
+	
+	<select id="getLibrayCodeName" resultType="Map">
+		SELECT library.lb_code,library.lb_name FROM librarian
+		JOIN LIBRARY
+		ON librarian.la_lcode=library.lb_code
+		WHERE librarian.LA_ID=#{id}
 	</select>
 
 </mapper>

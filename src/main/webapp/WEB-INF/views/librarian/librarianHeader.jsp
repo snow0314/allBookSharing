@@ -21,7 +21,7 @@
 			<link rel="stylesheet" href="css/style.css" />
 		</noscript>
 		<!--[if lte IE 8]><link rel="stylesheet" href="css/ie/v8.css" /><![endif]-->
-		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js" type="text/javascript"></script>
   
   
@@ -141,22 +141,20 @@
 							<ul>
 								<li><a href="./">Home</a></li>
 								<li>
-									<a href="">나의 도서관</a>
+									<a href="">도서관 관리</a>
 									<ul>
-										<li><a href="movemypage">마이페이지</a></li>
-										<li><a href="#">배송목록</a></li>
-										<li><a href="#">대출목록</a></li>
-										<li><a href="">희망도서목록</a></li>
+										<li><a href="movemypage">도서관 정보 수정</a></li>
+										<li><a href="#">도서관 일정 관리</a></li>
 									</ul>
 								</li>
-								<li><a href="left-sidebar.html">자료검색</a>
+								<li><a href="left-sidebar.html">도서 관리</a>
 								     <ul>
-										<li><a href="#">통합검색</a></li>
-										<li><a href="#">인기도서</a></li>
+										<li><a href="libraybookinsertmove">도서 등록</a></li>
+										<li><a href="libraybooklistmove">도서 목록</a></li>
 										<li><a href="#">추천도서</a></li>
 									</ul>
 								</li>
-								<li><a href="right-sidebar.html">도서관 이용안내</a>
+								<li><a href="right-sidebar.html">열람실 관리</a>
 								    <ul>
 										<li><a href="#">열람실 예약안내</a></li>
 										<li><a href="#">회원등급 기준</a></li>
@@ -164,7 +162,15 @@
 										<li><a href="">도서관 일정안내</a></li>
 									</ul>
 								</li>
-								<li><a href="no-sidebar.html">도서관 서비스</a>
+								<li><a href="no-sidebar.html">배송 관리</a>
+								    <ul>
+										<li><a href="#">열람실 예약</a></li>
+										<li><a href="#">건의 사항</a></li>
+										<li><a href="#">희망도서 신청</a></li>
+										<li><a href="">공지사항</a></li>
+									</ul>
+								</li>
+								<li><a href="no-sidebar.html">고객 관리</a>
 								    <ul>
 										<li><a href="#">열람실 예약</a></li>
 										<li><a href="#">건의 사항</a></li>
@@ -175,6 +181,9 @@
 							</ul>
 						</nav>
 </div>
+
+
+
 
 
 <script type="text/javascript">
