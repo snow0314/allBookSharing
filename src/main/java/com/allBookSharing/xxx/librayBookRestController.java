@@ -1,18 +1,28 @@
 package com.allBookSharing.xxx;
 
+import java.io.IOException;
 import java.security.Principal;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.annotation.Secured;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.allBookSharing.xxx.dto.BookList;
 import com.allBookSharing.xxx.dto.Books;
 import com.allBookSharing.xxx.dto.Classification;
 import com.allBookSharing.xxx.service.librayBookManagement;
+import com.fasterxml.jackson.core.JsonParseException;
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.JsonMappingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 
 
@@ -51,8 +61,19 @@ public class librayBookRestController {
 	@RequestMapping(value = "/getlibraycode")
 	public Map<String, Object> getLibrayCode(Principal principal) { //도서관 코드,이름 가져오기
 		
-		
 		return lmm.getLibrayCodeName(principal);
+	}
+	
+	@Secured("ROLE_LIBRARIAN")	
+	@RequestMapping(value = "/libraybookdelete" ,produces = "application/json;charset=UTF-8")
+	public String deleteBooks(@RequestBody String json) throws JsonParseException, JsonMappingException, IOException { 
+		System.out.println(json);
+		ObjectMapper mapper =new ObjectMapper();
+		List<Books> ppl2 = Arrays.asList(mapper.readValue(json, Books[].class));
+		System.out.println("책 리스트:"+ppl2.toString());
+		System.out.println("책 삭제 컨트롤러");
+		
+		return "책 삭제 성공/실패";
 	}
 	
 }
