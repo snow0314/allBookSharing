@@ -11,12 +11,13 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
-
+<!--지도 api  -->
 <script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=04cfe5f1eb29416b59e4313a6acea9b8&libraries=services">
-   
 </script>
-
+<!--toastr -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css" integrity="sha256-ENFZrbVzylNbgnXx0n3I1g//2WeO47XxoPe0vkp3NC8=" crossorigin="anonymous" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js" integrity="sha256-3blsJd4Hli/7wCQ+bmgXfOdK7p/ZUMtPXY08jmxSSgk=" crossorigin="anonymous"></script>
 
 <style>
 
@@ -45,20 +46,47 @@ font-size: 17px;
    all:unset;
    color: #000000;
    font-weight:bold;
+   text-align:center;
    font-style:inherit;
    background: #BCF5A9;
    padding:5px 10px;
-   margin-left: 25px;
+   margin-left: 50px;
    margin-bottom: 10px;
    margin-top: 5px;
    border-radius: 5px;
    display: inline-block;
    border: none;
-}
-#id{
-width: 200px;
+   cursor:pointer;
+   height: 43px;
+   width: 120px;
 }
 
+#addr_btn{
+   all:unset;
+   color: #000000;
+   font-weight:bold;
+   font-style:inherit;
+   background: #BCF5A9;
+   padding:5px 20px;
+   margin-left: 25px;
+   margin-bottom: 10px;
+   margin-top: 5px;
+   border-radius: 5px;
+   border: none;
+   cursor:pointer;
+
+}
+
+#guide{
+display: none;
+}
+#map{
+
+display: none;
+}
+#id{
+width: 300px;
+}
 </style>
 <script>
    //프사 출력하기 : 1 mb가 넘으면 오류
@@ -84,11 +112,11 @@ width: 200px;
       //각 input요소에 이벤트 지정
       $("#profile").on("change", loadImage);
    });
+   
 </script>
 </head>
 
 <body>
-
 <jsp:include page="header.jsp" />
  
    <div id="div">
@@ -98,121 +126,347 @@ width: 200px;
 				<tbody>
 				<tr>
         <td id="pro_img"><label for="profile"><img id="show_profile" src="profile/${mb.us_image }" width="150" height="220" alt="프로필 사진"/></label></td>
-        <td colspan="2"><input type="file" id="profile" class="form-control" name="us_image" accept=".jpg,.jpeg,.png,.gif,.bmp"><span class="help-block"
+        <td colspan="3"><input type="file" id="profile" class="form-control" name="us_image" accept=".jpg,.jpeg,.png,.gif,.bmp"><span class="help-block"
 				id="helper_profile">1mb이하만 가능</span></td>
       </tr>
 					<tr>
 						<td width="180px">아이디</td>
-						<td colspan="3"><input type="text" name="id" maxlength="20" id="id">
-						<input id="id_check" type="button" value="중복확인">
+						<td><input type="text" name="mb_id" maxlength="20" id="id" required>
+						<span id="result"></span></td>
+						<td colspan="2" ><input id="id_check" type="button" value="중복확인">
 						</td>
 					</tr>
 					<tr>
 						<td>비밀번호</td>
-						<td colspan="3"><input type="password" name="pw" maxlength="30" id="pw"></td>
+						<td colspan="3">
+						<input type="password" name="mb_pw" maxlength="30" id="pw" required>
+						<span id='pw_ck'> </span>
+						</td>
 					</tr>
 
 					<tr>
 						<td>비밀번호체크</td>
 						<td colspan="3"><input type="password" name="pwcheck" maxlength="30"
-							id="pwcheck"></td>		
+							id="pwcheck" required>
+							<span id='pw_ck2'> </span>
+							</td>		
 					</tr>
 
 
 					<tr>
 						<td>이름</td>
-						<td colspan="3"><input type="text" name="name" maxlength="30" id="name"></td>
+						<td colspan="3"><input type="text" name="mb_name" maxlength="30" id="name" required>
+						<span id='irum'></span>
+						</td>
 					</tr>
 
 					<tr>
-						<td>전화번호</td>
-						<td colspan="3"><input type="text" name="tel" maxlength="11" id="tel"></td>
+						<td>핸드폰</td>
+						<td colspan="3"><input type="text" name="us_phone"  id="tel" required>
+						<span id='tel_ck'> </span>
+						</td>
 					</tr>
 					<tr>
-						<td>이메일</td>
-						<td><input type="text" name="mail1" id="mail"></td>
-						<td>@&nbsp;&nbsp;<input type="text" id="mail2" name="mail2"
-							readOnly style="margin-bottom: 10px;" value="" /></td>
-						<td><select id="url1">
+            <td><b>이메일:</b></td>
 
-								<option value="1">직접입력</option>
-								<option value="@naver.com">naver.com</option>
-								<option value="@daum.net">daum.net</option>
-								<option value="@google.com">google.com</option>
-						</select></td>
+            <td colspan="3"><input id="email" name="us_email" type="text" placeholder="이메일(xxx@xxx.xxx)" required/>
+            <span id='emali_ck'></span>
+            </td>
+         
+         </tr>
 
-					</tr>
+
+					 <tr>
+            <td><b>지역선택:</b></td>
+            <td colspan="2"><input type="text" required/></td>
+            <td><select name="mb_area" id="mb_area" class="foot1">
+                  <option value="">선택</option>
+                  <option value="서울">서울</option>
+                  <option value="인천">인천</option>
+                  <option value="경기">경기</option>
+                  <option value="강원">강원</option>
+                  <option value="충남">충남</option>
+                  <option value="충북">충북</option>
+                  <option value="대전">대전</option>
+                  <option value="경북">경북</option>
+                  <option value="경남">경남</option>
+                  <option value="대구">대구</option>
+                  <option value="전북">전북</option>
+                  <option value="전남">전남</option>
+                  <option value="울산">울산</option>
+                  <option value="부산">부산</option>
+                  <option value="제주">제주</option>
+            </select></td>
+
+         </tr>
 
 
 					<tr>
-						<td>지역선택 :</td>
-						<td><select id="url2">
-								<option>서울&nbsp;</option>
-								<option>인천&nbsp;</option>
-								<option>경기&nbsp;</option>
-						</select></td>
-					</tr>
+            <td><b>주소:</b></td>
 
-					<tr>
-						<td rowspan="2">주소</td>
-						<td><input class="addr3" type="text" id="addr1" name="addr1"
-							readOnly /></td>
-						<td><input class="addr3" type="text" name="addr2"
-							style="width: 250px;"></td>
-					</tr>
+            <td colspan="3"><label for="addr_btn"><input type="text" id="sample4_postcode" name="us_address" placeholder="우편번호" readOnly required> </label>
+               <input type="button" id="addr_btn" onclick="sample4_execDaumPostcode()" value="우편번호 찾기"><br>
+               <input type="text" id="sample4_roadAddress" placeholder="도로명주소"name="branchaddress"  readOnly required> 
+               <input type="hidden" id="sample4_jibunAddress" placeholder="지번주소" readOnly required> 
+               <input type="text" id="sample4_detailAddress" placeholder="상세주소" required>
+               <input type="text" id="sample4_extraAddress" placeholder="참고항목" readOnly required></td>
+         </tr>
+         
+         
+        
 				 </tbody>
 				</table>
+            <div id="guide" style="color: #999; display: none"></div>
+            <div id="map" style="width: 100%; height: 350px;"></div>
 
-				<input class="btn" type="submit" value="확인">
-				<input class="btn" type="submit" value="취소">
+
+				<input class="btn" type="submit" value="회원가입" formaction="memberjoin"
+					id="hag"> <input id="hag"class="btn" type="submit" value="취소"
+					formaction="./">
 			</div>
 		</form>
 	</div>
-
+	<label for="po5000">5,000 포인트<input id="po5000" type="radio" name='point' value='5000'/></label><br />
+	<label for="po10000">10,000 포인트<input id="po10000" type="radio" name='point'  value='10000'/></label><br />
+	<label for=po20000>20,000 포인트<input id="po20000" type="radio" name='point' value='20000'/></label><br />
+	<button id='a'>asdas</button>
    <script>
-      //전화번호
-          function getTypeCheck(s, spc) {
-        var i;
-        
-        for (i = 0; i < s.length; i++) {
-            if (spc.indexOf(s.substring(i, i + 1)) < 0) {
-                return false;
-            }
-      
-        return true;
-      }
-      
-          function onlyNum(obj,n) {
-              var re = /[^0-9]/gi;
-              var NUM = "0123456789";
-              var str_space = /\s/;
-           
-              if(n == undefined || n == null) {
-                  var n = "";
-                  var n2 = "";
-              } 
-              else {
-                  if(n == "") {
-                      var n = "";
-                      var n2 = "";
-                  } 
-                  else {
-                      var n = eval(n);
-                      var n2 = n;
-                  }
-              }
-           
-              if(!getTypeCheck(obj.value, NUM)) {
-                  alert("숫자를 입력해주세요.");
-                  
-                  obj.value = obj.value.replace(re,"");
-                  obj.value = n2;
-                  
-                  obj.focus();
-                  
-                  return false;
-              }
+
+   $("#a").click(function(){
+	  console.log($("#po5000").val());
+   });
+   let idck=0;
+   //아이디 검사 및 중복 체크
+   $("#id_check").on("click", function(){
+	  let mb_id=$("#id").val();
+	//정규식 : 영숫자 8-10자
+	  var patt=/^[A-Za-z0-9]{4,16}$/
+	  console.log("id="+$("#id").val());
+	  if(mb_id==""){
+		  toastr.error('아이디를 입력해주세요!', '경고');
+		  return;
+	  }else if(!patt.test(mb_id)){
+		  toastr.error('아이디는 영어나 숫자 4~16자 입니다.', '경고');
+		  return;
+	  }
+	  
+	  $.ajax({
+          type : 'get',
+          url : "idcheck",
+          data : {mb_id:mb_id},
+          success : function(data) {
+             $('#result').html(data).css('color', 'red');
+             console.log("data=", data);
+             /* console.log("data=", result);
+             console.log("status=", status);
+             console.log("xhr=", xhr); */
+
+          },
+          error : function(xhr, status) {
+             $('#result').html(xhr.responseText).css('color', 'green');
+             console.log("xhr=", xhr);
+             console.log("status=", status);
+             if (status == "error") {
+                idck = 0;
+             } else {
+                idck = 1;
+             }
           }
+
+       }); //end ajax
+	   
+	   
+   });	//fct end
+   
+   
+ //비밀번호 정규식 확인
+ $("#pw").on("blur", function(){
+	 var password=$("#pw").val();
+		//특수문자 하나이상 포함하는 8~10자(전방탐색 이용)
+		//특수문자는 비밀번호 중 어느 위치에 있어도 된다.
+		//오라클로 치면 like '*a'라고하면 a가 어느 위치에 있어도 된다.(즉 앞에 임의의 글자가 있어도 된다.)
+		//?=앞에서부터 검색, .은 임의의 문자, *는 0이상
+		//.*[!@#$%^&*] --> 앞에서 부터 임의의 문자 다음에 특수문자 .*!@#$%^&*이 온다.
+		//()는 독립된 하나의 조건 ->(?=.*[!@#$%^&*])는 특수문자가 하나있다라는 조건
+		var patt=/(?=.*[!@#$%^&*])^[A-Za-z0-9!@#$%^&*]{8,14}$/;
+		if(password.length==0)
+			return $("#pw_ck").text("필수 입력입니다.").css("color","red");
+			else if(!patt.test(password))
+				return $("#pw_ck").text("비밀번호는 특수문자 포함 8~14자 입니다.").css("color","red");
+		$("#pw_ck").text("");
+			return true;
+	 
+ });
+   
+ //비밀번호 재확인 
+ $("#pwcheck").on("blur", function(){
+	 var password=$("#pw").val();
+	 var password2=$("#pwcheck").val();
+	 
+	 if(password2.length==0)
+		 return $("#pw_ck2").text("필수 입력입니다.").css("color","red");
+	 else if(password!=password2){
+		 $("#pwcheck").val("");
+		 return $("#pw_ck2").text("비밀번호가 일치하지 않습니다.").css("color","red");
+	 }
+	 $("#pw_ck2").text("");
+		return true;
+ });
+ 
+ //이름 정규식으로 확인
+ $("#name").on("blur", function(){
+	 var irum=$("#name").val();
+	//이름은 한글 2~10자
+		var patt=/^[가-힣]{2,10}$/;
+		if(irum.length==0){
+			return $("#irum").text("필수 입력입니다.").css("color","red");
+		}
+		else if(!patt.test(irum)){
+			return $("#irum").text("필수 이름은 한글 2~10자 입니다.").css("color","red");
+		}
+		$("#irum").text("");
+		return true;
+ });
+ 
+ //전화번호 확인
+ let tel; //전역변수를 선언해서 join에서 같이 사용한다.
+ $("#tel").on("blur", function(){
+	 const originalTel=$("#tel").val();
+	 const telPatten=/^[0-9]{10,11}$/
+		//전화번호 - 문자를 찾아 삭제한다.
+		// /g : global의미 -> 하나만이 아니고 모두 찾아 바꿔라
+		 tel=originalTel.replace(/\-/g,'');
+		 if(tel.length==0)
+			 return $("#tel_ck").text("필수 입력입니다.").css("color","red");
+		 else if(!telPatten.test(tel)){
+			 $("#tel").val("");
+				 return $("#tel_ck").text("전화번호를 다시 입력해주세요.").css("color","red");
+			 }
+					$("#tel_ck").text("");
+			return true;
+ });
+
+//이메일 체크
+ $("#email").on("blur", function(){
+	 let email=$("#email").val();
+	 let patt=/^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
+	 if(email.length==0)
+		 return $("#emali_ck").text("필수 입력입니다.").css("color","red");
+	 else if(!patt.test(email)){
+		 return $("#emali_ck").text("이메일 형식에 맞게 입력해주세요.").css("color","red");
+	 }
+	 $("#emali_ck").text("");
+		return true;	 
+ });
+	
+   
+   
+   
+   //본 예제에서는 도로명 주소 표기 방식에 대한 법령에 따라, 내려오는 데이터를 조합하여 올바른 주소를 구성하는 방법을 설명합니다.
+   function sample4_execDaumPostcode() {
+      new daum.Postcode(
+            {
+               oncomplete : function(data) {
+                  var roadAddr = data.roadAddress; // 도로명 주소 변수
+                  var extraRoadAddr = ''; // 참고 항목 변수
+                  if (data.bname !== ''
+                        && /[동|로|가]$/g.test(data.bname)) {
+                     extraRoadAddr += data.bname;
+                  }
+                  if (data.buildingName !== ''
+                        && data.apartment === 'Y') {
+                     extraRoadAddr += (extraRoadAddr !== '' ? ', '
+                           + data.buildingName : data.buildingName);
+                  }
+                  if (extraRoadAddr !== '') {
+                     extraRoadAddr = ' (' + extraRoadAddr + ')';
+                  }
+
+                  // 우편번호와 주소 정보를 해당 필드에 넣는다.
+                  document.getElementById('sample4_postcode').value = data.zonecode;
+                  document.getElementById("sample4_roadAddress").value = roadAddr;
+                  document.getElementById("sample4_jibunAddress").value = data.jibunAddress;
+
+                  // 참고항목 문자열이 있을 경우 해당 필드에 넣는다.
+                  if (roadAddr !== '') {
+                     document.getElementById("sample4_extraAddress").value = extraRoadAddr;
+                  } else {
+                     document.getElementById("sample4_extraAddress").value = '';
+                  }
+
+                  var guideTextBox = document.getElementById("guide");
+                  // 사용자가 '선택 안함'을 클릭한 경우, 예상 주소라는 표시를 해준다.
+                  if (data.autoRoadAddress) {
+                     var expRoadAddr = data.autoRoadAddress
+                           + extraRoadAddr;
+                     guideTextBox.innerHTML = '(예상 도로명 주소 : '
+                           + expRoadAddr + ')';
+                     guideTextBox.style.display = 'block';
+
+                  } else if (data.autoJibunAddress) {
+                     var expJibunAddr = data.autoJibunAddress;
+                     guideTextBox.innerHTML = '(예상 지번 주소 : '
+                           + expJibunAddr + ')';
+                     guideTextBox.style.display = 'block';
+                  } else {
+                     guideTextBox.innerHTML = '';
+                     guideTextBox.style.display = 'none';
+                  }
+
+                  var mapContainer = document.getElementById('map'), // 지도를 표시할 div
+                  mapOption = {
+                     center : new kakao.maps.LatLng(33.450701,
+                           126.570667), // 지도의 중심좌표
+                     level : 3
+                  // 지도의 확대 레벨
+                  };
+
+                  // 지도를 생성합니다
+                  var map = new kakao.maps.Map(mapContainer,
+                        mapOption);
+
+                  // 주소-좌표 변환 객체를 생성합니다
+                  var geocoder = new kakao.maps.services.Geocoder();
+
+                  // 주소로 좌표를 검색합니다
+                  geocoder
+                        .addressSearch(
+                              roadAddr,
+                              function(result, status) {
+
+                                 // 정상적으로 검색이 완료됐으면
+                                 if (status === kakao.maps.services.Status.OK) {
+
+                                    var coords = new kakao.maps.LatLng(
+                                          result[0].y,
+                                          result[0].x);
+
+                                    // 결과값으로 받은 위치를 마커로 표시합니다
+                                    var marker = new kakao.maps.Marker(
+                                          {
+                                             map : map,
+                                             position : coords
+                                          });
+
+                                    // 인포윈도우로 장소에 대한 설명을 표시합니다
+                                    var infowindow = new kakao.maps.InfoWindow(
+                                          {
+                                             content : '<div style="width:150px;text-align:center;padding:6px 0;">'
+                                                   + roadAddr
+                                                   + '</div>'
+                                          });
+                                    infowindow
+                                          .open(map, marker);
+
+                                    // 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
+                                    map.setCenter(coords);
+                                 }
+                              });
+
+               }
+
+            }).open();
+   }
 
    </script>
 </body>

@@ -19,6 +19,9 @@ public interface IjoinMangementDao {
 	String getIdFind(String email);
 
 	User findOneByEmail(String email);
+	
+	@Select("SELECT COUNT(*) FROM MEMBER WHERE MB_ID=#{mb_id}")
+	int idCheck(String mb_id);
 		
 }
 

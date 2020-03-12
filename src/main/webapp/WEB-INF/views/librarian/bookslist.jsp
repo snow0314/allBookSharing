@@ -4,6 +4,9 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<meta id="_csrf" name="_csrf" content="${_csrf.token}" />
+<meta id="_csrf_header" name="_csrf_header" content="${_csrf.headerName}" />
+
 <title>Insert title here</title>
 <link rel="stylesheet" type="text/css"
 	href="https://cdn.datatables.net/1.10.20/css/jquery.dataTables.css">
@@ -18,36 +21,24 @@
 <script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
 
-
-<script
-	src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
-<script
-	src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
-<script
-	src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
-<script
-	src="https://cdn.datatables.net/1.10.15/js/jquery.dataTables.min.js"></script>
 <script
 	src="https://cdn.datatables.net/buttons/1.6.1/js/dataTables.buttons.min.js"></script>
-<script
-	src="https://cdn.datatables.net/buttons/1.6.1/js/buttons.flash.min.js"></script>
-<script
-	src="https://cdn.datatables.net/buttons/1.6.1/js/buttons.html5.min.js"></script>
-<script
-	src="https://cdn.datatables.net/buttons/1.6.1/js/buttons.print.min.js"></script>
 
 <!-- 데이터 테이블 체크박스 -->
 <link type="text/css" href="//gyrocode.github.io/jquery-datatables-checkboxes/1.2.11/css/dataTables.checkboxes.css" rel="stylesheet" />
 <script type="text/javascript" src="//gyrocode.github.io/jquery-datatables-checkboxes/1.2.11/js/dataTables.checkboxes.min.js"></script>
 
-
+<!-- 데이터 테이블 select -->
+<link type="text/css" href="https://cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css" rel="stylesheet" />
+<link type="text/css" href="https://cdn.datatables.net/select/1.3.1/css/select.dataTables.min.css" rel="stylesheet" />
+<script
+	src="https://cdn.datatables.net/select/1.2.1/js/dataTables.select.min.js"></script>
 </head>
 <body>
-	<div class="container p-3 my-3 border">
-
-		<table id="foo-table" class="table table-bordered">
-			<thead>
-				<tr>
+<div class="container p-3 my-3 border">
+	<table id="example" class="display" style="width:100%">
+	<thead>
+		<tr>
 					<th></th>
 					<th>대분류</th>
 					<th>소분류</th>
@@ -56,68 +47,95 @@
 					<th>저자</th>
 					<th>소유 권수</th>
 					<th>대출 권수</th>
-					
-				</tr>
-			</thead>
-			<tbody>
 
-			</tbody>
-		</table>
-	</div>
-	<script type="text/javascript">
-$(document).ready( function () {
+		</tr>
+	</thead>
 	
-	$('#foo-table').DataTable({
-		ajax: {
-			url: "libraybooklist",
-			dataSrc: ""
-		},
-		columnDefs: [
-			{
-	            'targets': 0,
-	            'checkboxes': {
-	               'selectRow': true
-	            }
-	         },
-        { data: 'bk_bg_num',
-            targets: 1}, //대분류
-        { data: 'bk_sg_num', 
-        	targets: 2}, //소분류
-        { data: 'bk_code', 
-        	targets: 3}, // ISBN 코드
-        { data: 'bk_name', 
-        	targets: 4}, //책 제목 
-        { data: 'bk_writer', 
-        	targets: 5}, //저자
-        { data: 'bk_Quantity', 
-        	targets: 6}, //소유 권수
-        { data: 'bk_booklend',
-        	targets: 7} //대출중인 권수
-    ],
-    dom: 'Bfrtip',
-    buttons: [
-        {
-            text: 'My button',
-            action: function ( e, dt, node, config ) {
-                console.log("e:",e);
-                console.log("dt:",dt);
-                console.log("node:",node);
-                console.log("config:",config);
-            }
-        }
-    ],
-     
-     'select': {
-        'style': 'multi'
-     },
-     'order': [[1, 'asc']]
-    
-	
-	}); //dataTable End
-	
+</table>
+</div>
+
+<script type="text/javascript">
 	
 
-}); //ready End
+	// select style 종류: `none`, `single`, `multi` or `os`
+	var example_tbl = null
+	$(function() {
+		example_tbl = $('#example').DataTable({
+			ajax: {
+				url: "libraybooklist",
+				dataSrc: ""
+			},
+			'columnDefs': [
+		        {
+		        	orderable: false,
+		           'targets': 0,
+		            className: 'select-checkbox',
+		            "defaultContent": ""
+		        	
+		        },
+		        { 'data': 'bk_bg_num' , 'targets': 1}, //대분류
+		        { 'data': 'bk_sg_num', 'targets': 2}, //소분류
+		        { 'data': 'bk_code', 'targets': 3  }, // ISBN 코드
+		        { 'data': 'bk_name', 'targets': 4  }, //책 제목 
+		        { 'data': 'bk_writer', 'targets': 5}, //저자
+		        { 'data': 'bk_Quantity', 'targets': 6}, //소유 권수
+		        { 'data': 'bk_booklend', 'targets': 7} //대출중인 권수
+		     ],
+		     'select': {
+		        'style': 'multi'
+		     },
+		     'order': [[1, 'asc']],
+		     dom: 'Bfrtip',
+
+		     buttons: [
+		         {
+		             text: 'My button',
+		             action: function ( e, dt, node, config ) {
+		            	 $('#example').DataTable().rows('.selected').data();
+		            	 console.log("행 데이터:", $('#example').DataTable().rows('.selected').data());
+		            	 console.log("1번 책:",$('#example').DataTable().rows('.selected').data()[0].bk_code);
+		            	 console.log("1번 책:",$('#example').DataTable().rows('.selected').data()[0].bk_lcode);
+		            	 
+		            	 var rowData=$('#example').DataTable().rows('.selected').data();
+		            	 var bookList=new Array;
+		            	 var books={};
+		            	 console.log("rowData",rowData[0].bk_code);
+		            	 
+		            	 for(var i=0;i<rowData.length;i++){
+		            		 books.bk_code=rowData[i].bk_code;
+		            		 books.bk_lcode=rowData[i].bk_lcode;
+		            		 bookList.push(books);
+		            	 }
+		            	 console.log("bookList",JSON.stringify(bookList));
+		            	 var json=JSON.stringify(bookList);
+		            	 
+		            	 
+		            	 $.ajaxSetup({
+		                     beforeSend : function(xhr){
+		                      xhr.setRequestHeader("${_csrf.headerName}", "${_csrf.token}");}
+		                  });//먼저 보냄
+		            	 
+		            	  $.ajax({ 
+		            			url : "libraybookdelete",
+		            			type : "post",
+		            			contentType: 'application/json',
+		            			data : json,
+		            			dataType:'json',
+		            	}).done((result) => {
+		            		console.log("result=",result);
+		            		
+		            	}).fail((xhr) => {
+		            		console.log("xhr=",xhr);
+		            	});  
+		            
+		             }
+		         }
+		     ],
+
+		});
+
+	});
+
 </script>
 </body>
 
