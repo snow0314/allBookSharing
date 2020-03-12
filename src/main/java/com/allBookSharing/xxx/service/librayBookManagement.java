@@ -71,9 +71,19 @@ public class librayBookManagement {
 
 	public String deleteBooks(List<Books> bookList) {
 		
-		int result = lDao.deleteBooks(bookList);
+		int result=0;
 		
-		return null;
+		result = lDao.deleteBooks(bookList);
+		
+		
+		System.out.println("도서삭제 result="+result);
+		
+		if(result!=0) {
+			return "삭제 성공";
+		}else {
+			return "삭제 실패";
+		}
+		
 	}
 
 }

@@ -53,7 +53,7 @@
 	
 </table>
 </div>
-
+<script type="text/javascript" src="js/ajaxCsrf.js"></script>
 <script type="text/javascript">
 	
 
@@ -89,44 +89,39 @@
 
 		     buttons: [
 		         {
-		             text: 'My button',
+		             text: '삭제',
 		             action: function ( e, dt, node, config ) {
-		            	 $('#example').DataTable().rows('.selected').data();
-		            	 console.log("행 데이터:", $('#example').DataTable().rows('.selected').data());
-		            	 console.log("1번 책:",$('#example').DataTable().rows('.selected').data()[0].bk_code);
-		            	 console.log("1번 책:",$('#example').DataTable().rows('.selected').data()[0].bk_lcode);
+		            	 
+		            	 var conf=confirm("삭제 하시겠습니까?");
+		            	 if(conf){
+		            		 
 		            	 
 		            	 var rowData=$('#example').DataTable().rows('.selected').data();
 		            	 var bookList=new Array;
-		            	 var books={};
-		            	 console.log("rowData",rowData[0].bk_code);
+		            	 
 		            	 
 		            	 for(var i=0;i<rowData.length;i++){
+		            		 let books={};
 		            		 books.bk_code=rowData[i].bk_code;
 		            		 books.bk_lcode=rowData[i].bk_lcode;
 		            		 bookList.push(books);
 		            	 }
-		            	 console.log("bookList",JSON.stringify(bookList));
-		            	 var json=JSON.stringify(bookList);
-		            	 
-		            	 
-		            	 $.ajaxSetup({
-		                     beforeSend : function(xhr){
-		                      xhr.setRequestHeader("${_csrf.headerName}", "${_csrf.token}");}
-		                  });//먼저 보냄
-		            	 
+		            	 var json=JSON.stringify(bookList); //선택한 책의 ISBN 코드와 도서관 코드 JSON화
+		            			            	 
 		            	  $.ajax({ 
 		            			url : "libraybookdelete",
 		            			type : "post",
 		            			contentType: 'application/json',
 		            			data : json,
-		            			dataType:'json',
+		            			dataType:'text',
 		            	}).done((result) => {
 		            		console.log("result=",result);
-		            		
+		            		location.reload();
 		            	}).fail((xhr) => {
 		            		console.log("xhr=",xhr);
-		            	});  
+		            	}); //ajax End  
+		            	
+		            	 }// confirm End
 		            
 		             }
 		         }

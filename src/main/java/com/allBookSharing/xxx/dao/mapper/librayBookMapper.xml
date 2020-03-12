@@ -48,8 +48,13 @@
 		WHERE librarian.LA_ID=#{id}
 	</select>
 	
-	<delete id="deleteBooks" parameterType="books">
-		
+	<delete id="deleteBooks" parameterType="java.util.List">
+		DELETE FROM books
+		<where>
+		<foreach collection="list" item="books" open="" close="" separator="OR">
+		bk_lcode=#{books.bk_lcode} AND bk_code=#{books.bk_code}
+		</foreach>
+		</where>
 	</delete>
 	
 
