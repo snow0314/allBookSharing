@@ -84,7 +84,9 @@
 		<tr><td class="tt">저자</td><td class="dd">${books.bk_writer }</td><td>
 		<tr><td class="tt">발행사항</td><td class="dd">${books.bk_publisher },${books.bk_publicday }</td></tr>
 		<tr><td class="tt">ISBN코드</td><td class="dd">${books.bk_code }</td></tr>
-		<tr><td class="tt">소장정보</td><td class="dd">${books.bk_lname } &nbsp;&nbsp;&nbsp;<span id="state"></span><button style="float:right;margin-right:20px;">예약</button></td></tr>
+		<tr><td class="tt">소장정보</td><td class="dd" id="dd">${books.bk_lname } &nbsp;&nbsp;&nbsp;<span id="state"></span>
+		<button style="float:right;margin-right:20px;" id="reserbtn">예약</button></td></tr>
+		
 	</table>
 
 <div id="sidebar">
@@ -118,14 +120,74 @@
  
 </body>
 <script>
-if(${books.bk_Quantity}>${books.bk_booklend}){
+ //console.log("책정보",${books});
+ console.log("책정보1",${books.bk_Quantity});
+ console.log("책정보2",${books.bk_booklend});
+ 
+if(${books.bk_Quantity}>${books.bk_booklend}) 
 	$("#state").text("대출가능");
-	
-}else{
+else
 	$("#state").text("대출불가");
-}
+
+
+$("#reserbtn").on("click",function(){
+	if($("#state").text()=="대출가능"){
+		alert("예약 불가능 합니다.")
+	} else if($("#state").text()=="대출불가"){
+			var result1=confirm("예약하시겠습니까?");
+		
+			if(result1){
+				$.ajax({
+					type:'get',
+			    	url:'reservation',
+			    	data:{"rv_code":"${books.bk_code}","rv_lcode":${books.bk_lcode}},
+			    	success:function(result){
+			    		console.log("result="+result);
+			    		console.log("test");
+			    		alert("예약되었습니다.");
+			    		//$("#reserbtn").replaceWith("<button onclick='reservCencel()' style='float:right;margin-right:20px;' id='reserccbtn'>예약취소</button>")
+			    	},
+			    	error:function(xhr,status){ 
+				    	console.log("xhr=", xhr);
+						console.log("status=", status);
+				 }
+				});//ajax End
+			
+			}else{
+				alert("취소");
+			}
+	}
+	
+});
+	
+	window.onload = function () {
+		
+		
+		$.ajax({
+			type:'get',
+	    	url:'reservationconfirm',
+	    	data:{"rv_code":"${books.bk_code}","rv_lcode":${books.bk_lcode}},
+	    	success:function(result){
+	    		if(result=="성공"){
+	    			$("#dd").append("<button style='float:right;margin-right:20px;' id='reserbtn'>예약</button>")
+	    		}else if(reseult=="실패"){
+	    			$("#dd").append("<button style='float:right;margin-right:20px;' id='reserbtn'>예약취소</button>")
+	    		}
+	    	},
+	    	error:function(xhr,status){ 
+		    	console.log("xhr=", xhr);
+				console.log("status=", status);
+		 }
+		});//ajax End
+	}
 
 
 
+
+	 
+ 
+	 
+	 
+ 
 </script>
 </html>

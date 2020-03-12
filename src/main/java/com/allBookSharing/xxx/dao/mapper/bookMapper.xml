@@ -17,6 +17,7 @@
     <result property="bk_introduction" column="BK_INTRODUCTION" />
     <result property="bk_Quantity" column="BK_QUANTITY" />
     <result property="bk_booklend" column="BK_BOOKLEND" />
+    <result property="bk_lcode" column="LB_CODE"/>
  </resultMap>
 
  
@@ -27,7 +28,7 @@
 
 <select id="bookDetailPage" resultType="books" resultMap="booksearch">
    SELECT L.LB_NAME,B.BK_NAME,B.BK_IMAGE,B.BK_WRITER,B.BK_PUBLISHER,B.BK_PUBLICDAY,
-          B.BK_CODE,A.BG_CATE,A.SG_CATE,B.BK_INTRODUCTION,B.BK_QUANTITY,B.BK_BOOKLEND
+          B.BK_CODE,A.BG_CATE,A.SG_CATE,B.BK_INTRODUCTION,B.BK_QUANTITY,B.BK_BOOKLEND,L.LB_CODE
    FROM BOOKS B
    JOIN ALLGROUP A
    ON B.BK_SG_NUM =A.SG_BG_NUM
@@ -40,8 +41,16 @@
  SELECT RV_BCODE,RV_ID,RV_CONTENTS,RV_GRADE
  FROM REVIEW 
  WHERE RV_BCODE=#{bk_code}
- 
 </select>
 
+<insert id="reservationInsert" parameterType="reservation">
+INSERT INTO RESERVATION
+VALUES( RV_SEQ.NEXTVAL,#{rv_code},#{rv_lcode},#{rv_id},SYSDATE)
+</insert>
+
+<select id="reservationConfirm" resultType="reservation" >
+ SELECT * FROM RESERVATION
+ WHERE RT_CODE=#{rv_code} AND RT_LCODE=#{rv_lcode} AND RT_ID=#{rv_id}
+</select>
 
 </mapper>

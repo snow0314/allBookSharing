@@ -8,6 +8,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.allBookSharing.xxx.dao.IBookDao;
 import com.allBookSharing.xxx.dto.Books;
+import com.allBookSharing.xxx.dto.Reservation;
 import com.allBookSharing.xxx.dto.Review;
 
 import lombok.extern.slf4j.Slf4j;
@@ -19,7 +20,7 @@ public class BookManagement {
   ModelAndView mav;
   
 	public List<Books> bookSearch(String bk_search, String selectval) {
-		System.out.println("검색2");
+		
 		List<Books> bList=bDao.bookSearch(bk_search,selectval);
 			
 		return bList;
@@ -36,9 +37,24 @@ public class BookManagement {
 		
 		view="bookDetailPage";
 		mav.setViewName(view);
-		System.out.println("서비스 통과");
+		
 		return mav;
 		
+	}
+
+	public Boolean reservationInsert(Reservation r) {
+		
+		System.out.println("서비스 통과");
+		Boolean reservation=bDao.reservationInsert(r);
+		
+		return reservation;
+	}
+
+	public Boolean reservationConfirm(Reservation r) {
+		System.out.println("서비스");
+		Boolean rvconfirm=bDao.reservationConfirm(r);
+		System.out.println(rvconfirm);
+		return rvconfirm;
 	}
 
 }

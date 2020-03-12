@@ -155,7 +155,7 @@
 								</li>
 								<li><a href="./">자료검색</a>
 								     <ul>
-										<li><a href="movetotalsearch">통합검색</a></li>
+										<li><a href="totalsearch">통합검색</a></li>
 										<li><a href="#">인기도서</a></li>
 										<li><a href="#">추천도서</a></li>
 									</ul>

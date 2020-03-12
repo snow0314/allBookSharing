@@ -7,6 +7,7 @@ import org.apache.ibatis.annotations.Select;
 import org.springframework.stereotype.Component;
 
 import com.allBookSharing.xxx.dto.Books;
+import com.allBookSharing.xxx.dto.Reservation;
 import com.allBookSharing.xxx.dto.Review;
 
 @Component
@@ -16,6 +17,10 @@ public interface IBookDao {
 	Books bookDetailPage(String bk_code);
 	List<Review> bookReviewList(String bk_code);
 	List<Books> bookSearch(String bk_search);
+	
+	Boolean reservationInsert(Reservation r);
+	Boolean reservationConfirm(Reservation r);
+	
 
 	
 }
