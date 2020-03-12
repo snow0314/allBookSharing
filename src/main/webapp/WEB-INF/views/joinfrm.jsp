@@ -219,6 +219,7 @@ width: 300px;
             <div id="guide" style="color: #999; display: none"></div>
             <div id="map" style="width: 100%; height: 350px;"></div>
 
+
 				<input class="btn" type="submit" value="회원가입" formaction="memberjoin"
 					id="hag"> <input id="hag"class="btn" type="submit" value="취소"
 					formaction="./">
