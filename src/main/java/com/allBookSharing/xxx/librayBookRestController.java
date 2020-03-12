@@ -14,8 +14,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
-
-import com.allBookSharing.xxx.dto.BookList;
 import com.allBookSharing.xxx.dto.Books;
 import com.allBookSharing.xxx.dto.Classification;
 import com.allBookSharing.xxx.service.librayBookManagement;
@@ -67,13 +65,12 @@ public class librayBookRestController {
 	@Secured("ROLE_LIBRARIAN")	
 	@RequestMapping(value = "/libraybookdelete" ,produces = "application/json;charset=UTF-8")
 	public String deleteBooks(@RequestBody String json) throws JsonParseException, JsonMappingException, IOException { 
-		System.out.println(json);
 		ObjectMapper mapper =new ObjectMapper();
-		List<Books> ppl2 = Arrays.asList(mapper.readValue(json, Books[].class));
-		System.out.println("책 리스트:"+ppl2.toString());
-		System.out.println("책 삭제 컨트롤러");
+		List<Books> bookList = Arrays.asList(mapper.readValue(json, Books[].class));
+		System.out.println("책 리스트:"+bookList.toString());
 		
-		return "책 삭제 성공/실패";
+		
+		return lmm.deleteBooks(bookList);
 	}
 	
 }

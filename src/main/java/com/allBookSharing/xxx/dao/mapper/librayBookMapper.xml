@@ -47,5 +47,10 @@
 		ON librarian.la_lcode=library.lb_code
 		WHERE librarian.LA_ID=#{id}
 	</select>
+	
+	<delete id="deleteBooks" parameterType="books">
+		
+	</delete>
+	
 
 </mapper>
