@@ -1,7 +1,9 @@
 package com.allBookSharing.xxx;
 
 
-
+import java.security.Principal;
+import java.util.HashMap;
+import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
@@ -25,6 +27,9 @@ public class HomeController {
 
 	@Autowired
 	JoinManagement jm;
+	
+	@Autowired
+	MemberManagement mm;
 
 	private ModelAndView mav;
 
@@ -50,6 +55,22 @@ public class HomeController {
 
 		return "index";
 	}
+	@PreAuthorize("isAuthenticated()")
+	@RequestMapping(value = "/insertpoint")
+	public String pointUsse() {
+    System.out.println("point:");
+		return "PointUser";
+	}
+	
+	@RequestMapping(value = "/okpoint", method = RequestMethod.POST)
+	public ModelAndView okPoint(Member mb,Principal principal) {
+
+		System.out.println("충전커트롤러:"+mb);
+		mav = mm.okPoint(mb,principal);
+
+		return mav;
+	}
+
 
 	
 	@PreAuthorize("isAnonymous()")

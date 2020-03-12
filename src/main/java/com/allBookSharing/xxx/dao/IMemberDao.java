@@ -1,6 +1,7 @@
 package com.allBookSharing.xxx.dao;
 
 
+import java.security.Principal;
 import java.util.List;
 
 import org.apache.ibatis.annotations.Select;
@@ -46,6 +47,9 @@ public interface IMemberDao {
 	void updateprofileUs(Member mb1);
 
 	void updateprofileMb(Member mb1);
+	
+	@Update("update users set us_point=#{us_point} where us_id=#{id}")
+	boolean updateOkPoint(@org.apache.ibatis.annotations.Param("us_point") int us_point,@org.apache.ibatis.annotations.Param("id") String id);
 	
 	
 	

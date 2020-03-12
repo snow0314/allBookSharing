@@ -50,22 +50,6 @@
         <property name="cacheSeconds" value="5"/>
     </bean>
 
-<!-- 이메일 -->
-	<bean id="javaMailSender"
-		class="org.springframework.mail.javamail.JavaMailSenderImpl">
-		<property name="host" value="smtp.gmail.com" />
-		<property name="port" value="80" />
-		<property name="username" value="본인아이디@gmail.com" />
-		<property name="password" value="비밀번호" />
-		<property name="javaMailProperties">
-			<props>
-				<prop key="mail.smtp.ssl.trust">smtp.gmail.com</prop>
-				<prop key="mail.smtp.starttls.enable">true</prop>
-				<prop key="mail.smtp.auth">true</prop>
-			</props>
-		</property>
-	</bean>
-	<bean id="mailService" class="com.allBookSharing.xxx.service.MailServiceImpl">
-	</bean>
+
 
 </beans>

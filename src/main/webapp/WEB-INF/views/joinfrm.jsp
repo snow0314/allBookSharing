@@ -226,15 +226,9 @@ width: 300px;
 			</div>
 		</form>
 	</div>
-	<label for="po5000">5,000 포인트<input id="po5000" type="radio" name='point' value='5000'/></label><br />
-	<label for="po10000">10,000 포인트<input id="po10000" type="radio" name='point'  value='10000'/></label><br />
-	<label for=po20000>20,000 포인트<input id="po20000" type="radio" name='point' value='20000'/></label><br />
-	<button id='a'>asdas</button>
    <script>
 
-   $("#a").click(function(){
-	  console.log($("#po5000").val());
-   });
+
    let idck=0;
    //아이디 검사 및 중복 체크
    $("#id_check").on("click", function(){
@@ -272,6 +266,7 @@ width: 300px;
                 idck = 1;
              }
           }
+
 
        }); //end ajax
 	   
