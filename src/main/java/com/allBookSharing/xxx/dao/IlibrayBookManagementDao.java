@@ -23,4 +23,6 @@ public interface IlibrayBookManagementDao {
 
 	Map<String, Object> getLibrayCodeName(String id);
 
+	int deleteBooks(List<Books> bookList);
+
 }

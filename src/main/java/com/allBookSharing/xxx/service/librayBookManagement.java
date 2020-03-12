@@ -69,4 +69,11 @@ public class librayBookManagement {
 		return lMap;
 	}
 
+	public String deleteBooks(List<Books> bookList) {
+		
+		int result = lDao.deleteBooks(bookList);
+		
+		return null;
+	}
+
 }
