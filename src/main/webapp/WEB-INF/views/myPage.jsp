@@ -105,6 +105,11 @@ width: 400px;
 						<td>내등급 : </td>
 						<td>${mb.us_grade }</td>
 					</tr>
+					<tr>
+						<td>포인트 : </td>
+						<td>${mb.us_point} point</td>
+						<td><a href=./insertpoint >포인트 충전 바로가기</a></td>
+					</tr>
 				</table>
 				<input id='btn' type="submit" value="개인정보 변경"/>
 				<input type="hidden" id="_csrf" name="_csrf" value="${_csrf.token}">

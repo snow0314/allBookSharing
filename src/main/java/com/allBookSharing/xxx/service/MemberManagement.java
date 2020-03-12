@@ -148,4 +148,21 @@ public class MemberManagement {
 		mav.setViewName("myPage");
 		return mav;
 	}
+
+	public ModelAndView okPoint(Member mb, Principal principal) {
+		mav = new ModelAndView();
+		String id=principal.getName();
+		System.out.println("point="+ mb.getUs_point());
+		int us_point=mb.getUs_point();
+		boolean result= mDao.updateOkPoint(us_point,id);
+		
+		if(result)
+		mav.setViewName("redirect:/movemypage");
+		else
+		mav.setViewName("redirect:/insertpoint");
+		
+		
+		
+		return mav;
+	}
 }
