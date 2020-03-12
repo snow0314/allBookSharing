@@ -41,11 +41,7 @@ public class librayBookController {
 		
 		return "librarian/bookinsert";
 	 } 
-	@RequestMapping(value = "/movetotalsearch")
-	public String movetotalSearch() {
-		
-		return "totalSearch";
-	 } 
+
 	@GetMapping(value="/bookdetailpage")
 	public ModelAndView bookDetailPage(String bk_code) {
 		mav=bm.bookDetailPage(bk_code);
@@ -53,6 +49,8 @@ public class librayBookController {
 		return mav;
 		
 	}
+	
+	
 	
 	@Secured("ROLE_LIBRARIAN")
 	@RequestMapping(value = "/libraybooklistmove")

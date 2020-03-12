@@ -95,7 +95,8 @@ public class HomeController {
 		return "commom/pwFind";
 	}
 	
-	@PreAuthorize("isAnonymous()")
+	
+	@PreAuthorize("permitAll")
 	@RequestMapping(value = "/totalsearch")
 	public String totalSearch() {
 		

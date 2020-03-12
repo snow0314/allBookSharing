@@ -8,7 +8,7 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js" type="text/javascript"></script>
 <style>
 	#bookinput{
-	width:60%;
+	width:65%;
 	  display: inline-block;
 	}
 	.container2{
@@ -88,40 +88,39 @@
         
 	}
 	#bookname{
-	width:70%;
-	margin-left: 15%
+		width:70%;
+		margin-left: 15%
 	}
 	#submenu {
-  	float: left;
-  	width: 18%;
-  	height: 100%;  
-    background: #ffa700;
-   padding: 20px;
-    border:2px solid blue;
-    margin-left: 8%;
-    margin-top:2%;
+  		float: left;
+  		width: 18%;
+  		height: 100%;  
+  	  background: #ffa700;
+  	 padding: 20px;
+  	  border:2px solid blue;
+  	  margin-left: 8%;
+  	  margin-top:2%;
 }
 	#select{
-	margin-left:10%;
-	height:48px;
+		margin-left:10%;
+		height:48px;
 	}
 
-#submanu ul {
-  list-style-type: none;
-  padding: 0;
-}
-	#searchbtn{s
+	#submanu ul {
+ 	 list-style-type: none;
+ 	 padding: 0;
+	}
+	#searchbtn{
 	height:40px;
 	width:65px;
 	}
 	#searchList{
-	border:1px solid black;
+	width:80%;
+	margin-left:10%;
 	}
-	hr{
-	border:none;
-	border:2px solid #2565AE;
-	}
+	
 	#bkname{
+	margin-top:-100px;
 	color:#2565AE;
 	text-decoration:none;
 	font-size: x-large;
@@ -130,6 +129,18 @@
 	#bkname:hover{
 	text-decoration:underline;
 	}
+	h1{
+	font-size:50px;
+	}
+	#tr{
+	height:10px;
+	}
+	img{
+	width:110px;
+	height:auto;
+	margin-bottom:-128px;
+	}
+	
 </style>
 </head>
 
@@ -148,7 +159,7 @@
 </nav>
 
 <main id="main">
-    <h1 style="margin-top: -80px;">통합검색</h1>
+    <h1>통합검색</h1>
     <select id="select">
     	<option value="BK_NAME">제목</option>
     	<option value="BK_WRITER">저자</option>
@@ -157,7 +168,7 @@
 	<input type="text" id="bookinput">
 	<button onclick="bookList()" id="searchbtn">검색</button>
 	<br><br>
-	<hr>
+	
 	<div id="bookList_layer"><table id="searchList"></table></div>	
 
 </main>
@@ -190,8 +201,8 @@ function bookList(){
 	    		
 	    	$.each(result,function(index,item){
 	    		console.log(item.bk_code);
-	    		str+='<tr><td style="border:1px solid black">'+'<image src="'+item.bk_image+'"></td>';
-	    		str+='<td style="border:1px solid black;">'+'<a href="bookdetailpage?bk_code='+item.bk_code+'" id="bkname">'+item.bk_name+'<a><br>'+item.bk_writer+'<br>'+
+	    		str+='<tr id="tr"><td style="border:1px solid black;width:100px;">'+'<image src="'+item.bk_image+'"></td>';
+	    		str+='<td style="border:1px solid black;">'+'<a href="bookdetailpage?bk_code='+item.bk_code+'" id="bkname">'+item.bk_name+'</a><br>'+item.bk_writer+'<br>'+
 	    		item.bk_publisher+'<br>'+item.bk_publicday+'<br>'+item.bk_lname+'</td></tr>';
 	    	});
 				
