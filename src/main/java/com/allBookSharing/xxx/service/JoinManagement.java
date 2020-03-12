@@ -61,6 +61,23 @@ public class JoinManagement {
 		System.out.println("id="+idSerch);
 		return idSerch;
 	}
+
+	public String idCheck(String mb_id) {
+		String msg;
+		int result=jdao.idCheck(mb_id);
+		System.out.println("result="+result);
+		
+		if(result==1) {
+			msg="사용불가능한 아이디입니다";
+		}
+		else
+		{
+			msg="사용가능한 아이디입니다.";
+		}
+		
+		
+		return msg;
+	}
 	  
 
 }
