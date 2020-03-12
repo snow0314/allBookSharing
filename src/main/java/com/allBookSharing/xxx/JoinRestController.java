@@ -23,11 +23,11 @@ public class JoinRestController {
 	private JoinManagement jmn;
 
 	@GetMapping(value = "/idcheck", produces = "application/json;charset=utf-8")
-	public ResponseEntity<?> AjaxView(String id) {
-		System.out.println("id=" + id);
-
+	public String idcheck(String mb_id) {
+		System.out.println("id=" + mb_id);
 		System.out.println("1");
-		return ResponseEntity.ok(jmn.idfind(id));
+		String msg=jmn.idCheck(mb_id);
+		return msg;
 
 	}
 
