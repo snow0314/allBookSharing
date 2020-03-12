@@ -163,9 +163,8 @@ width: 200px;
 				 </tbody>
 				</table>
 
-				<input class="btn" type="button" value="확인" formaction="memberjoin"
-					id="hag"> <input id="hag"class="btn" type="submit" value="취소"
-					formaction="home">
+				<input class="btn" type="submit" value="확인">
+				<input class="btn" type="submit" value="취소">
 			</div>
 		</form>
 	</div>
