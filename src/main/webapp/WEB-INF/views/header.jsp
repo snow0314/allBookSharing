@@ -116,9 +116,13 @@
         </div>
         </sec:authorize>
         
-        <sec:authorize access="isAuthenticated()">
+        <sec:authorize access="isAuthenticated()"> 
+        <sec:authorize access="hasRole('ROLE_LIBRARIAN')">
        <div class="container2">
-        
+        <div class="button-7">
+            <div class="eff-7"></div>
+           <a href="librarymain">관리 페이지</a>         
+         </div>
          <div class="button-7">
             <div class="eff-7"></div>
             <a id="logout" href="#" onclick="logoutGo()"> 로그아웃 </a>         
@@ -128,8 +132,19 @@
         <input id="csrf" type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/> 
         </form>
         </sec:authorize>
-
-
+		
+		<sec:authorize access="hasRole('ROLE_USER')">
+       <div class="container2">
+         <div class="button-7">
+            <div class="eff-7"></div>
+            <a id="logout" href="#" onclick="logoutGo()"> 로그아웃 </a>         
+         </div>
+        </div>
+        <form action="logout" name="logoutform" method="post">
+        <input id="csrf" type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/> 
+        </form>
+        </sec:authorize>
+</sec:authorize>
 <div id="header">
 <h1><a href="./" id="logo">온책나누리</a></h1>
 

@@ -69,11 +69,26 @@ public class librayBookManagement {
 		return lMap;
 	}
 
+	/*
+	 * 1. 찜 목록에서 삭제 
+	 * 2.예약 목록에서 삭제 
+	 * 3.도서관 책 삭제 (완료)
+	 */
 	public String deleteBooks(List<Books> bookList) {
 		
-		int result = lDao.deleteBooks(bookList);
+		int result=0;
 		
-		return null;
+		result = lDao.deleteBooks(bookList);
+		
+		
+		System.out.println("도서삭제 result="+result);
+		
+		if(result!=0) {
+			return "삭제 성공";
+		}else {
+			return "삭제 실패";
+		}
+		
 	}
 
 }

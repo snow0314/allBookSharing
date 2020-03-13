@@ -7,7 +7,6 @@ import lombok.experimental.Accessors;
 
 @Alias("reservation")
 @Data
-
 @Accessors(chain=true)
 public class Reservation {
 	private String rv_num; //예약번호
