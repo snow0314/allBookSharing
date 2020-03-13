@@ -107,7 +107,7 @@
         <div class="container2">
         <div class="button-7">
             <div class="eff-7"></div>
-            <a href="joinfrm.jsp"> 회원가입 </a>         
+            <a href="joinfrm"> 회원가입 </a>         
          </div>
          <div class="button-7">
             <div class="eff-7"></div>
