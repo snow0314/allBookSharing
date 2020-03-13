@@ -2,14 +2,12 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.allBookSharing.xxx.dao.IjoinMangementDao">
-	<insert id="memberJoin" parameterType="member">
+	<insert id="memberJoin" parameterType="member">	
 		INSERT ALL
-		INTO MEMBER
-		VALUES(#{mb_id},#{mb_pw},#{mb_area},#{mb_name},DEFAULT)
-		INTO USERS (US_ID,US_ADDRESS,US_PHONE,US_EMAIL,US_POINT)
-		VALUES(#{mb_id},#{us_address},#{us_phone},#{us_email},#{us_point},#{us_image},DEFAULT)
-		INTO AUTHORITIES VALUES(#{authority},#{mb_id})
-		SELECT * FROM DUAL
+INTO USERS VALUES(#{mb_id},#{us_address},#{us_phone},#{us_email},#{us_point},#{us_image},DEFAULT)
+INTO MEMBER(MB_ID, MB_PW, MB_AREA, MB_NAME, ENABLED) VALUES(#{mb_id},#{mb_pw},#{mb_area},#{mb_name},DEFAULT)
+INTO AUTHORITIES VALUES('ROLE_USER',#{mb_id})
+SELECT * FROM DUAL
 	</insert>
 
 	</mapper>

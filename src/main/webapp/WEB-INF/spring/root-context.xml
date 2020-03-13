@@ -1,46 +1,46 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xmlns:mybatis-spring="http://mybatis.org/schema/mybatis-spring"
-	xsi:schemaLocation="http://mybatis.org/schema/mybatis-spring http://mybatis.org/schema/mybatis-spring-1.2.xsd
-		http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd">
+   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+   xmlns:mybatis-spring="http://mybatis.org/schema/mybatis-spring"
+   xsi:schemaLocation="http://mybatis.org/schema/mybatis-spring http://mybatis.org/schema/mybatis-spring-1.2.xsd
+      http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd">
 
-	<!-- Root Context: defines shared resources visible to all other web components -->
-	
-	<!-- 로그를 출력하기 해서 DriverSpy이용한 jdbc설정 : Connection 이 1개만 존재 -->
-	<bean id="dataSource"
-		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
-		<property name="url"
-			value="jdbc:log4jdbc:oracle:thin:@192.168.0.209:1521:XE" />
-		<property name="driverClassName"
-			value="net.sf.log4jdbc.DriverSpy" />
-		<property name="username" value="ONBOOK" />
-		<property name="password" value="1234" />
-	</bean>
+   <!-- Root Context: defines shared resources visible to all other web components -->
+   
+   <!-- 로그를 출력하기 해서 DriverSpy이용한 jdbc설정 : Connection 이 1개만 존재 -->
+   <bean id="dataSource"
+      class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+      <property name="url"
+         value="jdbc:log4jdbc:oracle:thin:@192.168.0.209:1521:XE" />
+      <property name="driverClassName"
+         value="net.sf.log4jdbc.DriverSpy" />
+      <property name="username" value="ONBOOK" />
+      <property name="password" value="1234" />
+   </bean>
 
-	<!-- sqlSessionFactory::mybatis가 사용 -->
-	<bean id="sqlSessionFactory"
-		class="org.mybatis.spring.SqlSessionFactoryBean">
-		<property name="dataSource" ref="dataSource" />
-		<property name="configLocation"
-			value="classpath:com/allBookSharing/xxx/dao/mybatis-conf.xml" />
-		<property name="mapperLocations"
-			value="classpath:com/allBookSharing/xxx/dao/mapper/*.xml" />
-			
-	</bean>
-	<!-- 인터페이스를 검색하기위한 패키지 등록 -->
-	<!-- 인터페이스와 XML을 이용해서 DAO구현체를 만든다 -->
-	<mybatis-spring:scan
-		base-package="com.allBookSharing.xxx" />
+   <!-- sqlSessionFactory::mybatis가 사용 -->
+   <bean id="sqlSessionFactory"
+      class="org.mybatis.spring.SqlSessionFactoryBean">
+      <property name="dataSource" ref="dataSource" />
+      <property name="configLocation"
+         value="classpath:com/allBookSharing/xxx/dao/mybatis-conf.xml" />
+      <property name="mapperLocations"
+         value="classpath:com/allBookSharing/xxx/dao/mapper/*.xml" />
+         
+   </bean>
+   <!-- 인터페이스를 검색하기위한 패키지 등록 -->
+   <!-- 인터페이스와 XML을 이용해서 DAO구현체를 만든다 -->
+   <mybatis-spring:scan
+      base-package="com.allBookSharing.xxx" />
 
-	<bean id="multipartResolver"
-		class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
-		<property name="defaultEncoding" value="UTF-8" />
-		<property name="maxUploadSize" value="10000000" /> <!-- 10MB -->
-		<property name="maxInMemorySize" value="10000000" />
-	</bean>
-	
-	<bean id="messageSource" class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
+   <bean id="multipartResolver"
+      class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+      <property name="defaultEncoding" value="UTF-8" />
+      <property name="maxUploadSize" value="10000000" /> <!-- 10MB -->
+      <property name="maxInMemorySize" value="10000000" />
+   </bean>
+   
+   <bean id="messageSource" class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
         <property name="basenames">
             <list>
                 <value>/WEB-INF/message/security_message</value>

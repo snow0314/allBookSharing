@@ -1,6 +1,7 @@
 package com.allBookSharing.xxx.dto;
 
 import org.apache.ibatis.type.Alias;
+import org.springframework.web.multipart.MultipartFile;
 
 import lombok.Data;
 import lombok.experimental.Accessors;
@@ -19,7 +20,7 @@ public class Member {
 	String enabled;			//계정사용여부
 	String us_id;			//아이디
 	String us_address;		//주소
-	int us_phone;			//휴대폰
+	String us_phone;		//휴대폰
 	String  us_email;		//이메일
 	int us_point;			//포인트
 	String us_image;		//이미지
