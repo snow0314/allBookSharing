@@ -62,4 +62,14 @@ VALUES( RV_SEQ.NEXTVAL,#{rv_code},#{rv_lcode},#{rv_id},SYSDATE)
 INSERT INTO LIKED
 VALUES(#{lk_bcode},#{lk_id},#{lk_lcode})
 </insert>
+
+<delete id="likeCancel" parameterType="liked">
+ DELETE FROM LIKED 
+ WHERE LK_BCODE=#{lk_bcode} AND LK_ID=#{lk_id} AND LK_LCODE=#{lk_lcode}
+</delete>
+
+<select id="likedConfirm" parameterType="reservation" resultType="Integer">
+ SELECT COUNT(*) FROM LIKED
+ WHERE LK_BCODE=#{lk_bcode} AND LK_ID=#{lk_id} AND LK_LCODE=#{lk_lcode}
+</select>
 </mapper>
