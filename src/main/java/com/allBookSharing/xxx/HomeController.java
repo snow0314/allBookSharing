@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 import com.allBookSharing.xxx.dto.Member;
 import com.allBookSharing.xxx.service.JoinManagement;
@@ -33,6 +34,9 @@ public class HomeController {
 	
 	@Autowired
 	MemberManagement mm;
+	
+	@Autowired
+	MemberManagement pt;
 
 	private ModelAndView mav;
 
@@ -45,10 +49,12 @@ public class HomeController {
 		return mav;
 	}
 
-	@RequestMapping(value = "/memberjoin", method = RequestMethod.GET)
-	public ModelAndView memberJoin(Member mb) {
-
-		mav = jm.memberJoin(mb);
+	
+	@PreAuthorize("isAnonymous()")
+	@PostMapping(value = "/memberjoin")
+	public ModelAndView memberJoin(MultipartHttpServletRequest multi) {
+		System.out.println("멀티멀티티티 = "+multi);
+		mav = jm.memberJoin(multi);
 
 		return mav;
 	}
@@ -61,7 +67,7 @@ public class HomeController {
 	
 	@PreAuthorize("isAuthenticated()")
 	@RequestMapping(value = "/insertpoint")
-	public String pointUsse() {
+	public String pointUser() {
     System.out.println("point:");
 		return "PointUser";
 	}
@@ -69,11 +75,21 @@ public class HomeController {
 	@RequestMapping(value = "/okpoint", method = RequestMethod.POST)
 	public ModelAndView okPoint(Member mb,Principal principal) {
 
-		System.out.println("충전커트롤러:"+mb);
+	
 		mav = mm.okPoint(mb,principal);
 
 		return mav;
 	}
+	
+	//거래내역
+	@PreAuthorize("isAuthenticated()")
+	@RequestMapping(value = "/pointlist")
+	public ModelAndView pointList(Principal principal) {
+    
+		 mav= mm.pointList(principal);
+		return mav;
+	}
+	
 
 
 	

@@ -8,12 +8,15 @@ import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.annotation.Secured;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.ModelAndView;
+
 import com.allBookSharing.xxx.dto.Books;
 import com.allBookSharing.xxx.dto.Classification;
 import com.allBookSharing.xxx.service.librayBookManagement;
@@ -29,6 +32,21 @@ public class librayBookRestController {
 	
 	@Autowired
 	librayBookManagement lmm;
+	ModelAndView mav;
+	
+	@Secured("ROLE_LIBRARIAN")
+	@RequestMapping(value = "/libraybooklistmove")
+	public ModelAndView bookListMove() { //책 목록 페이지 이동
+		
+		return new ModelAndView("librarian/bookslist");
+	}
+	
+	@Secured("ROLE_LIBRARIAN")
+	@RequestMapping(value = "/libraybookinsertmove")
+	public ModelAndView bookInsertMove() { //책 등록 페이지 이동
+		
+		return new ModelAndView("librarian/bookinsert");
+	 } 
 	
 	@RequestMapping(value = "/getbiggroup" ,produces = "application/json;charset=UTF-8")
 	public @ResponseBody List<Classification> getBigGroup() {

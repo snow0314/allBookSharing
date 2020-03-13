@@ -109,6 +109,31 @@ width: 200px;
 		</form>
 	</div>
 	<script>
+	$.ajax({
+        type : 'get',
+        url : "idcheck",
+        data : {la_id:la_id},
+        success : function(data) {
+           $('#result').html(data).css('color', 'red');
+           console.log("data=", data);
+           /* console.log("data=", result);
+           console.log("status=", status);
+           console.log("xhr=", xhr); */
+
+        },
+        error : function(xhr, status) {
+           $('#result').html(xhr.responseText).css('color', 'green');
+           console.log("xhr=", xhr);
+           console.log("status=", status);
+           if (status == "error") {
+              idck = 0;
+           } else {
+              idck = 1;
+           }
+        }
+
+
+     }); //end ajax
 	/* let str="";
 	$("#hag").on("submit",function(){
 		str=$("#la_id").val()+$("#la_pw").val()+$("#la_lcode").val()

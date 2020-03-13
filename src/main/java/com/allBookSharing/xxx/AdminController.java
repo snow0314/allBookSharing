@@ -67,6 +67,12 @@ public class AdminController {
 		 mav=lm.librarianinsert(lia);
 		 return mav;
 	 }	 
+	//사서 수정 페이지 이동
+		 @RequestMapping(value = "/librarylistmove")
+			public String librarylistmove() {
+				
+				return "admin/librarylist";
+			}
 }
 
 

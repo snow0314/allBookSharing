@@ -35,12 +35,7 @@ public class librayBookController {
 		return "librarian/librarymain";
 	}
 
-	@Secured("ROLE_LIBRARIAN")
-	@RequestMapping(value = "/libraybookinsertmove")
-	public String bookInsertMove() { //책 등록 페이지 이동
-		
-		return "librarian/bookinsert";
-	 } 
+	
 
 	@GetMapping(value="/bookdetailpage")
 	public ModelAndView bookDetailPage(String bk_code) {
@@ -52,12 +47,7 @@ public class librayBookController {
 	
 	
 	
-	@Secured("ROLE_LIBRARIAN")
-	@RequestMapping(value = "/libraybooklistmove")
-	public String bookListMove() { //책 목록 페이지 이동
-			
-		return "librarian/bookslist";
-	}
+
 	
 	@Secured("ROLE_LIBRARIAN")
 	@RequestMapping(value = "/libraybookinsert")

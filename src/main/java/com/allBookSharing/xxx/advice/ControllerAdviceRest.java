@@ -1,9 +1,6 @@
 package com.allBookSharing.xxx.advice;
 
 import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
 
@@ -21,11 +18,6 @@ public class ControllerAdviceRest {
 		return headers;
 	}
 	
-	
-	@ExceptionHandler(com.allBookSharing.xxx.Exception.IdCheckException.class)
-	public ResponseEntity<?>idDupExceptionHandler(com.allBookSharing.xxx.Exception.IdCheckException ex) {
-		
-		return new ResponseEntity<String>(ex.getMessage(), getHeaders(),HttpStatus.EXPECTATION_FAILED);
-	}
+
 	
 }
