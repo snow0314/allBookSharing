@@ -35,7 +35,7 @@
 	src="https://cdn.datatables.net/select/1.2.1/js/dataTables.select.min.js"></script>
 </head>
 <body>
-<div class="container p-3 my-3 border">
+<div class="container p-3 my-3 border" style="width: 80%; height: 80%">
 	<table id="example" class="display" style="width:100%">
 	<thead>
 		<tr>

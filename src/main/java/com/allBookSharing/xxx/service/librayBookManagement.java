@@ -69,6 +69,11 @@ public class librayBookManagement {
 		return lMap;
 	}
 
+	/*
+	 * 1. 찜 목록에서 삭제 
+	 * 2.예약 목록에서 삭제 
+	 * 3.도서관 책 삭제 (완료)
+	 */
 	public String deleteBooks(List<Books> bookList) {
 		
 		int result=0;

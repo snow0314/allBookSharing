@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:sec="http://www.springframework.org/schema/security"
-	xsi:schemaLocation="http://www.springframework.org/schema/beans 
-	http://www.springframework.org/schema/beans/spring-beans.xsd
-	http://www.springframework.org/schema/security 
-	http://www.springframework.org/schema/security/spring-security.xsd">
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:sec="http://www.springframework.org/schema/security"
+	xsi:schemaLocation="http://www.springframework.org/schema/security https://www.springframework.org/schema/security/spring-security.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 	
 	<!-- 0.web.xml에 시큐리티 필터를 필터중에서 가장 마지막에 등록
 	1.security-context.xml 작성
@@ -35,12 +34,22 @@
 			login-processing-url="/login"
 			default-target-url="/" 
 			authentication-failure-url="/loginfrm?fail=true"
+			authentication-success-handler-ref="customAuthenticationSuccessHandler"
 			/>
 		<sec:logout 
 			logout-url="/logout" 
 			logout-success-url="/"
 			/>
+		<sec:headers>
+			<sec:frame-options policy="SAMEORIGIN"  />
+		</sec:headers>	
 	</sec:http>
+	
+	<bean id="customAuthenticationSuccessHandler" class="com.allBookSharing.xxx.security.CustomAuthenticationSuccessHandler">
+		<property name="targetUrlParameter" value="loginRedirect" />
+		<property name="useReferer" value="false" />
+		<property name="defaultUrl" value="/" />
+	</bean>
 	
 	<!-- <sec:authentication-manager>
 		<sec:authentication-provider>
@@ -62,5 +71,8 @@
 				authorities-by-username-query="select ID, authority FROM authorities WHERE ID=?" />
 		</sec:authentication-provider>
 	</sec:authentication-manager>
+	
+
+	
 	
 </beans>
