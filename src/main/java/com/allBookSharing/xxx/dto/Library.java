@@ -1,6 +1,10 @@
 package com.allBookSharing.xxx.dto;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.apache.ibatis.type.Alias;
+import org.springframework.util.CollectionUtils;
 
 import lombok.Data;
 import lombok.experimental.Accessors;
@@ -11,6 +15,18 @@ import lombok.experimental.Accessors;
 @Alias("library")
 @Accessors(chain=true)
 public class Library {
+	private int draw;
+    private int recordsTotal;
+    private int recordsFiltered;
+
+    private List data;
+
+    public List getData(){
+        if(CollectionUtils.isEmpty(data)){
+            data = new ArrayList();
+        }
+        return data;
+    }
 
 	int lb_code;			//도서관 코드
 	String lb_name;			//도서관 이름
