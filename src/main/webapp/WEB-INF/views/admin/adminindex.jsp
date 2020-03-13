@@ -158,7 +158,7 @@
 					<li><a href="">사서 관리</a>
 						<ul>
 							<li><a href="librarianinsertmove">사서 계정 등록</a></li>
-							<li><a href="#">사서 계정 수정</a></li>
+							<li><a href="librarylistmove">사서 계정 수정</a></li>
 						</ul></li>
 						
 					<li><a href="">추천도서 관리</a>
