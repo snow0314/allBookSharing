@@ -65,11 +65,25 @@ public class BookManagement {
 		System.out.println(rvcancel);
 		return rvcancel;
 	}
+	
+	public Integer likedConfirm(Liked lk) {
+		Integer liconfirm=bDao.likedConfirm(lk);
+		System.out.println("찜확인m결과="+liconfirm);
+		return liconfirm;
+	}
 
 	public Boolean likeInsert(Liked lk) {
 		Boolean lkinsert=bDao.likeInsert(lk);
-		System.out.println(lkinsert);
+		System.out.println("찜추가m결과="+lkinsert);
 		return lkinsert;
 	}
+
+	public Boolean likeCancel(Liked lk) {
+		Boolean lkcancel=bDao.likeCancel(lk);
+		System.out.println("찜삭제m결과="+lkcancel);
+		return lkcancel;
+	}
+
+	
 
 }

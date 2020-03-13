@@ -21,9 +21,11 @@ public interface IBookDao {
 	
 	Boolean reservationInsert(Reservation r);
 	Integer reservationConfirm(Reservation r);
-	
 	Boolean reservationCancel(Reservation r);
+	
 	Boolean likeInsert(Liked lk);
+	Boolean likeCancel(Liked lk);
+	Integer likedConfirm(Liked lk);
 	
 
 	

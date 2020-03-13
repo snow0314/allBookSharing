@@ -159,10 +159,12 @@
 </style>
 <body>
 <h1>상세보기</h1>
-<button type="button" class="btn_like">
+
+<button type="button" class="btn_like" id="heart">
 	<span class="img_emoti">좋아요</span>
 	<span class="ani_heart_m"></span>
 </button>
+
  
 <div id="container">
     <img src="${books.bk_image}" id="img">
@@ -206,19 +208,17 @@
 	 </c:forEach>
 	</table>
  </div>
- <sec:authorize method="isAuthenticated()">
+ 
+ <sec:authorize access="isAuthenticated()">
  <input id="id" type="hidden" value="<sec:authentication property="principal.username"/>">
  </sec:authorize>
-  
+  <sec:authorize access="isAnonymous()">
+<input id="id" type="hidden" value=""/>
+</sec:authorize>
 
- 
 </body>
 <script>
- //console.log("책정보",${books});
- console.log("책정보1",${books.bk_Quantity});
- console.log("책정보2",${books.bk_booklend});
- 
-	if(${books.bk_Quantity}>${books.bk_booklend})  
+if(${books.bk_Quantity}>${books.bk_booklend})  
 		$("#state").text("대출가능");
 	else
 		$("#state").text("대출불가");
@@ -226,8 +226,10 @@
 
  
  window.onload = function () {
+	
 	if($("#id").val()==""){
-			$("#dd").append("<button style='float:right;margin-right:20px;' id='reserbtn'>예약</button>")
+		$("#dd").append("<button style='float:right;margin-right:20px;' id='reserbtn'>예약</button>");
+		
 	}else{
 		
 		$.ajax({
@@ -235,10 +237,10 @@
 	    	url:'reservationconfirm',
 	    	data:{"rv_code":"${books.bk_code}","rv_lcode":${books.bk_lcode}},
 	    	dataType:"text",
-	    	success:function(result){
-	    		if(result=="성공"){
+	    	success:function(result1){
+	    		if(result1=="성공"){
 	    			$("#dd").append("<button style='float:right;margin-right:20px;' id='reserccbtn'>예약취소</button>")
-	    		}else if(result=="실패"){
+	    		}else if(result1=="실패"){
 	    			$("#dd").append("<button style='float:right;margin-right:20px;' id='reserbtn'>예약</button>")
 	    		}
 	    	},
@@ -247,8 +249,32 @@
 				console.log("status=", status);
 		 }
 		});//ajax End
+		
+		$.ajax({
+			type:'get',
+	    	url:'likedconfirm',
+	    	data:{"lk_bcode":"${books.bk_code}","lk_lcode":${books.bk_lcode}},  
+	    	dataType:"text",
+	    	success:function(result2){
+	    		console.log(result2);
+	    		if(result2=="성공"){
+	    			 	$('#heart').addClass('btn_unlike');
+	    			 	$('.ani_heart_m').addClass('hi');
+				     	$('.ani_heart_m').removeClass('bye');
+	    		}else if(result2=="실패"){
+	    			$('#heart').removeClass('btn_unlike');
+			   		$('.ani_heart_m').removeClass('hi');
+			    	$('.ani_heart_m').addClass('bye');
+	    		}
+	    	},
+	    	error:function(xhr,status){ 
+		    	console.log("xhr1=", xhr);
+				console.log("status=", status);
+		 }
+		});//ajax End
+		
 		}
-		console.log("${principal.username}");
+		
 	}
 
 
@@ -328,34 +354,46 @@ $("#dd").on("click","#reserccbtn",function(){
 	
 
 
-$('button').click(function(){
-	if($("#id").val()==""){
-		location.replace("loginfrm");
-	}else{
-	    if($(this).hasClass('btn_unlike')){//이히 하트가 눌려있는 상태
-	    	$(this).removeClass('btn_unlike');
-	   		$('.ani_heart_m').removeClass('hi');
-	    	$('.ani_heart_m').addClass('bye');
-	     } else{//하트해제되어있는 상태
-		   $.ajax({
+$('#heart').click(function(){
+	  if($('#heart').hasClass('btn_unlike')){//이히 하트가 눌려있는 상태
+		  $.ajax({
 				type:'get',
-		    	url:'likeinsert',
-		    	data:{"rv_code":"${books.bk_code}","rv_lcode":${books.bk_lcode}},
-		    	dataType:"text",
+		    	url:'likecancel',
+		    	data:{"lk_bcode":"${books.bk_code}","lk_lcode":${books.bk_lcode}},
 		    	success:function(result){
-		    		alert("찜목록에 추가되었습니다.");
-		    		$(this).addClass('btn_unlike');
-				  	$('.ani_heart_m').addClass('hi');
-			     	$('.ani_heart_m').removeClass('bye');
+		    		alert("찜목록에서 삭제되었습니다.");
+		    		$('#heart').removeClass('btn_unlike');
+		    		$('.ani_heart_m').removeClass('hi');
+		    		$('.ani_heart_m').addClass('bye');
+			   
 		    	},
 		    	error:function(xhr,status){ 
-			    	console.log("xhr2=", xhr);
-					console.log("status=", status);
+			    	console.log("xhr3=", xhr);
+					console.log("status3=", status); 
 			 }
 			});//ajax End
-	  		
 	  }
-	}
+	  else{//하트해제되어있는 상태
+		 if($("#id").val()==""){
+				location.replace("loginfrm");
+			}else{
+				$.ajax({
+					type:'get',
+			    	url:'likeinsert',
+			    	data:{"lk_bcode":"${books.bk_code}","lk_lcode":${books.bk_lcode}},
+			    	success:function(result){
+			    		alert("찜목록에 추가되었습니다.");
+			    		$('#heart').addClass('btn_unlike');
+					  	$('.ani_heart_m').addClass('hi');
+				     	$('.ani_heart_m').removeClass('bye');
+			    	},
+			    	error:function(xhr,status){ 
+				    	console.log("xhr2=", xhr);
+						console.log("status=", status);
+				 }
+				});//ajax End
+			}
+	  }
 	});
 	 
  

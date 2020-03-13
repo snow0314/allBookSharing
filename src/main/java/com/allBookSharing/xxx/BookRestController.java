@@ -51,11 +51,7 @@ public class BookRestController {
 	@Secured("ROLE_USER")
 	@RequestMapping(value="/reservationconfirm",produces="application/json;charset=UTF-8")
 	public String reservationConfirm(Reservation r,Principal p) {
-		System.out.println("컨드롤");
-		System.out.println("r="+r.toString());
-		System.out.println("id="+p.getName());
 		r.setRv_id(p.getName());
-		System.out.println("id2="+r.getRv_id());
 		Integer result=bm.reservationConfirm(r);
 		if(result==1) {
 			return "성공";
@@ -75,15 +71,39 @@ public class BookRestController {
 		return result;
 	}
 	
+	
+	@Secured("ROLE_USER")
+	@RequestMapping(value="/likedconfirm",produces="application/json;charset=UTF-8")
+	public String likedConfirm(Liked lk,Principal p) {
+		lk.setLk_id(p.getName());
+		Integer result=bm.likedConfirm(lk);
+		if(result==1) {
+			return "성공";
+		}else {
+			return "실패";
+			}
+	}
+	
 	@Secured("ROLE_USER")
 	@RequestMapping(value="/likeinsert",produces="application/json;charset=UTF-8")
 	public Boolean likeInsert(Liked lk,Principal p) {
 		lk.setLk_id(p.getName());
 		
-		System.out.println("lk="+lk.toString());
+		System.out.println("찜추가lk-tostring="+lk.toString());
 		Boolean result=bm.likeInsert(lk);
 
 		return result;
 	}
+	
+	@Secured("ROLE_USER")
+	@RequestMapping(value="/likecancel",produces="application/json;charset=UTF-8")
+	public Boolean likeCancel(Liked lk,Principal p) {
+		lk.setLk_id(p.getName());
+		
+		Boolean result=bm.likeCancel(lk);
+		return result;
+	}
+	
+	
 
 }
