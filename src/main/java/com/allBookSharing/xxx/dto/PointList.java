@@ -12,7 +12,7 @@ public class PointList {
 int pl_num;
 String pl_id;
 int pl_inout;
-Date pl_date;
+String pl_date;
 String pl_contents;
 
 }

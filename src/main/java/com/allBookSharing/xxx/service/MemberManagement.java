@@ -155,12 +155,17 @@ public class MemberManagement {
 		mav = new ModelAndView();
 		String id=principal.getName();
 		System.out.println("point="+ mb.getUs_point());
+		SimpleDateFormat format1 = new SimpleDateFormat("yyyy-MM-dd");
+
+		
+		
 		int us_point=mb.getUs_point();
 		boolean result= mDao.updateOkPoint(us_point,id);
 		
-		boolean result2=mDao.insertPointList(us_point,id);
+		PointList pl=mDao.insertPointList(us_point,id);
+		pl.setPl_date(format1.format(pl.getPl_date()));
 		
-		if(result && result2)
+		if(result && pl!=null)
 		mav.setViewName("redirect:/movemypage");
 		else
 		mav.setViewName("redirect:/insertpoint");
@@ -179,7 +184,6 @@ public class MemberManagement {
 		
 		List<PointList> pList=mDao.getPointList(id);
 		String gson=new Gson().toJson(pList);
-		
 		System.out.println("p리스트는:"+pList);
 		mav.addObject("list",gson);
 		mav.setViewName(view);
