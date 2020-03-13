@@ -12,7 +12,7 @@
 	
 
 <style>
-th{
+#title{
 text-align: center;
 }
 td{
@@ -28,6 +28,7 @@ margin-left: 850px;
 margin-right: 100px;
 }
 
+
 </style>
 </head>
 <body>
@@ -37,10 +38,10 @@ margin-right: 100px;
 		<table class="table">
 			<thead>
 				<tr>
-					<th scope="col">거래번호</th>
-					<th scope="col">날짜</th>
-					<th scope="col">일출포인트</th>
-					<th scope="col">거래내용</th>
+					<th id="title">거래번호</th>
+					<th id="title">날짜</th>
+					<th id="title">일출포인트</th>
+					<th id="title">거래내용</th>
 				</tr>
 			</thead>
 

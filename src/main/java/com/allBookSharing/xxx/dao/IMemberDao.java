@@ -55,8 +55,9 @@ public interface IMemberDao {
 	boolean updateOkPoint(@Param("us_point") int us_point,@Param("id") String id);
 	//포인트 충전내역
 	@Insert("INSERT INTO POINTLIST VALUES(SEQ_POINT.NEXTVAL,#{id},#{us_point},'충전',DEFAULT)")
-	boolean insertPointList(@Param("us_point") int us_point, @Param("id") String id);
-	@Select("SELECT * FROM POINTLIST WHERE pl_id=#{id}")
+	PointList insertPointList(@Param("us_point") int us_point, @Param("id") String id);
+	@Select("SELECT * FROM POINTLIST WHERE pl_id=#{id} ORDER by pl_date desc")
+	
 	List<PointList> getPointList(String id);
 	
 	
