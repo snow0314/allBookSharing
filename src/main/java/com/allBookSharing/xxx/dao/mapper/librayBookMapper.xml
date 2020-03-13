@@ -29,7 +29,7 @@
 						  BK_PUBLISHER,BK_WRITER,BK_IMAGE,BK_QUANTITY,BK_BOOKLEND) 
 						  VALUES(#{bk_code},#{bk_lcode},#{bk_bg_num},#{bk_sg_num},#{bk_name},
 						  		 #{bk_introduction},#{bk_publicday},#{bk_publisher},
-						  		 #{bk_writer},#{bk_image},#{bk_Quantity},#{bk_Quantity})
+						  		 #{bk_writer},#{bk_image},#{bk_Quantity}, 0)
 		
 	</insert>
 
@@ -48,8 +48,13 @@
 		WHERE librarian.LA_ID=#{id}
 	</select>
 	
-	<delete id="deleteBooks" parameterType="books">
-		
+	<delete id="deleteBooks" parameterType="java.util.List">
+		DELETE FROM books
+		<where>
+			<foreach collection="list" item="books" open="" close="" separator="OR">
+				bk_lcode=#{books.bk_lcode} AND bk_code=#{books.bk_code}
+			</foreach>
+		</where>
 	</delete>
 	
 

@@ -188,7 +188,7 @@ table {
 					<tr>
 						<td colspan="2" style="text-align: right">
 							<input type="submit" id="insertBtn"
-								class="btn btn-primary btn-lg" value="등록">
+								class="btn btn-success btn-lg" value="등록">
 							<input type="hidden" name="_csrf" value="${_csrf.token}">	
 						</td>
 						
@@ -243,7 +243,7 @@ table {
 <script type="text/javascript" src="js/bookInsert.js?ver2"></script>
 <script type="text/javascript">
 
-$(document).ready( function () {
+$(document).ready( function () { //도서관 코드,이름 가져오는 메소드
 	$.ajax({ 
 		url : "getlibraycode",
 		type : "get",
@@ -330,17 +330,6 @@ $(document).ready( function () {
 			success : function(result) {
 				console.log(result);
 				var data = result;
-		
-			/* 	$("#title").val(data.title);
-				$("#thumbnail").attr("src", data.thumbnail);  */
-
-				/*    $('#author').val(data.authors);
-				      $('#pub').val(data.publisher);
-				      $('#price').val(data.price);
-				      $('#info').val(data.contents+"...");
-				      let date = data.datetime.split('T')[0];
-				      $('#date').val(date);
-				      $('#translator').val(data.translators);  */
 				      
 				let container = $('#pagination');
 		        container.pagination({
