@@ -45,10 +45,6 @@ public class librayBookController {
 		
 	}
 	
-	
-	
-
-	
 	@Secured("ROLE_LIBRARIAN")
 	@RequestMapping(value = "/libraybookinsert")
 	public ModelAndView bookInsert(Books book) {

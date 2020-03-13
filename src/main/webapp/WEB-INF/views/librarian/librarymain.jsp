@@ -73,13 +73,16 @@
 
                             </ul>
                         </li>
-
+							
                         <li class="has-sub">
                             <a class="js-arrow" href="#">
                                 <i class="far fa-check-square"></i>열람실 관리</a>
                             <ul class="navbar-mobile-sub__list list-unstyled js-sub-list">
                                 <li>
-                                    <a href="index.html">열람실 목록</a>
+                                    <a href="#" onclick="menuMove(3)">열람실 목록</a>
+                                </li>
+                                <li>
+                                    <a href="#" onclick="menuMove(4)">열람실 등록</a>
                                 </li>
                                 <li>
                                     <a href="index2.html">열람실 좌석 관리</a>

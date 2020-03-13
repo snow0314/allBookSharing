@@ -6,7 +6,13 @@ function menuMove(index){
 		break;
 	case 2:
 		$("#contents").attr("src","libraybookinsertmove");
-		break;	
+		break;
+	case 3:
+		
+		break;
+	case 4:
+		$("#contents").attr("src","readingroominsertmove");
+		break;
 	default:
 		break;
 	}
