@@ -33,7 +33,7 @@
 	#bookList_layer {
 	width:500px;
 	height:500px;
-	border:2px solid green;
+	border:2cpx solid green;
 	}
 
 	.button-7{
@@ -214,10 +214,6 @@ function bookList(){
 			console.log("status=", status);
 	    }
 	});
-}
-function goPage(bk_code){
-	console.log(bk_code);
-	//location.href="bookdetailpage?bk_code="+bk_code;
 }
 
 

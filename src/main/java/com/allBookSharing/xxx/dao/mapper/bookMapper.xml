@@ -48,9 +48,18 @@ INSERT INTO RESERVATION
 VALUES( RV_SEQ.NEXTVAL,#{rv_code},#{rv_lcode},#{rv_id},SYSDATE)
 </insert>
 
-<select id="reservationConfirm" resultType="reservation" >
- SELECT * FROM RESERVATION
+<select id="reservationConfirm" parameterType="reservation" resultType="Integer">
+ SELECT COUNT(*) FROM RESERVATION
  WHERE RT_CODE=#{rv_code} AND RT_LCODE=#{rv_lcode} AND RT_ID=#{rv_id}
 </select>
 
+<delete id="reservationCancel" parameterType="reservation">
+ DELETE FROM RESERVATION 
+ WHERE RT_CODE=#{rv_code} AND RT_LCODE=#{rv_lcode} AND RT_ID=#{rv_id}
+</delete>
+
+<insert id="likeInsert" parameterType="liked">
+INSERT INTO LIKED
+VALUES(#{lk_bcode},#{lk_id},#{lk_lcode})
+</insert>
 </mapper>

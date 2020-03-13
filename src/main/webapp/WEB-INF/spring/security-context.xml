@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:sec="http://www.springframework.org/schema/security"
-	xsi:schemaLocation="http://www.springframework.org/schema/beans 
-	http://www.springframework.org/schema/beans/spring-beans.xsd
-	http://www.springframework.org/schema/security 
-	http://www.springframework.org/schema/security/spring-security.xsd">
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:sec="http://www.springframework.org/schema/security"
+	xsi:schemaLocation="http://www.springframework.org/schema/security https://www.springframework.org/schema/security/spring-security.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 	
 	<!-- 0.web.xml에 시큐리티 필터를 필터중에서 가장 마지막에 등록
 	1.security-context.xml 작성
@@ -33,7 +32,6 @@
 			password-parameter="m_pw" 
 			login-page="/loginfrm"
 			login-processing-url="/login"
-			default-target-url="/" 
 			authentication-failure-url="/loginfrm?fail=true"
 			/>
 		<sec:logout 
@@ -41,7 +39,7 @@
 			logout-success-url="/"
 			/>
 	</sec:http>
-	
+
 	<!-- <sec:authentication-manager>
 		<sec:authentication-provider>
 			<sec:user-service>

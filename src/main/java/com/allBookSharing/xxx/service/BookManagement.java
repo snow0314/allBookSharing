@@ -8,6 +8,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.allBookSharing.xxx.dao.IBookDao;
 import com.allBookSharing.xxx.dto.Books;
+import com.allBookSharing.xxx.dto.Liked;
 import com.allBookSharing.xxx.dto.Reservation;
 import com.allBookSharing.xxx.dto.Review;
 
@@ -50,11 +51,25 @@ public class BookManagement {
 		return reservation;
 	}
 
-	public Boolean reservationConfirm(Reservation r) {
+	public Integer reservationConfirm(Reservation r) {
 		System.out.println("서비스");
-		Boolean rvconfirm=bDao.reservationConfirm(r);
+		System.out.println("r2="+r.toString());
+		Integer rvconfirm=bDao.reservationConfirm(r);
 		System.out.println(rvconfirm);
 		return rvconfirm;
+	}
+
+	public Boolean reservationCancel(Reservation r) {
+		System.out.println("취소서비스");
+		Boolean rvcancel=bDao.reservationCancel(r);
+		System.out.println(rvcancel);
+		return rvcancel;
+	}
+
+	public Boolean likeInsert(Liked lk) {
+		Boolean lkinsert=bDao.likeInsert(lk);
+		System.out.println(lkinsert);
+		return lkinsert;
 	}
 
 }
