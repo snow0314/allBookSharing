@@ -82,7 +82,7 @@ width: 400px;
 						<td>아이디 : </td>
 						<td>${mb.mb_id}</td>
 						<td rowspan="6">
-						<img src="profile/${mb.us_image }" width="150" height="220" alt="프로필 사진" />						
+						<img src="K:/spring_work.metadata/.plugins/org.eclipse.wst.server.core/tmp0/wtpwebapps/allBookSharing/profile/${mb.us_image}" width="150" height="220" alt="프로필 사진" />						
 						</td>
 					</tr>
 					<tr>
@@ -112,8 +112,10 @@ width: 400px;
 					</tr>
 					
 					
+					
 				</table>
 				<input id='btn' type="submit" value="개인정보 변경"/>
+				<input id='btn' type="submit" value="회원탈퇴" formaction="memberdrop"/>
 				<input type="hidden" id="_csrf" name="_csrf" value="${_csrf.token}">
 			</form>
 			</div>

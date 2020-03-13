@@ -11,6 +11,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.allBookSharing.xxx.dto.Member;
@@ -29,6 +30,7 @@ public class MyPageController {
 	@RequestMapping(value = "/movemypage")
 	public ModelAndView moveMypage(Principal principal) {
 		mav=mm.moveMypage(principal);
+		
 		return mav;
 	}
 	
@@ -49,9 +51,8 @@ public class MyPageController {
 	}
 	
 	@RequestMapping(value = "/profilecomplet")
-	public ModelAndView profileComplet(Principal principal,Member mb) {
-		System.out.println("mb="+mb);
-		mav=mm.profileComplet(principal,mb);
+	public ModelAndView profileComplet(MultipartHttpServletRequest multi,  Principal principal) {
+		mav=mm.profileComplet(multi, principal);
 		
 		return mav;
 	}

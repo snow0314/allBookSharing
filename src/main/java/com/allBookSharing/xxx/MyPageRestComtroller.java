@@ -65,11 +65,12 @@ public class MyPageRestComtroller {
 		
 		return arrearsDay;
 	}
-	
+
+	//대출현황
 	@RequestMapping(value = "/loanlist" ,produces = "application/json;charset=UTF-8")
-	public  List<Loan> loanList(Principal principal) {
+	public  String loanList(Principal principal) {
 		System.out.println("대출현황 컨트롤러");
-		List<Loan> lList=mm.getLoanList(principal);
+		String lList=mm.getLoanList(principal);
 		
 		return lList;
 	}
