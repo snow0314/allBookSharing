@@ -12,7 +12,7 @@
  <insert id="librarianinsert2" parameterType="librarian">	
  	INSERT INTO authorities(authority,id)
  	VALUES
- 	(2,#{la_id})
+ 	('ROLE_LIBRARIAN',#{la_id})
  </insert>
  <insert id="librarianinsert3" parameterType="librarian">	
  	INSERT INTO librarian(LA_ID,LA_LCODE)

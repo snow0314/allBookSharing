@@ -30,7 +30,7 @@
 </head>
 
 <body>
-<jsp:include page="adminheader.jsp" />
+<%-- <jsp:include page="adminheader.jsp" /> --%>
   <div class="container p-3 my-3 border">
 	<table id="example" class="display" style="width:100%">
 	<thead>
@@ -44,31 +44,62 @@
 	
 </table>
 </div>
-    <jsp:include page="adminfooter.jsp" />
+   <script>
+    var example_tbl = null
+    var data=${json};
+    console.log(data);
+	$(function() {
+		example_tbl = $('#example').DataTable({
+			data:data,
+			'columnDefs': [
+		      
+		        { 'data': 'lb_loc' , 'targets': 0}, //
+		        { 'data': 'lb_code', 'targets': 1}, //
+		        { 'data': 'lb_name', 'targets': 2}, //
+		        { 'data': 'la_id', 'targets': 3}, //
+		    
+		     ],
+		     
+	dom: 'Bfrtip',
+
+		     buttons: [
+		         {
+		             text: '삭제',
+		             action: function ( e, dt, node, config ) {
+		            	 
+		            	 var conf=confirm("삭제 하시겠습니까?");
+		            	 if(conf){
+		            		 
+		            	 
+		            	 var rowData=$('#example').DataTable().rows('.selected').data();
+		            	 var bookList=new Array;
+		            	 
+		            	 
+		            	 for(var i=0;i<rowData.length;i++){
+		            		 let books={};
+		            		 books.bk_code=rowData[i].bk_code;
+		            		 books.bk_lcode=rowData[i].bk_lcode;
+		            		 bookList.push(books);
+		            	 }
+		            	 var json=JSON.stringify(bookList); //선택한 책의 ISBN 코드와 도서관 코드 JSON화
+		            			            	 
+		            	  $.ajax({ 
+		            			url : "libraybookdelete",
+		            			type : "post",
+		            			contentType: 'application/json',
+		            			data : json,
+		            			dataType:'text',
+		            	}).done((result) => {
+		            		console.log("result=",result);
+		            		location.reload();
+		            	}).fail((xhr) => {
+		            		console.log("xhr=",xhr);
+		            	}); //ajax End  
+		            	
+		            	 }// confirm End
+		            
+		             }]
+		});
+		</script>
 </body>
-<script>
-$("#exampleTable").DataTable({
-
-    "serverSide": true,
-    "processing": true,
-    "ajax": {
-        "url": "/example",
-        "type": "POST",
-        "dataSrc": function(res) {
-            var data = res.data;
-            return data;
-        }
-    },
-    "columns" : [
-        {"data": "lb_loc"},
-        {"data": "lb_code"},
-        {"data": "lb_name"},
-        {"data": "la_id"},
-    ]
-
-});
-
-
-
-</script>
 </html>
