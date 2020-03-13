@@ -50,9 +50,9 @@ public class JoinManagement {
 	      
 	      System.out.println("fileUp");
 			// 1.이클립스의 물리적 저장경로 찾기
-			String root = multi.getSession().getServletContext().getRealPath("/");
-			System.out.println("root=" + root);
-			String path = root + "profile/";
+			//String root = multi.getSession().getServletContext().getRealPath("/");
+			//System.out.println("root=" + root);
+			String path ="C:/img/profile/";
 			System.out.println("path="+path);
 			// 2.폴더 생성을 꼭 할것...
 			File dir = new File(path);

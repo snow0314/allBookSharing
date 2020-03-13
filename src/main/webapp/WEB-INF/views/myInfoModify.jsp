@@ -93,7 +93,7 @@ width: 50px;
     <tbody>
     
      <tr>
-        <td id="pro_img"><label for="profile"><img id="show_profile" src="profile/${mb.us_image }" width="150" height="220" alt="프로필 사진"/></label></td>
+        <td id="pro_img"><label for="profile"><img id="show_profile" src="/img/profile/${mb.us_image }" width="150" height="220" alt="프로필 사진"/></label></td>
         <td colspan="2"><input type="file" id="profile" class="form-control" name="us_image" accept=".jpg,.jpeg,.png,.gif,.bmp"><span class="help-block"
 				id="helper_profile">1mb이하만 가능</span></td>
       </tr>

@@ -2,6 +2,7 @@ package com.allBookSharing.xxx.service;
 
 
 import java.io.File;
+import java.io.IOException;
 import java.io.PrintWriter;
 import java.security.Principal;
 import java.text.SimpleDateFormat;
@@ -91,7 +92,7 @@ public class MemberManagement {
 		return cnt;
 	}
 
-	
+	//리뷰 횟수
 	public int getReviewCnt(Principal principal) {
 		String id=principal.getName();
 		System.out.println("id="+id);
@@ -143,15 +144,17 @@ public class MemberManagement {
 		return result;
 	}
 
+	//내정보수정하기
 	public ModelAndView profileComplet(MultipartHttpServletRequest multi, Principal principal) {
 		mav = new ModelAndView();
 		String id=principal.getName();
+		String view=null;
 		
 		BCryptPasswordEncoder pwdEncoder =new BCryptPasswordEncoder();
 		// 1.이클립스의 물리적 저장경로 찾기
 					String root = multi.getSession().getServletContext().getRealPath("/");
 					System.out.println("root=" + root);
-					String path = root + "profile/";
+					String path ="C:/img/profile/";
 					System.out.println("path="+path);
 					// 2.폴더 생성을 꼭 할것...
 					File dir = new File(path);
@@ -169,15 +172,30 @@ public class MemberManagement {
 	    		      .setUs_id(multi.getParameter("us_id")).setUs_address(multi.getParameter("us_address")).setUs_phone(multi.getParameter("us_phone")).setUs_email(multi.getParameter("us_email"))
 	    		      .setUs_image(sysFileName);
 					
+					try {
+						mf.transferTo(new File(path + sysFileName));
+					} catch (IllegalStateException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					} catch (IOException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+					
+					boolean result1=mDao.updateprofileUs(mb1);
+					boolean result2=mDao.updateprofileMb(mb1);
+					//Member mb=mDao.getMyPage(id);
+					if(result1&&result2) {
+						view="redirect:/movemypage";
+					}
+					else {
+						view="redirect:/movemypage";
+					}
 					
 						
-		mDao.updateprofileUs(mb1);
-		mDao.updateprofileMb(mb1);
 		
-		Member mb=mDao.getMyPage(id);
-		mav.addObject("mb",mb);
-		
-		mav.setViewName("myPage");
+		//mav.addObject("mb",mb);
+		mav.setViewName(view);
 		return mav;
 	}
 
@@ -212,6 +230,25 @@ public class MemberManagement {
 		
 		System.out.println("p리스트는:"+pList);
 		mav.addObject("list",gson);
+		mav.setViewName(view);
+		return mav;
+	}
+
+	public ModelAndView memberDrop(Principal principal) {
+		String id=principal.getName();
+		String view= null;
+		
+		boolean result=mDao.memberDrop(id);
+		boolean result2=mDao.memberDrop2(id);
+		boolean result3=mDao.memberDrop3(id);
+		
+		if(result&&result2&&result3) {
+			view="redirect:/loginfrm";
+		}
+		else {
+			view="redirect:/movemypage";
+		}
+		
 		mav.setViewName(view);
 		return mav;
 	}
