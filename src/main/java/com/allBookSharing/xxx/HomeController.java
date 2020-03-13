@@ -6,8 +6,10 @@ import java.util.HashMap;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpRequest;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -49,7 +51,7 @@ public class HomeController {
 		return mav;
 	}
 
-	
+	//회원가입
 	@PreAuthorize("isAnonymous()")
 	@PostMapping(value = "/memberjoin")
 	public ModelAndView memberJoin(MultipartHttpServletRequest multi) {
@@ -58,13 +60,25 @@ public class HomeController {
 
 		return mav;
 	}
-
+	//회원탈퇴
+	@PreAuthorize("isAuthenticated()")
+	@PostMapping(value = "/memberdrop")
+	public ModelAndView memberDrop(HttpServletRequest req,Principal principal) {
+		System.out.println("회원탈퇴");
+		mav = mm.memberDrop(principal);
+		req.getSession().invalidate(); //세션초기화
+		return mav;
+	}
+	
+	
+	//홈으로
 	@RequestMapping(value = "/")
 	public String home() {
 
 		return "index";
 	}
 	
+	//포인트충전 페이지
 	@PreAuthorize("isAuthenticated()")
 	@RequestMapping(value = "/insertpoint")
 	public String pointUser() {
@@ -72,6 +86,7 @@ public class HomeController {
 		return "PointUser";
 	}
 	
+	//포인트 충전하기
 	@RequestMapping(value = "/okpoint", method = RequestMethod.POST)
 	public ModelAndView okPoint(Member mb,Principal principal) {
 
@@ -92,7 +107,7 @@ public class HomeController {
 	
 
 
-	
+	//로그인페이지 이동
 	@PreAuthorize("isAnonymous()")
 	@RequestMapping(value = "/loginfrm")
 	public String loginFrm() {
@@ -100,6 +115,7 @@ public class HomeController {
 		return "commom/login";
 	}
 
+	//아이디찾기 페이지
 	@PreAuthorize("isAnonymous()")
 	@RequestMapping(value = "/idfindfrm")
 	public String idFindFrm() {
@@ -115,7 +131,7 @@ public class HomeController {
 		return "commom/pwFind";
 	}
 	
-	
+	//통합검색
 	@PreAuthorize("permitAll")
 	@RequestMapping(value = "/totalsearch")
 	public String totalSearch() {

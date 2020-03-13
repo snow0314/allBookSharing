@@ -4,6 +4,7 @@ package com.allBookSharing.xxx.dao;
 import java.security.Principal;
 import java.util.List;
 
+import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
@@ -47,9 +48,9 @@ public interface IMemberDao {
 	boolean updatePassword(@org.apache.ibatis.annotations.Param("id") String id,@org.apache.ibatis.annotations.Param("pw") String pw);
 	
 	
-	void updateprofileUs(Member mb1);
+	boolean updateprofileUs(Member mb1);
 
-	void updateprofileMb(Member mb1);
+	boolean updateprofileMb(Member mb1);
 	//포인트 충전
 	@Update("update users set us_point=#{us_point}+us_point where us_id=#{id}")
 	boolean updateOkPoint(@Param("us_point") int us_point,@Param("id") String id);
@@ -59,6 +60,15 @@ public interface IMemberDao {
 	@Select("SELECT * FROM POINTLIST WHERE pl_id=#{id} ORDER by pl_date desc")
 	
 	List<PointList> getPointList(String id);
+	
+	@Delete("DELETE FROM MEMBER WHERE MB_ID=#{id}")
+	boolean memberDrop(String id);
+	
+	@Delete("DELETE FROM USERS WHERE US_ID=#{id}")
+	boolean memberDrop2(String id);
+	
+	@Delete("DELETE FROM AUTHORITIES WHERE ID=#{id}")
+	boolean memberDrop3(String id);
 	
 	
 	

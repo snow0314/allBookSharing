@@ -26,7 +26,7 @@ public class MyPageController {
 	ModelAndView mav=new ModelAndView();
 	
 	
-	
+	//마이페이지이동(내정보 불러오기)
 	@RequestMapping(value = "/movemypage")
 	public ModelAndView moveMypage(Principal principal) {
 		mav=mm.moveMypage(principal);
