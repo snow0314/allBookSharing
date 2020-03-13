@@ -7,7 +7,6 @@
 	xsi:schemaLocation="http://www.springframework.org/schema/security https://www.springframework.org/schema/security/spring-security.xsd
 		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
 		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd">
-
 	
 	<!-- 0.web.xml에 시큐리티 필터를 필터중에서 가장 마지막에 등록
 	1.security-context.xml 작성
@@ -36,7 +35,6 @@
 			password-parameter="m_pw" 
 			login-page="/loginfrm"
 			login-processing-url="/login"
-			default-target-url="/" 
 			authentication-failure-url="/loginfrm?fail=true"
 			authentication-success-handler-ref="customAuthenticationSuccessHandler"
 			/>
@@ -48,7 +46,7 @@
 			<sec:frame-options policy="SAMEORIGIN"  />
 		</sec:headers>	
 	</sec:http>
-	
+
 	<bean id="customAuthenticationSuccessHandler" class="com.allBookSharing.xxx.security.CustomAuthenticationSuccessHandler">
 		<property name="targetUrlParameter" value="loginRedirect" />
 		<property name="useReferer" value="false" />

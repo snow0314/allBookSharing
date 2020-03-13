@@ -7,6 +7,7 @@ import org.apache.ibatis.annotations.Select;
 import org.springframework.stereotype.Component;
 
 import com.allBookSharing.xxx.dto.Books;
+import com.allBookSharing.xxx.dto.Liked;
 import com.allBookSharing.xxx.dto.Reservation;
 import com.allBookSharing.xxx.dto.Review;
 
@@ -19,7 +20,10 @@ public interface IBookDao {
 	List<Books> bookSearch(String bk_search);
 	
 	Boolean reservationInsert(Reservation r);
-	Boolean reservationConfirm(Reservation r);
+	Integer reservationConfirm(Reservation r);
+	
+	Boolean reservationCancel(Reservation r);
+	Boolean likeInsert(Liked lk);
 	
 
 	

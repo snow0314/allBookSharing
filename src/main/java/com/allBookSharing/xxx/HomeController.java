@@ -4,6 +4,9 @@ package com.allBookSharing.xxx;
 import java.security.Principal;
 import java.util.HashMap;
 import java.util.Map;
+
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
@@ -61,6 +64,7 @@ public class HomeController {
 
 		return "index";
 	}
+	
 	@PreAuthorize("isAuthenticated()")
 	@RequestMapping(value = "/insertpoint")
 	public String pointUser() {

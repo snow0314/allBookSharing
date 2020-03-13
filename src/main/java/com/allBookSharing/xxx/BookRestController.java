@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 import com.allBookSharing.xxx.dto.Books;
+import com.allBookSharing.xxx.dto.Liked;
 import com.allBookSharing.xxx.dto.Reservation;
 import com.allBookSharing.xxx.service.BookManagement;
 
@@ -51,13 +52,38 @@ public class BookRestController {
 	@RequestMapping(value="/reservationconfirm",produces="application/json;charset=UTF-8")
 	public String reservationConfirm(Reservation r,Principal p) {
 		System.out.println("컨드롤");
+		System.out.println("r="+r.toString());
+		System.out.println("id="+p.getName());
 		r.setRv_id(p.getName());
-		Boolean result=bm.reservationConfirm(r);
-		if(result) {
+		System.out.println("id2="+r.getRv_id());
+		Integer result=bm.reservationConfirm(r);
+		if(result==1) {
 			return "성공";
-		}else{
+		}else {
+			return "실패";
+			}
 		
-		return "실패";}
+	}
+	
+	@Secured("ROLE_USER")
+	@RequestMapping(value="/reservationcancel",produces="application/json;charset=UTF-8")
+	public Boolean reservationCancel(Reservation r,Principal p) {
+		r.setRv_id(p.getName());
+		System.out.println("cc r="+r.toString());
+		Boolean result=bm.reservationCancel(r);
+
+		return result;
+	}
+	
+	@Secured("ROLE_USER")
+	@RequestMapping(value="/likeinsert",produces="application/json;charset=UTF-8")
+	public Boolean likeInsert(Liked lk,Principal p) {
+		lk.setLk_id(p.getName());
+		
+		System.out.println("lk="+lk.toString());
+		Boolean result=bm.likeInsert(lk);
+
+		return result;
 	}
 
 }
