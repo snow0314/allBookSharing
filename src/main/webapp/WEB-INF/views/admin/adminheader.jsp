@@ -160,14 +160,14 @@
 					<li><a href="">사서 관리</a>
 						<ul>
 							<li><a href="librarianinsertmove">사서 계정 등록</a></li>
-							<li><a href="#">사서 계정 수정</a></li>
+							<li><a href="librarylistmove">사서 계정 수정</a></li>
 						</ul></li>
 						
 					<li><a href="">추천도서 관리</a>
 						<ul>
 						</ul></li>
 						
-					<li><a href="no-sidebar.html">도서관별 대출 현황</a>
+					<li><a href="">도서관별 대출 현황</a>
 						<ul>
 						</ul>
 					</li>

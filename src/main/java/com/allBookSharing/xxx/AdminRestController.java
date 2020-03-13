@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 import com.allBookSharing.xxx.dto.Books;
+import com.allBookSharing.xxx.dto.Library;
 import com.allBookSharing.xxx.dto.Reservation;
 import com.allBookSharing.xxx.service.BookManagement;
 import com.allBookSharing.xxx.service.LibrarianManagement;
@@ -27,13 +28,6 @@ public class AdminRestController {
 	ModelAndView mav;
 	
 	
-	@GetMapping(value="/sub1",produces="application/json;charset=UTF-8")
-	public String sub1() {
-		System.out.println("검색1");
-		
-		
-		
-		return null;
-	} 
+	
 
 }

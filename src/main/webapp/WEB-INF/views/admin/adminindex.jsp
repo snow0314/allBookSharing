@@ -125,11 +125,11 @@
 		<div class="container2">
 			<div class="button-7">
 				<div class="eff-7"></div>
-				<a href="index.jsp"> 로그아웃 </a>
+				<a href="#"> 로그아웃 </a>
 			</div>
 			<div class="button-7">
 				<div class="eff-7"></div>
-				<a href="index.jsp"> 도서관으로 이동 </a>
+				<a href="#"> 도서관으로 이동 </a>
 			</div>
 		</div>
 	</sec:authorize>
@@ -165,7 +165,7 @@
 						<ul>
 						</ul></li>
 						
-					<li><a href="no-sidebar.html">도서관별 대출 현황</a>
+					<li><a href="">도서관별 대출 현황</a>
 						<ul>
 						</ul></li>
 				</ul>
