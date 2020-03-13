@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 import com.allBookSharing.xxx.dto.Member;
 import com.allBookSharing.xxx.service.JoinManagement;
@@ -42,10 +43,12 @@ public class HomeController {
 		return mav;
 	}
 
-	@RequestMapping(value = "/memberjoin", method = RequestMethod.GET)
-	public ModelAndView memberJoin(Member mb) {
-
-		mav = jm.memberJoin(mb);
+	
+	@PreAuthorize("isAnonymous()")
+	@PostMapping(value = "/memberjoin")
+	public ModelAndView memberJoin(MultipartHttpServletRequest multi) {
+		System.out.println("멀티멀티티티 = "+multi);
+		mav = jm.memberJoin(multi);
 
 		return mav;
 	}
