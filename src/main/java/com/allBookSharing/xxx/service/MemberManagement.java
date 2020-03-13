@@ -18,6 +18,8 @@ import com.allBookSharing.xxx.dao.IMemberDao;
 import com.allBookSharing.xxx.dto.Classification;
 import com.allBookSharing.xxx.dto.Loan;
 import com.allBookSharing.xxx.dto.Member;
+import com.allBookSharing.xxx.dto.PointList;
+import com.google.gson.Gson;
 
 @Service
 public class MemberManagement {
@@ -156,13 +158,31 @@ public class MemberManagement {
 		int us_point=mb.getUs_point();
 		boolean result= mDao.updateOkPoint(us_point,id);
 		
-		if(result)
+		boolean result2=mDao.insertPointList(us_point,id);
+		
+		if(result && result2)
 		mav.setViewName("redirect:/movemypage");
 		else
 		mav.setViewName("redirect:/insertpoint");
 		
 		
 		
+		return mav;
+	}
+
+
+
+	public ModelAndView pointList(Principal principal) {
+		mav = new ModelAndView();
+		String view= null;
+		String id=principal.getName();
+		
+		List<PointList> pList=mDao.getPointList(id);
+		String gson=new Gson().toJson(pList);
+		
+		System.out.println("p리스트는:"+pList);
+		mav.addObject("list",gson);
+		mav.setViewName(view);
 		return mav;
 	}
 }

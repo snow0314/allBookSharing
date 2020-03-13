@@ -31,6 +31,9 @@ public class HomeController {
 	
 	@Autowired
 	MemberManagement mm;
+	
+	@Autowired
+	MemberManagement pt;
 
 	private ModelAndView mav;
 
@@ -60,7 +63,7 @@ public class HomeController {
 	}
 	@PreAuthorize("isAuthenticated()")
 	@RequestMapping(value = "/insertpoint")
-	public String pointUsse() {
+	public String pointUser() {
     System.out.println("point:");
 		return "PointUser";
 	}
@@ -68,11 +71,21 @@ public class HomeController {
 	@RequestMapping(value = "/okpoint", method = RequestMethod.POST)
 	public ModelAndView okPoint(Member mb,Principal principal) {
 
-		System.out.println("충전커트롤러:"+mb);
+	
 		mav = mm.okPoint(mb,principal);
 
 		return mav;
 	}
+	
+	//거래내역
+	@PreAuthorize("isAuthenticated()")
+	@RequestMapping(value = "/pointlist")
+	public ModelAndView pointList(Principal principal) {
+    
+		 mav= mm.pointList(principal);
+		return mav;
+	}
+	
 
 
 	

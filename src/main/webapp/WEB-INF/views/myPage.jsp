@@ -26,7 +26,7 @@
 
 #myProfile {
 	float: left;
-	margin-right: 270px;
+	margin-right: 250px;
 }
 
 #myProfile_rest {
@@ -107,9 +107,11 @@ width: 400px;
 					</tr>
 					<tr>
 						<td>포인트 : </td>
-						<td>${mb.us_point} point</td>
+						<td><a href=pointlist>${mb.us_point} point</a></td>
 						<td><a href=./insertpoint >포인트 충전 바로가기</a></td>
 					</tr>
+					
+					
 				</table>
 				<input id='btn' type="submit" value="개인정보 변경"/>
 				<input type="hidden" id="_csrf" name="_csrf" value="${_csrf.token}">
