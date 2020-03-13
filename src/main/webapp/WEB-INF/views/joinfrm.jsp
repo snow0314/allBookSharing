@@ -120,7 +120,7 @@ width: 300px;
 <jsp:include page="header.jsp" />
  
    <div id="div">
-		<form method="post">
+		<form action="./memberjoin?${_csrf.parameterName}=${_csrf.token}" onsubmit="return check()"  enctype="multipart/form-data" method="post">
 			<div id="join_background">
 				<table class="table table-bordered">
 				<tbody>
@@ -146,7 +146,7 @@ width: 300px;
 
 					<tr>
 						<td>비밀번호체크</td>
-						<td colspan="3"><input type="password" name="pwcheck" maxlength="30"
+						<td colspan="3"><input type="password" maxlength="30"
 							id="pwcheck" required>
 							<span id='pw_ck2'> </span>
 							</td>		
@@ -178,8 +178,8 @@ width: 300px;
 
 					 <tr>
             <td><b>지역선택:</b></td>
-            <td colspan="2"><input type="text" required/></td>
-            <td><select name="mb_area" id="mb_area" class="foot1">
+            <td colspan="2"><input id='area' name="mb_area" type="text" readonly required/></td>
+            <td><select  id="mb_area" class="foot1">
                   <option value="">선택</option>
                   <option value="서울">서울</option>
                   <option value="인천">인천</option>
@@ -204,9 +204,9 @@ width: 300px;
 					<tr>
             <td><b>주소:</b></td>
 
-            <td colspan="3"><label for="addr_btn"><input type="text" id="sample4_postcode" name="us_address" placeholder="우편번호" readOnly required> </label>
+            <td colspan="3"><label for="addr_btn"><input type="text" id="sample4_postcode"  placeholder="우편번호" readOnly required> </label>
                <input type="button" id="addr_btn" onclick="sample4_execDaumPostcode()" value="우편번호 찾기"><br>
-               <input type="text" id="sample4_roadAddress" placeholder="도로명주소"name="branchaddress"  readOnly required> 
+               <input type="text" id="sample4_roadAddress" placeholder="도로명주소"  readOnly required> 
                <input type="hidden" id="sample4_jibunAddress" placeholder="지번주소" readOnly required> 
                <input type="text" id="sample4_detailAddress" placeholder="상세주소" required>
                <input type="text" id="sample4_extraAddress" placeholder="참고항목" readOnly required></td>
@@ -219,16 +219,35 @@ width: 300px;
             <div id="guide" style="color: #999; display: none"></div>
             <div id="map" style="width: 100%; height: 350px;"></div>
 
+			<input type="hidden" name="_csrf" value="${_csrf.token}">
 
-				<input class="btn" type="submit" value="회원가입" formaction="memberjoin"
-					id="hag"> <input id="hag"class="btn" type="submit" value="취소"
-					formaction="./">
+				<input class="btn" type="submit" value="회원가입" id="hag" > 
+				<input type="hidden" id="addr" name="us_address" />
+				<input id="hag"class="btn" type="submit" value="취소" formaction="./">
 			</div>
 		</form>
 	</div>
    <script>
+   let addr="";
 
-
+   
+   
+   	//지역 선택
+	$("#mb_area").on("change",function(){
+		
+		$("#area").val($("#mb_area").val());
+	});
+   	
+   	//주소 합친후 submit
+   	function check(){
+   		addr=$("#sample4_postcode").val()+" "+$("#sample4_roadAddress")
+		.val()+$("#sample4_detailAddress")
+		.val()+$("#sample4_extraAddress").val();
+   		$("#addr").val(addr);
+   	
+   	}
+   
+   
    let idck=0;
    //아이디 검사 및 중복 체크
    $("#id_check").on("click", function(){

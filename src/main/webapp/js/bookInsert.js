@@ -1,11 +1,4 @@
-function listShow(data) {
-		/*var $containerDiv=$("<div>");
-		$containerDiv.addClass("container p-3 my-3 border");
-		var $table=$("<table>");
-		
-		$("<td>").appendTo($tr).attr("rowspan", "3").css("width", "40%");
-		var $td=$("<td>").appendTo($tr);
-		var  $("<div>").addClass("input-group mb-3 input-group-sm").appendTo($td);*/
+function listShow(data) { //모달창 안에 도서 리스트 출력 메소드
 		console.log("list",data);
 		$("#contents").empty();
 		var str="";
@@ -55,7 +48,7 @@ function listShow(data) {
         str="";         
 	} //listShow End
 	
-function listSelect(index){
+function listSelect(index){ //도서 선택시 해당 정보를 바깥에 찍어주는 메소드
 	console.log(temp[index]);
 	
 	$("#bk_image").attr("value", temp[index].thumbnail);

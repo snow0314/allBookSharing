@@ -5,6 +5,7 @@ import java.sql.SQLException;
 import org.apache.ibatis.session.SqlSession;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -24,6 +25,9 @@ public class LibrarianManagement {
 
 	public ModelAndView librarianinsert(Librarian lia) {
 		ModelAndView mav=new ModelAndView();
+		
+		BCryptPasswordEncoder pwdEncoder =new BCryptPasswordEncoder();
+		lia.setLa_pw(pwdEncoder.encode(lia.getLa_pw()));
 		boolean result=lDao.librarianinsert(lia);
 		boolean result2=lDao.librarianinsert2(lia);
 		boolean result3=lDao.librarianinsert3(lia);
