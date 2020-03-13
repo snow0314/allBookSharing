@@ -88,7 +88,7 @@ width: 50px;
 <jsp:include page="header.jsp" />
 
 <div id="div_body">
-<form action="profilecomplet" method="post">
+<form action="./profilecomplet?${_csrf.parameterName}=${_csrf.token}" enctype="multipart/form-data"  method="post">
 <table id="table" class="table table-bordered">
     <tbody>
     

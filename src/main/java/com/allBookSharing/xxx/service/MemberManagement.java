@@ -1,6 +1,7 @@
 package com.allBookSharing.xxx.service;
 
 
+import java.io.File;
 import java.io.PrintWriter;
 import java.security.Principal;
 import java.text.SimpleDateFormat;
@@ -12,7 +13,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.User;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 import com.allBookSharing.xxx.dao.IMemberDao;
 import com.allBookSharing.xxx.dto.Classification;
@@ -114,11 +118,12 @@ public class MemberManagement {
 	}
 
 	//대출현황
-	public List<Loan> getLoanList(Principal principal) {
+	public String getLoanList(Principal principal) {
 		String id=principal.getName();
 		System.out.println("id="+id);
 		List<Loan> lList=mDao.getLoanList(id);
-		return lList;
+		String json=new Gson().toJson(lList);
+		return json;
 	}
 
 	//연체목록
@@ -138,9 +143,34 @@ public class MemberManagement {
 		return result;
 	}
 
-	public ModelAndView profileComplet(Principal principal, Member mb1) {
+	public ModelAndView profileComplet(MultipartHttpServletRequest multi, Principal principal) {
 		mav = new ModelAndView();
 		String id=principal.getName();
+		
+		BCryptPasswordEncoder pwdEncoder =new BCryptPasswordEncoder();
+		// 1.이클립스의 물리적 저장경로 찾기
+					String root = multi.getSession().getServletContext().getRealPath("/");
+					System.out.println("root=" + root);
+					String path = root + "profile/";
+					System.out.println("path="+path);
+					// 2.폴더 생성을 꼭 할것...
+					File dir = new File(path);
+					if (!dir.isDirectory()) { // upload폴더 없다면
+						dir.mkdir(); // upload폴더 생성
+					}
+					// 파일 메모리에 저장
+					MultipartFile mf=multi.getFile("us_image");
+					String oriFileName = mf.getOriginalFilename(); // a.txt
+					String sysFileName = System.currentTimeMillis() + "."
+							+ oriFileName.substring(oriFileName.lastIndexOf(".") + 1);
+		
+					Member mb1=new Member();
+					mb1.setMb_id(multi.getParameter("mb_id")).setMb_pw(pwdEncoder.encode(multi.getParameter("mb_pw"))).setMb_area(multi.getParameter("mb_area")).setMb_name(multi.getParameter("mb_name"))
+	    		      .setUs_id(multi.getParameter("us_id")).setUs_address(multi.getParameter("us_address")).setUs_phone(multi.getParameter("us_phone")).setUs_email(multi.getParameter("us_email"))
+	    		      .setUs_image(sysFileName);
+					
+					
+						
 		mDao.updateprofileUs(mb1);
 		mDao.updateprofileMb(mb1);
 		

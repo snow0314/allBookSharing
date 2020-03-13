@@ -5,12 +5,13 @@
 
 <update id="updateprofileUs" parameterType="member">
 
-UPDATE VEIW_MEMBER SET US_ADDRESS=#{us_address},US_PHONE=#{us_phone},US_EMAIL=#{us_email} WHERE MB_ID=#{mb_id}
+<!-- UPDATE VEIW_MEMBER SET US_ADDRESS=#{us_address},US_PHONE=#{us_phone},US_EMAIL=#{us_email} WHERE MB_ID=#{mb_id} -->
+UPDATE USERS SET US_ADDRESS=#{us_address},US_PHONE=#{us_phone},US_EMAIL=#{us_email}, US_IMAGE=#{us_image} WHERE US_ID=#{mb_id}
 </update>
 
 <update id="updateprofileMb" parameterType="member">
 
-UPDATE VEIW_MEMBER SET MB_AREA=#{mb_area} WHERE MB_ID=#{mb_id}
+UPDATE MEMBER SET MB_AREA=#{mb_area} WHERE MB_ID=#{mb_id}
 </update>
 
 </mapper>
