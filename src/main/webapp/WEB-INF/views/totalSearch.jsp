@@ -76,7 +76,7 @@
             .button-7:hover a{
               color:#fff;
             }
-	#main{
+	#totalsearchlist{
 		float:right;
 		background-color:white;
 		width:60%;
@@ -85,7 +85,7 @@
 		margin-right: 10%;
         margin-top:2%;
         margin-bottom: 5%;
-        
+        padding:0px;
 	}
 	#bookname{
 		width:70%;
@@ -131,14 +131,15 @@
 	}
 	h1{
 	font-size:50px;
+
 	}
 	#tr{
 	height:10px;
 	}
 	img{
-	width:110px;
+	width:auto;
 	height:auto;
-	margin-bottom:-128px;
+	margin-bottom:-127px;
 	}
 	
 </style>
@@ -158,7 +159,7 @@
   </ul>
 </nav>
 
-<main id="main">
+<main id="totalsearchlist">
     <h1>통합검색</h1>
     <select id="select">
     	<option value="BK_NAME">제목</option>
@@ -201,7 +202,7 @@ function bookList(){
 	    		
 	    	$.each(result,function(index,item){
 	    		console.log(item.bk_code);
-	    		str+='<tr id="tr"><td style="border:1px solid black;width:100px;">'+'<image src="'+item.bk_image+'"></td>';
+	    		str+='<tr id="tr"><td style="border:1px solid black;width:100px;height:176px;">'+'<image src="'+item.bk_image+'"></td>';
 	    		str+='<td style="border:1px solid black;">'+'<a href="bookdetailpage?bk_code='+item.bk_code+'" id="bkname">'+item.bk_name+'</a><br>'+item.bk_writer+'<br>'+
 	    		item.bk_publisher+'<br>'+item.bk_publicday+'<br>'+item.bk_lname+'</td></tr>';
 	    	});

@@ -104,6 +104,13 @@ public class BookRestController {
 		return result;
 	}
 	
+	@Secured("ROLE_USER")
+	@RequestMapping(value="/likecount",produces="application/json;charset=UTF-8")
+	public Integer likeCount(Liked lk) {
+		Integer result=bm.likeCount(lk);
+		return result;
+	}
+	
 	
 
 }

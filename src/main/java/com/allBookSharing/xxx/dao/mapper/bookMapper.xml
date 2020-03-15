@@ -72,4 +72,8 @@ VALUES(#{lk_bcode},#{lk_id},#{lk_lcode})
  SELECT COUNT(*) FROM LIKED
  WHERE LK_BCODE=#{lk_bcode} AND LK_ID=#{lk_id} AND LK_LCODE=#{lk_lcode}
 </select>
+<select id="likeCount" parameterType="reservation" resultType="Integer">
+ SELECT COUNT(*) FROM LIKED
+ WHERE LK_BCODE=#{lk_bcode} 
+</select>
 </mapper>

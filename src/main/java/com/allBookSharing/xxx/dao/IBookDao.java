@@ -26,6 +26,7 @@ public interface IBookDao {
 	Boolean likeInsert(Liked lk);
 	Boolean likeCancel(Liked lk);
 	Integer likedConfirm(Liked lk);
+	Integer likeCount(Liked lk);
 	
 
 	
