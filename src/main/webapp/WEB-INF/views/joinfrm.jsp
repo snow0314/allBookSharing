@@ -240,9 +240,8 @@ width: 300px;
    	
    	//주소 합친후 submit
    	function check(){
-   		addr=$("#sample4_postcode").val()+" "+$("#sample4_roadAddress")
-		.val()+$("#sample4_detailAddress")
-		.val()+$("#sample4_extraAddress").val();
+   		addr=$("#sample4_postcode").val()+" "+$("#sample4_roadAddress").val()+" "
+   		+$("#sample4_detailAddress").val()+$("#sample4_extraAddress").val();
    		$("#addr").val(addr);
    	
    	}

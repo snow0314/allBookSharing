@@ -14,4 +14,12 @@ UPDATE USERS SET US_ADDRESS=#{us_address},US_PHONE=#{us_phone},US_EMAIL=#{us_ema
 UPDATE MEMBER SET MB_AREA=#{mb_area} WHERE MB_ID=#{mb_id}
 </update>
 
+
+
+<select id="getBorrowChart" resultType="List">
+		SELECT BG_CATE,COUNT(BK_BG_NUM) CNT FROM BORROWLIST JOIN BOOKS ON books.bk_lcode=borrowlist.bo_lcode 
+		JOIN BIGGROUP ON BK_BG_NUM=biggroup.bg_num 
+		WHERE borrowlist.bo_id=#{id} GROUP BY BG_CATE
+		
+	</select>
 </mapper>
