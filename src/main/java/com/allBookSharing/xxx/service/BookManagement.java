@@ -84,6 +84,12 @@ public class BookManagement {
 		return lkcancel;
 	}
 
+	public Integer likeCount(Liked lk) {
+		Integer lkcount=bDao.likeCount(lk);
+		System.out.println("찜카운트m결과="+lkcount);
+		return lkcount;
+	}
+
 	
 
 }

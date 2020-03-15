@@ -181,7 +181,7 @@
 	</table>
 
 <div id="sidebar">
-0명이 좋아합니다.<br>
+<span id="likecount"></span>명이 좋아합니다.<br>
 평균평점 _____
 </div>
 </div>
@@ -273,6 +273,10 @@ if(${books.bk_Quantity}>${books.bk_booklend})
 		 }
 		});//ajax End
 		
+		likeCount();
+		
+		
+		
 		}
 		
 	}
@@ -317,7 +321,21 @@ if($("#id").val()==""){
 }
 	
 });
-
+function likeCount(){
+	$.ajax({
+		type:'get',
+    	url:'likecount',
+    	data:{"lk_bcode":"${books.bk_code}"},  
+    	dataType:"text",
+    	success:function(result4){
+    		$("#likecount").text(result4);
+    	},
+    	error:function(xhr,status){ 
+	    	console.log("xhr1=", xhr);
+			console.log("status=", status);
+	 }
+	});//ajax End
+}
 
 
 
@@ -372,6 +390,7 @@ $('#heart').click(function(){
 					console.log("status3=", status); 
 			 }
 			});//ajax End
+		  likeCount();
 	  }
 	  else{//하트해제되어있는 상태
 		 if($("#id").val()==""){
@@ -392,6 +411,7 @@ $('#heart').click(function(){
 						console.log("status=", status);
 				 }
 				});//ajax End
+				likeCount();
 			}
 	  }
 	});
