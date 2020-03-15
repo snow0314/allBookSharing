@@ -11,6 +11,7 @@ import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
 import org.springframework.stereotype.Service;
 
+import com.allBookSharing.xxx.dto.BigGroup;
 import com.allBookSharing.xxx.dto.Loan;
 import com.allBookSharing.xxx.dto.Member;
 import com.allBookSharing.xxx.dto.PointList;
@@ -69,6 +70,9 @@ public interface IMemberDao {
 	
 	@Delete("DELETE FROM AUTHORITIES WHERE ID=#{id}")
 	boolean memberDrop3(String id);
+	
+	//대출차트
+	List<BigGroup> getBorrowChart(String id);
 	
 	
 	

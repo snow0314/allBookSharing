@@ -1,6 +1,7 @@
 package com.allBookSharing.xxx;
 
 import java.security.Principal;
+import java.util.HashMap;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,12 +10,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.allBookSharing.xxx.dto.BigGroup;
 import com.allBookSharing.xxx.dto.Classification;
 import com.allBookSharing.xxx.dto.Loan;
 import com.allBookSharing.xxx.service.MemberManagement;
 
 @RestController
-public class MyPageRestComtroller {
+public class MyPageRestController {
 
 	@Autowired
 	MemberManagement mm;
@@ -57,7 +59,7 @@ public class MyPageRestComtroller {
 		return reviewCnt;
 	}
 
-	
+	//누적 연체일수
 	@RequestMapping(value = "/arrearsday" ,produces = "application/json;charset=UTF-8")
 	public  int arrearsDay(Principal principal) {
 		System.out.println("누적 연체 날짜 컨트롤러");
@@ -74,13 +76,22 @@ public class MyPageRestComtroller {
 		
 		return lList;
 	}
-	
+	//연체 목록
 	@RequestMapping(value = "/arrearslist" ,produces = "application/json;charset=UTF-8")
 	public  List<Loan> arrearsList(Principal principal) {
 		System.out.println("연체목록 컨트롤러");
 		List<Loan> lList=mm.getArrearsList(principal);
 		
 		return lList;
+	}
+	
+	//대출 차트
+	@RequestMapping(value = "/borrowchart" ,produces = "application/json;charset=UTF-8")
+	public  List<BigGroup> borrowChart(Principal principal) {
+		System.out.println("대출차트 컨트롤러");
+		List<BigGroup> bList=mm.getBorrowChart(principal);
+		
+		return bList;
 	}
 
 }

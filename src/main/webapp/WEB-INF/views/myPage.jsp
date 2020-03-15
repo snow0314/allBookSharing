@@ -15,6 +15,12 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
   
   
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous"> 
+    <!-- 차트 링크 -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
  
 <style>
 
@@ -42,13 +48,13 @@
 #wishList{
 all:unset;
 font-weight: bold;
-color: blue;
+color: #007bff;
 }
 
 #readingRoom{
 all:unset;
 font-weight: bold;
-color: blue;
+color: #007bff;
 }
 #btn{
  padding-bottom: 5px;
@@ -121,7 +127,7 @@ width: 400px;
 			</div>
 
 			<div id="myProfile_rest">
-				<table id="table_rest" class="table table-striped">
+				<table id="table_rest" class="table table-striped" style="width:435px;">
 					<tr>
 						<td class="table_box">대출건수 <span id="borrowCnt"></span>회</td>
 						<td class="table_box">연체건수 <span id="arrearsCnt"></span>회</td>
@@ -135,9 +141,24 @@ width: 400px;
 						<td class="table_box" style="cursor: pointer;"><a id="readingRoom" href="">열람실 예약좌석보기</a></td>
 					</tr>
 				</table>
+				
+        
+                <div class="card">
+                
+                    <canvas id="myChart1"></canvas> 
+                    
+                    <div class="card-footer text-center text-dark">
+                        <h3>대출차트</h3>
+                    </div>
+                </div>
+           
+    
 			</div>
 		</div>
-
+  <!-- 부트스트랩 -->
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script> <!-- 차트 -->
 
 		<div class="container">
 			<h3>대출현황</h3>
@@ -217,6 +238,51 @@ width: 400px;
 	</div>
 
 <script>
+
+//대출차트
+$.ajax({
+	type : 'get',
+	url :"borrowchart",
+	success : function(data) {
+       // $('#borrowCnt').html(data).css('color', 'black').css('font-weight','bold');
+       console.log("데이타는?",data);
+       console.log("데이타는?",data[2]);
+
+     },
+	error : function(xhr, status) {
+     }
+	
+}); //end ajax 
+
+data = {
+        datasets: [{
+            backgroundColor: [
+                'rgba(255,99,13,0.5)',
+                'rgba(54,162,235,0.5)',
+                'rgba(255,206,86,0.5)',
+                'rgba(75,192,192,0.5)',
+                'rgba(153,102,255,0.5)',
+                'rgba(255,159,64,0.5)',
+                'rgba(105,159,13,0.5)',
+                'rgba(30,199,13,0.5)',
+            ],
+            data: [1,5 , 3,2,4,6,8,2]
+        }], 
+    labels: ['대분류1','대분류2','대분류3','대분류4','대분류5','대분류6','대분류7','대분류8'] //이름
+    }; 
+
+
+
+
+// 가운데 구멍이 없는 파이형 차트 
+var ctx1 = document.getElementById("myChart1"); var myPieChart = new Chart(ctx1, { type: 'pie', data: data, options: {
+    title:{
+    display:true,
+    text:'월별 대출 추이'   //차트 제목
+}
+    
+} });
+
 
 	
 //대출건수 조회

@@ -20,6 +20,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 import com.allBookSharing.xxx.dao.IMemberDao;
+import com.allBookSharing.xxx.dto.BigGroup;
 import com.allBookSharing.xxx.dto.Classification;
 import com.allBookSharing.xxx.dto.Loan;
 import com.allBookSharing.xxx.dto.Member;
@@ -255,5 +256,15 @@ public class MemberManagement {
 		
 		mav.setViewName(view);
 		return mav;
+	}
+
+	//대출차트
+	public List<BigGroup> getBorrowChart(Principal principal) {
+		String id=principal.getName();
+		
+		List<BigGroup> bList=mDao.getBorrowChart(id);
+		
+		
+		return bList;
 	}
 }
