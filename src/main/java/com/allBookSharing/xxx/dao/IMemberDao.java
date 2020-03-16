@@ -35,14 +35,13 @@ public interface IMemberDao {
 	@Select("SELECT SUM(BD_RETURN_DATE-BD_REAL_RETURN_DATE) FROM VEIW_BRROW WHERE BO_ID=#{id} AND (BD_RETURN_DATE-BD_REAL_RETURN_DATE)<0")
 	int getArrearsDay(String id);
 	
-	@Select("SELECT bo_num,bk_name,bd_date,bd_return_date FROM BORROWLIST \r\n" + 
+	@Select(
+			"SELECT bo_num,bk_name,bd_date,bd_return_date FROM BORROWLIST \r\n" + 
 			"JOIN BORROWDETAIL ON BO_NUM=BD_BO_NUM \r\n" + 
 			"JOIN BOOKS ON BD_BCODE=BK_CODE WHERE BO_ID=#{id}")
 	List<Loan> getLoanList(String id);
 	
-	@Select("SELECT bo_num,bk_name,bd_date,bd_real_return_date,bd_date-bd_real_return_date as arrearsday  FROM BORROWLIST \r\n" + 
-			"JOIN BORROWDETAIL ON BO_NUM=BD_BO_NUM \r\n" + 
-			"JOIN BOOKS ON BD_BCODE=BK_CODE WHERE BO_ID=#{id}")
+	
 	List<Loan> getArrearsList(String id);
 	
 	@Update("update member set mb_pw=#{pw} where mb_id=#{id}")
@@ -73,6 +72,11 @@ public interface IMemberDao {
 	
 	//대출차트
 	List<BigGroup> getBorrowChart(String id);
+	
+	
+	//반납연장하기
+	@Update("UPDATE BORROWDETAIL SET BD_RETURN_DATE=BD_RETURN_DATE+7 WHERE BD_BO_NUM=#{bd_bo_num}")
+	boolean loanExtend(int bd_bo_num);
 	
 	
 	
