@@ -328,7 +328,7 @@ $(document).ready( function () { //도서관 코드,이름 가져오는 메소�
 			data: {"query" : bookName, 
 				   "size" : 50 },
 			success : function(result) {
-				console.log(result);
+				console.log("페이징 데이터: ",result);
 				var data = result;
 				      
 				let container = $('#pagination');

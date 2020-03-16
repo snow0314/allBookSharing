@@ -8,20 +8,14 @@ import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.annotation.Secured;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.servlet.ModelAndView;
-
 import com.allBookSharing.xxx.dto.Books;
 import com.allBookSharing.xxx.dto.Classification;
 import com.allBookSharing.xxx.service.librayBookManagement;
 import com.fasterxml.jackson.core.JsonParseException;
-import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
@@ -32,24 +26,9 @@ public class librayBookRestController {
 	
 	@Autowired
 	librayBookManagement lmm;
-	ModelAndView mav;
-	
-	@Secured("ROLE_LIBRARIAN")
-	@RequestMapping(value = "/libraybooklistmove")
-	public ModelAndView bookListMove() { //책 목록 페이지 이동
-		
-		return new ModelAndView("librarian/bookslist");
-	}
-	
-	@Secured("ROLE_LIBRARIAN")
-	@RequestMapping(value = "/libraybookinsertmove")
-	public ModelAndView bookInsertMove() { //책 등록 페이지 이동
-		
-		return new ModelAndView("librarian/bookinsert");
-	 } 
 	
 	@RequestMapping(value = "/getbiggroup" ,produces = "application/json;charset=UTF-8")
-	public @ResponseBody List<Classification> getBigGroup() {
+	public @ResponseBody List<Classification> getBigGroup() { //대분류 가져오는 메소드
 		
 		List<Classification> blist=lmm.getBigGroup();
 		
@@ -58,9 +37,10 @@ public class librayBookRestController {
 	
 	
 	@RequestMapping(value = "/getsmallgroup" ,produces = "application/json;charset=UTF-8")
-	public @ResponseBody List<Classification> getSmallGroup(Integer bigNum) {
+	public @ResponseBody List<Classification> getSmallGroup(Integer bigNum) { //소분류 가져오는 메소드
 		
 		List<Classification> blist=lmm.getSmallGroup(bigNum);
+		
 		
 		return blist;
 	}
@@ -80,6 +60,8 @@ public class librayBookRestController {
 		return lmm.getLibrayCodeName(principal);
 	}
 	
+	
+	//책 삭제하는 메소드
 	@Secured("ROLE_LIBRARIAN")	
 	@RequestMapping(value = "/libraybookdelete" ,produces = "application/json;charset=UTF-8")
 	public String deleteBooks(@RequestBody String json) throws JsonParseException, JsonMappingException, IOException { 
