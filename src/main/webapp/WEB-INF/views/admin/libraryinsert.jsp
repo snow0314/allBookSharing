@@ -89,7 +89,7 @@
        <script> $('.carousel').carousel({ interval: 1600  }) </script>
        
        <!--우측 상단 버튼-->
-	<sec:authorize access="isAnonymous()">
+	<!-- <sec:authorize access="isAnonymous()">
 		<div class="container2">
 			<div class="button-7">
 				<div class="eff-7"></div>
@@ -100,13 +100,13 @@
 				<a href="index.jsp"> 도서관으로 이동 </a>
 			</div>
 		</div>
-	</sec:authorize>
+	</sec:authorize> -->
 
 <!-- 메인 메뉴 -->
-<div id="header">
+<!-- <div id="header">
 	<div class="container">
 	
-		<!-- Nav -->
+		Nav
 			<nav id="nav">
 				<ul>
 					<li><a href="#"><span>도서관 관리</span></a>
@@ -132,7 +132,7 @@
 				</ul>
 			</nav>
 	</div>
-</div>
+</div> -->
 
 <!-- 도서관 등록 페이지 -->
 <form method="post" autocomplete="off" action="libraryinsert">
@@ -140,8 +140,8 @@
 	<section class="container">
 		<div class="row" style="margin-bottom: -60px; margin-top: -5px;">
 	</div>
+	
 	<!-- 내용 -->
-
 	<div class="form-group">
 		<label for="lb_code">도서관 코드</label>
 		<input type="text" class="form-control" id="code" name="lb_code" placeholder="도서관 코드를 입력하세요"/>
@@ -151,6 +151,9 @@
 		<label for="lb_name">도서관 이름</label>
 		<input type="text" class="form-control" id="name" name="lb_name" placeholder="도서관 이름을 입력하세요"/>
 	</div>
+	
+	
+	
 	<div class="form-group">
     <label for="lb_loc">지역</label>
     <input type="text" class="form-control" id="loc" name="lb_loc"/>
@@ -211,7 +214,6 @@
 </div>
 </form>
 
-		<button id="btn">dhkdd</button>
 
 <script>
 		let str="";
@@ -233,10 +235,10 @@ $("#subbtn1").on("submit",function(){
 		});
 		</script>
 <!-- Footer -->
-			<div id="footer">
+			<!-- <div id="footer">
 				<div class="container">
 
-					<!-- Lists -->
+					Lists
 						<div class="row">
 							<div class="8u">
 								<section>
@@ -288,13 +290,13 @@ $("#subbtn1").on("submit",function(){
 							</div>
 						</div>
 
-					<!-- Copyright -->
+					Copyright
 						<div class="copyright">
 							Design: <a href="http://templated.co">TEMPLATED</a> Images: <a href="http://unsplash.com">Unsplash</a> (<a href="http://unsplash.com/cc0">CC0</a>)
 						</div>
 
 				</div>
-			</div>
+			</div> -->
 
 <script>
 //지역선택

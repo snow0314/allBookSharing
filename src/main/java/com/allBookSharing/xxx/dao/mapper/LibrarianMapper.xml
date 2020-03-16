@@ -4,9 +4,9 @@
 <mapper namespace="com.allBookSharing.xxx.dao.ILibrarianManagementDao">
 
 <insert id="librarianinsert" parameterType="librarian">
- 	INSERT INTO MEMBER(MB_ID,mb_pw,mb_area,ENABLED)
+ 	INSERT INTO MEMBER(MB_ID,mb_pw,mb_area,ENABLED,mb_name)
  	VALUES
- 	(#{la_id},#{la_pw},#{la_loc},2)
+ 	(#{la_id},#{la_pw},#{la_loc},1,#{la_name})
  	</insert>
  	
  <insert id="librarianinsert2" parameterType="librarian">	
@@ -20,4 +20,10 @@
  	(#{la_id},#{la_lcode})
  
 </insert>
+
+<select id="libraryList" parameterType="library">
+    SELECT LB_NAME, LB_CODE, LB_LOC FROM LIBRARY
+</select>
+
+
 	</mapper>

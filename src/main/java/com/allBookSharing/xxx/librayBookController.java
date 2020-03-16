@@ -39,7 +39,7 @@ public class librayBookController {
 		
 		return "librarian/librarymain";
 	}
-
+  
 	@Secured("ROLE_LIBRARIAN")
 	@RequestMapping(value = "/libraybooklistmove")
 	public ModelAndView bookListMove() { //책 목록 페이지 이동

@@ -16,8 +16,4 @@
 		<result property="la_id" column="LA_ID" />
 	</resultMap>
 	
-<select id="getLibraryList" resultType="library" resultMap="lib">
-	SELECT lb_loc,lb_name,lb_code,la_id FROM veiw_librarylist
-
-</select>
 	</mapper>

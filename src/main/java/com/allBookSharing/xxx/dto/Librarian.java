@@ -14,6 +14,7 @@ public class Librarian {
 	int la_lcode;
 	String la_pw;
 	String la_loc;
+	String la_name;
 	
 	
 }

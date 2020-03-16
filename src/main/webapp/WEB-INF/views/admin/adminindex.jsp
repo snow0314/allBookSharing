@@ -1,353 +1,241 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
-<%@ taglib prefix="sec"
-	uri="http://www.springframework.org/security/tags"%>
-<!DOCTYPE HTML>
-<html>
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html lang="en">
+
 <head>
-<title>관리자 페이지</title>
-<meta http-equiv="content-type" content="text/html; charset=utf-8" />
-<meta name="description" content="" />
-<meta name="keywords" content="" />
-<script src="js/jquery.min.js"></script>
-<script src="js/jquery.dropotron.min.js"></script>
-<script src="js/skel.min.js"></script>
-<script src="js/skel-layers.min.js"></script>
-<script src="js/init.js"></script>
-<noscript>
-	<link rel="stylesheet" href="css/skel.css" />
-	<link rel="stylesheet" href="css/style.css" />
-</noscript>
-<link rel="stylesheet"
-	href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-	integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
-	crossorigin="anonymous">
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"
-	type="text/javascript"></script>
-<style>
-.container3 {
-	padding: 50px 10px;
-	margin: 50px 10px;
-}
+    <!-- Required meta tags-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="au theme template">
+    <meta name="author" content="Hau Nguyen">
+    <meta name="keywords" content="au theme template">
 
-#logo:hover {
-	text-decoration: none;
-	color: white;
-}
+    <!-- Title Page-->
+    <title>Dashboard</title>
 
-#logo {
-	margin-bottom:
-}
+    <!-- Fontfaces CSS-->
+    <link href="adminPage/css/font-face.css" rel="stylesheet" media="all">
+    <link href="adminPage/vendor/font-awesome-4.7/css/font-awesome.min.css" rel="stylesheet" media="all">
+    <link href="adminPage/vendor/font-awesome-5/css/fontawesome-all.min.css" rel="stylesheet" media="all">
+    <link href="adminPage/vendor/mdi-font/css/material-design-iconic-font.min.css" rel="stylesheet" media="all">
 
-.button-7 {
-	width: 140px;
-	height: 50px;
-	border: 2px solid #34495e;
-	float: right;
-	text-align: center;
-	cursor: pointer;
-	position: relative;
-	box-sizing: border-box;
-	overflow: hidden;
-	margin: 10px 10px 50px 10px;
-}
+    <!-- Bootstrap CSS-->
+    <link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
 
-.button-7 a {
-	font-family: arial;
-	font-size: 16px;
-	color: #34495e;
-	text-decoration: none;
-	line-height: 50px;
-	transition: all .5s ease;
-	z-index: 2;
-	position: relative;
-}
+    <!-- Vendor CSS-->
+    <link href="adminPage/vendor/animsition/animsition.min.css" rel="stylesheet" media="all">
+    <link href="adminPage/vendor/bootstrap-progressbar/bootstrap-progressbar-3.3.4.min.css" rel="stylesheet" media="all">
+    <link href="adminPage/vendor/wow/animate.css" rel="stylesheet" media="all">
+    <link href="adminPage/vendor/css-hamburgers/hamburgers.min.css" rel="stylesheet" media="all">
+    <link href="adminPage/vendor/slick/slick.css" rel="stylesheet" media="all">
+    <link href="adminPage/vendor/select2/select2.min.css" rel="stylesheet" media="all">
+    <link href="adminPage/vendor/perfect-scrollbar/perfect-scrollbar.css" rel="stylesheet" media="all">
 
-.eff-7 {
-	width: 140px;
-	height: 50px;
-	border: 0px solid #34495e;
-	position: absolute;
-	transition: all .5s ease;
-	z-index: 1;
-	box-sizing: border-box;
-}
+    <!-- Main CSS-->
+    <link href="adminPage/css/theme.css" rel="stylesheet" media="all">
 
-.button-7:hover .eff-7 {
-	border: 70px solid #34495e;
-}
-
-.button-7:hover a {
-	color: #fff;
-}
-
-.container2 {
-	width: 100%;
-	height: 70px;
-	padding-right: 30px;
-	background-color: white;
-}
-
-.recoimg {
-	width: auto;
-	height: 500px;
-}
-
-.text {
-	margin-top: -30px;
-	margin-bottom: 30px;
-}
-</style>
 </head>
-<body class="homepage">
-	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-		integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-		crossorigin="anonymous"></script>
-	<script
-		src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
-		integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
-		crossorigin="anonymous"></script>
-	<script
-		src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
-		integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
-		crossorigin="anonymous"></script>
-	<script>
-		$('.carousel').carousel({
-			interval : 1600
-		})
-	</script>
+
+<body class="animsition">
+    <div class="page-wrapper">
 
 
+        <!-- MENU SIDEBAR-->
+        <aside class="menu-sidebar d-none d-lg-block">
+            <div class="logo">
+                <a href="#">
+                    <img src="adminPage/images/icon/logo.png" alt="Cool Admin" />
+                </a>
+            </div>
+            <div class="menu-sidebar__content js-scrollbar1">
+                <nav class="navbar-sidebar">
+                    <ul class="list-unstyled navbar__list">
+                        <li class="has-sub">
+                            <a class="js-arrow" href="#">
+                                <i class="fas fa-tachometer-alt"></i>Dashboard</a>
+                            <ul class="navbar-mobile-sub__list list-unstyled js-sub-list">
 
-	<!--header-->
-	<sec:authorize access="isAnonymous()">
-		<div class="container2">
-			<div class="button-7">
-				<div class="eff-7"></div>
-				<a href="#"> 로그아웃 </a>
-			</div>
-			<div class="button-7">
-				<div class="eff-7"></div>
-				<a href="#"> 도서관으로 이동 </a>
-			</div>
-		</div>
-	</sec:authorize>
+                            </ul>
+                        </li>
 
+                        <li class="has-sub">
+                            <a class="js-arrow" href="#">
+                                <i class="fas fa-table"></i>도서관 관리</a>
+                            <ul class="navbar-mobile-sub__list list-unstyled js-sub-list">
+                                <li>
+                                    <a href="#" onclick="adminmenuMove(1)">도서관 등록</a>
+                                </li>
+                                <li>
+                                    <a href="#" onclick="adminmenuMove(2)">도서관 수정</a>
+                                </li>
 
-	<!-- banner -->
-	<div id="header">
+                            </ul>
+                        </li>
+							
+                        <li class="has-sub">
+                            <a class="js-arrow" href="#">
+                                <i class="far fa-check-square"></i>사서관리</a>
+                            <ul class="navbar-mobile-sub__list list-unstyled js-sub-list">
+                                <li>
+                                    <a href="#" onclick="adminmenuMove(3)">사서 계정 등록</a>
+                                </li>
+                                <li>
+                                    <a href="#" onclick="adminmenuMove(4)">사서 계정 목록</a>
+                                </li>
+                            </ul>
+                        </li>
 
-		<div class="container">
+                        <li class="has-sub">
+                            <a class="js-arrow" href="#">
+                                <i class="fas fa-calendar-alt"></i>추천도서 관리</a>
+                            <ul class="navbar-mobile-sub__list list-unstyled js-sub-list">
+                                <li>
+                                    <a href="index.html">도서관 정보 수정</a>
+                                </li>
+                                <li>
+                                    <a href="index2.html">도서관 일정 관리</a>
+                                </li>
 
-			<!-- Logo -->
-			<h1>
-				<a href="#" id="logo">온책나누리</a>
-			</h1>
+                            </ul>
+                        </li>
 
-			<!-- Nav -->
-			<nav id="nav">
-				<ul>
-					<li><a href="#">도서관 관리</a>
-						<ul>
-							<li><a href="libraryinsertmove">도서관 등록</a></li>
-							<li><a href="">도서관 수정</a></li>
-							<li><a href="">도서관 삭제</a></li>
-						</ul></li>
-						
-					<li><a href="">사서 관리</a>
-						<ul>
-							<li><a href="librarianinsertmove">사서 계정 등록</a></li>
-							<li><a href="librarylistmove">사서 계정 수정</a></li>
-						</ul></li>
-						
-					<li><a href="">추천도서 관리</a>
-						<ul>
-						</ul></li>
-						
-					<li><a href="">도서관별 대출 현황</a>
-						<ul>
-						</ul></li>
-				</ul>
-			</nav>
-
-
-			<!-- Banner -->
-			<div id="banner">
-				<div class="container">		
-				</div>
-			</div>
-		</div>
-	</div>
-
-	<!-- Main -->
-	<div id="main" class="wrapper style1">
-		<section class="container">
-			<div class="row" style="margin-bottom: -60px; margin-top: -50px;">
-
-			</div>
-		</section>
-	</div>
-
-
-	<!-- Featured -->
-	<div class="wrapper style2">
-		<section class="container3">
-			<div class="row no-collapse-1">
-				<section class="4u">
-					<h2 class='text'>추천도서</h2>
-
-					<div id="demo" class="carousel slide" data-ride="carousel">
-						<div class="carousel-inner">
-							<!-- 슬라이드 쇼 -->
-							<div class="carousel-item active">
-								<!--가로-->
-								<img class="recoimg" src="images/reco1.jpg" alt="First slide">
-
-							</div>
-							<div class="carousel-item">
-								<img class="recoimg" src="images/reco2.jpg" alt="Second slide">
-
-							</div>
-							<div class="carousel-item">
-								<img class="recoimg" src="images/reco3.jpg" alt="Third slide">
-
-							</div>
-
-							<div class="carousel-item">
-								<img class="recoimg" src="images/reco4.jpg" alt="Forth slide">
-
-							</div>
-
-							<div class="carousel-item">
-								<img class="recoimg" src="images/reco5.jpg" alt="Fifth slide">
-
-							</div>
-
-
-							<!-- / 슬라이드 쇼 끝 -->
-
-							<!-- 왼쪽 오른쪽 화살표 버튼 -->
-							<a class="carousel-control-prev" href="#demo" data-slide="prev">
-								<span class="carousel-control-prev-icon" aria-hidden="true"></span>
-								<!-- <span>Previous</span> -->
-							</a> <a class="carousel-control-next" href="#demo" data-slide="next">
-								<span class="carousel-control-next-icon" aria-hidden="true"></span>
-								<!-- <span>Next</span> -->
-							</a>
-							<!-- / 화살표 버튼 끝 -->
-
-							<!-- 인디케이터 -->
-							<ul class="carousel-indicators">
-								<li data-target="#demo" data-slide-to="0" class="active"></li>
-								<!--0번부터시작-->
-								<li data-target="#demo" data-slide-to="1"></li>
-								<li data-target="#demo" data-slide-to="2"></li>
-								<li data-target="#demo" data-slide-to="3"></li>
-								<li data-target="#demo" data-slide-to="4"></li>
-							</ul>
-							<!-- 인디케이터 끝 -->
-						</div>
-					</div>
-				</section>
-
-				<section class="4u">
-					<h2 class='text'>인기도서</h2>
-					<div id="popular"></div>
-
-				</section>
-				<section class="4u">
-					<h2 class='text'>지도</h2>
-					<div id="popular"></div>
-
-				</section>
-			</div>
-		</section>
-
-	</div>
+                        <li class="has-sub">
+                            <a class="js-arrow" href="#">
+                                <i class="fas fa-chart-bar"></i>도서관별 대출 현황</a>
+                            <ul class="navbar-mobile-sub__list list-unstyled js-sub-list">
+                                <li>
+                                    <a href="index.html">배송 관리</a>
+                                </li>
+                                <li>
+                                    <a href="index2.html">반납 관리</a>
+                                </li>
+                                <li>
+                                    <a href="index3.html">희망도서 관리</a>
+                                </li>
+                                <li>
+                                    <a href="index4.html">건의사항 관리</a>
+                                </li>
+                            </ul>
+                        </li>
 
 
 
 
-	<!-- Footer -->
-	<div id="footer">
-		<div class="container">
+                    </ul>
+                </nav>
+            </div>
+        </aside>
+        <!-- END MENU SIDEBAR-->
 
-			<!-- Lists -->
-			<div class="row">
-				<div class="8u">
-					<section>
-						<header class="major">
-							<h2>Donec dictum metus</h2>
-							<span class="byline">Quisque semper augue mattis wisi
-								maecenas ligula</span>
-						</header>
-						<div class="row">
-							<section class="6u">
-								<ul class="default">
-									<li><a href="#">Pellentesque elit non gravida blandit.</a></li>
-									<li><a href="#">Lorem ipsum dolor consectetuer elit.</a></li>
-									<li><a href="#">Phasellus nibh pellentesque congue.</a></li>
-									<li><a href="#">Cras vitae metus aliquam pharetra.</a></li>
-								</ul>
-							</section>
-							<section class="6u">
-								<ul class="default">
-									<li><a href="#">Pellentesque elit non gravida blandit.</a></li>
-									<li><a href="#">Lorem ipsum dolor consectetuer elit.</a></li>
-									<li><a href="#">Phasellus nibh pellentesque congue.</a></li>
-									<li><a href="#">Cras vitae metus aliquam pharetra.</a></li>
-								</ul>
-							</section>
-						</div>
-					</section>
-				</div>
-				<div class="4u">
-					<section>
-						<header class="major">
-							<h2>Donec dictum metus</h2>
-							<span class="byline">Mattis wisi maecenas ligula</span>
-						</header>
-						<ul class="contact">
-							<li><span class="address">Address</span> <span>1234
-									Somewhere Road #4285 <br />Nashville, TN 00000
-							</span></li>
-							<li><span class="mail">Mail</span> <span><a href="#">someone@untitled.tld</a></span>
-							</li>
-							<li><span class="phone">Phone</span> <span>(000)
-									000-0000</span></li>
-						</ul>
-					</section>
-				</div>
-			</div>
+        <!-- PAGE CONTAINER-->
+        <div class="page-container">
+            <!-- HEADER DESKTOP-->
+            <header class="header-desktop">
+                <div class="section__content section__content--p30">
+                    <div class="container-fluid">
+                        <div class="header-wrap">
 
-			<!-- Copyright -->
-			<div class="copyright">
-				Design: <a href="http://templated.co">TEMPLATED</a> Images: <a
-					href="http://unsplash.com">Unsplash</a> (<a
-					href="http://unsplash.com/cc0">CC0</a>)
-			</div>
+                            <div class="header-button">
 
-		</div>
-	</div>
+                                <div class="account-wrap">
+                                    <div class="account-item clearfix js-item-menu">
+                                        <div class="image">
+                                            <img src="adminPage/images/icon/avatar-01.jpg" alt="John Doe" />
+                                        </div>
+                                        <div class="content">
+                                            <a class="js-acc-btn" href="#">john doe</a>
+                                        </div>
+                                        <div class="account-dropdown js-dropdown">
+                                            <div class="info clearfix">
+                                                <div class="image">
+                                                    <a href="#">
+                                                        <img src="adminPage/images/icon/avatar-01.jpg" alt="John Doe" />
+                                                    </a>
+                                                </div>
+                                                <div class="content">
+                                                    <h5 class="name">
+                                                        <a href="#">john doe</a>
+                                                    </h5>
+                                                    <span class="email">johndoe@example.com</span>
+                                                </div>
+                                            </div>
 
-</body>
-<script type="text/javascript">
-	function logoutGo() {
-		/* $.ajax({
-			url: "logout",
-			method: "post",
-			beforeSend : function(xhr)
-		    {   
-		        xhr.setRequestHeader("${_csrf.headerName}", "${_csrf.token}");
-		    }
-		}).done((result)=> {
-			console.log("result=",result);
-		}).fail((xhr)=> console.log(xhr)); */
-		var logoutform = document.logoutform;
-		logoutform.submit();
+                                            <div class="account-dropdown__footer">
+                                                <a href="#">
+                                                    <i class="zmdi zmdi-power"></i>Logout</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </header>
+            <!-- HEADER DESKTOP-->
 
-	}
-</script>
+            <!-- MAIN CONTENT-->
+            <div class="main-content">
+                <div class="section__content section__content--p30">
+                    <div class="container-fluid">
 
-</html>
+                        <div class="row" style="height: 1000px">
+                            <div class="col-md-12" >
+                                    <iframe id="contents" name="contents" width="100%" height="100%">
+                                    
+                                    </iframe>
+
+
+                            </div>
+
+                        </div>
+
+
+
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="copyright">
+                                    <p>Copyright © 2018 Colorlib. All rights reserved. Template by <a href="https://colorlib.com">Colorlib</a>.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- END MAIN CONTENT-->
+            <!-- END PAGE CONTAINER-->
+        </div>
+
+    </div>
+
+    <!-- Jquery JS-->
+    <script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <!-- Bootstrap JS-->
+    <script src="adminPage/vendor/bootstrap-4.1/popper.min.js"></script>
+    <script src="adminPage/vendor/bootstrap-4.1/bootstrap.min.js"></script>
+    <!-- Vendor JS       -->
+    <script src="adminPage/vendor/slick/slick.min.js">
+    </script>
+    <script src="adminPage/vendor/wow/wow.min.js"></script>
+    <script src="adminPage/vendor/animsition/animsition.min.js"></script>
+    <script src="adminPage/vendor/bootstrap-progressbar/bootstrap-progressbar.min.js">
+    </script>
+    <script src="adminPage/vendor/counter-up/jquery.waypoints.min.js"></script>
+    <script src="adminPage/vendor/counter-up/jquery.counterup.min.js">
+    </script>
+    <script src="adminPage/vendor/circle-progress/circle-progress.min.js"></script>
+    <script src="adminPage/vendor/perfect-scrollbar/perfect-scrollbar.js"></script>
+    <script src="adminPage/vendor/chartjs/Chart.bundle.min.js"></script>
+    <script src="adminPage/vendor/select2/select2.min.js">
+    </script>
+
+    <!-- Main JS-->
+    <script src="adminPage/js/main.js"></script>
+
+	<script type="text/javascript" src="js/librarianMove.js"></script>
+
+</body></html>
+<!-- end document-->

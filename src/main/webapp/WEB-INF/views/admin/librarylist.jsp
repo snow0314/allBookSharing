@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    
 <!DOCTYPE html>
 <html>
 <head>
@@ -52,15 +53,24 @@
 		example_tbl = $('#example').DataTable({
 			data:data,
 			'columnDefs': [
-		      
+				{
+		        	orderable: false,
+		           'targets': 0,
+		            className: 'select-checkbox',
+		            "defaultContent": ""
+		        	
+		        },
 		        { 'data': 'lb_loc' , 'targets': 0}, //
 		        { 'data': 'lb_code', 'targets': 1}, //
 		        { 'data': 'lb_name', 'targets': 2}, //
 		        { 'data': 'la_id', 'targets': 3}, //
 		    
 		     ],
-		     
-	dom: 'Bfrtip',
+		     'select': {
+			        'style': 'multi'
+			     },
+			     'order': [[1, 'asc']],
+			     dom: 'Bfrtip',
 
 		     buttons: [
 		         {
@@ -84,7 +94,7 @@
 		            	 var json=JSON.stringify(bookList); //선택한 책의 ISBN 코드와 도서관 코드 JSON화
 		            			            	 
 		            	  $.ajax({ 
-		            			url : "libraybookdelete",
+		            			url : "libraydelete",
 		            			type : "post",
 		            			contentType: 'application/json',
 		            			data : json,
@@ -97,8 +107,12 @@
 		            	}); //ajax End  
 		            	
 		            	 }// confirm End
-		            
-		             }]
+		             }
+		         }
+			     ],
+
+			});
+
 		});
 		</script>
 </body>
