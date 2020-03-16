@@ -1,5 +1,6 @@
 package com.allBookSharing.xxx.dao;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.stereotype.Component;
@@ -13,5 +14,5 @@ public interface IAdminManagementDao {
 
 	List<Library> getLibraryList();
 	
-	
+
 }

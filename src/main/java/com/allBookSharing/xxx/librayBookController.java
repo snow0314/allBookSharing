@@ -34,9 +34,8 @@ public class librayBookController {
 		
 		return "librarian/librarymain";
 	}
-
 	
-
+	
 	@GetMapping(value="/bookdetailpage")
 	public ModelAndView bookDetailPage(String bk_code) {
 		mav=bm.bookDetailPage(bk_code);
