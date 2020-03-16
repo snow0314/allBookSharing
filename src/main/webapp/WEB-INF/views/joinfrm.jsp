@@ -238,13 +238,7 @@ width: 300px;
 		$("#area").val($("#mb_area").val());
 	});
    	
-   	//주소 합친후 submit
-   	function check(){
-   		addr=$("#sample4_postcode").val()+" "+$("#sample4_roadAddress").val()+" "
-   		+$("#sample4_detailAddress").val()+$("#sample4_extraAddress").val();
-   		$("#addr").val(addr);
    	
-   	}
    
    
    let idck=0;
@@ -256,9 +250,11 @@ width: 300px;
 	  console.log("id="+$("#id").val());
 	  if(mb_id==""){
 		  toastr.error('아이디를 입력해주세요!', '경고');
+		  $('#result').html("");
 		  return;
 	  }else if(!patt.test(mb_id)){
 		  toastr.error('아이디는 영어나 숫자 4~16자 입니다.', '경고');
+		  $('#result').html("");
 		  return;
 	  }
 	  
@@ -371,6 +367,23 @@ width: 300px;
 	 $("#emali_ck").text("");
 		return true;	 
  });
+ 
+ 
+ 
+ 
+ 
+//주소 합친후 submit
+	function check(){
+		addr=$("#sample4_postcode").val()+" "+$("#sample4_roadAddress").val()+" "
+		+$("#sample4_detailAddress").val()+$("#sample4_extraAddress").val();
+		$("#addr").val(addr);
+	
+		if(idck==0){
+			alert("아이디 중복체크를 해주세요.");
+			return false;
+		}
+		
+	}
 	
    
    

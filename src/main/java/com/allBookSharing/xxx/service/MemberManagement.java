@@ -120,12 +120,11 @@ public class MemberManagement {
 	}
 
 	//대출현황
-	public String getLoanList(Principal principal) {
+	public List<Loan> getLoanList(Principal principal) {
 		String id=principal.getName();
 		System.out.println("id="+id);
 		List<Loan> lList=mDao.getLoanList(id);
-		String json=new Gson().toJson(lList);
-		return json;
+		return lList;
 	}
 
 	//연체목록
@@ -133,6 +132,7 @@ public class MemberManagement {
 		String id=principal.getName();
 		System.out.println("id="+id);
 		List<Loan> lList=mDao.getArrearsList(id);
+		System.out.println("연체목록 : "+lList);
 		return lList;
 	}
 	
@@ -263,8 +263,18 @@ public class MemberManagement {
 		String id=principal.getName();
 		
 		List<BigGroup> bList=mDao.getBorrowChart(id);
+		System.out.println("bList="+bList);
 		
 		
 		return bList;
+	}
+	
+	//반납일 연장하기
+	public boolean loanExtend(int bd_bo_num) {
+		
+		boolean result=mDao.loanExtend(bd_bo_num);
+
+		
+		return result;
 	}
 }

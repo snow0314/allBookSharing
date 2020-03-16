@@ -61,6 +61,11 @@ color: #007bff;
  padding-top: 5px;
  font-size: 16px;
 }
+#btn2{
+ padding-bottom: 5px;
+ padding-top: 5px;
+ font-size: 16px;
+}
 #table_rest{
 width: 400px;
 }
@@ -121,13 +126,13 @@ width: 400px;
 					
 				</table>
 				<input id='btn' type="submit" value="개인정보 변경"/>
-				<input id='btn' type="submit" value="회원탈퇴" formaction="./memberdrop?${_csrf.parameterName}=${_csrf.token}"/>
+				<input id='btn2' type="submit" value="회원탈퇴" formaction="./memberdrop?${_csrf.parameterName}=${_csrf.token}"/>
 				<input type="hidden" id="_csrf" name="_csrf" value="${_csrf.token}">
 			</form>
 			</div>
 
-			<div id="myProfile_rest">
-				<table id="table_rest" class="table table-striped" style="width:435px;">
+			<div id="myProfile_rest" style="height:300px;">
+				<table id="table_rest" class="table table-striped" style="width:446px;">
 					<tr>
 						<td class="table_box">대출건수 <span id="borrowCnt"></span>회</td>
 						<td class="table_box">연체건수 <span id="arrearsCnt"></span>회</td>
@@ -168,11 +173,12 @@ width: 400px;
 					<td style="width: 50px;">순번</td>
 					<td style="width: 400px;">자료명</td>
 					<td style="width: 200px;">대출일</td>
-					<td style="width: 200px;">반납일</td>
+					<td style="width: 200px;">반납예정일</td>
 					<td style="width: 50px;">연장</td>
 				</tr>
 				</thead>
-				<tbody>
+				
+				<tbody id="borrow">
 				</tbody>
 			</table>
 		</div>
@@ -185,33 +191,14 @@ width: 400px;
 					<td style="width: 50px;">순번</td>
 					<td style="width: 400px;">자료명</td>
 					<td style="width: 200px;">대출일</td>
+					<td style="width: 200px;">반납예정일</td>
 					<td style="width: 200px;">반납일</td>
 					<td style="width: 50px;">연체일수</td>
 				</tr>
 				</thead>
 				
-				<tbody>
-				<tr>
-        <td>John</td>
-        <td>Doe</td>
-        <td>john@example.com</td>
-        <td>john@example.com</td>
-        <td>john@example.com</td>
-      </tr>
-      <tr>
-        <td>Mary</td>
-        <td>Moe</td>
-        <td>mary@example.com</td>
-        <td>mary@example.com</td>
-        <td>mary@example.com</td>
-      </tr>
-      <tr>
-        <td>July</td>
-        <td>Dooley</td>
-        <td>july@example.com</td>
-        <td>july@example.com</td>
-        <td>july@example.com</td>
-      </tr>
+				<tbody id='arrears'>
+				
 				</tbody>
 			</table>
 		</div>
@@ -238,21 +225,39 @@ width: 400px;
 	</div>
 
 <script>
+//회원탈퇴 버튼 클릭시 컨펌창
+$("#btn2").on("click",function(){
+	
+	confirm("정말 회원 탈퇴를 하시겠습니까?");
+	
+});
 
 //대출차트
+var dataCnt=new Array();
+var dataName=new Array();
 $.ajax({
 	type : 'get',
 	url :"borrowchart",
-	success : function(data) {
+	async: false,	//true:동기, false:비동기 
+	success : function(result) {
        // $('#borrowCnt').html(data).css('color', 'black').css('font-weight','bold');
-       console.log("데이타는?",data);
-       console.log("데이타는?",data[2]);
+       console.log("데이타는?",result);
+       console.log("데이타는?",result[0].bg_cate);
+       for(var i=0;i<result.length;i++){
+       console.log("데이타는i?",result[i].cnt);
+       dataName[i]=result[i].bg_cate;
+       dataCnt[i]=result[i].cnt;
+       }
+       console.log(dataCnt);
+       console.log(dataName);
 
      },
 	error : function(xhr, status) {
      }
+   
 	
 }); //end ajax 
+
 
 data = {
         datasets: [{
@@ -265,10 +270,12 @@ data = {
                 'rgba(255,159,64,0.5)',
                 'rgba(105,159,13,0.5)',
                 'rgba(30,199,13,0.5)',
+                'rgba(30,199,123,0.5)',
+                'rgba(40,139,50,0.5)',
             ],
-            data: [1,5 , 3,2,4,6,8,2]
+            data: dataCnt
         }], 
-    labels: ['대분류1','대분류2','대분류3','대분류4','대분류5','대분류6','대분류7','대분류8'] //이름
+    labels: dataName //이름
     }; 
 
 
@@ -278,7 +285,7 @@ data = {
 var ctx1 = document.getElementById("myChart1"); var myPieChart = new Chart(ctx1, { type: 'pie', data: data, options: {
     title:{
     display:true,
-    text:'월별 대출 추이'   //차트 제목
+    text:'장르별 대출 추이'   //차트 제목
 }
     
 } });
@@ -305,7 +312,7 @@ $.ajax({
 	type : 'get',
 	url :"arrearscnt",
 	success : function(data) {
-        $('#arrearsCnt').html(data).css('color', 'black').css('font-weight','bold');
+        $('#arrearsCnt').html(data).css('color', 'red').css('font-weight','bold');
 
      },
 	error : function(xhr, status) {
@@ -346,8 +353,18 @@ $.ajax({
 	url :"arrearslist",
 	dataType:'json',
 	success : function(data) {
-       
         console.log("data=",data);
+        for(var i=0;i<data.length;i++){   
+        	console.log(data[i].bo_num);
+        var $tr= $("<tr>").appendTo($("#arrears"));
+        $tr.append("<td>"+(i+1)+"</td>");
+        $tr.append("<td>"+data[i].bk_name+"</td>");
+        $tr.append("<td>"+data[i].bd_date+"</td>");
+        $tr.append("<td>"+data[i].bd_return_date+"</td>");
+        $tr.append("<td>"+data[i].bd_real_return_date+"</td>");
+        $tr.append("<td>"+data[i].arrearsday+"</td>");
+        }
+        
      },
 	error : function(xhr, status) {
         console.log("xhr=", xhr);
@@ -364,8 +381,16 @@ $.ajax({
 	url :"loanlist",
 	dataType:'json',
 	success : function(data) {
-       
         console.log("data2=",data);
+	for(var i=0;i<data.length;i++){   
+    	console.log(data[i].bo_num);
+    var $tr= $("<tr>").appendTo($("#borrow"));
+    $tr.append("<td>"+(i+1)+"</td>");
+    $tr.append("<td>"+data[i].bk_name+"</td>");
+    $tr.append("<td>"+data[i].bd_date+"</td>");
+    $tr.append("<td>"+data[i].bd_return_date+"</td>");
+    $tr.append("<td><button onclick='extend("+data[i].bo_num+")'>연장하기</button></td>");
+    }
      },
 	error : function(xhr, status) {
         console.log("xhr=", xhr);
@@ -373,6 +398,30 @@ $.ajax({
      }
 	
 }); //end ajax  
+
+//반납일 연장하기
+function extend(bd_bo_num){
+	console.log(bd_bo_num);
+	
+	$.ajax({
+		type : 'get',
+		url :"loanextend",
+		data:{bd_bo_num:bd_bo_num},
+		success : function(data) {
+			console.log("반납연장ajax=",data);
+			if(data){
+				
+			}
+			
+		},
+		error : function(xhr, status) {
+        console.log("xhr=", xhr);
+        console.log("status=", status);
+     }
+		
+	}); 	//ajax End
+}	//fct End
+
 </script>
 
 
