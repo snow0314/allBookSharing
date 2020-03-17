@@ -8,6 +8,8 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.allBookSharing.xxx.dao.IBookDao;
 import com.allBookSharing.xxx.dto.Books;
+import com.allBookSharing.xxx.dto.DeliveryReq;
+import com.allBookSharing.xxx.dto.Library;
 import com.allBookSharing.xxx.dto.Liked;
 import com.allBookSharing.xxx.dto.Reservation;
 import com.allBookSharing.xxx.dto.Review;
@@ -89,6 +91,30 @@ public class BookManagement {
 		System.out.println("찜카운트m결과="+lkcount);
 		return lkcount;
 	}
+
+	public Integer deliCount(DeliveryReq dr) {
+		Integer delicount=bDao.deliCount(dr);
+		System.out.println("배송신청카운트m결과"+delicount);
+		return delicount;
+	}
+
+	public Boolean deliInsert(DeliveryReq dr) {
+		Boolean deliinsert=bDao.deliInsert(dr);
+		System.out.println("배송신청인서트m결과"+deliinsert);
+		return deliinsert;
+	}
+
+	public List<Books> myRegionSearch(String bk_search, String selectval, String region) {
+		List<Books> bList=bDao.myRegionSearch(bk_search,selectval,region);
+		return bList;
+	}
+
+	public List<Library> myRegionLib(String bk_search, String selectval, String region) {
+		List<Library> lbList=bDao.myRegionLib(bk_search,selectval,region);
+		return lbList;
+	}
+
+
 
 	
 

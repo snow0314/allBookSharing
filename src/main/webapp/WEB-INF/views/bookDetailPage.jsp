@@ -176,7 +176,7 @@
 		<tr><td class="tt">발행사항</td><td class="dd">${books.bk_publisher },${books.bk_publicday }</td></tr>
 		<tr><td class="tt">ISBN코드</td><td class="dd">${books.bk_code }</td></tr>
 		<tr><td class="tt">소장정보</td><td class="dd" id="dd">${books.bk_lname } &nbsp;&nbsp;&nbsp;<span id="state"></span>
-		</td></tr>
+		<button style="float:right;" id="deliveryreq">배송신청</button></td></tr>
 		
 	</table>
 
@@ -218,10 +218,13 @@
 
 </body>
 <script>
-if(${books.bk_Quantity}>${books.bk_booklend})  
+var dc=0;
+if(${books.bk_state}==0)
+	$("#state").text("대출불가");
+else if(${books.bk_state}==1)
 		$("#state").text("대출가능");
-	else
-		$("#state").text("대출불가");
+	
+	
 
 
  
@@ -292,6 +295,7 @@ if($("#id").val()==""){
 	if($("#state").text()=="대출가능"){
 		alert("예약 불가능 합니다.")
 	} else if($("#state").text()=="대출불가"){
+	
 			var result1=confirm("예약하시겠습니까?");
 		
 			if(result1){
@@ -335,6 +339,27 @@ function likeCount(){
 			console.log("status=", status);
 	 }
 	});//ajax End
+}
+
+function deliveryCount(){
+	
+	$.ajax({
+		type:'get',
+		url:'delicount',
+		data:{"de_code":"${books.bk_code}","de_lcode":${books.bk_lcode}},
+		dataType:"text",
+		async: false,
+		success:function(result){
+			dc=result;
+			console.log("배송카운트=",dc);
+		},
+		error:function(xhr,status){
+			console.log("xhr1=", xhr);
+			console.log("status=", status);
+		}
+	})
+		return dc;
+	
 }
 
 
@@ -415,10 +440,38 @@ $('#heart').click(function(){
 			}
 	  }
 	});
-	 
- 
-	 
-	 
- 
+	
+$("#dd").on("click","#deliveryreq",function(){
+	console.log(dc); 
+	dc=deliveryCount();
+	console.log(dc); 
+	
+	 if($("#id").val()==""){
+		location.replace("loginfrm");
+		}else{
+			  if($("#state").text()=="대출가능"){
+			  	if(dc=="1"){alert("이미 배송신청 하셨습니다.");
+			 	 }else if(deliveryCount()=="0"){
+				  $.ajax({
+						type:'get',
+				    	url:'deliinsert',
+				    	data:{"de_code":"${books.bk_code}","de_lcode":${books.bk_lcode}},
+				    	success:function(result){
+				    		alert("배송신청목록에 추가되었습니다.");
+				    	},
+				    	error:function(xhr,status){ 
+					    	console.log("xhr2=", xhr);
+							console.log("status=", status);
+					 }
+					});//ajax End
+			  }
+			
+			} else if($("#state").text()=="대출불가"){
+				alert("대출불가 해서 신청불가능 ");
+			
+		}
+	
+}
+});	 
 </script>
 </html>

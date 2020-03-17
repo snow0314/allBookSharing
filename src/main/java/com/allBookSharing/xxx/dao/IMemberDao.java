@@ -74,6 +74,9 @@ public interface IMemberDao {
 	//대출차트
 	List<BigGroup> getBorrowChart(String id);
 	
+	@Select("SELECT MB_AREA FROM MEMBER WHERE MB_ID=#{id}")
+	String myRegion(String id);
+	
 	
 	
 	
