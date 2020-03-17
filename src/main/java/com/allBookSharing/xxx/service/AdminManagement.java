@@ -15,7 +15,6 @@ public class AdminManagement {
 	@Autowired
 	IAdminManagementDao aDao;
 
-	
 	ModelAndView mav;
 	
 	public ModelAndView libraryinsert(Library lib) {

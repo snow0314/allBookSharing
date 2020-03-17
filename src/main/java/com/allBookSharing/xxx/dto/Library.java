@@ -16,7 +16,6 @@ import lombok.experimental.Accessors;
 @Accessors(chain=true)
 public class Library {
 	
-
 	int lb_code;			//도서관 코드
 	String lb_name;			//도서관 이름
 	String lb_address;		//주소

@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
    pageEncoding="UTF-8"%>
+   <%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -58,7 +60,6 @@ width: 200px;
 </style>
 </head>
 <body>
- <%-- <jsp:include page="adminheader.jsp" />  --%>
  
    <div id="div">
 		<form method="post">
@@ -87,34 +88,24 @@ width: 200px;
 					</tr>
 					
 					<tr>
-					<c:if test="${!empty testList}" >
-
-   					<select name="selectBox" id="selectBox" style="width:80px;" class="select_02">
-
-      				<c:forEach var="testList" items="${testList}" varStatus="i">
-
-         			<option value="${testList.name}">${testList.name}</option>
-
-      			</c:forEach>
-
-   			</select>
-
-		</c:if>
-
-						<!-- <td>도서관 이름</td>
+						<td>도서관 이름</td>
 						<td colspan="3">
-						<input type="text" name="la_name" maxlength="30" id="lb">
-						</td> -->
-					</tr>
-					<tr>
+					<select id="lb_name" name="lb_name" style="width:170px;">
+						<option value="">선택</option>	
+						<option value="lb_name" value2="lb_code" value3="lb_loc">조석</option>
+						<option value="lb_name" value2="lb_code" value3="lb_loc">아무개</option>
+					</select>
+					</td>
+				</tr>
 
-					<tr>
+				<tr>
 						<td>도서관 코드</td>
 						<td colspan="3">
 						<input type="text" name="la_lcode" maxlength="30" id="lb">
 						</td>
 					</tr>
-					<tr>
+					
+				<tr>
 						<td><b>지역선택</b></td>
             <td colspan="2"><input id='area' name="la_loc" type="text" readonly required/></td>
             <td><select  id="la_loc" class="foot1">
@@ -134,14 +125,34 @@ width: 200px;
 		</form>
 	</div>
 <script>
+$(function() {
+	$.ajax({ //도서관 정보 가져오는 메소드
+		url : "getlibraryinfo",
+		type : "get",
+		dataType:'json'
+		
+}).done((result) => {
+	console.log("result=",result);
+	
+ 	var info=result;
+	for(var i=0;i<info.length;i++){
+		$("<option>").text(info[i].lb_name).attr("value",info[i].lb_name).appendTo($("#lb_name"));
+	} 
+	
+}).fail((xhr) => {
+	console.log("xhr=",xhr);
+}); //대분류 ajax End
+
+});
 //지역선택
 $("#la_loc").on("change",function(){
 		
 		$("#area").val($("#la_loc").val());
 	});
 	
+//아이디 검사 및 중복 체크
 	let idck=0;
-	   //아이디 검사 및 중복 체크
+	   
 	   $("#id_check").on("click", function(){
 		  let mb_id=$("#id").val();
 		//정규식 : 영숫자 8-10자
@@ -175,68 +186,9 @@ $("#la_loc").on("change",function(){
 	          }
 	       }); //end ajax
 	   });	//fct end
+	   
+	  
 </script>
-	<!-- Footer -->
-			<!-- <div id="footer">
-				<div class="container">
-
-					Lists
-						<div class="row">
-							<div class="8u">
-								<section>
-									<header class="major">
-										<h2>Donec dictum metus</h2>
-										<span class="byline">Quisque semper augue mattis wisi maecenas ligula</span>
-									</header>
-									<div class="row">
-										<section class="6u">
-											<ul class="default">
-												<li><a href="#">Pellentesque elit non gravida blandit.</a></li>
-												<li><a href="#">Lorem ipsum dolor consectetuer elit.</a></li>
-												<li><a href="#">Phasellus nibh pellentesque congue.</a></li>
-												<li><a href="#">Cras vitae metus aliquam  pharetra.</a></li>
-											</ul>
-										</section>
-										<section class="6u">
-											<ul class="default">
-												<li><a href="#">Pellentesque elit non gravida blandit.</a></li>
-												<li><a href="#">Lorem ipsum dolor consectetuer elit.</a></li>
-												<li><a href="#">Phasellus nibh pellentesque congue.</a></li>
-												<li><a href="#">Cras vitae metus aliquam  pharetra.</a></li>
-											</ul>
-										</section>
-									</div>
-								</section>
-							</div>
-							<div class="4u">
-								<section>
-									<header class="major">
-										<h2>Donec dictum metus</h2>
-										<span class="byline">Mattis wisi maecenas ligula</span>
-									</header>
-									<ul class="contact">
-										<li>
-											<span class="address">Address</span>
-											<span>1234 Somewhere Road #4285 <br />Nashville, TN 00000</span>
-										</li>
-										<li>
-											<span class="mail">Mail</span>
-											<span><a href="#">someone@untitled.tld</a></span>
-										</li>
-										<li>
-											<span class="phone">Phone</span>
-											<span>(000) 000-0000</span>
-										</li>
-									</ul>	
-								</section>
-							</div>
-						</div> -->
-
-					<!-- Copyright -->
-						<!-- <div class="copyright">
-							Design: <a href="http://templated.co">TEMPLATED</a> Images: <a href="http://unsplash.com">Unsplash</a> (<a href="http://unsplash.com/cc0">CC0</a>)
-						</div>
-				</div>
-			</div> -->
+	
 	</body>
 </html>

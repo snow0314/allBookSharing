@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper
+	namespace="com.allBookSharing.xxx.dao.IReadingRoomManagementDao">
+
+	<insert id="readingRoomInsert" parameterType="readingRoom">
+		<selectKey keyProperty="rm_code" resultType="int"
+			order="BEFORE">
+			select SEQ_RM.NEXTVAL FROM DUAL
+		</selectKey>
+		INSERT INTO READINGROOM VALUES(
+		#{rm_code}, #{rm_lcode}, #{rm_name}, #{rm_low}, #{rm_col}
+		)
+	</insert>
+
+<insert id="seatInsert" parameterType="seats">
+    INSERT ALL
+    
+    <foreach collection="list" item="item" >
+      INTO SEATS(SE_LOW,SE_COL,SE_CODE,SE_PLACE) VALUES(#{item.se_low}, #{item.se_col}, SEQ_RM.CURRVAL,#{item.se_place} )
+    </foreach>
+    SELECT * FROM DUAL
+</insert>
+
+
+</mapper>

@@ -25,9 +25,13 @@ import com.allBookSharing.xxx.service.LibrarianManagement;
 public class AdminRestController {
 	@Autowired
 	private LibrarianManagement la;
+	
 	ModelAndView mav;
-	
-	
-	
+
+	@RequestMapping(value = "/getlibraryinfo", produces = "application/json;charset=UTF-8")
+	public List<Library> getLibraryInfo() {
+		List<Library> lib = la.getlibraryinfo();
+		return lib;
+	}
 
 }

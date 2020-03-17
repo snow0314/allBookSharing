@@ -70,9 +70,9 @@ public class MyPageRestController {
 
 	//대출현황
 	@RequestMapping(value = "/loanlist" ,produces = "application/json;charset=UTF-8")
-	public  String loanList(Principal principal) {
+	public  List<Loan> loanList(Principal principal) {
 		System.out.println("대출현황 컨트롤러");
-		String lList=mm.getLoanList(principal);
+		List<Loan> lList=mm.getLoanList(principal);
 		
 		return lList;
 	}
@@ -93,5 +93,15 @@ public class MyPageRestController {
 		
 		return bList;
 	}
+	
+	//반납일 연장하기
+		@RequestMapping(value = "/loanextend" ,produces = "application/json;charset=UTF-8")
+		public  boolean loanExtend(int bd_bo_num) {
+			System.out.println("반납연장 컨트롤러");
+			System.out.println("bd_bo_num="+bd_bo_num);
+			boolean result=mm.loanExtend(bd_bo_num);
+			
+			return result;
+		}
 
 }
