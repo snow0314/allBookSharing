@@ -14,4 +14,8 @@ public interface IReadingRoomManagementDao {
 
 	int seatInsert(List<Seats> seats);
 
+	List<ReadingRoom> getReadingRoomList(int lb_code);
+
+	int ReadingRoomDelete(Integer rm_code);
+
 }

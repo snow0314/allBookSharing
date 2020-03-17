@@ -1,6 +1,5 @@
 package com.allBookSharing.xxx;
 
-import java.security.Principal;
 
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
@@ -11,10 +10,18 @@ import org.springframework.web.servlet.ModelAndView;
 public class LibrayReadingRoomController {
 	ModelAndView mav;
 	
-	@Secured("ROLE_LIBRARIAN")	
+	@Secured("ROLE_LIBRARIAN")	//열람실 등록 페이지 이동
 	@RequestMapping(value = "/readingroominsertmove")
-	public ModelAndView readingRoomInsertMove(Principal principal) { 
+	public ModelAndView readingRoomInsertMove() { 
 		
 		return new ModelAndView("librarian/readingRoomInsert");
 	}
+	
+	@Secured("ROLE_LIBRARIAN")	 //열람실 목록 페이지 이동
+	@RequestMapping(value = "/readingroomlistmove")
+	public ModelAndView readingRoomListMove() { 
+		
+		return new ModelAndView("librarian/readingRoomList");
+	}
+	
 }

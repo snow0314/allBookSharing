@@ -12,6 +12,7 @@
 <style>
 </style>
 
+
 <!-- Latest compiled and minified CSS -->
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
@@ -32,6 +33,11 @@
 
 <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css" />
+<!-- toastr CDN -->
+<link rel="stylesheet"
+   href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" />
+<script
+   src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
 
 <style>
 .btn-group-toggle label {
@@ -134,11 +140,13 @@
 				
 			}).done((result) => {
 			console.log("result=",result);
+			
 			if(result=="성공"){
 				toastr.success('성공', '열람실 등록에 성공하셨습니다.');
 			}else{
 				toastr.error("실패", "열람실 등록에 실패하셨습니다.");
 			}
+			location.reload(true);
 			
 			}).fail((xhr) => {
 			console.log("xhr=",xhr);
