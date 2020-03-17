@@ -25,6 +25,7 @@ import com.allBookSharing.xxx.dto.Classification;
 import com.allBookSharing.xxx.dto.Loan;
 import com.allBookSharing.xxx.dto.Member;
 import com.allBookSharing.xxx.dto.PointList;
+import com.allBookSharing.xxx.dto.Reservation;
 import com.google.gson.Gson;
 
 @Service
@@ -120,12 +121,11 @@ public class MemberManagement {
 	}
 
 	//대출현황
-	public String getLoanList(Principal principal) {
+	public List<Loan> getLoanList(Principal principal) {
 		String id=principal.getName();
 		System.out.println("id="+id);
 		List<Loan> lList=mDao.getLoanList(id);
-		String json=new Gson().toJson(lList);
-		return json;
+		return lList;
 	}
 
 	//연체목록
@@ -133,6 +133,7 @@ public class MemberManagement {
 		String id=principal.getName();
 		System.out.println("id="+id);
 		List<Loan> lList=mDao.getArrearsList(id);
+		System.out.println("연체목록 : "+lList);
 		return lList;
 	}
 	
@@ -263,16 +264,36 @@ public class MemberManagement {
 		String id=principal.getName();
 		
 		List<BigGroup> bList=mDao.getBorrowChart(id);
+		System.out.println("bList="+bList);
 		
 		
 		return bList;
 	}
-
+  
 	public String myRegion(Principal p) {
 		System.out.println("지역2");
 		String id=p.getName();
 	
 		String result=mDao.myRegion(id);
 		return result;
+
+	
+	//반납일 연장하기
+	public int loanExtend(int bd_bo_num) {
+		
+		int bd_return_extension=mDao.loanExtend(bd_bo_num);
+		System.out.println("bd_return_extension="+bd_return_extension);
+		
+		return bd_return_extension;
+	}
+
+	//현재 예약 목록
+	public List<Reservation> getReservationlist(Principal principal) {
+		String id=principal.getName();
+		
+		List<Reservation> rList=mDao.getReservationlist(id);
+		System.out.println("rList="+rList);
+		
+		return rList;
 	}
 }

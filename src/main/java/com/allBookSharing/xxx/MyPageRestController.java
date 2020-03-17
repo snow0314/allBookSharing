@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.allBookSharing.xxx.dto.BigGroup;
 import com.allBookSharing.xxx.dto.Classification;
 import com.allBookSharing.xxx.dto.Loan;
+import com.allBookSharing.xxx.dto.Reservation;
 import com.allBookSharing.xxx.service.MemberManagement;
 
 @RestController
@@ -70,9 +71,9 @@ public class MyPageRestController {
 
 	//대출현황
 	@RequestMapping(value = "/loanlist" ,produces = "application/json;charset=UTF-8")
-	public  String loanList(Principal principal) {
+	public  List<Loan> loanList(Principal principal) {
 		System.out.println("대출현황 컨트롤러");
-		String lList=mm.getLoanList(principal);
+		List<Loan> lList=mm.getLoanList(principal);
 		
 		return lList;
 	}
@@ -85,6 +86,17 @@ public class MyPageRestController {
 		return lList;
 	}
 	
+	
+	//현재 예약 목록
+	@RequestMapping(value = "/reservationlist" ,produces = "application/json;charset=UTF-8")
+	public  List<Reservation> reservationList(Principal principal) {
+		System.out.println("현재 예약 목록 컨트롤러");
+		List<Reservation> rList=mm.getReservationlist(principal);
+		
+		return rList;
+	}
+	
+	
 	//대출 차트
 	@RequestMapping(value = "/borrowchart" ,produces = "application/json;charset=UTF-8")
 	public  List<BigGroup> borrowChart(Principal principal) {
@@ -93,5 +105,15 @@ public class MyPageRestController {
 		
 		return bList;
 	}
+	
+	//반납일 연장하기
+		@RequestMapping(value = "/loanextend" ,produces = "application/json;charset=UTF-8")
+		public  Integer loanExtend(int bd_bo_num) {
+			System.out.println("반납연장 컨트롤러");
+			System.out.println("bd_bo_num="+bd_bo_num);
+			int bd_return_extension=mm.loanExtend(bd_bo_num);
+			
+			return bd_return_extension;
+		}
 
 }

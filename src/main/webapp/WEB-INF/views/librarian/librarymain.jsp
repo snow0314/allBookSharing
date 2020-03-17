@@ -85,7 +85,7 @@
                                     <a href="#" onclick="menuMove(4)">열람실 등록</a>
                                 </li>
                                 <li>
-                                    <a href="index2.html">열람실 좌석 관리</a>
+                                    <a href="#" onclick="menuMove(5)">열람실 좌석 관리</a>
                                 </li>
 
                             </ul>
@@ -96,10 +96,10 @@
                                 <i class="fas fa-calendar-alt"></i>도서관 관리</a>
                             <ul class="navbar-mobile-sub__list list-unstyled js-sub-list">
                                 <li>
-                                    <a href="index.html">도서관 정보 수정</a>
+                                    <a href="#" onclick="menuMove(6)">도서관 정보 수정</a>
                                 </li>
                                 <li>
-                                    <a href="index2.html">도서관 일정 관리</a>
+                                    <a href="#" onclick="menuMove(7)">도서관 일정 관리</a>
                                 </li>
 
                             </ul>
