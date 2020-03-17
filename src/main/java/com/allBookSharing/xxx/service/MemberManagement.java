@@ -25,6 +25,7 @@ import com.allBookSharing.xxx.dto.Classification;
 import com.allBookSharing.xxx.dto.Loan;
 import com.allBookSharing.xxx.dto.Member;
 import com.allBookSharing.xxx.dto.PointList;
+import com.allBookSharing.xxx.dto.Reservation;
 import com.google.gson.Gson;
 
 @Service
@@ -270,11 +271,21 @@ public class MemberManagement {
 	}
 	
 	//반납일 연장하기
-	public boolean loanExtend(int bd_bo_num) {
+	public int loanExtend(int bd_bo_num) {
 		
-		boolean result=mDao.loanExtend(bd_bo_num);
+		int bd_return_extension=mDao.loanExtend(bd_bo_num);
+		System.out.println("bd_return_extension="+bd_return_extension);
+		
+		return bd_return_extension;
+	}
 
+	//현재 예약 목록
+	public List<Reservation> getReservationlist(Principal principal) {
+		String id=principal.getName();
 		
-		return result;
+		List<Reservation> rList=mDao.getReservationlist(id);
+		System.out.println("rList="+rList);
+		
+		return rList;
 	}
 }

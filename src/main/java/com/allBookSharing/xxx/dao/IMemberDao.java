@@ -15,6 +15,7 @@ import com.allBookSharing.xxx.dto.BigGroup;
 import com.allBookSharing.xxx.dto.Loan;
 import com.allBookSharing.xxx.dto.Member;
 import com.allBookSharing.xxx.dto.PointList;
+import com.allBookSharing.xxx.dto.Reservation;
 @Service
 public interface IMemberDao {
 	
@@ -32,6 +33,7 @@ public interface IMemberDao {
 	@Select("SELECT COUNT(*) FROM REVIEW WHERE RV_ID=#{id}")
 	int getReviewcntCnt(String id);
 	
+	//누적 연체일수
 	@Select("SELECT SUM(BD_RETURN_DATE-BD_REAL_RETURN_DATE) FROM VEIW_BRROW WHERE BO_ID=#{id} AND (BD_RETURN_DATE-BD_REAL_RETURN_DATE)<0")
 	int getArrearsDay(String id);
 	
@@ -75,8 +77,10 @@ public interface IMemberDao {
 	
 	
 	//반납연장하기
-	@Update("UPDATE BORROWDETAIL SET BD_RETURN_DATE=BD_RETURN_DATE+7 WHERE BD_BO_NUM=#{bd_bo_num}")
-	boolean loanExtend(int bd_bo_num);
+	int loanExtend(int bd_bo_num);
+	
+	//현재 예약 목록
+	List<Reservation> getReservationlist(String id);
 	
 	
 	

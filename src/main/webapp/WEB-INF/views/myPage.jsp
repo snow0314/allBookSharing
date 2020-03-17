@@ -208,23 +208,27 @@ width: 400px;
 			<table class="table table-striped">
 			<thead>
 				<tr>
-					<td style="width: 50px;">순번</td>
-					<td style="width: 300px;">자료명</td>
-					<td style="width: 200px;">예약일자</td>
-					<td style="width: 200px;">상태</td>
-					<td style="width: 50px;">찜</td>
+					<td style="width: 80px;">예약번호</td>
+					<td style="width: 180px;">도서관 이름</td>
+					<td style="width: 180px;">자료명</td>
+					<td style="width: 150px;">예약일자</td>
+					<td style="width: 100px;">상태</td>
+					<td style="width: 50px;">장바구니</td>
 					<td style="width: 50px;">순위</td>
 					<td style="width: 50px;">취소</td>
 				</tr>
 				</thead>
 				
-				<tbody>
+				<tbody id="reservation">
 				</tbody>
 			</table>
 		</div>
 	</div>
 
 <script>
+
+
+
 //회원탈퇴 버튼 클릭시 컨펌창
 $("#btn2").on("click",function(){
 	
@@ -347,6 +351,7 @@ $.ajax({
 	
 }); //end ajax  
 
+
 //연체목록
 $.ajax({
 	type : 'get',
@@ -375,6 +380,63 @@ $.ajax({
 
 
 
+//현재 예약 목록
+$.ajax({
+	type : 'get',
+	url :"reservationlist",
+	dataType:'json',
+	success : function(data) {
+        console.log("현재 예약 목록=",data);
+        for(var i=0;i<data.length;i++){   
+        	//console.log(data[i].bo_num);
+        var $tr= $("<tr>").appendTo($("#reservation"));
+        $tr.append("<td>"+data[i].rv_num+"</td>");
+        $tr.append("<td>"+data[i].lb_name+"</td>");
+        $tr.append("<td>"+data[i].bk_name+"</td>");
+        $tr.append("<td>"+data[i].rv_date+"</td>");
+        if(data[i].bk_state==0)
+        $tr.append("<td>대출불가</td>");
+        if(data[i].bk_state==1)
+        $tr.append("<td>대출가능</td>");
+        $tr.append("<td><button>담기</button></td>");
+        $tr.append("<td>순위</td>");
+        $tr.append("<td><button onclick='reservationCancel("+data[i].rv_lcode+","+data[i].rv_code+")'>취소</button></td>");
+        }
+        
+     },
+	error : function(xhr, status) {
+        console.log("xhr=", xhr);
+        console.log("status=", status);
+     }
+	
+});  //end ajax
+
+
+
+//예약 취소하기
+function reservationCancel(rv_code,rv_lcode){
+	
+	console.log("rv_code",rv_code);
+	console.log("rv_lcode",rv_lcode);
+/* 	 $.ajax({
+		type : 'get',
+		url :"reservationcancel",
+		data:{rv_code:rv_code,rv_lcode:rv_lcode},
+		success : function(data) {
+			console.log("예약취소ajax=",data);
+				location.reload();
+		},
+		error : function(xhr, status) {
+        console.log("xhr=", xhr);
+        console.log("status=", status);
+     }
+		
+	});  */	 //ajax End
+	
+}; //reservationCancel end
+
+
+
 //대출현황
 $.ajax({
 	type : 'get',
@@ -397,20 +459,23 @@ $.ajax({
         console.log("status=", status);
      }
 	
-}); //end ajax  
+}); //end ajax
+
+
 
 //반납일 연장하기
 function extend(bd_bo_num){
 	console.log(bd_bo_num);
-	
+
 	$.ajax({
 		type : 'get',
 		url :"loanextend",
 		data:{bd_bo_num:bd_bo_num},
 		success : function(data) {
 			console.log("반납연장ajax=",data);
-			if(data){
-				
+				location.reload();
+			if(data==1){
+				$("button").attr("disabled",true);
 			}
 			
 		},
@@ -421,6 +486,7 @@ function extend(bd_bo_num){
 		
 	}); 	//ajax End
 }	//fct End
+
 
 </script>
 

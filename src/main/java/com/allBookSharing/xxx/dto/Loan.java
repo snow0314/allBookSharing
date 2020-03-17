@@ -1,6 +1,5 @@
 package com.allBookSharing.xxx.dto;
 
-import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import org.apache.ibatis.type.Alias;
@@ -23,6 +22,7 @@ public class Loan {
 		Date bd_return_date;
 		@JsonFormat(pattern = "yyyy-MM-dd")
 		Date bd_real_return_date;
+		int bd_return_extension;
 		int arrearsday;
 		
 }

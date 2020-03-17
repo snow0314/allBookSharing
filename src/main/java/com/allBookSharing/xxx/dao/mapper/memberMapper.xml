@@ -3,32 +3,71 @@
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.allBookSharing.xxx.dao.IMemberDao">
 
-<update id="updateprofileUs" parameterType="member">
+	<update id="updateprofileUs" parameterType="member">
 
-<!-- UPDATE VEIW_MEMBER SET US_ADDRESS=#{us_address},US_PHONE=#{us_phone},US_EMAIL=#{us_email} WHERE MB_ID=#{mb_id} -->
-UPDATE USERS SET US_ADDRESS=#{us_address},US_PHONE=#{us_phone},US_EMAIL=#{us_email}, US_IMAGE=#{us_image} WHERE US_ID=#{mb_id}
-</update>
+		<!-- UPDATE VEIW_MEMBER SET US_ADDRESS=#{us_address},US_PHONE=#{us_phone},US_EMAIL=#{us_email} 
+			WHERE MB_ID=#{mb_id} -->
+		UPDATE USERS SET
+		US_ADDRESS=#{us_address},US_PHONE=#{us_phone},US_EMAIL=#{us_email},
+		US_IMAGE=#{us_image} WHERE US_ID=#{mb_id}
+	</update>
 
-<update id="updateprofileMb" parameterType="member">
+	<update id="updateprofileMb" parameterType="member">
 
-UPDATE MEMBER SET MB_AREA=#{mb_area} WHERE MB_ID=#{mb_id}
-</update>
+		UPDATE MEMBER SET MB_AREA=#{mb_area} WHERE MB_ID=#{mb_id}
+	</update>
 
 
 
-<select id="getArrearsList" resultType="Loan">
-SELECT bo_num,bk_name,bd_date,bd_return_date,bd_real_return_date,bd_return_date-bd_real_return_date as ARREARSDAY  FROM BORROWLIST 
-JOIN BORROWDETAIL ON BO_NUM=BD_BO_NUM 
-JOIN BOOKS ON BD_BCODE=BK_CODE WHERE BO_ID=#{id}			
+	<select id="getArrearsList" resultType="Loan">
+		SELECT
+		bo_num,bk_name,bd_date,bd_return_date,bd_real_return_date,bd_return_date-bd_real_return_date
+		as ARREARSDAY FROM BORROWLIST
+		JOIN BORROWDETAIL ON BO_NUM=BD_BO_NUM
+		JOIN BOOKS ON BD_BCODE=BK_CODE WHERE BO_ID=#{id}
 	</select>
 
 
-<select id="getBorrowChart" resultType="BigGroup">
-	SELECT BG_CATE,COUNT(BK_BG_NUM) CNT FROM BORROWLIST 
-	JOIN BORROWDETAIL ON BO_NUM=BD_BO_NUM 
-	JOIN BOOKS ON BK_CODE=BD_BCODE 
-	JOIN BIGGROUP ON BG_NUM=BK_BG_NUM
-	WHERE borrowlist.bo_id=#{id} GROUP BY BG_CATE
-			
+	<select id="getBorrowChart" resultType="BigGroup">
+		SELECT BG_CATE,COUNT(BK_BG_NUM) CNT FROM BORROWLIST
+		JOIN BORROWDETAIL ON BO_NUM=BD_BO_NUM
+		JOIN BOOKS ON BK_CODE=BD_BCODE
+		JOIN BIGGROUP ON BG_NUM=BK_BG_NUM
+		WHERE borrowlist.bo_id=#{id} GROUP BY BG_CATE
+
 	</select>
+
+
+	<update id="loanExtend" parameterType="loan">
+
+		<selectKey keyProperty="bd_return_extension"
+			resultType="java.lang.Integer" order="AFTER">
+			SELECT bd_return_extension FROM
+			BORROWDETAIL WHERE BD_BO_NUM=#{bd_bo_num}
+		</selectKey>
+		UPDATE BORROWDETAIL SET
+		BD_RETURN_DATE=BD_RETURN_DATE+7,bd_return_extension=1 WHERE
+		BD_BO_NUM=#{bd_bo_num}
+
+	</update>
+
+
+
+	<resultMap type="Reservation" id="resrv">
+		<result property="rv_num" column="RT_NUM" />
+		<result property="rv_code" column="RT_CODE" />
+		<result property="rv_lcode" column="RT_LCODE" />
+		<result property="rv_date" column="RT_DATE" />
+		<result property="lb_name" column="LB_NAME" />
+		<result property="bk_name" column="BK_NAME" />
+		<result property="bk_state" column="BK_STATE" />
+	</resultMap>
+	<select id="getReservationlist" resultType="Reservation"
+		resultMap="resrv">
+		SELECT * FROM BOOKS
+		JOIN RESERVATION ON BOOKS.BK_CODE=reservation.rt_code
+		JOIN LIBRARY ON library.lb_code=reservation.rt_lcode WHERE RT_ID=#{id}
+
+	</select>
+
 </mapper>
