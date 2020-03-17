@@ -88,51 +88,7 @@
        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
        <script> $('.carousel').carousel({ interval: 1600  }) </script>
        
-       <!--우측 상단 버튼-->
-	<!-- <sec:authorize access="isAnonymous()">
-		<div class="container2">
-			<div class="button-7">
-				<div class="eff-7"></div>
-				<a href="index.jsp"> 로그아웃 </a>
-			</div>
-			<div class="button-7">
-				<div class="eff-7"></div>
-				<a href="index.jsp"> 도서관으로 이동 </a>
-			</div>
-		</div>
-	</sec:authorize> -->
 
-<!-- 메인 메뉴 -->
-<!-- <div id="header">
-	<div class="container">
-	
-		Nav
-			<nav id="nav">
-				<ul>
-					<li><a href="#"><span>도서관 관리</span></a>
-						<ul>
-							<li><a href="libraryinsert"><span>도서관 등록</span></a></li>
-							<li><a href=""><span>도서관 수정</span></a></li>
-							<li><a href=""><span>도서관 삭제</span></a></li>
-						</ul></li>
-						
-					<li><a href=""><span>사서 관리</span></a>
-						<ul>
-							<li><a href="#"><span>사서 계정 등록</span></a></li>
-							<li><a href="#"><span>사서 계정 수정</span></a></li>
-						</ul></li>
-						
-					<li><a href=""><span>추천도서 관리</span></a>
-						<ul>
-						</ul></li>
-						
-					<li><a href="no-sidebar.html"><span>도서관별 대출 현황</span></a>
-						<ul>
-						</ul></li>
-				</ul>
-			</nav>
-	</div>
-</div> -->
 
 <!-- 도서관 등록 페이지 -->
 <form method="post" autocomplete="off" action="libraryinsert">

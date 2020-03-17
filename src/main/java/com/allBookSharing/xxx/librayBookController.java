@@ -39,7 +39,11 @@ public class librayBookController {
 		
 		return "librarian/librarymain";
 	}
+<<<<<<< HEAD
+
+=======
   
+>>>>>>> 7c0d3862f92e68d9801d08786e696a97a1126f37
 	@Secured("ROLE_LIBRARIAN")
 	@RequestMapping(value = "/libraybooklistmove")
 	public ModelAndView bookListMove() { //책 목록 페이지 이동
@@ -54,6 +58,10 @@ public class librayBookController {
 		return new ModelAndView("librarian/bookinsert");
 	 } 
 
+<<<<<<< HEAD
+
+=======
+>>>>>>> 7c0d3862f92e68d9801d08786e696a97a1126f37
 	@GetMapping(value="/bookdetailpage")
 	public ModelAndView bookDetailPage(String bk_code) { 
 		mav=bm.bookDetailPage(bk_code);

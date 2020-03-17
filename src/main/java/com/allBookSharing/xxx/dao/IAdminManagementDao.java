@@ -1,6 +1,6 @@
 package com.allBookSharing.xxx.dao;
 
-import java.util.ArrayList;
+
 import java.util.List;
 
 import org.springframework.stereotype.Component;
@@ -8,11 +8,13 @@ import org.springframework.stereotype.Component;
 import com.allBookSharing.xxx.dto.Library;
 @Component
 public interface IAdminManagementDao {
-
+	
 	
 	boolean libraryinsert(Library lib);
-
-	List<Library> getLibraryList();
 	
+	List<Library> getLibraryList();
 
+	List<Library> getlibraryinfo();
+	
+	
 }
