@@ -15,9 +15,13 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 import com.allBookSharing.xxx.dto.Books;
+import com.allBookSharing.xxx.dto.DeliveryReq;
+import com.allBookSharing.xxx.dto.Library;
 import com.allBookSharing.xxx.dto.Liked;
+import com.allBookSharing.xxx.dto.Member;
 import com.allBookSharing.xxx.dto.Reservation;
 import com.allBookSharing.xxx.service.BookManagement;
+import com.allBookSharing.xxx.service.MemberManagement;
 
 @RestController
 
@@ -25,12 +29,11 @@ public class BookRestController {
 	@Autowired
 	private BookManagement bm;
 	ModelAndView mav;
+	@Autowired
+	private MemberManagement mm;
 	
-	@GetMapping(value="/booksearch",produces="application/json;charset=UTF-8")
+	@GetMapping(value="/totalbooksearch",produces="application/json;charset=UTF-8")
 	public List<Books> bookSearch(String bk_search,String selectval) {
-		System.out.println("검색1");
-		System.out.println(bk_search);
-		System.out.println(selectval);
 		
 		List<Books> bList=bm.bookSearch(bk_search,selectval);
 		return bList;
@@ -110,6 +113,44 @@ public class BookRestController {
 		Integer result=bm.likeCount(lk);
 		return result;
 	}
+	
+	@Secured("ROLE_USER")
+	@RequestMapping(value="/delicount",produces="application/json;charset=UTF-8")
+	public Integer deliCount(DeliveryReq dr,Principal p) {
+		dr.setDe_id(p.getName());
+		Integer result=bm.deliCount(dr);
+		return result;
+		
+	}
+	
+	@Secured("ROLE_USER")
+	@RequestMapping(value="/deliinsert",produces="application/json;charset=UTF-8")
+	public Boolean deliInsert(DeliveryReq dr,Principal p) {
+		dr.setDe_id(p.getName());
+		Boolean result=bm.deliInsert(dr);
+		return result;
+	}
+	
+	@Secured("ROLE_USER")
+	@RequestMapping(value="/myregionsearch",produces="application/json;charset=UTF-8")
+	public List<Books> myRegionSearch(String bk_search,String selectval,Principal p) {
+		String region=mm.myRegion(p);
+		System.out.println("region="+region);
+		List<Books> bList=bm.myRegionSearch(bk_search,selectval,region);
+		
+		return bList;
+	}
+	@Secured("ROLE_USER")
+	@RequestMapping(value="/myregionlib",produces="application/json;charset=UTF-8")
+	public List<Library> myRegionLib(String bk_search,String selectval,Principal p) {
+		System.out.println("지역1");
+		String region=mm.myRegion(p);
+		System.out.println("region="+region);
+		List<Library> lbList=bm.myRegionLib(bk_search,selectval,region);
+		
+		return lbList;
+	}
+	
 	
 	
 

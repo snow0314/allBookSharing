@@ -269,6 +269,14 @@ public class MemberManagement {
 		
 		return bList;
 	}
+  
+	public String myRegion(Principal p) {
+		System.out.println("지역2");
+		String id=p.getName();
+	
+		String result=mDao.myRegion(id);
+		return result;
+
 	
 	//반납일 연장하기
 	public int loanExtend(int bd_bo_num) {

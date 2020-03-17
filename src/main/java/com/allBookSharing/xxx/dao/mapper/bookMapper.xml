@@ -18,6 +18,8 @@
     <result property="bk_Quantity" column="BK_QUANTITY" />
     <result property="bk_booklend" column="BK_BOOKLEND" />
     <result property="bk_lcode" column="LB_CODE"/>
+    <result property="bk_loc" column="LB_LOC"/>
+    <result property="bk_state" column="BK_STATE"/>
  </resultMap>
 
  
@@ -26,9 +28,16 @@
    FROM BOOKS B INNER JOIN LIBRARY L ON B.BK_LCODE=L.LB_CODE WHERE ${selectval} LIKE '%'||#{bk_search}||'%'
 </select>
 
+<select id="myRegionSearch"  resultType="books" resultMap="booksearch">
+   SELECT L.LB_NAME,B.BK_NAME,B.BK_IMAGE,B.BK_WRITER,BK_PUBLISHER,BK_PUBLICDAY,BK_CODE,L.LB_LOC
+   FROM BOOKS B INNER JOIN LIBRARY L ON B.BK_LCODE=L.LB_CODE 
+   WHERE ${selectval} LIKE '%'||#{bk_search}||'%' AND L.LB_LOC=#{region}
+</select>
+
+
 <select id="bookDetailPage" resultType="books" resultMap="booksearch">
    SELECT L.LB_NAME,B.BK_NAME,B.BK_IMAGE,B.BK_WRITER,B.BK_PUBLISHER,B.BK_PUBLICDAY,
-          B.BK_CODE,A.BG_CATE,A.SG_CATE,B.BK_INTRODUCTION,B.BK_QUANTITY,B.BK_BOOKLEND,L.LB_CODE
+          B.BK_CODE,A.BG_CATE,A.SG_CATE,B.BK_INTRODUCTION,B.BK_QUANTITY,B.BK_BOOKLEND,L.LB_CODE,B.BK_STATE
    FROM BOOKS B
    JOIN ALLGROUP A
    ON B.BK_SG_NUM =A.SG_BG_NUM
@@ -76,4 +85,23 @@ VALUES(#{lk_bcode},#{lk_id},#{lk_lcode})
  SELECT COUNT(*) FROM LIKED
  WHERE LK_BCODE=#{lk_bcode} 
 </select>
+
+<select id="deliCount" parameterType="deliveryreq" resultType="Integer">
+SELECT COUNT(*) FROM DELIVERY
+WHERE DE_CODE=#{de_code} AND DE_LCODE=#{de_lcode} AND DE_ID=#{de_id}
+</select>
+
+<insert id="deliInsert" parameterType="deliveryreq">
+INSERT INTO DELIVERY
+VALUES(#{de_code},#{de_lcode},#{de_id})
+</insert>
+<select id="myRegionLib" resultType="library">
+SELECT L.LB_NAME,SUM(B.BK_QUANTITY) AS LB_QUANTITY
+FROM LIBRARY L INNER JOIN BOOKS B
+ON B.BK_LCODE=L.LB_CODE
+WHERE ${selectval} LIKE '%'||#{bk_search}||'%' AND LB_LOC=#{region}
+GROUP BY L.LB_NAME
+
+</select>
+
 </mapper>

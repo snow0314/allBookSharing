@@ -1,9 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+ <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+ <%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
+<meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1">
 <title>통합검색</title>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js" type="text/javascript"></script>
 <style>
@@ -135,13 +137,66 @@
 	}
 	#tr{
 	height:10px;
+	width:100%;
 	}
 	img{
 	width:auto;
 	height:auto;
 	margin-bottom:-127px;
 	}
+	/* Style the tab */
+.tab {
+  overflow: hidden;
+  border: 1px solid #ccc;
+  background-color: #f1f1f1;
+}
+
+/* Style the buttons inside the tab */
+.tab button {
+  background-color: inherit;
+  float: left;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  padding: 14px 16px;
+  transition: 0.3s;
+  font-size: 17px;
+}
+
+/* Change background color of buttons on hover */
+.tab button:hover {
+  background-color: #ddd;
+}
+
+/* Create an active/current tablink class */
+.tab button.active {
+  background-color: #ccc;
+}
+
+/* Style the tab content */
+.tabcontent {
+  display: none;
+  padding: 6px 12px;
+  border: 1px solid #ccc;
+  border-top: none;
+}
+	#myRegion{
+	width:100%;
 	
+	border: 1px solid black;
+	
+	}
+	#sidebar{
+	width:25%;
+	float:right;
+	border: 1px solid black;
+	display:inline-block;
+	}
+	#regionsearchList{
+	display:inline-block;
+	width:73%;
+	float:left;
+	}
 </style>
 </head>
 
@@ -170,17 +225,26 @@
 	<button onclick="bookList()" id="searchbtn">검색</button>
 	<br><br>
 	
-	<div id="bookList_layer"><table id="searchList"></table></div>	
+	
+	<div class="tab"></div>
+	<div id="contents"></div>
 
+	
 </main>
 
-
+<sec:authorize access="isAuthenticated()">
+ <input id="id" type="hidden" value="<sec:authentication property="principal.username"/>">
+ </sec:authorize>
+  <sec:authorize access="isAnonymous()">
+<input id="id" type="hidden" value=""/>
+</sec:authorize>
 
 </body>
 <!--nav-->
 <!-- search -->
 <!-- searchResult -->
 <script>
+
 function bookList(){
 	var bksearch=document.getElementById("bookinput");
 	if(bksearch.value==""){
@@ -188,17 +252,46 @@ function bookList(){
 		bksearch.focus();
 		return false;
 	}
+	if($("#id").val()!==""){
+		$(".tab").html("<button class='tablinks' onclick='myregionSearch()' id='defaultOpen'>내 지역</button><button class='tablinks' onclick='totalBookSearch()'>전국소장정보</button>");
+		
+	}else if($("#id").val()==""){
+		$(".tab").html("<button class='tablinks' onclick='totalBookSearch()' id='defaultOpen'>전국</button>");
+
+	}
+	document.getElementById("defaultOpen").click();
+}//검색 클릭 시 
+
+function openCity(evt, cityName) {
+	  var i, tabcontent, tablinks;
+	  tabcontent = document.getElementsByClassName("tabcontent");
+	  for (i = 0; i < tabcontent.length; i++) {
+	    tabcontent[i].style.display = "none";
+	  }
+	  tablinks = document.getElementsByClassName("tablinks");
+	  for (i = 0; i < tablinks.length; i++) {
+	    tablinks[i].className = tablinks[i].className.replace(" active", "");
+	  }
+	  
+	  document.getElementById(cityName).style.display = "block";
+	  evt.currentTarget.className += " active";
+	}
+
 	
+function totalBookSearch(){//전국 통합 검색
 	$.ajax({
 		type:'get',
-		url:'booksearch',
+		url:'totalbooksearch',
+		async: false,
 	    data:{"bk_search":$('#bookinput').val() ,"selectval":$('#select').val()},
 	    dataType:'json',
 	    success:function(result){
-	    	console.log("result",result)
+	    	$("#contents").append("<div id='nationwide' class='tabcontent'><h2>전국 통합검색</h2><table id='totalsearchList'><table></div>");
+	    	
+	    	
 	 		var str="";
 	    	if(result!=undefined){
-	    		$('#searchList').empty();
+	    		$('#totalsearchList').empty();
 	    		
 	    	$.each(result,function(index,item){
 	    		console.log(item.bk_code);
@@ -206,16 +299,76 @@ function bookList(){
 	    		str+='<td style="border:1px solid black;">'+'<a href="bookdetailpage?bk_code='+item.bk_code+'" id="bkname">'+item.bk_name+'</a><br>'+item.bk_writer+'<br>'+
 	    		item.bk_publisher+'<br>'+item.bk_publicday+'<br>'+item.bk_lname+'</td></tr>';
 	    	});
-				
-	    	$('#searchList').append(str);
+	    	console.log(str);
+	    	$('#totalsearchList').append(str);
 	    	}
 	    },
 	    error:function(xhr,status){
-	    	console.log("xhr=", xhr);
+	    	console.log("xhr2=", xhr);
 			console.log("status=", status);
 	    }
 	});
+	openCity(event, 'nationwide');
 }
+	
+
+function myregionSearch(){//내 지역 
+	$.ajax({
+		type:'get',
+		url:'myregionlib',
+		async: false,
+		data:{"bk_search":$('#bookinput').val() ,"selectval":$('#select').val()},
+	    dataType:'json',
+	    success:function(result){
+	    	console.log(result);
+	    	
+	    	var str="";
+	    	
+	    	$.each(result,function(index,item){   
+	    		str+='<li>'+item.lb_name+'('+item.lb_quantity+')</li>';
+	    		
+	    	});
+	    	console.log(str);
+	    	$('#myregionlb').append(str); 
+	    },
+	    error:function(xhr,status){
+	    	console.log("xhr3=", xhr);
+			console.log("status=", status);
+	    }
+		
+	});//내지역 도서관 목록 가져오기
+	
+	$.ajax({
+		type:'get',
+		url:'myregionsearch',
+		async: false,
+	    data:{"bk_search":$('#bookinput').val() ,"selectval":$('#select').val()},
+	    dataType:'json',
+	    success:function(result){
+	    	$("#contents").append("<div id='myRegion' class='tabcontent'><h2>"+result[0].bk_loc+"</h2><table id='regionsearchList'><table></div><div id='sidebar'><ul id='myregionlb'></ul></div>");
+	    	
+	 		var str="";
+	    	if(result!=undefined){
+	    		$('#regionsearchList').empty();
+	    		
+	    	$.each(result,function(index,item){
+	   
+	    		str+='<tr id="tr"><td style="border:1px solid black;width:100px;height:176px;">'+'<image src="'+item.bk_image+'"></td>';
+	    		str+='<td style="border:1px solid black;">'+'<a href="bookdetailpage?bk_code='+item.bk_code+'" id="bkname">'+item.bk_name+'</a><br>'+item.bk_writer+'<br>'+
+	    		item.bk_publisher+'<br>'+item.bk_publicday+'<br>'+item.bk_lname+'</td></tr>';
+	    	});
+				
+	    	$('#regionsearchList').append(str);
+	    	}
+	    },
+	    error:function(xhr,status){
+	    	console.log("xhr3=", xhr);
+			console.log("status=", status);
+	    }
+});//내지역 검색도서리스트
+	openCity(event, 'myRegion');
+}
+
 
 
 </script>

@@ -27,6 +27,7 @@ public class Books {
 	private int bk_sg_num;
 	private String bk_sg_cate;
 	private int bk_booklend;
-	
+	private String bk_loc;//지역
+	private int bk_state;
 
 }
