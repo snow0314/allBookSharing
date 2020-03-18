@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.allBookSharing.xxx.dao.IMemberDao">
+
+   <select id="showWishList" resultType="LikedList">
+      SELECT * FROM LIBRARY JOIN
+      BOOKS ON LIBRARY.LB_CODE=BOOKS.BK_LCODE
+      JOIN LIKED ON LIKED.LK_BCODE=BOOKS.BK_CODE
+      JOIN BIGGROUP ON BIGGROUP.BG_NUM=BOOKS.BK_BG_NUM
+      JOIN SMALLGROUP ON SMALLGROUP.SG_BG_NUM=BIGGROUP.BG_NUM
+      WHERE LIKED.LK_ID=#{id}
+
+   </select>
+   
+	<delete id="deletLikedList" parameterType="java.util.List">
+   DELETE FROM LIKED
+   <where>
+         <foreach collection="delete" item="likea" open="(" close=")" separator="OR">
+            lk_bcode=#{likea.bk_code} AND lk_id=#{likea.id} AND lk_lcode=#{likea.lb_code}
+         </foreach>
+      </where>
+</delete>
+  
+</mapper>

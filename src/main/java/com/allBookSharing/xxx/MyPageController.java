@@ -42,13 +42,16 @@ public class MyPageController {
 		return mav;
 	}
 	
-	
+	//찜목록
 	@RequestMapping(value = "/showwishlist", method = RequestMethod.GET)
-	public ModelAndView showWishList(HttpServletRequest req) {
-		mav=mm.showWishList(req);
+	public ModelAndView showWishList(Principal principal) {
+		mav=mm.showWishList(principal);
 		
 		return mav;
 	}
+	
+	
+	
 	
 	@RequestMapping(value = "/profilecomplet")
 	public ModelAndView profileComplet(MultipartHttpServletRequest multi,  Principal principal) {
