@@ -97,6 +97,16 @@ public class MyPageRestController {
 	}
 	
 	
+	//현재 예약 취소 
+	@RequestMapping(value = "/reservationcancell" ,produces = "application/json;charset=UTF-8")
+	public  boolean reservationcancell(int rv_num) {
+		System.out.println("현재 예약 목록 컨트롤러");
+		boolean result=mm.reservationcancell(rv_num);
+		
+		return result;
+	}
+	
+	
 	//대출 차트
 	@RequestMapping(value = "/borrowchart" ,produces = "application/json;charset=UTF-8")
 	public  List<BigGroup> borrowChart(Principal principal) {
