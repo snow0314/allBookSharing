@@ -39,8 +39,14 @@ public class librayBookController {
 	 } 
 
 	@GetMapping(value="/bookdetailpage")
+<<<<<<< HEAD
+	public ModelAndView bookDetailPage(String bk_code,String bk_lcode) {
+		System.out.println("bk_lcode="+bk_lcode);
+		mav=bm.bookDetailPage(bk_code,bk_lcode);
+=======
 	public ModelAndView bookDetailPage(String bk_code) { 
 		mav=bm.bookDetailPage(bk_code);
+>>>>>>> e15e5840ae1d8c8e517f14e4d8725f126a55ad17
 		
 		return mav;
 		

@@ -288,7 +288,6 @@ function totalBookSearch(){//전국 통합 검색
 	    success:function(result){
 	    	$("#contents").append("<div id='nationwide' class='tabcontent'><h2>전국 통합검색</h2><table id='totalsearchList'><table></div>");
 	    	
-	    	
 	 		var str="";
 	    	if(result!=undefined){
 	    		$('#totalsearchList').empty();
@@ -296,7 +295,7 @@ function totalBookSearch(){//전국 통합 검색
 	    	$.each(result,function(index,item){
 	    		console.log(item.bk_code);
 	    		str+='<tr id="tr"><td style="border:1px solid black;width:100px;height:176px;">'+'<image src="'+item.bk_image+'"></td>';
-	    		str+='<td style="border:1px solid black;">'+'<a href="bookdetailpage?bk_code='+item.bk_code+'" id="bkname">'+item.bk_name+'</a><br>'+item.bk_writer+'<br>'+
+	    		str+='<td style="border:1px solid black;">'+'<a href="bookdetailpage?bk_code='+item.bk_code+'&bk_lcode='+item.bk_lcode+'" id="bkname">'+item.bk_name+'</a><br>'+item.bk_writer+'<br>'+
 	    		item.bk_publisher+'<br>'+item.bk_publicday+'<br>'+item.bk_lname+'</td></tr>';
 	    	});
 	    	console.log(str);
@@ -316,11 +315,10 @@ function myregionSearch(){//내 지역
 	$.ajax({
 		type:'get',
 		url:'myregionlib',
-		async: false,
 		data:{"bk_search":$('#bookinput').val() ,"selectval":$('#select').val()},
 	    dataType:'json',
 	    success:function(result){
-	    	console.log(result);
+	    
 	    	
 	    	var str="";
 	    	
@@ -329,7 +327,7 @@ function myregionSearch(){//내 지역
 	    		
 	    	});
 	    	console.log(str);
-	    	$('#myregionlb').append(str); 
+	    	$('#myregionlb').html(str); 
 	    },
 	    error:function(xhr,status){
 	    	console.log("xhr3=", xhr);
@@ -345,6 +343,7 @@ function myregionSearch(){//내 지역
 	    data:{"bk_search":$('#bookinput').val() ,"selectval":$('#select').val()},
 	    dataType:'json',
 	    success:function(result){
+	    	console.log("result",result);
 	    	$("#contents").append("<div id='myRegion' class='tabcontent'><h2>"+result[0].bk_loc+"</h2><table id='regionsearchList'><table></div><div id='sidebar'><ul id='myregionlb'></ul></div>");
 	    	
 	 		var str="";
@@ -354,7 +353,7 @@ function myregionSearch(){//내 지역
 	    	$.each(result,function(index,item){
 	   
 	    		str+='<tr id="tr"><td style="border:1px solid black;width:100px;height:176px;">'+'<image src="'+item.bk_image+'"></td>';
-	    		str+='<td style="border:1px solid black;">'+'<a href="bookdetailpage?bk_code='+item.bk_code+'" id="bkname">'+item.bk_name+'</a><br>'+item.bk_writer+'<br>'+
+	    		str+='<td style="border:1px solid black;">'+'<a href="bookdetailpage?bk_code='+item.bk_code+'&bk_lcode='+item.bk_lcode+'" id="bkname">'+item.bk_name+'</a><br>'+item.bk_writer+'<br>'+
 	    		item.bk_publisher+'<br>'+item.bk_publicday+'<br>'+item.bk_lname+'</td></tr>';
 	    	});
 				

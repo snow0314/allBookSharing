@@ -23,16 +23,15 @@ public class BookManagement {
   ModelAndView mav;
   
 	public List<Books> bookSearch(String bk_search, String selectval) {
-		
 		List<Books> bList=bDao.bookSearch(bk_search,selectval);
 			
 		return bList;
 	}
 
-	public ModelAndView bookDetailPage(String bk_code) {
+	public ModelAndView bookDetailPage(String bk_code, String bk_lcode) {
 		mav=new ModelAndView();
 		String view=null;
-		Books books=bDao.bookDetailPage(bk_code);
+		Books books=bDao.bookDetailPage(bk_code,bk_lcode);
 		mav.addObject("books",books);
 		
 		List<Review> review=bDao.bookReviewList(bk_code);
