@@ -13,16 +13,24 @@
 						    #{lb_longitude})
 </insert>
 
-<!-- <resultMap type="library" id="lib">
+ <resultMap type="library" id="lib">
 		<result property="lb_loc" column="LB_LOC" />
 		<result property="lb_code" column="LB_CODE" />
 		<result property="lb_name" column="LB_NAME" />
 		<result property="la_id" column="LA_ID" />
-	</resultMap> -->
+	</resultMap>
 	
 <select id="getlibraryinfo" resultType="Library" >
 SELECT * FROM LIBRARY 
 </select>
+
+
+<select id="getLibraryList" resultType="Library">
+SELECT LB_NAME,LB_CODE,LB_LOC,LA_ID FROM LIBRARIAN JOIN MEMBER ON LA_ID=MB_ID
+JOIN LIBRARY ON LA_LCODE=LB_CODE
+</select>
+
+
 	
 <select id="getLibraryNextCode" resultType="Integer">
 	SELECT LB_SEQ.NEXTVAL FROM DUAL
