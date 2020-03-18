@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.security.Principal;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import javax.servlet.http.HttpServletRequest;
@@ -22,6 +23,8 @@ import org.springframework.web.servlet.ModelAndView;
 import com.allBookSharing.xxx.dao.IMemberDao;
 import com.allBookSharing.xxx.dto.BigGroup;
 import com.allBookSharing.xxx.dto.Classification;
+import com.allBookSharing.xxx.dto.LikedList;
+import com.allBookSharing.xxx.dto.LikedList2;
 import com.allBookSharing.xxx.dto.Loan;
 import com.allBookSharing.xxx.dto.Member;
 import com.allBookSharing.xxx.dto.PointList;
@@ -40,12 +43,21 @@ public class MemberManagement {
 	
 	
 	//찜목록
-	public ModelAndView showWishList(HttpServletRequest req) {
-		mav = new ModelAndView();
-		
-		mav.setViewName("checkedlist");
-		return mav;
-	}
+	   public ModelAndView showWishList(Principal principal) {
+	      mav = new ModelAndView();
+	      String id=principal.getName();
+	      
+	      List<LikedList> likeList= mDao.showWishList(id);
+	      System.out.println(likeList.toString());
+	      if(likeList!=null)
+	      mav.setViewName("checkedlist");
+	      else
+	      mav.setViewName("redirect:/movemypage");
+	      
+	      String json=new Gson().toJson(likeList);
+	      mav.addObject("likeList",json);
+	      return mav;
+	   }
 
 	//마이페이지 이동(내정보불러오기)
 	public ModelAndView moveMypage(Principal principal) {
@@ -202,28 +214,24 @@ public class MemberManagement {
 	}
 
 	public ModelAndView okPoint(Member mb, Principal principal) {
-		mav = new ModelAndView();
-		String id=principal.getName();
-		System.out.println("point="+ mb.getUs_point());
-		SimpleDateFormat format1 = new SimpleDateFormat("yyyy-MM-dd");
+	      mav = new ModelAndView();
+	      String id=principal.getName();
 
-		
-		
-		int us_point=mb.getUs_point();
-		boolean result= mDao.updateOkPoint(us_point,id);
-		
-		PointList pl=mDao.insertPointList(us_point,id);
-		pl.setPl_date(format1.format(pl.getPl_date()));
-		
-		if(result && pl!=null)
-		mav.setViewName("redirect:/movemypage");
-		else
-		mav.setViewName("redirect:/insertpoint");
-		
-		
-		
-		return mav;
-	}
+	      mb.setMb_id(id);
+	      
+	      boolean result= mDao.updateOkPoint(mb);
+	      
+	      boolean pl=mDao.insertPointList(mb);
+	      
+	      if(result && pl)
+	      mav.setViewName("redirect:/movemypage");
+	      else
+	      mav.setViewName("redirect:/insertpoint");
+	      
+	      
+	      
+	      return mav;
+	   }
 
 
 
@@ -297,4 +305,33 @@ public class MemberManagement {
 		
 		return rList;
 	}
+
+	   //찜목록 삭제
+	   public String deletelikedList(List<LikedList> likedList, Principal p) {
+	      
+	      int result=0;
+	      List<LikedList2> list3= new ArrayList<LikedList2>();
+	      
+	      for(int i=0;i<likedList.size();i++) {
+	         LikedList2 list2=new LikedList2();
+	         list2.setLb_code(likedList.get(i).getLb_code())
+	         .setBk_code(likedList.get(i).getBk_code()).setId(p.getName());
+	         list3.add(list2);
+	      }
+	      
+	      
+	      
+	      
+	      
+	      result=mDao.deletLikedList(list3);
+	      
+	      System.out.println("찜목록 삭제:"+result);
+	      
+	      if(result!=0) {
+	         return "삭제 성공";  
+	      }else {
+	         return "삭제실패";
+	      }
+	      
+	   }	//찜목록 삭제 end
 }
