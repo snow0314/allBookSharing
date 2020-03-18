@@ -24,12 +24,14 @@
 
  
 <select id="bookSearch"  resultType="books" resultMap="booksearch">
-   SELECT L.LB_NAME,B.BK_NAME,B.BK_IMAGE,B.BK_WRITER,BK_PUBLISHER,BK_PUBLICDAY,BK_CODE
-   FROM BOOKS B INNER JOIN LIBRARY L ON B.BK_LCODE=L.LB_CODE WHERE ${selectval} LIKE '%'||#{bk_search}||'%'
+   SELECT L.LB_NAME,B.BK_NAME,B.BK_IMAGE,B.BK_WRITER,BK_PUBLISHER,BK_PUBLICDAY,BK_CODE,L.LB_CODE
+   FROM BOOKS B INNER JOIN LIBRARY L 
+   ON B.BK_LCODE=L.LB_CODE 
+   WHERE ${selectval} LIKE '%'||#{bk_search}||'%'
 </select>
 
 <select id="myRegionSearch"  resultType="books" resultMap="booksearch">
-   SELECT L.LB_NAME,B.BK_NAME,B.BK_IMAGE,B.BK_WRITER,BK_PUBLISHER,BK_PUBLICDAY,BK_CODE,L.LB_LOC
+   SELECT L.LB_NAME,B.BK_NAME,B.BK_IMAGE,B.BK_WRITER,BK_PUBLISHER,BK_PUBLICDAY,BK_CODE,L.LB_LOC,L.LB_CODE
    FROM BOOKS B INNER JOIN LIBRARY L ON B.BK_LCODE=L.LB_CODE 
    WHERE ${selectval} LIKE '%'||#{bk_search}||'%' AND L.LB_LOC=#{region}
 </select>
@@ -43,13 +45,13 @@
    ON B.BK_SG_NUM =A.SG_BG_NUM
    JOIN library L
    ON B.BK_LCODE=L.LB_CODE
-   WHERE B.BK_CODE=#{bk_code}
+   WHERE B.BK_CODE=#{bk_code} AND L.LB_CODE=#{bk_lcode}
 </select>
 
 <select id="bookReviewList" resultType="review" >
  SELECT RV_BCODE,RV_ID,RV_CONTENTS,RV_GRADE
  FROM REVIEW 
- WHERE RV_BCODE=#{bk_code}
+ WHERE RV_BCODE=#{bk_code} 
 </select>
 
 <insert id="reservationInsert" parameterType="reservation">

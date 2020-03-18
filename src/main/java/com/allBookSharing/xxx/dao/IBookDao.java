@@ -18,7 +18,7 @@ import com.allBookSharing.xxx.dto.Review;
 public interface IBookDao {
     
 	List<Books> bookSearch(@Param("bk_search")String bk_search,@Param("selectval") String selectval);
-	Books bookDetailPage(String bk_code);
+	Books bookDetailPage(@Param("bk_code")String bk_code, @Param("bk_lcode")String bk_lcode);
 	List<Review> bookReviewList(String bk_code);
 	List<Books> bookSearch(String bk_search);
 	
