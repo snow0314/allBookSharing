@@ -28,7 +28,7 @@
 </head>
 
 <body>
-    <form>
+    <form action="libraymodify" method="post" onsubmit="return check()">
 
         <div class="container p-3 my-3 border">
             <table class="table table-borderless">
@@ -134,6 +134,7 @@
                         <input type="text" id="sample4_detailAddress" class="form-control" placeholder="상세주소">
                     </td>
                     <td>
+                    	<input type="hidden" id="lb_address" name="lb_address" value=""> 
                         <input type="text" id="sample4_extraAddress" class="form-control" placeholder="참고항목">
                         <input type="hidden" id="lb_Latitude" name="lb_Latitude" value="">
                         <input type="hidden" id="lb_longitude" name="lb_longitude" value="">
@@ -148,7 +149,7 @@
                     <td>
                     <input type="hidden" name="_csrf" value="${_csrf.token}">
                 <input type="hidden" id="addr" name="lb_address" value="">
-                        <button id="modify" class="btn btn-outline-success">수정하기</button>
+                        <input type="submit" id="modify" class="btn btn-outline-success" value="수정하기">
                         
                     </td>
                 </tr>
@@ -183,7 +184,16 @@ $(document).ready( function () {
 	
 }); //ready End
 	
-//$("#modify").
+	
+function check() {
+	
+	addr=$("#sample4_postcode").val()+"/"+$("#sample4_roadAddress").val()+"/"
+	+$("#sample4_detailAddress").val()+$("#sample4_extraAddress").val();
+	$("#lb_address").val(addr);
+	console.log("주소:",addr);
+	return false;
+}	
+	
 
 
 
