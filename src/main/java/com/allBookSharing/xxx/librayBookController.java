@@ -1,10 +1,6 @@
 package com.allBookSharing.xxx;
 
 
-
-import java.security.Principal;
-import java.util.Map;
-import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
@@ -28,18 +24,6 @@ public class librayBookController {
 	
 	ModelAndView mav;
 	
-	@Secured("ROLE_LIBRARIAN")
-	@RequestMapping(value = "/librarymain")
-	public String libraryMain(Principal principal,HttpServletRequest req) { //사서 메인페이지 이동
-		Map<String, Object> map=lmm.getLibrayCodeName(principal);
-		
-		req.getSession().setAttribute("LB_CODE", map.get("LB_CODE"));
-		req.getSession().setAttribute("LB_NAME", map.get("LB_NAME"));
-		
-		
-		return "librarian/librarymain";
-	}
-
 	@Secured("ROLE_LIBRARIAN")
 	@RequestMapping(value = "/libraybooklistmove")
 	public ModelAndView bookListMove() { //책 목록 페이지 이동

@@ -91,7 +91,7 @@
                             <div class="input-group-prepend">
                                 <span class="input-group-text">전화번호</span>
                             </div>
-                            <input type="number" class="form-control">
+                            <input type="number" class="form-control" id="lb_phone" name="lb_phone">
                         </div>
                     </td>
                 </tr>
@@ -101,7 +101,7 @@
                             <div class="input-group-prepend">
                                 <span class="input-group-text">이메일</span>
                             </div>
-                            <input type="email" class="form-control">
+                            <input type="email" class="form-control" id="lb_email" name="lb_email">
                         </div>
                     </td>
                 </tr>
@@ -148,7 +148,7 @@
                     <td>
                     <input type="hidden" name="_csrf" value="${_csrf.token}">
                 <input type="hidden" id="addr" name="lb_address" value="">
-                        <button class="btn btn-outline-success">수정하기</button>
+                        <button id="modify" class="btn btn-outline-success">수정하기</button>
                         
                     </td>
                 </tr>
@@ -161,8 +161,33 @@
 </body>
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=1b51d85dd9bcbc0b96d2984712a09ec4&libraries=services,clusterer,drawing"></script>
 <script>
+$(document).ready( function () {
+	$.ajax({ //도서관 정보 가져오는 에이작스
+		url : "libraryinfo",
+		type : "get",
+		dataType:'json'
+		
+}).done((result) => {
+	console.log("result=",result);
+	$("#lb_code").val(result.lb_code);
+	$("#lb_name").val(result.lb_name);
+	$("#lb_phone").val(result.lb_phone);
+	$("#lb_email").val(result.lb_email);
+	$("#lb_loc").val(result.lb_loc);
+	
+	
+}).fail((xhr) => {
+	console.log("xhr=",xhr);
+}); //ajax End
+	
+	
+}); //ready End
+	
+//$("#modify").
 
-    function sample4_execDaumPostcode() {
+
+
+    function sample4_execDaumPostcode() { //주소 등록하는 
         new daum.Postcode({
             oncomplete: function(data) {
                 var roadAddr = data.roadAddress; // 도로명 주소 변수
