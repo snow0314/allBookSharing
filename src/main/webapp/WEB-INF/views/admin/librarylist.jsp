@@ -46,6 +46,10 @@
 </table>
 </div>
    <script>
+   $(".test").on("click", function(){
+	  alert("하하"); 
+   });
+   
     var example_tbl = null
     var data=${json};
     console.log(data);
@@ -62,7 +66,7 @@
 		        },
 		        { 'data': 'lb_loc' , 'targets': 0}, //
 		        { 'data': 'lb_code', 'targets': 1}, //
-		        { 'data': 'lb_name', 'targets': 2}, //
+		        { 'data': 'lb_name', 'targets': 2, 'className' : 'test'}, //
 		        { 'data': 'la_id', 'targets': 3}, //
 		    
 		     ],
