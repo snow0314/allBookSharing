@@ -38,16 +38,15 @@
 	</select>
 
 
-	<update id="loanExtend" parameterType="loan">
+	<update id="loanExtend" parameterType="int" keyProperty="bd_return_extension">
 
-		<selectKey keyProperty="bd_return_extension"
-			resultType="java.lang.Integer" order="AFTER">
+		<selectKey keyProperty="bd_return_extension" resultType="java.lang.Integer" order="AFTER">
 			SELECT bd_return_extension FROM
-			BORROWDETAIL WHERE BD_BO_NUM=#{bd_bo_num}
+			BORROWDETAIL WHERE BD_BO_NUM=#{num}
 		</selectKey>
 		UPDATE BORROWDETAIL SET
 		BD_RETURN_DATE=BD_RETURN_DATE+7,bd_return_extension=1 WHERE
-		BD_BO_NUM=#{bd_bo_num}
+		BD_BO_NUM=#{num}
 
 	</update>
 
