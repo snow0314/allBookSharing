@@ -90,9 +90,8 @@ width: 200px;
 					<tr>
 						<td>도서관 이름</td>
 						<td colspan="3">
-					<select id="lb_name" name="lb_name" style="width:170px;" onchange="getlibcode()">
-						<option value="">선택</option>	
-						
+					<select id="lb_name" name="lb_name" style="width:170px;">
+						<option value="">선택</option>		
 					</select>
 					</td>
 				</tr>
@@ -100,20 +99,17 @@ width: 200px;
 				<tr>
 						<td>도서관 코드</td>
 						<td colspan="3">
-						<input type="text" name="lb_code" maxlength="30" id="lb">
+						<input type="text" name="la_lcode" maxlength="30" readonly="readonly" id="lb">
+						</td>
+					</tr>
+					<tr>
+						<td>도서관 지역</td>
+						<td colspan="3">
+						<input type="text" name="la_loc" maxlength="30" readonly="readonly" id="lb2">
 						</td>
 					</tr>
 					
-				<tr>
-						<td><b>지역선택</b></td>
-            <td colspan="2"><input id='area' name="lb_loc" type="text" readonly required/></td>
-            <td><select  id="la_loc" class="foot1">
-                  <option value="">선택</option>
-                  <option value="서울">서울</option>
-                  <option value="인천">인천</option>
-                  <option value="경기">경기</option>
-            </select></td>
-		</tr>
+			
 	</tbody>
 </table>
 
@@ -124,6 +120,8 @@ width: 200px;
 		</form>
 	</div>
 <script>
+var data;
+
 $(function() {
 	$.ajax({ //도서관 정보 가져오는 메소드
 		url : "getlibraryinfo",
@@ -132,10 +130,10 @@ $(function() {
 		
 }).done((result) => {
 	console.log("result=",result);
-	
+	data=result;
  	var info=result;
 	for(var i=0;i<info.length;i++){
-		$("<option>").text(info[i].lb_name).attr("value",info[i].lb_name).appendTo($("#lb_name"));
+		$("<option>").text(info[i].lb_name).attr("value",info[i].lb_code+","+info[i].lb_loc).appendTo($("#lb_name"));
 	} 
 	
 }).fail((xhr) => {
@@ -143,36 +141,24 @@ $(function() {
 }); //도서관 이름 ajax End
 });
 
-/* function getlibcode() { //도서관 코드 가져오는 메소드
-	var lb_code=$("#lb_code").val();
-	console.log(lb_code.charAt(0))
-	$.ajax({
-		url : "getsmallgroup",
-		type : "get",
-		data : "bigNum="+bigNum.charAt(0),
-		dataType:'json'
-		
-}).done((result) => {
-	console.log("result=",result);
-	var smallGroup=result;
-	$("#bk_sg_num").empty();
-	for(var i=0;i<smallGroup.length;i++){
-		$("<option>").text(smallGroup[i].bigNum+":"+smallGroup[i].category).attr("value",smallGroup[i].bigNum).appendTo($("#bk_sg_num"));
-	} 
-	
-	
-}).fail((xhr) => {
-	console.log("xhr=",xhr);
+$("#lb_name").on("change", function(){
+	console.log($("#lb_loc").val());
+	console.log($("#lb_name").val());
+	let li_code=$("#lb_name").val();
+	data=li_code.split(",");
+	$("#lb").val(data[0]);
+	$("#lb2").val(data[1]);
 });
-} */
+
+ 
 
 
-//지역선택
+/* //지역선택
 $("#la_loc").on("change",function(){
 		
 		$("#area").val($("#la_loc").val());
 	});
-	
+ */	
 //아이디 검사 및 중복 체크
 	let idck=0;
 	   

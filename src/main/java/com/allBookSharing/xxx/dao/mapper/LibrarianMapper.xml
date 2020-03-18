@@ -4,26 +4,22 @@
 <mapper namespace="com.allBookSharing.xxx.dao.ILibrarianManagementDao">
 
 <insert id="librarianinsert" parameterType="librarian">
- 	INSERT INTO MEMBER(MB_ID,mb_pw,mb_area,ENABLED,mb_name)
- 	VALUES
- 	(#{la_id},#{la_pw},#{la_loc},1,#{la_name})
- 	</insert>
+ 	INSERT ALL
+ 	 INTO MEMBER(MB_ID,mb_pw,mb_area,ENABLED)
+ 	 VALUES
+ 	(#{la_id},#{la_pw},#{la_loc},1)
  	
- <insert id="librarianinsert2" parameterType="librarian">	
- 	INSERT INTO authorities(authority,id)
+ 	INTO authorities(authority,id)
  	VALUES
  	('ROLE_LIBRARIAN',#{la_id})
- </insert>
- <insert id="librarianinsert3" parameterType="librarian">	
- 	INSERT INTO librarian(LA_ID,LA_LCODE)
+ 	
+    INTO librarian(LA_ID,LA_LCODE)
  	VALUES
  	(#{la_id},#{la_lcode})
- 
-</insert>
-
-<select id="libraryList" parameterType="library">
-    SELECT LB_NAME, LB_CODE, LB_LOC FROM LIBRARY
-</select>
+ 	
+ 	SELECT * FROM DUAL
+ 	</insert>
+ 	
 
 
 	</mapper>

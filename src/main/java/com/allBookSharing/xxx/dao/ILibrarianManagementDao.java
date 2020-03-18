@@ -10,9 +10,5 @@ public interface ILibrarianManagementDao {
 
 	boolean librarianinsert(Librarian lia);
 
-	boolean librarianinsert2(Librarian liz);
-	
-	boolean librarianinsert3(Librarian lix);
-
-	
+	List<Library> getLibraryList();
 }
