@@ -79,22 +79,22 @@ public class HomeController {
 	}
 	
 	//포인트충전 페이지
-	@PreAuthorize("isAuthenticated()")
-	@RequestMapping(value = "/insertpoint")
-	public String pointUser() {
-    System.out.println("point:");
-		return "PointUser";
-	}
+	   @PreAuthorize("isAuthenticated()")
+	   @RequestMapping(value = "/insertpoint")
+	   public String pointUser() {
+	    System.out.println("point:");
+	      return "PointUser";
+	   }
 	
-	//포인트 충전하기
-	@RequestMapping(value = "/okpoint", method = RequestMethod.POST)
-	public ModelAndView okPoint(Member mb,Principal principal) {
+	 //포인트 충전하기
+	   @RequestMapping(value = "/okpoint", method = RequestMethod.POST)
+	   public ModelAndView okPoint(Member mb,Principal principal) {
 
-	
-		mav = mm.okPoint(mb,principal);
+	   
+	      mav = mm.okPoint(mb,principal);
 
-		return mav;
-	}
+	      return mav;
+	   }
 	
 	//거래내역
 	@PreAuthorize("isAuthenticated()")

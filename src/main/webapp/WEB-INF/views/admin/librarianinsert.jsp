@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
    pageEncoding="UTF-8"%>
+   <%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -10,9 +12,9 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
-<script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
-<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?
-appkey=04cfe5f1eb29416b59e4313a6acea9b8&libraries=services"></script>
+<!--toastr -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css" integrity="sha256-ENFZrbVzylNbgnXx0n3I1g//2WeO47XxoPe0vkp3NC8=" crossorigin="anonymous" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js" integrity="sha256-3blsJd4Hli/7wCQ+bmgXfOdK7p/ZUMtPXY08jmxSSgk=" crossorigin="anonymous"></script>
 
 
 <style>
@@ -27,8 +29,6 @@ form {
    padding: 30px;
 }
 
-
-
 #hag{
 
 padding: 5px 0;
@@ -39,15 +39,19 @@ font-size: 17px;
    all:unset;
    color: #000000;
    font-weight:bold;
+   text-align:center;
    font-style:inherit;
    background: #BCF5A9;
    padding:5px 10px;
-   margin-left: 25px;
+   margin-left: 50px;
    margin-bottom: 10px;
    margin-top: 5px;
    border-radius: 5px;
    display: inline-block;
    border: none;
+   cursor:pointer;
+   height: 43px;
+   width: 120px;
 }
 #id{
 width: 200px;
@@ -56,7 +60,6 @@ width: 200px;
 </style>
 </head>
 <body>
-<jsp:include page="adminheader.jsp" />
  
    <div id="div">
 		<form method="post">
@@ -65,9 +68,9 @@ width: 200px;
 				<tbody>
 					<tr>
 						<td width="180px">아이디</td>
-						<td id="id2" colspan="3">
-						<input type="text" name="la_id" maxlength="20" id="id">
-						<input id="id_check" type="button" value="중복확인">
+						<td><input type="text" name="la_id" maxlength="20" id="id" required>
+						<span id="result"></span></td>
+						<td colspan="2" ><input id="id_check" type="button" value="중복확인">
 						</td>
 					</tr>
 					<tr>
@@ -83,24 +86,36 @@ width: 200px;
 						<input type="password" maxlength="30" id="pwcheck">
 						</td>		
 					</tr>
-
+					
 					<tr>
-						<td>도서관</td>
+						<td>도서관 이름</td>
 						<td colspan="3">
-						<input type="text" name="la_lcode" maxlength="30" id="lb">
+					<select id="lb_name" name="lb_name" style="width:170px;" onchange="getlibcode()">
+						<option value="">선택</option>	
+						
+					</select>
+					</td>
+				</tr>
+
+				<tr>
+						<td>도서관 코드</td>
+						<td colspan="3">
+						<input type="text" name="lb_code" maxlength="30" id="lb">
 						</td>
 					</tr>
-					<tr>
-						<td>지역선택 :</td>
-						<td><input type="text"  id="loc" name="la_loc"/>
-						<select id="url2">
-								<option>서울&nbsp;</option>
-								<option>인천&nbsp;</option>
-								<option>경기&nbsp;</option>
-						</select></td>
-					</tr>
-				 </tbody>
-				</table>
+					
+				<tr>
+						<td><b>지역선택</b></td>
+            <td colspan="2"><input id='area' name="lb_loc" type="text" readonly required/></td>
+            <td><select  id="la_loc" class="foot1">
+                  <option value="">선택</option>
+                  <option value="서울">서울</option>
+                  <option value="인천">인천</option>
+                  <option value="경기">경기</option>
+            </select></td>
+		</tr>
+	</tbody>
+</table>
 
 				<input class="btn" type="submit" value="확인"  id="hag" formaction="librarianinsert"> 
 				<input id="hag"class="btn" type="submit" value="취소" formaction="./">
@@ -108,108 +123,95 @@ width: 200px;
 			</div>
 		</form>
 	</div>
-	<script>
+<script>
+$(function() {
+	$.ajax({ //도서관 정보 가져오는 메소드
+		url : "getlibraryinfo",
+		type : "get",
+		dataType:'json'
+		
+}).done((result) => {
+	console.log("result=",result);
+	
+ 	var info=result;
+	for(var i=0;i<info.length;i++){
+		$("<option>").text(info[i].lb_name).attr("value",info[i].lb_name).appendTo($("#lb_name"));
+	} 
+	
+}).fail((xhr) => {
+	console.log("xhr=",xhr);
+}); //도서관 이름 ajax End
+});
+
+/* function getlibcode() { //도서관 코드 가져오는 메소드
+	var lb_code=$("#lb_code").val();
+	console.log(lb_code.charAt(0))
 	$.ajax({
-        type : 'get',
-        url : "idcheck",
-        data : {la_id:la_id},
-        success : function(data) {
-           $('#result').html(data).css('color', 'red');
-           console.log("data=", data);
-           /* console.log("data=", result);
-           console.log("status=", status);
-           console.log("xhr=", xhr); */
-
-        },
-        error : function(xhr, status) {
-           $('#result').html(xhr.responseText).css('color', 'green');
-           console.log("xhr=", xhr);
-           console.log("status=", status);
-           if (status == "error") {
-              idck = 0;
-           } else {
-              idck = 1;
-           }
-        }
-
-
-     }); //end ajax
-	/* let str="";
-	$("#hag").on("submit",function(){
-		str=$("#la_id").val()+$("#la_pw").val()+$("#la_lcode").val()
-		+$("#la_loc").val();
-			console.log("str="+str);
-	} */
+		url : "getsmallgroup",
+		type : "get",
+		data : "bigNum="+bigNum.charAt(0),
+		dataType:'json'
+		
+}).done((result) => {
+	console.log("result=",result);
+	var smallGroup=result;
+	$("#bk_sg_num").empty();
+	for(var i=0;i<smallGroup.length;i++){
+		$("<option>").text(smallGroup[i].bigNum+":"+smallGroup[i].category).attr("value",smallGroup[i].bigNum).appendTo($("#bk_sg_num"));
+	} 
 	
 	
-	</script>
-	<!-- Footer -->
-			<div id="footer">
-				<div class="container">
+}).fail((xhr) => {
+	console.log("xhr=",xhr);
+});
+} */
 
-					<!-- Lists -->
-						<div class="row">
-							<div class="8u">
-								<section>
-									<header class="major">
-										<h2>Donec dictum metus</h2>
-										<span class="byline">Quisque semper augue mattis wisi maecenas ligula</span>
-									</header>
-									<div class="row">
-										<section class="6u">
-											<ul class="default">
-												<li><a href="#">Pellentesque elit non gravida blandit.</a></li>
-												<li><a href="#">Lorem ipsum dolor consectetuer elit.</a></li>
-												<li><a href="#">Phasellus nibh pellentesque congue.</a></li>
-												<li><a href="#">Cras vitae metus aliquam  pharetra.</a></li>
-											</ul>
-										</section>
-										<section class="6u">
-											<ul class="default">
-												<li><a href="#">Pellentesque elit non gravida blandit.</a></li>
-												<li><a href="#">Lorem ipsum dolor consectetuer elit.</a></li>
-												<li><a href="#">Phasellus nibh pellentesque congue.</a></li>
-												<li><a href="#">Cras vitae metus aliquam  pharetra.</a></li>
-											</ul>
-										</section>
-									</div>
-								</section>
-							</div>
-							<div class="4u">
-								<section>
-									<header class="major">
-										<h2>Donec dictum metus</h2>
-										<span class="byline">Mattis wisi maecenas ligula</span>
-									</header>
-									<ul class="contact">
-										<li>
-											<span class="address">Address</span>
-											<span>1234 Somewhere Road #4285 <br />Nashville, TN 00000</span>
-										</li>
-										<li>
-											<span class="mail">Mail</span>
-											<span><a href="#">someone@untitled.tld</a></span>
-										</li>
-										<li>
-											<span class="phone">Phone</span>
-											<span>(000) 000-0000</span>
-										</li>
-									</ul>	
-								</section>
-							</div>
-						</div>
 
-					<!-- Copyright -->
-						<div class="copyright">
-							Design: <a href="http://templated.co">TEMPLATED</a> Images: <a href="http://unsplash.com">Unsplash</a> (<a href="http://unsplash.com/cc0">CC0</a>)
-						</div>
-
-				</div>
-			</div>
+//지역선택
+$("#la_loc").on("change",function(){
+		
+		$("#area").val($("#la_loc").val());
+	});
 	
-
-   <script>
-
-   </script>
-</body>
+//아이디 검사 및 중복 체크
+	let idck=0;
+	   
+	   $("#id_check").on("click", function(){
+		  let mb_id=$("#id").val();
+		//정규식 : 영숫자 8-10자
+		  var patt=/^[A-Za-z0-9]{4,16}$/
+		  console.log("id="+$("#id").val());
+		  if(mb_id==""){
+			  toastr.error('아이디를 입력해주세요!', '경고');
+			  return;
+		  }else if(!patt.test(mb_id)){
+			  toastr.error('아이디는 영어나 숫자 4~16자 입니다.', '경고');
+			  return;
+		  }
+		  
+		  $.ajax({
+	          type : 'get',
+	          url : "idcheck",
+	          data : {mb_id:mb_id},
+	          success : function(data) {
+	             $('#result').html(data).css('color', 'red');
+	             console.log("data=", data);
+	          },
+	          error : function(xhr, status) {
+	             $('#result').html(xhr.responseText).css('color', 'green');
+	             console.log("xhr=", xhr);
+	             console.log("status=", status);
+	             if (status == "error") {
+	                idck = 0;
+	             } else {
+	                idck = 1;
+	             }
+	          }
+	       }); //end ajax
+	   });	//fct end
+	   
+	  
+</script>
+	
+	</body>
 </html>

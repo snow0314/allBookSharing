@@ -1,9 +1,8 @@
 package com.allBookSharing.xxx.service;
 
-import java.sql.SQLException;
 
-import org.apache.ibatis.session.SqlSession;
-import org.mybatis.spring.SqlSessionTemplate;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -12,6 +11,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.allBookSharing.xxx.dao.IAdminManagementDao;
 import com.allBookSharing.xxx.dao.ILibrarianManagementDao;
 import com.allBookSharing.xxx.dto.Librarian;
+import com.allBookSharing.xxx.dto.Library;
 
 @Service
 public class LibrarianManagement {
@@ -19,6 +19,8 @@ public class LibrarianManagement {
 	@Autowired
 	ILibrarianManagementDao lDao;
 
+	@Autowired
+	IAdminManagementDao aDao;
 	
 	ModelAndView mav;
 
@@ -45,6 +47,12 @@ public class LibrarianManagement {
 		}
 		
 		return mav;
+	}
+
+
+	public List<Library> getlibraryinfo() {
+		List<Library> lib= aDao.getlibraryinfo();
+		return lib;
 	}
 
 }

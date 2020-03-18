@@ -9,15 +9,15 @@
  	(#{lb_code},#{lb_name},#{lb_address},#{lb_loc})
 </insert>
 
-<resultMap type="library" id="lib">
+<!-- <resultMap type="library" id="lib">
 		<result property="lb_loc" column="LB_LOC" />
 		<result property="lb_code" column="LB_CODE" />
 		<result property="lb_name" column="LB_NAME" />
 		<result property="la_id" column="LA_ID" />
-	</resultMap>
+	</resultMap> -->
 	
-<select id="getLibraryList" resultType="library" resultMap="lib">
-	SELECT lb_loc,lb_name,lb_code,la_id FROM veiw_librarylist
-
+<select id="getlibraryinfo" resultType="Library" >
+SELECT * FROM LIBRARY 
 </select>
+	
 	</mapper>
