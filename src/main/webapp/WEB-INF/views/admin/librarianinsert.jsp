@@ -90,10 +90,9 @@ width: 200px;
 					<tr>
 						<td>도서관 이름</td>
 						<td colspan="3">
-					<select id="lb_name" name="lb_name" style="width:170px;">
+					<select id="lb_name" name="lb_name" style="width:170px;" onchange="getlibcode()">
 						<option value="">선택</option>	
-						<option value="lb_name" value2="lb_code" value3="lb_loc">조석</option>
-						<option value="lb_name" value2="lb_code" value3="lb_loc">아무개</option>
+						
 					</select>
 					</td>
 				</tr>
@@ -101,13 +100,13 @@ width: 200px;
 				<tr>
 						<td>도서관 코드</td>
 						<td colspan="3">
-						<input type="text" name="la_lcode" maxlength="30" id="lb">
+						<input type="text" name="lb_code" maxlength="30" id="lb">
 						</td>
 					</tr>
 					
 				<tr>
 						<td><b>지역선택</b></td>
-            <td colspan="2"><input id='area' name="la_loc" type="text" readonly required/></td>
+            <td colspan="2"><input id='area' name="lb_loc" type="text" readonly required/></td>
             <td><select  id="la_loc" class="foot1">
                   <option value="">선택</option>
                   <option value="서울">서울</option>
@@ -141,9 +140,33 @@ $(function() {
 	
 }).fail((xhr) => {
 	console.log("xhr=",xhr);
-}); //대분류 ajax End
-
+}); //도서관 이름 ajax End
 });
+
+/* function getlibcode() { //도서관 코드 가져오는 메소드
+	var lb_code=$("#lb_code").val();
+	console.log(lb_code.charAt(0))
+	$.ajax({
+		url : "getsmallgroup",
+		type : "get",
+		data : "bigNum="+bigNum.charAt(0),
+		dataType:'json'
+		
+}).done((result) => {
+	console.log("result=",result);
+	var smallGroup=result;
+	$("#bk_sg_num").empty();
+	for(var i=0;i<smallGroup.length;i++){
+		$("<option>").text(smallGroup[i].bigNum+":"+smallGroup[i].category).attr("value",smallGroup[i].bigNum).appendTo($("#bk_sg_num"));
+	} 
+	
+	
+}).fail((xhr) => {
+	console.log("xhr=",xhr);
+});
+} */
+
+
 //지역선택
 $("#la_loc").on("change",function(){
 		
