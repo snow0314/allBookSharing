@@ -50,4 +50,19 @@ public class LibrarianManagement {
 		return lib;
 	}
 
-}
+
+	public String LibrarianDelete(String la_id) {
+		int result=0;
+		
+		result=aDao.LibrarianDelete(la_id);
+		
+		if(result!=0) {
+			return "성공";
+		}else {
+			return "실패";
+		}
+		
+	}
+		
+	}
+	

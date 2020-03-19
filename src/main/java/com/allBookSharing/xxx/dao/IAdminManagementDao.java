@@ -15,6 +15,8 @@ public interface IAdminManagementDao {
 	List<Library> getLibraryList();
 
 	List<Library> getlibraryinfo();
+
+	int LibrarianDelete(String la_id);
 	
 	
 }

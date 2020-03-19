@@ -79,6 +79,7 @@ $(document).ready( function () {
 	    dataSource: result, //받아온 데이터
 	    pageSize: 5,
 	    callback: function (data, pagination) { //데이터 찍어주는 부분
+	    	$("#contents").empty(); 
 	    	for(let i=0;i<data.length;i++){
 	    	$tr=$("<tr>").appendTo($("#contents"));
 	    	$("<td>").text(i+1).appendTo($tr);
