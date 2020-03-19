@@ -1,11 +1,14 @@
 package com.allBookSharing.xxx.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.allBookSharing.xxx.dao.ILibrayManagementDao;
 import com.allBookSharing.xxx.dto.Library;
+import com.allBookSharing.xxx.dto.Schedule;
 
 @Service
 public class LibrayManagement {
@@ -38,6 +41,23 @@ public class LibrayManagement {
 		}
 		
 		return mav;
+	}
+
+	public List<Schedule> getLibraryCalendarInfo(int lb_code) {
+		List<Schedule> sList=lDao.getLibraryCalendarInfo(lb_code);
+		
+		return sList;
+	}
+
+	public String setLibraySchedule(Schedule schedule) {
+		boolean result=lDao.setLibraySchedule(schedule);
+		if(result) {
+			return "성공";
+		}else {
+			return "실패";
+		}
+		
+		
 	}
 
 }

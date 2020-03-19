@@ -56,5 +56,11 @@ public class LibrayController {
 		return mav;
 	}
 	
+	@Secured("ROLE_LIBRARIAN")
+	@RequestMapping(value = "/libraycalendarmove")
+	public ModelAndView librayCalendarMove() { //도서관 일정 페이지 이동
+		
+		return new ModelAndView("librarian/librayCalendar");
+	}
 	
 }

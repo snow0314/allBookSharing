@@ -14,5 +14,19 @@
 					   WHERE LB_CODE = #{lb_code}	   
 	</update>
 
+	<resultMap type="schedule" id="Calendar">
+		<result property="sd_lcode" column="SD_LCODE" />
+		<result property="start" column="SD_START" />
+		<result property="end" column="SD_END" />
+		<result property="title" column="SD_TITLE" />
+	</resultMap>
+
+	<select id="getLibraryCalendarInfo" parameterType="Integer" resultType="Schedule" resultMap="Calendar">
+		SELECT * FROM SCHEDULE WHERE SD_LCODE=#{lb_code}
+	</select>
+	
+	<insert id="setLibraySchedule" parameterType="Schedule">
+		INSERT INTO SCHEDULE VALUES(SD_LCODE=#{sd_lcode}, SD_START=#{start}, SD_END=#{end}, SD_TITLE=#{title})
+	</insert>
 
 </mapper>
