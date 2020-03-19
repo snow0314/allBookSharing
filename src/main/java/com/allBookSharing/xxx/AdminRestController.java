@@ -25,7 +25,14 @@ public class AdminRestController {
 		List<Library> lib = la.getlibraryinfo();
 		return lib;
 	}
-	
+
+	@RequestMapping(value = "/librariandelete", produces = "application/json;charset=UTF-8")
+	public String LibrarianDelete(String la_id) {
+		
+		String result= la.LibrarianDelete(la_id);
+
+		return result;
+	}
 
 	@RequestMapping(value = "/librarynextcode", produces = "application/json;charset=UTF-8")
 	public Integer getLibraryNextCode() {

@@ -15,6 +15,9 @@ public interface IAdminManagementDao { //AdminMapper.xml
 
 	List<Library> getlibraryinfo();
 
+
+	int LibrarianDelete(String la_id);
+
 	//등록할 도서관 코드 가져오는 메소드
 	Integer getLibraryNextCode();
 	

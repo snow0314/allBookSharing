@@ -21,7 +21,7 @@
 	</resultMap>
 	
 <select id="getlibraryinfo" resultType="Library" >
-SELECT * FROM LIBRARY 
+SELECT * FROM LIBRARY JOIN LIBRARIAN ON LA_LCODE=LB_CODE
 </select>
 
 
@@ -29,6 +29,17 @@ SELECT * FROM LIBRARY
 SELECT LB_NAME,LB_CODE,LB_LOC,LA_ID FROM LIBRARIAN JOIN MEMBER ON LA_ID=MB_ID
 JOIN LIBRARY ON LA_LCODE=LB_CODE
 </select>
+
+<delete id="LibrarianDelete">
+	{call
+        declare
+        begin
+            delete from MEMBER where mb_id = #{la_id};
+            delete from authorities where id = #{la_id};
+            delete from librarian where la_id = #{la_id};
+        end
+    }
+</delete>
 
 
 	
