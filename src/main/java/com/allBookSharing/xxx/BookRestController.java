@@ -151,6 +151,22 @@ public class BookRestController {
 		return lbList;
 	}
 	
+	@Secured("ROLE_USER")
+	@RequestMapping(value="/regionlibsearch",produces="application/json;charset=UTF-8")
+	public List<Books> regionLibSearch(String bk_search,String selectval,Integer bk_lcode) {
+		List<Books> lbsList=bm.regionLibSearch(bk_search,selectval,bk_lcode);
+		System.out.println("lbsList="+lbsList);
+		return lbsList;
+	}
+	
+	
+	@RequestMapping(value="/jiyucksearch",produces="application/json;charset=UTF-8")
+	public List<Books> jiyuckSearch(String bk_search,String selectval,String bk_loc) {
+		List<Books> jysList=bm.jiyuckSearch(bk_search,selectval,bk_loc);
+		System.out.println("jysList="+jysList);
+		return jysList;
+	}
+	
 	
 	
 

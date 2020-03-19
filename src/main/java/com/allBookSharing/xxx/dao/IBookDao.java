@@ -38,6 +38,8 @@ public interface IBookDao {
 
 	
 	List<Library> myRegionLib(@Param("bk_search")String bk_search, @Param("selectval")String selectval, @Param("region")String region);
+	List<Books> regionLibSearch(@Param("bk_search")String bk_search, @Param("selectval")String selectval, @Param("bk_lcode")Integer bk_lcode);
+	List<Books> jiyuckSearch(@Param("bk_search")String bk_search, @Param("selectval")String selectval,@Param("bk_loc") String bk_loc);
 	
 	
 	
