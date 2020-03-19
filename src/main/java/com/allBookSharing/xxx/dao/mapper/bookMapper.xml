@@ -35,6 +35,16 @@
    FROM BOOKS B INNER JOIN LIBRARY L ON B.BK_LCODE=L.LB_CODE 
    WHERE ${selectval} LIKE '%'||#{bk_search}||'%' AND L.LB_LOC=#{region}
 </select>
+<select id="regionLibSearch"  resultType="books" resultMap="booksearch">
+   SELECT L.LB_NAME,B.BK_NAME,B.BK_IMAGE,B.BK_WRITER,BK_PUBLISHER,BK_PUBLICDAY,BK_CODE,L.LB_LOC,L.LB_CODE
+   FROM BOOKS B INNER JOIN LIBRARY L ON B.BK_LCODE=L.LB_CODE 
+   WHERE ${selectval} LIKE '%'||#{bk_search}||'%' AND L.LB_CODE=#{bk_lcode}
+</select>
+<select id="jiyuckSearch"  resultType="books" resultMap="booksearch">
+   SELECT L.LB_NAME,B.BK_NAME,B.BK_IMAGE,B.BK_WRITER,BK_PUBLISHER,BK_PUBLICDAY,BK_CODE,L.LB_LOC,L.LB_CODE
+   FROM BOOKS B INNER JOIN LIBRARY L ON B.BK_LCODE=L.LB_CODE 
+   WHERE ${selectval} LIKE '%'||#{bk_search}||'%' AND L.LB_LOC=#{bk_loc}
+</select>
 
 
 <select id="bookDetailPage" resultType="books" resultMap="booksearch">
@@ -98,12 +108,11 @@ INSERT INTO DELIVERY
 VALUES(#{de_code},#{de_lcode},#{de_id})
 </insert>
 <select id="myRegionLib" resultType="library">
-SELECT L.LB_NAME,SUM(B.BK_QUANTITY) AS LB_QUANTITY
+SELECT L.LB_NAME,SUM(B.BK_QUANTITY) AS LB_QUANTITY,L.LB_CODE
 FROM LIBRARY L INNER JOIN BOOKS B
 ON B.BK_LCODE=L.LB_CODE
 WHERE ${selectval} LIKE '%'||#{bk_search}||'%' AND LB_LOC=#{region}
-GROUP BY L.LB_NAME
-
+GROUP BY L.LB_NAME,L.LB_CODE
 </select>
 
 </mapper>
