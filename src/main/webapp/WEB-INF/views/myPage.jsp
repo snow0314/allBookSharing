@@ -404,7 +404,7 @@ $.ajax({
 	url :"reviewcnt",
 	success : function(data) {
         $('#reviewCnt').html(data).css('color', 'black').css('font-weight','bold');
-
+0
      },
 	error : function(xhr, status) {
      }
@@ -471,8 +471,9 @@ $.ajax({
         if(data[i].bk_state==1)
         $tr.append("<td id='state'>대출가능</td>");
         $tr.append("<td><button id='cart_btn'>담기</button></td>");
-        $tr.append("<td>순위</td>");
-        $tr.append("<td><button onclick='reservationCancel("+data[i].rv_num+")'>취소</button></td>");
+        $tr.append("<td><span id='rank'>rank("+data[i].rv_num+") data-isbn='"+data[i].rv_code+"'</span>순위</td>");
+        $tr.append("<td><button onclick='reservationCancel("+data[i].rv_num+")  '>취소</button></td>");
+        
         }
         
      },
@@ -482,6 +483,25 @@ $.ajax({
      }
 	
 });  //end ajax
+
+
+//예약 순위
+function rank(rv_num){
+	$.ajax({
+		type : 'get',
+		url :"reservationrank",
+		data:{rv_num:rv_num},
+		success : function(data) {
+			console.log("랭크ajax=",data);
+		},
+		error : function(xhr, status) {
+        console.log("xhr=", xhr);
+        console.log("status=", status);
+     }
+		
+	});	 //ajax End
+}
+
 
 /* //카트 담기
 $("#cart_btn").on("click",function(){
