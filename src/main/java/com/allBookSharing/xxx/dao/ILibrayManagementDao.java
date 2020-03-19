@@ -18,4 +18,6 @@ public interface ILibrayManagementDao {
 
 	boolean setLibraySchedule(Schedule schedule);
 
+	boolean scheduleDelete(Schedule schedule);
+
 }

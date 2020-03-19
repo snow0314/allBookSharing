@@ -17,7 +17,7 @@
 <script src='./plugins/fullcalendar-4.4.0/packages/interaction/main.js'></script>
 <script src='./plugins/fullcalendar-4.4.0/packages/daygrid/main.js'></script>
 
-
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
 
 <style>
 body {
@@ -107,9 +107,11 @@ body {
 		new Draggable(containerEl, {
 			itemSelector : '.fc-event',
 			eventData : function(eventEl) {
+				
 				return {
 					title : eventEl.innerText.trim()
 				}
+				
 			}
 		});
 
@@ -135,6 +137,7 @@ body {
 						end : info.endStr,
 						allDay : true
 					});
+					
 					alert('Great. Now, update your database...');
 					setLibraySchedule(info,title)
 				}
@@ -142,15 +145,17 @@ body {
 			},
 			editable : true,
 			droppable : true, // this allows things to be dropped onto the calendar
-			drop : function(arg) {
+			drop : function(arg) {//여기서 드랍 이벤트 발생, 에이작스 사용하여 저장하자
 				// is the "remove after drop" checkbox checked?
+						alert(arg);
 				if (document.getElementById('drop-remove').checked) {
 					// if so, remove the element from the "Draggable Events" list
 					arg.draggedEl.parentNode.removeChild(arg.draggedEl);
 				}
 			},
+			
 			eventLimit : true,
-			eventSources : [ {
+			eventSources : [ { //도서관 일정 가져오고 달력에 뿌려주는 부분
 				events : function(info, successCallback, failureCallback) {
 
 					$.ajax({
@@ -165,7 +170,37 @@ body {
 					}); //ajax End
 
 				}
-			} ]
+			} ], 
+			eventClick: function(info) { //이벤트 클릭시 삭제하는 부분
+			    
+			    console.log("info",info);
+				console.log("시작",info.event.start);
+				console.log("종료",info.event.end);
+				console.log("시작2", moment(info.startStr).format('YYYY-MM-DD'));
+				console.log("종료2", moment(info.endStr).format('YYYY-MM-DD'));
+			    
+				var result=confirm("삭제 하시겠습니까?");
+				
+				if(result){
+					
+					let schedule={"title":info.event.title, 
+								  "start":moment(info.event.start).format('YYYY-MM-DD'),
+								  "end":moment(info.event.end).format('YYYY-MM-DD')};
+					
+					$.ajax({
+						url : 'librayscheduledelete',
+						type : 'post',
+						dataType : 'json',
+						data : schedule,
+						success : function(data) {
+				
+						}
+					}); //ajax End
+					
+					info.event.remove();
+				}
+			    
+			  }
 
 		});
 
