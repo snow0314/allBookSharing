@@ -50,9 +50,12 @@ function listShow(data) { //모달창 안에 도서 리스트 출력 메소드
 	
 function listSelect(index){ //도서 선택시 해당 정보를 바깥에 찍어주는 메소드
 	console.log(temp[index]);
+	var str=temp[index].thumbnail;
+	str=str.substr(str-str.lastIndexOf("%"), str.lastIndexOf("%"));
+	console.log("이미지 자르기:",str);
 	
-	$("#bk_image").attr("value", temp[index].thumbnail);
-	$("#bk_image2").attr("src", temp[index].thumbnail);
+	$("#bk_image").attr("value", str);
+	$("#bk_image2").attr("src", str);
 	$("#bk_code").attr("value", temp[index].isbn);
 	$("#bk_name").attr("value", temp[index].title);
 	$("#bk_writer").attr("value", temp[index].authors);

@@ -27,6 +27,7 @@ public class MyPageController {
 	
 	
 	//마이페이지이동(내정보 불러오기)
+	@PreAuthorize("isAuthenticated()")
 	@RequestMapping(value = "/movemypage")
 	public ModelAndView moveMypage(Principal principal) {
 		mav=mm.moveMypage(principal);

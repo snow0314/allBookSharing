@@ -4,9 +4,13 @@
 <mapper namespace="com.allBookSharing.xxx.dao.IAdminManagementDao">
 
 <insert id="libraryinsert" parameterType="library">
- 	INSERT INTO LIBRARY(LB_CODE,LB_NAME,LB_ADDRESS,LB_LOC)
- 	VALUES
- 	(#{lb_code},#{lb_name},#{lb_address},#{lb_loc})
+ 	INSERT INTO LIBRARY(LB_CODE,LB_NAME,LB_POSTCODE,LB_ROADADDR,LB_BRANCHADDR,LB_DETAILADDR,LB_EXTRAADDR,LB_LOC,LB_PHONE,LB_EMAIL,
+ 						LB_LATITUDE, LB_LONGITUDE)
+ 				VALUES
+ 						   (#{lb_code}, #{lb_name}, #{lb_postcode}, #{lb_roadaddr},
+						    #{lb_branchaddr}, #{lb_detailaddr}, #{lb_extraaddr},
+						    #{lb_loc}, #{lb_phone}, #{lb_email}, #{lb_latitude},
+						    #{lb_longitude})
 </insert>
 
  <resultMap type="library" id="lib">
@@ -39,4 +43,8 @@ JOIN LIBRARY ON LA_LCODE=LB_CODE
 
 
 	
-	</mapper>
+<select id="getLibraryNextCode" resultType="Integer">
+	SELECT LB_SEQ.NEXTVAL FROM DUAL
+</select>	
+	
+</mapper>
