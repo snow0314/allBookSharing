@@ -249,7 +249,7 @@ color:black;
 	<h2>자료검색</h2>
   <ul>
    <li><a href="#">통합검색</a></li>
-   <li><a href="#">인기도서</a></li>
+   <li><a href="topten">인기도서</a></li>
    <li><a href="#">추천도서</a></li>
   </ul>
 </nav>

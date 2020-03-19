@@ -9,4 +9,6 @@ public interface ILibrayManagementDao {
 	
 	Library getLibraryInfo(int lb_code);
 
+	boolean libraryModify(Library lib);
+
 }

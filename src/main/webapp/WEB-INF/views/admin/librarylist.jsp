@@ -46,6 +46,17 @@
 </table>
 </div>
    <script>
+<<<<<<< HEAD
+   $(".test").on("click", function(){
+	  alert("하하"); 
+   });
+   
+=======
+   
+   $("tr").on("click",".test", function(){
+	     alert("하하"); 
+	   });
+>>>>>>> 24f543ba390f85029fc613801a96a30d1ddc8cba
     var example_tbl = null
     var data=${json};
     console.log(data);
@@ -62,7 +73,11 @@
 		        },
 		        { 'data': 'lb_loc' , 'targets': 0}, //
 		        { 'data': 'lb_code', 'targets': 1}, //
-		        { 'data': 'lb_name', 'targets': 2}, //
+<<<<<<< HEAD
+		        { 'data': 'lb_name', 'targets': 2, 'className' : 'test'}, //
+=======
+		        { 'data': 'lb_name', 'targets': 2,'className' : 'test'}, //
+>>>>>>> 24f543ba390f85029fc613801a96a30d1ddc8cba
 		        { 'data': 'la_id', 'targets': 3}, //
 		    
 		     ],

@@ -334,4 +334,13 @@ public class MemberManagement {
 	      }
 	      
 	   }	//찜목록 삭제 end
+	   
+
+	 //마이페이지에서 예약 취소
+	public boolean reservationcancell(int rv_num) {
+
+		boolean result=mDao.reservationcancell(rv_num);
+		
+		return result;
+	}
 }

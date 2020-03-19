@@ -31,14 +31,9 @@ public class LibrarianManagement {
 		BCryptPasswordEncoder pwdEncoder =new BCryptPasswordEncoder();
 		lia.setLa_pw(pwdEncoder.encode(lia.getLa_pw()));
 		boolean result=lDao.librarianinsert(lia);
-		boolean result2=lDao.librarianinsert2(lia);
-		boolean result3=lDao.librarianinsert3(lia);
-		
 		System.out.println("result="+result);
-		System.out.println("result2="+result2);
-		System.out.println("result3="+result3);
 		
-		if(result&&result2&&result3) {
+		if(result) {
 		mav.setViewName("admin/adminindex");
 		}
 		else {

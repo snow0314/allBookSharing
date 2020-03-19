@@ -12,6 +12,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.allBookSharing.xxx.dto.Library;
+import com.allBookSharing.xxx.service.LibrayManagement;
 import com.allBookSharing.xxx.service.librayBookManagement;
 
 @Controller
@@ -19,6 +21,9 @@ public class LibrayController {
 	
 	@Autowired
 	private librayBookManagement lmm;
+	
+	@Autowired
+	private LibrayManagement lm;
 	
 	ModelAndView mav;
 	
@@ -41,4 +46,15 @@ public class LibrayController {
 		
 		return new ModelAndView("librarian/libraryModify");
 	}
+	
+	@Secured("ROLE_LIBRARIAN")
+	@RequestMapping(value = "/libraymodify")
+	public ModelAndView libraryModify(Library lib) { //도서관 정보 수정
+		System.out.println("도서관 정보:"+lib.toString());
+		mav=lm.libraryModify(lib);
+		
+		return mav;
+	}
+	
+	
 }
