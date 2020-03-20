@@ -7,5 +7,14 @@
  select * from question
 </select>
 
+<insert id="questionWrite" parameterType="Question">
+    INSERT INTO QUESTION VALUES 
+    (qs_num.nextval,#{qs_lcode},#{qs_id},#{qs_title},#{qs_content},#{qs_show},'대기중',SYSDATE)
+    
+</insert>
+
+<select id="getQuestionDetail" resultType="Question">
+ select * from question WHERE QS_NUM=#{qs_num}
+</select>
 
 </mapper>

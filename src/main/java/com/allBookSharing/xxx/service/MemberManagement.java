@@ -47,16 +47,17 @@ public class MemberManagement {
 	   public ModelAndView showWishList(Principal principal) {
 	      mav = new ModelAndView();
 	      String id=principal.getName();
-	      
+	      String view=null;
 	      List<LikedList> likeList= mDao.showWishList(id);
 	      System.out.println(likeList.toString());
 	      if(likeList!=null)
-	      mav.setViewName("checkedlist");
+	      view="checkedlist";
 	      else
-	      mav.setViewName("redirect:/movemypage");
+	      view="redirect:/movemypage";
 	      
 	      String json=new Gson().toJson(likeList);
 	      mav.addObject("likeList",json);
+	      mav.setViewName(view);
 	      return mav;
 	   }
 
