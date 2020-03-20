@@ -5,171 +5,87 @@
 <head>
 <meta charset="UTF-8">
 <title>게시판 리스트</title>
+<!-- jquery -->
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-<script src="js/jquery.serializeObject.js"></script>
+
+<!-- date table  -->
+<link rel="stylesheet"
+	href="https://cdn.datatables.net/t/bs-3.3.6/jqc-1.12.0,dt-1.10.11/datatables.min.css" />
+<script
+	src="https://cdn.datatables.net/t/bs-3.3.6/jqc-1.12.0,dt-1.10.11/datatables.min.js"></script>
+
 <script>
-	function logout(){
-		$('#logoutFrm').submit();
-	}
-	
+	jQuery(function($) {
+		$("#foo-table").DataTable({
+			info : true,
+			"dom" : '<"top"il>t<"bottom"prf><"clear">',
+			"language" : {
+				"emptyTable" : "데이터가 없어요.",
+				"info" : "현재 _START_ - _END_ / _TOTAL_건",
+				"infoEmpty" : "데이터 없음",
+				"paginate" : {
+					"next" : "다음",
+					"previous" : "이전"
+				}
+			}
+		});
+	});
 </script>
+
 <style>
-html, body {
-	height: 100%;
-	margin: 0
+#btn{
+margin: 0 43%;
 }
 
-#articleView_layer {
-	display: none;
-	position: fixed;
-	position: absolute;
-	top: 0;
-	left: 0;
-	width: 100%;
-	height: 100%
-}
-
-#articleView_layer.open {
-	display: block;
-	color: red
-}
-
-#articleView_layer #bg_layer {
-	position: absolute;
-	top: 0;
-	left: 0;
-	width: 100%;
-	height: 100%;
-	background: #000;
-	opacity: .5;
-	filter: alpha(opacity = 50);
-	z-index: 100
-}
-
-#contents_layer {
-	position: absolute;
-	top: 40%;
-	left: 40%;
-	width: 400px;
-	height: 400px;
-	margin: -150px 0 0 -194px;
-	padding: 28px 28px 0 28px;
-	border: 2px solid #555;
-	background: #fff;
-	font-size: 12px;
-	z-index: 200;
-	color: #767676;
-	line-height: normal;
-	white-space: normal;
-	overflow: scroll
-}
 </style>
+
 </head>
 <body>
+
+	<jsp:include page="header2.jsp" />
 	
-
-
-	<h3>회원정보</h3>
-	<table id="one_table">
-		<tr height="30">
-			<td width="80" bgcolor="pink" align="center">id</td>
-			<td>${mb.m_id }</td>
-		</tr>
-		<tr height="30">
-			<td width="80" bgcolor="pink" align="center">이름</td>
-			<td>${mb.m_name }</td>
-		</tr>
-		
-		
-	</table>
-
-	<table style="margin: auto; padding: 50px">
-		<tr bgcolor="skyblue" height="30">
-			<th width="100">글번호</th>
-			<th width="100">제목</th>
-			<th width="100">작성자</th>
-			<th width="100">공개여부</th>
-			<th width="100">상태</th>
-			<th width="100">작성일</th>
-			
-		</tr>
-		<c:forEach var="question" items="${qList}">
-			<tr height="25">
-				<td>${question.qs_num}</td>
-				<!-- href="#" 페이지 맨위로 이동뒤 이벤트 발생 
-			     href="#"; 페이지 현재위치에서 이벤트 발생-->
-				<td><a href="#" onclick="articleView(${question.qs_num})">${question.qs_title}</a></td>
-				<td align="center">${question.qs_id}</td>
-				<td align="center">${question.qs_show}</td>
-				<td align="center">${question.qs_state}</td>
-				<td align="center">${question.qs_date}</td>
-			</tr>
-		</c:forEach>
-	</table>
-	<!-- 글쓰기 -->
-	<form action="writefrm">
-		<button>글쓰기</button>
-	</form>
-	<!-- 페이징 출력 -->
-	<div align="center" id="page">${paging}</div>
-
-
-	<!-- 모달 박스 -->
-	<div id="articleView_layer">
-		<div id="bg_layer"></div>
-		<div id="contents_layer"></div>
-	</div>
-
-	<form action="test">
-		컬럼명<input type="text" name="cName"><br> 검색 <input
-			type="text" name="search" />
-		<button>컬럼 검색</button>
-	</form>
-
-
-	<script>
-	function articleView(qs_num){
-		$("#articleView_layer").addClass('open');	//모달박스  나타내기
-		$.ajax({
-			type:'get',
-			url:'contents',
-			data:{qNum:qs_num},
-			dataType:'html',
-			success:function(data){
-				
-				$("#contents_layer").html(data);
-			},
-			error:function(error){
-				console.log(error);
-			}
-			
-		})//ajax End
-	}//function End
 	
-	//모달박스 해제
-	var $layerWindow=$("#articleView_layer");
-	$layerWindow.find('#bg_layer').on('mousedown',function(event){
-		console.log(event);
-		$layerWindow.removeClass('open');
-	});
-	//esc 입력시 모달 해제
-	$(document).keydown(function(event){
-		console.log(event);
-		if(event.keyCode!=27)
-			return;
-		else if($layerWindow.hasClass('open'))
-			$layerWindow.removeClass('open');
-	});
-	$(function(){
-		var result='${qNum}';
-		if(result===''){
-			return;
-		}
-		if(parseInt(result)>0){
-			alert('${qNum}'+'번 글을 삭제하였다');
-		}
-	});
+   <div style="width:80%;margin:0 10%; ">
+<table id="foo-table" class="table table-bordered" >
+      <thead>
+         <tr>
+         <th>No</th>
+         <th>글번호</th>
+         <th>제목</th>
+         <th>글쓴이</th>
+         <th>공개여부</th>
+         <th>상태</th>
+         <th>작성일</th>
+         </tr>
+      </thead>
+      <tbody id='tb'>
+      </tbody>
+    </table>
+
+	<form action="movequestionwrite">
+<input type="submit" value="글쓰기" id="btn">
+	</form>
+      </div>
+
+<script>
+let list=${qList};
+console.log(list);
+
+for(let i=0;i<list.length;i++){
+   var $tr= $("<tr>").appendTo($("#tb"));
+   $tr.append("<td>"+(i+1)+"</td>");
+   $tr.append("<td>"+list[i].qs_num+"</td>");
+   $tr.append("<td><a href='#'>"+list[i].qs_title+"</a></td>");
+   $tr.append("<td>"+list[i].qs_id+"</td>");
+   $tr.append("<td>"+list[i].qs_show+"</td>");
+   $tr.append("<td>"+list[i].qs_state+"</td>");
+   $tr.append("<td>"+list[i].qs_date+"</td>");
+   
+}
 </script>
+
+
+
 </body>
 </html>
