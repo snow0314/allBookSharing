@@ -21,7 +21,15 @@
     <result property="bk_loc" column="LB_LOC"/>
     <result property="bk_state" column="BK_STATE"/>
  </resultMap>
-
+ <resultMap type="loan" id="popularlist">
+ 	<result property="bk_name" column="BK_NAME" />
+ 	<result property="bk_image" column="BK_IMAGE" />
+ 	<result property="bk_writer" column="BK_WRITER" />
+ 	<result property="bk_publisher" column="BK_PUBLISHER" />
+ 	<result property="bk_publicday" column="BK_PUBLICDAY" />
+ 	<result property="bk_code" column="BK_CODE" />
+ 	<result property="bd_count" column="COUNT" />
+ </resultMap>
  
 <select id="bookSearch"  resultType="books" resultMap="booksearch">
    SELECT L.LB_NAME,B.BK_NAME,B.BK_IMAGE,B.BK_WRITER,BK_PUBLISHER,BK_PUBLICDAY,BK_CODE,L.LB_CODE
@@ -46,6 +54,14 @@
    WHERE ${selectval} LIKE '%'||#{bk_search}||'%' AND L.LB_LOC=#{bk_loc}
 </select>
 
+<select id="topDetailPage" resultType="books" resultMap="booksearch">
+   SELECT B.BK_NAME,B.BK_IMAGE,B.BK_WRITER,B.BK_PUBLISHER,B.BK_PUBLICDAY,
+          B.BK_CODE,A.BG_CATE,A.SG_CATE,B.BK_INTRODUCTION
+   FROM BOOKS B
+   JOIN ALLGROUP A
+   ON B.BK_SG_NUM =A.SG_BG_NUM
+   WHERE B.BK_CODE=#{bk_code} 
+</select>
 
 <select id="bookDetailPage" resultType="books" resultMap="booksearch">
    SELECT L.LB_NAME,B.BK_NAME,B.BK_IMAGE,B.BK_WRITER,B.BK_PUBLISHER,B.BK_PUBLICDAY,
@@ -113,6 +129,20 @@ FROM LIBRARY L INNER JOIN BOOKS B
 ON B.BK_LCODE=L.LB_CODE
 WHERE ${selectval} LIKE '%'||#{bk_search}||'%' AND LB_LOC=#{region}
 GROUP BY L.LB_NAME,L.LB_CODE
+</select>
+<select id="bestList"  resultType="loan" resultMap="popularlist">
+  SELECT B.BK_NAME,B.BK_IMAGE,B.BK_WRITER,BK_PUBLISHER,BK_PUBLICDAY,BK_CODE,SUM(BD_COUNT) AS COUNT
+	FROM BOOKS B INNER JOIN BORROWDETAIL
+	ON BORROWDETAIL.BD_BCODE=B.BK_CODE
+	GROUP BY B.BK_NAME,B.BK_IMAGE,B.BK_WRITER,BK_PUBLISHER,BK_PUBLICDAY,BK_CODE,BD_BCODE
+	ORDER BY COUNT DESC
+</select>
+<select id="mainPageTopTen"  resultType="loan" resultMap="popularlist">
+    SELECT B.BK_NAME,B.BK_IMAGE,B.BK_WRITER,BK_PUBLISHER,BK_PUBLICDAY,BK_CODE,SUM(BD_COUNT) AS COUNT
+	FROM BOOKS B INNER JOIN BORROWDETAIL
+	ON BORROWDETAIL.BD_BCODE=B.BK_CODE
+	GROUP BY B.BK_NAME,B.BK_IMAGE,B.BK_WRITER,BK_PUBLISHER,BK_PUBLICDAY,BK_CODE,BD_BCODE
+	ORDER BY COUNT DESC
 </select>
 
 </mapper>

@@ -94,6 +94,12 @@
                 margin-top:-30px;
                 margin-bottom: 30px;
             }
+            #popular{
+            column-count: 2;
+  			column-gap: 40px;
+  			column-rule-style: solid;
+  			column-rule-width: 1px
+            }
             
             </style>
 	</head>
@@ -101,7 +107,7 @@
        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script> 
        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script> 
        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-       
+    
 
 
 
@@ -406,6 +412,7 @@
 			</div>
 
 	</body>
+	<script src="http://code.jquery.com/jquery-1.4.4.min.js"></script>
 	<script type="text/javascript">
 		function logoutGo() {
 			/* $.ajax({
@@ -422,6 +429,26 @@
 			logoutform.submit();
 			
 		}
+		$(document).ready(function(){
+			$.ajax({
+				type:'get',
+		    	url:'mainpagetopten',
+		    	dataType:"json",
+		    	success:function(result){
+		    		console.log(result);
+		    		var str="";	
+			    	$.each(result,function(index,item){
+			    		str+="<image src="+item.bk_image+">";
+			    	});
+			    	$('#popular').append(str);
+		    	},
+		    	error:function(){ 
+			    	alert("실패");
+			 }
+			})//ajax End
+				
+			});
+		
 	
 	</script>
 	

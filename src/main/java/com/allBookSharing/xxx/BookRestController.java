@@ -18,6 +18,7 @@ import com.allBookSharing.xxx.dto.Books;
 import com.allBookSharing.xxx.dto.DeliveryReq;
 import com.allBookSharing.xxx.dto.Library;
 import com.allBookSharing.xxx.dto.Liked;
+import com.allBookSharing.xxx.dto.Loan;
 import com.allBookSharing.xxx.dto.Member;
 import com.allBookSharing.xxx.dto.Reservation;
 import com.allBookSharing.xxx.service.BookManagement;
@@ -26,6 +27,7 @@ import com.allBookSharing.xxx.service.MemberManagement;
 @RestController
 
 public class BookRestController {
+	private static final String Loan = null;
 	@Autowired
 	private BookManagement bm;
 	ModelAndView mav;
@@ -165,6 +167,13 @@ public class BookRestController {
 		List<Books> jysList=bm.jiyuckSearch(bk_search,selectval,bk_loc);
 		System.out.println("jysList="+jysList);
 		return jysList;
+	}
+	
+	@RequestMapping(value="/mainpagetopten",produces="application/json;charset=UTF-8")
+	public List<Loan> mainPageTopTen(Loan lo) {
+		List<Loan> ttList=bm.mainPageTopTen(lo);
+		System.out.println("ttList="+ttList);
+		return ttList;
 	}
 	
 	

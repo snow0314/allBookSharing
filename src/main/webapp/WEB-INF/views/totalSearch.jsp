@@ -6,6 +6,9 @@
 <html>
 <head>
 <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1">
+<meta id="_csrf" name="_csrf" content="${_csrf.token}" />
+<meta id="_csrf_header" name="_csrf_header"
+	content="${_csrf.headerName}" />
 <title>통합검색</title>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js" type="text/javascript"></script>
 <style>
@@ -249,8 +252,8 @@ color:black;
 	<h2>자료검색</h2>
   <ul>
    <li><a href="#">통합검색</a></li>
-   <li><a href="topten">인기도서</a></li>
-   <li><a href="#">추천도서</a></li>
+   <li><a href=#; onclick="getPage('besttopten')">인기도서</a></li>
+   <li><a href=#; onclick='getPage(recommend)'>추천도서</a></li>
   </ul>
 </nav>
 
@@ -268,8 +271,6 @@ color:black;
 	
 	<div class="tab"></div>
 	<div id="contents"></div>
-
-	
 </main>
 
 <sec:authorize access="isAuthenticated()">
@@ -283,6 +284,7 @@ color:black;
 <!--nav-->
 <!-- search -->
 <!-- searchResult -->
+<script src="js/ajaxCsrf.js"></script>
 <script>
 
 function bookList(){
@@ -486,7 +488,19 @@ function myregionSearch(){//내 지역
 	
 }
 
+function getPage(url) {
 
+$.ajax({
+	url:url,
+	type:'get',
+	success:function(page){
+		$("#totalsearchlist").html(page);
+	},
+	error:function(){
+		alert("실패");
+	}
+})
+}  
 
 
 </script>

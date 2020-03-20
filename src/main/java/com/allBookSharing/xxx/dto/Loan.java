@@ -14,16 +14,22 @@ import lombok.experimental.Accessors;
 @Accessors(chain=true)
 public class Loan {
 
-		int bo_num;					//대출번호
-		String lb_name;				//도서관이름
-		String bk_name;				//책이름
+
+		int bo_num;
+		String bk_name;
+		String bk_image;
+		String bk_writer;
+		String bk_code;//isbn코드
+		int bd_state_num;//대출상태
+		int bd_count;//대출권수
 		@JsonFormat(pattern = "yyyy-MM-dd")
 		Date bd_date;				//대출일
 		@JsonFormat(pattern = "yyyy-MM-dd")
 		Date bd_return_date;		//반납예정일
 		@JsonFormat(pattern = "yyyy-MM-dd")
-		Date bd_real_return_date;	//실제반납일
-		int bd_return_extension;	//연장여부
-		int arrearsday;				//연체일수
-		
+		Date bd_real_return_date;
+		int bd_return_extension;
+		int arrearsday;
+		String bk_publisher;
+		String bk_publicday;
 }
