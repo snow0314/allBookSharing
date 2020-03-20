@@ -125,7 +125,9 @@ public class MemberManagement {
 		System.out.println("id="+id);
 		
 		//누적 연체일수
-		int arrearsDay=mDao.getArrearsDay(id)*-1;
+		int arrearsDay=0;
+		arrearsDay=mDao.getArrearsDay(id)*-1;
+		
 		
 		System.out.println("연체 일수 ="+arrearsDay);
 		
@@ -344,7 +346,7 @@ public class MemberManagement {
 		
 		return result;
 	}
-	
+
 	//희망도서 신청에서 지역 정보 가져오는 메소드
 	public List<Library> getLocInfo() {
 		List<Library> list=mDao.getLocInfo();
@@ -354,5 +356,12 @@ public class MemberManagement {
 	public List<Library> getLocLibray(String loc) {
 		List<Library> list=mDao.getLocLibray(loc);
 		return list;
+
+	//예약 순위
+	public int getreservationRank(int rv_num) {
+
+		int rank=mDao.getreservationRank(rv_num);
+		
+		return rank;
 	}
 }

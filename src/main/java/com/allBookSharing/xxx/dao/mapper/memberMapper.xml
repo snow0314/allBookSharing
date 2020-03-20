@@ -63,9 +63,10 @@
 	</resultMap>
 	<select id="getReservationlist" resultType="Reservation"
 		resultMap="resrv">
+		
 		SELECT * FROM BOOKS
-		JOIN RESERVATION ON BOOKS.BK_CODE=reservation.rt_code
-		JOIN LIBRARY ON library.lb_code=reservation.rt_lcode WHERE RT_ID=#{id}
+      JOIN RESERVATION ON BOOKS.BK_CODE=reservation.rt_code and books.bk_lcode=reservation.rt_lcode
+      JOIN LIBRARY ON library.lb_code=reservation.rt_lcode WHERE RT_ID=#{id}
 
 	</select>
 

@@ -60,4 +60,13 @@ public class LibrayManagement {
 		
 	}
 
+	public String scheduleDelete(Schedule schedule) {
+		boolean result=lDao.scheduleDelete(schedule);
+		if(result) {
+			return "성공";
+		}else {
+			return "실패";
+		}
+	}
+
 }

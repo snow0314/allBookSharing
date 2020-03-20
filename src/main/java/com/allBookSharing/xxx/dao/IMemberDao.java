@@ -41,9 +41,9 @@ public interface IMemberDao {
 	int getArrearsDay(String id);
 	
 	@Select(
-			"SELECT bo_num,bk_name,bd_date,bd_return_date,bd_return_extension FROM BORROWLIST \r\n" + 
-			"JOIN BORROWDETAIL ON BO_NUM=BD_BO_NUM \r\n" + 
-			"JOIN BOOKS ON BD_BCODE=BK_CODE WHERE BO_ID=#{id}")
+			"SELECT bo_num,bk_name,bk_lcode,bd_date,bd_return_date,bd_return_extension,bk_image FROM BORROWLIST \r\n" + 
+			"JOIN BORROWDETAIL ON BO_NUM=BD_BO_NUM\r\n" + 
+			"JOIN BOOKS ON books.bk_code=borrowdetail.bd_bcode and bo_lcode=bk_lcode  WHERE BO_ID=#{id}")
 	List<Loan> getLoanList(String id);
 	
 	
@@ -104,6 +104,9 @@ public interface IMemberDao {
 	//희망도서 신청 지역정보값에 의한 도서관 정보
 	@Select("SELECT * FROM LIBRARY WHERE LB_LOC=#{loc}")
 	List<Library> getLocLibray(String loc);
+	
+	@Select("")
+	int getreservationRank(int rv_num);
 	
 	
 	
