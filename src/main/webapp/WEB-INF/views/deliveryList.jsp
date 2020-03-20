@@ -12,7 +12,7 @@
         jQuery(function($){
             $("#foo-table").DataTable({
             	info: true,
-             "dom": '<"top"il>t<"bottom"prf><"clear">',
+             "dom": '<<"top"il>t<"bottom"prf>><"clear">',
              "language":{
               "emptyTable": "데이터가 없어요.",
               "info": "현재 _START_ - _END_ / _TOTAL_건",
@@ -37,8 +37,8 @@
 <body>
 <jsp:include page="header2.jsp" />
 
-		<div>
-<table id="foo-table" class="table table-bordered" style="width:100%">
+		<div style="width:80%;">
+<table id="foo-table" class="table table-bordered" >
 		<thead>
 			<tr>
 			<th>No</th>
