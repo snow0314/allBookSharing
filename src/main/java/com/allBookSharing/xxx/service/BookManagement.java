@@ -11,6 +11,7 @@ import com.allBookSharing.xxx.dto.Books;
 import com.allBookSharing.xxx.dto.DeliveryReq;
 import com.allBookSharing.xxx.dto.Library;
 import com.allBookSharing.xxx.dto.Liked;
+import com.allBookSharing.xxx.dto.Loan;
 import com.allBookSharing.xxx.dto.Reservation;
 import com.allBookSharing.xxx.dto.Review;
 
@@ -121,6 +122,41 @@ public class BookManagement {
 	public List<Books> jiyuckSearch(String bk_search, String selectval, String bk_loc) {
 		List<Books> jiyList=bDao.jiyuckSearch(bk_search,selectval,bk_loc);
 		return jiyList;
+	}
+
+	public ModelAndView bestTopTen(Loan l) {
+		mav=new ModelAndView();
+		String view=null;
+		
+		List<Loan> topList=bDao.bestList(l);
+		mav.addObject("topList", topList);
+		
+		view="popular";
+		mav.setViewName(view);
+		
+		return mav;
+		
+	}
+
+	public ModelAndView topDetailPage(String bk_code) {
+		mav=new ModelAndView();
+		String view=null;
+		Books books=bDao.topDetailPage(bk_code);
+		mav.addObject("books",books);
+		
+		List<Review> review=bDao.bookReviewList(bk_code);
+		mav.addObject("review", review);
+		
+		view="topDetailPage";
+		mav.setViewName(view);
+		
+		return mav;
+	}
+
+	
+	public List<Loan> mainPageTopTen(Loan lo) {
+		List<Loan> ttList=bDao.mainPageTopTen(lo);
+		return ttList;
 	}
 
 

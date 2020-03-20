@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.allBookSharing.xxx.service.BookManagement;
 import org.springframework.web.servlet.ModelAndView;
 import com.allBookSharing.xxx.dto.Books;
+import com.allBookSharing.xxx.dto.Loan;
 import com.allBookSharing.xxx.service.librayBookManagement;
 
 @Controller
@@ -39,7 +40,6 @@ public class librayBookController {
 	 } 
 
 	@GetMapping(value="/bookdetailpage")
-
 	public ModelAndView bookDetailPage(String bk_code,String bk_lcode) {
 		System.out.println("bk_lcode="+bk_lcode);
 		mav=bm.bookDetailPage(bk_code,bk_lcode);
@@ -53,6 +53,19 @@ public class librayBookController {
 
 		mav=lmm.bookInsert(book);
 		
+		return mav;
+	}
+	
+	@GetMapping(value="/besttopten")
+	public ModelAndView bestTopTen(Loan l) {
+		mav=bm.bestTopTen(l);
+		return mav;
+	}
+	
+	@GetMapping(value="/topdetailpage")
+	public ModelAndView topDetailPage(String bk_code) {
+		mav=bm.topDetailPage(bk_code);
+
 		return mav;
 	}
 	

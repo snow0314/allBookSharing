@@ -11,6 +11,7 @@ import com.allBookSharing.xxx.dto.Books;
 import com.allBookSharing.xxx.dto.DeliveryReq;
 import com.allBookSharing.xxx.dto.Library;
 import com.allBookSharing.xxx.dto.Liked;
+import com.allBookSharing.xxx.dto.Loan;
 import com.allBookSharing.xxx.dto.Reservation;
 import com.allBookSharing.xxx.dto.Review;
 @Service
@@ -40,6 +41,10 @@ public interface IBookDao {
 	List<Library> myRegionLib(@Param("bk_search")String bk_search, @Param("selectval")String selectval, @Param("region")String region);
 	List<Books> regionLibSearch(@Param("bk_search")String bk_search, @Param("selectval")String selectval, @Param("bk_lcode")Integer bk_lcode);
 	List<Books> jiyuckSearch(@Param("bk_search")String bk_search, @Param("selectval")String selectval,@Param("bk_loc") String bk_loc);
+	
+	List<Loan> bestList(Loan l);
+	Books topDetailPage(String bk_code);
+	List<Loan> mainPageTopTen(Loan lo);
 	
 	
 	

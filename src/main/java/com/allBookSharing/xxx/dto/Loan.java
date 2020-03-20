@@ -16,6 +16,11 @@ public class Loan {
 
 		int bo_num;
 		String bk_name;
+		String bk_image;
+		String bk_writer;
+		String bk_code;//isbn코드
+		int bd_state_num;//대출상태
+		int bd_count;//대출권수
 		@JsonFormat(pattern = "yyyy-MM-dd")
 		Date bd_date;
 		@JsonFormat(pattern = "yyyy-MM-dd")
@@ -24,5 +29,6 @@ public class Loan {
 		Date bd_real_return_date;
 		int bd_return_extension;
 		int arrearsday;
-		
+		String bk_publisher;
+		String bk_publicday;
 }
