@@ -22,6 +22,11 @@
     <!-- 차트 링크 -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
  
+ 
+ <!-- 폰트어썸 -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css" />
+  <!-- ... -->
+ 
 <style>
 
 .table_box {
@@ -32,7 +37,7 @@
 
 #myProfile {
 	float: left;
-	margin-right: 250px;
+	margin-right: 150px;
 }
 
 #myProfile_rest {
@@ -72,8 +77,9 @@ width: 400px;
 .container{
 	margin-top: 50px;
 }
-</style>
 
+ 
+</style>
 
 
 
@@ -86,7 +92,7 @@ width: 400px;
 	<div class="container">
 		<div id='topDiv'>
 
-			<div id="myProfile">
+			<div id="myProfile" >
 			<form action="modifyprofile" method="post">
 				<table class="table table-striped" >
 					<tr>
@@ -131,8 +137,8 @@ width: 400px;
 			</form>
 			</div>
 
-			<div id="myProfile_rest" style="height:300px;">
-				<table id="table_rest" class="table table-striped" style="width:446px;">
+			<div id="myProfile_rest" style="height:280px;">
+				<table id="table_rest" class="table table-striped" style="width:478px;">
 					<tr>
 						<td class="table_box">대출건수 <span id="borrowCnt"></span>회</td>
 						<td class="table_box">연체건수 <span id="arrearsCnt"></span>회</td>
@@ -148,7 +154,7 @@ width: 400px;
 				</table>
 				
         
-                <div class="card">
+                <div class="card" style="width:480px;">
                 
                     <canvas id="myChart1"></canvas> 
                     
@@ -166,14 +172,19 @@ width: 400px;
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script> <!-- 차트 -->
 
 		<div class="container">
-			<h3>대출현황</h3>
+		
+		<div style="display: flex;">
+			<h3>대출현황</h3><button id="loan_btn" style="height:"><i class="fas fa-angle-up"></i></button>
+		</div>
+		
+			<div id="loanList">
 			<table class="table table-striped">
 			<thead>
 				<tr>
-					<td style="width: 50px;">순번</td>
+					<td style="width: 80px; text-align: center;">순번</td>
 					<td style="width: 400px;">자료명</td>
-					<td style="width: 200px;">대출일</td>
-					<td style="width: 200px;">반납예정일</td>
+					<td style="width: 160px;">대출일</td>
+					<td style="width: 160px;">반납예정일</td>
 					<td style="width: 50px;">연장</td>
 				</tr>
 				</thead>
@@ -181,19 +192,24 @@ width: 400px;
 				<tbody id="borrow">
 				</tbody>
 			</table>
+			</div>
 		</div>
 		
 		<div class="container">
-			<h3>연체목록</h3>
+			
+<div style="display: flex;">
+			<h3>연체목록</h3><button id="arrears_btn" style="height:"><i class="fas fa-angle-up"></i></button>
+		</div>
+		<div id="arrearsList">
 			<table class="table table-striped">
 			<thead>
 				<tr>
-					<td style="width: 50px;">순번</td>
+					<td style="width: 80px; text-align: center;">순번</td>
 					<td style="width: 400px;">자료명</td>
 					<td style="width: 200px;">대출일</td>
-					<td style="width: 200px;">반납예정일</td>
-					<td style="width: 200px;">반납일</td>
-					<td style="width: 50px;">연체일수</td>
+					<td style="width: 160px;">반납예정일</td>
+					<td style="width: 160px;">반납일</td>
+					<td style="width: 120px;">연체일수</td>
 				</tr>
 				</thead>
 				
@@ -202,18 +218,24 @@ width: 400px;
 				</tbody>
 			</table>
 		</div>
+		</div>
 		
 		<div class="container">
-			<h3>현재 예약 목록</h3>
+			
+<div style="display: flex;">
+			<h3>현재 예약 목록</h3><button id="res_btn" style="height:"><i class="fas fa-angle-up"></i></button>
+		</div>
+		
+			<div id="resList">
 			<table class="table table-striped">
 			<thead>
 				<tr>
-					<td style="width: 80px;">예약번호</td>
-					<td style="width: 180px;">도서관 이름</td>
-					<td style="width: 180px;">자료명</td>
+					<td style="width: 80px; text-align: center;">예약번호</td>
+					<td style="width: 120px;">도서관 이름</td>
+					<td style="width: 210px;">자료명</td>
 					<td style="width: 150px;">예약일자</td>
 					<td style="width: 100px;">상태</td>
-					<td style="width: 50px;">장바구니</td>
+					<td style="width: 80px;">장바구니</td>
 					<td style="width: 50px;">순위</td>
 					<td style="width: 50px;">취소</td>
 				</tr>
@@ -222,12 +244,62 @@ width: 400px;
 				<tbody id="reservation">
 				</tbody>
 			</table>
+			</div>
 		</div>
 	</div>
 
 <script>
 
 
+//대출현황 버튼
+$("#loan_btn").click(function(){
+	if($("#loan_btn").html()=='<i class="fas fa-angle-down"></i>'){
+	$("#loanList").css("display","block");
+	$("#loan_btn").html("<i class='fas fa-angle-up'></i>");
+	return;
+	}
+	
+	if($("#loan_btn").html()=='<i class="fas fa-angle-up"></i>'){		
+	$("#loanList").css("display","none");
+	$("#loan_btn").html("<i class='fas fa-angle-down'></i>");
+	return;
+	}
+	
+});
+
+
+//연체목록 버튼
+$("#arrears_btn").click(function(){
+	if($("#arrears_btn").html()=='<i class="fas fa-angle-down"></i>'){
+	$("#arrearsList").css("display","block");
+	$("#arrears_btn").html("<i class='fas fa-angle-up'></i>");
+	return;
+	}
+	
+	if($("#arrears_btn").html()=='<i class="fas fa-angle-up"></i>'){		
+	$("#arrearsList").css("display","none");
+	$("#arrears_btn").html("<i class='fas fa-angle-down'></i>");
+	return;
+	}
+	
+});
+
+
+//현재 예약 목록 버튼 
+$("#res_btn").click(function(){
+	if($("#res_btn").html()=='<i class="fas fa-angle-down"></i>'){
+	$("#resList").css("display","block");
+	$("#res_btn").html("<i class='fas fa-angle-up'></i>");
+	return;
+	}
+	
+	if($("#res_btn").html()=='<i class="fas fa-angle-up"></i>'){		
+	$("#resList").css("display","none");
+	$("#res_btn").html("<i class='fas fa-angle-down'></i>");
+	return;
+	}
+	
+});
 
 //회원탈퇴 버튼 클릭시 컨펌창
 $("#btn2").on("click",function(){
@@ -332,7 +404,7 @@ $.ajax({
 	url :"reviewcnt",
 	success : function(data) {
         $('#reviewCnt').html(data).css('color', 'black').css('font-weight','bold');
-
+0
      },
 	error : function(xhr, status) {
      }
@@ -362,7 +434,7 @@ $.ajax({
         for(var i=0;i<data.length;i++){   
         	console.log(data[i].bo_num);
         var $tr= $("<tr>").appendTo($("#arrears"));
-        $tr.append("<td>"+(i+1)+"</td>");
+        $tr.append("<td style='text-align: center;'>"+(i+1)+"</td>");
         $tr.append("<td>"+data[i].bk_name+"</td>");
         $tr.append("<td>"+data[i].bd_date+"</td>");
         $tr.append("<td>"+data[i].bd_return_date+"</td>");
@@ -390,17 +462,18 @@ $.ajax({
         for(var i=0;i<data.length;i++){   
         	//console.log(data[i].bo_num);
         var $tr= $("<tr>").appendTo($("#reservation"));
-        $tr.append("<td>"+data[i].rv_num+"</td>");
+        $tr.append("<td style='text-align: center;'>"+data[i].rv_num+"</td>");
         $tr.append("<td>"+data[i].lb_name+"</td>");
         $tr.append("<td>"+data[i].bk_name+"</td>");
         $tr.append("<td>"+data[i].rv_date+"</td>");
         if(data[i].bk_state==0)
-        $tr.append("<td>대출불가</td>");
+        $tr.append("<td id='state'>대출불가</td>");
         if(data[i].bk_state==1)
-        $tr.append("<td>대출가능</td>");
-        $tr.append("<td><button>담기</button></td>");
-        $tr.append("<td>순위</td>");
-        $tr.append("<td><button onclick='reservationCancel("+data[i].rv_lcode+","+data[i].rv_code+")'>취소</button></td>");
+        $tr.append("<td id='state'>대출가능</td>");
+        $tr.append("<td><button id='cart_btn'>담기</button></td>");
+        $tr.append("<td><span id='rank'>rank("+data[i].rv_num+") data-isbn='"+data[i].rv_code+"'</span>순위</td>");
+        $tr.append("<td><button onclick='reservationCancel("+data[i].rv_num+")  '>취소</button></td>");
+        
         }
         
      },
@@ -412,16 +485,43 @@ $.ajax({
 });  //end ajax
 
 
+//예약 순위
+function rank(rv_num){
+	$.ajax({
+		type : 'get',
+		url :"reservationrank",
+		data:{rv_num:rv_num},
+		success : function(data) {
+			console.log("랭크ajax=",data);
+		},
+		error : function(xhr, status) {
+        console.log("xhr=", xhr);
+        console.log("status=", status);
+     }
+		
+	});	 //ajax End
+}
+
+
+/* //카트 담기
+$("#cart_btn").on("click",function(){
+        if($("#state").html()=="대출불가"){
+        	alert("대출 불가 상품입니다.");
+        	return;
+        }
+        else if($("#state").html()=="대출가능"){
+        	
+        }
+}); */
 
 //예약 취소하기
-function reservationCancel(rv_code,rv_lcode){
+function reservationCancel(rv_num){
 	
-	console.log("rv_code",rv_code);
-	console.log("rv_lcode",rv_lcode);
-/* 	 $.ajax({
+	console.log("rv_num",rv_num);
+ 	 $.ajax({
 		type : 'get',
-		url :"reservationcancel",
-		data:{rv_code:rv_code,rv_lcode:rv_lcode},
+		url :"reservationcancell",
+		data:{rv_num:rv_num},
 		success : function(data) {
 			console.log("예약취소ajax=",data);
 				location.reload();
@@ -431,7 +531,7 @@ function reservationCancel(rv_code,rv_lcode){
         console.log("status=", status);
      }
 		
-	});  */	 //ajax End
+	});	 //ajax End
 	
 }; //reservationCancel end
 
@@ -447,11 +547,14 @@ $.ajax({
 	for(var i=0;i<data.length;i++){   
     	console.log(data[i].bo_num);
     var $tr= $("<tr>").appendTo($("#borrow"));
-    $tr.append("<td>"+(i+1)+"</td>");
+    $tr.append("<td style='text-align: center;'>"+(i+1)+"</td>");
     $tr.append("<td>"+data[i].bk_name+"</td>");
     $tr.append("<td>"+data[i].bd_date+"</td>");
     $tr.append("<td>"+data[i].bd_return_date+"</td>");
+    if(data[i].bd_return_extension==0)
     $tr.append("<td><button onclick='extend("+data[i].bo_num+")'>연장하기</button></td>");
+    if(data[i].bd_return_extension==1)
+    $tr.append("<td><button onclick='extend("+data[i].bo_num+")' disabled >연장하기</button></td>");
     }
      },
 	error : function(xhr, status) {
@@ -471,12 +574,11 @@ function extend(bd_bo_num){
 		type : 'get',
 		url :"loanextend",
 		data:{bd_bo_num:bd_bo_num},
+		async: false,
 		success : function(data) {
-			console.log("반납연장ajax=",data);
 				location.reload();
-			if(data==1){
-				$("button").attr("disabled",true);
-			}
+			console.log("반납연장ajax=",data);
+			
 			
 		},
 		error : function(xhr, status) {

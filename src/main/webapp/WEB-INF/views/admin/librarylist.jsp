@@ -1,48 +1,105 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-    
+	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<meta id="_csrf" name="_csrf" content="${_csrf.token}" />
 <title>Insert title here</title>
-<link rel="stylesheet" type="text/css"
-	href="https://cdn.datatables.net/1.10.20/css/jquery.dataTables.css">
-<link rel="stylesheet" type="text/css"
-	href="https://cdn.datatables.net/buttons/1.6.1/css/buttons.dataTables.min.css">
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+<!-- jQuery library -->
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-<script type="text/javascript" charset="utf-8"
-	src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.js"></script>
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+<!-- Popper JS -->
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+
+<!-- Latest compiled JavaScript -->
 <script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+<!-- 페이징 처리 플러그인 -->
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/paginationjs/2.1.4/pagination.min.js"></script>
+<!-- 페이징 처리 플러그인 CSS -->
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/paginationjs/2.1.4/pagination.css" />
 
+<!-- 폰트 어썸 -->
+
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css" />
+<!-- toastr CDN -->
+<link rel="stylesheet"
+   href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" />
 <script
-	src="https://cdn.datatables.net/buttons/1.6.1/js/dataTables.buttons.min.js"></script>
+   src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>	
 	
-	<!-- 데이터 테이블 select -->
-<link type="text/css" href="https://cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css" rel="stylesheet" />
-<link type="text/css" href="https://cdn.datatables.net/select/1.3.1/css/select.dataTables.min.css" rel="stylesheet" />
-<script
-	src="https://cdn.datatables.net/select/1.2.1/js/dataTables.select.min.js"></script>
+	
+<style type="text/css">
+#pagination {
+	text-align: center;
+}
+</style>
+
 </head>
-
 <body>
-<%-- <jsp:include page="adminheader.jsp" /> --%>
-  <div class="container p-3 my-3 border">
-	<table id="example" class="display" style="width:100%">
-	<thead>
-		<tr>
-					<th>도서관 지역</th>
-					<th>도서관 코드</th>
-					<th>도서관 이름</th>
-					<th>사서 아이디</th>
-		</tr>
-	</thead>
+	<div class="container p-3 my-3 border" style="text-align: center">
+		<h3>사서 목록</h3>
+	</div>
+	<div class="container p-3 my-3 border">
+
+		<table id="contents" class="table table-bordered table-hover">
+
+			<tr>
+				<th>도서관 코드</th>
+				<th>도서관 이름</th>
+				<th>도서관 지역</th>
+				<th>사서 아이디</th>
+				<th>삭 제</th>
+			</tr>
+		</table>
+		<div id="pagination"></div>
+	</div>
+</body>
+<script type="text/javascript">
+var data;
+$(document).ready( function () {
+	$.ajax({
+		url : "getlibraryinfo",
+		type : "get",
+		dataType:'json'
+		
+}).done((result) => {
+	console.log("result=",result);
+	data=result;
+	var info=result;
+	let container = $('#pagination');
+	container.pagination({
+		
+	    dataSource: result, //받아온 데이터
+	    pageSize: 5,
+	    callback: function (data, pagination) { //데이터 찍어주는 부분
+	    	$("#contents").empty();
+	    	for(let i=0;i<data.length;i++){
+	    	$tr=$("<tr>").appendTo($("#contents"));
+	    	$("<td>").text(data[i].lb_code).appendTo($tr);
+	    	$("<td>").text(data[i].lb_name).appendTo($tr);
+	    	$("<td>").text(data[i].lb_loc).appendTo($tr);
+	    	$("<td>").text(data[i].la_id).appendTo($tr);
+	    	$("<td>").append($("<button>").text("삭제").addClass("btn btn-outline-success")
+	    			                      .attr("onclick","librarianDelete('"+data[i].la_id+"')"))
+	    	.appendTo($tr);
+	    	}
+	    }
+	}); 
 	
+}).fail((xhr) => {
+	console.log("xhr=",xhr);
+}); //ajax End
+	
+
+});	
 </table>
 </div>
    <script>
@@ -62,7 +119,7 @@
 		        },
 		        { 'data': 'lb_loc' , 'targets': 0}, //
 		        { 'data': 'lb_code', 'targets': 1}, //
-		        { 'data': 'lb_name', 'targets': 2}, //
+		        { 'data': 'lb_name', 'targets': 2, 'className' : 'test'}, //
 		        { 'data': 'la_id', 'targets': 3}, //
 		    
 		     ],
@@ -72,48 +129,35 @@
 			     'order': [[1, 'asc']],
 			     dom: 'Bfrtip',
 
-		     buttons: [
-		         {
-		             text: '삭제',
-		             action: function ( e, dt, node, config ) {
-		            	 
-		            	 var conf=confirm("삭제 하시겠습니까?");
-		            	 if(conf){
-		            		 
-		            	 
-		            	 var rowData=$('#example').DataTable().rows('.selected').data();
-		            	 var bookList=new Array;
-		            	 
-		            	 
-		            	 for(var i=0;i<rowData.length;i++){
-		            		 let books={};
-		            		 books.bk_code=rowData[i].bk_code;
-		            		 books.bk_lcode=rowData[i].bk_lcode;
-		            		 bookList.push(books);
-		            	 }
-		            	 var json=JSON.stringify(bookList); //선택한 책의 ISBN 코드와 도서관 코드 JSON화
-		            			            	 
-		            	  $.ajax({ 
-		            			url : "libraydelete",
-		            			type : "post",
-		            			contentType: 'application/json',
-		            			data : json,
-		            			dataType:'text',
-		            	}).done((result) => {
-		            		console.log("result=",result);
-		            		location.reload();
-		            	}).fail((xhr) => {
-		            		console.log("xhr=",xhr);
-		            	}); //ajax End  
-		            	
-		            	 }// confirm End
-		             }
-		         }
-			     ],
 
-			});
 
-		});
-		</script>
-</body>
+function librarianDelete(la_id){
+	
+	$.ajax({
+		url : "librariandelete",
+		type : "get",
+		data : {"la_id" : la_id},
+		dataType:'text'
+		
+}).done((result) => {
+	console.log("result=",result);
+	
+	if(result=="성공"){
+		toastr.success('성공', '삭제에 성공하셨습니다.');
+	}else{
+		toastr.error("실패", "삭제에 실패하셨습니다.");
+	}
+	
+	location.reload(true);
+	
+}).fail((xhr) => {
+	console.log("xhr=",xhr);
+}); //ajax End
+	
+}
+
+
+
+</script>
+
 </html>

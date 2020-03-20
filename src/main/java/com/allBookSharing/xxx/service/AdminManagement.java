@@ -24,10 +24,12 @@ public class AdminManagement {
 		System.out.println("result="+result);
 		
 		if(result) {
-		mav.setViewName("admin/adminindex");
+		mav.addObject("msg", "성공");
+		mav.setViewName("admin/libraryinsert");
 		}
 		else {
-			mav.setViewName("admin/admininsert");
+			mav.addObject("msg", "실패");
+			mav.setViewName("admin/libraryinsert");
 			
 		}
 		
@@ -53,5 +55,15 @@ public class AdminManagement {
 		mav.setViewName(view);
 		return mav;
 	}
+
+	//등록할 도서관 코드 가져오는 메소드
+	public Integer getLibraryNextCode() {
+		
+		Integer code=aDao.getLibraryNextCode();
+		
+		return code;
+	}
+	
+	
 
 }

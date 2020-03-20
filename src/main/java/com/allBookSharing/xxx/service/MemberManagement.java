@@ -124,7 +124,9 @@ public class MemberManagement {
 		System.out.println("id="+id);
 		
 		//누적 연체일수
-		int arrearsDay=mDao.getArrearsDay(id)*-1;
+		int arrearsDay=0;
+		arrearsDay=mDao.getArrearsDay(id)*-1;
+		
 		
 		System.out.println("연체 일수 ="+arrearsDay);
 		
@@ -334,4 +336,21 @@ public class MemberManagement {
 	      }
 	      
 	   }	//찜목록 삭제 end
+	   
+
+	 //마이페이지에서 예약 취소
+	public boolean reservationcancell(int rv_num) {
+
+		boolean result=mDao.reservationcancell(rv_num);
+		
+		return result;
+	}
+
+	//예약 순위
+	public int getreservationRank(int rv_num) {
+
+		int rank=mDao.getreservationRank(rv_num);
+		
+		return rank;
+	}
 }

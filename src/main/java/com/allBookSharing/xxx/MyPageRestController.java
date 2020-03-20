@@ -33,7 +33,7 @@ public class MyPageRestController {
 		return pwResult;
 	}
 	
-	
+	//대출 건수
 	@RequestMapping(value = "/borrowcnt" ,produces = "application/json;charset=UTF-8")
 	public  int getBorrowCnt(Principal principal) {
 		
@@ -43,7 +43,7 @@ public class MyPageRestController {
 		return borrowCnt;
 	}
 	
-	
+	//연체 건수
 	@RequestMapping(value = "/arrearscnt" ,produces = "application/json;charset=UTF-8")
 	public  int getArrearsCnt(Principal principal) {
 		System.out.println("연체 건수 컨트롤러");
@@ -52,6 +52,7 @@ public class MyPageRestController {
 		return arrearsCnt;
 	}
 	
+	//리뷰 건수
 	@RequestMapping(value = "/reviewcnt" ,produces = "application/json;charset=UTF-8")
 	public  int getReviewCnt(Principal principal) {
 		System.out.println("독서 횟수 컨트롤러");
@@ -94,6 +95,25 @@ public class MyPageRestController {
 		List<Reservation> rList=mm.getReservationlist(principal);
 		
 		return rList;
+	}
+	
+	
+	//예약 순위 
+	@RequestMapping(value = "/reservationrank" ,produces = "application/json;charset=UTF-8")
+	public  int reservationRank(int rv_num) {
+		System.out.println("현재 예약 순위 컨트롤러");
+		int rank=mm.getreservationRank(rv_num);
+		
+		return rank;
+	}
+	
+	//현재 예약 취소 
+	@RequestMapping(value = "/reservationcancell" ,produces = "application/json;charset=UTF-8")
+	public  boolean reservationcancell(int rv_num) {
+		System.out.println("현재 예약 목록 컨트롤러");
+		boolean result=mm.reservationcancell(rv_num);
+		
+		return result;
 	}
 	
 	

@@ -20,7 +20,7 @@ function menuMove(index){ //사서 페이지 메뉴 이동 메소드
 		$("#contents").attr("src","librarymodifymove");
 		break;
 	case 7:
-		
+	$("#contents").attr("src","libraycalendarmove");
 		break;	
 		
 		

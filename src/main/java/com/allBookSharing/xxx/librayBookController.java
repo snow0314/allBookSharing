@@ -43,9 +43,8 @@ public class librayBookController {
 	public ModelAndView bookDetailPage(String bk_code,String bk_lcode) {
 		System.out.println("bk_lcode="+bk_lcode);
 		mav=bm.bookDetailPage(bk_code,bk_lcode);
-		
+    
 		return mav;
-		
 	}
 	
 	@Secured("ROLE_LIBRARIAN")

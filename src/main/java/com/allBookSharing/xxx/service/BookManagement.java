@@ -113,6 +113,16 @@ public class BookManagement {
 		return lbList;
 	}
 
+	public List<Books> regionLibSearch(String bk_search, String selectval, Integer bk_lcode) {
+		List<Books> lbsList=bDao.regionLibSearch(bk_search,selectval,bk_lcode);
+		return lbsList;
+	}
+
+	public List<Books> jiyuckSearch(String bk_search, String selectval, String bk_loc) {
+		List<Books> jiyList=bDao.jiyuckSearch(bk_search,selectval,bk_loc);
+		return jiyList;
+	}
+
 
 
 	

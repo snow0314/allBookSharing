@@ -135,9 +135,9 @@
 	font-size:50px;
 
 	}
-	#tr{
+	tr{
 	height:10px;
-	width:100%;
+	width:700px;
 	}
 	img{
 	width:auto;
@@ -182,11 +182,16 @@
 }
 	#myRegion{
 	width:100%;
-	
 	border: 1px solid black;
 	
 	}
 	#sidebar{
+	width:25%;
+	float:right;
+	border: 1px solid black;
+	display:inline-block;
+	}
+	#nationsidebar{
 	width:25%;
 	float:right;
 	border: 1px solid black;
@@ -197,6 +202,41 @@
 	width:73%;
 	float:left;
 	}
+	#totalsearchList{
+	display:inline-block;
+	width:73%;
+	float:left;
+	}
+	.bigregion {
+  background-color: #4CAF50; /* Green */
+  border: none;
+  color: white;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  transition-duration: 0.4s;
+  cursor: pointer;
+  width:100%;
+  height:30px;
+}
+
+
+
+.div {
+  background-color: white; 
+  color: black; 
+  border: 2px solid #008CBA;
+}
+
+.div:hover {
+  background-color: #008CBA;
+  color: white;
+}
+a{
+color:black;
+}
 </style>
 </head>
 
@@ -209,7 +249,7 @@
 	<h2>자료검색</h2>
   <ul>
    <li><a href="#">통합검색</a></li>
-   <li><a href="#">인기도서</a></li>
+   <li><a href="topten">인기도서</a></li>
    <li><a href="#">추천도서</a></li>
   </ul>
 </nav>
@@ -286,7 +326,7 @@ function totalBookSearch(){//전국 통합 검색
 	    data:{"bk_search":$('#bookinput').val() ,"selectval":$('#select').val()},
 	    dataType:'json',
 	    success:function(result){
-	    	$("#contents").append("<div id='nationwide' class='tabcontent'><h2>전국 통합검색</h2><table id='totalsearchList'><table></div>");
+	    	$("#contents").append("<div id='nationwide' class='tabcontent'><h2>전국 통합검색</h2><table id='totalsearchList'><table></div><div id='nationsidebar'></div>");
 	    	
 	 		var str="";
 	    	if(result!=undefined){
@@ -298,7 +338,7 @@ function totalBookSearch(){//전국 통합 검색
 	    		str+='<td style="border:1px solid black;">'+'<a href="bookdetailpage?bk_code='+item.bk_code+'&bk_lcode='+item.bk_lcode+'" id="bkname">'+item.bk_name+'</a><br>'+item.bk_writer+'<br>'+
 	    		item.bk_publisher+'<br>'+item.bk_publicday+'<br>'+item.bk_lname+'</td></tr>';
 	    	});
-	    	console.log(str);
+	 
 	    	$('#totalsearchList').append(str);
 	    	}
 	    },
@@ -308,42 +348,67 @@ function totalBookSearch(){//전국 통합 검색
 	    }
 	});
 	openCity(event, 'nationwide');
+	$("#nationsidebar").html("<div class='bigregion div'><a href=#; onclick='jiyuckSearch(this)'>서울</a></div>"
+							+"<br><div class='bigregion div' id='btn'>경기도 V</div><ul id='ui'><li><a href=#; onclick='jiyuckSearch(this)'>시흥</a></li><li><a href=#; onclick='jiyuckSearch(this)'>부천</a></li><li><a href=#; onclick='jiyuckSearch(this)'>성남</a></li></ul>"
+							+"<br><div class='bigregion div'><a href=#; onclick='jiyuckSearch(this)'>인천</a></div>"
+							+"<br><div class='bigregion div'>강원도</div><ul id='ui'><li><a href=#; onclick='jiyuckSearch(this)'>강릉</a></li><li><a href=#; onclick='jiyuckSearch(this)'>속초</a></li><li><a href=#; onclick='jiyuckSearch(this)'>원주</a></li></ul>"
+							+"<br><div class='bigregion div'><a href=#; onclick='jiyuckSearch(this)'>대전</a></div>"
+							+"<br><div class='bigregion div'>충청남도</div><ul id='ui'><li><a href=#; onclick='jiyuckSearch(this)'>서산</a></li><li><a href=#; onclick='jiyuckSearch(this)'>천안</a></li><li><a href=#; onclick='jiyuckSearch(this)'>공주</a></li></ul>"
+							+"<br><div class='bigregion div'>충청북도</div><ul id='ui'><li><a href=#; onclick='jiyuckSearch(this)'>청주</a></li><li><a href=#; onclick='jiyuckSearch(this)'>충주</a></li><li><a href=#; onclick='jiyuckSearch(this)'>제천</a></li></ul>"
+							+"<br><div class='bigregion div'>전라남도</div><ul id='ui'><li><a href=#; onclick='jiyuckSearch(this)'>광주</a></li><li><a href=#; onclick='jiyuckSearch(this)'>순천</a></li><li><a href=#; onclick='jiyuckSearch(this)'>광양</a></li></ul>"
+							+"<br><div class='bigregion div'>전라북도</div><ul id='ui'><li><a href=#; onclick='jiyuckSearch(this)'>전주</a></li><li><a href=#; onclick='jiyuckSearch(this)'>군산</a></li><li><a href=#; onclick='jiyuckSearch(this)'>남원</a></li></ul>"
+							+"<br><div class='bigregion div'>경상남도</div><ul id='ui'><li><a href=#; onclick='jiyuckSearch(this)'>창원</a></li><li><a href=#; onclick='jiyuckSearch(this)'>통영</a></li><li><a href=#; onclick='jiyuckSearch(this)'>김해</a></li></ul>"
+							+"<br><div class='bigregion div'><a href=#; onclick='jiyuckSearch(this)'>부산</a></div>"
+							+"<br><div class='bigregion div'><a href=#; onclick='jiyuckSearch(this)'>대구</a></div>"
+							+"<br><div class='bigregion div'><a href=#; onclick='jiyuckSearch(this)'>울산</a></div>"
+							+"<br><div class='bigregion div'>경상북도</div><ul id='ui'><li><a href=#; onclick='jiyuckSearch(this)'>경주</a></li><li><a href=#; onclick='jiyuckSearch(this)'>문경</a></li><li><a href=#; onclick='jiyuckSearch(this)'>포항</a></li></ul>"
+							+"<br><div class='bigregion div'><a href=#; onclick='jiyuckSearch(this)'>제주도</a></div>");
+
+	$("#btn").click(function(){
+		$("#ui").slideToggle("normal");
+	});
 }
 	
 
-function myregionSearch(){//내 지역 
+function jiyuckSearch(e){
+	console.log($(e).text());
 	$.ajax({
 		type:'get',
-		url:'myregionlib',
-		data:{"bk_search":$('#bookinput').val() ,"selectval":$('#select').val()},
+		url:'jiyucksearch',
+		async: false,
+	    data:{"bk_search":$('#bookinput').val() ,"selectval":$('#select').val(),"bk_loc":$(e).text()},
 	    dataType:'json',
 	    success:function(result){
-	    
+	    	$("#contents").append("<div id='myRegion' class='tabcontent'><h2>전국 통합검색</h2><table id='totalsearchList'><table></div><div id='sidebar'><ul id='myregionlb'></ul></div>");
 	    	
-	    	var str="";
-	    	
-	    	$.each(result,function(index,item){   
-	    		str+='<li>'+item.lb_name+'('+item.lb_quantity+')</li>';
+	 		var str="";
+	    	if(result!=undefined){
+	    		$('#totalsearchList').empty();
 	    		
+	    	$.each(result,function(index,item){
+	   
+	    		str+='<tr id="tr"><td style="border:1px solid black;width:100px;height:176px;">'+'<image src="'+item.bk_image+'"></td>';
+	    		str+='<td style="border:1px solid black;">'+'<a href="bookdetailpage?bk_code='+item.bk_code+'&bk_lcode='+item.bk_lcode+'" id="bkname">'+item.bk_name+'</a><br>'+item.bk_writer+'<br>'+
+	    		item.bk_publisher+'<br>'+item.bk_publicday+'<br>'+item.bk_lname+'</td></tr>';
 	    	});
-	    	console.log(str);
-	    	$('#myregionlb').html(str); 
+				
+	    	$('#totalsearchList').append(str);
+	    	}
 	    },
 	    error:function(xhr,status){
 	    	console.log("xhr3=", xhr);
 			console.log("status=", status);
 	    }
-		
-	});//내지역 도서관 목록 가져오기
-	
+})
+}
+function regionlibSearch(lb_code){
 	$.ajax({
 		type:'get',
-		url:'myregionsearch',
+		url:'regionlibsearch',
 		async: false,
-	    data:{"bk_search":$('#bookinput').val() ,"selectval":$('#select').val()},
+	    data:{"bk_search":$('#bookinput').val() ,"selectval":$('#select').val(),"bk_lcode":lb_code},
 	    dataType:'json',
 	    success:function(result){
-	    	console.log("result",result);
 	    	$("#contents").append("<div id='myRegion' class='tabcontent'><h2>"+result[0].bk_loc+"</h2><table id='regionsearchList'><table></div><div id='sidebar'><ul id='myregionlb'></ul></div>");
 	    	
 	 		var str="";
@@ -364,9 +429,63 @@ function myregionSearch(){//내 지역
 	    	console.log("xhr3=", xhr);
 			console.log("status=", status);
 	    }
-});//내지역 검색도서리스트
-	openCity(event, 'myRegion');
+})
 }
+
+function myregionSearch(){//내 지역 
+	$.ajax({
+		type:'get',
+		url:'myregionlib',
+		data:{"bk_search":$('#bookinput').val() ,"selectval":$('#select').val()},
+	    dataType:'json',
+	    success:function(result){
+	    	var str="";
+	    	
+	    	$.each(result,function(index,item){   
+	    		str+="<li><a href='javascript:regionlibSearch("+item.lb_code+")'>"+item.lb_name+'('+item.lb_quantity+")</li>";
+	    		
+	    	});
+	    	$('#myregionlb').html(str); 
+	    },
+	    error:function(xhr,status){
+	    	console.log("xhr3=", xhr);
+			console.log("status=", status);
+	    }
+		
+	});//내지역 도서관 목록 가져오기
+	
+	$.ajax({//사이드 바 도서관 별 검색결과
+		type:'get',
+		url:'myregionsearch',
+		async: false,
+	    data:{"bk_search":$('#bookinput').val() ,"selectval":$('#select').val()},
+	    dataType:'json',
+	    success:function(result){
+	    	$("#contents").append("<div id='myRegion' class='tabcontent'><h2>"+result[0].bk_loc+"</h2><table id='regionsearchList'><table></div><div id='sidebar'><ul id='myregionlb'></ul></div>");
+	    	
+	 		var str="";
+	    	if(result!=undefined){
+	    		$('#regionsearchList').empty();
+	    		
+	    	$.each(result,function(index,item){
+	   
+	    		str+='<tr id="tr"><td style="border:1px solid black;width:100px;height:176px;">'+'<image src="'+item.bk_image+'"></td>';
+	    		str+='<td style="border:1px solid black;">'+'<a href="bookdetailpage?bk_code='+item.bk_code+'&bk_lcode='+item.bk_lcode+'" id="bkname">'+item.bk_name+'</a><br>'+item.bk_writer+'<br>'+
+	    		item.bk_publisher+'<br>'+item.bk_publicday+'<br>'+item.bk_lname+'</td></tr>';
+	    	});
+				
+	    	$('#regionsearchList').append(str);
+	    	}
+	    },
+	    error:function(xhr,status){
+	    	console.log("xhr3=", xhr);
+			console.log("status=", status);
+	    }
+});
+	openCity(event, 'myRegion');
+	
+}
+
 
 
 

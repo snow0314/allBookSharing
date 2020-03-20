@@ -74,7 +74,7 @@ public class AdminController {
 	//사서 수정 페이지 이동
 		 @RequestMapping(value = "/librarylistmove")
 		 public ModelAndView getLibraryList() {
-			
+			System.out.println("사서수정페이지 이동 컨트롤러");
 			 mav=am.getLibraryList();
 			 
 				return mav;

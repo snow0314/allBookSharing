@@ -40,9 +40,9 @@ public interface IMemberDao {
 	int getArrearsDay(String id);
 	
 	@Select(
-			"SELECT bo_num,bk_name,bd_date,bd_return_date FROM BORROWLIST \r\n" + 
-			"JOIN BORROWDETAIL ON BO_NUM=BD_BO_NUM \r\n" + 
-			"JOIN BOOKS ON BD_BCODE=BK_CODE WHERE BO_ID=#{id}")
+			"SELECT bo_num,bk_name,bk_lcode,bd_date,bd_return_date,bd_return_extension,bk_image FROM BORROWLIST \r\n" + 
+			"JOIN BORROWDETAIL ON BO_NUM=BD_BO_NUM\r\n" + 
+			"JOIN BOOKS ON books.bk_code=borrowdetail.bd_bcode and bo_lcode=bk_lcode  WHERE BO_ID=#{id}")
 	List<Loan> getLoanList(String id);
 	
 	
@@ -76,7 +76,7 @@ public interface IMemberDao {
 	
 	
 	//반납연장하기
-	int loanExtend(int bd_bo_num);
+	int loanExtend(@Param("num")int bd_bo_num);
 	
 	//현재 예약 목록
 	List<Reservation> getReservationlist(String id);
@@ -94,6 +94,12 @@ public interface IMemberDao {
 	//포인트 충전내역
 	@Insert("INSERT INTO POINTLIST VALUES(SEQ_POINT.NEXTVAL,#{mb_id},#{us_point},'충전',DEFAULT)")
 	boolean insertPointList(Member mb);
+	
+	@Delete("DELETE FROM RESERVATION WHERE RT_NUM=#{rv_num}")
+	boolean reservationcancell(int rv_num);
+	
+	@Select("")
+	int getreservationRank(int rv_num);
 	
 	
 	

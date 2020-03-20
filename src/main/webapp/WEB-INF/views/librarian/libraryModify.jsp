@@ -1,165 +1,163 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset="UTF-8">
-    <title>Document</title>
-    <!-- jQuery library -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-    <!-- Latest compiled and minified CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
-    <!-- Popper JS -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<meta charset="UTF-8">
+<title>Document</title>
+<!-- jQuery library -->
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+<!-- Popper JS -->
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
 
-    <!-- Latest compiled JavaScript -->
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
-    <!--카카오 지도 api-->
-   
-   
-    
-    <!--카카오 우편번호 api-->
-    <script type="text/javascript" src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+<!-- Latest compiled JavaScript -->
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+<!--카카오 지도 api-->
 
-    <style>
 
-    </style>
+
+<!--카카오 우편번호 api-->
+<script type="text/javascript"
+	src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+
+<style>
+</style>
 
 </head>
 
 <body>
-    <form>
+	<form action="libraymodify" method="post">
 
-        <div class="container p-3 my-3 border">
-            <table class="table table-borderless">
-                <tr>
-                    <td>
-                        <div class="input-group mb-3">
-                            <div class="input-group-prepend">
-                                <span class="input-group-text">도서관 코드</span>
-                            </div>
-                            <input type="text" class="form-control" id="lb_code" name="lb_code">
-                        </div>
-                    </td>
-                    <td rowspan="5">
-                        <span id="guide" style="color: #999; display: none"></span>
-                        <div id="map" style="width: 100%; height: 350px;"></div>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <div class="input-group mb-3">
-                            <div class="input-group-prepend">
-                                <span class="input-group-text">도서관 이름</span>
-                            </div>
-                            <input type="text" class="form-control" id="lb_name" name="lb_name">
-                        </div>
-                    </td>
-                </tr>
+		<div class="container p-3 my-3 border">
+			<table class="table table-borderless">
+				<tr>
+					<td>
+						<div class="input-group mb-3">
+							<div class="input-group-prepend">
+								<span class="input-group-text">도서관 코드</span>
+							</div>
+							<input type="text" class="form-control" id="lb_code"
+								name="lb_code" readonly="readonly">
+						</div>
+					</td>
+					<td rowspan="5"><span id="guide"
+						style="color: #999; display: none"></span>
+						<div id="map" style="width: 100%; height: 350px;"></div></td>
+				</tr>
+				<tr>
+					<td>
+						<div class="input-group mb-3">
+							<div class="input-group-prepend">
+								<span class="input-group-text">도서관 이름</span>
+							</div>
+							<input type="text" class="form-control" id="lb_name"
+								name="lb_name" required="required">
+						</div>
+					</td>
+				</tr>
 
-                <tr>
-                    <td>
-                        <div class="input-group mb-3">
-                            <div class="input-group-prepend">
-                                <span class="input-group-text">소속지역</span>
-                            </div>
+				<tr>
+					<td>
+						<div class="input-group mb-3">
+							<div class="input-group-prepend">
+								<span class="input-group-text">소속지역</span>
+							</div>
 
-                            <select name="lb_area" id="lb_loc" class="foot1">
-                                <option value="">선택</option>
-                                <option value="서울">서울</option>
-                                <option value="인천">인천</option>
-                                <option value="경기">경기</option>
-                                <option value="강원">강원</option>
-                                <option value="충남">충남</option>
-                                <option value="충북">충북</option>
-                                <option value="대전">대전</option>
-                                <option value="경북">경북</option>
-                                <option value="경남">경남</option>
-                                <option value="대구">대구</option>
-                                <option value="전북">전북</option>
-                                <option value="전남">전남</option>
-                                <option value="울산">울산</option>
-                                <option value="부산">부산</option>
-                                <option value="제주">제주</option>
-                            </select>
-                        </div>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <div class="input-group mb-3">
-                            <div class="input-group-prepend">
-                                <span class="input-group-text">전화번호</span>
-                            </div>
-                            <input type="number" class="form-control" id="lb_phone" name="lb_phone">
-                        </div>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <div class="input-group mb-3">
-                            <div class="input-group-prepend">
-                                <span class="input-group-text">이메일</span>
-                            </div>
-                            <input type="email" class="form-control" id="lb_email" name="lb_email">
-                        </div>
-                    </td>
-                </tr>
-                <tr>
+							<select name="lb_loc" id="lb_loc" class="foot1"
+								required="required">
+								<option value="">선택</option>
+								<option value="서울">서울</option>
+								<option value="인천">인천</option>
+								<option value="경기">경기</option>
+								<option value="강원">강원</option>
+								<option value="충남">충남</option>
+								<option value="충북">충북</option>
+								<option value="대전">대전</option>
+								<option value="경북">경북</option>
+								<option value="경남">경남</option>
+								<option value="대구">대구</option>
+								<option value="전북">전북</option>
+								<option value="전남">전남</option>
+								<option value="울산">울산</option>
+								<option value="부산">부산</option>
+								<option value="제주">제주</option>
+							</select>
+						</div>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<div class="input-group mb-3">
+							<div class="input-group-prepend">
+								<span class="input-group-text">전화번호</span>
+							</div>
+							<input type="number" class="form-control" id="lb_phone"
+								name="lb_phone">
+						</div>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<div class="input-group mb-3">
+							<div class="input-group-prepend">
+								<span class="input-group-text">이메일</span>
+							</div>
+							<input type="email" class="form-control" id="lb_email"
+								name="lb_email">
+						</div>
+					</td>
+				</tr>
+				<tr>
 
-                    
-                </tr>
-                <tr>
-                   
-                    <td>
-                        <label for="lb_address">주소</label>
-                        <input type="text" id="sample4_postcode" class="form-control" placeholder="우편번호">
-                    </td>
-                    <td>
-                       <br>
-                       
-                        <input type="button" class="btn btn-outline-success" onclick="sample4_execDaumPostcode()" value="우편번호 찾기" style="margin-top: 8px;"/>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <input type="text" id="sample4_roadAddress" class="form-control" placeholder="도로명주소">
-                    </td>
-                    <td>
-                        <input type="text" id="sample4_jibunAddress" class="form-control" placeholder="지번주소">
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <input type="text" id="sample4_detailAddress" class="form-control" placeholder="상세주소">
-                    </td>
-                    <td>
-                        <input type="text" id="sample4_extraAddress" class="form-control" placeholder="참고항목">
-                        <input type="hidden" id="lb_Latitude" name="lb_Latitude" value="">
-                        <input type="hidden" id="lb_longitude" name="lb_longitude" value="">
-                    </td>
-                </tr>
-                <br>
-                
-                <br>
-                
 
-                <tr>
-                    <td>
-                    <input type="hidden" name="_csrf" value="${_csrf.token}">
-                <input type="hidden" id="addr" name="lb_address" value="">
-                        <button id="modify" class="btn btn-outline-success">수정하기</button>
-                        
-                    </td>
-                </tr>
-                
-            </table>
-            
-        </div>
+				</tr>
+				<tr>
 
-    </form>
+					<td><label for="lb_address">주소</label> <input type="text"
+						id="lb_postcode" name="lb_postcode" class="form-control"
+						placeholder="우편번호"></td>
+					<td><br> <input type="button"
+						class="btn btn-outline-success"
+						onclick="sample4_execDaumPostcode()" value="우편번호 찾기"
+						style="margin-top: 8px;" /></td>
+				</tr>
+				<tr>
+					<td><input type="text" id="lb_roadaddr" name="lb_roadaddr"
+						class="form-control" placeholder="도로명주소" value=""></td>
+					<td><input type="text" id="lb_branchaddr" name="lb_branchaddr"
+						class="form-control" placeholder="지번주소" value=""></td>
+				</tr>
+				<tr>
+					<td><input type="text" id="lb_detailaddr" name="lb_detailaddr"
+						class="form-control" placeholder="상세주소" value=""></td>
+					<td><input type="text" id="lb_extraaddr" name="lb_extraaddr"
+						class="form-control" placeholder="참고항목" value=""> <input
+						type="hidden" id="lb_Latitude" name="lb_latitude" value="">
+						<input type="hidden" id="lb_longitude" name="lb_longitude"
+						value=""></td>
+				</tr>
+
+				<tr>
+					<td><input type="hidden" name="_csrf" value="${_csrf.token}">
+
+						<input type="submit" id="modify" class="btn btn-outline-success"
+						value="수정하기"></td>
+				</tr>
+
+			</table>
+
+		</div>
+
+	</form>
 </body>
-<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=1b51d85dd9bcbc0b96d2984712a09ec4&libraries=services,clusterer,drawing"></script>
+<script type="text/javascript"
+	src="//dapi.kakao.com/v2/maps/sdk.js?appkey=1b51d85dd9bcbc0b96d2984712a09ec4&libraries=services,clusterer,drawing"></script>
 <script>
 $(document).ready( function () {
 	$.ajax({ //도서관 정보 가져오는 에이작스
@@ -174,7 +172,16 @@ $(document).ready( function () {
 	$("#lb_phone").val(result.lb_phone);
 	$("#lb_email").val(result.lb_email);
 	$("#lb_loc").val(result.lb_loc);
+	$("#lb_postcode").val(result.lb_postcode);
+	$("#lb_roadaddr").val(result.lb_roadaddr);
+	$("#lb_branchaddr").val(result.lb_branchaddr);
+	$("#lb_detailaddr").val(result.lb_detailaddr);
+	$("#lb_extraaddr").val(result.lb_extraaddr);
+	$("#lb_longitude").val(result.lb_longitude); //경도
+	$("#lb_Latitude").val(result.lb_latitude); //위도
 	
+	
+	mapCreate(result.lb_longitude,result.lb_latitude,result.lb_roadaddr);
 	
 }).fail((xhr) => {
 	console.log("xhr=",xhr);
@@ -183,9 +190,6 @@ $(document).ready( function () {
 	
 }); //ready End
 	
-//$("#modify").
-
-
 
     function sample4_execDaumPostcode() { //주소 등록하는 
         new daum.Postcode({
@@ -206,15 +210,15 @@ $(document).ready( function () {
                 }
 
                 // 우편번호와 주소 정보를 해당 필드에 넣는다.
-                document.getElementById('sample4_postcode').value = data.zonecode;
-                document.getElementById("sample4_roadAddress").value = roadAddr;
-                document.getElementById("sample4_jibunAddress").value = data.jibunAddress;
+                document.getElementById('lb_postcode').value = data.zonecode;
+                document.getElementById("lb_roadaddr").value = roadAddr;
+                document.getElementById("lb_branchaddr").value = data.jibunAddress;
 
                 // 참고항목 문자열이 있을 경우 해당 필드에 넣는다.
                 if (roadAddr !== '') {
-                    document.getElementById("sample4_extraAddress").value = extraRoadAddr;
+                    document.getElementById("lb_extraaddr").value = extraRoadAddr;
                 } else {
-                    document.getElementById("sample4_extraAddress").value = '';
+                    document.getElementById("lb_extraaddr").value = '';
                 }
 
                 var guideTextBox = document.getElementById("guide");
@@ -236,7 +240,6 @@ $(document).ready( function () {
                     guideTextBox.style.display = 'none';
                 }
 
-                
                 var mapContainer = document.getElementById('map'), // 지도를 표시할 div
                     mapOption = {
                         center: new kakao.maps.LatLng(33.450701,
@@ -282,7 +285,10 @@ $(document).ready( function () {
 
                                 // 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
                                 map.setCenter(coords);
-                                console.log(coords);
+                                console.log("위도,경도:",coords);
+                                $("#lb_Latitude").val(coords.Ga);
+                                $("#lb_longitude").val(coords.Ha);
+                                
                             }
                         });
 
@@ -290,4 +296,41 @@ $(document).ready( function () {
 
         }).open();
     }
-</script></html>
+    
+    function mapCreate(latitude,longitude,roadAddr) {
+    	
+    	
+    	var container = document.getElementById('map');
+		var options = {
+			center: new kakao.maps.LatLng(latitude, longitude),
+			level: 3
+		};
+		
+		var coords = new kakao.maps.LatLng(
+				latitude,
+				longitude);
+		
+		
+		var map = new kakao.maps.Map(container, options);
+		
+		// 결과값으로 받은 위치를 마커로 표시합니다
+        var marker = new kakao.maps.Marker({
+            map: map,
+            position: coords
+        });
+
+        // 인포윈도우로 장소에 대한 설명을 표시합니다
+        var infowindow = new kakao.maps.InfoWindow({
+            content: '<div style="width:150px;text-align:center;padding:6px 0;">' +
+                roadAddr +
+                '</div>'
+        });
+        infowindow
+            .open(map, marker);
+
+        // 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
+        map.setCenter(coords); 
+	}
+    
+</script>
+</html>
