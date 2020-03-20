@@ -1,5 +1,6 @@
 package com.allBookSharing.xxx.dao;
 
+import java.security.Principal;
 import java.util.List;
 
 import org.springframework.stereotype.Component;
@@ -14,9 +15,10 @@ public interface QuestionDao {
 	List<Question> getQuestionList();
     
 	//건의사항 글쓰기
-	boolean questionWrite(String id);
+	boolean questionWrite(Question qus);
 
-	//도서관 코드 가지고오기(글쓸때)
-	List<Library> getQuestionWrite();
+	//건의사항 상세글보기
+	Question getQuestionDetail(int qs_num);
 
+	
 }
