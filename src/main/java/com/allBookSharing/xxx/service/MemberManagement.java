@@ -356,7 +356,7 @@ public class MemberManagement {
 	public List<Library> getLocLibray(String loc) {
 		List<Library> list=mDao.getLocLibray(loc);
 		return list;
-
+	}
 	//예약 순위
 	public int getreservationRank(int rv_num) {
 
