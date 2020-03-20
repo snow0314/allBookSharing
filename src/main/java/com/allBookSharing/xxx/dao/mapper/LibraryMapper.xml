@@ -26,7 +26,11 @@
 	</select>
 	
 	<insert id="setLibraySchedule" parameterType="Schedule">
-		INSERT INTO SCHEDULE VALUES(SD_LCODE=#{sd_lcode}, SD_START=#{start}, SD_END=#{end}, SD_TITLE=#{title})
+		INSERT INTO SCHEDULE VALUES(#{sd_lcode}, #{start}, #{end}, #{title})
 	</insert>
+	
+	<delete id="scheduleDelete">
+		DELETE FROM SCHEDULE WHERE SD_LCODE=#{sd_lcode} AND SD_START=#{start} AND SD_END=#{end} AND SD_TITLE=#{title}
+	</delete>
 
 </mapper>

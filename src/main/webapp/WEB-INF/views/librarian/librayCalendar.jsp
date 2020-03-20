@@ -17,13 +17,12 @@
 <script src='./plugins/fullcalendar-4.4.0/packages/interaction/main.js'></script>
 <script src='./plugins/fullcalendar-4.4.0/packages/daygrid/main.js'></script>
 
-
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
 
 <style>
-body {
-	margin-top: 40px;
-	font-size: 14px;
-	font-family: Arial, Helvetica Neue, Helvetica, sans-serif;
+body{
+	background-color: white;
 }
 
 #wrap {
@@ -71,7 +70,7 @@ body {
 
 </head>
 <body>
-	<div class="container p-3 my-3 border">
+	
 		<div id='wrap'>
 
 			<div id='external-events'>
@@ -92,103 +91,170 @@ body {
 			<div style='clear: both'></div>
 
 		</div>
-	</div>
+	
 </body>
 <script type="text/javascript" src="js/ajaxCsrf.js"></script>
 <script>
-	document.addEventListener('DOMContentLoaded', function() {
-		var Calendar = FullCalendar.Calendar;
-		var Draggable = FullCalendarInteraction.Draggable
+	document
+			.addEventListener(
+					'DOMContentLoaded',
+					function() {
+						var Calendar = FullCalendar.Calendar;
+						var Draggable = FullCalendarInteraction.Draggable
 
-		/* initialize the external events
-		-----------------------------------------------------------------*/
+						/* initialize the external events
+						-----------------------------------------------------------------*/
 
-		var containerEl = document.getElementById('external-events-list');
-		new Draggable(containerEl, {
-			itemSelector : '.fc-event',
-			eventData : function(eventEl) {
-				return {
-					title : eventEl.innerText.trim()
-				}
-			}
-		});
+						var containerEl = document
+								.getElementById('external-events-list');
+						new Draggable(containerEl, {
+							itemSelector : '.fc-event',
+							eventData : function(eventEl) {
 
-		var calendarEl = document.getElementById('calendar');
-		var calendar = new Calendar(calendarEl, {
-			plugins : [ 'interaction', 'dayGrid' ],
-			header : {
-				left : 'prev,next today',
-				center : 'title',
-				right : 'dayGridMonth'
-			},
-			selectable : true,
-			select : function(info) { //날짜 클릭시 작동하는 메소드
+								return {
+									title : eventEl.innerText.trim()
+								}
 
-				var title = prompt('Enter a title');
+							}
+						});
 
-				if (title == "") {
-					alert('내용을 입력해 주세요');
-				} else if (title != null) { // valid?
-					calendar.addEvent({
-						title : title,
-						start : info.startStr,
-						end : info.endStr,
-						allDay : true
-					});
-					alert('Great. Now, update your database...');
-					setLibraySchedule(info,title)
-				}
+						var calendarEl = document.getElementById('calendar');
+						var calendar = new Calendar(
+								calendarEl,
+								{
+									plugins : [ 'interaction', 'dayGrid' ],
+									header : {
+										left : 'prev,next today',
+										center : 'title',
+										right : 'dayGridMonth'
+									},
+									selectable : true,
+									select : function(info) { //날짜 클릭시 작동하는 메소드
 
-			},
-			editable : true,
-			droppable : true, // this allows things to be dropped onto the calendar
-			drop : function(arg) {
-				// is the "remove after drop" checkbox checked?
-				if (document.getElementById('drop-remove').checked) {
-					// if so, remove the element from the "Draggable Events" list
-					arg.draggedEl.parentNode.removeChild(arg.draggedEl);
-				}
-			},
-			eventLimit : true,
-			eventSources : [ {
-				events : function(info, successCallback, failureCallback) {
+										var title = prompt('Enter a title');
+										
+										if (title == "") {
+											alert('내용을 입력해 주세요');
+										} else if (title != null) { // valid?
+											calendar.addEvent({
+												title : title,
+												start : info.startStr,
+												end : info.endStr,
+												allDay : true
+											});
+											
+											setLibraySchedule(info.startStr, info.endStr, title) 
+											
+										}
 
-					$.ajax({
-						url : 'libraycalendarinfo',
-						type : 'get',
-						dataType : 'json',
+									},
+									editable : true,
+									droppable : true, 
+									drop : function(arg) {//여기서 드랍 이벤트 발생, 에이작스 사용하여 저장하자
+										
+										
+										setLibraySchedule(arg.dateStr,arg.dateStr,arg.draggedEl.innerText);
+										
+										if (document.getElementById('drop-remove').checked) { 
+											arg.draggedEl.parentNode.removeChild(arg.draggedEl);
+										}
+									},
+									eventDrop: function(info) { //이벤트 드래그해서 수정하는 부분, DB 등록 후 이전 데이터는 삭제
+									   
+										let end;
+										let start=moment(info.event.start).format('YYYY-MM-DD');
+										
+										if(info.event.end == null){
+											end=moment(info.event.start).format('YYYY-MM-DD');
+										}else{
+											end=moment(info.event.end).format('YYYY-MM-DD');
+										}
+										
+										
+									    if (!confirm("일정을 변경하시겠습니까?")) {
+									    	
+									    	info.revert();
+									    }else{
+									    	setLibraySchedule(start, end, info.event.title);
+											deleteLibraySchedule(info.oldEvent);
+									    }
+									  },
+									eventLimit : true,
+									eventSources : [ { //도서관 일정 가져오고 달력에 뿌려주는 부분
+										events : function(info,
+												successCallback,
+												failureCallback) {
 
-						success : function(data) {
-							console.log("data:", data);
-							successCallback(data);
-						}
-					}); //ajax End
+											$.ajax({
+												url : 'libraycalendarinfo',
+												type : 'get',
+												dataType : 'json',
+												success : function(data) {
+													successCallback(data);
+												}
+											}); //ajax End
 
-				}
-			} ]
-
-		});
-
-		calendar.render();
-	}); //ready End
+										}
+									} ],
+									eventClick : function(info) { //이벤트 클릭시 삭제하는 부분
 	
-function setLibraySchedule(info,title){ //일정을 DB에 저장하는 메소드
-	var schedule={
-			"title":title,
-			"start":info.startStr,
-			"end":info.endStr
-	};
-		
-	$.ajax({
-		url : 'setlibrayschedule',
-		type : 'post',
-		dataType : 'json',
-		data : schedule,
-		success : function(data) {
-			console.log("성공/실패:", data);
-		}
-	}); //ajax End
+										var result = confirm("삭제 하시겠습니까?");
+										if(result){
+											deleteLibraySchedule(info.event);
+											info.event.remove();
+										}
+										}
+								});
+
+						calendar.render();
+					}); //ready End
+
+	function setLibraySchedule(start, end, title) { //일정을 DB에 저장하는 메소드				
+		var schedule = {
+			"title" : title,
+			"start" : start,
+			"end" : end
+		};
+
+		$.ajax({
+			url : 'setlibrayschedule',
+			type : 'post',
+			dataType : 'json',
+			data : schedule,
+			success : function(data) {
+				console.log("성공/실패:", data);
+			}
+		}); //ajax End
 	} //function End
 	
+	function deleteLibraySchedule(info){ //일정을 DB에서 삭제하는 메소드
+		
+			var end;
+			if(info.end == null){
+				end=moment(info.start)
+				 .format('YYYY-MM-DD');
+			}else{
+				end=moment(info.end)
+				.format('YYYY-MM-DD');
+			}
+
+			let schedule = {
+				"title" : info.title,
+				"start" : moment(info.start)
+						 .format('YYYY-MM-DD'),
+				"end" : end
+			};
+
+			$.ajax({
+				url : 'librayscheduledelete',
+				type : 'post',
+				dataType : 'json',
+				data : schedule,
+				success : function(data) {
+
+				}
+			}); //ajax End
+	
+	}//function End
 </script>
 </html>

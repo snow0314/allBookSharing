@@ -156,8 +156,8 @@
 									<a href="">나의 도서관</a>
 									<ul>
 										<li><a href="movemypage">마이페이지</a></li>
-										<li><a href="#">배송목록</a></li>
-										<li><a href="#">대출목록</a></li>
+										<li><a href="movedeliverylist">배송목록</a></li>
+										<li><a href="moveloanlist">대출목록</a></li>
 										<li><a href="">희망도서목록</a></li>
 									</ul>
 								</li>
@@ -178,7 +178,7 @@
 								</li>
 								<li><a href="no-sidebar.html">도서관 서비스</a>
 								    <ul>
-										<li><a href="#">열람실 예약</a></li>
+										<li><a href="readingroommove">열람실 예약</a></li>
 										<li><a href="#">건의 사항</a></li>
 										<li><a href="#">희망도서 신청</a></li>
 										<li><a href="">공지사항</a></li>

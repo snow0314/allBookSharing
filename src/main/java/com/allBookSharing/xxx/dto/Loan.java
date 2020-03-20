@@ -14,6 +14,7 @@ import lombok.experimental.Accessors;
 @Accessors(chain=true)
 public class Loan {
 
+
 		int bo_num;
 		String bk_name;
 		String bk_image;
@@ -22,9 +23,9 @@ public class Loan {
 		int bd_state_num;//대출상태
 		int bd_count;//대출권수
 		@JsonFormat(pattern = "yyyy-MM-dd")
-		Date bd_date;
+		Date bd_date;				//대출일
 		@JsonFormat(pattern = "yyyy-MM-dd")
-		Date bd_return_date;
+		Date bd_return_date;		//반납예정일
 		@JsonFormat(pattern = "yyyy-MM-dd")
 		Date bd_real_return_date;
 		int bd_return_extension;

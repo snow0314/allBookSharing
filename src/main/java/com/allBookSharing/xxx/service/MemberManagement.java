@@ -23,6 +23,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.allBookSharing.xxx.dao.IMemberDao;
 import com.allBookSharing.xxx.dto.BigGroup;
 import com.allBookSharing.xxx.dto.Classification;
+import com.allBookSharing.xxx.dto.Library;
 import com.allBookSharing.xxx.dto.LikedList;
 import com.allBookSharing.xxx.dto.LikedList2;
 import com.allBookSharing.xxx.dto.Loan;
@@ -124,7 +125,9 @@ public class MemberManagement {
 		System.out.println("id="+id);
 		
 		//누적 연체일수
-		int arrearsDay=mDao.getArrearsDay(id)*-1;
+		int arrearsDay=0;
+		arrearsDay=mDao.getArrearsDay(id)*-1;
+		
 		
 		System.out.println("연체 일수 ="+arrearsDay);
 		
@@ -342,5 +345,23 @@ public class MemberManagement {
 		boolean result=mDao.reservationcancell(rv_num);
 		
 		return result;
+	}
+
+	//희망도서 신청에서 지역 정보 가져오는 메소드
+	public List<Library> getLocInfo() {
+		List<Library> list=mDao.getLocInfo();
+		return list;
+	}
+	//희망도서 지역정보 가져온뒤 부합하는 도서관 보여주는 메소드
+	public List<Library> getLocLibray(String loc) {
+		List<Library> list=mDao.getLocLibray(loc);
+		return list;
+	}
+	//예약 순위
+	public int getreservationRank(int rv_num) {
+
+		int rank=mDao.getreservationRank(rv_num);
+		
+		return rank;
 	}
 }

@@ -49,9 +49,26 @@ public class LibrayRestController {
 		// 빅 데시멀 오류 발생 String.valueOf 사용하여 해결
 		int lb_code = Integer.parseInt(String.valueOf(req.getSession().getAttribute("LB_CODE")));
 		schedule.setSd_lcode(lb_code);
-		System.out.println("스케쥴:"+schedule.toString());
+		
 		String result =lm.setLibraySchedule(schedule);
 
 		return result;
 	}
+	
+	
+	@Secured("ROLE_LIBRARIAN") 
+	@RequestMapping(value = "/librayscheduledelete", produces = "application/json;charset=UTF-8")
+	public String scheduleDelete(HttpServletRequest req,Schedule schedule ) { //도서관 일정 삭제하는 메소드
+
+		// 빅 데시멀 오류 발생 String.valueOf 사용하여 해결
+		int lb_code = Integer.parseInt(String.valueOf(req.getSession().getAttribute("LB_CODE")));
+		schedule.setSd_lcode(lb_code);
+		System.out.println("스케쥴삭제:"+schedule.toString());
+		String result = lm.scheduleDelete(schedule);
+
+		return result;
+	}
+	
+	
+	
 }

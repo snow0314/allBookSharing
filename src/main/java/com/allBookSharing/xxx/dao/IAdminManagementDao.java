@@ -14,6 +14,8 @@ public interface IAdminManagementDao { //AdminMapper.xml
 	List<Library> getLibraryList();
 
 	List<Library> getlibraryinfo();
+	
+	List<Library> getinfo();
 
 
 	int LibrarianDelete(String la_id);

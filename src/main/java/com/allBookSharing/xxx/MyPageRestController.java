@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.allBookSharing.xxx.dto.BigGroup;
 import com.allBookSharing.xxx.dto.Classification;
+import com.allBookSharing.xxx.dto.Library;
 import com.allBookSharing.xxx.dto.Loan;
 import com.allBookSharing.xxx.dto.Reservation;
 import com.allBookSharing.xxx.service.MemberManagement;
@@ -33,7 +34,7 @@ public class MyPageRestController {
 		return pwResult;
 	}
 	
-	
+	//대출 건수
 	@RequestMapping(value = "/borrowcnt" ,produces = "application/json;charset=UTF-8")
 	public  int getBorrowCnt(Principal principal) {
 		
@@ -43,7 +44,7 @@ public class MyPageRestController {
 		return borrowCnt;
 	}
 	
-	
+	//연체 건수
 	@RequestMapping(value = "/arrearscnt" ,produces = "application/json;charset=UTF-8")
 	public  int getArrearsCnt(Principal principal) {
 		System.out.println("연체 건수 컨트롤러");
@@ -52,6 +53,7 @@ public class MyPageRestController {
 		return arrearsCnt;
 	}
 	
+	//리뷰 건수
 	@RequestMapping(value = "/reviewcnt" ,produces = "application/json;charset=UTF-8")
 	public  int getReviewCnt(Principal principal) {
 		System.out.println("독서 횟수 컨트롤러");
@@ -97,6 +99,15 @@ public class MyPageRestController {
 	}
 	
 	
+	//예약 순위 
+	@RequestMapping(value = "/reservationrank" ,produces = "application/json;charset=UTF-8")
+	public  int reservationRank(int rv_num) {
+		System.out.println("현재 예약 순위 컨트롤러");
+		int rank=mm.getreservationRank(rv_num);
+		
+		return rank;
+	}
+	
 	//현재 예약 취소 
 	@RequestMapping(value = "/reservationcancell" ,produces = "application/json;charset=UTF-8")
 	public  boolean reservationcancell(int rv_num) {
@@ -125,5 +136,19 @@ public class MyPageRestController {
 			
 			return bd_return_extension;
 		}
-
+		
+		//희망도서 신청페이지 지역정보 가져오는 메소드
+		@RequestMapping(value = "/getlocinfo" ,produces = "application/json;charset=UTF-8")
+		public List<Library> getLocInfo() { 
+			List<Library> list=mm.getLocInfo();
+			
+			return list;
+		}
+		//희망도서 신청페이지 지역정보 가져온뒤 도서관 보여주는 메소드
+		@RequestMapping(value = "/getloclibray" ,produces = "application/json;charset=UTF-8")
+		public List<Library> getLocLibray(String loc) { 
+			List<Library> list=mm.getLocLibray(loc);
+			
+			return list;
+		}
 }

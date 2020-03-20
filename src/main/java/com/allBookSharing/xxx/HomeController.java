@@ -139,6 +139,22 @@ public class HomeController {
 		return "totalSearch";
 	}
 	
+	//희망도서 페이지 이동
+	@PreAuthorize("isAuthenticated()")
+	@RequestMapping(value = "/hopebookmove")
+	public String hopebookmove() {
+		
+		return "bookrequest";
+	}
+	//희망도서 신청폼  페이지
+	@PreAuthorize("isAuthenticated()")
+	@RequestMapping(value = "/hopebookapply")
+	public String hopebookapply() {
+		
+		return "bookrequestapply";
+	}
+	
+	
 }
 
 

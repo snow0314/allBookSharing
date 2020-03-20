@@ -44,7 +44,7 @@
 </head>
 
 <body>
-    <%-- <jsp:include page="header.jsp" /> --%>
+    
 
    <table id="example"
       class="table table-striped table-bordered table-hover">
@@ -141,6 +141,7 @@ $(function() {
 
 
 </script>
+
 </body>
 
 </html>
