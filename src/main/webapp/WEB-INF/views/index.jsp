@@ -187,7 +187,7 @@
 								</li>
 								<li><a href="./">도서관 서비스</a>
 								    <ul>
-										<li><a href="#">열람실 예약</a></li>
+										<li><a href="readingroommove">열람실 예약</a></li>
 										<li><a href="questionmove">건의 사항</a></li>
 										<li><a href="#">희망도서 신청</a></li>
 										<li><a href="">공지사항</a></li>
