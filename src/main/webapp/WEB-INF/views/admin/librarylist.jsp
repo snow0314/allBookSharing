@@ -66,7 +66,7 @@
 var data;
 $(document).ready( function () {
 	$.ajax({
-		url : "getlibraryinfo",
+		url : "getinfo",
 		type : "get",
 		dataType:'json'
 		
@@ -100,36 +100,6 @@ $(document).ready( function () {
 	
 
 });	
-</table>
-</div>
-   <script>
-    var example_tbl = null
-    var data=${json};
-    console.log(data);
-	$(function() {
-		example_tbl = $('#example').DataTable({
-			data:data,
-			'columnDefs': [
-				{
-		        	orderable: false,
-		           'targets': 0,
-		            className: 'select-checkbox',
-		            "defaultContent": ""
-		        	
-		        },
-		        { 'data': 'lb_loc' , 'targets': 0}, //
-		        { 'data': 'lb_code', 'targets': 1}, //
-		        { 'data': 'lb_name', 'targets': 2, 'className' : 'test'}, //
-		        { 'data': 'la_id', 'targets': 3}, //
-		    
-		     ],
-		     'select': {
-			        'style': 'multi'
-			     },
-			     'order': [[1, 'asc']],
-			     dom: 'Bfrtip',
-
-
 
 function librarianDelete(la_id){
 	

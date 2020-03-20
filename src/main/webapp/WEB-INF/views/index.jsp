@@ -189,7 +189,7 @@
 								    <ul>
 										<li><a href="#">열람실 예약</a></li>
 										<li><a href="#">건의 사항</a></li>
-										<li><a href="#">희망도서 신청</a></li>
+										<li><a href="hopebookmove">희망도서 신청</a></li>
 										<li><a href="">공지사항</a></li>
 									</ul>
 								</li>

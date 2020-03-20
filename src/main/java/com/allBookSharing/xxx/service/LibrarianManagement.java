@@ -63,6 +63,12 @@ public class LibrarianManagement {
 		}
 		
 	}
+
+
+	public List<Library> getinfo() {
+		List<Library> lib= aDao.getinfo();
+		return lib;
+	}
 		
 	}
 	
