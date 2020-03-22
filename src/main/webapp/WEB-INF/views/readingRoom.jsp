@@ -51,4 +51,25 @@
             </div>
         </div>
     </div>
-</body></html>
+</body>
+<script type="text/javascript">
+$(function() {
+	$.ajax({ //도서관 정보 가져오는 메소드
+		url : "getlibraryinfo",
+		type : "get",
+		dataType:'json'
+		
+}).done((result) => {
+	console.log("result=",result);
+	data=result;
+ 	/* var info=result;
+	for(var i=0;i<info.length;i++){
+		$("<option>").text(info[i].lb_name).attr("value",info[i].lb_code+","+info[i].lb_loc).appendTo($("#lb_name"));
+	}  */
+	
+}).fail((xhr) => {
+	console.log("xhr=",xhr);
+}); //도서관 이름 ajax End
+});
+</script>
+</html>

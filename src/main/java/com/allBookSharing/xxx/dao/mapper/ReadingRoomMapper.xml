@@ -41,5 +41,19 @@
     }
 </delete>
 
+<select id="getReadingRoomInfo" parameterType="String" resultType="readingRoom">
+	SELECT readingroom.rm_code, readingroom.rm_name,readingroom.rm_low,readingroom.rm_col ,COUNT(case when se_place>0 then 1 end ) as totalSeat 
+	FROM readingroom
+	JOIN SEATS
+	ON readingroom.rm_code=seats.se_code
+	group by rm_code, readingroom.rm_code, rm_name, readingroom.rm_name, readingroom.rm_low, 
+	readingroom.rm_col
+	HAVING readingroom.rm_code=#{rm_code}
+</select>
+
+<select id="getSeatInfo" parameterType="String" resultType="seats">
+	SELECT * FROM SEATS WHERE SE_CODE=#{rm_code}
+</select>
+
 
 </mapper>
