@@ -25,7 +25,7 @@ public class MyPageRestController {
 	
 	
 	@RequestMapping(value = "/updatepassword" ,produces = "application/json;charset=UTF-8")
-	public  boolean updatePassword(Principal principal,String pw) {
+	public boolean updatePassword(Principal principal,String pw) {
 		
 		System.out.println("pw변경 컨트롤러");
 		System.out.println("pw="+pw);
@@ -36,7 +36,7 @@ public class MyPageRestController {
 	
 	//대출 건수
 	@RequestMapping(value = "/borrowcnt" ,produces = "application/json;charset=UTF-8")
-	public  int getBorrowCnt(Principal principal) {
+	public int getBorrowCnt(Principal principal) {
 		
 		System.out.println("대출 건수 컨트롤러");
 		int borrowCnt=mm.getBorrowCnt(principal);
@@ -46,7 +46,7 @@ public class MyPageRestController {
 	
 	//연체 건수
 	@RequestMapping(value = "/arrearscnt" ,produces = "application/json;charset=UTF-8")
-	public  int getArrearsCnt(Principal principal) {
+	public int getArrearsCnt(Principal principal) {
 		System.out.println("연체 건수 컨트롤러");
 		int arrearsCnt=mm.getArrearsCnt(principal);
 		
@@ -55,7 +55,7 @@ public class MyPageRestController {
 	
 	//리뷰 건수
 	@RequestMapping(value = "/reviewcnt" ,produces = "application/json;charset=UTF-8")
-	public  int getReviewCnt(Principal principal) {
+	public int getReviewCnt(Principal principal) {
 		System.out.println("독서 횟수 컨트롤러");
 		int reviewCnt=mm.getReviewCnt(principal);
 		
@@ -64,7 +64,7 @@ public class MyPageRestController {
 
 	//누적 연체일수
 	@RequestMapping(value = "/arrearsday" ,produces = "application/json;charset=UTF-8")
-	public  int arrearsDay(Principal principal) {
+	public int arrearsDay(Principal principal) {
 		System.out.println("누적 연체 날짜 컨트롤러");
 		int arrearsDay=mm.getArrearsDay(principal);
 		
@@ -73,7 +73,7 @@ public class MyPageRestController {
 
 	//대출현황
 	@RequestMapping(value = "/loanlist" ,produces = "application/json;charset=UTF-8")
-	public  List<Loan> loanList(Principal principal) {
+	public List<Loan> loanList(Principal principal) {
 		System.out.println("대출현황 컨트롤러");
 		List<Loan> lList=mm.getLoanList(principal);
 		
@@ -81,7 +81,7 @@ public class MyPageRestController {
 	}
 	//연체 목록
 	@RequestMapping(value = "/arrearslist" ,produces = "application/json;charset=UTF-8")
-	public  List<Loan> arrearsList(Principal principal) {
+	public List<Loan> arrearsList(Principal principal) {
 		System.out.println("연체목록 컨트롤러");
 		List<Loan> lList=mm.getArrearsList(principal);
 		
@@ -91,7 +91,7 @@ public class MyPageRestController {
 	
 	//현재 예약 목록
 	@RequestMapping(value = "/reservationlist" ,produces = "application/json;charset=UTF-8")
-	public  List<Reservation> reservationList(Principal principal) {
+	public List<Reservation> reservationList(Principal principal) {
 		System.out.println("현재 예약 목록 컨트롤러");
 		List<Reservation> rList=mm.getReservationlist(principal);
 		
@@ -101,7 +101,7 @@ public class MyPageRestController {
 	
 	//예약 순위 
 	@RequestMapping(value = "/reservationrank" ,produces = "application/json;charset=UTF-8")
-	public  int reservationRank(int rv_num) {
+	public int reservationRank(int rv_num) {
 		System.out.println("현재 예약 순위 컨트롤러");
 		int rank=mm.getreservationRank(rv_num);
 		
@@ -110,7 +110,7 @@ public class MyPageRestController {
 	
 	//현재 예약 취소 
 	@RequestMapping(value = "/reservationcancell" ,produces = "application/json;charset=UTF-8")
-	public  boolean reservationcancell(int rv_num) {
+	public boolean reservationcancell(int rv_num) {
 		System.out.println("현재 예약 목록 컨트롤러");
 		boolean result=mm.reservationcancell(rv_num);
 		
@@ -120,7 +120,7 @@ public class MyPageRestController {
 	
 	//대출 차트
 	@RequestMapping(value = "/borrowchart" ,produces = "application/json;charset=UTF-8")
-	public  List<BigGroup> borrowChart(Principal principal) {
+	public List<BigGroup> borrowChart(Principal principal) {
 		System.out.println("대출차트 컨트롤러");
 		List<BigGroup> bList=mm.getBorrowChart(principal);
 		
@@ -129,7 +129,7 @@ public class MyPageRestController {
 	
 	//반납일 연장하기
 		@RequestMapping(value = "/loanextend" ,produces = "application/json;charset=UTF-8")
-		public  Integer loanExtend(int bd_bo_num) {
+		public Integer loanExtend(int bd_bo_num) {
 			System.out.println("반납연장 컨트롤러");
 			System.out.println("bd_bo_num="+bd_bo_num);
 			int bd_return_extension=mm.loanExtend(bd_bo_num);
