@@ -87,7 +87,7 @@ public class QuestionManagement {
 		return mav;
 	}
 
-
+	//건의사항 상세보기
 	public ModelAndView questionDetail(int qs_num) {
 		ModelAndView mav= new ModelAndView();
 		String view=null;
@@ -98,9 +98,9 @@ public class QuestionManagement {
 		else
 			view="redirect:/questionmove";
 		
-		String json=new Gson().toJson(qus);
+		//String json=new Gson().toJson(qus);
 		
-		mav.addObject("question",json);
+		mav.addObject("question",qus);
 		
 		mav.setViewName(view);
 		

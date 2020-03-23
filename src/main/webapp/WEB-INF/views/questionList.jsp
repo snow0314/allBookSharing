@@ -24,7 +24,8 @@
 <script>
 	jQuery(function($) {
 		$("#foo-table").DataTable({
-			info : true,
+			"info" : true,
+			"order": [[0, 'desc']], // asc 또는 desc
 			"dom" : '<"top"il>t<"bottom"prf><"clear">',
 			"language" : {
 				"emptyTable" : "데이터가 없어요.",
@@ -37,10 +38,11 @@
 			},
 			"columnDefs": [
 				{ "width": "5%", "targets": 0 },
-				{ "width": "30%", "targets": 1 },
-				{ "width": "8%", "targets": 2 },
-				{ "width": "15%", "targets": 3 },
-				{ "width": "10%", "targets": 4 }
+				{ "width": "5%", "targets": 1 },
+				{ "width": "30%", "targets": 2 },
+				{ "width": "8%", "targets": 3 },
+				{ "width": "15%", "targets": 4 },
+				{ "width": "10%", "targets": 5 }
 				
 			  ]
 			
@@ -52,19 +54,22 @@
 #btn{
 margin: 0 43%;
 }
-
+#foo-table_paginate{
+text-align: center;
+}
 </style>
 
 </head>
 <body>
 
 	<jsp:include page="header2.jsp" />
-	
    <div style="width:80%;margin:0 10%; ">
+	<h3 style="margin-bottom: 50px;">건의사항</h3>
 <table id="foo-table" class="table table-bordered" >
       <thead>
          <tr>
          <th>No</th>
+         <th>도서관</th>
          <th>제목</th>
          <th>글쓴이</th>
          <th>작성일</th>
@@ -87,7 +92,7 @@ console.log(list);
 for(let i=0;i<list.length;i++){
    var $tr= $("<tr>").appendTo($("#tb"));
    $tr.append("<td>"+(i+1)+"</td>");
-//   $tr.append("<td>"+list[i].qs_num+"</td>");
+   $tr.append("<td>"+list[i].lb_name+"</td>");
 	if(list[i].qs_show==0){		
    $tr.append("<td><a href='qsdetail?qs_num="+list[i].qs_num+"'>"+list[i].qs_title+" &nbsp;&nbsp;</td>");
 	}
@@ -96,7 +101,7 @@ for(let i=0;i<list.length;i++){
 	}	
    $tr.append("<td>"+list[i].qs_id+"</td>");
    $tr.append("<td>"+list[i].qs_date+"</td>");
-   $tr.append("<td>"+list[i].qs_state+"</td>");
+   $tr.append("<td><span style='color:red; font-weight:bold;'>"+list[i].qs_state+"</span></td>");
    
 }
 </script>
