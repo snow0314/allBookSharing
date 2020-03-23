@@ -4,13 +4,18 @@
 <mapper namespace="com.allBookSharing.xxx.dao.QuestionDao">
 
 <select id="getQuestionList" resultType="Question">
- select * from question
+ SELECT * FROM QUESTION JOIN LIBRARY ON QS_LCODE=LB_CODE
 </select>
-
 <insert id="questionWrite" parameterType="Question">
-    INSERT INTO QUESTION VALUES 
+<if test="qs_show==0">
+    INSERT INTO QUESTION(QS_NUM, QS_LCODE, QS_ID, QS_TITLE, QS_CONTENT, QS_SHOW, QS_STATE, QS_DATE) VALUES 
     (qs_num.nextval,#{qs_lcode},#{qs_id},#{qs_title},#{qs_content},#{qs_show},'대기중',SYSDATE)
-    
+</if>
+
+<if test="qs_show==1">
+    INSERT INTO QUESTION VALUES 
+    (qs_num.nextval,#{qs_lcode},#{qs_id},#{qs_title},#{qs_content},#{qs_show},'대기중',SYSDATE,#{qs_pw}) 
+</if>
 </insert>
 
 <select id="getQuestionDetail" resultType="Question">
