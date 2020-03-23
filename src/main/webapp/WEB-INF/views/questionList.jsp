@@ -37,11 +37,11 @@
 				}
 			},
 			"columnDefs": [
-				{ "width": "5%", "targets": 0 },
-				{ "width": "5%", "targets": 1 },
+				{ "width": "3%", "targets": 0 },
+				{ "width": "8%", "targets": 1 },
 				{ "width": "30%", "targets": 2 },
 				{ "width": "8%", "targets": 3 },
-				{ "width": "15%", "targets": 4 },
+				{ "width": "12%", "targets": 4 },
 				{ "width": "10%", "targets": 5 }
 				
 			  ]
@@ -64,6 +64,7 @@ text-align: center;
 
 	<jsp:include page="header2.jsp" />
    <div style="width:80%;margin:0 10%; ">
+	<form action="movequestionwrite?${_csrf.parameterName}=${_csrf.token}" method="post">
 	<h3 style="margin-bottom: 50px;">건의사항</h3>
 <table id="foo-table" class="table table-bordered" >
       <thead>
@@ -80,7 +81,6 @@ text-align: center;
       </tbody>
     </table>
 
-	<form action="movequestionwrite">
 <input type="submit" value="글쓰기" id="btn">
 	</form>
       </div>
@@ -94,18 +94,25 @@ for(let i=0;i<list.length;i++){
    $tr.append("<td>"+(i+1)+"</td>");
    $tr.append("<td>"+list[i].lb_name+"</td>");
 	if(list[i].qs_show==0){		
-   $tr.append("<td><a href='qsdetail?qs_num="+list[i].qs_num+"'>"+list[i].qs_title+" &nbsp;&nbsp;</td>");
+   $tr.append("<td><a href='qsdetail?&qs_num="+list[i].qs_num+"&qs_show="+list[i].qs_show+"'>"+list[i].qs_title+" &nbsp;&nbsp;</td>");
 	}
 	if(list[i].qs_show==1){		
-   $tr.append("<td><a href='qsdetail?qs_num="+list[i].qs_num+"'>"+list[i].qs_title+" &nbsp;&nbsp;</a><i class='fas fa-lock'></i></td>");
+   $tr.append("<td style='display:flex;'><a onclick='show("+list[i].qs_num+")' href='javascript:'>"+list[i].qs_title+" &nbsp;&nbsp;</a><i class='fas fa-lock'></i>&nbsp;&nbsp;"+
+   "<input type='hidden' id='pw"+list[i].qs_num+"' name='qs_pw' style='width:150px; height:30px;'/>&nbsp;"+
+   "<input type='hidden' id='sub"+list[i].qs_num+"' value='입력' formaction='qspwdetail?${_csrf.parameterName}=${_csrf.token}&qs_num="+list[i].qs_num+"&qs_show="+list[i].qs_show+"' style='all:unset; width:60px; height:30px; text-align:center; color: white; background-color:#3AC984; cursor:pointer;'/></td>");
 	}	
    $tr.append("<td>"+list[i].qs_id+"</td>");
    $tr.append("<td>"+list[i].qs_date+"</td>");
    $tr.append("<td><span style='color:red; font-weight:bold;'>"+list[i].qs_state+"</span></td>");
-   
 }
 </script>
 
+<script>
+function show(qs_num){
+	$("#pw"+qs_num+"").attr("type","text");	
+	$("#sub"+qs_num+"").attr("type","submit");	
+}
+</script>
 
 
 </body>

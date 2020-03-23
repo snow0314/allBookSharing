@@ -19,7 +19,14 @@
 </insert>
 
 <select id="getQuestionDetail" resultType="Question">
+<if test="qs_show==0">
  select * from question WHERE QS_NUM=#{qs_num}
+</if>
+
+<if test="qs_show==1">
+ SELECT * FROM QUESTION WHERE QS_NUM=#{qs_num} AND QS_PW=#{qs_pw}
+</if>
+
 </select>
 
 </mapper>

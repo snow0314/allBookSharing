@@ -88,10 +88,10 @@ public class QuestionManagement {
 	}
 
 	//건의사항 상세보기
-	public ModelAndView questionDetail(int qs_num) {
+	public ModelAndView questionDetail(Question qus2) {
 		ModelAndView mav= new ModelAndView();
 		String view=null;
-		Question qus=qDao.getQuestionDetail(qs_num);
+		Question qus=qDao.getQuestionDetail(qus2);
 		
 		if(qus!=null) 
 			view="questionDetail";

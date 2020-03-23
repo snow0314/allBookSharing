@@ -39,19 +39,31 @@ public class QuestionController {
 	//건의사항 글상세보기 
 	@PreAuthorize("isAuthenticated()")
 	@GetMapping(value = "/qsdetail")
-	public ModelAndView questionDetail(int qs_num) {
+	public ModelAndView questionDetail(Question qus) {
 		
 		ModelAndView mav=new ModelAndView();
 		
-		mav = qm.questionDetail(qs_num);
+		mav = qm.questionDetail(qus);
 		 
 		return mav;
 	}
 	
+	//건의사항 글상세보기 
+		@PreAuthorize("isAuthenticated()")
+		@PostMapping(value = "/qspwdetail")
+		public ModelAndView questionPwDetail(Question qus) {
+			
+			ModelAndView mav=new ModelAndView();
+			
+			mav = qm.questionDetail(qus);
+			 
+			return mav;
+		}
+	
 	
 	//건의사항 글쓰기 페이지 이동
 	@PreAuthorize("isAuthenticated()")
-	@GetMapping(value = "/movequestionwrite")
+	@PostMapping(value = "/movequestionwrite")
 	public ModelAndView movequestionWrite() {
 		
 		ModelAndView mav=new ModelAndView();
