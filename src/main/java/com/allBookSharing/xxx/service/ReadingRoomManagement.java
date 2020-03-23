@@ -68,5 +68,18 @@ public class ReadingRoomManagement {
 		
 		return mav;
 	}
+	//열람실 수정하는 메소드
+	public String readingRoomModify(ReadingRoom readingRoom) {
+		int result=rDao.readingRoomModify(readingRoom);
+		
+		List<Seats> seats=readingRoom.getSeats();		
+		result= rDao.seatModify(seats, readingRoom.getRm_code());
+		
+		if(result!=0) {
+			return "성공";
+		}else {
+			return "실패";
+		}
+	}
 	
 }

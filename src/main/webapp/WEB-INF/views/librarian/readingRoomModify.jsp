@@ -56,13 +56,14 @@
 					<span class="input-group-text">열람실 이름</span>
 				</div>
 				<input id="rm_name" name="rm_name" type="text" class="form-control">
+				<input id="rm_code" name="rm_code" type="hidden">
 			</div>
 			<div class="row">
 				<div class="col-4">
 					<div class="form-group">
 						<label for="rm_col" class="control-label mb-1">행</label> <input
 							id="rm_col" name="rm_col" type="number"
-							class="form-control cc-exp" value="" placeholder="행을 입력해주세요">
+							class="form-control cc-exp" value="" placeholder="행을 입력해주세요" readonly="readonly">
 						<span class="help-block" data-valmsg-for="cc-exp"
 							data-valmsg-replace="true"></span>
 					</div>
@@ -71,7 +72,7 @@
 					<label for="rm_row" class="control-label mb-1">열</label>
 					<div class="input-group">
 						<input id="rm_row" name="rm_row" type="number"
-							class="form-control cc-cvc" value="" placeholder="열을 입력해주세요">
+							class="form-control cc-cvc" value="" placeholder="열을 입력해주세요" readonly="readonly">
 					</div>
 				</div>
 				<div class="col-4">
@@ -85,11 +86,8 @@
 
 
 			<div class="col-md-4 ml-auto" style="text-align: right">
-				<button id="create_seat" type="button" class="btn btn-success">
-					<i class="fas fa-pen"></i>&nbsp; 좌석 생성
-				</button>
 				<button id="insert" type="button" class="btn btn-success">
-					<i class="fas fa-pen"></i>&nbsp; 등록
+					<i class="fas fa-pen"></i>&nbsp; 수정하기
 				</button>
 			</div>
 
@@ -105,12 +103,14 @@
 </body>
 <script type="text/javascript" src="js/ajaxCsrf.js"></script>
 <script>
-$(document).ready( function () {
+$(document).ready(function(){
+	
 	console.log(${readingRoom});
 	var readingRoom=${readingRoom};
 	var seats=readingRoom.seats;
 	console.log("seats:",seats);
 	$("#rm_name").val(readingRoom.rm_name);
+	$("#rm_code").val(readingRoom.rm_code);
 	$("#rm_col").val(readingRoom.rm_col);
 	$("#rm_row").val(readingRoom.rm_low);
 	$("#total_seat").val(readingRoom.totalSeat);
@@ -127,9 +127,9 @@ $(document).ready( function () {
             
         	for(let k=0;k < seats.length; k++){
         		if(seats[k].se_low == i && seats[k].se_col == j){
-        			
+        			console.log("좌석상태 if문");
         			if(seats[k].se_place == 1){ //체크된 상태면 checked 상태를 true로 변경
-        				let $label=$("<label>").addClass("btn btn-outline-success")
+        				let $label=$("<label>").addClass("btn btn-outline-success active")
 						   .appendTo($("#seats"));
  
  						$("<input>").attr("name","seat")
@@ -148,18 +148,18 @@ $(document).ready( function () {
                         			.attr("data-col",j)
                         			.attr("data-row",i).appendTo($label);
         			} // if else End
-        			
+        			break;
         		} //if End
-        		console.log("k:",k);
+        		
         	} //for k End
-            console.log("i:",i);
+            
         } //for i End
        $("<br>").appendTo($("#seats"));
-        console.log("j:",j);
+        
     } // for j End
 	
 	
-});
+}); //ready End
 		
 
 
@@ -169,7 +169,7 @@ $(document).ready( function () {
 			let col = $("#rm_col").val(); //행
 	        let row = $("#rm_row").val(); //열
 	        var checkbox=[]; 
-	        
+	        data.rm_code=$("#rm_code").val();
 	        data.rm_name=name;
 	        data.rm_col=col;
 	        data.rm_low=row;
@@ -190,7 +190,7 @@ $(document).ready( function () {
 			data.seats=checkbox;
 	        
 	        $.ajax({ 
-				url : "libraryreadingroominsert",
+				url : "libraryreadingroommodify",
 				type : "post",
 				data : {"json" : JSON.stringify(data)},
 				dataType:'text'
@@ -199,11 +199,11 @@ $(document).ready( function () {
 			console.log("result=",result);
 			
 			if(result=="성공"){
-				toastr.success('성공', '열람실 등록에 성공하셨습니다.');
+				toastr.success('성공', '열람실 수정에 성공하셨습니다.');
 			}else{
-				toastr.error("실패", "열람실 등록에 실패하셨습니다.");
+				toastr.error("실패", "열람실 수정에 실패하셨습니다.");
 			}
-			location.reload(true);
+			
 			
 			}).fail((xhr) => {
 			console.log("xhr=",xhr);

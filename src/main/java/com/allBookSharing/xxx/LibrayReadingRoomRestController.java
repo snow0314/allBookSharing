@@ -62,4 +62,22 @@ public class LibrayReadingRoomRestController {
 
 		return result;
 	}
+	
+		// 열람실 수정
+		@Secured("ROLE_LIBRARIAN")
+		@RequestMapping(value = "/libraryreadingroommodify", produces = "application/json;charset=UTF-8")
+		public String readingRoomModify(String json, HttpServletRequest req)
+				throws JsonParseException, JsonMappingException, IOException {
+
+			// 제이슨 형태의 문자열을 객체로 변환
+			ObjectMapper mapper = new ObjectMapper();
+			ReadingRoom readingRoom = mapper.readValue(json, ReadingRoom.class);
+
+			// 빅 데시멀 오류 발생 String.valueOf 사용하여 해결
+			int lb_code = Integer.parseInt(String.valueOf(req.getSession().getAttribute("LB_CODE")));
+
+			readingRoom.setRm_lcode(lb_code);
+
+			return rm.readingRoomModify(readingRoom);
+		}
 }

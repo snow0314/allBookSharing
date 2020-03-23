@@ -55,5 +55,20 @@
 	SELECT * FROM SEATS WHERE SE_CODE=#{rm_code}
 </select>
 
+<update id="readingRoomModify" parameterType="readingRoom">
+	UPDATE READINGROOM SET rm_name=#{rm_name}
+	WHERE RM_CODE=#{rm_code}
+</update>
+
+<update id="seatModify" parameterType="java.util.List">
+	  
+	<foreach collection="list" item="item" separator=";" open="DECLARE BEGIN" close="; END;">
+		UPDATE SEATS SET SE_PLACE=#{item.se_place}
+		 <where>
+		SE_CODE=#{code} AND SE_LOW=#{item.se_low} AND SE_COL=#{item.se_col}
+		 </where>
+    </foreach>
+  
+</update>
 
 </mapper>
