@@ -25,7 +25,7 @@
         });
     </script>
 
-<title>대출목록</title>
+<title>희망도서 신청 게시판</title>
 <script>
     var bootstrapButton = $.fn.button.noConflict() // return $.fn.button to previously assigned value
     $.fn.bootstrapBtn = bootstrapButton            // give $().bootstrapBtn the Bootstrap functionality
@@ -37,13 +37,12 @@
 <table id="foo-table" class="table table-bordered">
 		<thead>
 			<tr>
-			<th>No</th>
-			<th>대출번호</th>
+			<th>요청번호</th>
+			<th>제목</th>
 			<th>도서관</th>
-			<th>도서명</th>
-			<th>대출일</th>
-			<th>반납예정날짜</th>
-			<th>반납일</th>
+			<th>글쓴이</th>
+			<th>작성일</th>
+			<th>상태</th>
 			</tr>
 		</thead>
 		<tbody id='tb'>
@@ -59,12 +58,12 @@ console.log(list);
 for(let i=0;i<list.length;i++){
 	var $tr= $("<tr>").appendTo($("#tb"));
 	$tr.append("<td>"+(i+1)+"</td>");
-	$tr.append("<td>"+list[i].bo_num+"</td>");
-	$tr.append("<td>"+list[i].lb_name+"</td>");
-	$tr.append("<td>"+list[i].bk_name+"</td>");
-	$tr.append("<td>"+list[i].bd_date+"</td>");
-	$tr.append("<td>"+list[i].bd_return_date+"</td>");
-	$tr.append("<td>"+list[i].bd_real_return_date+"</td>");
+	$tr.append("<td>"+list[i].br_num+"</td>");
+	$tr.append("<td>"+list[i].br_titile+"</td>");
+	$tr.append("<td>"+list[i].br_bname+"</td>");
+	$tr.append("<td>"+list[i].br_id+"</td>");
+	$tr.append("<td>"+list[i].br_date+"</td>");
+	$tr.append("<td>"+list[i].br_situation+"</td>");
 	
 }
 </script>
