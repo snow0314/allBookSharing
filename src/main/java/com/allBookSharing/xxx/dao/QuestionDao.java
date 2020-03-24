@@ -18,7 +18,7 @@ public interface QuestionDao {
 	boolean questionWrite(Question qus);
 
 	//건의사항 상세글보기
-	Question getQuestionDetail(int qs_num);
+	Question getQuestionDetail(Question qus2);
 
 	
 }
