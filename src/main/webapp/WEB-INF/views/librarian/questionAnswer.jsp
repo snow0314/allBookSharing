@@ -54,10 +54,7 @@ ${question.qs_content}
 <pre style=" border: 1px solid rgba(0,0,0,0.2);">
 ${answer.aw_contents}
 </pre>
-<textarea name="" id="" cols="30" rows="10">
 
-${answer.aw_contents}
-</textarea>
 <form action="questionanswer?${_csrf.parameterName}=${_csrf.token}" method="post">
 <input type="hidden" name="aw_q_num" value='${question.qs_num}' />
 <div id='ans' style=" margin-top: 10px;" >
