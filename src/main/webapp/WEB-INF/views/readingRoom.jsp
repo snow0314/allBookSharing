@@ -31,21 +31,26 @@
         <div class="row">
             <div class="col-md-4">
                 <div class="container p-3 my-3 border">
-                    <select class="custom-select">
-                        <option selected>Large Custom Select Menu</option>
-                        <option value="volvo">Volvo</option>
-                        <option value="fiat">Fiat</option>
-                        <option value="audi">Audi</option>
+                    <select class="custom-select" id="lb_loc" name="lb_loc">
+                        <option selected>도서관이 위치한 지역을 선택해 주세요.</option>
+                      
                     </select>
-                </div>
-                <div class="container p-3 my-3 border">
+                  <div class="container p-3 my-3 border">
                     지도?
+                </div>  
                 </div>
+                
             </div>
 
-            <div class="col-md-8">
+            <div class="col-md-4">
                 <div class="container p-3 my-3 border">
                     도서관 목록
+
+                </div>
+            </div>
+             <div class="col-md-4">
+                <div class="container p-3 my-3 border">
+                    열람실 목록
 
                 </div>
             </div>
@@ -54,22 +59,45 @@
 </body>
 <script type="text/javascript">
 $(function() {
-	$.ajax({ //도서관 정보 가져오는 메소드
-		url : "getlibraryinfo",
+	$.ajax({ //지역 정보 가져오는 메소드
+		url : "getzoneinfo",
 		type : "get",
 		dataType:'json'
 		
 }).done((result) => {
-	console.log("result=",result);
-	data=result;
- 	/* var info=result;
+	
+ 	var info=result;
+ 	
 	for(var i=0;i<info.length;i++){
-		$("<option>").text(info[i].lb_name).attr("value",info[i].lb_code+","+info[i].lb_loc).appendTo($("#lb_name"));
-	}  */
+		$("<option>").text(info[i].lb_loc).attr("value",info[i].lb_loc).appendTo($("#lb_loc"));
+	}  
 	
 }).fail((xhr) => {
 	console.log("xhr=",xhr);
 }); //도서관 이름 ajax End
 });
+
+$("#lb_loc").on("change", function(){ //지역 선택시 도서관 목록 보여주는 메소드
+	console.log("선택한 지역:",$(this).val());
+	
+	$.ajax({ //지역 정보 가져오는 메소드
+		url : "getzoneinfo",
+		type : "get",
+		dataType:'json'
+		
+}).done((result) => {
+	
+ 	var info=result;
+ 	
+	for(var i=0;i<info.length;i++){
+		$("<option>").text(info[i].lb_loc).attr("value",info[i].lb_loc).appendTo($("#lb_loc"));
+	}  
+	
+}).fail((xhr) => {
+	console.log("xhr=",xhr);
+}); //ajax End
+	
+});
+
 </script>
 </html>
