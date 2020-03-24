@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.allBookSharing.xxx.dao.ILibrarianManagementDao">
+
+<select id="lbQuestionList" resultType="Question">
+
+SELECT * FROM librarian join QUESTION on la_lcode=qs_lcode join library on librarian.la_lcode=library.lb_code WHERE LA_ID=#{id}
+</select>
+
+</mapper>
