@@ -197,7 +197,7 @@
 										<li><a href="questionmove">건의 사항</a></li>
 										<li><a href="hopebookmove">희망도서 신청</a></li>
 
-										<li><a href="">공지사항</a></li>
+										<li><a href="noticemove">공지사항</a></li>
 									</ul>
 								</li>
 							</ul>
