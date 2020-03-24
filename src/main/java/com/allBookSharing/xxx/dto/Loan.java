@@ -18,6 +18,7 @@ public class Loan {
 		int bo_num;
 		String bk_name;
 		String bk_image;
+		String lb_name;
 		String bk_writer;
 		String bk_code;//isbn코드
 		int bd_state_num;//대출상태
@@ -32,4 +33,11 @@ public class Loan {
 		int arrearsday;
 		String bk_publisher;
 		String bk_publicday;
+		int br_num; //희망도서 요청번호
+		String br_titile; //희망도서 신청 제목
+		@JsonFormat(pattern = "yyyy-MM-dd")
+		Date br_date;				//신청일
+		int br_situation; //요청 상태 0.답변대기 1.처리중 2.반려 3.소장중
+		String br_false; //반려 이유
+		String br_id; //희망도서 글쓴이
 }

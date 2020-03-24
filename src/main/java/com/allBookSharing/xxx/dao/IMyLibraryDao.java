@@ -13,4 +13,6 @@ public interface IMyLibraryDao {
 
 	List<Loan> getLoanList(String id);
 
+	List<Loan> getHopeList(String id);
+
 }

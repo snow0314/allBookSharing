@@ -173,7 +173,7 @@
 										<li><a href="movemypage">마이페이지</a></li>
 										<li><a href="movedeliverylist">배송목록</a></li>
 										<li><a href="moveloanlist">대출목록</a></li>
-										<li><a href="">희망도서목록</a></li>
+										<li><a href="movehopelist">희망도서목록</a></li>
 									</ul>
 								</li>
 								<li><a href="./">자료검색</a>

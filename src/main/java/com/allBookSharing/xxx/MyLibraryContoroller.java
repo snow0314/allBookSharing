@@ -36,6 +36,15 @@ public class MyLibraryContoroller {
 		return mav;
 	}
 	
+	//희망도서 목록목록
+		@PreAuthorize("isAuthenticated()")
+		@RequestMapping(value = "/movehopelist", method = RequestMethod.GET)
+		public ModelAndView moveHopelist(Principal principal) {
+			ModelAndView mav=new ModelAndView();
+			mav=ml.getHopeList(principal);		
+			return mav;
+		}
+	
 	
 	
 }
