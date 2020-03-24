@@ -116,10 +116,10 @@
                                     <a href="index2.html">반납 관리</a>
                                 </li>
                                 <li>
-                                    <a href="index3.html">희망도서 관리</a>
+                                    <a href="#">희망도서 관리</a>
                                 </li>
                                 <li>
-                                    <a href="index4.html">건의사항 관리</a>
+                                    <a href="#" onclick="menuMove(12)">건의사항 관리</a>
                                 </li>
                             </ul>
                         </li>
@@ -239,7 +239,7 @@
     <!-- Main JS-->
     <script src="adminPage/js/main.js"></script>
 
-	<script type="text/javascript" src="js/librarianMove.js"></script>
+	<script type="text/javascript" src="js/librarianMove.js?ver2"></script>
 
 </body></html>
 <!-- end document-->
