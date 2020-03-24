@@ -68,6 +68,7 @@ public class ReadingRoomManagement {
 		
 		return mav;
 	}
+	
 	//열람실 수정하는 메소드
 	public String readingRoomModify(ReadingRoom readingRoom) {
 		int result=rDao.readingRoomModify(readingRoom);

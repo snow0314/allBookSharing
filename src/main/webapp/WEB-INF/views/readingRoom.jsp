@@ -20,6 +20,17 @@
 <!-- Latest compiled JavaScript -->
 <script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+<style type="text/css">
+	table{
+		text-align: center;
+		width: 100%;
+	}
+	a{
+		cursor: pointer;
+		color: #337AB7;
+	}
+</style>
+	
 </head>
 
 <body>
@@ -45,10 +56,18 @@
 			</div>
 
 			<div class="col-md-4">
-				<div class="container p-3 my-3 border">도서관 목록</div>
+				<div class="container p-3 my-3 border">
+					<table id="libraryList">
+					
+					</table>
+				</div>
 			</div>
 			<div class="col-md-4">
-				<div class="container p-3 my-3 border">열람실 목록</div>
+				<div class="container p-3 my-3 border">
+					<table id="readingRoomList">
+					
+					</table>
+				</div>
 			</div>
 		</div>
 	</div>
@@ -73,6 +92,7 @@ $(function() {
 }); //도서관 이름 ajax End
 });
 
+
 $("#lb_loc").on("change", function(){ //지역 선택시 도서관 목록 보여주는 메소드
 	console.log("선택한 지역:",$(this).val());
 	
@@ -85,16 +105,55 @@ $("#lb_loc").on("change", function(){ //지역 선택시 도서관 목록 보여
 }).done((result) => {
 	console.log("result2=",result);
  	var info=result;
+ 	$("#libraryList").empty();
+ 	
+ 	let $tr;
 	for(var i=0;i<info.length;i++){
-		$("<option>").text(info[i].lb_name).attr("value",info[i].lb_name).appendTo($("#lb_name"));
+		if(i%2 == 0){
+			$tr = $("<tr>").appendTo($("#libraryList"));
+		}
+		
+		let $td = $("<td>").appendTo($tr);
+		$("<a href='javascript:readingRoomList("+info[i].lb_code+");'>").html(info[i].lb_name).appendTo($td);
+		
 	} 
 	
-}).fail((xhr) => 
+}).fail((xhr) => {
 	console.log("xhr=",xhr);
-}); // ajax End
 }); //ajax End
 	
 }); //change End
+
+
+function readingRoomList(lb_code){ //도서관 클릭시 해당 도서관의 열람실 리스트 보여주는 메소드
+	console.log("lb_code=",lb_code)
+	$.ajax({
+		url : "getreadingroominfo",
+		type : "get",
+		data : {"lb_code" : lb_code},
+		dataType:'json'
+		
+}).done((result) => {
+	console.log("열람실:",result);
+ 	var info=result;
+ 	
+ 	let $tr;
+ 	for(var i=0;i<info.length;i++){
+		if(i%2 == 0){
+			$tr = $("<tr>").appendTo($("#readingRoomList"));
+		}
+		
+		let $td = $("<td>").appendTo($tr);
+		$("<a>").html(info[i].rm_name).attr("href","readingroomreservationmove?rm_code="+info[i].rm_code+"&rm_lcode="+info[i].rm_lcode).appendTo($td);
+		
+	}   
+	
+}).fail((xhr) => {
+	console.log("xhr=",xhr);
+}); //ajax End
+}
+
+
 
 </script>
 </html>

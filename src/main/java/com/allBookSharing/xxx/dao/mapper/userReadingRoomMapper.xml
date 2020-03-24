@@ -8,4 +8,12 @@
 		SELECT DISTINCT LB_LOC FROM LIBRARY
 	</select>
 	
+	<select id="getReadingRoomInfo" resultType="readingRoom">
+		SELECT * FROM READINGROOM WHERE RM_LCODE = #{lb_code}
+	</select>
+	
+	<select id="numberOfSeatsInUse" resultType="int">
+		SELECT COUNT(*) FROM SEATS WHERE SE_CODE = #{rm_code} AND SE_PLACE=#{se_place}   
+	</select>
+	
 </mapper>
