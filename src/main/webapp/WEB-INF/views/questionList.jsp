@@ -103,7 +103,10 @@ for(let i=0;i<list.length;i++){
 	}	
    $tr.append("<td>"+list[i].qs_id+"</td>");
    $tr.append("<td>"+list[i].qs_date+"</td>");
+   if(list[i].qs_state=="대기중")
    $tr.append("<td><span style='color:red; font-weight:bold;'>"+list[i].qs_state+"</span></td>");
+   if(list[i].qs_state=="답변완료")
+   $tr.append("<td><span style='color:blue; font-weight:bold;'>"+list[i].qs_state+"</span></td>");
 }
 </script>
 
