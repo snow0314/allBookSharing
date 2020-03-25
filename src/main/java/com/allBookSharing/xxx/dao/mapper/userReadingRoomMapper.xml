@@ -16,4 +16,13 @@
 		SELECT COUNT(*) FROM SEATS WHERE SE_CODE = #{rm_code} AND SE_PLACE=#{se_place}   
 	</select>
 	
+	<select id="readingRoomReservationCheck" resultType="Integer"> 
+		SELECT COUNT(*) FROM SEATS WHERE SE_ID = #{se_id}
+	</select>
+	
+	<update id="readingRoomReservation">
+		UPDATE SEATS SET SE_PLACE = 2, SE_ID = #{se_id}, SE_DATE = SYSDATE
+		WHERE SE_CODE=#{se_code} AND SE_LOW=#{se_low} AND SE_COL=#{se_col}
+	</update>
+	
 </mapper>

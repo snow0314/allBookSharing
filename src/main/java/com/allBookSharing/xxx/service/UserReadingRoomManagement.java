@@ -71,5 +71,22 @@ public class UserReadingRoomManagement {
 		
 		return sMap;
 	}
+
+	public String readingRoomReservation(Seats seats) {
+		int check = rDao.readingRoomReservationCheck(seats.getSe_id());
+		if(check == 0) {
+			int result = rDao.readingRoomReservation(seats);
+			
+			if(result!=0) {
+				return "예약에 성공하셨습니다.";
+			}else {
+				return "실패";
+			}
+		}else {
+			return "이미 예약한 회원입니다.";
+		}
+		
+		
+	}
 	
 }

@@ -40,7 +40,7 @@
 </head>
 <body>
 	<h1>열람실 예약 페이지</h1>
-	<form>
+	
 		<div class="row">
 			<div class="col-md-1"></div>
 			<div class="col-md-2">
@@ -70,18 +70,19 @@
 						</div>
 						<div class="col-4">
 							<div class="form-group">
-								<label for="numberOfSeatsInUse" class="control-label mb-1">사용 좌석</label> <input
-									id="numberOfSeatsInUse" name="numberOfSeatsInUse" type="number"
-									class="form-control cc-exp" value=""
+								<label for="numberOfSeatsInUse" class="control-label mb-1">사용
+									좌석</label> <input id="numberOfSeatsInUse" name="numberOfSeatsInUse"
+									type="number" class="form-control cc-exp" value=""
 									readonly="readonly"> <span class="help-block"
 									data-valmsg-for="cc-exp" data-valmsg-replace="true"></span>
 							</div>
 						</div>
 						<div class="col-4">
-							<label for="numberOfSeatsAvailable" class="control-label mb-1">잔여 좌석</label>
+							<label for="numberOfSeatsAvailable" class="control-label mb-1">잔여
+								좌석</label>
 							<div class="input-group">
-								<input id="numberOfSeatsAvailable" name="numberOfSeatsAvailable" type="number"
-									class="form-control cc-cvc" value=""
+								<input id="numberOfSeatsAvailable" name="numberOfSeatsAvailable"
+									type="number" class="form-control cc-cvc" value=""
 									readonly="readonly">
 							</div>
 						</div>
@@ -103,8 +104,9 @@
 				</div>
 			</div>
 		</div>
-	</form>
+	
 </body>
+<script type="text/javascript" src="js/ajaxCsrf.js"></script>
 <script type="text/javascript">
 	console.log(${readingRoom});
 	console.log(${readingRoomList});
@@ -153,23 +155,32 @@
      
      						$("<input>").attr("name","seat")
      									.attr("type","checkbox")
-     									.attr("checked",false)
      									.attr("data-col",j)
      									.attr("data-row",i)
      									.attr("disabled","disabled")
      									.appendTo($label);
 	        				
-	        			}else{ //체크된 상태면 checked 상태를 true로 변경
+	        			}else if(seats[k].se_place == 1){ //체크된 상태면 checked 상태를 true로 변경
 	        				let $label=$("<label>").addClass("btn btn-outline-success")
 							   .text(cnt).appendTo($("#seats"));
 	 
 	 						$("<input>").attr("name","seat")
 	 									.attr("type","checkbox")
-	 									.attr("checked",true)
 	 									.attr("data-col",j)
 	 									.attr("data-row",i).appendTo($label);
 	 						cnt++;
-	        			} // if else End
+	        			}else{
+	        				let $label=$("<label>").addClass("btn btn-outline-success active")
+							   .text(cnt).appendTo($("#seats"));
+	 
+	 						$("<input>").attr("name","seat")
+	 									.attr("type","checkbox")
+	 									.attr("data-col",j)
+	 									.attr("data-row",i)
+	 									.attr("disabled","disabled")
+	 									.appendTo($label);
+	 						cnt++;
+	        			} //else End
 	        			
 	        			break;
 	        		} //if End
@@ -202,11 +213,39 @@ function numberOfSeatsInUse(rm_code){ //사용중인 좌석 수 구하는 메소
 }//function End
 
 
-$("#seats").on("click",".btn-outline-success",function(event){
+$("#seats").on("click","input",function(event){
 	event.preventDefault(); //버블링 막기
+	
 	console.log(this);
-	let confirm = false;
-	confirm = confirm("예약하시겠습니까?");
+	let result = window.confirm("예약하시겠습니까?");
+	
+	
+	if(result){
+		let data = {"se_code" : $("#rm_code").val(),
+					"se_low" : $(this).data("row"),
+					"se_col" : $(this).data("col")};
+		console.log("데이터",data);
+		console.log("데이터 제이슨",JSON.stringify(data));
+		
+		  $.ajax({
+			url : "readingroomreservation",
+			type : "post",
+			data : {"json" : JSON.stringify(data)},
+			dataType:'text'
+			
+	}).done((result) => {
+		console.log("예약:",result);
+		alert(result);
+		location.reload();
+		
+	}).fail((xhr) => {
+		console.log("xhr=",xhr);
+	}); //ajax End 
+		
+	}else{
+		return false;
+	}
+	
 });
 	
 </script>

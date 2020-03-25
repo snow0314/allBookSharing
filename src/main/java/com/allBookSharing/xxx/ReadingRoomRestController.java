@@ -1,6 +1,7 @@
 package com.allBookSharing.xxx;
 
 import java.io.IOException;
+import java.security.Principal;
 import java.util.List;
 import java.util.Map;
 
@@ -8,12 +9,15 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.allBookSharing.xxx.dto.Library;
 import com.allBookSharing.xxx.dto.ReadingRoom;
+import com.allBookSharing.xxx.dto.Seats;
 import com.allBookSharing.xxx.service.UserReadingRoomManagement;
 import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.databind.JsonMappingException;
@@ -48,5 +52,18 @@ public class ReadingRoomRestController {
 			
 			return rm.numberOfSeatsInUse(rm_code);
 		}
+		
+		@RequestMapping(value = "/readingroomreservation", produces = "application/json;charset=UTF-8")
+		public String readingRoomReservation(Principal principal, String json) throws JsonParseException, JsonMappingException, IOException {
+			// 제이슨 형태의 문자열을 객체로 변환
+			ObjectMapper mapper = new ObjectMapper();
+			Seats seats = mapper.readValue(json, Seats.class);
+			
+			seats.setSe_id(principal.getName());
+			System.out.println(seats);
+			
+			return rm.readingRoomReservation(seats);
+		}
+		
 	
 }
