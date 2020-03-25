@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.springframework.stereotype.Component;
 
+import com.allBookSharing.xxx.dto.Answer;
 import com.allBookSharing.xxx.dto.Library;
 import com.allBookSharing.xxx.dto.Question;
 
@@ -19,6 +20,9 @@ public interface QuestionDao {
 
 	//건의사항 상세글보기
 	Question getQuestionDetail(Question qus2);
+
+	//답변보기
+	Answer getAnswer(Question qus2);
 
 	
 }

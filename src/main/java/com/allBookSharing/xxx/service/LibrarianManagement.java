@@ -12,6 +12,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.allBookSharing.xxx.dao.IAdminManagementDao;
 import com.allBookSharing.xxx.dao.ILibrarianManagementDao;
 import com.allBookSharing.xxx.dao.QuestionDao;
+import com.allBookSharing.xxx.dto.Answer;
 import com.allBookSharing.xxx.dto.Librarian;
 import com.allBookSharing.xxx.dto.Library;
 import com.allBookSharing.xxx.dto.Question;
@@ -105,8 +106,9 @@ public class LibrarianManagement {
 		ModelAndView mav= new ModelAndView();
 		String view=null;
 		Question qus=qDao.getQuestionDetail(qus2);
+		Answer ans=qDao.getAnswer(qus2);
 		
-		if(qus!=null) 
+		if(qus!=null && ans!=null) 
 			view="librarian/questionAnswer";
 		else
 			view="librarian/librarymain";
@@ -114,8 +116,29 @@ public class LibrarianManagement {
 		//String json=new Gson().toJson(qus);
 		
 		mav.addObject("question",qus);
+		mav.addObject("answer",ans);
 		
 		mav.setViewName(view);
+		return mav;
+	}
+
+	//답변 쓰기
+	public ModelAndView questionAnswer(Answer as, Principal principal) {		
+		ModelAndView mav= new ModelAndView();
+		as.setAw_id(principal.getName());
+		String view=null;
+		boolean result=lDao.questionAnswer(as);
+		
+		if(result) {
+			boolean result2=lDao.updateState(as);
+			if(result2)
+			view="librarian/libraryQuestionList";
+		}
+		else
+			view="librarian/librarymain";
+		
+		mav.setViewName(view);
+		
 		return mav;
 	}
 		

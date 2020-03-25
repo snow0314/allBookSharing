@@ -8,6 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.allBookSharing.xxx.dto.Answer;
 import com.allBookSharing.xxx.dto.Question;
 import com.allBookSharing.xxx.service.LibrarianManagement;
 import com.allBookSharing.xxx.service.QuestionManagement;
@@ -30,9 +31,9 @@ public class LibrarianQuestionController {
 	  
 	  mav=lm.lbQuestionList(principal);
 		
-		return mav; 
-		
+		return mav; 	
 	}
+	//사서 건의사항글 상세보기
 	@Secured("ROLE_LIBRARIAN")
 	@RequestMapping(value = "/lbqsdetail")
 	public ModelAndView lbqsDetail(Question qus) { 
@@ -41,10 +42,18 @@ public class LibrarianQuestionController {
 		mav = lm.lbqsDetail(qus);
 		
 		return mav; 
-		
 	}
 	
-	
+	//답변쓰기 
+	@Secured("ROLE_LIBRARIAN")
+	@RequestMapping(value = "/questionanswer")
+	public ModelAndView questionAnswer(Answer as,Principal principal) { 
+		ModelAndView mav= new ModelAndView();
+		
+		mav = lm.questionAnswer(as,principal);
+		
+		return mav; 
+	}
 	
 	
 }

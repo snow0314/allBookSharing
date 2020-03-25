@@ -29,4 +29,8 @@
 
 </select>
 
+<select id="getAnswer" resultType="Answer">
+SELECT * FROM ANSWER WHERE AW_Q_NUM=#{qs_num}
+</select>
+
 </mapper>

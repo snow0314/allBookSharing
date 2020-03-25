@@ -41,6 +41,11 @@
 </script>
 
 
+<style>
+#foo-table_paginate{
+text-align: center;
+}
+</style>
 
 </head>
 <body>
@@ -75,7 +80,10 @@ for(let i=0;i<list.length;i++){
    $tr.append("<td><a href='lbqsdetail?qs_num="+list[i].qs_num+"'>"+list[i].qs_title+"</td>");
    $tr.append("<td>"+list[i].qs_id+"</td>");
    $tr.append("<td>"+list[i].qs_date+"</td>");
-   $tr.append("<td><span style='color:red; font-weight:bold;'>"+list[i].qs_state+"</span></td>");
+   if(list[i].qs_state=="대기중")
+	   $tr.append("<td><span style='color:red; font-weight:bold;'>"+list[i].qs_state+"</span></td>");
+   if(list[i].qs_state=="답변완료")
+	   $tr.append("<td><span style='color:blue; font-weight:bold;'>"+list[i].qs_state+"</span></td>");
 }
 </script>
 
