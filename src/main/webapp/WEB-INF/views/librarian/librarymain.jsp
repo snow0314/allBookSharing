@@ -116,7 +116,7 @@
                                     <a href="index2.html">반납 관리</a>
                                 </li>
                                 <li>
-                                    <a href="#">희망도서 관리</a>
+                                    <a href="#" onclick="menuMove(11)">희망도서 관리</a>
                                 </li>
                                 <li>
                                     <a href="#" onclick="menuMove(12)">건의사항 관리</a>

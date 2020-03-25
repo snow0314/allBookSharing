@@ -20,7 +20,7 @@
 <div>
 <div style="width: 70%; padding: 0 8px; line-height: 40px; border-top: 1px solid rgba(0,0,0,0.2); border-bottom: 1px solid rgba(0,0,0,0.2); text-align: left; background-color:rgba(0,0,0,0.1)">
 <span>${question.qs_id}</span>
-<span style="font-size: 12px; color: red;">(${question.qs_state})</span>
+<span id="state" style="font-size: 12px; color: red;">(${question.qs_state})</span>
 <span style="float: right; font-size: 14px;"><i class="far fa-clock"></i> ${question.qs_date}</span>
 </div>
 </div>
@@ -32,8 +32,26 @@ ${question.qs_content}
 <div style="width: 70%; margin-top: 40px;">
 <div style="width: 70%; text-align: left; font-size:20px; font-weight: bold;">
 <i class="fas fa-comment-dots"></i> 답변
+
+
+<pre id="answer" style=" border: 1px solid rgba(0,0,0,0.2);">
+${answer.aw_contents}
+</pre>
 </div>
 </div>
 </div>
+
+<script>
+let state="${question.qs_state}";
+console.log(state);
+if(state=="대기중"){	
+	$("#answer").text("\r\n아직 답변이 없습니다.\r\n\r\n").css("text-align","center");
+    $("#state").css("color","red");
+}
+if(state=="답변완료"){
+	$("#state").css("color","blue");	
+}
+</script>
+
 </body>
 </html>

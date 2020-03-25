@@ -51,7 +51,7 @@ ${question.qs_content}
 <div style="width: 80%; text-align: left; font-size:20px; font-weight: bold;">
 <i class="fas fa-comment-dots"></i> 답변
 
-<pre style=" border: 1px solid rgba(0,0,0,0.2);">
+<pre id="answer" style=" border: 1px solid rgba(0,0,0,0.2);">
 ${answer.aw_contents}
 </pre>
 
@@ -74,12 +74,14 @@ ${answer.aw_contents}
 <script>
 let state="${question.qs_state}";
 console.log(state);
-if(state=="대기중")
+if(state=="대기중"){
 $("#state").css("color","red");
+$("#answer").text("\r\n아직 답변이 없습니다.\r\n\r\n").css("text-align","center");
+}
 if(state=="답변완료"){
+$("#state").css("color","blue");
 $("#text").css("display","none");	
 $(".btn").css("display","none");	
-$("#state").css("color","blue");
 }
 </script>
 

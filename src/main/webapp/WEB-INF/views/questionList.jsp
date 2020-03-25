@@ -68,7 +68,7 @@ text-align: center;
 <table id="foo-table" class="table table-bordered" >
       <thead>
          <tr>
-         <th>No</th>
+         <th>글번호</th>
          <th>도서관</th>
          <th>제목</th>
          <th>글쓴이</th>
@@ -91,7 +91,7 @@ console.log(list);
 
 for(let i=0;i<list.length;i++){
    var $tr= $("<tr>").appendTo($("#tb"));
-   $tr.append("<td>"+(i+1)+"</td>");
+   $tr.append("<td>"+list[i].qs_num+"</td>");
    $tr.append("<td>"+list[i].lb_name+"</td>");
 	if(list[i].qs_show==0){		
    $tr.append("<td><a href='qsdetail?&qs_num="+list[i].qs_num+"&qs_show="+list[i].qs_show+"'>"+list[i].qs_title+" &nbsp;&nbsp;</td>");
