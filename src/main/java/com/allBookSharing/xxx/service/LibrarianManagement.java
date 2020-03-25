@@ -108,7 +108,7 @@ public class LibrarianManagement {
 		Question qus=qDao.getQuestionDetail(qus2);
 		Answer ans=qDao.getAnswer(qus2);
 		
-		if(qus!=null && ans!=null) 
+		if(qus!=null) 
 			view="librarian/questionAnswer";
 		else
 			view="librarian/librarymain";

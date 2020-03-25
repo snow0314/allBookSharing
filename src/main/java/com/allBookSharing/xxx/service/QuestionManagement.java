@@ -9,6 +9,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.allBookSharing.xxx.dao.IAdminManagementDao;
 import com.allBookSharing.xxx.dao.QuestionDao;
+import com.allBookSharing.xxx.dto.Answer;
 import com.allBookSharing.xxx.dto.Library;
 import com.allBookSharing.xxx.dto.Question;
 import com.google.gson.Gson;
@@ -92,16 +93,16 @@ public class QuestionManagement {
 		ModelAndView mav= new ModelAndView();
 		String view=null;
 		Question qus=qDao.getQuestionDetail(qus2);
-		
+		Answer ans=qDao.getAnswer(qus2);
 		if(qus!=null) 
 			view="questionDetail";
 		else
 			view="redirect:/questionmove";
 		
-		//String json=new Gson().toJson(qus);
+//		String json=new Gson().toJson(qus);
 		
 		mav.addObject("question",qus);
-		
+		mav.addObject("answer",ans);
 		mav.setViewName(view);
 		
 		return mav;
