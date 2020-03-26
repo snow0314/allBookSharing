@@ -1,5 +1,6 @@
 package com.allBookSharing.xxx.service;
 
+import java.security.Principal;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -96,6 +97,41 @@ public class AdminManagement {
 		
 		mav.setViewName("admin/noticeWrite");
 		
+		
+		return mav;
+	}
+   //공지사항 글쓰기
+	public ModelAndView noticeWrite(Notice ntc, Principal principal) {
+		ModelAndView mav= new ModelAndView();
+		String id=principal.getName();
+		ntc.setNo_id(id);
+		System.out.println("ntc="+ntc);
+		String view=null;
+		
+		boolean result=nDao.noticeWrite(ntc);
+		
+		if(result)
+			view="redirect:/adminnotice";
+		else
+			view="noticeWrite";
+		
+		mav.setViewName(view);
+		
+		return mav;
+	}
+    
+	//공지사항 글 상세보기
+	public ModelAndView noticeDetail(Notice ntc2) {
+		ModelAndView mav= new ModelAndView();
+		String view=null;
+		Notice ntc=nDao.getNoticeDetail(ntc2);
+		if(ntc!=null)
+			view="noticeDetail";
+		else
+			view="redirect:/noticemove";
+		
+		mav.addObject("notice", ntc);
+		mav.setViewName(view);
 		
 		return mav;
 	}

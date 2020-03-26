@@ -36,23 +36,17 @@
 				}
 			},
 			"columnDefs" : [ {
-				"width" : "3%",
+				"width" : "5%",
 				"targets" : 0
 			}, {
-				"width" : "8%",
+				"width" : "30%",
 				"targets" : 1
 			}, {
-				"width" : "30%",
+				"width" : "10%",
 				"targets" : 2
 			}, {
-				"width" : "8%",
-				"targets" : 3
-			}, {
-				"width" : "12%",
-				"targets" : 4
-			}, {
 				"width" : "10%",
-				"targets" : 5
+				"targets" : 3
 			}
 
 			]
@@ -62,7 +56,6 @@
 </script>
 
 <style>
-
 #foo-table_paginate {
 	text-align: center;
 }
@@ -72,25 +65,42 @@
 <body>
 
 	<div style="width: 80%; margin: 0 10%;">
-		
-			<h3 style="margin-bottom: 50px;">공지사항</h3>
-			<table id="foo-table" class="table table-bordered">
-				<thead>
-					<tr>
-						<th>No</th>
-						<th>글쓴이</th>
-						<th>제목</th>
-						<th>작성일</th>
-						
-					</tr>
-				</thead>
-				<tbody id='tb'>
-				</tbody>
-			</table>
+
+		<h3 style="margin-bottom: 50px;">공지사항</h3>
+		<table id="foo-table" class="table table-bordered">
+			<thead>
+				<tr>
+					<th>No</th>
+					<th>제목</th>
+					<th>글쓴이</th>
+					<th>작성일</th>
+
+				</tr>
+			</thead>
+			<tbody id='tb'>
+			</tbody>
+		</table>
 
 	</div>
-	<form action="movenoticewrite?${_csrf.parameterName}=${_csrf.token}" method="post">
-<input type="submit" value="글쓰기" id="btn">
-</form>
+	<form action="movenoticewrite?${_csrf.parameterName}=${_csrf.token}"
+		method="post">
+		<input type="submit" value="글쓰기" id="btn">
+	</form>
+
+	<script>
+		let list = ${nList};
+		console.log(list);
+
+		for (let i = 0; i < list.length; i++) {
+			var $tr = $("<tr>").appendTo($("#tb"));
+			$tr.append("<td>" + list[i].no_num + "</td>");
+			$tr.append("<td><a href='nopwdetail?no_num="+list[i].no_num+"'>" + list[i].no_title + "</a></td>");
+			$tr.append("<td>" + list[i].no_id + "</td>");
+			$tr.append("<td>" + list[i].no_date + "</td>");
+		
+	}
+		
+		
+	</script>
 </body>
 </html>

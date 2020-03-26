@@ -36,7 +36,7 @@
 <textarea class="form-control" name="no_content" id="p_content"></textarea>
 </div>
 <div style="margin-top:70px;">
-<input type="submit" id="sub_btn" value="등록" class="btn btn-success" style="margin-right:50px;" formaction="questionwrite?${_csrf.parameterName}=${_csrf.token}"/>
+<input type="submit" id="sub_btn" value="등록" class="btn btn-success" style="margin-right:50px;" formaction="noticewrite?${_csrf.parameterName}=${_csrf.token}"/>
 <input type="button"  value="취소" class="btn btn-success" onclick="goBack();"/>
 </div>
 </form>

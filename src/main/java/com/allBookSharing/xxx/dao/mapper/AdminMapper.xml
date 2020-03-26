@@ -50,5 +50,7 @@ JOIN LIBRARY ON LA_LCODE=LB_CODE
 <select id="getLibraryNextCode" resultType="Integer">
 	SELECT LB_SEQ.NEXTVAL FROM DUAL
 </select>	
+
+
 	
 </mapper>

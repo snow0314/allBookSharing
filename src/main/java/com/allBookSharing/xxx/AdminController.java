@@ -21,6 +21,8 @@ import org.springframework.web.servlet.ModelAndView;
 import com.allBookSharing.xxx.dto.Books;
 import com.allBookSharing.xxx.dto.Librarian;
 import com.allBookSharing.xxx.dto.Library;
+import com.allBookSharing.xxx.dto.Notice;
+import com.allBookSharing.xxx.dto.Question;
 import com.allBookSharing.xxx.service.AdminManagement;
 import com.allBookSharing.xxx.service.LibrarianManagement;
 
@@ -58,7 +60,8 @@ public class AdminController {
 			return mav;
 		}
 	 
-	 //관리자 공지사항 페이지 이동 
+	 //관리자 공지사항 페이지 이동
+	 @Secured("ROLE_ADMIN")
 	 @RequestMapping(value="/adminnotice")
 	 public ModelAndView adminnotice() {
 			mav=am.adminNotice();
@@ -66,7 +69,7 @@ public class AdminController {
 		}
 	 
 	//공지사항 글쓰기 페이지 이동
-	    
+	    @Secured("ROLE_ADMIN")
 		@PostMapping(value = "/movenoticewrite")
 		public ModelAndView movenoticeWrite() {
 			
@@ -76,8 +79,30 @@ public class AdminController {
 			 
 			return mav;
 		}
+		
+	//공지사항 글 쓰기
+	    @Secured("ROLE_ADMIN")
+		@PostMapping(value="noticewrite")
+		public ModelAndView noticeWrite(Notice nte,Principal principal) {
+			
+			ModelAndView mav=new ModelAndView();
+			mav=am.noticeWrite(nte,principal);
+			
+			return mav;
+		}
+	    //공지사항 글 상세보기
+	    @PostMapping(value="nopwdetail")
+	    public ModelAndView noticePwDetail(Notice ntc) {
+	    	
+	    	ModelAndView mav=new ModelAndView();
+	    	
+	    	mav=am.noticeDetail(ntc);
+	    	
+	    	return mav;
+	    }
 	 
 	//사서 등록 페이지 이동
+	    @Secured("ROLE_ADMIN")
 	 @RequestMapping(value = "/librarianinsertmove")
 		public String librarianinsertmove() {
 			
@@ -85,6 +110,7 @@ public class AdminController {
 		}
 	 
 	 //사서 등록
+	    @Secured("ROLE_ADMIN")
 	 @RequestMapping(value="/librarianinsert")
 	 	public ModelAndView librarianinsert(Librarian lia) {
 		 System.out.println(lia.toString());
@@ -92,6 +118,7 @@ public class AdminController {
 		 return mav;
 	 }	 
 	//사서 수정 페이지 이동
+	    @Secured("ROLE_ADMIN")
 		 @RequestMapping(value = "/librarylistmove")
 		 public ModelAndView getLibraryList() {
 			System.out.println("사서수정페이지 이동 컨트롤러");

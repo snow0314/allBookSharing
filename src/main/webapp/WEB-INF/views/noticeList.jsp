@@ -21,44 +21,38 @@
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css" />
 <!-- ... -->
 <script>
-	jQuery(function($) {
-		$("#foo-table").DataTable({
-			"info" : true,
-			"order" : [ [ 0, 'desc' ] ], // asc 또는 desc
-			"dom" : '<"top"il>t<"bottom"prf><"clear">',
-			"language" : {
-				"emptyTable" : "데이터가 없어요.",
-				"info" : "현재 _START_ - _END_ / _TOTAL_건",
-				"infoEmpty" : "데이터 없음",
-				"paginate" : {
-					"next" : "다음",
-					"previous" : "이전"
-				}
-			},
-			"columnDefs" : [ {
-				"width" : "3%",
-				"targets" : 0
-			}, {
-				"width" : "8%",
-				"targets" : 1
-			}, {
-				"width" : "30%",
-				"targets" : 2
-			}, {
-				"width" : "8%",
-				"targets" : 3
-			}, {
-				"width" : "12%",
-				"targets" : 4
-			}, {
-				"width" : "10%",
-				"targets" : 5
+jQuery(function($) {
+	$("#foo-table").DataTable({
+		"info" : true,
+		"order" : [ [ 0, 'desc' ] ], // asc 또는 desc
+		"dom" : '<"top"il>t<"bottom"prf><"clear">',
+		"language" : {
+			"emptyTable" : "데이터가 없어요.",
+			"info" : "현재 _START_ - _END_ / _TOTAL_건",
+			"infoEmpty" : "데이터 없음",
+			"paginate" : {
+				"next" : "다음",
+				"previous" : "이전"
 			}
+		},
+		"columnDefs" : [ {
+			"width" : "5%",
+			"targets" : 0
+		}, {
+			"width" : "30%",
+			"targets" : 1
+		}, {
+			"width" : "10%",
+			"targets" : 2
+		}, {
+			"width" : "10%",
+			"targets" : 3
+		}
 
-			]
+		]
 
-		});
 	});
+});
 </script>
 
 <style>
@@ -82,8 +76,8 @@
 				<thead>
 					<tr>
 						<th>No</th>
-						<th>글쓴이</th>
 						<th>제목</th>
+						<th>글쓴이</th>
 						<th>작성일</th>
 						
 					</tr>
@@ -93,7 +87,21 @@
 			</table>
 
 	</div>
+<script>
+		let list = ${nList};
+		console.log(list);
 
+		for (let i = 0; i < list.length; i++) {
+			var $tr = $("<tr>").appendTo($("#tb"));
+			$tr.append("<td>" + list[i].no_num + "</td>");
+			$tr.append("<td><a href='nopwdetail?no_num="+list[i].no_num+"'>" + list[i].no_title + "</a></td>");
+			$tr.append("<td>" + list[i].no_id + "</td>");
+			$tr.append("<td>" + list[i].no_date + "</td>");
+		
+	}
+		
+		
+	</script>
 
 </body>
 </html>

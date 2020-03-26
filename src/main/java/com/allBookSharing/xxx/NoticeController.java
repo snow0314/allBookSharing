@@ -28,7 +28,7 @@ public class NoticeController {
    }
    //공지사항 글 상세보기
    @PreAuthorize("isAuthenticated()")
-   @GetMapping(value = "/nodetail")
+   @GetMapping(value = "/nopwdetail")
    public ModelAndView noticeDetail(Notice ntc) {
 	   
 	   ModelAndView mav= new ModelAndView();
@@ -36,20 +36,6 @@ public class NoticeController {
 	   mav = nm.noticeDetail(ntc);
 	   return mav;
    }
-   
-	/*
-	 * //공지사항 글 쓰기
-	 * 
-	 * @PreAuthorize("isAuthenticated()")
-	 * 
-	 * @PostMapping(value = "/noticewrite") public ModelAndView noticeWrite(Notice
-	 * ntc,Principal principal) {
-	 * 
-	 * ModelAndView mav=new ModelAndView();
-	 * 
-	 * mav=nm.noticeWrite(ntc,principal);
-	 * 
-	 * return mav; }
-	 */
+
    
 }
