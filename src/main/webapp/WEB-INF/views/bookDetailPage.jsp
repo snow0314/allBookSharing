@@ -10,12 +10,53 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 </head>
 <style>
-	#detailinfo{
+@import url(//fonts.googleapis.com/earlyaccess/hanna.css);
+@import url(//fonts.googleapis.com/earlyaccess/jejugothic.css);
+	.reservation{
+	width:95px;
+	height:38px;
+	border:1px solid #00539C;
+	font-size:15px;
+	color:#00539C;
+	font-weight:800;
+	background-color:white;
+	}
+	.reservation:hover{
+	background-color:#00539C;
+	color:white;
+	
+	}
+	#deliveryreq{
+	width:95px;
+	height:38px;
+	border:1px solid #00539C;
+	font-size:15px;
+	color:#00539C;
+	font-weight:800;
+	background-color:white;
 
-		background-color:#f1f1f1;
+	}
+	#deliveryreq:hover{
+	background-color:#00539C;
+	color:white;
+	}
+	
+	
+	#title{
+	margin-left:10%;
+	font-family: 'Hanna', sans-serif;
+	margin-top:2%;
+	font-size:50px;
+	}
+	h1{
+	font-family: 'Hanna', sans-serif;
+	}
+	#detailinfo{
+		border:3px solid #838487;
+		padding:7px;
 		height:300px;
 		flex:3;
-	
+		border-radius: 10px;
 		margin-right:5%;
 		
 	}
@@ -25,11 +66,18 @@
 	height:300px;
 	margin-right:5%
 	}
-	td{
-	border-bottom: 1px solid #2f2f2f;
-	}
+	
+	#bname{
+		color:#00498c;
+		font-size:27px;
+		font-weight:850;
+		padding-left:10px;
+		}
+		
 	.dd{
-	font-weight:700;
+		font-weight:750;
+		font-size:20px;
+		padding-left:10px;
 	}
 	body{
 		padding-left:10%;
@@ -37,21 +85,26 @@
 	}
 	.tt{
 	text-align:right;
-	font-size:small;
+	font-size:18px;
 	color:#383838;
 	}
 	#sidebar{
 	flex:1;
 	float:left;
-	border:2px solid #f1f1f1;
-	height:300px;
+	background-color:#F0EAD6;
+	border-radius: 20px;
+	text-align:center;
+    vertical-align:middle;
+    height:100px;
+    font-family: 'Jeju Gothic', sans-serif;
+    font-size:23px;
+    padding-top:50px;
 	}
 	#intro{
-
 	width:77%;
 	display:block;
-	margin-top:5%;
-	height:
+	margin-top:15px;
+	margin-left:10%
 	}
 	#have{
 	border:1px solid #4a8af4;
@@ -63,6 +116,9 @@
 	}
 	#container{
 	display:flex;
+
+	margin-left:10%;
+	margin-right:10%;
 	}
 	#state{
 	color:red;
@@ -70,13 +126,12 @@
 	}
 	#reviewlist{
 	
-	
 	width:100%;
 	}
 	
 	.btn_like {
 	  position: relative;
-	  margin-left: 72%;
+	  margin-left: 68%;
 	  margin-bottom:7px;
 	  display: block;
 	  width: 46px;
@@ -156,9 +211,13 @@
 		from { background-position: 0 }
   		to { background-position: -8250px }
 	}
+	hr{
+	width:80%;
+	margin-left:10%;
+	}
 </style>
 <body>
-<h1>상세보기</h1>
+<h1 id="title">상세보기</h1>
 
 <button type="button" class="btn_like" id="heart">
 	<span class="img_emoti">좋아요</span>
@@ -171,7 +230,7 @@
 
 	<table id="detailinfo">
 		<tr><td class="tt">자료유형</td><td class="dd">${books.bk_bg_cate}/${books.bk_sg_cate}</td></tr>
-		<tr><td class="tt" >책제목</td><td style="color:#2870bf;font-size:large;font-weight:800;"> ${books.bk_name}</td></tr>
+		<tr><td class="tt" >책제목</td><td  id="bname"> ${books.bk_name}</td></tr>
 		<tr><td class="tt">저자</td><td class="dd">${books.bk_writer }</td><td>
 		<tr><td class="tt">발행사항</td><td class="dd">${books.bk_publisher },${books.bk_publicday }</td></tr>
 		<tr><td class="tt">ISBN코드</td><td class="dd">${books.bk_code }</td></tr>
@@ -185,14 +244,20 @@
 평균평점 _____
 </div>
 </div>
-<div id="intro"><h2>서평</h2>
-  ${books.bk_introduction }</div>
+
+<br><br>
+<hr>
+
+<div id="intro">
+<h1>서평</h1>
+  <div id="introcontents">${books.bk_introduction }</div>
+</div>
 
 
 
  
  <div id="review">
- <h2>한줄평</h2>
+ <h1>한줄평</h1>
 	<table id="reviewlist">
 	<tr>
 	<th>아이디</th>
@@ -212,7 +277,7 @@
  <sec:authorize access="isAuthenticated()">
  <input id="id" type="hidden" value="<sec:authentication property="principal.username"/>">
  </sec:authorize>
-  <sec:authorize access="isAnonymous()">
+  <sec:authorize access="isAnonymous()"> 
 <input id="id" type="hidden" value=""/>
 </sec:authorize>
 
@@ -231,7 +296,7 @@ else if(${books.bk_state}==1)
  window.onload = function () {
 	
 	if($("#id").val()==""){
-		$("#dd").append("<button style='float:right;margin-right:20px;' id='reserbtn'>예약</button>");
+		$("#dd").append("<button style='float:right;margin-right:20px;'  class='reservation' id='reserbtn'>예약</button>");
 		
 	}else{
 		
@@ -241,10 +306,11 @@ else if(${books.bk_state}==1)
 	    	data:{"rv_code":"${books.bk_code}","rv_lcode":${books.bk_lcode}},
 	    	dataType:"text",
 	    	success:function(result1){
+	    		console.log("예약확인",result1);
 	    		if(result1=="성공"){
-	    			$("#dd").append("<button style='float:right;margin-right:20px;' id='reserccbtn'>예약취소</button>")
+	    			$("#dd").append("<button style='float:right;margin-right:20px;' class='reservation' id='reserccbtn'>예약취소</button>")
 	    		}else if(result1=="실패"){
-	    			$("#dd").append("<button style='float:right;margin-right:20px;' id='reserbtn'>예약</button>")
+	    			$("#dd").append("<button style='float:right;margin-right:20px;' class='reservation' id='reserbtn'>예약</button>")
 	    		}
 	    	},
 	    	error:function(xhr,status){ 
@@ -308,7 +374,7 @@ if($("#id").val()==""){
 			    	success:function(result){
 			    		console.log("result="+result);
 			    		alert("예약되었습니다.");
-			    		$("#reserbtn").replaceWith("<button style='float:right;margin-right:20px;' id='reserccbtn'>예약취소</button>");
+			    		$("#reserbtn").replaceWith("<button style='float:right;margin-right:20px;'  class='reservation' id='reserccbtn'>예약취소</button>");
 			    		
 			    		
 			    	},
@@ -366,7 +432,7 @@ function deliveryCount(){
 
 $("#dd").on("click","#reserccbtn",function(){
 	if($("#state").text()=="대출가능"){
-		$("#reserccbtn").replaceWith("<button style='float:right;margin-right:20px;' id='reserbtn'>예약</button>");
+		$("#reserccbtn").replaceWith("<button style='float:right;margin-right:20px;' class='reservation' id='reserbtn'>예약</button>");
 	} else if($("#state").text()=="대출불가"){
 			var result2=confirm("예약취소하시겠습니까?");
 		
@@ -379,7 +445,7 @@ $("#dd").on("click","#reserccbtn",function(){
 			    		console.log("result="+result);
 			    		console.log("test");
 			    		alert("취소되었습니다.");
-			    		$("#reserccbtn").replaceWith("<button style='float:right;margin-right:20px;' id='reserbtn'>예약</button>");
+			    		$("#reserccbtn").replaceWith("<button style='float:right;margin-right:20px;' class='reservation' id='reserbtn'>예약</button>");
 			    	},
 			    	error:function(xhr,status){ 
 				    	console.log("xhr3=", xhr);
