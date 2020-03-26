@@ -38,8 +38,9 @@
 		<thead>
 			<tr>
 			<th>요청번호</th>
-			<th>제목</th>
-			<th>도서관</th>
+			<th>도서명</th>
+			<th>저자</th>
+			<th>신청이유</th>
 			<th>글쓴이</th>
 			<th>작성일</th>
 			<th>상태</th>
@@ -57,13 +58,18 @@ console.log(list);
 
 for(let i=0;i<list.length;i++){
 	var $tr= $("<tr>").appendTo($("#tb"));
-	$tr.append("<td>"+(i+1)+"</td>");
 	$tr.append("<td>"+list[i].br_num+"</td>");
+	$tr.append("<td>"+list[i].br_name+"</td>");
+	$tr.append("<td>"+list[i].br_writer+"</td>");
 	$tr.append("<td>"+list[i].br_titile+"</td>");
-	$tr.append("<td>"+list[i].br_bname+"</td>");
 	$tr.append("<td>"+list[i].br_id+"</td>");
 	$tr.append("<td>"+list[i].br_date+"</td>");
-	$tr.append("<td>"+list[i].br_situation+"</td>");
+	if(list[i].br_situation==0)
+	$tr.append("<td style='color:red; font-weight:bold;'>대기중</td>");
+	if(list[i].br_situation==1)
+	$tr.append("<td style='color:orenge; font-weight:bold;'>반려</td>");
+	if(list[i].br_situation==2)
+	$tr.append("<td style='color:blue;font-weight:bold;'>처리완료</td>");
 	
 }
 </script>
