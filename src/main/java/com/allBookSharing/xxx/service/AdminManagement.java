@@ -11,6 +11,7 @@ import com.allBookSharing.xxx.dao.IAdminManagementDao;
 import com.allBookSharing.xxx.dao.NoticeDao;
 import com.allBookSharing.xxx.dto.Library;
 import com.allBookSharing.xxx.dto.Notice;
+import com.allBookSharing.xxx.dto.Recommend;
 import com.google.gson.Gson;
 @Service
 public class AdminManagement {
@@ -133,6 +134,19 @@ public class AdminManagement {
 		mav.addObject("notice", ntc);
 		mav.setViewName(view);
 		
+		return mav;
+	}
+	
+	//추천도서 등록
+	public ModelAndView recommendInsert(Recommend recommend) {
+		int result = aDao.recommendInsert(recommend);
+		mav = new ModelAndView();
+		if(result != 0) {
+			mav.addObject("msg", "추천도서 등록에 성공하셨습니다.");
+		}else {
+			mav.addObject("msg", "추천도서 등록에 실패하셨습니다.");
+		}
+		mav.setViewName("admin/recommendInsert");
 		return mav;
 	}
 	

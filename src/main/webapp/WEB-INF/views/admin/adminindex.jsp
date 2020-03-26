@@ -97,7 +97,7 @@
                                 <i class="fas fa-calendar-alt"></i>추천도서 관리</a>
                             <ul class="navbar-mobile-sub__list list-unstyled js-sub-list">
                                 <li>
-                                    <a href="index.html">추천도서 등록</a>
+                                    <a href="#" onclick="adminmenuMove(6)">추천도서 등록</a>
                                 </li>
                                 <li>
                                     <a href="index2.html">추천도서 목록</a>

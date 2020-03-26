@@ -23,6 +23,7 @@ import com.allBookSharing.xxx.dto.Librarian;
 import com.allBookSharing.xxx.dto.Library;
 import com.allBookSharing.xxx.dto.Notice;
 import com.allBookSharing.xxx.dto.Question;
+import com.allBookSharing.xxx.dto.Recommend;
 import com.allBookSharing.xxx.service.AdminManagement;
 import com.allBookSharing.xxx.service.LibrarianManagement;
 
@@ -126,17 +127,27 @@ public class AdminController {
 			 
 				return mav;
 			}
-	  //추천도서 등록
+	    
+	  //추천도서 등록 페이지 이동
 	    @Secured("ROLE_ADMIN")
 		 @RequestMapping(value = "/recommendinsertmove")
-		 public ModelAndView getRecommendPage() {
+		 public String recommendPageMove() {
 			System.out.println("추천도서등록페이지 이동 컨트롤러");
 			
 			 
-				return new ModelAndView("admin/recommendInsert");
+				return "admin/recommendInsert";
 			}
-	
-
+	    
+	    //추천도서 등록
+	    @Secured("ROLE_ADMIN")
+		 @RequestMapping(value = "/recommendinsert")
+		 public ModelAndView recommendInsert(Recommend recommend) {
+			System.out.println("추천도서등록");
+			System.out.println("추천도서 정보:"+recommend.toString());
+			mav=am.recommendInsert(recommend);
+			 
+				return mav;
+			}
 
 }
 

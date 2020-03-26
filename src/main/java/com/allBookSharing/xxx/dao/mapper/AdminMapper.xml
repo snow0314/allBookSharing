@@ -51,6 +51,12 @@ JOIN LIBRARY ON LA_LCODE=LB_CODE
 	SELECT LB_SEQ.NEXTVAL FROM DUAL
 </select>	
 
-
+<insert id="recommendInsert" parameterType="Recommend">
+	INSERT INTO RECOMMAND VALUES(
+		#{re_bcode}, #{re_bname}, #{re_bwriter}, #{re_publisher},
+		#{re_publicday}, #{re_introduction}, #{re_sg_num},
+		#{re_bg_num}, #{re_contents}, SYSDATE, #{re_image}
+	)
+</insert>
 	
 </mapper>

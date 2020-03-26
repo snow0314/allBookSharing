@@ -16,7 +16,6 @@ public class Schedule {
 	 public void test() {
 		 System.out.println("열람실 예약정보 초기화");
 		 rm.readingRoomInitialize();
-		 
 	 }
 	 
 }
