@@ -57,7 +57,7 @@ public class MyLibraryContoroller {
 			ModelAndView mav=new ModelAndView();
 			
 			System.out.println("lan="+lan);
-			mav=ml.bookrRequestApply(lan,principal);
+			mav=ml.bookRequestApply(lan,principal);
 			 
 			return mav;
 		}

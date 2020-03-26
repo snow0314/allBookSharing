@@ -16,7 +16,7 @@ public interface IMyLibraryDao {
 
 	List<Loan> getHopeList(String id);
 
-	boolean bookrRequestApply(Loan lan);
+	boolean bookRequestApply(Loan lan);
 	
 	
 

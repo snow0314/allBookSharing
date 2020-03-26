@@ -61,7 +61,7 @@ margin:5px;
 </head>
 <body>
 <div class="container p-3 my-3 border">
-	<form class="well form-horizontal" action="hopebookapply" method="post" id="contact_form" onsubmit="return check()">
+	<form class="well form-horizontal" action="bookrequestapply" method="post" id="contact_form">
 		
 			<!-- Form Name -->
 	
@@ -79,7 +79,7 @@ margin:5px;
 				<th scope="row"><label for="manaber_loc">도서관 지역 <span class="w_star">*</span></label></th>
 				<td>
 					<div class="input-group mt-3 mb-3">
-					<select name="br_loc" id="br_loc" class="custom-select" onchange="getLocLibray()">
+					<select name="lb_loc" id="lb_loc" class="custom-select" onchange="getLocLibray()">
 						<option selected>선택</option>
 					</select>
 					</div>
@@ -90,7 +90,7 @@ margin:5px;
 				<th scope="row"><label for="manaber_code">도서관 <span class="w_star">*</span></label></th>
 				<td>
 					<div class="input-group mt-3 mb-3">
-					<select name="br_bname" id="br_bname" style="width:170px;" class="custom-select">
+					<select name="br_lcode" id="lb_name" style="width:170px;" class="custom-select">
 						<option selected>선택</option>
 					</select>
 					</div>
@@ -103,7 +103,7 @@ margin:5px;
 				<th scope="row"><label for="title">도서명<span class="w_star">*</span></label></th>
 				<td>
 					<div class="input-group mt-3 mb-3">
-					<input id="br_name" name="br_name" type="text" class="form-control" required>
+					<input id="bk_name" name="br_name" type="text" class="form-control" required>
 					&nbsp;
 					<button class="btn btn-success" type="button" data-toggle="modal" data-target="#modalCart">
 					검색 
@@ -115,7 +115,7 @@ margin:5px;
 				<th scope="row"><label for="isbn">isbn <span class="w_star">*</span><!-- 필수입력시 --></label></th>
 				<td>
 					<div class="input-group mt-3 mb-3">
-					<input type="text" id="br_bcode" class="form-control" name="br_bcode"/>
+					<input type="text" id="bk_code" class="form-control" name="br_bcode" required/>
 					</div></td>
 			</tr>
 			
@@ -123,7 +123,7 @@ margin:5px;
 				<th scope="row"><label for="author">저자명</label></th>
 				<td>
 				<div class="input-group mt-3 mb-3">
-				<input type="text" id="br_writer" name="br_writer" class="form-control" />
+				<input type="text" id="bk_writer" name="br_writer" class="form-control" required/>
 				</div></td>
 			</tr>
 			
@@ -131,7 +131,7 @@ margin:5px;
 				<th scope="row"><label for="author">신청 제목 </label></th>
 				<td>
 				<div class="input-group mt-3 mb-3">
-				<input type="text" id="br_title" name="br_title" class="form-control" placeholder="희망도서를 신청합니다."/>
+				<input type="text" id="br_titile" name="br_titile" class="form-control" placeholder="희망도서를 신청합니다." required/>
 				</div></td>
 			</tr>
 			
@@ -139,7 +139,7 @@ margin:5px;
 				<th scope="row"><label for="recom_opinion">신청 이유</label></th>
 				<td>
 				<div class="input-group mt-3 mb-3">
-				<input type="text" id="br_reason" name="br_reason" class="form-control"/>
+				<input type="text" id="br_reason" name="br_reason" class="form-control" required/>
 				</div></td>
 			</tr>
 			
@@ -207,6 +207,8 @@ margin:5px;
 <script>
 
 $(function() {
+	var temp;
+	
 	$.ajax({ //지역 정보 넣어주는 에이작스
 		url : "getlocinfo",
 		type : "get",
@@ -234,8 +236,10 @@ function getLocLibray() {
 }).done((result) => {
 	console.log("result2=",result);
  	var info=result;
+ 	$("#lb_name").empty();
+		$("<option>").text("선택").appendTo($("#lb_name"));
 	for(var i=0;i<info.length;i++){
-		$("<option>").text(info[i].lb_name).attr("value",info[i].lb_name).appendTo($("#lb_name"));
+		$("<option>").text(info[i].lb_name).attr("value",info[i].lb_code).appendTo($("#lb_name"));
 	} 
 	
 }).fail((xhr) => {
@@ -249,6 +253,13 @@ $("#insertBtn").on("click",function(){
 	confirm("등록 하시겠습니까?");
 	
 });
+
+/* function check(){
+	if($("#br_title").val() ==""){
+		alert("제목을 입력해주세요.");
+		return false;
+	}
+} */
 
 function bookSearch() { //도서 검색하는 메소드
 	var key = "d5575428c9cfb5d81f026c00efa52fb4";

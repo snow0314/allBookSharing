@@ -18,7 +18,9 @@ public class Loan {
 		int bo_num;
 		String bk_name;
 		String bk_image;
+		int lb_code;
 		String lb_name;
+		String lb_loc;
 		String bk_writer;
 		String bk_code;//isbn코드
 		int bd_state_num;//대출상태
@@ -44,8 +46,11 @@ public class Loan {
 		String br_reason;
 		String br_bname;
 		String br_name;
-		int br_bcode;
+		String br_bcode;
 		String br_writer;
+		int br_lcode;
+		int br_sms;
+		
 		
 	/*
 	 * int br_sms; //sms수신여부

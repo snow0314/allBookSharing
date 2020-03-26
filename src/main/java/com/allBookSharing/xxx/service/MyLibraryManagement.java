@@ -83,7 +83,7 @@ public class MyLibraryManagement {
 	}
 
 	//희망도서 신청
-	public ModelAndView bookrRequestApply(Loan lan, Principal principal) {
+	public ModelAndView bookRequestApply(Loan lan, Principal principal) {
 		ModelAndView mav= new ModelAndView();
 		String id= principal.getName();
 		lan.setBr_id(id);
@@ -91,16 +91,18 @@ public class MyLibraryManagement {
 		System.out.println("lan="+lan);
 		String view=null;
 		
-		boolean result= mlDao.bookrRequestApply(lan);
+		boolean result= mlDao.bookRequestApply(lan);
 		
 		if(result) 
-			view="redirect:/hopelist";
+			view="redirect:/movehopelist";
 		else
-			view="bookrRequestApply";
+			view="bookRequestApply";
 		
 		mav.setViewName(view);
 		
 		return mav;
 	}
+
+
 
 }
