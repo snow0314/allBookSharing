@@ -23,7 +23,7 @@
 	
 <!--희망도서목록 -->
 <select id="getHopeList" resultType="loan">
-		SELECT * FROM BOOKREQUEST WHERE BR_ID=#{id}
+		SELECT * FROM BOOKREQUEST JOIN LIBRARY ON LB_CODE=BR_LCODE WHERE BR_ID=#{id}
 	</select>
 	
 <!--희망도서 신청 -->

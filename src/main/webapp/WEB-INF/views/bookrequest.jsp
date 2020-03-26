@@ -34,6 +34,7 @@
 <script type="text/javascript" src="/rfc3/user/domain/lib.jeonju.go.kr.80/0/81.js"></script>
 </head>
 <body>
+<jsp:include page="header2.jsp" />
  <%-- <jsp:include page="header.jsp" /> --%>
 
 <h4>희망도서 신청 안내</h4>
