@@ -97,10 +97,10 @@
                                 <i class="fas fa-calendar-alt"></i>추천도서 관리</a>
                             <ul class="navbar-mobile-sub__list list-unstyled js-sub-list">
                                 <li>
-                                    <a href="index.html">도서관 정보 수정</a>
+                                    <a href="index.html">추천도서 등록</a>
                                 </li>
                                 <li>
-                                    <a href="index2.html">도서관 일정 관리</a>
+                                    <a href="index2.html">추천도서 목록</a>
                                 </li>
 
                             </ul>
