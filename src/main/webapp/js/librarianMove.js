@@ -55,6 +55,9 @@ function adminmenuMove(index){ //관리자 페이지 메뉴 이동 메소드
 	case 5:
 		$("#contents").attr("src","adminnotice");
 		break;
+	case 6:
+		$("#contents").attr("src","recommendinsertmove");
+		break;
 	default:
 		break;
 	}

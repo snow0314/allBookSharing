@@ -126,9 +126,18 @@ public class AdminController {
 			 
 				return mav;
 			}
-		 
+	  //추천도서 등록
+	    @Secured("ROLE_ADMIN")
+		 @RequestMapping(value = "/recommendinsertmove")
+		 public ModelAndView getRecommendPage() {
+			System.out.println("추천도서등록페이지 이동 컨트롤러");
+			
+			 
+				return new ModelAndView("admin/recommendInsert");
+			}
 	
-		 
+
+
 }
 
 
