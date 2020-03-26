@@ -22,5 +22,9 @@ public interface IUserReadingRoomManagementDao { //userReadingRoomMapper.xml과 
 
 	int readingRoomReservationCheck(String se_id);
 
+	Seats userReadingRoomReservationCheck(String id);
+
+	boolean userReadingRoomReservationCancel(String id);
+
 	
 }

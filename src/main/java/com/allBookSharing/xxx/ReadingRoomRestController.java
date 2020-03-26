@@ -40,7 +40,7 @@ public class ReadingRoomRestController {
 	//도서관 클릭시 해당 도서관에 속하는 열람실 목록 가져오는 메소드
 	@RequestMapping(value = "/getreadingroominfo", produces = "application/json;charset=UTF-8")
 	public List<ReadingRoom> getReadingRoomInfo(String lb_code) {
-		System.out.println("열람실 목록1"+lb_code);
+		
 		List<ReadingRoom> list=rm.getReadingRoomInfo(lb_code);
 		
 		return list;
@@ -53,6 +53,7 @@ public class ReadingRoomRestController {
 			return rm.numberOfSeatsInUse(rm_code);
 		}
 		
+		//열람실 예약하는 메소드
 		@RequestMapping(value = "/readingroomreservation", produces = "application/json;charset=UTF-8")
 		public String readingRoomReservation(Principal principal, String json) throws JsonParseException, JsonMappingException, IOException {
 			// 제이슨 형태의 문자열을 객체로 변환
@@ -60,10 +61,22 @@ public class ReadingRoomRestController {
 			Seats seats = mapper.readValue(json, Seats.class);
 			
 			seats.setSe_id(principal.getName());
-			System.out.println(seats);
-			
+
 			return rm.readingRoomReservation(seats);
 		}
 		
-	
+		//열람실 예약 확인
+		@RequestMapping(value = "/reservationcheck", produces = "application/json;charset=UTF-8")
+		public Seats userReadingRoomReservationCheck(Principal principal) {
+			
+			return rm.userReadingRoomReservationCheck(principal.getName());
+		}
+		
+		//열람실 예약 취소
+		@RequestMapping(value = "/userreadingroomreservationcancel", produces = "application/json;charset=UTF-8")
+		public String userReadingRoomReservationCancel(Principal principal) {
+			
+			System.out.println("열람실 예약 취소 아이디:"+principal.getName());
+			return rm.userReadingRoomReservationCancel(principal.getName());
+		}
 }

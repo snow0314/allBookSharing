@@ -83,4 +83,9 @@ public class ReadingRoomManagement {
 		}
 	}
 	
+	public void readingRoomInitialize() {
+		rDao.readingRoomInitialize();
+		
+	}
+	
 }

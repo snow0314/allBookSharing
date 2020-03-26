@@ -34,6 +34,7 @@
 </head>
 
 <body>
+ 	<jsp:include page="header.jsp" />
 	<div class="container p-3 my-3 border">
 		<h2 style="text-align: center">열람실 예약 안내문</h2>
 		<p>1. 열람실 예약은 신중히</p>

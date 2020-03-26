@@ -89,4 +89,23 @@ public class UserReadingRoomManagement {
 		
 	}
 	
+	//열람실 예약 확인
+	public Seats userReadingRoomReservationCheck(String id) {
+		
+		return rDao.userReadingRoomReservationCheck(id);
+	}
+	
+	//열람실 예약 취소
+	public String userReadingRoomReservationCancel(String id) {
+		
+		boolean result = rDao.userReadingRoomReservationCancel(id);
+		
+		if(result) {
+			return "예약을 취소했습니다.";
+		}else {
+			return "실패";
+		}
+		
+	}
+	
 }

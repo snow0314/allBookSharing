@@ -71,4 +71,9 @@
   
 </update>
 
+<update id="readingRoomInitialize">
+	UPDATE SEATS SET SE_ID = NULL, SE_PLACE = 1, SE_SEATNUM = NULL
+	WHERE SE_PLACE = 2
+</update>
+
 </mapper>

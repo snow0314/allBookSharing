@@ -31,4 +31,7 @@ public interface IReadingRoomManagementDao {
 	//좌석 테이블의 정보를 수정
 	int seatModify(@Param("list") List<Seats> seats,@Param("code") int code);
 
+	//열람실 예약정보 초기화
+	void readingRoomInitialize();
+
 }

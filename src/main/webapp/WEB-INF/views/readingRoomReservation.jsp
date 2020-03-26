@@ -36,22 +36,28 @@
 	width: 70px;
 	height: 70px;
 }
+#side{
+	padding-left: 100px;
+}
+td a{
+	font-size: 20px;
+}
 </style>
 </head>
 <body>
-	<h1>열람실 예약 페이지</h1>
-	
+		<jsp:include page="header.jsp" />
+		<div style="text-align: center;"><h1>도서관 이름</h1></div>
 		<div class="row">
-			<div class="col-md-1"></div>
-			<div class="col-md-2">
+			
+			<div id="side" class="col-3">
 				<div class="container p-3 my-3 border" style="">
-					<table id="readingRoomList">
+					<table id="readingRoomList" class="table" style="text-align: center;">
 
 					</table>
 				</div>
 			</div>
-			<div class="col-md-9">
-				<div class="container p-3 my-3 border">
+			<div class="col-9" style="padding-right: 50px;">
+				<div class="p-3 my-3 border">
 					<div class="input-group mb-3">
 						<div class="input-group-prepend">
 							<span class="input-group-text">열람실 이름</span>
@@ -91,13 +97,16 @@
 
 
 					<div class="col-md-4 ml-auto" style="text-align: right">
-						<button id="insert" type="button" class="btn btn-success">
+						<button id="reservationCheck" type="button" class="btn btn-success">
 							<i class="fas fa-pen"></i>&nbsp; 예약확인
+						</button>
+						<button id="reservationCancel" type="button" class="btn btn-success">
+							<i class="fas fa-pen"></i>&nbsp; 예약취소
 						</button>
 					</div>
 
 				</div>
-				<div class="container p-3 my-3 border" style="text-align: center">
+				<div class="p-3 my-3 border" style="text-align: center">
 					<div id="seats" class="btn-group-toggle" data-toggle="buttons">
 
 					</div>
@@ -111,7 +120,7 @@
 	console.log(${readingRoom});
 	console.log(${readingRoomList});
 	
-	$(document).ready(function(){
+$(document).ready(function(){
 		
 		//사이드에 열람실 목록 보여주는 부분
 		let info=${readingRoomList};
@@ -120,7 +129,9 @@
 			
 			$tr = $("<tr>").appendTo($("#readingRoomList"));
 			let $td = $("<td>").appendTo($tr);
-			$("<a>").html(info[i].rm_name).attr("href","readingroomreservationmove?rm_code="+info[i].rm_code+"&rm_lcode="+info[i].rm_lcode).appendTo($td);
+			$("<a>").html(info[i].rm_name)
+					.attr("href","readingroomreservationmove?rm_code="+info[i].rm_code+"&rm_lcode="+info[i].rm_lcode)
+					.appendTo($td);
 			
 		} 
 		
@@ -160,16 +171,18 @@
      									.attr("disabled","disabled")
      									.appendTo($label);
 	        				
-	        			}else if(seats[k].se_place == 1){ //체크된 상태면 checked 상태를 true로 변경
+	        			}else if(seats[k].se_place == 1){ //예약가능 좌석
 	        				let $label=$("<label>").addClass("btn btn-outline-success")
 							   .text(cnt).appendTo($("#seats"));
 	 
 	 						$("<input>").attr("name","seat")
 	 									.attr("type","checkbox")
 	 									.attr("data-col",j)
-	 									.attr("data-row",i).appendTo($label);
+	 									.attr("data-row",i)
+	 									.attr("data-num",cnt)
+	 									.appendTo($label);
 	 						cnt++;
-	        			}else{
+	        			}else{ //예약된 좌석
 	        				let $label=$("<label>").addClass("btn btn-outline-success active")
 							   .text(cnt).appendTo($("#seats"));
 	 
@@ -177,6 +190,7 @@
 	 									.attr("type","checkbox")
 	 									.attr("data-col",j)
 	 									.attr("data-row",i)
+	 									.attr("data-num",cnt)
 	 									.attr("disabled","disabled")
 	 									.appendTo($label);
 	 						cnt++;
@@ -210,10 +224,11 @@ function numberOfSeatsInUse(rm_code){ //사용중인 좌석 수 구하는 메소
 }).fail((xhr) => {
 	console.log("xhr=",xhr);
 }); //ajax End
+
 }//function End
 
-
-$("#seats").on("click","input",function(event){
+doc
+$("#seats").on("click","input",function(event){ //예약하는 메소드
 	event.preventDefault(); //버블링 막기
 	
 	console.log(this);
@@ -223,7 +238,8 @@ $("#seats").on("click","input",function(event){
 	if(result){
 		let data = {"se_code" : $("#rm_code").val(),
 					"se_low" : $(this).data("row"),
-					"se_col" : $(this).data("col")};
+					"se_col" : $(this).data("col"),
+					"se_seatnum" : $(this).data("num")};
 		console.log("데이터",data);
 		console.log("데이터 제이슨",JSON.stringify(data));
 		
@@ -247,6 +263,47 @@ $("#seats").on("click","input",function(event){
 	}
 	
 });
+
+
+$("#reservationCheck").on("click",function(){ //열람실 예약 확인
+	$.ajax({
+		url : "reservationcheck",
+		type : "get",
+		dataType:'json'
+		
+}).done((result) => {
+	console.log("예약확인:",result);
+	alert(result.lb_name+"\n"+result.rm_name+"의 "+result.se_seatnum+"번 자리에 예약하셨습니다.");
+	
+}).fail((xhr) => {
+	console.log("xhr=",xhr);
+	alert("예약한 자리가 없습니다.")
+}); //ajax End 
+
+}); //click End
+
+$("#reservationCancel").on("click", function(){ //열람실 예약 취소
+	let result = window.confirm("예약을 취소 하시겠습니까?");
+	
+	$.ajax({
+		url : "userreadingroomreservationcancel",
+		type : "get",
+		dataType:'text'
+		
+}).done((result) => {
+	if(result == "실패"){
+		alert("예약한 자리가 없습니다.");
+	}else{
+		alert(result);
+		location.reload();
+	}
+	
+	
+}).fail((xhr) => {
+	console.log("xhr=",xhr);
+}); //ajax End 
+});
+
 	
 </script>
 </html>
