@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper
+	namespace="com.allBookSharing.xxx.dao.IUserReadingRoomManagementDao">
+	
+	<select id="getZoneInfo" resultType="library">
+		SELECT DISTINCT LB_LOC FROM LIBRARY
+	</select>
+	
+	<select id="getReadingRoomInfo" resultType="readingRoom">
+		SELECT * FROM READINGROOM WHERE RM_LCODE = #{lb_code}
+	</select>
+	
+	<select id="numberOfSeatsInUse" resultType="int">
+		SELECT COUNT(*) FROM SEATS WHERE SE_CODE = #{rm_code} AND SE_PLACE=#{se_place}   
+	</select>
+	
+	<select id="readingRoomReservationCheck" resultType="Integer"> 
+		SELECT COUNT(*) FROM SEATS WHERE SE_ID = #{se_id}
+	</select>
+	
+	<update id="readingRoomReservation">
+		UPDATE SEATS SET SE_PLACE = 2, SE_ID = #{se_id}, SE_DATE = SYSDATE
+		WHERE SE_CODE=#{se_code} AND SE_LOW=#{se_low} AND SE_COL=#{se_col}
+	</update>
+	
+</mapper>

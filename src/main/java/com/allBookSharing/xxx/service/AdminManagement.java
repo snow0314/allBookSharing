@@ -7,13 +7,18 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.allBookSharing.xxx.dao.IAdminManagementDao;
+import com.allBookSharing.xxx.dao.NoticeDao;
 import com.allBookSharing.xxx.dto.Library;
+import com.allBookSharing.xxx.dto.Notice;
 import com.google.gson.Gson;
 @Service
 public class AdminManagement {
 	
 	@Autowired
 	IAdminManagementDao aDao;
+	
+	@Autowired
+	NoticeDao nDao;
 
 	ModelAndView mav;
 	
@@ -62,6 +67,37 @@ public class AdminManagement {
 		Integer code=aDao.getLibraryNextCode();
 		
 		return code;
+	}
+
+	public ModelAndView adminNotice() {
+		
+		ModelAndView mav=new ModelAndView();
+		String view=null;
+		
+		List<Notice> nList=nDao.getNoticeList();
+		
+		if(nList!=null)
+			view="admin/adminNotice";
+		else
+			view="admin/adminindex";
+		String json=new Gson().toJson(nList);
+		mav.addObject("nList", json);
+		mav.setViewName(view);
+		
+		
+		return mav;
+	}
+     
+	
+	//공지사항 글쓰기 페이지 이동
+	public ModelAndView movenoticeWrite() {
+		
+		ModelAndView mav= new ModelAndView();
+		
+		mav.setViewName("admin/noticeWrite");
+		
+		
+		return mav;
 	}
 	
 	

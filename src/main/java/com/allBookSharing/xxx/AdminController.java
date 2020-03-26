@@ -13,6 +13,7 @@ import org.springframework.security.access.annotation.Secured;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
@@ -54,6 +55,25 @@ public class AdminController {
 	 public ModelAndView libraryinsert(Library lib) {
 			System.out.println(lib.toString());
 			mav=am.libraryinsert(lib);
+			return mav;
+		}
+	 
+	 //관리자 공지사항 페이지 이동 
+	 @RequestMapping(value="/adminnotice")
+	 public ModelAndView adminnotice() {
+			mav=am.adminNotice();
+			return mav;
+		}
+	 
+	//공지사항 글쓰기 페이지 이동
+	    
+		@PostMapping(value = "/movenoticewrite")
+		public ModelAndView movenoticeWrite() {
+			
+			ModelAndView mav=new ModelAndView();
+			mav=am.movenoticeWrite();
+			
+			 
 			return mav;
 		}
 	 

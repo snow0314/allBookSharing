@@ -1,6 +1,7 @@
 package com.allBookSharing.xxx.service;
 
 
+import java.security.Principal;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,8 +11,12 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.allBookSharing.xxx.dao.IAdminManagementDao;
 import com.allBookSharing.xxx.dao.ILibrarianManagementDao;
+import com.allBookSharing.xxx.dao.QuestionDao;
+import com.allBookSharing.xxx.dto.Answer;
 import com.allBookSharing.xxx.dto.Librarian;
 import com.allBookSharing.xxx.dto.Library;
+import com.allBookSharing.xxx.dto.Question;
+import com.google.gson.Gson;
 
 @Service
 public class LibrarianManagement {
@@ -21,6 +26,9 @@ public class LibrarianManagement {
 
 	@Autowired
 	IAdminManagementDao aDao;
+	
+	@Autowired
+	QuestionDao qDao;
 	
 	ModelAndView mav;
 
@@ -69,6 +77,74 @@ public class LibrarianManagement {
 		List<Library> lib= aDao.getinfo();
 		return lib;
 	}
+
+
+	//사서가 보는 건의사항 게시판
+	public ModelAndView lbQuestionList(Principal principal) {
+		ModelAndView mav=new ModelAndView();
+		String id=principal.getName();
+		String view=null;
 		
+		List<Question> qList=lDao.lbQuestionList(id);
+		
+		if(qList!=null) 
+			view="librarian/libraryQuestionList";
+		else
+	    	view="librarian/librarymain";
+	
+		String json=new Gson().toJson(qList);
+		mav.addObject("list",json);
+	
+		mav.setViewName(view);
+		
+		
+		return mav;
 	}
+
+
+	public ModelAndView lbqsDetail(Question qus2) {
+		ModelAndView mav= new ModelAndView();
+		String view=null;
+		Question qus=qDao.getQuestionDetail(qus2);
+		Answer ans=qDao.getAnswer(qus2);
+		
+		if(qus!=null) 
+			view="librarian/questionAnswer";
+		else
+			view="librarian/librarymain";
+		
+		//String json=new Gson().toJson(qus);
+		
+		mav.addObject("question",qus);
+		mav.addObject("answer",ans);
+		
+		mav.setViewName(view);
+		return mav;
+	}
+
+	//답변 쓰기
+	public ModelAndView questionAnswer(Answer as, Principal principal) {		
+		ModelAndView mav= new ModelAndView();
+		as.setAw_id(principal.getName());
+		String view=null;
+		boolean result=lDao.questionAnswer(as);
+		
+		if(result) {
+			boolean result2=lDao.updateState(as);
+			if(result2)
+			view="librarian/libraryQuestionList";
+		}
+		else
+			view="librarian/librarymain";
+		
+		mav.setViewName(view);
+		
+		return mav;
+	}
+		
+	
+	
+	
+	
+}
 	

@@ -130,6 +130,7 @@
 	<li>소장중 : 희망도서를 자료실에 비치한 상태</li>
 </ul>
 
-<div class="btn_set"> <a href="http://localhost:8081/xxx/hopebookapply" class="book_btn01"><span>신청하기</span></a> <a href="/index.jeonju?menuCd=DOM_000000105002002000" class="book_btn02"><span>신청확인</span></a> </div>
+<div class="btn_set"> <a href="http://localhost:8081/xxx/hopebookapply" class="book_btn01"><span>신청하기</span></a> 
+						<a href="http://localhost:8081/xxx/" class="book_btn02"><span>신청확인</span></a> </div>
 </body>
 </html>

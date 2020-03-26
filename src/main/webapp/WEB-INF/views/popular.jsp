@@ -15,16 +15,25 @@ body{
 h4::before {
 	counter-increment:section;
 	content:counter(section) ;
+@import url(//fonts.googleapis.com/earlyaccess/hanna.css);
+
+
+#d{
+	font-family: 'Hanna', sans-serif;
+	margin-bottom:30px;
+	margin-left:10%
+	}
+
 }
 </style>
 <body>
-<h1>인기도서</h1>
-<table>
+<h1 id="d">인기도서</h1>
+<table id="popularlist">
 <c:forEach var="loan" items="${topList}">
 	<tr>
 		<td><h4>위</h4></td>
-		<td><img src="${loan.bk_image }" id="img"></td>
-		<td><a href="topdetailpage?bk_code=${loan.bk_code}" id="bkname">${loan.bk_name }</a><br>${loan.bk_writer }
+		<td><img src="${loan.bk_image }" class="img"></td>
+		<td class="prighttd"><a href="topdetailpage?bk_code=${loan.bk_code}" id="bkname">${loan.bk_name }</a><br>${loan.bk_writer }
   			 <br>${loan.bk_publisher }<br>${loan.bk_publicday }<br>대출권수:${loan.bd_count }</td>
   			 
 	</tr>

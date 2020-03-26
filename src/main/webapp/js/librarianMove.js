@@ -20,8 +20,15 @@ function menuMove(index){ //사서 페이지 메뉴 이동 메소드
 		$("#contents").attr("src","librarymodifymove");
 		break;
 	case 7:
-	$("#contents").attr("src","libraycalendarmove");
+		$("#contents").attr("src","libraycalendarmove");
+		break;
+		
+	case 11:
+		$("#contents").attr("src","lbhopelist");
 		break;	
+	case 12:
+		$("#contents").attr("src","lbquestionlist");
+		break;
 		
 		
 	default:
@@ -44,6 +51,9 @@ function adminmenuMove(index){ //관리자 페이지 메뉴 이동 메소드
 		break;
 	case 4:
 		$("#contents").attr("src","librarylistmove");
+		break;
+	case 5:
+		$("#contents").attr("src","adminnotice");
 		break;
 	default:
 		break;

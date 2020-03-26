@@ -50,13 +50,17 @@
 	<div class="container p-3 my-3 border">
 
 		<table id="contents" class="table table-bordered table-hover">
-
+			<thead>
 			<tr>
 				<th>번호</th>
 				<th>열람실 이름</th>
 				<th>전체좌석</th>
 				<th>삭제</th>
 			</tr>
+			</thead>
+			<tbody>
+			
+			</tbody>
 		</table>
 		<div id="pagination"></div>
 	</div>
@@ -79,13 +83,13 @@ $(document).ready( function () {
 	    dataSource: result, //받아온 데이터
 	    pageSize: 5,
 	    callback: function (data, pagination) { //데이터 찍어주는 부분
-	    	$("#contents").empty(); 
+	    	$("tbody").empty(); 
 	    	for(let i=0;i<data.length;i++){
-	    	$tr=$("<tr>").appendTo($("#contents"));
-	    	$("<td>").text(i+1).appendTo($tr);
-	    	$("<td>").text(data[i].rm_name).appendTo($tr);
-	    	$("<td>").text(data[i].totalSeat).appendTo($tr);
-	    	$("<td>").append($("<button>").text("삭제").addClass("btn btn-outline-success")
+	    		$tr=$("<tr>").appendTo($("tbody"));
+	    		$("<td>").text(i+1).appendTo($tr);
+	    		$("<a>").text(data[i].rm_name).attr("href","readingroommodify?rm_code="+data[i].rm_code).appendTo($("<td>").appendTo($tr));
+	    		$("<td>").text(data[i].totalSeat).appendTo($tr);
+	    		$("<td>").append($("<button>").text("삭제").addClass("btn btn-outline-success")
 	    			                      .attr("onclick","readingRoomDelete("+data[i].rm_code+")"))
 	    	.appendTo($tr);
 	    	}

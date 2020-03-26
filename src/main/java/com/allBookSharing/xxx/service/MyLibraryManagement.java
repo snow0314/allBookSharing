@@ -61,4 +61,24 @@ public class MyLibraryManagement {
 		return mav;
 	}
 
+	//희망도서 목록
+	public ModelAndView getHopeList(Principal principal) {
+		mav=new ModelAndView();
+		String id=principal.getName();
+		String view=null;
+		List<Loan> lList=mlDao.getHopeList(id);
+		
+		if(lList!=null) {
+			view="hopelist";
+		}
+		else
+			view="index";
+			
+		String json=new Gson().toJson(lList);
+		mav.addObject("list",json);
+		mav.setViewName(view);
+		
+		return mav;
+	}
+
 }

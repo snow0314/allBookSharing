@@ -11,16 +11,28 @@
 <script>
         jQuery(function($){
             $("#foo-table").DataTable({
-            	
+            	 "dom": '<"top"il>t<"bottom"prf><"clear">',
+                 "language":{
+                  "emptyTable": "데이터가 없어요.",
+                  "info": "현재 _START_ - _END_ / _TOTAL_건",
+                  "infoEmpty": "데이터 없음",
+                  "paginate": {
+                         "next": "다음",
+                         "previous": "이전"
+                     }
+                 }
             });
         });
     </script>
 
 <title>대출목록</title>
-
+<script>
+    var bootstrapButton = $.fn.button.noConflict() // return $.fn.button to previously assigned value
+    $.fn.bootstrapBtn = bootstrapButton            // give $().bootstrapBtn the Bootstrap functionality
+    </script>
 </head>
 <body>
-
+<jsp:include page="header2.jsp" />
 		<div>
 <table id="foo-table" class="table table-bordered">
 		<thead>

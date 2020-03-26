@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.allBookSharing.xxx.dto.Question;
 import com.allBookSharing.xxx.service.QuestionManagement;
 
 
@@ -26,7 +27,7 @@ public class QuestionController {
 	//건의사항 페이지 이동
 	@PreAuthorize("isAuthenticated()")
 	@GetMapping(value = "/questionmove")
-	public ModelAndView QuestionList() {
+	public ModelAndView questionList() {
 		
 		ModelAndView mav=new ModelAndView();
 		
@@ -35,9 +36,34 @@ public class QuestionController {
 		return mav;
 	}
 	
+	//건의사항 글상세보기 
+	@PreAuthorize("isAuthenticated()")
+	@GetMapping(value = "/qsdetail")
+	public ModelAndView questionDetail(Question qus) {
+		
+		ModelAndView mav=new ModelAndView();
+		
+		mav = qm.questionDetail(qus);
+		 
+		return mav;
+	}
+	
+	//건의사항 글상세보기 
+		@PreAuthorize("isAuthenticated()")
+		@PostMapping(value = "/qspwdetail")
+		public ModelAndView questionPwDetail(Question qus) {
+			
+			ModelAndView mav=new ModelAndView();
+			
+			mav = qm.questionDetail(qus);
+			 
+			return mav;
+		}
+	
+	
 	//건의사항 글쓰기 페이지 이동
 	@PreAuthorize("isAuthenticated()")
-	@GetMapping(value = "/movequestionwrite")
+	@PostMapping(value = "/movequestionwrite")
 	public ModelAndView movequestionWrite() {
 		
 		ModelAndView mav=new ModelAndView();
@@ -49,11 +75,12 @@ public class QuestionController {
 	//건의사항 글 쓰기
 	@PreAuthorize("isAuthenticated()")
 	@PostMapping(value = "/questionwrite")
-	public ModelAndView questionWrite() {
+	public ModelAndView questionWrite(Question qus,Principal principal) {
 		
 		ModelAndView mav=new ModelAndView();
 		
-		mav.setViewName("questionWrite");
+		System.out.println("qss="+qus);
+		mav=qm.questionWrite(qus,principal);
 		 
 		return mav;
 	}

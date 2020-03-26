@@ -38,6 +38,9 @@ public class BookManagement {
 		List<Review> review=bDao.bookReviewList(bk_code);
 		mav.addObject("review", review);
 		
+		Review rvgrade=bDao.bookRvGrade(bk_code);
+		mav.addObject("rvgrade",rvgrade);
+		
 		view="bookDetailPage";
 		mav.setViewName(view);
 		
@@ -47,14 +50,14 @@ public class BookManagement {
 
 	public Boolean reservationInsert(Reservation r) {
 		
-		System.out.println("서비스 통과");
+		System.out.println("�꽌鍮꾩뒪 �넻怨�");
 		Boolean reservation=bDao.reservationInsert(r);
 		
 		return reservation;
 	}
 
 	public Integer reservationConfirm(Reservation r) {
-		System.out.println("서비스");
+		System.out.println("�꽌鍮꾩뒪");
 		System.out.println("r2="+r.toString());
 		Integer rvconfirm=bDao.reservationConfirm(r);
 		System.out.println(rvconfirm);
@@ -62,7 +65,7 @@ public class BookManagement {
 	}
 
 	public Boolean reservationCancel(Reservation r) {
-		System.out.println("취소서비스");
+		System.out.println("痍⑥냼�꽌鍮꾩뒪");
 		Boolean rvcancel=bDao.reservationCancel(r);
 		System.out.println(rvcancel);
 		return rvcancel;
@@ -70,37 +73,37 @@ public class BookManagement {
 	
 	public Integer likedConfirm(Liked lk) {
 		Integer liconfirm=bDao.likedConfirm(lk);
-		System.out.println("찜확인m결과="+liconfirm);
+		System.out.println("李쒗솗�씤m寃곌낵="+liconfirm);
 		return liconfirm;
 	}
 
 	public Boolean likeInsert(Liked lk) {
 		Boolean lkinsert=bDao.likeInsert(lk);
-		System.out.println("찜추가m결과="+lkinsert);
+		System.out.println("李쒖텛媛�m寃곌낵="+lkinsert);
 		return lkinsert;
 	}
 
 	public Boolean likeCancel(Liked lk) {
 		Boolean lkcancel=bDao.likeCancel(lk);
-		System.out.println("찜삭제m결과="+lkcancel);
+		System.out.println("李쒖궘�젣m寃곌낵="+lkcancel);
 		return lkcancel;
 	}
 
 	public Integer likeCount(Liked lk) {
 		Integer lkcount=bDao.likeCount(lk);
-		System.out.println("찜카운트m결과="+lkcount);
+		System.out.println("李쒖뭅�슫�듃m寃곌낵="+lkcount);
 		return lkcount;
 	}
 
 	public Integer deliCount(DeliveryReq dr) {
 		Integer delicount=bDao.deliCount(dr);
-		System.out.println("배송신청카운트m결과"+delicount);
+		System.out.println("諛곗넚�떊泥�移댁슫�듃m寃곌낵"+delicount);
 		return delicount;
 	}
 
 	public Boolean deliInsert(DeliveryReq dr) {
 		Boolean deliinsert=bDao.deliInsert(dr);
-		System.out.println("배송신청인서트m결과"+deliinsert);
+		System.out.println("諛곗넚�떊泥��씤�꽌�듃m寃곌낵"+deliinsert);
 		return deliinsert;
 	}
 
@@ -121,6 +124,7 @@ public class BookManagement {
 
 	public List<Books> jiyuckSearch(String bk_search, String selectval, String bk_loc) {
 		List<Books> jiyList=bDao.jiyuckSearch(bk_search,selectval,bk_loc);
+		System.out.println("jiyList="+jiyList);
 		return jiyList;
 	}
 

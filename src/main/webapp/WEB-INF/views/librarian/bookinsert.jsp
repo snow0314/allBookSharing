@@ -27,6 +27,7 @@
 <!-- Latest compiled JavaScript -->
 <script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+	
 <!-- 페이징 처리 플러그인 -->	
 <script src="https://cdnjs.cloudflare.com/ajax/libs/paginationjs/2.1.4/pagination.min.js"></script>	
 <!-- 페이징 처리 플러그인 CSS -->

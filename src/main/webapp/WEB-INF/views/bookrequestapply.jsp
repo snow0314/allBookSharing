@@ -50,6 +50,12 @@ table {
 	background-color: blue;
 	
 }
+#br_sms1{
+margin:5px;
+}
+#br_sms2{
+margin:5px;
+}
 
 </style>
 </head>
@@ -74,7 +80,7 @@ table {
 				<th scope="row"><label for="manaber_loc">도서관 지역 <span class="w_star">*</span></label></th>
 				<td>
 					<div class="input-group mt-3 mb-3">
-					<select name="lb_loc" id="lb_loc" class="custom-select" onchange="getLocLibray()">
+					<select name="lb_loc" id="br_loc" class="custom-select" onchange="getLocLibray()">
 						<option selected>선택</option>
 					</select>
 					</div>
@@ -85,57 +91,118 @@ table {
 				<th scope="row"><label for="manaber_code">도서관 <span class="w_star">*</span></label></th>
 				<td>
 					<div class="input-group mt-3 mb-3">
-					<select name="lb_name" id="lb_name" style="width:170px;">
-					
-						<option value="">선택</option>
-		
+					<select name="lb_name" id="br_bname" style="width:170px;" class="custom-select">
+						<option selected>선택</option>
 					</select>
+					</div>
 				</td>
 			</tr>
+			
+			
+			
 			<tr>
 				<th scope="row"><label for="title">도서명<span class="w_star">*</span></label></th>
 				<td>
-					<input id="bk_name" name="bk_name" type="text" class="form-control" required>
+					<div class="input-group mt-3 mb-3">
+					<input id="br_name" name="br_name" type="text" class="form-control" required>
 					&nbsp;
 					<button class="btn btn-success" type="button" data-toggle="modal" data-target="#modalCart">
-					검색 </button></td>
+					검색 
+					</button>
+					</div></td>
 			</tr>
+			
 			<tr>
-				<th scope="row"><label for="isbn">isbn <span class="w_star">*</span><!-- 필수입력시 --></label>
-					</th>
-				<td><input type="text" id="isbn" class="input_text input_w170" name="isbn"/></td>
+				<th scope="row"><label for="isbn">isbn <span class="w_star">*</span><!-- 필수입력시 --></label></th>
+				<td>
+					<div class="input-group mt-3 mb-3">
+					<input type="text" id="bk_bcode" class="form-control" name="bk_bcode"/>
+					</div></td>
 			</tr>
-			<tr>
-				<th scope="row"><label for="publish_year">발행년도 <span class="w_star">*</span></label></th>
-				<td><input type="text" id="publish_year" name="publish_year" class="input_text input_w170" value=""/></td>
-			</tr>
-			<tr>
-				<th scope="row"><label for="price">가격<span class="w_star">*</span></label></th>
-				<td><input type="text" id="price" name="price" class="input_text input_w170" value=""/></td>
-			</tr>
+			
 			<tr>
 				<th scope="row"><label for="author">저자명</label></th>
-				<td><input type="text" id="author" name="author" class="input_text input_w170" /></td>
+				<td>
+				<div class="input-group mt-3 mb-3">
+				<input type="text" id="br_writer" name="br_writer" class="form-control" />
+				</div></td>
 			</tr>
+			
 			<tr>
-				<th scope="row"><label for="publisher">발행자</label></th>
-				<td><input type="text" id="publisher" name="publisher" class="input_text input_w170" /></td>
+				<th scope="row"><label for="author">신청 제목 </label></th>
+				<td>
+				<div class="input-group mt-3 mb-3">
+				<input type="text" id="br_title" name="br_title" class="form-control" placeholder="희망도서를 신청합니다."/>
+				</div></td>
 			</tr>
+			
 			<tr>
-				<th scope="row"><label for="recom_opinion">추천의견</label></th>
-				<td><input type="text" id="recom_opinion" name="recom_opinion" class="input_text input_wf" /></td>
+				<th scope="row"><label for="recom_opinion">신청 이유</label></th>
+				<td>
+				<div class="input-group mt-3 mb-3">
+				<input type="text" id="br_reason" name="br_reason" class="form-control"/>
+				</div></td>
 			</tr>
+			
 			<tr>
 				<th scope="row">SMS 수신여부<span class="w_star">*</span></th>
-				<td><input type="radio" id="smsY" name="sms_receipt_yn" value="Y" checked="checked" />수신  <input type="radio" id="smsN" name="sms_receipt_yn" value="N"/>미수신 &nbsp; &nbsp; &nbsp;<font color="red">*  SMS 미 수신시 희망도서 비치 알림 서비스가 제공되지 않습니다.</font></td> 
+				<td>
+				<div class="input-group mt-2 mb-2">
+				<input type="radio" id="br_sms1" name="br_sms" value="Y" checked="checked" />수신  
+				<input type="radio" id="br_sms2" name="br_sms" value="N"/>미수신 
+				&nbsp; &nbsp; &nbsp;<font color="red">*  SMS 미 수신시 희망도서 비치 알림 서비스가 제공되지 않습니다.</font>
+				</div></td> 
+			</tr>
+			
+			<tr>
+				<td colspan="2" style="text-align: right">
+				<input type="submit" id="insertBtn"
+				class="btn btn-success btn-lg" value="등록">
+				<input type="hidden" name="_csrf" value="${_csrf.token}">	
+				<input type="submit" id=""
+				class="btn btn-success btn-lg" value="취소">
+				</td>
 			</tr>
 		</tbody>
 	</table>
-	<p class="bbs_comment"><span class="w_star">*</span> 표시된 항목은 필수 입력 항목입니다</p>
-	<p class="bbs_btnc"><a href="#" onclick="document.isbnse.submit(); return false"><img src="images/book/sub/btn_ok.png" alt="확인" /></a> <a href="/"><img src="images/book/sub/btn_cancle.png" alt="취소" /></a></p>
+	
 	
 	</form>
 </div>
+ <!-- Modal: modalCart -->
+    <div class="modal fade" id="modalCart" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <!--Header-->
+                <div class="modal-header">
+                    <h4 class="modal-title" id="myModalLabel">도서 검색</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <!--Body-->
+                <div class="modal-body">
+                    <div class="input-group mb-3">
+                        <input id="bookName" type="text" class="form-control" placeholder="Search">
+                        <div class="input-group-append">
+                            <button class="btn btn-success" type="button" onclick="bookSearch()">Go</button>
+                        </div>
+                    </div>
+                    <div id="contents">
+						                    
+                    
+                    </div>
+                  <div id="pagination"></div>
+                </div>
+                <!--Footer-->
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-outline-primary" data-dismiss="modal">Close</button>
+                    <button class="btn btn-primary">Checkout</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Modal: modalCart -->
 </body>
 <script>
 
@@ -174,6 +241,38 @@ function getLocLibray() {
 }).fail((xhr) => {
 	console.log("xhr=",xhr);
 }); // ajax End
+}
+
+function bookSearch() { //도서 검색하는 메소드
+	var key = "d5575428c9cfb5d81f026c00efa52fb4";
+	var bookName=$("#bookName").val();
+	$.ajax({
+		url : "https://dapi.kakao.com/v3/search/book",
+		headers : {
+			'Authorization' : 'KakaoAK ' + key
+		},
+		type : "get",
+		data: {"query" : bookName, 
+			   "size" : 50 },
+		success : function(result) {
+			console.log("페이징 데이터: ",result);
+			var data = result;
+			      
+			let container = $('#pagination');
+	        container.pagination({
+	        	
+	            dataSource: data.documents, //받아온 데이터
+	            pageSize: 3,
+	            callback: function (data, pagination) { //데이터 찍어주는 부분
+	            	console.log("data=",data);
+	            	temp=data;
+	            	listShow(data);
+	            	
+	            }
+	        })	      
+			
+		}
+	});
 }
 
 

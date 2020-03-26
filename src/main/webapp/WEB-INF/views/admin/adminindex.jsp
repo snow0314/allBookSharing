@@ -70,6 +70,11 @@
                                 <li>
                                     <a href="#" onclick="adminmenuMove(2)">도서관 수정</a>
                                 </li>
+                                <li>
+                                    <a href="#" onclick="adminmenuMove(5)">공지사항</a>
+                                </li>
+                                
+                                
 
                             </ul>
                         </li>

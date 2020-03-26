@@ -41,5 +41,34 @@
     }
 </delete>
 
+<select id="getReadingRoomInfo" parameterType="String" resultType="readingRoom">
+	SELECT readingroom.rm_code, readingroom.rm_name,readingroom.rm_low,readingroom.rm_col ,COUNT(case when se_place>0 then 1 end ) as totalSeat 
+	FROM readingroom
+	JOIN SEATS
+	ON readingroom.rm_code=seats.se_code
+	group by rm_code, readingroom.rm_code, rm_name, readingroom.rm_name, readingroom.rm_low, 
+	readingroom.rm_col
+	HAVING readingroom.rm_code=#{rm_code}
+</select>
+
+<select id="getSeatInfo" parameterType="String" resultType="seats">
+	SELECT * FROM SEATS WHERE SE_CODE=#{rm_code}
+</select>
+
+<update id="readingRoomModify" parameterType="readingRoom">
+	UPDATE READINGROOM SET rm_name=#{rm_name}
+	WHERE RM_CODE=#{rm_code}
+</update>
+
+<update id="seatModify" parameterType="java.util.List">
+	  
+	<foreach collection="list" item="item" separator=";" open="DECLARE BEGIN" close="; END;">
+		UPDATE SEATS SET SE_PLACE=#{item.se_place}
+		 <where>
+		SE_CODE=#{code} AND SE_LOW=#{item.se_low} AND SE_COL=#{item.se_col}
+		 </where>
+    </foreach>
+  
+</update>
 
 </mapper>

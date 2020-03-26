@@ -34,6 +34,18 @@
 		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
 	
 		<style>
+		@import url(//fonts.googleapis.com/earlyaccess/hanna.css);
+		.text{font-family: 'Hanna', sans-serif;}
+		body{
+		counter-reset:section;
+		}
+		h5::before {
+		counter-increment:section;
+		content:counter(section) ;
+	}
+	h5{
+	font-family: 'Hanna', sans-serif;
+	}
 			.container3{
                padding:50px 10px;
                 margin:50px 10px;
@@ -101,6 +113,7 @@
             }
             
             tr,td{
+<<<<<<< HEAD
             border:1px solid black;}
             #tdd{
             text-align:center;
@@ -108,7 +121,38 @@
             }
             img{
             width:85px;
+=======
+            border:1px solid black;
             }
+            #tdd{
+            text-align:center;
+             vertical-align: middle;
+>>>>>>> 692cd70f0b7cef19f78472cc5e81fbf1d21652a7
+            }
+            img{
+            width:100%;
+            margin:5px 0;
+            
+            }
+            .card{
+            width:20%;
+            float:left;
+        
+            }
+          
+       #popular{
+     
+       width:700px;
+       margin-left:-100px;
+       }
+       .card-header{
+       height:40px;
+       border:3px solid #BCBCBE;
+       border-radius: 20px;
+       color:#264E36;
+       padding:5px 0;
+       }
+       
             
             </style>
 	</head>
@@ -175,7 +219,7 @@
 										<li><a href="movemypage">마이페이지</a></li>
 										<li><a href="movedeliverylist">배송목록</a></li>
 										<li><a href="moveloanlist">대출목록</a></li>
-										<li><a href="">희망도서목록</a></li>
+										<li><a href="movehopelist">희망도서목록</a></li>
 									</ul>
 								</li>
 								<li><a href="./">자료검색</a>
@@ -199,7 +243,7 @@
 										<li><a href="questionmove">건의 사항</a></li>
 										<li><a href="hopebookmove">희망도서 신청</a></li>
 
-										<li><a href="">공지사항</a></li>
+										<li><a href="noticemove">공지사항</a></li>
 									</ul>
 								</li>
 							</ul>
@@ -274,7 +318,7 @@
 			<div class="wrapper style2" >
 				<section class="container3" >
 					<div class="row no-collapse-1">
-						<section class="4u" >
+						<section class="4u" id="4u1" >
 						    <h2 class='text'>추천도서</h2>
 							
                             <div id="demo" class="carousel slide" data-ride="carousel"> 
@@ -331,16 +375,16 @@
                             </div>
                         </section>
 						
-                         <section class="4u">
+                         <section class="4u" >
 						     <h2 class='text'>인기도서</h2>
 							<div id="popular" >
 						
 							</div>
 							
 						</section>
-						<section class="4u">
+						<section class="4u" >
 						     <h2 class='text'>지도</h2>
-							<div id="popular"></div>
+							<div id="jido"></div>
 							
 						</section>
 					</div>
@@ -442,8 +486,10 @@
 		    	success:function(result){
 		    		var str="";
 		    		$.each(result,function(index,item){
-		    			str+="<div class='card'><div class='card-header'><h4>위</h4></div><img src='"+item.bk_image+"'/>"
-		    			      +"<div class='card-body'><h5 class='card-title'>"+item.bk_name+"</h5></div></div>";
+
+		    			str+="<div class='card'><div class='card-header'><h5>위</h5></div><img src='"+item.bk_image+"'/></div>";
+		    			     // +"<div class='card-body'><h5 class='card-title'>"+item.bk_name+"</h5></div></div>";
+
 		    		});
 		    		$('#popular').html(str);
 		    		

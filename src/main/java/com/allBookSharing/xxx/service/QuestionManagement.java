@@ -7,7 +7,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.allBookSharing.xxx.dao.IAdminManagementDao;
 import com.allBookSharing.xxx.dao.QuestionDao;
+import com.allBookSharing.xxx.dto.Answer;
 import com.allBookSharing.xxx.dto.Library;
 import com.allBookSharing.xxx.dto.Question;
 import com.google.gson.Gson;
@@ -19,12 +21,17 @@ public class QuestionManagement {
 	@Autowired
 	QuestionDao qDao;
 	
+	@Autowired
+	IAdminManagementDao aDao;
+	
+	//건의사항페이지
 	public ModelAndView QuestionList() {
 		
 		ModelAndView mav= new ModelAndView();
 		String view=null;
 		
 		List<Question> qList=qDao.getQuestionList();
+		System.out.println("qlist="+qList);
 		
 		if(qList!=null) {
 			view= "questionList";
@@ -38,12 +45,14 @@ public class QuestionManagement {
 		
 		return mav;
 	}
-
+	
+	
+    //글쓰기 페이지 이동
 	public ModelAndView movequestionWrite() {
 		
 		ModelAndView mav= new ModelAndView();
 		String view=null;
-		List<Library> lList=qDao.getQuestionWrite(); //도서관 코드 불러오기
+		List<Library> lList=aDao.getlibraryinfo(); //도서관 코드 불러오기
 		
 		if(lList!=null) {
 			view="questionWrite";
@@ -52,21 +61,51 @@ public class QuestionManagement {
 		
 		String json=new Gson().toJson(lList);
 		
+		mav.addObject("list",json);
 		mav.setViewName(view);
 		return mav;
 	}
 
-//	public ModelAndView questionwrite(Principal principal) {
-//		
-//		ModelAndView mav= new ModelAndView();
-//		String id= principal.getName();
-//		String view=null;
-//		
-//		boolean result= qDao.questionWrite(id);
-//		
-//		mav.setViewName(view);
-//		
-//		return mav;
-//	}
+
+    //건의사항 글쓰기
+	public ModelAndView questionWrite(Question qus, Principal principal) {
+		ModelAndView mav= new ModelAndView();
+		String id= principal.getName();
+		qus.setQs_id(id);
+		
+		System.out.println("qus="+qus);
+		String view=null;
+		
+		boolean result= qDao.questionWrite(qus);
+		
+		if(result) 
+			view="redirect:/questionmove";
+		else
+			view="questionWrite";
+		
+		mav.setViewName(view);
+		
+		return mav;
+	}
+
+	//건의사항 상세보기
+	public ModelAndView questionDetail(Question qus2) {
+		ModelAndView mav= new ModelAndView();
+		String view=null;
+		Question qus=qDao.getQuestionDetail(qus2);
+		Answer ans=qDao.getAnswer(qus2);
+		if(qus!=null) 
+			view="questionDetail";
+		else
+			view="redirect:/questionmove";
+		
+//		String json=new Gson().toJson(qus);
+		
+		mav.addObject("question",qus);
+		mav.addObject("answer",ans);
+		mav.setViewName(view);
+		
+		return mav;
+	}
 
 }

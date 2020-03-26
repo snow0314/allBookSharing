@@ -45,6 +45,8 @@ public interface IBookDao {
 	List<Loan> bestList(Loan l);
 	Books topDetailPage(String bk_code);
 	List<Loan> mainPageTopTen(Loan lo);
+
+	Review bookRvGrade(String bk_code);
 	
 	
 	
