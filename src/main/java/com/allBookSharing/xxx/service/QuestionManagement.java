@@ -87,7 +87,7 @@ public class QuestionManagement {
 		
 		return mav;
 	}
-
+	
 	//건의사항 상세보기
 	public ModelAndView questionDetail(Question qus2) {
 		ModelAndView mav= new ModelAndView();
