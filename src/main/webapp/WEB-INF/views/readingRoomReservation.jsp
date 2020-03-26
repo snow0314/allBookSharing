@@ -154,92 +154,29 @@ float:right;
 </body>
 <script type="text/javascript" src="js/ajaxCsrf.js"></script>
 <script type="text/javascript">
-	console.log(${readingRoom});
-	console.log(${readingRoomList});
 	
 window.onload = function(){
 		
 		//사이드에 열람실 목록 보여주는 부분
 		let info=${readingRoomList};
-		
-	 	for(var i=0;i<info.length;i++){
-			$("<button>").addClass("subbtn")
-						.text(info[i].rm_name)
-						.attr("onclick","location.href=readingroomreservationmove?rm_code="+info[i].rm_code+"&rm_lcode="+info[i].rm_lcode) 
-						.appendTo($("#submenu"));
-			$("<br>").appendTo($("#submenu"));
-		} 
-		
+		sideMenu(info);
+			
 		var readingRoom=${readingRoom};
-		var seats=readingRoom.seats;
+		
+		
 		console.log("seats:",seats);
 		$("#rm_name").val(readingRoom.rm_name);
 		$("#rm_code").val(readingRoom.rm_code);
-		
-		numberOfSeatsInUse(readingRoom.rm_code);
-		
-		$("#rm_col").val(readingRoom.rm_col);
-		$("#rm_row").val(readingRoom.rm_low);
+		numberOfSeatsInUse(readingRoom.rm_code); //사용중인 좌석, 잔여 좌석 구하기
 		$("#total_seat").val(readingRoom.totalSeat);
 		
+		var seats=readingRoom.seats;
 		let col=readingRoom.rm_col;
 		let low=readingRoom.rm_low;
+				//좌석성보, 행,  열
+		showSeats(seats, low, col); // 좌석 그려주는 메소드
+				
 		
-		console.log("col:",col);
-		console.log("row:",low);
-		var cnt=1; //좌석 번호 
-		for (let j = 1; j <= col; j++) {
-
-	        for (let i = 1; i <= low; i++) {
-	            
-	        	for(let k=0;k < seats.length; k++){
-	        		if(seats[k].se_low == i && seats[k].se_col == j){
-	        			
-	        			if(seats[k].se_place == 0){ 
-	        				let $label=$("<label>").addClass("btn")
-							   .appendTo($("#seats"));
-     
-     						$("<input>").attr("name","seat")
-     									.attr("type","checkbox")
-     									.attr("data-col",j)
-     									.attr("data-row",i)
-     									.attr("disabled","disabled")
-     									.appendTo($label);
-	        				
-	        			}else if(seats[k].se_place == 1){ //예약가능 좌석
-	        				let $label=$("<label>").addClass("btn btn-outline-success")
-							   .text(cnt).appendTo($("#seats"));
-	 
-	 						$("<input>").attr("name","seat")
-	 									.attr("type","checkbox")
-	 									.attr("data-col",j)
-	 									.attr("data-row",i)
-	 									.attr("data-num",cnt)
-	 									.appendTo($label);
-	 						cnt++;
-	        			}else{ //예약된 좌석
-	        				let $label=$("<label>").addClass("btn btn-outline-success active")
-							   .text(cnt).appendTo($("#seats"));
-	 
-	 						$("<input>").attr("name","seat")
-	 									.attr("type","checkbox")
-	 									.attr("data-col",j)
-	 									.attr("data-row",i)
-	 									.attr("data-num",cnt)
-	 									.attr("disabled","disabled")
-	 									.appendTo($label);
-	 						cnt++;
-	        			} //else End
-	        			
-	        			break;
-	        		} //if End
-	        		
-	        	} //for k End
-	            
-	        } //for i End
-	       $("<br>").appendTo($("#seats"));
-	        
-	    } // for j End
 		
 		
 	} //ready End
@@ -340,6 +277,70 @@ $("#reservationCancel").on("click", function(){ //열람실 예약 취소
 }); //ajax End 
 });
 
-	
+function sideMenu(info){ //옆에 열람실 목록 보여주는 메소드
+	for(var i=0;i<info.length;i++){
+		$("<button>").addClass("subbtn")
+					.text(info[i].rm_name)
+					.attr("onclick","location.href='readingroomreservationmove?rm_code="+info[i].rm_code+"&rm_lcode="+info[i].rm_lcode+"'") 
+					.appendTo($("#submenu"));
+		$("<br>").appendTo($("#submenu"));
+	} 
+}
+
+function showSeats(seats, low, col){
+	var cnt=1; //좌석 번호 
+	for (let j = 1; j <= col; j++) {
+
+        for (let i = 1; i <= low; i++) {
+            
+        	for(let k=0;k < seats.length; k++){
+        		if(seats[k].se_low == i && seats[k].se_col == j){
+        			
+        			if(seats[k].se_place == 0){ 
+        				let $label=$("<label>").addClass("btn")
+						   .appendTo($("#seats"));
+ 
+ 						$("<input>").attr("name","seat")
+ 									.attr("type","checkbox")
+ 									.attr("data-col",j)
+ 									.attr("data-row",i)
+ 									.attr("disabled","disabled")
+ 									.appendTo($label);
+        				
+        			}else if(seats[k].se_place == 1){ //예약가능 좌석
+        				let $label=$("<label>").addClass("btn btn-outline-success")
+						   .text(cnt).appendTo($("#seats"));
+ 
+ 						$("<input>").attr("name","seat")
+ 									.attr("type","checkbox")
+ 									.attr("data-col",j)
+ 									.attr("data-row",i)
+ 									.attr("data-num",cnt)
+ 									.appendTo($label);
+ 						cnt++;
+        			}else{ //예약된 좌석
+        				let $label=$("<label>").addClass("btn btn-outline-success active")
+						   .text(cnt).appendTo($("#seats"));
+ 
+ 						$("<input>").attr("name","seat")
+ 									.attr("type","checkbox")
+ 									.attr("data-col",j)
+ 									.attr("data-row",i)
+ 									.attr("data-num",cnt)
+ 									.attr("disabled","disabled")
+ 									.appendTo($label);
+ 						cnt++;
+        			} //else End
+        			
+        			break;
+        		} //if End
+        		
+        	} //for k End
+            
+        } //for i End
+       $("<br>").appendTo($("#seats"));
+        
+    } // for j End
+}
 </script>
 </html>
