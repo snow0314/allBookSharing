@@ -24,5 +24,8 @@ public interface QuestionDao {
 	//답변보기
 	Answer getAnswer(Question qus2);
 
+	//내가 쓴 글 삭제
+	boolean deleteQuestion(Question qus);
+
 	
 }
