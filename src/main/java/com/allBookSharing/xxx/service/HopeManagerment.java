@@ -24,6 +24,8 @@ public class HopeManagerment {
 		String view=null;
 		List<Hope> hList=hDao.lbHopeList(id);
 		
+		System.out.println("hList"+hList);
+		
 			view="librarian/libraryHopeList";
 		
 			
