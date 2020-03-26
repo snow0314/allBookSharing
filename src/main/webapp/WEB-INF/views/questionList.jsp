@@ -94,7 +94,7 @@ for(let i=0;i<list.length;i++){
    $tr.append("<td>"+list[i].qs_num+"</td>");
    $tr.append("<td>"+list[i].lb_name+"</td>");
 	if(list[i].qs_show==0){		
-   $tr.append("<td><a href='qsdetail?&qs_num="+list[i].qs_num+"&qs_show="+list[i].qs_show+"'>"+list[i].qs_title+" &nbsp;&nbsp;</td>");
+   $tr.append("<td><a href='qsdetail?&qs_num="+list[i].qs_num+"&qs_show="+list[i].qs_show+"'>"+list[i].qs_title+" &nbsp;&nbsp;</a></td>");
 	}
 	if(list[i].qs_show==1){		
    $tr.append("<td style='display:flex;'><form method='post'><a onclick='show("+list[i].qs_num+")' href='javascript:'>"+list[i].qs_title+" &nbsp;&nbsp;</a><i class='fas fa-lock'></i>&nbsp;&nbsp;"+

@@ -5,4 +5,13 @@
 <select id="getNoticeList" resultType="Notice">
  SELECT * FROM NOTICE 
 </select>
+
+<insert id="noticeWrite" parameterType="Notice">
+INSERT INTO NOTICE(NO_NUM,NO_ID,NO_TITLE,NO_CONTENT,NO_DATE)VALUES
+     (NO_NUM.NEXTVAL,#{no_id},#{no_title},#{no_content},SYSDATE)
+</insert>
+
+<select id="getNoticeDetail" resultType="Notice">
+SELECT * FROM NOTICE WHERE NO_NUM=#{no_num}
+</select>
 </mapper>
