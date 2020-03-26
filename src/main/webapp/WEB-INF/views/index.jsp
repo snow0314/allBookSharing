@@ -28,6 +28,11 @@
 		<!--[if lte IE 8]><link rel="stylesheet" href="css/ie/v8.css" /><![endif]-->
 		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js" type="text/javascript"></script>
+		<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"  crossorigin="anonymous"></script> 
+       <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script> 
+       <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+	
 		<style>
 			.container3{
                padding:50px 10px;
@@ -94,23 +99,20 @@
                 margin-top:-30px;
                 margin-bottom: 30px;
             }
-            #popular{
-            column-count: 2;
-  			column-gap: 40px;
-  			column-rule-style: solid;
-  			column-rule-width: 1px
+            
+            tr,td{
+            border:1px solid black;}
+            #tdd{
+            text-align:center;
+             vertical-align: middle;
+            }
+            img{
+            width:85px;
             }
             
             </style>
 	</head>
 	<body class="homepage">
-       <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script> 
-       <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script> 
-       <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-    
-
-
-
         <!--header-->
         <sec:authorize access="isAnonymous()">
         <div class="container2">
@@ -331,7 +333,9 @@
 						
                          <section class="4u">
 						     <h2 class='text'>인기도서</h2>
-							<div id="popular" ></div>
+							<div id="popular" >
+						
+							</div>
 							
 						</section>
 						<section class="4u">
@@ -429,18 +433,20 @@
 			logoutform.submit();
 			
 		}
+		
 		$(document).ready(function(){
 			$.ajax({
 				type:'get',
 		    	url:'mainpagetopten',
 		    	dataType:"json",
 		    	success:function(result){
-		    		console.log(result);
-		    		var str="";	
-			    	$.each(result,function(index,item){
-			    		str+="<image src="+item.bk_image+">";
-			    	});
-			    	$('#popular').append(str);
+		    		var str="";
+		    		$.each(result,function(index,item){
+		    			str+="<div class='card'><div class='card-header'><h4>위</h4></div><img src='"+item.bk_image+"'/>"
+		    			      +"<div class='card-body'><h5 class='card-title'>"+item.bk_name+"</h5></div></div>";
+		    		});
+		    		$('#popular').html(str);
+		    		
 		    	},
 		    	error:function(){ 
 			    	alert("실패");
