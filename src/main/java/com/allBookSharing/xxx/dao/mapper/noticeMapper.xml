@@ -14,4 +14,9 @@ INSERT INTO NOTICE(NO_NUM,NO_ID,NO_TITLE,NO_CONTENT,NO_DATE)VALUES
 <select id="getNoticeDetail" resultType="Notice">
 SELECT * FROM NOTICE WHERE NO_NUM=#{no_num}
 </select>
+
+<delete id="deleteNotice">
+DELETE FROM NOTICE WHERE NO_NUM=#{no_num}
+</delete>
+
 </mapper>

@@ -121,17 +121,34 @@ public class AdminManagement {
 		return mav;
 	}
     
-	//공지사항 글 상세보기
-	public ModelAndView noticeDetail(Notice ntc2) {
+	//공지사항 글 상세보기(관리자)
+	public ModelAndView adNoticeDetail(Notice ntc2) {
 		ModelAndView mav= new ModelAndView();
 		String view=null;
 		Notice ntc=nDao.getNoticeDetail(ntc2);
 		if(ntc!=null)
-			view="noticeDetail";
+			view="admin/adminNoticeDetail";
 		else
 			view="redirect:/noticemove";
 		
 		mav.addObject("notice", ntc);
+		mav.setViewName(view);
+		
+		return mav;
+	}
+    //공지사항 글 삭제
+	public ModelAndView deleteNotice(Notice ntc) {
+		
+		ModelAndView mav=new ModelAndView();
+		String view=null;
+		
+		boolean result=nDao.deleteNotice(ntc);
+		
+		if(result)
+		   view="redirect:/adminnotice";
+		else
+			view="redirect:/nodetail";
+		
 		mav.setViewName(view);
 		
 		return mav;

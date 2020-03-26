@@ -108,7 +108,7 @@ public class QuestionManagement {
 		return mav;
 	}
 
-
+ 
 	public ModelAndView deleteQuestion(Question qus) {
 		ModelAndView mav= new ModelAndView();
 		String view=null;

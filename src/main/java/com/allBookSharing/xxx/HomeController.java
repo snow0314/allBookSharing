@@ -154,7 +154,9 @@ public class HomeController {
 		return "bookrequestapply";
 	}
 	
-	
+	//열람실 예약안내 
+	  
+	   
 }
 
 
