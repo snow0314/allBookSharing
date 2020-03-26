@@ -24,12 +24,9 @@ public class HopeManagerment {
 		String view=null;
 		List<Hope> hList=hDao.lbHopeList(id);
 		
-		if(hList!=null) 
 			view="librarian/libraryHopeList";
-
-		else
-			view="librarian/librarymain";
 		
+			
 		String json=new Gson().toJson(hList);
 		
 		mav.addObject("list",json);

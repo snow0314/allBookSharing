@@ -132,7 +132,7 @@ public class LibrarianManagement {
 		if(result) {
 			boolean result2=lDao.updateState(as);
 			if(result2)
-			view="librarian/libraryQuestionList";
+			view="redirect:/lbquestionlist";
 		}
 		else
 			view="librarian/librarymain";

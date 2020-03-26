@@ -25,7 +25,7 @@ public class QuestionController {
 	
 	ModelAndView mav;
 	//건의사항 페이지 이동
-	@PreAuthorize("isAuthenticated()")
+	
 	@GetMapping(value = "/questionmove")
 	public ModelAndView questionList() {
 		

@@ -57,7 +57,7 @@ text-align: center;
          <th>No</th>
          <th>도서관</th>
          <th>제목</th>
-         <th>글쓴이</th>
+         <th>작성자</th>
          <th>작성일</th>
          <th>상태</th>
          </tr>
@@ -75,15 +75,17 @@ console.log(list);
 
 for(let i=0;i<list.length;i++){
    var $tr= $("<tr>").appendTo($("#tb"));
-   $tr.append("<td>"+(i+1)+"</td>");
+   $tr.append("<td>"+list[i].br_num+"</td>");
    $tr.append("<td>"+list[i].lb_name+"</td>");	
-   $tr.append("<td><a href='lbqsdetail?qs_num="+list[i].qs_num+"'>"+list[i].qs_title+"</td>");
-   $tr.append("<td>"+list[i].qs_id+"</td>");
-   $tr.append("<td>"+list[i].qs_date+"</td>");
-   if(list[i].qs_state=="대기중")
-	   $tr.append("<td><span style='color:red; font-weight:bold;'>"+list[i].qs_state+"</span></td>");
-   if(list[i].qs_state=="답변완료")
-	   $tr.append("<td><span style='color:blue; font-weight:bold;'>"+list[i].qs_state+"</span></td>");
+   $tr.append("<td><a href='lbqsdetail?qs_num="+list[i].qs_num+"'>"+list[i].br_title+"</td>");
+   $tr.append("<td>"+list[i].br_id+"</td>");
+   $tr.append("<td>"+list[i].br_date+"</td>");
+   if(list[i].br_stituatuin==0)
+	   $tr.append("<td><span style='color:red; font-weight:bold;'>대기중</span></td>");
+   if(list[i].br_stituatuin==1)
+	   $tr.append("<td><span style='color:orenge; font-weight:bold;'>반려</span></td>");
+   if(list[i].br_stituatuin==2)
+	   $tr.append("<td><span style='color:blue; font-weight:bold;'>처리완료</span></td>");
 }
 </script>
 
