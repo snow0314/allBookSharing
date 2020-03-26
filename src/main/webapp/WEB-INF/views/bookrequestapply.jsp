@@ -60,6 +60,7 @@ margin:5px;
 </style>
 </head>
 <body>
+<%-- <jsp:include page="header.jsp" /> --%>
 <div class="container p-3 my-3 border">
 	<form class="well form-horizontal" action="bookrequestapply" method="post" id="contact_form">
 		
