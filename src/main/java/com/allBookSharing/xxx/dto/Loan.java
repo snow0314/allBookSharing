@@ -40,4 +40,13 @@ public class Loan {
 		int br_situation; //요청 상태 0.답변대기 1.처리중 2.반려 3.소장중
 		String br_false; //반려 이유
 		String br_id; //희망도서 글쓴이
-}
+		String br_loc; //도서관 지역
+		String br_reason;
+		String br_bname;
+		String br_name;
+		int br_bcode;
+		String br_writer;
+		
+	/*
+	 * int br_sms; //sms수신여부
+	 */}

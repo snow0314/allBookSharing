@@ -10,6 +10,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.allBookSharing.xxx.dao.IMyLibraryDao;
 import com.allBookSharing.xxx.dto.Loan;
 import com.google.gson.Gson;
+import com.sun.tools.internal.ws.processor.model.Request;
 
 @Service
 public class MyLibraryManagement {
@@ -76,6 +77,27 @@ public class MyLibraryManagement {
 			
 		String json=new Gson().toJson(lList);
 		mav.addObject("list",json);
+		mav.setViewName(view);
+		
+		return mav;
+	}
+
+	//희망도서 신청
+	public ModelAndView bookrRequestApply(Loan lan, Principal principal) {
+		ModelAndView mav= new ModelAndView();
+		String id= principal.getName();
+		lan.setBr_id(id);
+		
+		System.out.println("lan="+lan);
+		String view=null;
+		
+		boolean result= mlDao.bookrRequestApply(lan);
+		
+		if(result) 
+			view="redirect:/hopelist";
+		else
+			view="bookrRequestApply";
+		
 		mav.setViewName(view);
 		
 		return mav;

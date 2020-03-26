@@ -61,8 +61,7 @@ margin:5px;
 </head>
 <body>
 <div class="container p-3 my-3 border">
-	<form class="well form-horizontal" action="" method="post" id="contact_form" onsubmit="return check()">
-		<fieldset>
+	<form class="well form-horizontal" action="hopebookapply" method="post" id="contact_form" onsubmit="return check()">
 		
 			<!-- Form Name -->
 	
@@ -80,7 +79,7 @@ margin:5px;
 				<th scope="row"><label for="manaber_loc">도서관 지역 <span class="w_star">*</span></label></th>
 				<td>
 					<div class="input-group mt-3 mb-3">
-					<select name="lb_loc" id="br_loc" class="custom-select" onchange="getLocLibray()">
+					<select name="br_loc" id="br_loc" class="custom-select" onchange="getLocLibray()">
 						<option selected>선택</option>
 					</select>
 					</div>
@@ -91,7 +90,7 @@ margin:5px;
 				<th scope="row"><label for="manaber_code">도서관 <span class="w_star">*</span></label></th>
 				<td>
 					<div class="input-group mt-3 mb-3">
-					<select name="lb_name" id="br_bname" style="width:170px;" class="custom-select">
+					<select name="br_bname" id="br_bname" style="width:170px;" class="custom-select">
 						<option selected>선택</option>
 					</select>
 					</div>
@@ -116,7 +115,7 @@ margin:5px;
 				<th scope="row"><label for="isbn">isbn <span class="w_star">*</span><!-- 필수입력시 --></label></th>
 				<td>
 					<div class="input-group mt-3 mb-3">
-					<input type="text" id="bk_bcode" class="form-control" name="bk_bcode"/>
+					<input type="text" id="br_bcode" class="form-control" name="br_bcode"/>
 					</div></td>
 			</tr>
 			
@@ -144,15 +143,15 @@ margin:5px;
 				</div></td>
 			</tr>
 			
-			<tr>
+			<!-- <tr>
 				<th scope="row">SMS 수신여부<span class="w_star">*</span></th>
 				<td>
 				<div class="input-group mt-2 mb-2">
-				<input type="radio" id="br_sms1" name="br_sms" value="Y" checked="checked" />수신  
-				<input type="radio" id="br_sms2" name="br_sms" value="N"/>미수신 
+				<input type="radio" id="br_sms1" name="br_sms" value="0" checked="checked" />수신  
+				<input type="radio" id="br_sms2" name="br_sms" value="1"/>미수신 
 				&nbsp; &nbsp; &nbsp;<font color="red">*  SMS 미 수신시 희망도서 비치 알림 서비스가 제공되지 않습니다.</font>
 				</div></td> 
-			</tr>
+			</tr> -->
 			
 			<tr>
 				<td colspan="2" style="text-align: right">
@@ -165,8 +164,6 @@ margin:5px;
 			</tr>
 		</tbody>
 	</table>
-	
-	
 	</form>
 </div>
  <!-- Modal: modalCart -->
@@ -204,6 +201,9 @@ margin:5px;
     </div>
     <!-- Modal: modalCart -->
 </body>
+<script type="text/javascript" src="js/bookInsert.js">
+
+</script>
 <script>
 
 $(function() {
@@ -242,6 +242,13 @@ function getLocLibray() {
 	console.log("xhr=",xhr);
 }); // ajax End
 }
+
+//등록 버튼 확인창
+$("#insertBtn").on("click",function(){
+	
+	confirm("등록 하시겠습니까?");
+	
+});
 
 function bookSearch() { //도서 검색하는 메소드
 	var key = "d5575428c9cfb5d81f026c00efa52fb4";
