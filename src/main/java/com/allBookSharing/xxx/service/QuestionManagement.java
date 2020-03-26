@@ -108,4 +108,21 @@ public class QuestionManagement {
 		return mav;
 	}
 
+
+	public ModelAndView deleteQuestion(Question qus) {
+		ModelAndView mav= new ModelAndView();
+		String view=null;
+		
+		boolean result=qDao.deleteQuestion(qus);
+		
+		if(result)
+			view="redirect:/questionmove";
+		else
+			view="redirect:/qsdetail";
+		
+		mav.setViewName(view);
+		
+		return mav;
+	}
+
 }

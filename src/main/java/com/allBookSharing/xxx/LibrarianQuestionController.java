@@ -33,6 +33,7 @@ public class LibrarianQuestionController {
 		
 		return mav; 	
 	}
+	
 	//사서 건의사항글 상세보기
 	@Secured("ROLE_LIBRARIAN")
 	@RequestMapping(value = "/lbqsdetail")
@@ -40,6 +41,18 @@ public class LibrarianQuestionController {
 		ModelAndView mav= new ModelAndView();
 		
 		mav = lm.lbqsDetail(qus);
+		
+		return mav; 
+	}
+
+	
+	//사서 건의사항글 상세보기
+	@Secured("ROLE_LIBRARIAN")
+	@RequestMapping(value = "/lbdeletequestion")
+	public ModelAndView lbDeleteQuestion(Question qus) { 
+		ModelAndView mav= new ModelAndView();
+		
+		mav = lm.lbDeleteQuestion(qus);
 		
 		return mav; 
 	}

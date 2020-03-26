@@ -47,6 +47,17 @@ public class QuestionController {
 		 
 		return mav;
 	}
+	//건의사항 글삭제 (본인글)
+	@PreAuthorize("isAuthenticated()")
+	@PostMapping(value = "/deletequestion")
+	public ModelAndView deleteQuestion(Question qus) {
+		
+		ModelAndView mav=new ModelAndView();
+		
+		mav = qm.deleteQuestion(qus);
+		
+		return mav;
+	}
 	
 	//건의사항 글상세보기 
 		@PreAuthorize("isAuthenticated()")

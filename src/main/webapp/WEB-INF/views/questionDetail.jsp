@@ -4,6 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
+
 <title>Insert title here</title>
 <!-- jquery -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
@@ -11,6 +12,21 @@
 
 <!-- 폰트어썸 -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css" />
+  
+  <style>
+#del_btn{
+all:unset;
+padding: 6px 12px;
+cursor: pointer;
+text-align: center;
+vertical-align: center;
+color: #fff;
+background-color: #dc3545;
+font-weight: 400;
+border-radius: 5px;
+}
+  </style>
+  
 </head>
 <body>
  <jsp:include page="header.jsp" />
@@ -37,6 +53,10 @@ ${question.qs_content}
 <pre id="answer" style=" border: 1px solid rgba(0,0,0,0.2);">
 ${answer.aw_contents}
 </pre>
+<form action="deletequestion?${_csrf.parameterName}=${_csrf.token}" method="post">
+<div id="del" style="float:right;">
+</div>
+</form>
 </div>
 </div>
 </div>
@@ -53,5 +73,20 @@ if(state=="답변완료"){
 }
 </script>
 
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %> 
+<sec:authentication var="principal" property="principal" />
+<script>
+let id="${question.qs_id}";
+let logid="${principal.username}";
+console.log("id="+id);
+console.log("logid="+logid);
+
+if(id==logid){
+	$("<input>").attr("type","hidden").attr("value",${question.qs_num}).prop("name","qs_num").appendTo($("#del"));	
+	$("<input>").attr("type","submit").attr("value","삭제").prop("id","del_btn").appendTo($("#del"));	
+}
+
+
+</script>
 </body>
 </html>

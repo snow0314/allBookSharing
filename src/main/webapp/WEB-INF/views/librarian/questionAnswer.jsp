@@ -26,6 +26,17 @@ background-color: #007bff;
 font-weight: 400;
 border-radius: 5px;
 }
+#del_btn{
+all:unset;
+padding: 6px 12px;
+cursor: pointer;
+text-align: center;
+vertical-align: center;
+color: #fff;
+background-color: #dc3545;
+font-weight: 400;
+border-radius: 5px;
+}
 
 
 
@@ -54,7 +65,12 @@ ${question.qs_content}
 <pre id="answer" style=" border: 1px solid rgba(0,0,0,0.2);">
 ${answer.aw_contents}
 </pre>
-
+<div id="del" style="float:right;">
+<form action="lbdeletequestion?${_csrf.parameterName}=${_csrf.token}" method="post">
+<input type="hidden" name="qs_num" value="${question.qs_num}" />
+<input type="submit" id="del_btn" value="삭제" />
+</form>
+</div>
 <form action="questionanswer?${_csrf.parameterName}=${_csrf.token}" method="post">
 <input type="hidden" name="aw_q_num" value='${question.qs_num}' />
 <div id='ans' style=" margin-top: 10px;" >
