@@ -13,6 +13,6 @@ public class Review {
 	private String rv_bcode;
 	private String rv_id;
 	private String rv_contents;
-	private int rv_grade;
-	
+	private double rv_grade;
+	private double avg;
 }

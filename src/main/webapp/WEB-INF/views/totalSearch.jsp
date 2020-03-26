@@ -362,7 +362,7 @@ float:right;
 </nav>
 
 <main id="totalsearchlist">
-    <h1 id="d">통합검색!!</h1>
+    <h1 id="d">통합검색</h1>
 
     
     

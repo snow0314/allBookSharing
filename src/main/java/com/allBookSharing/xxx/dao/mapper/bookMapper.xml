@@ -55,12 +55,12 @@
 </select>
 
 <select id="topDetailPage" resultType="books" resultMap="booksearch">
-   SELECT B.BK_NAME,B.BK_IMAGE,B.BK_WRITER,B.BK_PUBLISHER,B.BK_PUBLICDAY,
-          B.BK_CODE,A.BG_CATE,A.SG_CATE,B.BK_INTRODUCTION
+    
+   SELECT DISTINCT B.BK_NAME,B.BK_IMAGE,B.BK_WRITER,B.BK_PUBLISHER,B.BK_PUBLICDAY,B.BK_CODE,A.BG_CATE,A.SG_CATE,B.BK_INTRODUCTION
    FROM BOOKS B
    JOIN ALLGROUP A
    ON B.BK_SG_NUM =A.SG_BG_NUM
-   WHERE B.BK_CODE=#{bk_code} 
+   WHERE B.BK_CODE=#{bk_code}
 </select>
 
 <select id="bookDetailPage" resultType="books" resultMap="booksearch">
@@ -143,6 +143,9 @@ GROUP BY L.LB_NAME,L.LB_CODE
 	ON BORROWDETAIL.BD_BCODE=B.BK_CODE
 	GROUP BY B.BK_NAME,B.BK_IMAGE,B.BK_WRITER,BK_PUBLISHER,BK_PUBLICDAY,BK_CODE,BD_BCODE
 	ORDER BY COUNT DESC
+</select>
+<select id="bookRvGrade" parameterType="review" resultType="review">
+	SELECT AVG(RV_GRADE) AS AVG FROM REVIEW WHERE RV_BCODE=#{bk_code}
 </select>
 
 </mapper>

@@ -113,11 +113,21 @@
             }
             
             tr,td{
+<<<<<<< HEAD
+            border:1px solid black;}
+            #tdd{
+            text-align:center;
+             vertical-align: middle;
+            }
+            img{
+            width:85px;
+=======
             border:1px solid black;
             }
             #tdd{
             text-align:center;
              vertical-align: middle;
+>>>>>>> 692cd70f0b7cef19f78472cc5e81fbf1d21652a7
             }
             img{
             width:100%;
@@ -476,8 +486,10 @@
 		    	success:function(result){
 		    		var str="";
 		    		$.each(result,function(index,item){
+
 		    			str+="<div class='card'><div class='card-header'><h5>위</h5></div><img src='"+item.bk_image+"'/></div>";
 		    			     // +"<div class='card-body'><h5 class='card-title'>"+item.bk_name+"</h5></div></div>";
+
 		    		});
 		    		$('#popular').html(str);
 		    		

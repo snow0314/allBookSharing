@@ -8,10 +8,14 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src='https://kit.fontawesome.com/a076d05399.js'></script>
+
 </head>
 <style>
 @import url(//fonts.googleapis.com/earlyaccess/hanna.css);
 @import url(//fonts.googleapis.com/earlyaccess/jejugothic.css);
+@import url(//fonts.googleapis.com/earlyaccess/notosanskr.css);
+
 	.reservation{
 	width:95px;
 	height:38px;
@@ -46,7 +50,9 @@
 	margin-left:10%;
 	font-family: 'Hanna', sans-serif;
 	margin-top:2%;
-	font-size:50px;
+	font-size:45px;
+	font-weight:600;
+	margin-bottom:-5px;
 	}
 	h1{
 	font-family: 'Hanna', sans-serif;
@@ -57,8 +63,7 @@
 		height:300px;
 		flex:3;
 		border-radius: 10px;
-		margin-right:5%;
-		
+		margin-right:5%;	
 	}
 	#img{
 	flex:1;
@@ -104,19 +109,15 @@
 	width:77%;
 	display:block;
 	margin-top:15px;
-	margin-left:10%
+	margin-left:12%
 	}
 	#have{
 	border:1px solid #4a8af4;
 	width:60%;
 	}
-	#review{
 	
-	width:77%;
-	}
 	#container{
 	display:flex;
-
 	margin-left:10%;
 	margin-right:10%;
 	}
@@ -124,10 +125,7 @@
 	color:red;
 	
 	}
-	#reviewlist{
 	
-	width:100%;
-	}
 	
 	.btn_like {
 	  position: relative;
@@ -212,8 +210,31 @@
   		to { background-position: -8250px }
 	}
 	hr{
-	width:80%;
-	margin-left:10%;
+	width:85%;
+	margin-left:8%;
+	margin-top:-18px;
+	margin-bottom:25px;
+	}
+	#reviewlist{
+
+	width:100%;
+	text-align:center;
+	}
+	#reviewlist th{
+	background-color:#b7b8ba;
+	height:30px;
+	font-size:18px;
+	}
+	#review{
+	margin-left:12%;
+	margin-top:5%;
+	width:77%;
+	}
+	#introcontents{
+	font-family: 'Noto Sans KR', sans-serif;
+	font-size:18px;
+	line-height:25px;
+	
 	}
 </style>
 <body>
@@ -241,7 +262,7 @@
 
 <div id="sidebar">
 <span id="likecount"></span>명이 좋아합니다.<br>
-평균평점 _____
+평균평점 ${rvgrade.avg}
 </div>
 </div>
 
@@ -249,7 +270,7 @@
 <hr>
 
 <div id="intro">
-<h1>서평</h1>
+<h1>서평 <i class='far fa-file-alt' style='font-size:24px'></i></h1>
   <div id="introcontents">${books.bk_introduction }</div>
 </div>
 
@@ -257,7 +278,7 @@
 
  
  <div id="review">
- <h1>한줄평</h1>
+ <h1>한줄평<i class='fas fa-pencil-alt' style='font-size:24px'></i></h1>
 	<table id="reviewlist">
 	<tr>
 	<th>아이디</th>

@@ -38,6 +38,9 @@ public class BookManagement {
 		List<Review> review=bDao.bookReviewList(bk_code);
 		mav.addObject("review", review);
 		
+		Review rvgrade=bDao.bookRvGrade(bk_code);
+		mav.addObject("rvgrade",rvgrade);
+		
 		view="bookDetailPage";
 		mav.setViewName(view);
 		
