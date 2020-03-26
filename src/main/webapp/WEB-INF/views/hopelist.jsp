@@ -38,6 +38,8 @@
 		<thead>
 			<tr>
 			<th>요청번호</th>
+			<th>지역</th>
+			<th>도서관</th>
 			<th>도서명</th>
 			<th>저자</th>
 			<th>신청이유</th>
@@ -59,6 +61,8 @@ console.log(list);
 for(let i=0;i<list.length;i++){
 	var $tr= $("<tr>").appendTo($("#tb"));
 	$tr.append("<td>"+list[i].br_num+"</td>");
+	$tr.append("<td>"+list[i].lb_loc+"</td>");
+	$tr.append("<td>"+list[i].lb_name+"</td>");
 	$tr.append("<td>"+list[i].br_name+"</td>");
 	$tr.append("<td>"+list[i].br_writer+"</td>");
 	$tr.append("<td>"+list[i].br_titile+"</td>");
