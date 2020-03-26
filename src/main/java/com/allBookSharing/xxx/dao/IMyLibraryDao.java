@@ -17,6 +17,9 @@ public interface IMyLibraryDao {
 	List<Loan> getHopeList(String id);
 
 	boolean bookRequestApply(Loan lan);
+
+	//리뷰쓰기
+	boolean writeReview(int bo_num);
 	
 	
 
