@@ -13,6 +13,8 @@ import lombok.experimental.Accessors;
 public class Hope {
 	private int br_num;			//요청번호
 	private int br_lcode;		//도서관코드
+	private String lb_name;		//도서명
+	private String lb_loc;		//소속지역
 	private String br_id;		//신청한 사람 아이디
 	private int br_bcode;		//ISBN코드
 	private String br_title;	//신청제목
