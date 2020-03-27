@@ -155,19 +155,16 @@ float:right;
 <script type="text/javascript" src="js/ajaxCsrf.js"></script>
 <script type="text/javascript">
 	
-window.onload = function(){
+window.onload = function (){
 		
 		//사이드에 열람실 목록 보여주는 부분
 		let info=${readingRoomList};
 		sideMenu(info);
 			
 		var readingRoom=${readingRoom};
-		
-		
-		console.log("seats:",seats);
 		$("#rm_name").val(readingRoom.rm_name);
 		$("#rm_code").val(readingRoom.rm_code);
-		numberOfSeatsInUse(readingRoom.rm_code); //사용중인 좌석, 잔여 좌석 구하기
+		numberOfSeatsInUse(readingRoom.rm_code); //사용중인 좌석, 잔여 좌석 구하기 및 그리기
 		$("#total_seat").val(readingRoom.totalSeat);
 		
 		var seats=readingRoom.seats;
@@ -175,9 +172,6 @@ window.onload = function(){
 		let low=readingRoom.rm_low;
 				//좌석성보, 행,  열
 		showSeats(seats, low, col); // 좌석 그려주는 메소드
-				
-		
-		
 		
 	} //ready End
 			
@@ -200,21 +194,16 @@ function numberOfSeatsInUse(rm_code){ //사용중인 좌석 수 구하는 메소
 }//function End
 
 
-
 $("#seats").on("click","input",function(event){ //예약하는 메소드
 	event.preventDefault(); //버블링 막기
 	
-	console.log(this);
 	let result = window.confirm("예약하시겠습니까?");
-	
 	
 	if(result){
 		let data = {"se_code" : $("#rm_code").val(),
 					"se_low" : $(this).data("row"),
 					"se_col" : $(this).data("col"),
 					"se_seatnum" : $(this).data("num")};
-		console.log("데이터",data);
-		console.log("데이터 제이슨",JSON.stringify(data));
 		
 		  $.ajax({
 			url : "readingroomreservation",
@@ -256,25 +245,29 @@ $("#reservationCheck").on("click",function(){ //열람실 예약 확인
 }); //click End
 
 $("#reservationCancel").on("click", function(){ //열람실 예약 취소
-	let result = window.confirm("예약을 취소 하시겠습니까?");
+	let confirm = window.confirm("예약을 취소 하시겠습니까?");
 	
-	$.ajax({
-		url : "userreadingroomreservationcancel",
-		type : "get",
-		dataType:'text'
-		
-}).done((result) => {
-	if(result == "실패"){
-		alert("예약한 자리가 없습니다.");
-	}else{
-		alert(result);
-		location.reload();
-	}
-	
+	if(confirm){
+		$.ajax({
+			url : "userreadingroomreservationcancel",
+			type : "get",
+			dataType:'text'
+			
+	}).done((result) => {
+		if(result == "실패"){
+			alert("예약한 자리가 없습니다.");
+		}else{
+			alert(result);
+			location.reload();
+		}
 	
 }).fail((xhr) => {
 	console.log("xhr=",xhr);
 }); //ajax End 
+
+	}else{
+		return false;
+	}
 });
 
 function sideMenu(info){ //옆에 열람실 목록 보여주는 메소드

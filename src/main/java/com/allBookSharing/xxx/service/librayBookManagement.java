@@ -90,5 +90,28 @@ public class librayBookManagement {
 		}
 		
 	}
+	
+	//책 정보 가져오는 메소드
+	public Books getLibrayBookInfo(Books book) {
+		
+		
+		return lDao.getLibrayBookInfo(book);
+	}
+	
+	//책 수정하는 메소드
+	public ModelAndView librayBookModify(Books book) {
+		int result = lDao.librayBookModify(book);
+		mav = new ModelAndView();
+		
+		if(result != 0) {
+			mav.setViewName("librarian/bookslist");
+			mav.addObject("msg", "수정에 성공하셨습니다.");
+		}else {
+			mav.setViewName("librarian/bookslist");
+			mav.addObject("msg", "수정에 실패하셨습니다.");
+		}
+		
+		return mav;
+	}
 
 }

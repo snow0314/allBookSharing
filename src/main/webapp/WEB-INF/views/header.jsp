@@ -172,7 +172,7 @@
                               <li><a href="readingroominformation">열람실 예약안내</a></li>
                               <li><a href="membergrade">회원등급 기준</a></li>
                               <li><a href="#">배송서비스 안내</a></li>
-                              <li><a href="">도서관 일정안내</a></li>
+                              <li><a href="libraryschedulemove">도서관 일정안내</a></li>
                            </ul>
                         </li>
                         <li><a href="./">도서관 서비스</a>

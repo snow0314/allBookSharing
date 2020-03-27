@@ -69,5 +69,14 @@ public class librayBookController {
 		return mav;
 	}
 	
+	//책 정보를 수정하는 메소드
+	@Secured("ROLE_LIBRARIAN")	
+	@RequestMapping(value = "/libraybookmodify" ,produces = "application/json;charset=UTF-8")
+	public ModelAndView librayBookModify(Books book){ 
+		mav=lmm.librayBookModify(book);
+			
+		return mav;
+	}
+	
 	
 }

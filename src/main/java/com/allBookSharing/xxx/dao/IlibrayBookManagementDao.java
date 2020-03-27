@@ -25,4 +25,8 @@ public interface IlibrayBookManagementDao {
 
 	int deleteBooks(List<Books> bookList);
 
+	Books getLibrayBookInfo(Books book);
+
+	int librayBookModify(Books book);
+
 }

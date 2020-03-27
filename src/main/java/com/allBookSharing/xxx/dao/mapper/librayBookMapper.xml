@@ -57,5 +57,15 @@
 		</where>
 	</delete>
 	
+	<select id="getLibrayBookInfo" resultType="books">
+		SELECT * FROM BOOKS WHERE BK_CODE = #{bk_code} AND BK_LCODE = #{bk_lcode}
+	</select>
+	
+	<update id="librayBookModify">
+		UPDATE BOOKS SET BK_CODE = #{bk_code}, BK_NAME = #{bk_name}, BK_INTRODUCTION =#{bk_introduction},
+						 BK_PUBLICDAY = #{bk_publicday}, BK_PUBLISHER = #{bk_publisher}, BK_WRITER = #{bk_writer},
+						 BK_IMAGE = #{bk_image}, BK_QUANTITY = #{bk_Quantity}, BK_BG_NUM = #{bk_bg_num}, BK_SG_NUM =#{bk_sg_num}
+		WHERE BK_CODE = #{bk_code} AND BK_LCODE = #{bk_lcode}
+	</update>
 
 </mapper>

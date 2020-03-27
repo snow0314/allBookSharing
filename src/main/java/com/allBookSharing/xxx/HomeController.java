@@ -162,6 +162,7 @@ public class HomeController {
 		
 		return "readingRoomInformation";
 	}
+  
 	//회원등급 기준안내
 		@PreAuthorize("isAuthenticated()")
 		@RequestMapping(value="/membergrade")
@@ -170,9 +171,13 @@ public class HomeController {
 			return "memberGrade";
 
 		}
+
+	//도서관 일정보기 이동
+	@RequestMapping(value = "/libraryschedulemove")
+	public String libraryScheduleMove() {
 		
-		
-	   
+		return "librarySchedule";
+	}
 }
 
 
