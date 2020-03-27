@@ -19,6 +19,7 @@ import com.allBookSharing.xxx.dto.Loan;
 import com.allBookSharing.xxx.dto.Member;
 import com.allBookSharing.xxx.dto.PointList;
 import com.allBookSharing.xxx.dto.Reservation;
+import com.allBookSharing.xxx.dto.Review;
 @Service
 public interface IMemberDao {
 	
@@ -107,6 +108,9 @@ public interface IMemberDao {
 	
 	@Select("")
 	int getreservationRank(int rv_num);
+	
+	//한줄평 등록
+	int reviewInsert(Review review);
 	
 	
 	

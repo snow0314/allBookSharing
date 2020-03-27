@@ -47,6 +47,8 @@ public class librayBookController {
 		return mav;
 	}
 	
+	
+	
 	@Secured("ROLE_LIBRARIAN")
 	@RequestMapping(value = "/libraybookinsert")
 	public ModelAndView bookInsert(Books book) { //책 등록하는 메소드
