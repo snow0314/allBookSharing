@@ -91,13 +91,16 @@ for(let i=0;i<list.length;i++){
    if(list[i].br_situation==0)
 	   $tr.append("<td><span style='color:red; font-weight:bold;'>대기중</span></td>");
    if(list[i].br_situation==1)
-	   $tr.append("<td><span style='color:orenge; font-weight:bold;'>반려</span></td>");
+	   $tr.append("<td><span style='color:green; font-weight:bold;'>처리중</span></td>");
    if(list[i].br_situation==2)
+	   $tr.append("<td><span style='color:orange; font-weight:bold;'>반려</span></td>");
+   if(list[i].br_situation==3)
 	   $tr.append("<td><span style='color:blue; font-weight:bold;'>처리완료</span></td>");
 }
 
 </script>
  <!-- Modal -->
+ <form action="exchange" method="post">
   <div class="modal fade" id="myModal" role="dialog">
     <div class="modal-dialog">
     
@@ -108,24 +111,24 @@ for(let i=0;i<list.length;i++){
         </div>
         <div id='modal-body' class="modal-body">
         </div>
-        <div class="modal-footer">
-        
-          <button type="button" class="btn btn-primary" data-dismiss="modal">신청</button>
-          <button type="button" class="btn btn-success" data-dismiss="modal">상호대차</button>
-          <button type="button" class="btn btn-warning" data-dismiss="modal">반려</button>
-          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <div id='modal-footer' class="modal-footer">
+   
         </div>
       </div>
       
     </div>
   </div>
- 
+  <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
+ </form>
+
  <script>
  
- $("#modal_detail").on("click",function(e){
+ 
+ $(document).on("click", "#modal_detail",function(e){
 	 var params = e.target.dataset.number; 
 	 
 	 console.log("게시글",params);
+	 
 	 
 	 $.ajaxSetup({         
          beforeSend : function(xhr){
@@ -139,12 +142,17 @@ for(let i=0;i<list.length;i++){
              success : function(response) {
             	 $("#modal-header").empty();
                  $("#modal-body").empty();
-                 console.log(response);
+                 $("#modal-footer").empty();
+                 console.log("1",response);
                  console.log(response.br_titile);
                  
                  $("#modal-header").append(response.br_titile).css("font-weight","bold").css("font-size","20px");
                  var str="";
+                 var footer="";
                  str+="<div>";
+                 str+="<input type='hidden' name='br_num' value='"+response.br_num+"' />";
+                 console.log("response.br_lcode",response.br_lcode);
+                // str+="<input type='hidden' name='be_res_lcode' value='"+response.br_lcode+"' />";
                  str+="<div style='padding: 0 8px; line-height: 40px; border-top: 1px solid rgba(0,0,0,0.2); border-bottom: 1px solid rgba(0,0,0,0.2); text-align: left; background-color:rgba(0,0,0,0.1)'>";
                  str+="<span>"+response.br_id+"</span>";
                  if(response.br_situation==0)
@@ -152,7 +160,7 @@ for(let i=0;i<list.length;i++){
                  if(response.br_situation==1)
                  str+="<span id='state' style='font-size: 12px; color: green;'>(처리중)</span>";
                  if(response.br_situation==2)
-                 str+="<span id='state' style='font-size: 12px; color: orenge;'>(반려)</span>";
+                 str+="<span id='state' style='font-size: 12px; color: orange;'>(반려)</span>";
                  if(response.br_situation==3)
                  str+="<span id='state' style='font-size: 12px; color: blue;'>(처리완료)</span>";
                  str+="<span style='float: right; font-size: 14px;'><i class='far fa-clock'></i>"+response.br_date+"</span>";
@@ -170,6 +178,41 @@ for(let i=0;i<list.length;i++){
                  str+="도서신청이유 : "+response.br_reason+"";
                  str+="</div>";
                 $("#modal-body").append(str); 
+                console.log("상태=",response.br_situation);
+                if(response.br_situation != 0){
+                	
+                footer+="<select name='br_false' style='display:none; float: left; margin-right: 10px; height: 34px;'>";
+                footer+="<option value=''>선택</option>";
+                footer+="<option value='희망도서구입제한도서'>희망도서 구입제한 도서</option>";
+                footer+="<option value='부적합한내용의도서'>부적합한내용의 도서</option>";
+                footer+="<option value='구입불가능한도서'>구입불가능한 도서</option>";
+                footer+="</select>";
+                	
+                footer+="<input type='hidden' value='반려' formaction='hopereturn' class='btn btn-warning' style='float: left;'>";
+                footer+="<input type='hidden' value='처리완료' formaction='hopecomplete' class='btn btn-primary'>";
+                footer+="<input type='hidden' value='상호대차' id='swap' class='btn btn-success' data-isbn=\""+response.br_bcode+"\">";
+                
+                }
+                
+                else{
+                footer+="<select name='br_false'  style='float: left; margin-right: 10px; height: 34px;'>";
+                footer+="<option value=''>선택</option>";
+                footer+="<option value='희망도서구입제한도서'>희망도서 구입제한 도서</option>";
+                footer+="<option value='부적합한내용의도서'>부적합한내용의 도서</option>";
+                footer+="<option value='구입불가능한도서'>구입불가능한 도서</option>";
+                footer+="</select>";
+                
+                footer+="<input type='submit' value='반려' formaction='hopereturn' class='btn btn-warning' style='float: left;'>";
+                footer+="<input type='submit' value='처리완료' formaction='hopecomplete' class='btn btn-primary'>";
+                footer+="<input type='button' value='상호대차' id='swap' class='btn btn-success' data-isbn=\""+response.br_bcode+"\"style='margin-right:10px;'>";
+                footer+="<input type='hidden' name='be_bcode' value=\""+response.br_bcode+"\">";
+                }
+                
+                footer+="<button type='button' class='btn btn-default' data-dismiss='modal'>Close</button>";
+                footer+="<div id='choice'>";
+                footer+="</div>";
+                $("#modal-footer").append(footer);
+                
              }, error : function(jqXHR, status, e) {
                  console.error("희망도서 모달 에러");
              }
@@ -177,6 +220,63 @@ for(let i=0;i<list.length;i++){
          });		//ajax end
          
  });		//modal end
+ 
+ 
+ $(document).on("click", "#swap",function(e){
+	 
+var params = e.target.dataset.isbn; 
+console.log(e);
+console.log("isbn=",params);
+	 $.ajaxSetup({         
+         beforeSend : function(xhr){
+            xhr.setRequestHeader("${_csrf.headerName}", "${_csrf.token}");}
+         });//먼저 보냄
+         $.ajax({
+             url : "swapbooks",
+             type : "get",
+             data : {"br_bcode":params}, 
+             success : function(response) {
+            	 
+            	 console.log(response);
+            	 $("#choice").empty();
+            	 var footer="";
+            	 footer+="<hr />";
+            	 footer+="<select name='be_res_lcode' id='lb_choice' required='required' style='float: left; margin-right: 10px; height: 34px;'>";
+                 footer+="<option value=''>선택</option>";
+            	 for(var i=0;i<response.length;i++){ 
+                 footer+="<option id="+(i+1)+" value='"+response[i].lb_code+"'>"+response[i].lb_name+"&nbsp;&nbsp;"+response[i].bk_quantity+"권</option>";
+            	 
+            	 }
+                 footer+="</select>";
+            	 footer+="<div id='choice2'>";
+            	 footer+="</div>";
+                 footer+="";
+                 footer+="";
+                 footer+="";
+            	 $("#choice").append(footer);
+             },
+             error : function(jqXHR, status, e) {
+                 console.error("상호대차 도서관 에러");
+             }
+         
+             
+         });	//ajax End
+	 
+ }); //상호대차 버튼
+ 
+ //상호대차 신청 submit
+ $(document).on("change", "#lb_choice",function(e){
+	 
+	console.log($("#"+e.target.selectedIndex+"").text());
+	
+	var res=$("#"+e.target.selectedIndex+"").text();
+	console.log("res=",res);
+	var qty=res.replace(/[^0-9]/g,"");
+	console.log("qty=",qty);
+            	 $("#choice2").empty();
+	 $("<input>").attr("type","number").prop("name","be_count").attr("value","1").prop("max",qty).prop("min","1").css("margin-right","10px").css("text-align","right").css("float","left").css("width","60px").css("height","34px").appendTo("#choice2");
+	 $("<input>").attr("type","submit").attr("value","상호대차신청").prop("class","btn btn-success").css("float","left").appendTo("#choice2");
+ });
  
  </script> 
  
