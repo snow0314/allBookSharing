@@ -30,12 +30,15 @@ public class LibrayRestController {
 		return library;
 	}
 	
-	@Secured("ROLE_LIBRARIAN") 
+	
 	@RequestMapping(value = "/libraycalendarinfo", produces = "application/json;charset=UTF-8")
-	public List<Schedule> getLibraryCalendarInfo(HttpServletRequest req) { //도서관 일정 가져오는 메소드
-
-		// 빅 데시멀 오류 발생 String.valueOf 사용하여 해결
-		int lb_code = Integer.parseInt(String.valueOf(req.getSession().getAttribute("LB_CODE")));
+	public List<Schedule> getLibraryCalendarInfo(HttpServletRequest req, Integer lb_code) { //도서관 일정 가져오는 메소드
+		
+		if(lb_code == null) {
+			// 빅 데시멀 오류 발생 String.valueOf 사용하여 해결
+			lb_code = Integer.parseInt(String.valueOf(req.getSession().getAttribute("LB_CODE")));
+		}
+		
 		
 		List<Schedule> sList =lm.getLibraryCalendarInfo(lb_code);
 

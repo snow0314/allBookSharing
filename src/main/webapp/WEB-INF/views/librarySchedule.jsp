@@ -25,6 +25,20 @@
 <!-- Latest compiled JavaScript -->
 <script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+	
+<!-- 달력 플러그인 -->	
+<link href='./plugins/fullcalendar-4.4.0/packages/core/main.css'
+	rel='stylesheet' />
+<link href='./plugins/fullcalendar-4.4.0/packages/daygrid/main.css'
+	rel='stylesheet' />
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src='./plugins/fullcalendar-4.4.0/packages/core/main.js'></script>
+<script src='./plugins/fullcalendar-4.4.0/packages/interaction/main.js'></script>
+<script src='./plugins/fullcalendar-4.4.0/packages/daygrid/main.js'></script>
+
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>	
 <style type="text/css">
 @import url(//fonts.googleapis.com/earlyaccess/hanna.css);
 
@@ -77,6 +91,83 @@ i {
 ul {
 	list-style-type: none;
 	padding: 0;
+}
+.tab {
+  overflow: hidden;
+  background-color: #e3f2fd;
+  width:100%; 
+  height: 100%;
+}
+/* Style the buttons inside the tab */
+.tab button {
+  background-color: inherit;
+  float: left;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  padding: 14px 16px;
+  transition: 0.3s;
+  font-size: 17px;
+}
+
+/* Change background color of buttons on hover */
+.tab button:hover {
+  background-color: #bbdefb;
+}
+
+/* Create an active/current tablink class */
+.tab button.active {
+  background-color: #1976d2;
+  color:white;
+}
+
+/* Style the tab content */
+.tabcontent {
+  
+  padding: 6px 12px;
+  border-top: none;
+}
+
+/* 달력 스타일 */
+#wrap {
+	width: 1100px;
+	margin: 0 auto;
+}
+
+#external-events {
+	float: left;
+	width: 150px;
+	padding: 0 10px;
+	border: 1px solid #ccc;
+	background: #eee;
+	text-align: left;
+}
+
+#external-events h4 {
+	font-size: 16px;
+	margin-top: 0;
+	padding-top: 1em;
+}
+
+#external-events .fc-event {
+	margin: 10px 0;
+	cursor: pointer;
+}
+
+#external-events p {
+	margin: 1.5em 0;
+	font-size: 11px;
+	color: #666;
+}
+
+#external-events p input {
+	margin: 0;
+	vertical-align: middle;
+}
+
+#calendar {
+	float: right;
+	width: 900px;
 }
 </style>
 </head>
@@ -236,8 +327,19 @@ ul {
 		</div>
 
 		<div class="col-9" style="padding-right: 50px;">
-			<div class="p-3 my-3 border">도서관 리스트</div>
-			<div class="p-3 my-3 border" style="text-align: center">달력</div>
+			<div class="p-3 my-3 border">
+			<div class="tab">
+			
+			</div>
+			</div>
+			
+			<div id='wrap'>
+
+			<div id='calendar'></div>
+
+			<div style='clear: both'></div>
+
+		</div>
 		</div>
 	</div>
 
@@ -262,24 +364,64 @@ $(function() {
 			
 	}).done((result) => {
 		console.log("result2=",result);
-		
-	 	/* var info=result;
-	 	$("#libraryList").empty();
-	 	
-	 	let $tr;
-		for(var i=0;i<info.length;i++){
-			if(i%2 == 0){
-				$tr = $("<tr>").appendTo($("#libraryList"));
-			}
-			
-			let $td = $("<td>").appendTo($tr);
-			$("<a href='javascript:readingRoomList("+info[i].lb_code+");'>").html(info[i].lb_name).appendTo($td);
-			
-		}  */
+		$(".tab").empty();
+		result.forEach(function(item){
+			$("<button>").addClass("tablinks").text(item.lb_name).attr("data-code",item.lb_code)
+			.appendTo($(".tab"));
+
+		});
 		
 	}).fail((xhr) => {
 		console.log("xhr=",xhr);
 	}); //ajax End
 	});
+	
+	$(".tab").on("click",".tablinks",function(){
+		console.log("도서관 코드:",$(this).data("code"));
+		calendarLoad($(this).data("code"));
+	});		
+		
+	function calendarLoad(lb_code) {
+				var Calendar = FullCalendar.Calendar;
+				
+				/* initialize the external events
+				-----------------------------------------------------------------*/
+
+				var containerEl = document
+						.getElementById('external-events-list');
+		
+				var calendarEl = document.getElementById('calendar');
+				var calendar = new Calendar(
+						calendarEl,
+						{
+							plugins : [ 'dayGrid' ],
+							header : {
+								left : 'prev,next today',
+								center : 'title',
+								right : 'dayGridMonth'
+							},
+							eventLimit : true,
+							eventSources : [ { //도서관 일정 가져오고 달력에 뿌려주는 부분
+								events : function(info,
+										successCallback,
+										failureCallback) {
+
+									$.ajax({
+										url : 'libraycalendarinfo',
+										type : 'get',
+										data : {"lb_code" : lb_code},
+										dataType : 'json',
+										success : function(data) {
+											successCallback(data);
+										}
+									}); //ajax End
+
+								}
+							} ]
+							
+						});
+
+				calendar.render();
+			} //calendarLoad End
 </script>
 </html>
