@@ -147,5 +147,18 @@ GROUP BY L.LB_NAME,L.LB_CODE
 <select id="bookRvGrade" parameterType="review" resultType="review">
 	SELECT AVG(RV_GRADE) AS AVG FROM REVIEW WHERE RV_BCODE=#{bk_code}
 </select>
+<select id="recommendList" parameterType="recommend" resultType="recommend" >
+ SELECT R.RE_BCODE,R.RE_BNAME,R.RE_BWRITER,R.RE_PUBLISHER,R.RE_PUBLICDAY,R.RE_INTRODUCTION,R.RE_CONTENTS,R.RE_IMAGE,A.BG_CATE,A.SG_CATE
+   FROM RECOMMAND R
+   JOIN ALLGROUP A
+   ON R.RE_SG_NUM =A.SG_BG_NUM
+</select>
+
+<select id="mainRecommend" parameterType="recommend" resultType="recommend" >
+ SELECT R.RE_BCODE,R.RE_BNAME,R.RE_BWRITER,R.RE_PUBLISHER,R.RE_PUBLICDAY,R.RE_INTRODUCTION,R.RE_CONTENTS,R.RE_IMAGE,A.BG_CATE,A.SG_CATE
+   FROM RECOMMAND R
+   JOIN ALLGROUP A
+   ON R.RE_SG_NUM =A.SG_BG_NUM
+</select>
 
 </mapper>

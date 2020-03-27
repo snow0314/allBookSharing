@@ -12,6 +12,7 @@ import com.allBookSharing.xxx.dto.DeliveryReq;
 import com.allBookSharing.xxx.dto.Library;
 import com.allBookSharing.xxx.dto.Liked;
 import com.allBookSharing.xxx.dto.Loan;
+import com.allBookSharing.xxx.dto.Recommend;
 import com.allBookSharing.xxx.dto.Reservation;
 import com.allBookSharing.xxx.dto.Review;
 @Service
@@ -47,6 +48,8 @@ public interface IBookDao {
 	List<Loan> mainPageTopTen(Loan lo);
 
 	Review bookRvGrade(String bk_code);
+	List<Recommend> recommendList(Recommend rm);
+	List<Recommend> mainRecommend(Recommend recommend);
 	
 	
 	

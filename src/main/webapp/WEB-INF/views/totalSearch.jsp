@@ -15,6 +15,10 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<!-- 페이징 처리 플러그인 -->	
+<script src="https://cdnjs.cloudflare.com/ajax/libs/paginationjs/2.1.4/pagination.min.js"></script>	
+<!-- 페이징 처리 플러그인 CSS -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/paginationjs/2.1.4/pagination.css"/>
 <style>
 @import url(//fonts.googleapis.com/earlyaccess/hanna.css);
 @import url(//fonts.googleapis.com/earlyaccess/jejugothic.css);
@@ -148,8 +152,8 @@ margin:7px;
 	
 	#bkname{
 	margin-top:-100px;
-	color:#00498c;
 	text-decoration:none;
+	color:#00498c;
 	font-size: x-large;
 	font-weight:bold;
 	margin-bottom:100px;
@@ -394,6 +398,26 @@ float:right;
 <!-- searchResult -->
 <script src="js/ajaxCsrf.js"></script>
 <script>
+window.onload = function () {
+	console.log("bk_name",${bk_name});
+	$('#bookinput').val(${bk_name});
+	
+	if($('#bookinput').val()!=""){
+		if($("#id").val()!==""){
+			$(".tab").html("<button class='tablinks' onclick='myregionSearch()' id='defaultOpen'>내 지역</button><button class='tablinks' onclick='totalBookSearch()'>전국소장정보</button>");
+			
+		}else if($("#id").val()==""){
+			$(".tab").html("<button class='tablinks' onclick='totalBookSearch()' id='defaultOpen'>전국</button>");
+
+		}
+		document.getElementById("defaultOpen").click();
+	}
+	console.log(location.search.substring(6,16));
+	if(location.search.substring(6,16)=="recommend"){
+		getPage('recommend');
+	}else if(location.search.substring(6,16)=="besttopten")
+		getPage('besttopten')
+}
 
 function bookList(){
 	var bksearch=document.getElementById("bookinput");
@@ -410,6 +434,7 @@ function bookList(){
 
 	}
 	document.getElementById("defaultOpen").click();
+	
 }//검색 클릭 시 
 
 function openCity(evt, cityName) {
@@ -448,9 +473,12 @@ function totalBookSearch(){//전국 통합 검색
 	    		str+='<td class="righttd">'+'<a href="bookdetailpage?bk_code='+item.bk_code+'&bk_lcode='+item.bk_lcode+'" id="bkname">'+item.bk_name+'</a><br>'+item.bk_writer+'<br>'+
 	    		item.bk_publisher+'<br>'+item.bk_publicday+'<br><p class="lname">'+item.bk_lname+'</p></td></tr>';
 	    	});
+	    	
 	 
 	    	$('#totalsearchList').append(str);
 	    	}
+	    	
+	    	
 	    },
 	    error:function(xhr,status){
 	    	console.log("xhr2=", xhr);
@@ -620,7 +648,7 @@ $.ajax({
 $("#bookinput").keyup(function(e){
 	if(e.keyCode == 13) 
 		bookList();
-	});
+	}) 
 
 
 
