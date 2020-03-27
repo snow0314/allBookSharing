@@ -87,7 +87,7 @@ public class QuestionManagement {
 		
 		return mav;
 	}
-
+	
 	//건의사항 상세보기
 	public ModelAndView questionDetail(Question qus2) {
 		ModelAndView mav= new ModelAndView();
@@ -103,6 +103,23 @@ public class QuestionManagement {
 		
 		mav.addObject("question",qus);
 		mav.addObject("answer",ans);
+		mav.setViewName(view);
+		
+		return mav;
+	}
+
+ 
+	public ModelAndView deleteQuestion(Question qus) {
+		ModelAndView mav= new ModelAndView();
+		String view=null;
+		
+		boolean result=qDao.deleteQuestion(qus);
+		
+		if(result)
+			view="redirect:/questionmove";
+		else
+			view="redirect:/qsdetail";
+		
 		mav.setViewName(view);
 		
 		return mav;

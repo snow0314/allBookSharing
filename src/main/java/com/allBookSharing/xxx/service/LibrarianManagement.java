@@ -141,6 +141,23 @@ public class LibrarianManagement {
 		
 		return mav;
 	}
+
+	//건의 사항글 삭제 (사서전용)
+	public ModelAndView lbDeleteQuestion(Question qus) {
+		ModelAndView mav= new ModelAndView();
+		String view=null;
+		
+		boolean result=qDao.deleteQuestion(qus);
+		
+		if(result)
+			view="redirect:/lbquestionlist";
+		else
+			view="redirect:/lbdeletequestion";
+		
+		mav.setViewName(view);
+		
+		return mav;
+	}
 		
 	
 	

@@ -1,15 +1,16 @@
 package com.allBookSharing.xxx;
 
 import java.security.Principal;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
-
+import com.allBookSharing.xxx.dto.Loan;
 import com.allBookSharing.xxx.service.MyLibraryManagement;
+
 
 @Controller
 public class MyLibraryContoroller {
@@ -44,7 +45,21 @@ public class MyLibraryContoroller {
 			mav=ml.getHopeList(principal);		
 			return mav;
 		}
+		
+	//희망도서 신청
+		@PreAuthorize("isAuthenticated()")
+		@PostMapping(value = "/bookrequestapply")
+		public ModelAndView bookrRequestApply(Loan lan,Principal principal) {
+			
+			ModelAndView mav=new ModelAndView();
+			
+			System.out.println("lan="+lan);
+			mav=ml.bookRequestApply(lan,principal);
+			 
+			return mav;
+		}
 	
-	
+	//희망도서 상세보기
+		
 	
 }

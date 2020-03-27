@@ -10,6 +10,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.allBookSharing.xxx.dao.IMyLibraryDao;
 import com.allBookSharing.xxx.dto.Loan;
 import com.google.gson.Gson;
+import com.sun.tools.internal.ws.processor.model.Request;
 
 @Service
 public class MyLibraryManagement {
@@ -81,4 +82,26 @@ public class MyLibraryManagement {
 		return mav;
 	}
 
+	//희망도서 신청
+	public ModelAndView bookRequestApply(Loan lan, Principal principal) {
+		ModelAndView mav= new ModelAndView();
+		String id= principal.getName();
+		lan.setBr_id(id);
+		
+		System.out.println("lan="+lan);
+		String view=null;
+		
+		boolean result= mlDao.bookRequestApply(lan);
+		
+		if(result) 
+			view="redirect:/movehopelist";
+		else
+			view="bookRequestApply";
+		
+		mav.setViewName(view);
+		
+		return mav;
+	}
+
+	//희망도서 상세보기
 }

@@ -46,16 +46,16 @@ border-radius: 5px;
 <body>
 <div align="center" style="margin-top: 10px;">
 <div style="width: 80%;">
-<h1 style="width: 80%; margin-bottom: 20px; text-align: left;">${question.qs_title}</h1>
+<h1 style="width: 80%; margin-bottom: 20px; text-align: left;">${hope.br_titile}</h1>
 <div>
 <div style="width: 79%; padding: 0 8px; line-height: 40px; border-top: 1px solid rgba(0,0,0,0.2); border-bottom: 1px solid rgba(0,0,0,0.2); text-align: left; background-color:rgba(0,0,0,0.1)">
-<span>${question.qs_id}</span>
-<span id="state" style="font-size: 12px; color: red;">(${question.qs_state})</span>
-<span style="float: right; font-size: 14px;"><i class="far fa-clock"></i> ${question.qs_date}</span>
+<span>${hope.br_id}</span>
+<span id="state" style="font-size: 12px; color: red;">(${hope.br_situation})</span>
+<span style="float: right; font-size: 14px;"><i class="far fa-clock"></i> ${hope.br_date}</span>
 </div>
 </div>
 <pre style="text-align:left; margin-top:10px; width: 80%; border: 1px solid rgba(0,0,0,0.2);">
-${question.qs_content}
+${hope.br_reason}
 </pre>
 </div>
 <div style="width: 80%; margin-top: 40px;">
@@ -63,7 +63,6 @@ ${question.qs_content}
 <i class="fas fa-comment-dots"></i> 답변
 
 <pre id="answer" style=" border: 1px solid rgba(0,0,0,0.2);">
-${answer.aw_contents}
 </pre>
 <div id="del" style="float:right;">
 <form action="lbdeletequestion?${_csrf.parameterName}=${_csrf.token}" method="post">

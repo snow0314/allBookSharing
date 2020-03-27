@@ -10,6 +10,7 @@ import com.allBookSharing.xxx.service.BookManagement;
 import org.springframework.web.servlet.ModelAndView;
 import com.allBookSharing.xxx.dto.Books;
 import com.allBookSharing.xxx.dto.Loan;
+import com.allBookSharing.xxx.dto.Recommend;
 import com.allBookSharing.xxx.service.librayBookManagement;
 
 @Controller
@@ -59,6 +60,11 @@ public class librayBookController {
 	@GetMapping(value="/besttopten")
 	public ModelAndView bestTopTen(Loan l) {
 		mav=bm.bestTopTen(l);
+		return mav;
+	}
+	@GetMapping(value="/recommend")
+	public ModelAndView recommendList(Recommend rm) {
+		mav=bm.recommendList(rm);
 		return mav;
 	}
 	

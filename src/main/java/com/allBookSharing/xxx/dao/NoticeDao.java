@@ -12,5 +12,7 @@ public interface NoticeDao {
 	
 	//공지사항 글쓰기
 	boolean noticeWrite(Notice ntc);
+	//공지사항 글 삭제
+	boolean deleteNotice(Notice ntc);
 
 }

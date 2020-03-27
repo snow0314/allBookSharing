@@ -105,7 +105,7 @@
                 }    
             .recoimg{
                 width:auto;
-                height:500px;
+                height:433px;
             }
             .text{
                 margin-top:-30px;
@@ -113,27 +113,26 @@
             }
             
             tr,td{
-<<<<<<< HEAD
-            border:1px solid black;}
+          	  border:1px solid black;}
             #tdd{
             text-align:center;
              vertical-align: middle;
             }
-            img{
-            width:85px;
-=======
-            border:1px solid black;
-            }
-            #tdd{
-            text-align:center;
-             vertical-align: middle;
->>>>>>> 692cd70f0b7cef19f78472cc5e81fbf1d21652a7
+
             }
             img{
             width:100%;
             margin:5px 0;
             
             }
+           .topimg:hover {
+  			opacity: 0.3;
+  			cursor: pointer;
+			}
+			.rocoimg:hover{
+			cursor: pointer;
+			}
+		
             .card{
             width:20%;
             float:left;
@@ -154,7 +153,7 @@
        }
        
             
-            </style>
+      </style>
 	</head>
 	<body class="homepage">
         <!--header-->
@@ -242,8 +241,8 @@
 								<li><a href="./">자료검색</a>
 								     <ul>
 										<li><a href="totalsearch">통합검색</a></li>
-										<li><a href="#">인기도서</a></li>
-										<li><a href="#">추천도서</a></li>
+										<li><a href="totalsearch?kind=besttopten">인기도서</a></li>
+										<li><a href="totalsearch?kind=recommend">추천도서</a></li>
 									</ul>
 								</li>
 								<li><a href="./">도서관 이용안내</a>
@@ -343,25 +342,25 @@
 							<!-- 슬라이드 쇼 --> 
 							<div class="carousel-item active"> 
 							<!--가로--> 
-							<img class="recoimg" src="images/reco1.jpg" alt="First slide"> 
+							<img class="recoimg" src="images/reco1.jpg" alt="First slide" id="First"> 
 				
 							</div> 
 							<div class="carousel-item"> 
-							<img class="recoimg" src="images/reco2.jpg" alt="Second slide"> 
+							<img class="recoimg" src="images/reco2.jpg" alt="Second slide" id="Second"> 
 							
 							</div> 
 							<div class="carousel-item"> 
-							<img class="recoimg" src="images/reco3.jpg" alt="Third slide"> 
+							<img class="recoimg" src="images/reco3.jpg" alt="Third slide" id="Third"> 
 							
 							</div> 
 							
 							<div class="carousel-item"> 
-							<img class="recoimg" src="images/reco4.jpg" alt="Forth slide"> 
+							<img class="recoimg" src="images/reco4.jpg" alt="Forth slide" id="Forth"> 
 							
 							</div>
 							
 							 <div class="carousel-item"> 
-							<img class="recoimg" src="images/reco5.jpg" alt="Fifth slide"> 
+							<img class="recoimg" src="images/reco5.jpg" alt="Fifth slide" id="Fifth"> 
 				
 							</div>  
 							
@@ -393,7 +392,7 @@
                         </section>
 						
                          <section class="4u" >
-						     <h2 class='text'>인기도서</h2>
+						     <h2 class='text' style="margin-left:-60px;">인기도서</h2>
 							<div id="popular" >
 						
 							</div>
@@ -515,8 +514,8 @@
 		    		var str="";
 		    		$.each(result,function(index,item){
 
-		    			str+="<div class='card'><div class='card-header'><h5>위</h5></div><img src='"+item.bk_image+"'/></div>";
-		    			     // +"<div class='card-body'><h5 class='card-title'>"+item.bk_name+"</h5></div></div>";
+		    			str+="<div class='card'><div class='card-header'><h5>위</h5></div><img class='topimg'  src='"+item.bk_image+"' onclick=\"location.href='topdetailpage?bk_code="+item.bk_code+"'\" /></div>";
+		    			
 
 		    		});
 		    		$('#popular').html(str);
@@ -526,8 +525,33 @@
 			    	alert("실패");
 			 }
 			})//ajax End
+			
+			$.ajax({
+				type:'get',
+		    	url:'mainrecommend',
+		    	dataType:"json",
+		    	success:function(result){
+		    		
+						$("#First").attr("src",result[0].re_image);
+						$("#Second").attr("src",result[1].re_image);
+						$("#Third").attr("src",result[2].re_image);
+						$("#Forth").attr("src",result[3].re_image);
+						$("#Fifth").attr("src",result[4].re_image);
+		    	
+		    	
+		    		
+		    	},
+		    	error:function(){ 
+			    	alert("실패");
+			 }
+			})//ajax End
 				
 			});
+		
+		$(".recoimg").click(function(){
+		    location.href="totalsearch?kind=recommend";  
+		    
+		});
 		
 	
 	</script>

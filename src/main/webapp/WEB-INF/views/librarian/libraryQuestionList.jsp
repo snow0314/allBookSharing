@@ -75,7 +75,7 @@ console.log(list);
 
 for(let i=0;i<list.length;i++){
    var $tr= $("<tr>").appendTo($("#tb"));
-   $tr.append("<td>"+(i+1)+"</td>");
+   $tr.append("<td>"+list[i].qs_num+"</td>");
    $tr.append("<td>"+list[i].lb_name+"</td>");	
    $tr.append("<td><a href='lbqsdetail?qs_num="+list[i].qs_num+"'>"+list[i].qs_title+"</td>");
    $tr.append("<td>"+list[i].qs_id+"</td>");

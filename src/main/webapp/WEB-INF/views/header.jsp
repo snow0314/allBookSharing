@@ -8,17 +8,17 @@
 <title>Insert title here</title>
 
 <meta http-equiv="content-type" content="text/html; charset=utf-8" />
-		<meta name="description" content="" />
-		<meta name="keywords" content="" />
-		<!--[if lte IE 8]><script src="css/ie/html5shiv.js"></script><![endif]-->
-		<script src="js/jquery.min.js"></script>
-		<script src="js/jquery.dropotron.min.js"></script>
-		<script src="js/skel.min.js"></script>
-		<script src="js/skel-layers.min.js"></script>
-		<script src="js/init.js"></script>
-		
-		<!--[if lte IE 8]><link rel="stylesheet" href="css/ie/v8.css" /><![endif]-->
-		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"  crossorigin="anonymous">
+      <meta name="description" content="" />
+      <meta name="keywords" content="" />
+      <!--[if lte IE 8]><script src="css/ie/html5shiv.js"></script><![endif]-->
+      <script src="js/jquery.min.js"></script>
+      <script src="js/jquery.dropotron.min.js"></script>
+      <script src="js/skel.min.js"></script>
+      <script src="js/skel-layers.min.js"></script>
+      <script src="js/init.js"></script>
+      
+      <!--[if lte IE 8]><link rel="stylesheet" href="css/ie/v8.css" /><![endif]-->
+      <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"  crossorigin="anonymous">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js" type="text/javascript"></script>
   
   
@@ -97,10 +97,9 @@
 
 </head>
 <body class="homepage">
-<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script> 
+<script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script> 
        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script> 
-       <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-       <script> $('.carousel').carousel({ interval: 1600  }) </script>
+       <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 
 <!--header-->
         <sec:authorize access="isAnonymous()">
@@ -132,8 +131,8 @@
         <input id="csrf" type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/> 
         </form>
         </sec:authorize>
-		
-		<sec:authorize access="hasRole('ROLE_USER')">
+      
+      <sec:authorize access="hasRole('ROLE_USER')">
        <div class="container2">
          <div class="button-7">
             <div class="eff-7"></div>
@@ -149,64 +148,64 @@
 <h1><a href="./" id="logo">온책나누리</a></h1>
 
 <!-- Nav -->
-						<nav id="nav">
-							<ul>
-								<li><a href="./">Home</a></li>
-								<li>
-									<a href="">나의 도서관</a>
-									<ul>
-										<li><a href="movemypage">마이페이지</a></li>
-										<li><a href="movedeliverylist">배송목록</a></li>
-										<li><a href="moveloanlist">대출목록</a></li>
-										<li><a href="movehopelist">희망도서목록</a></li>
-									</ul>
-								</li>
-								<li><a href="./">자료검색</a>
-								     <ul>
-										<li><a href="totalsearch">통합검색</a></li>
-										<li><a href="#">인기도서</a></li>
-										<li><a href="#">추천도서</a></li>
-									</ul>
-								</li>
-								<li><a href="./">도서관 이용안내</a>
-								    <ul>
-										<li><a href="#">열람실 예약안내</a></li>
-										<li><a href="#">회원등급 기준</a></li>
-										<li><a href="#">배송서비스 안내</a></li>
-										<li><a href="">도서관 일정안내</a></li>
-									</ul>
-								</li>
-								<li><a href="./">도서관 서비스</a>
-								    <ul>
-										<li><a href="readingroommove">열람실 예약</a></li>
-										<li><a href="questionmove">건의 사항</a></li>
-										<li><a href="hopebookmove">희망도서 신청</a></li>
-										<li><a href="noticemove">공지사항</a></li>
-									</ul>
-								</li>
-							</ul>
-						</nav>
+                  <nav id="nav">
+                     <ul>
+                        <li><a href="./">Home</a></li>
+                        <li>
+                           <a href="">나의 도서관</a>
+                           <ul>
+                              <li><a href="movemypage">마이페이지</a></li>
+                              <li><a href="movedeliverylist">배송목록</a></li>
+                              <li><a href="moveloanlist">대출목록</a></li>
+                              <li><a href="movehopelist">희망도서목록</a></li>
+                           </ul>
+                        </li>
+                        <li><a href="./">자료검색</a>
+                             <ul>
+                              <li><a href="totalsearch">통합검색</a></li>
+                              <li><a href="totalsearch?kind=besttopten">인기도서</a></li>
+							  <li><a href="totalsearch?kind=recommend">추천도서</a></li>
+                           </ul>
+                        </li>
+                        <li><a href="./">도서관 이용안내</a>
+                            <ul>
+                              <li><a href="#">열람실 예약안내</a></li>
+                              <li><a href="#">회원등급 기준</a></li>
+                              <li><a href="#">배송서비스 안내</a></li>
+                              <li><a href="">도서관 일정안내</a></li>
+                           </ul>
+                        </li>
+                        <li><a href="./">도서관 서비스</a>
+                            <ul>
+                              <li><a href="readingroommove">열람실 예약</a></li>
+                              <li><a href="questionmove">건의 사항</a></li>
+                              <li><a href="hopebookmove">희망도서 신청</a></li>
+                              <li><a href="noticemove">공지사항</a></li>
+                           </ul>
+                        </li>
+                     </ul>
+                  </nav>
 </div>
 
 
 <script type="text/javascript">
-		function logoutGo() {
-			/* $.ajax({
-				url: "logout",
-				method: "post",
-				beforeSend : function(xhr)
+      function logoutGo() {
+         /* $.ajax({
+            url: "logout",
+            method: "post",
+            beforeSend : function(xhr)
                 {   
                     xhr.setRequestHeader("${_csrf.headerName}", "${_csrf.token}");
                 }
-			}).done((result)=> {
-				console.log("result=",result);
-			}).fail((xhr)=> console.log(xhr)); */
-			var logoutform=document.logoutform;
-			logoutform.submit();
-			
-		}
-	
-	</script>
+         }).done((result)=> {
+            console.log("result=",result);
+         }).fail((xhr)=> console.log(xhr)); */
+         var logoutform=document.logoutform;
+         logoutform.submit();
+         
+      }
+   
+   </script>
 
 
 </body>

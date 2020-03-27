@@ -7,10 +7,10 @@
 <title>Document</title>
 <!-- Latest compiled and minified CSS -->
 <link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 
 <!-- jQuery library -->
-<script
+<script type="text/javascript"
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 
 <!-- Popper JS -->
@@ -19,7 +19,7 @@
 
 <!-- Latest compiled JavaScript -->
 <script
-	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 <style type="text/css">
 	table{
 		text-align: center;
@@ -74,7 +74,8 @@
 	</div>
 </body>
 <script type="text/javascript">
-$(function() {
+window.onload = function(){
+	
 	$.ajax({ //지역 정보 가져오는 메소드
 		url : "getzoneinfo",
 		type : "get",
@@ -91,7 +92,7 @@ $(function() {
 }).fail((xhr) => {
 	console.log("xhr=",xhr);
 }); //도서관 이름 ajax End
-});
+}
 
 
 $("#lb_loc").on("change", function(){ //지역 선택시 도서관 목록 보여주는 메소드

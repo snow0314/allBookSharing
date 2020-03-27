@@ -94,7 +94,7 @@ jQuery(function($) {
 		for (let i = 0; i < list.length; i++) {
 			var $tr = $("<tr>").appendTo($("#tb"));
 			$tr.append("<td>" + list[i].no_num + "</td>");
-			$tr.append("<td><a href='nopwdetail?no_num="+list[i].no_num+"'>" + list[i].no_title + "</a></td>");
+			$tr.append("<td><a href='noticedetail?no_num="+list[i].no_num+"'>" + list[i].no_title + "</a></td>");
 			$tr.append("<td>" + list[i].no_id + "</td>");
 			$tr.append("<td>" + list[i].no_date + "</td>");
 		

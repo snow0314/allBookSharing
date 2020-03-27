@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -23,6 +24,7 @@ import com.allBookSharing.xxx.dto.Librarian;
 import com.allBookSharing.xxx.dto.Library;
 import com.allBookSharing.xxx.dto.Notice;
 import com.allBookSharing.xxx.dto.Question;
+import com.allBookSharing.xxx.dto.Recommend;
 import com.allBookSharing.xxx.service.AdminManagement;
 import com.allBookSharing.xxx.service.LibrarianManagement;
 
@@ -90,15 +92,27 @@ public class AdminController {
 			
 			return mav;
 		}
-	    //공지사항 글 상세보기
-	    @PostMapping(value="nopwdetail")
-	    public ModelAndView noticePwDetail(Notice ntc) {
+	    //공지사항 글 상세보기(관리자용)
+	    @GetMapping(value="adnoticedetail")
+	    public ModelAndView adNoticeDetail(Notice ntc) {
 	    	
 	    	ModelAndView mav=new ModelAndView();
 	    	
-	    	mav=am.noticeDetail(ntc);
+	    	mav=am.adNoticeDetail(ntc);
 	    	
 	    	return mav;
+	    }
+	    //공지사항 글 삭제
+	    @PreAuthorize("isAuthenticated()")
+		@PostMapping(value = "/deletenotice")
+	    public ModelAndView deleteNotice(Notice ntc) {
+	    	
+	    	ModelAndView mav=new ModelAndView();
+	    	
+	    	mav=am.deleteNotice(ntc);
+	    	
+	    	return mav;
+	    	
 	    }
 	 
 	//사서 등록 페이지 이동
@@ -126,17 +140,27 @@ public class AdminController {
 			 
 				return mav;
 			}
-	  //추천도서 등록
+	    
+	  //추천도서 등록 페이지 이동
 	    @Secured("ROLE_ADMIN")
 		 @RequestMapping(value = "/recommendinsertmove")
-		 public ModelAndView getRecommendPage() {
+		 public String recommendPageMove() {
 			System.out.println("추천도서등록페이지 이동 컨트롤러");
 			
 			 
-				return new ModelAndView("admin/recommendInsert");
+				return "admin/recommendInsert";
 			}
-	
-
+	    
+	    //추천도서 등록
+	    @Secured("ROLE_ADMIN")
+		 @RequestMapping(value = "/recommendinsert")
+		 public ModelAndView recommendInsert(Recommend recommend) {
+			System.out.println("추천도서등록");
+			System.out.println("추천도서 정보:"+recommend.toString());
+			mav=am.recommendInsert(recommend);
+			 
+				return mav;
+			}
 
 }
 

@@ -7,7 +7,6 @@ import lombok.experimental.Accessors;
 
 @Alias("review")
 @Data
-
 @Accessors(chain=true)
 public class Review {
 	private String rv_bcode;

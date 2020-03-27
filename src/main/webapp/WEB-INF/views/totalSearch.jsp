@@ -152,8 +152,8 @@ margin:7px;
 	
 	#bkname{
 	margin-top:-100px;
-	color:#00498c;
 	text-decoration:none;
+	color:#00498c;
 	font-size: x-large;
 	font-weight:bold;
 	margin-bottom:100px;
@@ -412,6 +412,11 @@ window.onload = function () {
 		}
 		document.getElementById("defaultOpen").click();
 	}
+	console.log(location.search.substring(6,16));
+	if(location.search.substring(6,16)=="recommend"){
+		getPage('recommend');
+	}else if(location.search.substring(6,16)=="besttopten")
+		getPage('besttopten')
 }
 
 function bookList(){
@@ -643,7 +648,7 @@ $.ajax({
 $("#bookinput").keyup(function(e){
 	if(e.keyCode == 13) 
 		bookList();
-	});
+	}) 
 
 
 

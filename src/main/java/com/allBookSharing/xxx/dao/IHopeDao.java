@@ -11,4 +11,8 @@ public interface IHopeDao {
 
 	List<Hope> lbHopeList(String id);
 
+	
+	//희망도서 상세보기
+	Hope lbHopeDetail(int br_num);
+
 }

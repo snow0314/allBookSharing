@@ -6,34 +6,10 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<meta name="title" content="나의 도서관 > 희망도서 신청" />
-<meta name="robots" content="noindex,nofollow" />
-<meta name="author" content="skoinfo" />
-<meta name="keywords" content="전주시립도서관, 자료검색, 독서문화행사, 이용안내, 책읽는전주, 나의도서관, 열린마당, 도서관소개" />
-<meta name="description" content="전주시립도서관" />
-<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, target-densitydpi=medium-dpi" />
-<!-- S:CSS 선언부 -->
-<link rel="stylesheet" type="text/css" href="/rfc3/user/domain/lib.jeonju.go.kr.80/0/51.css" /><!-- #:대표도서관_base.css -->
-<link rel="stylesheet" type="text/css" href="/rfc3/user/domain/lib.jeonju.go.kr.80/0/52.css" /><!-- #:대표도서관_layout.css -->
-<link rel="stylesheet" type="text/css" href="/rfc3/user/domain/lib.jeonju.go.kr.80/0/64.css" /><!-- #:대표도서관_common.css -->
-<link rel="stylesheet" type="text/css" href="/rfc3/user/domain/lib.jeonju.go.kr.80/0/65.css" /><!-- #:대표도서관_bbs.css -->
-<link rel="stylesheet" type="text/css" href="/rfc3/user/domain/lib.jeonju.go.kr.80/0/94.css" /><!-- #:대표도서관_content.css -->
-<link rel="stylesheet" href="/js/jquery-ui-1.12.1.custom/jquery-ui.min.css"><!-- #:jquery-ui.min.css -->
-<!-- E:CSS 선언부 -->
-<!-- S:Javascript 선언부 -->
-<script type="text/javascript" src="/js/jquery-3.2.1.min.js"></script><!-- #:jquery-3.2.1.min.js -->
-<script type="text/javascript" src="/js/jquery-ui-1.12.1.custom/jquery-ui.min.js"></script><!-- #:jquery-ui.min.js -->
 
-<script type="text/javascript" src="/js/jquery.bxslider.min.js"></script><!-- #:jquery.bxslider.min.js(슬라이드용) -->
-<script type="text/javascript" src="/js/jquery.flexslider-min.js"></script><!-- #:jquery.flexslider.js(슬라이드용) -->
-<script type="text/javascript" src="/js/common.js"></script><!-- #:common.js(반응형공통스크립트용) -->
-<script type="text/javascript" src="/js/jquery.rss.js"></script><!-- #:rss.js(rss용) -->
-<script type="text/javascript" src="/js/jquery.PrintArea.js"></script><!-- #:jquery.PrintArea.js(프린트용) -->
-<!--<<script type="text/javascript" src="/js/prefixfree.min.js"></script>-->
-<script type="text/javascript" src="/rfc3/user/domain/lib.jeonju.go.kr.80/0/81.js"></script>
 </head>
 <body>
+<jsp:include page="header2.jsp" />
  <%-- <jsp:include page="header.jsp" /> --%>
 
 <h4>희망도서 신청 안내</h4>

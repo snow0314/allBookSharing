@@ -11,6 +11,7 @@ import com.allBookSharing.xxx.dao.IAdminManagementDao;
 import com.allBookSharing.xxx.dao.NoticeDao;
 import com.allBookSharing.xxx.dto.Library;
 import com.allBookSharing.xxx.dto.Notice;
+import com.allBookSharing.xxx.dto.Recommend;
 import com.google.gson.Gson;
 @Service
 public class AdminManagement {
@@ -120,19 +121,50 @@ public class AdminManagement {
 		return mav;
 	}
     
-	//공지사항 글 상세보기
-	public ModelAndView noticeDetail(Notice ntc2) {
+	//공지사항 글 상세보기(관리자)
+	public ModelAndView adNoticeDetail(Notice ntc2) {
 		ModelAndView mav= new ModelAndView();
 		String view=null;
 		Notice ntc=nDao.getNoticeDetail(ntc2);
 		if(ntc!=null)
-			view="noticeDetail";
+			view="admin/adminNoticeDetail";
 		else
 			view="redirect:/noticemove";
 		
 		mav.addObject("notice", ntc);
 		mav.setViewName(view);
 		
+		return mav;
+	}
+
+    //공지사항 글 삭제
+	public ModelAndView deleteNotice(Notice ntc) {
+		
+		ModelAndView mav=new ModelAndView();
+		String view=null;
+		
+		boolean result=nDao.deleteNotice(ntc);
+		
+		if(result)
+		   view="redirect:/adminnotice";
+		else
+			view="redirect:/nodetail";
+		
+		mav.setViewName(view);
+		
+		return mav;
+	}
+	
+	//추천도서 등록
+	public ModelAndView recommendInsert(Recommend recommend) {
+		int result = aDao.recommendInsert(recommend);
+		mav = new ModelAndView();
+		if(result != 0) {
+			mav.addObject("msg", "추천도서 등록에 성공하셨습니다.");
+		}else {
+			mav.addObject("msg", "추천도서 등록에 실패하셨습니다.");
+		}
+		mav.setViewName("admin/recommendInsert");
 		return mav;
 	}
 

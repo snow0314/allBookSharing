@@ -6,6 +6,7 @@ import java.util.List;
 import org.springframework.stereotype.Component;
 
 import com.allBookSharing.xxx.dto.Library;
+import com.allBookSharing.xxx.dto.Recommend;
 @Component
 public interface IAdminManagementDao { //AdminMapper.xml
 	
@@ -22,6 +23,9 @@ public interface IAdminManagementDao { //AdminMapper.xml
 
 	//등록할 도서관 코드 가져오는 메소드
 	Integer getLibraryNextCode();
+	
+	//추천 도서 등록
+	int recommendInsert(Recommend recommend);
 	
 	
 }
