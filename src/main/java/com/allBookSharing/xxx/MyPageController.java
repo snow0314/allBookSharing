@@ -11,10 +11,12 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.allBookSharing.xxx.dto.Member;
+import com.allBookSharing.xxx.dto.Review;
 import com.allBookSharing.xxx.service.MemberManagement;
 
 @Controller
@@ -61,4 +63,14 @@ public class MyPageController {
 		return mav;
 	}
 	
+	//한줄평 쓰기
+	@RequestMapping(value = "/reviewinsert")
+	public ModelAndView reviewInsert(Principal principal,Review review) {
+		System.out.println("한줄평1");
+		review.setRv_id(principal.getName());
+		System.out.println("한줄평1:"+review);
+		mav=mm.reviewInsert(review);
+		
+		return mav;
 }
+	}

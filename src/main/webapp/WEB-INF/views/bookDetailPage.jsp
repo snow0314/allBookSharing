@@ -310,7 +310,6 @@ if(${books.bk_state}==0)
 else if(${books.bk_state}==1)
 		$("#state").text("대출가능");
 	
-	
 
 
  

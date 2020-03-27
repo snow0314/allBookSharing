@@ -69,5 +69,13 @@
       JOIN LIBRARY ON library.lb_code=reservation.rt_lcode WHERE RT_ID=#{id}
 
 	</select>
+	
+	<insert id='reviewInsert' parameterType="Review">
+	INSERT INTO
+	REVIEW(RV_BCODE,RV_ID,RV_CONTENTS,RV_GRADE)
+	VALUES(#{rv_bcode},#{rv_id},#{rv_contents},#{rv_grade2})
+
+</insert>
+	
 
 </mapper>

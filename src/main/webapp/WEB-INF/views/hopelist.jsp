@@ -71,8 +71,10 @@ for(let i=0;i<list.length;i++){
 	if(list[i].br_situation==0)
 	$tr.append("<td style='color:red; font-weight:bold;'>대기중</td>");
 	if(list[i].br_situation==1)
-	$tr.append("<td style='color:orenge; font-weight:bold;'>반려</td>");
+	$tr.append("<td style='color:green;font-weight:bold;'>처리중</td>");
 	if(list[i].br_situation==2)
+	$tr.append("<td style='color:orange; font-weight:bold;'>반려</td>");
+	if(list[i].br_situation==3)
 	$tr.append("<td style='color:blue;font-weight:bold;'>처리완료</td>");
 	
 }

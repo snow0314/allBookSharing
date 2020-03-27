@@ -174,7 +174,7 @@ for(let i=0;i<list.length;i++){
 	$tr.append("<td>"+list[i].bd_real_return_date+"</td>");
 	if(list[i].bd_state_num==7){
 	$tr.append("<td style='color:blue;'>반납완료</td>");
-	$tr.append("<td><button id='modal_review' data-toggle='modal' data-target='#myModal' data-code='"+list[i].br_bcode+"'>리뷰쓰기</button></td>");		
+	$tr.append("<td><button id='modal_review' data-toggle='modal' data-target='#myModal' data-code=\""+list[i].bk_code+"\">리뷰쓰기</button></td>");		
 	}
 	else
 	$tr.append("<td><button disabled>리뷰쓰기</button></td>");
@@ -182,6 +182,7 @@ for(let i=0;i<list.length;i++){
 }
 </script>
 
+<form action="reviewinsert" method="post" >
  <!-- Modal -->
   <div class="modal fade" id="myModal" role="dialog">
     <div class="modal-dialog">
@@ -192,32 +193,37 @@ for(let i=0;i<list.length;i++){
           <button type="button" class="close" data-dismiss="modal">&times;</button>
          <span class="star-input">
   <span class="input">
-    <input type="radio" name="star-input" id="p1" value="1"><label for="p1">1</label>
-    <input type="radio" name="star-input" id="p2" value="2"><label for="p2">2</label>
-    <input type="radio" name="star-input" id="p3" value="3"><label for="p3">3</label>
-    <input type="radio" name="star-input" id="p4" value="4"><label for="p4">4</label>
-    <input type="radio" name="star-input" id="p5" value="5"><label for="p5">5</label>
-    <input type="radio" name="star-input" id="p6" value="6"><label for="p6">6</label>
-    <input type="radio" name="star-input" id="p7" value="7"><label for="p7">7</label>
-    <input type="radio" name="star-input" id="p8" value="8"><label for="p8">8</label>
-    <input type="radio" name="star-input" id="p9" value="9"><label for="p9">9</label>
-    <input type="radio" name="star-input" id="p10" value="10"><label for="p10">10</label>
+    <input type="radio" name="rv_grade2" id="p1" value="1"><label for="p1">1</label>
+    <input type="radio" name="rv_grade2" id="p2" value="2"><label for="p2">2</label>
+    <input type="radio" name="rv_grade2" id="p3" value="3"><label for="p3">3</label>
+    <input type="radio" name="rv_grade2" id="p4" value="4"><label for="p4">4</label>
+    <input type="radio" name="rv_grade2" id="p5" value="5"><label for="p5">5</label>
+    <input type="radio" name="rv_grade2" id="p6" value="6"><label for="p6">6</label>
+    <input type="radio" name="rv_grade2" id="p7" value="7"><label for="p7">7</label>
+    <input type="radio" name="rv_grade2" id="p8" value="8"><label for="p8">8</label>
+    <input type="radio" name="rv_grade2" id="p9" value="9"><label for="p9">9</label>
+    <input type="radio" name="rv_grade2" id="p10" value="10"><label for="p10">10</label>
   </span>
+  <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
   <output for="star-input"><b>0</b>점</output>
 </span>
         </div>
       
         <div class="modal-body" id="modal-body">
-          <input type="text">
+          <input type="text" name="rv_contents">
+          <input type='hidden' name='rv_bcode' id='rv_bcode'>
         </div>
        
         <div class="modal-footer">
-          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+       	 <button type="submit" class="btn btn-default" >Submit</button>
+         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
         </div>
       </div>
       
     </div>
   </div>
+  </form>
+  
 <script type="text/javascript">
 //star rating
 var starRating = function(){
@@ -252,13 +258,14 @@ var starRating = function(){
 };
 starRating();
 
-//리뷰 모달
-$("#modal_review").on("click",function(e){
-    var params = e.target.dataset.number; 
+//리뷰 모달창 여는 메소드  
+
+ $(document).on("click", "#modal_review",function(e){
+    var params = e.target.dataset.code; 
     
     console.log("게시글",params);
-    
-    $.ajaxSetup({         
+    $("#rv_bcode").val(params);
+    /* $.ajaxSetup({         
          beforeSend : function(xhr){
             xhr.setRequestHeader("${_csrf.headerName}", "${_csrf.token}");}
          });//먼저 보냄
@@ -266,7 +273,7 @@ $("#modal_review").on("click",function(e){
          $.ajax({
              url : "writereview",
              type : "get",
-             data : {"bo_num":params}, 
+             data : {"rv_bcode":params}, 
              success : function(response) {
                 $("#modal-header").empty();
                  $("#modal-body").empty();
@@ -274,7 +281,7 @@ $("#modal_review").on("click",function(e){
                 
              }
  
-         });      //ajax end
+         });      //ajax end */
          
  });      //modal end
 </script>
