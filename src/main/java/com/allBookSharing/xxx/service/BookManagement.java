@@ -12,6 +12,7 @@ import com.allBookSharing.xxx.dto.DeliveryReq;
 import com.allBookSharing.xxx.dto.Library;
 import com.allBookSharing.xxx.dto.Liked;
 import com.allBookSharing.xxx.dto.Loan;
+import com.allBookSharing.xxx.dto.Recommend;
 import com.allBookSharing.xxx.dto.Reservation;
 import com.allBookSharing.xxx.dto.Review;
 
@@ -141,6 +142,17 @@ public class BookManagement {
 		return mav;
 		
 	}
+	public ModelAndView recommendList(Recommend rm) {
+		mav=new ModelAndView();
+		String view=null;
+		
+		List<Recommend> rmList=bDao.recommendList(rm);
+		mav.addObject("rmList", rmList);
+		
+		view="recommendList";
+		mav.setViewName(view);
+		return mav;
+	}
 
 	public ModelAndView topDetailPage(String bk_code) {
 		mav=new ModelAndView();
@@ -162,6 +174,23 @@ public class BookManagement {
 		List<Loan> ttList=bDao.mainPageTopTen(lo);
 		return ttList;
 	}
+
+	public ModelAndView mainBookSearch(String bk_name) {
+		mav=new ModelAndView();
+		String view=null;
+		mav.addObject("bk_name",bk_name);
+		System.out.println("bk_name="+bk_name);
+		view="totalSearch";
+		mav.setViewName(view);
+		return mav;
+	}
+
+	public List<Recommend> mainRecommend(Recommend recommend) {
+		List<Recommend> mrList=bDao.mainRecommend(recommend);
+		return mrList;
+	}
+
+	
 
 
 

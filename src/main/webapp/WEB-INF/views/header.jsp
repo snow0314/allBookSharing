@@ -163,8 +163,8 @@
                         <li><a href="./">자료검색</a>
                              <ul>
                               <li><a href="totalsearch">통합검색</a></li>
-                              <li><a href="#">인기도서</a></li>
-                              <li><a href="#">추천도서</a></li>
+                              <li><a href="totalsearch?kind=besttopten">인기도서</a></li>
+							  <li><a href="totalsearch?kind=recommend">추천도서</a></li>
                            </ul>
                         </li>
                         <li><a href="./">도서관 이용안내</a>

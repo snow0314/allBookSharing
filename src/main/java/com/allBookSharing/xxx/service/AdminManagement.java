@@ -136,6 +136,7 @@ public class AdminManagement {
 		
 		return mav;
 	}
+
     //공지사항 글 삭제
 	public ModelAndView deleteNotice(Notice ntc) {
 		
@@ -166,6 +167,7 @@ public class AdminManagement {
 		mav.setViewName("admin/recommendInsert");
 		return mav;
 	}
+
 	
 	
 

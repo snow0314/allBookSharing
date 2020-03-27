@@ -20,6 +20,7 @@ import com.allBookSharing.xxx.dto.Library;
 import com.allBookSharing.xxx.dto.Liked;
 import com.allBookSharing.xxx.dto.Loan;
 import com.allBookSharing.xxx.dto.Member;
+import com.allBookSharing.xxx.dto.Recommend;
 import com.allBookSharing.xxx.dto.Reservation;
 import com.allBookSharing.xxx.service.BookManagement;
 import com.allBookSharing.xxx.service.MemberManagement;
@@ -174,6 +175,12 @@ public class BookRestController {
 		List<Loan> ttList=bm.mainPageTopTen(lo);
 		System.out.println("ttList="+ttList);
 		return ttList;
+	}
+	@RequestMapping(value="/mainrecommend",produces="application/json;charset=UTF-8")
+	public List<Recommend> mainRecommend(Recommend recommend) {
+		List<Recommend> mrList=bm.mainRecommend(recommend);
+		System.out.println("mrList="+mrList);
+		return mrList;
 	}
 	
 	
