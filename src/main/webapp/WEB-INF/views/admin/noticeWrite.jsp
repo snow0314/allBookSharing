@@ -19,17 +19,25 @@
    }
    .btn btn-success{
      width: 100px; 
-     height: 50px;
+     height: 50px; 
    }
-   
+   #title{
+     width: 400px;
+     margin-bottom: 15px;
+   }
+   #dv{
+    margin-left: 300px;
+    margin-top: 40px;
+   }
 </style>
 
 </head>
 <body>
+<div id="dv">
 <form method="post" action="noticeWrite">
 
 
-<input type="text" name="no_title" placeholder="제목" required="required"/>
+<input type="text" name="no_title" placeholder="제목" required="required" id="title"/>
 
 
 <div id="content">
@@ -56,5 +64,6 @@ CKEDITOR.replace('p_content'
  
 </script>
 
+</div>
 </body>
 </html>
