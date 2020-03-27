@@ -59,6 +59,9 @@
 #foo-table_paginate {
 	text-align: center;
 }
+#btn{
+  margin-right: 200px;
+}
 </style>
 
 </head>

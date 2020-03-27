@@ -62,6 +62,7 @@
       </thead>
       <!-- tbody 태그 필요 없다. -->
    </table>
+   
    <script type="text/javascript" src="js/ajaxCsrf.js"></script>
    <script type="text/javascript">
 // select style 종류: `none`, `single`, `multi` or `os`

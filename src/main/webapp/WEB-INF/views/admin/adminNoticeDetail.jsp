@@ -30,7 +30,7 @@ ${notice.no_content}
 <div id="del" style="float:right;">
 <form action="deletenotice?${_csrf.parameterName}=${_csrf.token}" method="post">
 <input type="hidden" name="no_num" value="${notice.no_num}" />
-<input type="submit" id="del_btn" value="삭제" />
+<input type="submit" id="del_btn" value="삭제"/>
 </form>
 </div>
 </div>
