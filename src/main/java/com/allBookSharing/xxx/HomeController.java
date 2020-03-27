@@ -155,8 +155,15 @@ public class HomeController {
 	}
 	
 	//열람실 예약안내 
-	  
+	
 	   
+	
+	//도서관 일정보기 이동
+	@RequestMapping(value = "/libraryschedulemove")
+	public String libraryScheduleMove() {
+		
+		return "librarySchedule";
+	}
 }
 
 
