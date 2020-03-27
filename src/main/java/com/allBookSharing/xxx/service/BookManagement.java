@@ -163,6 +163,16 @@ public class BookManagement {
 		return ttList;
 	}
 
+	public ModelAndView mainBookSearch(String bk_name) {
+		mav=new ModelAndView();
+		String view=null;
+		mav.addObject("bk_name",bk_name);
+		System.out.println("bk_name="+bk_name);
+		view="totalSearch";
+		mav.setViewName(view);
+		return mav;
+	}
+
 
 
 	

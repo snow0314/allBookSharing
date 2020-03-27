@@ -272,10 +272,10 @@
 							<div class="container">
 								<section>
 									<header class="major">
-								<input type="text" placeholder="search for" class="form-control" style="width:70%;height:50px;margin-left:15%;background-color:aliceblue;color:black;">
+								<input type="text" id="bookinput" placeholder="책의 제목을  입력해주세요" class="form-control" style="width:70%;height:50px;margin-left:15%;background-color:aliceblue;color:black;">
                                     
 									</header>
-									<a href="#" class="button alt">Book Search</a>
+									<a href=#; onclick="mainBookSearch()" class="button alt">Book Search</a>
 								</section>			
 							</div>
 						</div>
@@ -479,6 +479,17 @@
 	</body>
 	<script src="http://code.jquery.com/jquery-1.4.4.min.js"></script>
 	<script type="text/javascript">
+	function mainBookSearch(){
+		var bk_name=document.getElementById("bookinput").value;
+		if(bk_name==""){
+			alert("검색어를 입력하세요.");
+			document.getElementById("bookinput".focus()); 
+			return false;
+		}
+		console.log(bk_name);
+		location.href="mainbooksearch?bk_name="+bk_name;
+		
+	}
 		function logoutGo() {
 			/* $.ajax({
 				url: "logout",

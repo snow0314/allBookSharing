@@ -68,6 +68,12 @@ public class librayBookController {
 
 		return mav;
 	}
+	@GetMapping(value="/mainbooksearch")
+	public ModelAndView mainBookSearch(String bk_name) {
+		mav=bm.mainBookSearch(bk_name);
+
+		return mav;
+	}
 	
 	
 }
