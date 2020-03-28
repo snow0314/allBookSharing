@@ -51,6 +51,7 @@ text-align: center;
 <body>
 
 <div style="width:80%;margin:0 10%; ">
+<h1>건의사항</h1>
 <table id="foo-table" class="table table-bordered" >
       <thead>
          <tr>

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.allBookSharing.xxx.dao.IMutualLoanDao">
+
+<select id="getMutualLoan" resultType="BookExchange">
+SELECT * FROM BOOKEXCHANGE JOIN BOOKS ON BK_CODE=BE_BCODE JOIN LIBRARY ON LB_CODE=BK_LCODE WHERE BE_RES_LCODE=#{lb_code}
+</select>
+
+</mapper>

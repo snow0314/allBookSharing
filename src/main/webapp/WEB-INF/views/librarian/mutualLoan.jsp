@@ -64,9 +64,8 @@ cursor: pointer;
       <thead>
          <tr>
          <th>No</th>
-         <th>도서관</th>
          <th>제목</th>
-         <th>작성자</th>
+         <th>도서관</th>
          <th>작성일</th>
          <th>상태</th>
          </tr>
@@ -84,19 +83,16 @@ console.log(list);
 
 for(let i=0;i<list.length;i++){
    var $tr= $("<tr>").appendTo($("#tb"));
-   $tr.append("<td>"+list[i].br_num+"</td>");
+   $tr.append("<td>"+list[i].be_num+"</td>");
+   $tr.append("<td><a id='modal_detail' data-toggle='modal' data-target='#myModal' data-number='"+list[i].be_num+"'>상호 대차를 신청합니다.</a></td>");
    $tr.append("<td>"+list[i].lb_name+"</td>");	
-   $tr.append("<td><a id='modal_detail' data-toggle='modal' data-target='#myModal' data-number='"+list[i].br_num+"'>"+list[i].br_titile+"</a></td>");
-   $tr.append("<td>"+list[i].br_id+"</td>");
-   $tr.append("<td>"+list[i].br_date+"</td>");
-   if(list[i].br_situation==0)
+   $tr.append("<td>"+list[i].be_date+"</td>");
+   if(list[i].be_situation==0)
 	   $tr.append("<td><span style='color:red; font-weight:bold;'>대기중</span></td>");
-   if(list[i].br_situation==1)
-	   $tr.append("<td><span style='color:green; font-weight:bold;'>처리중</span></td>");
-   if(list[i].br_situation==2)
-	   $tr.append("<td><span style='color:orange; font-weight:bold;'>반려</span></td>");
-   if(list[i].br_situation==3)
-	   $tr.append("<td><span style='color:blue; font-weight:bold;'>처리완료</span></td>");
+   if(list[i].be_situation==1)
+	   $tr.append("<td><span style='color:blue; font-weight:bold;'>수락</span></td>");
+   if(list[i].be_situation==2)
+	   $tr.append("<td><span style='color:orange; font-weight:bold;'>거절</span></td>");
 }
 
 </script>

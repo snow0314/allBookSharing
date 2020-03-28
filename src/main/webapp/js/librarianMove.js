@@ -29,6 +29,9 @@ function menuMove(index){ //사서 페이지 메뉴 이동 메소드
 	case 12:
 		$("#contents").attr("src","lbquestionlist");
 		break;
+	case 13:
+		$("#contents").attr("src","mutualloanmove");
+		break;
 		
 		
 	default:
