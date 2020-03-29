@@ -20,5 +20,7 @@ public class ReadingRoom {
 	private int rm_col; //열
 	private List<Seats> seats;
 	private int totalSeat; //전체 좌석 수
+	private int numberOfSeatsInUse; //사용중인 좌석 수
+	private int numberOfSeatsAvailable; //잔여 좌석 수
 	
 }

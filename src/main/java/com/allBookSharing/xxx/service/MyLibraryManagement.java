@@ -2,22 +2,18 @@ package com.allBookSharing.xxx.service;
 
 import java.security.Principal;
 import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.servlet.ModelAndView;
-
 import com.allBookSharing.xxx.dao.IMyLibraryDao;
 import com.allBookSharing.xxx.dto.Loan;
 import com.google.gson.Gson;
-import com.sun.tools.internal.ws.processor.model.Request;
 
 @Service
 public class MyLibraryManagement {
 
 	@Autowired
 	IMyLibraryDao mlDao;
-	
 	ModelAndView mav;
 	
 	

@@ -53,7 +53,7 @@ public class LibrayReadingRoomRestController {
 		return rList;
 	}
 	
-	
+	//열람시 삭제하는 메소드
 	@Secured("ROLE_LIBRARIAN")
 	@RequestMapping(value = "/readingroomdelete", produces = "application/json;charset=UTF-8")
 	public String ReadingRoomDelete(Integer rm_code) {
@@ -79,5 +79,17 @@ public class LibrayReadingRoomRestController {
 			readingRoom.setRm_lcode(lb_code);
 
 			return rm.readingRoomModify(readingRoom);
+		}
+		
+		// 열람실 좌석관리 목록 가져오기
+		@Secured("ROLE_LIBRARIAN")
+		@RequestMapping(value = "/readingroomseatlist", produces = "application/json;charset=UTF-8")
+		public List<ReadingRoom> readingRoomSeatList(String json, HttpServletRequest req){
+
+			// 빅 데시멀 오류 발생 String.valueOf 사용하여 해결
+			int lb_code = Integer.parseInt(String.valueOf(req.getSession().getAttribute("LB_CODE")));
+			List<ReadingRoom> rList=rm.readingRoomSeatList(lb_code);
+
+			return rList;
 		}
 }

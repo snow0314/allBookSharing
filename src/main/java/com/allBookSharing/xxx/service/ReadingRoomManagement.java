@@ -2,6 +2,8 @@ package com.allBookSharing.xxx.service;
 
 
 import java.util.List;
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -16,6 +18,9 @@ public class ReadingRoomManagement {
 
 	@Autowired
 	IReadingRoomManagementDao rDao;
+	
+	@Autowired
+	UserReadingRoomManagement rm;
 	
 	ModelAndView mav;
 	
@@ -82,10 +87,23 @@ public class ReadingRoomManagement {
 			return "실패";
 		}
 	}
-	
+	//매일 6시에 열람실 초기화하는 메소드, 스케줄러에서 사용
 	public void readingRoomInitialize() {
 		rDao.readingRoomInitialize();
 		
+	}
+	
+	//열람실 좌석관리목록 가져오는 메소드
+	public List<ReadingRoom> readingRoomSeatList(int lb_code) {
+		List<ReadingRoom> rList=rDao.getReadingRoomList(lb_code);
+		
+		for(int i=0;i<rList.size();i++) {
+			Map<String, Integer> temp=rm.numberOfSeatsInUse(String.valueOf(rList.get(i).getRm_code()));
+			rList.get(i).setNumberOfSeatsAvailable(temp.get("numberOfSeatsAvailable"));
+			rList.get(i).setNumberOfSeatsInUse(temp.get("numberOfSeatsInUse"));
+		}
+		
+		return rList;
 	}
 	
 }

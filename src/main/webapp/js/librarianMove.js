@@ -14,7 +14,7 @@ function menuMove(index){ //사서 페이지 메뉴 이동 메소드
 		$("#contents").attr("src","readingroominsertmove");
 		break;
 	case 5:
-		
+		$("#contents").attr("src","readingroomseatlistmove");
 		break;
 	case 6:
 		$("#contents").attr("src","librarymodifymove");

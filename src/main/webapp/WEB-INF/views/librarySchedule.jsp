@@ -166,12 +166,13 @@ ul {
 }
 
 #calendar {
-	float: right;
+	float: left;
 	width: 900px;
 }
 </style>
 </head>
 <body>
+<jsp:include page="header.jsp"/>
 	<div class="row">
 
 		<div id="nationsidebar" class="p-3 my-3 border"
@@ -377,7 +378,7 @@ $(function() {
 	});
 	
 	$(".tab").on("click",".tablinks",function(){
-		console.log("도서관 코드:",$(this).data("code"));
+		$("#calendar").empty();	
 		calendarLoad($(this).data("code"));
 	});		
 		
