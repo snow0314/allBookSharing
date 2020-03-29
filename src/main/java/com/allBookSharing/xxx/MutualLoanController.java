@@ -10,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.allBookSharing.xxx.dto.BookExchange;
 import com.allBookSharing.xxx.service.MutualLoanManagerment;
 
 @Controller
@@ -29,6 +30,18 @@ public class MutualLoanController {
 		return mav; 	
 	}
 	
+	
+	@Secured("ROLE_LIBRARIAN")
+	@RequestMapping(value = "/mutulloanaccept")
+	public ModelAndView mutulLoanAccept(BookExchange bookEx) { 
+		ModelAndView mav= new ModelAndView();
+		
+		mav=mLm.mutulLoanAccept(bookEx);
+		
+		return mav; 	
+	}
+	
+
 	
 	
 }

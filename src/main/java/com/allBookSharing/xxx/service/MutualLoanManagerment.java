@@ -27,6 +27,8 @@ public class MutualLoanManagerment {
 				
 		List<BookExchange> eList=mlDao.getMutualLoan(lb_code);
 		
+		System.out.println("eList="+eList);
+		
 		view="librarian/mutualLoan";
 		//null이면 자료가 없으니까 에러는 아님
 		
@@ -35,6 +37,26 @@ public class MutualLoanManagerment {
 		mav.addObject("list",json);
 		
 		mav.setViewName(view);
+		
+		return mav;
+	}
+
+	public ModelAndView mutulLoanAccept(BookExchange bookEx) {
+		ModelAndView mav=new ModelAndView();
+		String view=null;
+
+		
+		//상호대차 수락하면 해당 도서의 보유권수를 차감
+		boolean result1=mlDao.updateMutulLoanQty(bookEx);
+		//상호대차 신청 상태를 1(수락)으로 update
+		boolean result2=mlDao.updateMutulLoanState(bookEx);
+		//희망도서 테이블 상태값을 4(상호대차수락)으로 update
+		boolean result3=mlDao.updateHopeState(bookEx);
+		if(result1&&result2&&result3)
+			view="redirect:/mutualloanmove";
+		
+		mav.setViewName(view);
+		
 		
 		return mav;
 	}

@@ -97,6 +97,8 @@ for(let i=0;i<list.length;i++){
 	   $tr.append("<td><span style='color:orange; font-weight:bold;'>반려</span></td>");
    if(list[i].br_situation==3)
 	   $tr.append("<td><span style='color:blue; font-weight:bold;'>처리완료</span></td>");
+   if(list[i].br_situation==4)
+	   $tr.append("<td><span style='color:green; font-weight:bold;'>상호 대차 수락</span></td>");
 }
 
 </script>
@@ -152,6 +154,7 @@ for(let i=0;i<list.length;i++){
                  var footer="";
                  str+="<div>";
                  str+="<input type='hidden' name='br_num' value='"+response.br_num+"' />";
+                 str+="<input type='hidden' name='be_rnum' value='"+response.br_num+"' />";
                  console.log("response.br_lcode",response.br_lcode);
                 // str+="<input type='hidden' name='be_res_lcode' value='"+response.br_lcode+"' />";
                  str+="<div style='padding: 0 8px; line-height: 40px; border-top: 1px solid rgba(0,0,0,0.2); border-bottom: 1px solid rgba(0,0,0,0.2); text-align: left; background-color:rgba(0,0,0,0.1)'>";
@@ -164,6 +167,8 @@ for(let i=0;i<list.length;i++){
                  str+="<span id='state' style='font-size: 12px; color: orange;'>(반려)</span>";
                  if(response.br_situation==3)
                  str+="<span id='state' style='font-size: 12px; color: blue;'>(처리완료)</span>";
+                 if(response.br_situation==4)
+                 str+="<span id='state' style='font-size: 12px; color: green;'>(상호대차수락)</span>";
                  str+="<span style='float: right; font-size: 14px;'><i class='far fa-clock'></i>"+response.br_date+"</span>";
                  str+="</div></div>";
                  str+="<div>";
@@ -180,31 +185,19 @@ for(let i=0;i<list.length;i++){
                  str+="</div>";
                 $("#modal-body").append(str); 
                 console.log("상태=",response.br_situation);
-                if(response.br_situation == 1){		//상태가 처리중이면 처리완료,반려 버튼만 활성화
-                	footer+="<select name='br_false'  style='float: left; margin-right: 10px; height: 34px;'>";
-                    footer+="<option value=''>선택</option>";
-                    footer+="<option value='희망도서구입제한도서'>희망도서 구입제한 도서</option>";
-                    footer+="<option value='부적합한내용의도서'>부적합한내용의 도서</option>";
-                    footer+="<option value='구입불가능한도서'>구입불가능한 도서</option>";
-                    footer+="</select>";
+                if(response.br_situation == 1){		//상태가 1(처리중)이면 취소버튼만 활성화
                     
-                footer+="<input type='submit' value='반려' formaction='hopereturn' class='btn btn-warning' style='float: left;'>";
-                footer+="<input type='submit' value='처리완료' formaction='hopecomplete' class='btn btn-primary' style='margin-right:10px;' >";
+                footer+="<input type='submit' value='취소' formaction='hopereturn' class='btn btn-warning' style='float: left;'>";
                 footer+="<input type='hidden' name='be_bcode' value=\""+response.br_bcode+"\">";
                 	
                 }
+                else if(response.br_situation == 4){		//상태가 4(상호대차수락 )이면 처리완료만 활성화
+                    
+	                footer+="<input type='submit'' value='처리완료' style='margin-right:10px;' formaction='hopecomplete' class='btn btn-primary'>";
+                    footer+="<input type='hidden' name='be_bcode' value=\""+response.br_bcode+"\">";
+                    	
+                    }
                 else if(response.br_situation != 0){		//상태가 대기중이 아니면 버튼 감추기
-                	
-                footer+="<select name='br_false' style='display:none; float: left; margin-right: 10px; height: 34px;'>";
-                footer+="<option value=''>선택</option>";
-                footer+="<option value='희망도서구입제한도서'>희망도서 구입제한 도서</option>";
-                footer+="<option value='부적합한내용의도서'>부적합한내용의 도서</option>";
-                footer+="<option value='구입불가능한도서'>구입불가능한 도서</option>";
-                footer+="</select>";
-                	
-                footer+="<input type='hidden' value='반려' formaction='hopereturn' class='btn btn-warning' style='float: left;'>";
-                footer+="<input type='hidden' value='처리완료' formaction='hopecomplete' class='btn btn-primary'>";
-                footer+="<input type='hidden' value='상호대차' id='swap' class='btn btn-success' data-isbn=\""+response.br_bcode+"\">";
                 
                 }
                 
@@ -217,7 +210,7 @@ for(let i=0;i<list.length;i++){
                 footer+="</select>";
                 
                 footer+="<input type='submit' value='반려' formaction='hopereturn' class='btn btn-warning' style='float: left;'>";
-                footer+="<input type='submit' value='처리완료' formaction='hopecomplete' class='btn btn-primary'>";
+                footer+="<input type='submit' value='처리완료' style='margin-right:5px;' formaction='hopecomplete' class='btn btn-primary'>";
                 footer+="<input type='button' value='상호대차' id='swap' class='btn btn-success' data-isbn=\""+response.br_bcode+"\"style='margin-right:10px;'>";
                 footer+="<input type='hidden' name='be_bcode' value=\""+response.br_bcode+"\">";
                 }
