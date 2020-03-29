@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.allBookSharing.xxx.dao.IMutualLoanDao">
+
+<select id="getMutualLoan" resultType="exchange">
+SELECT * FROM BOOKEXCHANGE JOIN BOOKS ON BK_CODE=BE_BCODE JOIN LIBRARY ON LB_CODE=BE_LCODE WHERE BE_RES_LCODE=#{lb_code}
+</select>
+
+<select id="mutaulLoanDetail" resultType="exchange">
+SELECT * FROM BOOKEXCHANGE JOIN BOOKS ON BK_CODE=BE_BCODE JOIN LIBRARY ON LB_CODE=BE_LCODE WHERE BE_NUM=#{be_num}
+</select>
+
+<update id="updateMutulLoanQty" parameterType="exchange">
+UPDATE BOOKS SET BK_QUANTITY=BK_QUANTITY-#{be_count} WHERE BK_LCODE=#{be_res_lcode} AND BK_CODE=#{be_bcode}
+</update>
+
+<update id="updateMutulLoanState" parameterType="exchange">
+UPDATE BOOKEXCHANGE SET BE_SITUATION=1 WHERE BE_NUM=#{be_num}
+</update>
+
+<update id="updateHopeState" parameterType="exchange">
+UPDATE BOOKREQUEST SET BR_SITUATION=4 WHERE BR_NUM=#{be_rnum}
+</update>
+
+
+</mapper>
