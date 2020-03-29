@@ -70,6 +70,10 @@
                                 <li>
                                     <a href="#" onclick="menuMove(2)">도서 등록</a>
                                 </li>
+                                <li>
+                                    <a href="#" onclick="menuMove(13)">상호 대차</a>
+                                </li>
+                                
 
                             </ul>
                         </li>
