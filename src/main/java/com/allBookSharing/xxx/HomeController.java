@@ -25,6 +25,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 import com.allBookSharing.xxx.dto.Member;
+import com.allBookSharing.xxx.dto.Notice;
 import com.allBookSharing.xxx.service.JoinManagement;
 import com.allBookSharing.xxx.service.MemberManagement;
 
@@ -60,6 +61,20 @@ public class HomeController {
 
 		return mav;
 	}
+	
+	/*
+	 * //로그인 정보표시
+	 * 
+	 * @PreAuthorize("isAuthenticated()")
+	 * 
+	 * @PostMapping(value = "/logininfo") public ModelAndView loginInfo(Principal
+	 * principal) {
+	 * 
+	 * mav = mm.loginInfo(principal);
+	 * 
+	 * return mav; }
+	 */
+	
 	//회원탈퇴
 	@PreAuthorize("isAuthenticated()")
 	@PostMapping(value = "/memberdrop")
@@ -155,8 +170,35 @@ public class HomeController {
 	}
 	
 	//열람실 예약안내 
-	  
-	   
+	@PreAuthorize("isAuthenticated()")
+	@RequestMapping(value="/readingroominformation") 
+	public String readingroominformation() {
+		
+		return "readingRoomInformation";
+	}
+  
+	//회원등급 기준안내
+		@PreAuthorize("isAuthenticated()")
+		@RequestMapping(value="/membergrade")
+		public String membergrade() {
+			
+			return "memberGrade";
+
+		}
+
+	//도서관 일정보기 이동
+	@RequestMapping(value = "/libraryschedulemove")
+	public String libraryScheduleMove() {
+		
+		return "librarySchedule";
+	}
+	
+	//배송신청 페이지 이동
+	@RequestMapping(value = "/deliveryapplicationmove")
+	public String deliveryApplicationMove() {
+		
+		return "deliveryApplication";
+	}
 }
 
 

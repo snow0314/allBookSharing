@@ -73,4 +73,13 @@ public class librayBookRestController {
 		return lmm.deleteBooks(bookList);
 	}
 	
+	//책 정보를 가져오는 메소드(수정페이지)
+	@Secured("ROLE_LIBRARIAN")	
+	@RequestMapping(value = "/getlibraybookinfo" ,produces = "application/json;charset=UTF-8")
+	public Books getLibrayBookInfo(Books book){ 
+		
+		return lmm.getLibrayBookInfo(book);
+	}
+	
+	
 }

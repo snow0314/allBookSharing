@@ -25,7 +25,8 @@ public class Library {
 	String lb_latitude;		//위도
 	String lb_longitude;		//경도
 	String la_id;
-	int lb_quantity;
+	int lb_quantity;	
+	int bk_quantity;		//보유권수
 	String la_name;
 
 }

@@ -121,7 +121,7 @@ WHERE DE_CODE=#{de_code} AND DE_LCODE=#{de_lcode} AND DE_ID=#{de_id}
 
 <insert id="deliInsert" parameterType="deliveryreq">
 INSERT INTO DELIVERY
-VALUES(#{de_code},#{de_lcode},#{de_id})
+VALUES(#{de_code},#{de_lcode},#{de_id},DEFAULT)
 </insert>
 <select id="myRegionLib" resultType="library">
 SELECT L.LB_NAME,SUM(B.BK_QUANTITY) AS LB_QUANTITY,L.LB_CODE

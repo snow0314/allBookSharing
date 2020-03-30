@@ -1,11 +1,8 @@
 package com.allBookSharing.xxx.dao;
 
 import java.util.List;
-
 import org.springframework.stereotype.Service;
-
 import com.allBookSharing.xxx.dto.Loan;
-import com.sun.tools.internal.ws.processor.model.Request;
 
 @Service
 public interface IMyLibraryDao {
@@ -18,9 +15,6 @@ public interface IMyLibraryDao {
 
 	boolean bookRequestApply(Loan lan);
 
-	//리뷰쓰기
-	boolean writeReview(int bo_num);
-	
-	
+
 
 }

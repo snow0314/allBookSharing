@@ -19,7 +19,7 @@
     <link href="adminPage/vendor/font-awesome-4.7/css/font-awesome.min.css" rel="stylesheet" media="all">
     <link href="adminPage/vendor/font-awesome-5/css/fontawesome-all.min.css" rel="stylesheet" media="all">
     <link href="adminPage/vendor/mdi-font/css/material-design-iconic-font.min.css" rel="stylesheet" media="all">
-
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css" />
     <!-- Bootstrap CSS-->
     <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
@@ -70,6 +70,10 @@
                                 <li>
                                     <a href="#" onclick="menuMove(2)">도서 등록</a>
                                 </li>
+                                <li>
+                                    <a href="#" onclick="menuMove(13)">상호 대차</a>
+                                </li>
+                                
 
                             </ul>
                         </li>
@@ -165,10 +169,20 @@
                                                     <span class="email">johndoe@example.com</span>
                                                 </div>
                                             </div>
+                                            
+                                            <div class="account-dropdown__footer">
+                                             <a href="./"><i class="fas fa-igloo"></i>MainPage</a>
+                                             </div>
 
                                             <div class="account-dropdown__footer">
-                                                <a href="#">
+                                                 <a id="logout" href="#" onclick="logoutGo()"> 
                                                     <i class="zmdi zmdi-power"></i>Logout</a>
+                                                    
+                                                    
+                                                    
+        <form action="logout" name="logoutform" method="post">
+        <input id="csrf" type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/> 
+        </form>
                                             </div>
                                         </div>
                                     </div>
@@ -235,6 +249,16 @@
     <script src="adminPage/vendor/chartjs/Chart.bundle.min.js"></script>
     <script src="adminPage/vendor/select2/select2.min.js">
     </script>
+
+<script type="text/javascript">
+function logoutGo() {
+	
+	var logoutform=document.logoutform;
+	logoutform.submit();
+	
+}
+</script>
+
 
     <!-- Main JS-->
     <script src="adminPage/js/main.js"></script>

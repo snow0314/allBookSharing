@@ -11,6 +11,7 @@ import org.springframework.security.access.annotation.Secured;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import com.allBookSharing.xxx.dto.ReadingRoom;
+import com.allBookSharing.xxx.dto.Seats;
 import com.allBookSharing.xxx.service.ReadingRoomManagement;
 import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.databind.JsonMappingException;
@@ -53,7 +54,7 @@ public class LibrayReadingRoomRestController {
 		return rList;
 	}
 	
-	
+	//열람시 삭제하는 메소드
 	@Secured("ROLE_LIBRARIAN")
 	@RequestMapping(value = "/readingroomdelete", produces = "application/json;charset=UTF-8")
 	public String ReadingRoomDelete(Integer rm_code) {
@@ -79,5 +80,30 @@ public class LibrayReadingRoomRestController {
 			readingRoom.setRm_lcode(lb_code);
 
 			return rm.readingRoomModify(readingRoom);
+		}
+		
+		// 열람실 좌석관리 목록 가져오기
+		@Secured("ROLE_LIBRARIAN")
+		@RequestMapping(value = "/readingroomseatlist", produces = "application/json;charset=UTF-8")
+		public List<ReadingRoom> readingRoomSeatList(String json, HttpServletRequest req){
+
+			// 빅 데시멀 오류 발생 String.valueOf 사용하여 해결
+			int lb_code = Integer.parseInt(String.valueOf(req.getSession().getAttribute("LB_CODE")));
+			List<ReadingRoom> rList=rm.readingRoomSeatList(lb_code);
+
+			return rList;
+		}
+		
+		// 사서가 열람실 좌석 예약 취소하는 메소드
+		@Secured("ROLE_LIBRARIAN")
+		@RequestMapping(value = "/librayreadingroomreservationcancel", produces = "application/json;charset=UTF-8")
+		public String readingRoomCancel(String json, HttpServletRequest req)
+						throws JsonParseException, JsonMappingException, IOException {
+
+			// 제이슨 형태의 문자열을 객체로 변환
+			ObjectMapper mapper = new ObjectMapper();
+			Seats seat = mapper.readValue(json, Seats.class);
+				
+			return rm.readingRoomCancel(seat);
 		}
 }

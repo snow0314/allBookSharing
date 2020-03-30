@@ -205,11 +205,17 @@
 		
 		<sec:authorize access="hasRole('ROLE_USER')">
        <div class="container2">
+       <div class="eff-7" style="width:190px;">
+         
+            <sec:authentication property="principal.username"/>님 환영 합니다.
+          
+            </div>
          <div class="button-7">
             <div class="eff-7"></div>
             <a id="logout" href="#" onclick="logoutGo()"> 로그아웃 </a>         
          </div>
-        </div>
+       </div>  
+       
         <form action="logout" name="logoutform" method="post">
         <input id="csrf" type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/> 
         </form>
@@ -247,10 +253,10 @@
 								</li>
 								<li><a href="./">도서관 이용안내</a>
 								    <ul>
-										<li><a href="#">열람실 예약안내</a></li>
-										<li><a href="#">회원등급 기준</a></li>
+										<li><a href="readingroominformation">열람실 예약안내</a></li>
+										<li><a href="membergrade">회원등급 기준</a></li>
 										<li><a href="#">배송서비스 안내</a></li>
-										<li><a href="">도서관 일정안내</a></li>
+										<li><a href="libraryschedulemove">도서관 일정안내</a></li>
 									</ul>
 								</li>
 								<li><a href="./">도서관 서비스</a>

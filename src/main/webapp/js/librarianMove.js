@@ -14,7 +14,7 @@ function menuMove(index){ //사서 페이지 메뉴 이동 메소드
 		$("#contents").attr("src","readingroominsertmove");
 		break;
 	case 5:
-		
+		$("#contents").attr("src","readingroomseatlistmove");
 		break;
 	case 6:
 		$("#contents").attr("src","librarymodifymove");
@@ -28,6 +28,9 @@ function menuMove(index){ //사서 페이지 메뉴 이동 메소드
 		break;	
 	case 12:
 		$("#contents").attr("src","lbquestionlist");
+		break;
+	case 13:
+		$("#contents").attr("src","mutualloanmove");
 		break;
 		
 		
@@ -44,7 +47,7 @@ function adminmenuMove(index){ //관리자 페이지 메뉴 이동 메소드
 		$("#contents").attr("src","libraryinsertmove");
 		break;
 	case 2:
-		$("#contents").attr("src","");
+		$("#contents").attr("src","librarydeletemove");
 		break;
 	case 3:
 		$("#contents").attr("src","librarianinsertmove");

@@ -9,7 +9,7 @@ import com.allBookSharing.xxx.dto.ReadingRoom;
 import com.allBookSharing.xxx.dto.Seats;
 
 @Component
-public interface IReadingRoomManagementDao {
+public interface IReadingRoomManagementDao { //ReadingRoomMapper.xml
 
 	int readingRoomInsert(ReadingRoom readingRoom);
 
@@ -33,5 +33,8 @@ public interface IReadingRoomManagementDao {
 
 	//열람실 예약정보 초기화
 	void readingRoomInitialize();
+	
+	//선택한 열람실 좌석 예약 취소
+	boolean readingRoomCancel(Seats seat);
 
 }

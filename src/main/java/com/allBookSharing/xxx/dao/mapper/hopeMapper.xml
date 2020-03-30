@@ -13,4 +13,46 @@ SELECT * FROM BOOKREQUEST JOIN LIBRARY ON LB_CODE=BR_LCODE JOIN LIBRARIAN ON BR_
 SELECT * FROM BOOKREQUEST JOIN LIBRARY ON LB_CODE=BR_LCODE JOIN LIBRARIAN ON BR_LCODE=LA_LCODE WHERE BR_NUM=#{br_num}
 </select>
 
+<select id="swapBooks" resultType="Library">
+SELECT * FROM BOOKS JOIN LIBRARY ON BK_LCODE=LB_CODE WHERE BK_CODE=#{br_bcode}
+</select>
+
+
+<update id="updateHopeReturn" parameterType="Hope">
+
+UPDATE BOOKREQUEST SET BR_FALSE=#{br_false},BR_SITUATION=2 WHERE BR_NUM=#{br_num}
+</update>
+
+
+<update id="updateHopeComplete" parameterType="Hope">
+
+UPDATE BOOKREQUEST SET BR_SITUATION=3 WHERE BR_NUM=#{br_num}
+</update>
+
+<insert id="insertExchange" parameterType="exchange">
+
+INSERT INTO BOOKEXCHANGE VALUES(BE_NUM.NEXTVAL,#{be_bcode},#{be_lcode},#{be_res_lcode},#{be_count},0,SYSDATE,#{be_rnum}) 
+
+</insert>
+
+
+
+<update id="updateHopeProcessing" parameterType="Hope">
+
+UPDATE BOOKREQUEST SET BR_SITUATION=1 WHERE BR_NUM=#{br_num}
+
+</update>
+
+
+<update id="mutualLaonCancel" parameterType="Hope">
+
+UPDATE BOOKREQUEST SET BR_SITUATION=0 WHERE BR_NUM=#{br_num}
+
+</update>
+
+<select id="mutualLoanQty" resultType="exchange">
+SELECT BE_COUNT,BR_SITUATION FROM BOOKEXCHANGE join BOOKREQUEST on br_bcode=be_bcode WHERE BE_RNUM=#{BE_RNUM}
+ 
+</select>
+
 </mapper>

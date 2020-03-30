@@ -48,13 +48,14 @@ public class librayBookController {
 		return mav;
 	}
 	
+
 	@GetMapping(value="/topdetailpage")
 	public ModelAndView topDetailPage(String bk_code) {
 		mav=bm.topDetailPage(bk_code);
 
 		return mav;
 	}
-	
+
 	@Secured("ROLE_LIBRARIAN")
 	@RequestMapping(value = "/libraybookinsert")
 	public ModelAndView bookInsert(Books book) { //책 등록하는 메소드
@@ -80,6 +81,15 @@ public class librayBookController {
 	public ModelAndView mainBookSearch(String bk_name) {
 		mav=bm.mainBookSearch(bk_name);
 
+		return mav;
+	}
+	
+	//책 정보를 수정하는 메소드
+	@Secured("ROLE_LIBRARIAN")	
+	@RequestMapping(value = "/libraybookmodify" ,produces = "application/json;charset=UTF-8")
+	public ModelAndView librayBookModify(Books book){ 
+		mav=lmm.librayBookModify(book);
+			
 		return mav;
 	}
 	

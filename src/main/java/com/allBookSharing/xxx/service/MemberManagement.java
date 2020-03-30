@@ -30,6 +30,7 @@ import com.allBookSharing.xxx.dto.Loan;
 import com.allBookSharing.xxx.dto.Member;
 import com.allBookSharing.xxx.dto.PointList;
 import com.allBookSharing.xxx.dto.Reservation;
+import com.allBookSharing.xxx.dto.Review;
 import com.google.gson.Gson;
 
 @Service
@@ -365,4 +366,32 @@ public class MemberManagement {
 		
 		return rank;
 	}
+	
+	//한줄평 쓰기
+	public ModelAndView reviewInsert(Review review) {
+		mav = new ModelAndView();
+		System.out.println("한줄평2");
+		int result = mDao.reviewInsert(review);
+		if(result !=0) {
+			mav.setViewName("redirect:/moveloanlist");
+			mav.addObject("msg", "한줄평 등록에 성공하셨습니다.");
+		}else {
+			mav.setViewName("redirect:/moveloanlist");
+			mav.addObject("msg", "한줄평 등록에 실패하셨습니다.");
+		}
+	    
+		return mav;
+	}
+    
+	
+	/*
+	 * //로그인 정보 표시 public ModelAndView loginInfo(Principal principal) { mav = new
+	 * ModelAndView(); String id= principal.getName();
+	 * 
+	 * Member mb=mDao.loginInfo(id);
+	 * 
+	 * mav.addObject("member", mb); mav.setViewName("index");
+	 * 
+	 * return mav; }
+	 */
 }
