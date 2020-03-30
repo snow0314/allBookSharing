@@ -51,7 +51,7 @@
 	font-family: 'Hanna', sans-serif;
 	margin-top:2%;
 	font-size:45px;
-	font-weight:600;
+	font-weight:560;
 	margin-bottom:-5px;
 	}
 	h1{
@@ -100,7 +100,7 @@
 	border-radius: 20px;
 	text-align:center;
     vertical-align:middle;
-    height:100px;
+    height:120px;
     font-family: 'Jeju Gothic', sans-serif;
     font-size:23px;
     padding-top:50px;
@@ -262,7 +262,8 @@
 
 <div id="sidebar">
 <span id="likecount"></span>명이 좋아합니다.<br>
-평균평점 ${rvgrade.avg}
+평균평점 = ${rvgrade.avg}<br>
+총 예약자 수 = <span id="reservcount"></span>
 </div>
 </div>
 
@@ -317,7 +318,8 @@ else if(${books.bk_state}==1)
 	
 	if($("#id").val()==""){
 		$("#dd").append("<button style='float:right;margin-right:20px;'  class='reservation' id='reserbtn'>예약</button>");
-		
+		likeCount();
+		reservCount();
 	}else{
 		
 		$.ajax({
@@ -338,6 +340,7 @@ else if(${books.bk_state}==1)
 				console.log("status=", status);
 		 }
 		});//ajax End
+		reservCount()
 		
 		$.ajax({
 			type:'get',
@@ -345,7 +348,6 @@ else if(${books.bk_state}==1)
 	    	data:{"lk_bcode":"${books.bk_code}","lk_lcode":${books.bk_lcode}},  
 	    	dataType:"text",
 	    	success:function(result2){
-	    		console.log(result2);
 	    		if(result2=="성공"){
 	    			 	$('#heart').addClass('btn_unlike');
 	    			 	$('.ani_heart_m').addClass('hi');
@@ -403,6 +405,7 @@ if($("#id").val()==""){
 						console.log("status=", status);
 				 }
 				});//ajax End
+				reservCount()
 			
 			}else{
 				alert("취소");
@@ -418,6 +421,7 @@ function likeCount(){
     	data:{"lk_bcode":"${books.bk_code}"},  
     	dataType:"text",
     	success:function(result4){
+    		console.log(result4);
     		$("#likecount").text(result4);
     	},
     	error:function(xhr,status){ 
@@ -448,6 +452,25 @@ function deliveryCount(){
 	
 }
 
+function reservCount(){
+	$.ajax({
+		type:'get',
+		url:'reservcount',
+		data:{"rv_code":"${books.bk_code}","rv_lcode":${books.bk_lcode}},
+		dataType:"text",
+		async: false,
+		success:function(result3){
+			console.log("예약카운트=",result3);
+			$("#reservcount").text(result3);
+		},
+		error:function(xhr,status){
+			console.log("xhr1=", xhr);
+			console.log("status=", status);
+		}
+	})
+
+}
+
 
 
 $("#dd").on("click","#reserccbtn",function(){
@@ -472,7 +495,7 @@ $("#dd").on("click","#reserccbtn",function(){
 						console.log("status3=", status);
 				 }
 				});//ajax End
-			
+				reservCount()
 			}else{
 				alert("취소");
 			}

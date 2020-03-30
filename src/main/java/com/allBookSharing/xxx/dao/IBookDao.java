@@ -51,6 +51,8 @@ public interface IBookDao {
 	List<Recommend> recommendList(Recommend rm);
 	List<Recommend> mainRecommend(Recommend recommend);
 	
+	Integer reservCount(Reservation r);
+	
 	
 	
 

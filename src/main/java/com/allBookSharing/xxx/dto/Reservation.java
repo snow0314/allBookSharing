@@ -17,6 +17,7 @@ public class Reservation {
 	private String rv_id; //사용자아이디
 	private String rv_date; //예약날자
 	private String bk_state; //상태 0:대출불가, 1:대출가능, 2: 예약중
+    private int rv_count;//예약자 수 
 	
 
 }

@@ -77,6 +77,13 @@ public class BookRestController {
 		return result;
 	}
 	
+	@RequestMapping(value="/reservcount",produces="application/json;charset=UTF-8")
+	public Integer reservCount(Reservation r) {
+		Integer result=bm.reservCount(r);
+		System.out.println("countresult="+result);
+		return result;
+	}
+	
 	
 	@Secured("ROLE_USER")
 	@RequestMapping(value="/likedconfirm",produces="application/json;charset=UTF-8")
@@ -110,10 +117,10 @@ public class BookRestController {
 		return result;
 	}
 	
-	@Secured("ROLE_USER")
 	@RequestMapping(value="/likecount",produces="application/json;charset=UTF-8")
 	public Integer likeCount(Liked lk) {
 		Integer result=bm.likeCount(lk);
+		System.out.println("countresult="+result);
 		return result;
 	}
 	

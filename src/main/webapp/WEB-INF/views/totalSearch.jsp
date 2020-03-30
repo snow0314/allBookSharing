@@ -10,15 +10,11 @@
 <meta id="_csrf_header" name="_csrf_header"
 	content="${_csrf.headerName}" />
 <title>통합검색</title>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js" type="text/javascript"></script>
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-<!-- 페이징 처리 플러그인 -->	
-<script src="https://cdnjs.cloudflare.com/ajax/libs/paginationjs/2.1.4/pagination.min.js"></script>	
-<!-- 페이징 처리 플러그인 CSS -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/paginationjs/2.1.4/pagination.css"/>
+
 <style>
 @import url(//fonts.googleapis.com/earlyaccess/hanna.css);
 @import url(//fonts.googleapis.com/earlyaccess/jejugothic.css);
@@ -27,20 +23,16 @@
 
 #popularlist{
 margin-left:10%;
-width:80%
-
+width:80%;
+ border-collapse: separate;
+ border-spacing: 0 20px;
 }
 #popularlist .prighttd{
 vertical-align:middle;
 font-weight:bold;
 }
-#popularlist .img{
-margin:7px;
 
-}
-#popularlist td{
-	 border-bottom: 2px solid #c0c0c0;
-	}
+
 	#d{
 		font-family: 'Hanna', sans-serif;
 		margin-bottom:30px;
@@ -158,7 +150,7 @@ margin:7px;
 	font-weight:bold;
 	margin-bottom:100px;
 	
-	}
+	} 
 	#bkname:hover{
 	text-decoration:underline;
 	}
@@ -350,11 +342,15 @@ color:white;
 i{
 float:right;
 }
+#pagination{
+margin-left:30%;
+margin-top:-15px;
+}
 </style>
 </head>
 
 <body>
-<jsp:include page="header.jsp" />
+<jsp:include page="header.jsp"></jsp:include>
 
 <!--main-->
 
@@ -383,6 +379,7 @@ float:right;
 	
 	<div class="tab"></div>
 	<div id="contents"></div>
+	<div id="pagination"></div>
 </main>
 
 <sec:authorize access="isAuthenticated()">
@@ -397,6 +394,11 @@ float:right;
 <!-- search -->
 <!-- searchResult -->
 <script src="js/ajaxCsrf.js"></script>
+<!-- 페이징 처리 플러그인 -->	
+<script src="https://cdnjs.cloudflare.com/ajax/libs/paginationjs/2.1.4/pagination.min.js"></script>	
+<!-- 페이징 처리 플러그인 CSS -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/paginationjs/2.1.4/pagination.css"/>
+
 <script>
 window.onload = function () {
 	console.log("bk_name",${bk_name});
@@ -417,7 +419,10 @@ window.onload = function () {
 		getPage('recommend');
 	}else if(location.search.substring(6,16)=="besttopten")
 		getPage('besttopten')
+		
 }
+
+
 
 function bookList(){
 	var bksearch=document.getElementById("bookinput");
@@ -462,21 +467,29 @@ function totalBookSearch(){//전국 통합 검색
 	    dataType:'json',
 	    success:function(result){
 	    	$("#contents").append("<div id='nationwide' class='tabcontent'><h2 id='a'>전국 통합검색</h2><table id='totalsearchList'><table></div><div id='nationsidebar'></div>");
+
+	    	var data=result;
 	    	
-	 		var str="";
-	    	if(result!=undefined){
-	    		$('#totalsearchList').empty();
+	
+	    	let container=$('#pagination');
+	    	container.pagination({
 	    		
-	    	$.each(result,function(index,item){
-	    		console.log(item.bk_code);
-	    		str+='<tr id="tr"><td class="lefttd">'+'<image src="'+item.bk_image+'"></td>';
-	    		str+='<td class="righttd">'+'<a href="bookdetailpage?bk_code='+item.bk_code+'&bk_lcode='+item.bk_lcode+'" id="bkname">'+item.bk_name+'</a><br>'+item.bk_writer+'<br>'+
-	    		item.bk_publisher+'<br>'+item.bk_publicday+'<br><p class="lname">'+item.bk_lname+'</p></td></tr>';
-	    	});
-	    	
+	    		dataSource: data,
+	    		pageSize: 5,
+	    		callback:function(data, pagination) {
+	    			var str="";
+	    			$.each(data,function(index,item){
+	    	    		console.log(item.bk_code);
+	    	    		str+='<tr id="tr"><td class="lefttd">'+'<image src="'+item.bk_image+'"></td>';
+	    	    		str+='<td class="righttd">'+'<a href="bookdetailpage?bk_code='+item.bk_code+'&bk_lcode='+item.bk_lcode+'" id="bkname">'+item.bk_name+'</a><br>'+item.bk_writer+'<br>'+
+	    	    		item.bk_publisher+'<br>'+item.bk_publicday+'<br><p class="lname">'+item.bk_lname+'</p></td></tr>';
+	    	    	});
+	    			
+	    			$('#totalsearchList').empty();
+	    			$('#totalsearchList').html(str);
+	    		}
+	    	})
 	 
-	    	$('#totalsearchList').append(str);
-	    	}
 	    	
 	    	
 	    },
@@ -523,20 +536,25 @@ function jiyuckSearch(e){
 	    dataType:'json',
 	    success:function(result){
 	    	
-	    	
-	 		var str="";
-	    	if(result!=undefined){
-	    		$('#totalsearchList').empty();
+	    	var data=result;
+	    	let container=$('#pagination');
+	    	container.pagination({
 	    		
-	    	$.each(result,function(index,item){
-	   
-	    		str+='<tr id="tr"><td class="lefttd">'+'<image src="'+item.bk_image+'"></td>';
-	    		str+='<td class="righttd">'+'<a href="bookdetailpage?bk_code='+item.bk_code+'&bk_lcode='+item.bk_lcode+'" id="bkname">'+item.bk_name+'</a><br>'+item.bk_writer+'<br>'+
-	    		item.bk_publisher+'<br>'+item.bk_publicday+'<br><p class="lname">'+item.bk_lname+'</p></td></tr>';
-	    	});
-				
-	    	$('#totalsearchList').append(str);
-	    	}
+	    		dataSource: data,
+	    		pageSize: 5,
+	    		callback:function(data, pagination) {
+	    				var str="";
+	    				$.each(data,function(index,item){
+	    				   
+	    	    		str+='<tr id="tr"><td class="lefttd">'+'<image src="'+item.bk_image+'"></td>';
+	    	    		str+='<td class="righttd">'+'<a href="bookdetailpage?bk_code='+item.bk_code+'&bk_lcode='+item.bk_lcode+'" id="bkname">'+item.bk_name+'</a><br>'+item.bk_writer+'<br>'+
+	    	    		item.bk_publisher+'<br>'+item.bk_publicday+'<br><p class="lname">'+item.bk_lname+'</p></td></tr>';
+	    	    	});
+	    			$('#totalsearchList').empty();
+	    			$('#totalsearchList').append(str);
+	    		}
+	    	})
+	 	
 	    },
 	    error:function(xhr,status){
 	    	console.log("xhr3=", xhr);
@@ -552,20 +570,27 @@ function regionlibSearch(lb_code){
 	    data:{"bk_search":$('#bookinput').val() ,"selectval":$('#select').val(),"bk_lcode":lb_code},
 	    dataType:'json',
 	    success:function(result){
-	    	console.log(result);
-	 		var str="";
-	    	if(result!=undefined){
-	    		$('#regionsearchList').empty();
+	    
+	    	var data=result;
+			
+	    	let container=$("#pagination");
+	    	container.pagination({
 	    		
-	    	$.each(result,function(index,item){
-	   
-	    		str+='<tr id="tr"><td class="lefttd">'+'<image src="'+item.bk_image+'"></td>';
-	    		str+='<td class="righttd">'+'<a href="bookdetailpage?bk_code='+item.bk_code+'&bk_lcode='+item.bk_lcode+'" id="bkname">'+item.bk_name+'</a><br>'+item.bk_writer+'<br>'+
-	    		item.bk_publisher+'<br>'+item.bk_publicday+'<br><p class="lname">'+item.bk_lname+'</p></td></tr>';
-	    	});
-				
-	    	$('#regionsearchList').append(str);
-	    	}
+	    		dataSource:data,
+	    		pageSize:5,
+	    		callback:function(data,pagination){
+	    			var str="";
+	    			$.each(data,function(index,item){
+	    				   
+	    	    		str+='<tr id="tr"><td class="lefttd">'+'<image src="'+item.bk_image+'"></td>';
+	    	    		str+='<td class="righttd">'+'<a href="bookdetailpage?bk_code='+item.bk_code+'&bk_lcode='+item.bk_lcode+'" id="bkname">'+item.bk_name+'</a><br>'+item.bk_writer+'<br>'+
+	    	    		item.bk_publisher+'<br>'+item.bk_publicday+'<br><p class="lname">'+item.bk_lname+'</p></td></tr>';
+	    	    	});
+	    				$('#regionsearchList').empty();
+	    				$('#regionsearchList').html(str);
+	    		}
+	    	})
+	 		
 	    },
 	    error:function(xhr,status){
 	    	console.log("xhr3=", xhr);
@@ -606,19 +631,26 @@ function myregionSearch(){//내 지역
 	    success:function(result){
 	    	$("#contents").append("<div id='myRegion' class='tabcontent'><h2 id='e'>"+result[0].bk_loc+"</h2><table id='regionsearchList'><table></div><div id='sidebar'><ul id='myregionlb'></ul></div>");
 	    	
-	 		var str="";
-	    	if(result!=undefined){
-	    		$('#regionsearchList').empty();
+	    	var data=result;
+	    	
+	    	let container=$('#pagination');
+	    	container.pagination({
 	    		
-	    	$.each(result,function(index,item){
-	   
-	    		str+='<tr id="tr"><td class="lefttd">'+'<image src="'+item.bk_image+'"></td>';
-	    		str+='<td class="righttd">'+'<a href="bookdetailpage?bk_code='+item.bk_code+'&bk_lcode='+item.bk_lcode+'" id="bkname">'+item.bk_name+'</a><br>'+item.bk_writer+'<br>'+
-	    		item.bk_publisher+'<br>'+item.bk_publicday+'<br><p class="lname">'+item.bk_lname+'</p></td></tr>';
-	    	});
-				
-	    	$('#regionsearchList').append(str);
-	    	}
+	    		dataSource:data,
+	    		pageSize:5,
+	    		callback:function(data,pagination){
+	    			var str="";
+	    			$.each(data,function(index,item){
+	    				   
+	    	    		str+='<tr id="tr"><td class="lefttd">'+'<image src="'+item.bk_image+'"></td>';
+	    	    		str+='<td class="righttd">'+'<a href="bookdetailpage?bk_code='+item.bk_code+'&bk_lcode='+item.bk_lcode+'" id="bkname">'+item.bk_name+'</a><br>'+item.bk_writer+'<br>'+
+	    	    		item.bk_publisher+'<br>'+item.bk_publicday+'<br><p class="lname">'+item.bk_lname+'</p></td></tr>';
+	    	    	});
+	    			$('#regionsearchList').empty();
+	    			$('#regionsearchList').append(str);
+	    		}
+	    	})
+	    	
 	    },
 	    error:function(xhr,status){
 	    	console.log("xhr3=", xhr);
