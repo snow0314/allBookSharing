@@ -382,4 +382,16 @@ public class MemberManagement {
 	    
 		return mav;
 	}
+    
+	
+	/*
+	 * //로그인 정보 표시 public ModelAndView loginInfo(Principal principal) { mav = new
+	 * ModelAndView(); String id= principal.getName();
+	 * 
+	 * Member mb=mDao.loginInfo(id);
+	 * 
+	 * mav.addObject("member", mb); mav.setViewName("index");
+	 * 
+	 * return mav; }
+	 */
 }

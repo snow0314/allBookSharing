@@ -62,7 +62,8 @@
       </thead>
       <!-- tbody 태그 필요 없다. -->
    </table>
-   
+ <p><input type="submit" id="delivery" value="배송신청"></p>
+					
    <script type="text/javascript" src="js/ajaxCsrf.js"></script>
    <script type="text/javascript">
 // select style 종류: `none`, `single`, `multi` or `os`
