@@ -47,7 +47,7 @@ function adminmenuMove(index){ //관리자 페이지 메뉴 이동 메소드
 		$("#contents").attr("src","libraryinsertmove");
 		break;
 	case 2:
-		$("#contents").attr("src","");
+		$("#contents").attr("src","librarydeletemove");
 		break;
 	case 3:
 		$("#contents").attr("src","librarianinsertmove");

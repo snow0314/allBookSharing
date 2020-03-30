@@ -162,6 +162,15 @@ public class AdminController {
 				return mav;
 			}
 	    
+	    //도서관 수정 삭제 페이지 이동
+	    @Secured("ROLE_ADMIN")
+		 @RequestMapping(value = "/librarydeletemove")
+		 public String libraryDelete() {
+			System.out.println("도서관 삭제 페이지 이동 컨트롤러");
+			
+			 
+				return "admin/libraryDelete";
+			}
 	    
 
 }
