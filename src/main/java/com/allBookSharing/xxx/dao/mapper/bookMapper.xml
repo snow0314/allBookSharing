@@ -105,11 +105,11 @@ VALUES(#{lk_bcode},#{lk_id},#{lk_lcode})
  WHERE LK_BCODE=#{lk_bcode} AND LK_ID=#{lk_id} AND LK_LCODE=#{lk_lcode}
 </delete>
 
-<select id="likedConfirm" parameterType="reservation" resultType="Integer">
+<select id="likedConfirm" parameterType="liked" resultType="Integer">
  SELECT COUNT(*) FROM LIKED
  WHERE LK_BCODE=#{lk_bcode} AND LK_ID=#{lk_id} AND LK_LCODE=#{lk_lcode}
 </select>
-<select id="likeCount" parameterType="reservation" resultType="Integer">
+<select id="likeCount" parameterType="liked" resultType="Integer">
  SELECT COUNT(*) FROM LIKED
  WHERE LK_BCODE=#{lk_bcode} 
 </select>
@@ -145,7 +145,10 @@ GROUP BY L.LB_NAME,L.LB_CODE
 	ORDER BY COUNT DESC
 </select>
 <select id="bookRvGrade" parameterType="review" resultType="review">
-	SELECT AVG(RV_GRADE) AS AVG FROM REVIEW WHERE RV_BCODE=#{bk_code}
+	SELECT NVL(AVG(RV_GRADE),0) AS AVG FROM REVIEW WHERE RV_BCODE=#{bk_code}
+</select>
+<select id="reservCount" parameterType="reservation" resultType="Integer">
+ 	select count(*) as rv_count from reservation where rt_code=#{rv_code} and rt_lcode=#{rv_lcode}
 </select>
 <select id="recommendList" parameterType="recommend" resultType="recommend" >
  SELECT R.RE_BCODE,R.RE_BNAME,R.RE_BWRITER,R.RE_PUBLISHER,R.RE_PUBLICDAY,R.RE_INTRODUCTION,R.RE_CONTENTS,R.RE_IMAGE,A.BG_CATE,A.SG_CATE

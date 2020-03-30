@@ -48,6 +48,24 @@ public class BookManagement {
 		return mav;
 		
 	}
+	
+	public ModelAndView topDetailPage(String bk_code) {
+		mav=new ModelAndView();
+		String view=null;
+		Books books=bDao.topDetailPage(bk_code);
+		mav.addObject("books",books);
+		
+		List<Review> review=bDao.bookReviewList(bk_code);
+		mav.addObject("review", review);
+		
+		Review rvgrade=bDao.bookRvGrade(bk_code);
+		mav.addObject("rvgrade",rvgrade);
+		
+		view="topDetailPage";
+		mav.setViewName(view);
+		
+		return mav;
+	}
 
 	public Boolean reservationInsert(Reservation r) {
 		
@@ -92,7 +110,7 @@ public class BookManagement {
 
 	public Integer likeCount(Liked lk) {
 		Integer lkcount=bDao.likeCount(lk);
-		System.out.println("李쒖뭅�슫�듃m寃곌낵="+lkcount);
+		System.out.println("lkcount="+lkcount);
 		return lkcount;
 	}
 
@@ -100,6 +118,11 @@ public class BookManagement {
 		Integer delicount=bDao.deliCount(dr);
 		System.out.println("諛곗넚�떊泥�移댁슫�듃m寃곌낵"+delicount);
 		return delicount;
+	}
+	
+	public Integer reservCount(Reservation r) {
+		Integer reservcount=bDao.reservCount(r);
+		return reservcount;
 	}
 
 	public Boolean deliInsert(DeliveryReq dr) {
@@ -154,20 +177,7 @@ public class BookManagement {
 		return mav;
 	}
 
-	public ModelAndView topDetailPage(String bk_code) {
-		mav=new ModelAndView();
-		String view=null;
-		Books books=bDao.topDetailPage(bk_code);
-		mav.addObject("books",books);
-		
-		List<Review> review=bDao.bookReviewList(bk_code);
-		mav.addObject("review", review);
-		
-		view="topDetailPage";
-		mav.setViewName(view);
-		
-		return mav;
-	}
+	
 
 	
 	public List<Loan> mainPageTopTen(Loan lo) {
@@ -189,6 +199,8 @@ public class BookManagement {
 		List<Recommend> mrList=bDao.mainRecommend(recommend);
 		return mrList;
 	}
+
+	
 
 	
 

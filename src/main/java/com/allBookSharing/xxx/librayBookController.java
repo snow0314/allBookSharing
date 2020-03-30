@@ -48,6 +48,13 @@ public class librayBookController {
 		return mav;
 	}
 	
+	@GetMapping(value="/topdetailpage")
+	public ModelAndView topDetailPage(String bk_code) {
+		mav=bm.topDetailPage(bk_code);
+
+		return mav;
+	}
+	
 	@Secured("ROLE_LIBRARIAN")
 	@RequestMapping(value = "/libraybookinsert")
 	public ModelAndView bookInsert(Books book) { //책 등록하는 메소드
@@ -68,12 +75,7 @@ public class librayBookController {
 		return mav;
 	}
 	
-	@GetMapping(value="/topdetailpage")
-	public ModelAndView topDetailPage(String bk_code) {
-		mav=bm.topDetailPage(bk_code);
-
-		return mav;
-	}
+	
 	@GetMapping(value="/mainbooksearch")
 	public ModelAndView mainBookSearch(String bk_name) {
 		mav=bm.mainBookSearch(bk_name);
