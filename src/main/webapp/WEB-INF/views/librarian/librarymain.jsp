@@ -19,7 +19,7 @@
     <link href="adminPage/vendor/font-awesome-4.7/css/font-awesome.min.css" rel="stylesheet" media="all">
     <link href="adminPage/vendor/font-awesome-5/css/fontawesome-all.min.css" rel="stylesheet" media="all">
     <link href="adminPage/vendor/mdi-font/css/material-design-iconic-font.min.css" rel="stylesheet" media="all">
-
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css" />
     <!-- Bootstrap CSS-->
     <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
@@ -169,6 +169,10 @@
                                                     <span class="email">johndoe@example.com</span>
                                                 </div>
                                             </div>
+                                            
+                                            <div class="account-dropdown__footer">
+                                             <a href="./"><i class="fas fa-igloo"></i>MainPage</a>
+                                             </div>
 
                                             <div class="account-dropdown__footer">
                                                  <a id="logout" href="#" onclick="logoutGo()"> 

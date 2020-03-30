@@ -205,7 +205,7 @@
 		
 		<sec:authorize access="hasRole('ROLE_USER')">
        <div class="container2">
-       <div class="eff-7">
+       <div class="eff-7" style="width:190px;">
          
             <sec:authentication property="principal.username"/>님 환영 합니다.
           
