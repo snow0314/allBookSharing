@@ -30,7 +30,7 @@ public class MutualLoanController {
 		return mav; 	
 	}
 	
-	
+	//상호대차 수락
 	@Secured("ROLE_LIBRARIAN")
 	@RequestMapping(value = "/mutulloanaccept")
 	public ModelAndView mutulLoanAccept(BookExchange bookEx) { 
@@ -41,6 +41,18 @@ public class MutualLoanController {
 		return mav; 	
 	}
 	
+	
+	
+	//상호대차 거절
+	@Secured("ROLE_LIBRARIAN")
+	@RequestMapping(value = "/mutulloanfalse")
+	public ModelAndView mutulLoanFalse(BookExchange bookEx) { 
+		ModelAndView mav= new ModelAndView();
+		
+		mav=mLm.mutulLoanFalse(bookEx);
+		
+		return mav; 	
+	}
 
 	
 	

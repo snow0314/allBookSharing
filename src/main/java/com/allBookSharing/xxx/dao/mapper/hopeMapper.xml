@@ -44,4 +44,15 @@ UPDATE BOOKREQUEST SET BR_SITUATION=1 WHERE BR_NUM=#{br_num}
 </update>
 
 
+<update id="mutualLaonCancel" parameterType="Hope">
+
+UPDATE BOOKREQUEST SET BR_SITUATION=0 WHERE BR_NUM=#{br_num}
+
+</update>
+
+<select id="mutualLoanQty" resultType="exchange">
+SELECT BE_COUNT,BR_SITUATION FROM BOOKEXCHANGE join BOOKREQUEST on br_bcode=be_bcode WHERE BE_RNUM=#{BE_RNUM}
+ 
+</select>
+
 </mapper>

@@ -25,7 +25,8 @@ public class BookExchange {
 		private int be_res_lcode;		//신청받은 도서관코드
 		private int be_count;			//신청권수
 		private int bk_quantity;		//보유권수
-		private int be_situation;		//상태
+		private int be_situation;		//상호대차 상태
+		private int br_situation;		//희망도서 상태
 		private String bk_image;		//책 사진
 		@JsonFormat(pattern = "yyyy-MM-dd")
 		private Date be_date;			//상호대차 신청일

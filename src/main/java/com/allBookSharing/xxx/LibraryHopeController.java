@@ -69,5 +69,20 @@ public class LibraryHopeController {
 	
 	
 	
+	//상호대차 신청하기
+	@Secured("ROLE_LIBRARIAN")
+	@RequestMapping(value = "/hopecancel")
+	public ModelAndView hopeCancel (Hope hope) {
+		ModelAndView mav=new ModelAndView();
+		System.out.println("상호대차 취소 url");
+		System.out.println("hope"+hope);
+		mav=hm.hopeCancel(hope);
+		
+		return mav;
+	}
+	
+	
+	
+	
 	
 }
