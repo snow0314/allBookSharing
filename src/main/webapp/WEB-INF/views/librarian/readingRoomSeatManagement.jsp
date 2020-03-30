@@ -44,109 +44,109 @@
 td a {
 	font-size: 20px;
 }
+
 #submenu {
-  		float: left;
-  		width: 15%;
-  		height: 100%;  
-  	  margin-left: 8%;
-  	  margin-top:2%;
-}
-.subbtn{
-width:100%;
-background-color:white;
-height:55px;
-font-family: 'Nanum Gothic Coding', monospace;
-font-weight:bold;
-font-size:20px;
-border:none;
-
-
-}
-.subbtn:hover{
-background-color:#F0EAD6;
-}
-.subtopbtn{
-width:100%;
-font-family: 'Hanna', sans-serif;
-height:98px;
-background-color:#223A5E;
-color:white;
-}
-i{
-float:right;
+	float: left;
+	width: 15%;
+	height: 100%;
+	margin-left: 8%;
+	margin-top: 2%;
 }
 
+.subbtn {
+	width: 100%;
+	background-color: white;
+	height: 55px;
+	font-family: 'Nanum Gothic Coding', monospace;
+	font-weight: bold;
+	font-size: 20px;
+	border: none;
+}
+
+.subbtn:hover {
+	background-color: #F0EAD6;
+}
+
+.subtopbtn {
+	width: 100%;
+	font-family: 'Hanna', sans-serif;
+	height: 98px;
+	background-color: #223A5E;
+	color: white;
+}
+
+i {
+	float: right;
+}
 </style>
 </head>
 <body>
 	<div style="text-align: center;">
-		<h1>도서관 이름</h1>
+		<h1>${LB_NAME}</h1>
 	</div>
 	<div class="row">
-		
-		
-			<div class="container p-3 my-3 border">
-				<div class="input-group mb-3">
-					<div class="input-group-prepend">
-						<span class="input-group-text">열람실 이름</span>
-					</div>
-					<input id="rm_name" name="rm_name" type="text" class="form-control"
-						readonly="readonly"> <input id="rm_code" name="rm_code"
-						type="hidden">
+
+
+		<div class="container p-3 my-3 border">
+			<div class="input-group mb-3">
+				<div class="input-group-prepend">
+					<span class="input-group-text">열람실 이름</span>
 				</div>
-				<div class="row">
-					<div class="col-4">
-						<label for="total_seat" class="control-label mb-1">총 좌석수</label>
-						<div class="input-group">
-							<input id="total_seat" name="total_seat" type="tel"
-								class="form-control cc-cvc" value="" readonly>
-						</div>
+				<input id="rm_name" name="rm_name" type="text" class="form-control"
+					readonly="readonly"> <input id="rm_code" name="rm_code"
+					type="hidden">
+			</div>
+			<div class="row">
+				<div class="col-4">
+					<label for="total_seat" class="control-label mb-1">총 좌석수</label>
+					<div class="input-group">
+						<input id="total_seat" name="total_seat" type="tel"
+							class="form-control cc-cvc" value="" readonly>
 					</div>
-					<div class="col-4">
-						<div class="form-group">
-							<label for="numberOfSeatsInUse" class="control-label mb-1">사용
-								좌석</label> <input id="numberOfSeatsInUse" name="numberOfSeatsInUse"
-								type="number" class="form-control cc-exp" value=""
-								readonly="readonly"> <span class="help-block"
-								data-valmsg-for="cc-exp" data-valmsg-replace="true"></span>
-						</div>
-					</div>
-					<div class="col-4">
-						<label for="numberOfSeatsAvailable" class="control-label mb-1">잔여
-							좌석</label>
-						<div class="input-group">
-							<input id="numberOfSeatsAvailable" name="numberOfSeatsAvailable"
-								type="number" class="form-control cc-cvc" value=""
-								readonly="readonly">
-						</div>
-					</div>
-
 				</div>
-
-
-				<div class="col-md-4 ml-auto" style="text-align: right">
-					<button id="reservationCancel" type="button"
-						class="btn btn-success">
-						<i class="fas fa-pen"></i>&nbsp; 예약취소
-					</button>
+				<div class="col-4">
+					<div class="form-group">
+						<label for="numberOfSeatsInUse" class="control-label mb-1">사용
+							좌석</label> <input id="numberOfSeatsInUse" name="numberOfSeatsInUse"
+							type="number" class="form-control cc-exp" value=""
+							readonly="readonly"> <span class="help-block"
+							data-valmsg-for="cc-exp" data-valmsg-replace="true"></span>
+					</div>
+				</div>
+				<div class="col-4">
+					<label for="numberOfSeatsAvailable" class="control-label mb-1">잔여
+						좌석</label>
+					<div class="input-group">
+						<input id="numberOfSeatsAvailable" name="numberOfSeatsAvailable"
+							type="number" class="form-control cc-cvc" value=""
+							readonly="readonly">
+					</div>
 				</div>
 
 			</div>
-			<div class="p-3 my-3 border" style="text-align: center">
-				<div id="seats" class="btn-group-toggle" data-toggle="buttons">
 
-				</div>
+
+			<div class="col-md-4 ml-auto" style="text-align: right">
+				<button id="reservationCancel" type="button" class="btn btn-success">
+					<i class="fas fa-pen"></i>&nbsp; 예약취소
+				</button>
+			</div>
+
+		</div>
+		<div class="container p-3 my-3 border" style="text-align: center">
+			<div id="seats" class="btn-group-toggle" data-toggle="buttons">
+
 			</div>
 		</div>
-	
+	</div>
+
 
 </body>
 <script type="text/javascript" src="js/ajaxCsrf.js"></script>
 <script type="text/javascript">
 	
 window.onload = function (){
-		
-		let info=${readingRoomList};
+		console.log(${readingRoom})
 		
 		var readingRoom=${readingRoom};
 		$("#rm_name").val(readingRoom.rm_name);
@@ -181,46 +181,19 @@ function numberOfSeatsInUse(rm_code){ //사용중인 좌석 수 구하는 메소
 }//function End
 
 
-$("#seats").on("click","input",function(event){ //예약하는 메소드
+$("#seats").on("click","input",function(event){ //예약 취소하는 메소드
 	event.preventDefault(); //버블링 막기
 	
-	let result = window.confirm("예약하시겠습니까?");
-	
-	if(result){
-		let data = {"se_code" : $("#rm_code").val(),
-					"se_low" : $(this).data("row"),
-					"se_col" : $(this).data("col"),
-					"se_seatnum" : $(this).data("num")};
-		
-		  $.ajax({
-			url : "readingroomreservation",
-			type : "post",
-			data : {"json" : JSON.stringify(data)},
-			dataType:'text'
-			
-	}).done((result) => {
-		console.log("예약:",result);
-		alert(result);
-		location.reload();
-		
-	}).fail((xhr) => {
-		console.log("xhr=",xhr);
-	}); //ajax End 
-		
-	}else{
-		return false;
-	}
-	
-});
-
-
-$("#reservationCancel").on("click", function(){ //열람실 예약 취소
-	let confirm = window.confirm("예약을 취소 하시겠습니까?");
+	let confirm = window.confirm("선택한 자리의 예약을 취소 하시겠습니까?");
+	let data = {"se_code" : $("#rm_code").val(),
+			    "se_low" : $(this).data("row"),
+			    "se_col" : $(this).data("col")};
 	
 	if(confirm){
 		$.ajax({
-			url : "userreadingroomreservationcancel",
-			type : "get",
+			url : "librayreadingroomreservationcancel",
+			type : "post",
+			data : {"json" : JSON.stringify(data)},
 			dataType:'text'
 			
 	}).done((result) => {
@@ -236,8 +209,10 @@ $("#reservationCancel").on("click", function(){ //열람실 예약 취소
 }); //ajax End 
 
 	}else{
+		console.log(this);
 		return false;
 	}
+	
 });
 
 
@@ -270,6 +245,7 @@ function showSeats(seats, low, col){
  									.attr("data-col",j)
  									.attr("data-row",i)
  									.attr("data-num",cnt)
+ 									.attr("disabled","disabled")
  									.appendTo($label);
  						cnt++;
         			}else{ //예약된 좌석
@@ -281,7 +257,6 @@ function showSeats(seats, low, col){
  									.attr("data-col",j)
  									.attr("data-row",i)
  									.attr("data-num",cnt)
- 									.attr("disabled","disabled")
  									.appendTo($label);
  						cnt++;
         			} //else End

@@ -178,6 +178,13 @@ public class HomeController {
 		
 		return "librarySchedule";
 	}
+	
+	//배송신청 페이지 이동
+	@RequestMapping(value = "/deliveryapplicationmove")
+	public String deliveryApplicationMove() {
+		
+		return "deliveryApplication";
+	}
 }
 
 

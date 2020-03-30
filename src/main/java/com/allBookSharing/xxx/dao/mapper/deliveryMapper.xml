@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.allBookSharing.xxx.dao.IDeliveryManagementDao">
+	
+	<select id="getDeliveryList" parameterType="String" resultType="deliveryreq">
+	SELECT DE_CODE, DE_ID, DE_LCODE, LB_NAME, de_Quantity, BK_NAME, BK_INTRODUCTION,BK_PUBLISHER,BK_PUBLICDAY, BK_WRITER, BK_IMAGE,
+       	   BK_BG_NUM,BG_CATE,BK_SG_NUM,SG_CATE
+	FROM delivery
+	JOIN BOOKS
+	ON DE_CODE = BK_CODE
+	JOIN LIBRARY
+	ON DE_LCODE = LB_CODE
+	JOIN BIGGROUP
+	ON BK_BG_NUM = BG_NUM
+	JOIN SMALLGROUP 
+	ON BK_SG_NUM = SG_BG_NUM
+	</select>
+
+</mapper>

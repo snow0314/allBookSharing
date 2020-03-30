@@ -50,8 +50,8 @@ public class LibrayReadingRoomController {
 	@RequestMapping(value = "/readingroomseatmanagement")
 	public ModelAndView readingRoomSeatManagement(String rm_code) {
 
-		//mav=rm.readingRoomSeatManagement(rm_code);
-		//new ModelAndView("librarian/readingRoomSeatManagement")
+		mav=rm.readingRoomSeatManagement(rm_code);
+		
 		return mav;
 	}
 }

@@ -11,6 +11,7 @@ import org.springframework.security.access.annotation.Secured;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import com.allBookSharing.xxx.dto.ReadingRoom;
+import com.allBookSharing.xxx.dto.Seats;
 import com.allBookSharing.xxx.service.ReadingRoomManagement;
 import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.databind.JsonMappingException;
@@ -91,5 +92,18 @@ public class LibrayReadingRoomRestController {
 			List<ReadingRoom> rList=rm.readingRoomSeatList(lb_code);
 
 			return rList;
+		}
+		
+		// 사서가 열람실 좌석 예약 취소하는 메소드
+		@Secured("ROLE_LIBRARIAN")
+		@RequestMapping(value = "/librayreadingroomreservationcancel", produces = "application/json;charset=UTF-8")
+		public String readingRoomCancel(String json, HttpServletRequest req)
+						throws JsonParseException, JsonMappingException, IOException {
+
+			// 제이슨 형태의 문자열을 객체로 변환
+			ObjectMapper mapper = new ObjectMapper();
+			Seats seat = mapper.readValue(json, Seats.class);
+				
+			return rm.readingRoomCancel(seat);
 		}
 }

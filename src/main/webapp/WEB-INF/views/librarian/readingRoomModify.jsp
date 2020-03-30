@@ -226,7 +226,11 @@ $(document).ready(function(){
                     
                     let $label=$("<label>").addClass("btn btn-outline-success").appendTo($("#seats"));
                     
-                    $("<input>").attr("name","seat") .attr("type","checkbox").attr("data-col",j).attr("data-row",i).appendTo($label);
+                    $("<input>").attr("name","seat") 
+                    			.attr("type","checkbox")
+                    			.attr("data-col",j)
+                    			.attr("data-row",i)
+                    			.appendTo($label);
                     
                 }
                $("<br>").appendTo($("#seats"));

@@ -105,5 +105,25 @@ public class ReadingRoomManagement {
 		
 		return rList;
 	}
+	public ModelAndView readingRoomSeatManagement(String rm_code) {
+		ReadingRoom readingRoom = rDao.getReadingRoomInfo(rm_code);
+		List<Seats> seats=rDao.getSeatInfo(rm_code);
+		readingRoom.setSeats(seats);
+		Gson gson=new Gson();
+		mav=new ModelAndView();
+		mav.addObject("readingRoom", gson.toJson(readingRoom));
+		
+		mav.setViewName("librarian/readingRoomSeatManagement");
+		return mav;
+	}
+	public String readingRoomCancel(Seats seat) {
+		boolean result = rDao.readingRoomCancel(seat);
+		if(result) {
+			return "예약을 취소했습니다.";
+		}else {
+			return "실패";
+		}
+		
+	}
 	
 }
