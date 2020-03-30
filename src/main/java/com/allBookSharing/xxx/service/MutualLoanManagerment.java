@@ -61,4 +61,22 @@ public class MutualLoanManagerment {
 		return mav;
 	}
 
+	
+	
+	public ModelAndView mutulLoanFalse(BookExchange bookEx) {
+		ModelAndView mav=new ModelAndView();
+		String view=null;
+
+		//상호대차 거절(상태 업데이트)
+		boolean result1=mlDao.updateMutulLoanFalse(bookEx);
+		boolean result2=mlDao.updateHopeStateFalse(bookEx);
+		
+		if(result1&&result2)
+		view="redirect:/mutualloanmove";
+		
+		mav.setViewName(view);
+		
+		return mav;
+	}
+
 }

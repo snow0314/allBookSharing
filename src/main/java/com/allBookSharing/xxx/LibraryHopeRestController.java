@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.allBookSharing.xxx.dao.IHopeDao;
+import com.allBookSharing.xxx.dto.BookExchange;
 import com.allBookSharing.xxx.dto.Hope;
 import com.allBookSharing.xxx.dto.Library;
 
@@ -38,5 +39,17 @@ public class LibraryHopeRestController {
 			return lList;
 		}
 
+		
+		
 
+		//사서 희망도서 상호대차
+		@Secured("ROLE_LIBRARIAN")
+		@RequestMapping(value = "/mutualloanqty")
+		public BookExchange mutualLoanQty(int be_rnum) {
+			BookExchange qty=hDao.mutualLoanQty(be_rnum);
+			
+			return qty;
+		}
+		
+		
 }

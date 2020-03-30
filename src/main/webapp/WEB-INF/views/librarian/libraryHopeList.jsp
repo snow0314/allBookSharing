@@ -86,7 +86,7 @@ for(let i=0;i<list.length;i++){
    var $tr= $("<tr>").appendTo($("#tb"));
    $tr.append("<td>"+list[i].br_num+"</td>");
    $tr.append("<td>"+list[i].lb_name+"</td>");	
-   $tr.append("<td><a id='modal_detail' data-toggle='modal' data-target='#myModal' data-number='"+list[i].br_num+"'>"+list[i].br_titile+"</a></td>");
+   $tr.append("<td><a id='modal_detail' data-toggle='modal' data-target='#myModal' data-number='"+list[i].br_num+"' onclick='mutualLoanQty("+list[i].br_num+")'  >"+list[i].br_titile+"</a></td>");
    $tr.append("<td>"+list[i].br_id+"</td>");
    $tr.append("<td>"+list[i].br_date+"</td>");
    if(list[i].br_situation==0)
@@ -99,6 +99,8 @@ for(let i=0;i<list.length;i++){
 	   $tr.append("<td><span style='color:blue; font-weight:bold;'>처리완료</span></td>");
    if(list[i].br_situation==4)
 	   $tr.append("<td><span style='color:green; font-weight:bold;'>상호 대차 수락</span></td>");
+   if(list[i].br_situation==5)
+	   $tr.append("<td><span style='color:orange; font-weight:bold;'>상호 대차 거절</span></td>");
 }
 
 </script>
@@ -143,9 +145,9 @@ for(let i=0;i<list.length;i++){
              type : "get",
              data : {"br_num":params}, 
              success : function(response) {
-            	 $("#modal-header").empty();
+            	 /* $("#modal-header").empty();
                  $("#modal-body").empty();
-                 $("#modal-footer").empty();
+                 $("#modal-footer").empty(); */
                  console.log("1",response);
                  console.log(response.br_titile);
                  
@@ -171,32 +173,44 @@ for(let i=0;i<list.length;i++){
                  str+="<span id='state' style='font-size: 12px; color: green;'>(상호대차수락)</span>";
                  str+="<span style='float: right; font-size: 14px;'><i class='far fa-clock'></i>"+response.br_date+"</span>";
                  str+="</div></div>";
-                 str+="<div>";
-                 str+="도서명 : "+response.br_name+"";
+                 str+="<div style='display:flex; margin:10px 10px;'>";
+                 str+="<div style='margin-right:10px;'>";
+                 str+="<img src='"+response.br_image+"' alt='도서 이미지' />";
                  str+="</div>";
                  str+="<div>";
-                 str+="ISBN 코드 : "+response.br_bcode+"";
-                 str+="</div>";
-                 str+="<div>";
-                 str+="저  자 : "+response.br_writer+"";
-                 str+="</div>";
-                 str+="<div>";
-                 str+="도서신청이유 : "+response.br_reason+"";
+                 str+="도서명 : "+response.br_name+"<br/><br/>ISBN 코드 : "+response.br_bcode+"<br/><br/>저  자 : "+response.br_writer+"<br/><br/>도서신청이유 : "+response.br_reason+"";
                  str+="</div>";
                 $("#modal-body").append(str); 
                 console.log("상태=",response.br_situation);
                 if(response.br_situation == 1){		//상태가 1(처리중)이면 취소버튼만 활성화
                     
-                footer+="<input type='submit' value='취소' formaction='hopereturn' class='btn btn-warning' style='float: left;'>";
+                footer+="<input type='submit' value='취소' formaction='hopecancel' class='btn btn-warning' style='float: left;'>";
                 footer+="<input type='hidden' name='be_bcode' value=\""+response.br_bcode+"\">";
                 	
                 }
                 else if(response.br_situation == 4){		//상태가 4(상호대차수락 )이면 처리완료만 활성화
-                    
+                	
+                	console.log("fasd",asd);
+                	
 	                footer+="<input type='submit'' value='처리완료' style='margin-right:10px;' formaction='hopecomplete' class='btn btn-primary'>";
                     footer+="<input type='hidden' name='be_bcode' value=\""+response.br_bcode+"\">";
                     	
                     }
+                
+				else if(response.br_situation == 5){		//상태가 5(상호대차거절 )이면 처리완료만 활성화
+                	footer+="<select name='br_false'  style='float: left; margin-right: 10px; height: 34px;'>";
+                    footer+="<option value=''>선택</option>";
+                    footer+="<option value='희망도서구입제한도서'>희망도서 구입제한 도서</option>";
+                    footer+="<option value='부적합한내용의도서'>부적합한내용의 도서</option>";
+                    footer+="<option value='구입불가능한도서'>구입불가능한 도서</option>";
+                    footer+="</select>";
+                    
+             	    footer+="<input type='submit' value='반려' formaction='hopereturn' class='btn btn-warning' style='float: left;'>";
+	                footer+="<input type='submit'' value='처리완료' style='margin-right:10px;' formaction='hopecomplete' class='btn btn-primary'>";
+                    footer+="<input type='hidden' name='be_bcode' value=\""+response.br_bcode+"\">";
+                    	
+                    }
+                
                 else if(response.br_situation != 0){		//상태가 대기중이 아니면 버튼 감추기
                 
                 }
@@ -286,6 +300,44 @@ console.log("isbn=",params);
  });
  
  </script> 
+ 
+ 
+ <script>
+ //상호대차 신청권수 ajax 
+ var asd;
+ function mutualLoanQty(be_rnum){
+	console.log("상호대차 신청권수 에작");
+	
+	 $.ajaxSetup({         
+         beforeSend : function(xhr){
+            xhr.setRequestHeader("${_csrf.headerName}", "${_csrf.token}");}
+         });//먼저 보냄
+         
+         $.ajax({
+             url : "mutualloanqty",
+             type : "get",
+             async: false,
+             data : {"be_rnum":be_rnum}, 
+             success : function(response) {
+            	 $("#modal-header").empty();
+                 $("#modal-body").empty();
+                 $("#modal-footer").empty();
+            	 var footer2="";
+            	 if(response.br_situation == 4){	
+            	     footer2+="<div style='float:left; font-weight:bold; margin:5px;'>신청 권수 : "+response.be_count+"권</div>";
+            	     $("#modal-footer").append(footer2);
+            	 };
+                   
+             },
+             error : function(jqXHR, status, e) {
+                 console.error("상호대차 도서관 에러");
+             }
+         
+         });	//ajax End
+ }
+ 
+ 
+ </script>
  
 </body>
 

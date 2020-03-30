@@ -25,6 +25,7 @@ public class HopeManagerment {
 		ModelAndView mav=new ModelAndView();
 		String view=null;
 		String id=principal.getName();
+		
 		List<Hope> hList=hDao.lbHopeList(id);
 		
 		System.out.println("hList"+hList);
@@ -90,6 +91,19 @@ public class HopeManagerment {
 		
 		mav.setViewName(view);
 		
+		return mav;
+	}
+
+
+	public ModelAndView hopeCancel(Hope hope) {
+		ModelAndView mav=new ModelAndView();
+		String view=null;
+		
+		boolean result=hDao.mutualLaonCancel(hope);
+		
+		view="redirect:/lbhopelist";
+
+		mav.setViewName(view);
 		return mav;
 	}
 

@@ -34,4 +34,10 @@ public interface IHopeDao {
 	//희망도서 상태 처리중으로 변경
 	boolean updateHopeProcessing(Hope hope);
 
+	//상호대차 취소
+	boolean mutualLaonCancel(Hope hope);
+
+	//상호대차신청권수 
+	BookExchange mutualLoanQty(int be_rnum);
+
 }

@@ -24,4 +24,9 @@ public interface IMutualLoanDao {
 	//희망도서 테이블 상태값을 5(상호대차수락)으로 update
 	boolean updateHopeState(BookExchange bookEx);
 
+	//상호대차 거절 (상태 업데이트(거절))
+	boolean updateMutulLoanFalse(BookExchange bookEx);
+	//상호대차 거절 (희망도서테이블 상태 업데이트)
+	boolean updateHopeStateFalse(BookExchange bookEx);
+
 }
