@@ -61,6 +61,20 @@ public class HomeController {
 
 		return mav;
 	}
+	
+	/*
+	 * //로그인 정보표시
+	 * 
+	 * @PreAuthorize("isAuthenticated()")
+	 * 
+	 * @PostMapping(value = "/logininfo") public ModelAndView loginInfo(Principal
+	 * principal) {
+	 * 
+	 * mav = mm.loginInfo(principal);
+	 * 
+	 * return mav; }
+	 */
+	
 	//회원탈퇴
 	@PreAuthorize("isAuthenticated()")
 	@PostMapping(value = "/memberdrop")

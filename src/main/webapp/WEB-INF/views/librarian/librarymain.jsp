@@ -171,8 +171,14 @@
                                             </div>
 
                                             <div class="account-dropdown__footer">
-                                                <a href="#">
+                                                 <a id="logout" href="#" onclick="logoutGo()"> 
                                                     <i class="zmdi zmdi-power"></i>Logout</a>
+                                                    
+                                                    
+                                                    
+        <form action="logout" name="logoutform" method="post">
+        <input id="csrf" type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/> 
+        </form>
                                             </div>
                                         </div>
                                     </div>
@@ -239,6 +245,16 @@
     <script src="adminPage/vendor/chartjs/Chart.bundle.min.js"></script>
     <script src="adminPage/vendor/select2/select2.min.js">
     </script>
+
+<script type="text/javascript">
+function logoutGo() {
+	
+	var logoutform=document.logoutform;
+	logoutform.submit();
+	
+}
+</script>
+
 
     <!-- Main JS-->
     <script src="adminPage/js/main.js"></script>

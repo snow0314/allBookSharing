@@ -112,6 +112,10 @@ public interface IMemberDao {
 	//한줄평 등록
 	int reviewInsert(Review review);
 	
+	/*
+	 * //로그인 정보 표시 Member loginInfo(String id);
+	 */
+	
 	
 	
 	

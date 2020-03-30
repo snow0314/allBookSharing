@@ -205,11 +205,17 @@
 		
 		<sec:authorize access="hasRole('ROLE_USER')">
        <div class="container2">
+       <div class="eff-7">
+         
+            <sec:authentication property="principal.username"/>님 환영 합니다.
+          
+            </div>
          <div class="button-7">
             <div class="eff-7"></div>
             <a id="logout" href="#" onclick="logoutGo()"> 로그아웃 </a>         
          </div>
-        </div>
+       </div>  
+       
         <form action="logout" name="logoutform" method="post">
         <input id="csrf" type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/> 
         </form>
