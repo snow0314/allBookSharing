@@ -50,6 +50,7 @@ public class Loan {
 		String br_writer;
 		int br_lcode;
 		int br_sms;
+		String br_image;
 		
 		
 	/*

@@ -29,9 +29,9 @@
 <!--희망도서 신청 -->
 <insert id="bookRequestApply" parameterType="Loan">
     INSERT INTO 
-    BOOKREQUEST(BR_NUM,BR_LCODE,BR_ID,BR_NAME,BR_BCODE,BR_WRITER,BR_TITILE,BR_REASON,BR_SMS,BR_DATE,BR_SITUATION) 
+    BOOKREQUEST(BR_NUM,BR_LCODE,BR_ID,BR_NAME,BR_BCODE,BR_WRITER,BR_TITILE,BR_REASON,BR_SMS,BR_DATE,BR_SITUATION,BR_IMAGE) 
     VALUES(BR_NUM.NEXTVAL,#{br_lcode},#{br_id},#{br_name},#{br_bcode},#{br_writer},#{br_titile},
-    #{br_reason},#{br_sms},SYSDATE,0)
+    #{br_reason},#{br_sms},SYSDATE,0,#{br_image})
 </insert>
 
 

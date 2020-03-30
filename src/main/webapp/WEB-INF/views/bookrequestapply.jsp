@@ -104,6 +104,7 @@ margin:5px;
 				<th scope="row"><label for="title">도서명<span class="w_star">*</span></label></th>
 				<td>
 					<div class="input-group mt-3 mb-3">
+					<input type="hidden" name="br_image" id="bk_image" value="">
 					<input id="bk_name" name="br_name" type="text" class="form-control" required>
 					&nbsp;
 					<button class="btn btn-success" type="button" data-toggle="modal" data-target="#modalCart">
