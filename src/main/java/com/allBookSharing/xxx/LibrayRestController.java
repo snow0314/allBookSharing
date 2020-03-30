@@ -18,13 +18,16 @@ public class LibrayRestController {
 	@Autowired
 	LibrayManagement lm;
 	
-	@Secured("ROLE_LIBRARIAN")
+	@Secured({"ROLE_LIBRARIAN","ROLE_ADMIN"})
 	@RequestMapping(value = "/libraryinfo", produces = "application/json;charset=UTF-8")
-	public Library getLibraryInfo(HttpServletRequest req) { //도서관 수정 페이지에 정보 채워주는 메소드
-
-		// 빅 데시멀 오류 발생 String.valueOf 사용하여 해결
-		int lb_code = Integer.parseInt(String.valueOf(req.getSession().getAttribute("LB_CODE")));
+	public Library getLibraryInfo(HttpServletRequest req,Integer lb_code) { //도서관 수정 페이지에 정보 채워주는 메소드
 		
+		if(lb_code==null) {
+			// 빅 데시멀 오류 발생 String.valueOf 사용하여 해결
+			lb_code = Integer.parseInt(String.valueOf(req.getSession().getAttribute("LB_CODE")));
+		}
+		
+		System.out.println("lb_code"+lb_code);
 		Library library=lm.getLibraryInfo(lb_code);
 
 		return library;
