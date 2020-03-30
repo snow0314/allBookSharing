@@ -27,6 +27,9 @@
 		JOIN BOOKS ON BD_BCODE=BK_CODE WHERE BO_ID=#{id}
 	</select>
 
+  <!--   <select id="loginInfo" resultType="member">
+     SELECT * FROM MEMBER WHERE MB_ID=#{id}
+    </select> -->
 
 	<select id="getBorrowChart" resultType="BigGroup">
 		SELECT BG_CATE,COUNT(BK_BG_NUM) CNT FROM BORROWLIST
