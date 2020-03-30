@@ -114,7 +114,7 @@
         </table>
     </div>
     <div class="container p-3 my-3 border" style="width: 1107px">
-    	배송비 :<span>권수</span> * <span>도서관수</span> = <span>총배송비</span> 
+    	배송비 :<span id="cnt">권수</span> * <span id="libCnt">도서관수</span> = <span id="total">총배송비</span> 
     </div>
 </body>
 <script>
@@ -132,7 +132,8 @@ $(document).ready( function () {
 		str+="<tr>";
 		str+="<td style='text-align: center; vertical-align:middle;'>";
 		str+="<div class='checkbox checkbox-inline checkbox-success checkbox-md'>";
-		str+="<input type='checkbox' class='styled' id='"+i+"' value='option3'>";
+		str+="<input type='checkbox' class='styled' id='"+i+"'  "
+				+" data-decode='"+result[i].de_code+"' data-delcode='"+result[i].de_lcode+"' data-quantity='"+result[i].de_quantity+"' value='option3'>";
 		str+="<label for='"+i+"'></label>";
 		str+="</div>";
 		str+="</td><td>";
@@ -140,12 +141,14 @@ $(document).ready( function () {
 		str+="</td>";
 		str+="<td class='recotd'>";
 		str+="<span class='bname'>"+result[i].bk_name+"</span>";
+		str+="<input type='hidden' name='de_code' value='"+result[i].de_code+"'";
 		str+="<br>저자 : "+result[i].bk_writer+"";
 		str+="<br>출판사 : "+result[i].bk_publisher+"";
 		str+="<br>출판일 : "+result[i].bk_publicday+"";
 		str+="<br>대분류/소분류 : "+result[i].bg_cate+"/"+result[i].sg_cate;
 		str+="<br>도서관 : "+result[i].lb_name+"";
-		str+="<br>권수 : "+result[i].de_quantity+"";
+		str+="<input type='hidden' name='de_lcode' value='"+result[i].de_lcode+"'";
+		str+="<br><br>권수 : "+result[i].de_quantity+"";
 		str+="</td>";
 		str+="<td style='text-align: center; vertical-align:middle;'>";
 		str+="<input type='button' value='삭제'>";
@@ -157,5 +160,33 @@ $(document).ready( function () {
 	console.log("xhr=",xhr);
 }); //ajax End
 
+}); //ready End
+
+$("div").on("change",".styled",function(){
+	
+	console.log("attr1",$(this).attr("checked"))
+	
+	if($(this).attr("checked")==undefined || $(this).attr("checked")==false){
+		$(this).attr("checked",true);
+	}else{
+		$(this).attr("checked",false);
+	}
+	console.log("attr2",$(this).attr("checked"));
+	console.log("de_code",$(this).data("decode"));
+	console.log("de_lcode",$(this).data("delcode"));
+	console.log("de_quantity",$(this).data("quantity"));
+	let temp=0;
+	let libCnt=0;
+	let lib=new Array();;
+	$('.styled:checked').each(function() {
+		temp+=$(this).data("quantity");
+		lib.push($(this).data("delcode"));
+   });
+	console.log("temp",temp);
+	console.log("lib",lib);
+	console.log("유니크",$.unique(lib));
+	$("#cnt").text(temp);
+	
 });
+
 </script></html>
