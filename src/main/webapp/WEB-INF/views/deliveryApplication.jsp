@@ -5,6 +5,9 @@
 
 <head>
     <meta charset="UTF-8">
+    <meta id="_csrf" name="_csrf" content="${_csrf.token}" />
+	<meta id="_csrf_header" name="_csrf_header"
+	content="${_csrf.headerName}" />
     <title>Insert title here</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
@@ -114,9 +117,11 @@
         </table>
     </div>
     <div class="container p-3 my-3 border" style="width: 1107px">
-    	배송비 :<span id="cnt">권수</span> * <span id="libCnt">도서관수</span> = <span id="total">총배송비</span> 
+    	<div style="display: inline;">배송비 :<!-- <span id="cnt">권수</span> * --> <span id="libCnt">도서관수</span> * 3000원= <span id="total">총배송비</span></div>
+    	<div style="display: inline;"><input id="apply" class="btn btn-outline-success" type="button" value="배송 신청"></div>
     </div>
 </body>
+<script type="text/javascript" src="js/ajaxCsrf.js"></script>
 <script>
 $(document).ready( function () {
 	$.ajax({ //도서관 정보 가져오는 에이작스
@@ -151,7 +156,7 @@ $(document).ready( function () {
 		str+="<br><br>권수 : "+result[i].de_quantity+"";
 		str+="</td>";
 		str+="<td style='text-align: center; vertical-align:middle;'>";
-		str+="<input type='button' value='삭제'>";
+		str+="<input type='button' class='btn btn-outline-danger' value='삭제'>";
 		str+="</td></tr>";
 	}
 	$(str).appendTo($("#delivery"));
@@ -162,7 +167,7 @@ $(document).ready( function () {
 
 }); //ready End
 
-$("div").on("change",".styled",function(){
+$("div").on("change",".styled",function(){ //체크박스 클릭시 배송비 산정하는 메소드
 	
 	console.log("attr1",$(this).attr("checked"))
 	
@@ -185,7 +190,43 @@ $("div").on("change",".styled",function(){
 	console.log("temp",temp);
 	console.log("lib",lib);
 	console.log("유니크",$.unique(lib));
-	$("#cnt").text(temp);
+	
+	//$("#cnt").text(temp);
+	$("#libCnt").text($.unique(lib));
+	$("#total").text($.unique(lib)*3000+"원");
+	
+});
+
+$("#apply").on("click",function(){
+
+	let temp=0;
+	let libCnt=0;
+	let lib=new Array();
+	let allData = new Array();
+	
+	$('.styled:checked').each(function() {
+		let data ={};
+		data.de_code = $(this).data("decode");
+		data.de_lcode = $(this).data("delcode");
+		data.de_quantity = $(this).data("quantity");
+		allData.push(data);
+		temp+=$(this).data("quantity"); //총 권수
+		lib.push($(this).data("delcode")); //도서관 개수
+   });
+	console.log("alldata",allData);
+	
+	$.ajax({ //도서관 정보 가져오는 에이작스
+		url : "deliveryinsert",
+		type : "post",
+		data : {"json" : JSON.stringify(allData), "pl_inout" : temp},
+		dataType:'text'
+		
+}).done((result) => {
+	console.log("result=",result);
+	
+}).fail((xhr) => {
+	console.log("xhr=",xhr);
+}); //ajax End
 	
 });
 
