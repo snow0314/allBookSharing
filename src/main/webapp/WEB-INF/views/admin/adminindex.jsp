@@ -148,21 +148,21 @@
                                 <div class="account-wrap">
                                     <div class="account-item clearfix js-item-menu">
                                         <div class="image">
-                                            <img src="adminPage/images/icon/avatar-01.jpg" alt="John Doe" />
+                                            <img src="./images/icia.jpg" />
                                         </div>
                                         <div class="content">
-                                            <a class="js-acc-btn" href="#">mr.Cho</a>
+                                            <a class="js-acc-btn" href="#">mr.Pak</a>
                                         </div>
                                         <div class="account-dropdown js-dropdown">
                                             <div class="info clearfix">
                                                 <div class="image">
                                                     <a href="#">
-                                                        <img src="adminPage/images/icon/avatar-01.jpg" alt="John Doe" />
+                                                        <img src="./images/icia.jpg" />
                                                     </a>
                                                 </div>
                                                 <div class="content">
                                                     <h5 class="name">
-                                                        <a href="#">mr.Cho</a>
+                                                        <a href="#">mr.Pak</a>
                                                     </h5>
                                                     <span class="email">johndoe@example.com</span>
                                                 </div>
