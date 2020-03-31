@@ -167,6 +167,37 @@ public class AdminManagement {
 		mav.setViewName("admin/recommendInsert");
 		return mav;
 	}
+	
+	//관리자 도서관 정보 수정
+	public ModelAndView libraryDelete(Library lib) {
+		mav=new ModelAndView();
+		System.out.println("수정 서비스");
+		boolean result=aDao.libraryDelete(lib);
+		
+		if(result) {
+			mav.setViewName("admin/libraryDelete");
+			mav.addObject("msg", "성공");
+		}else {
+			mav.setViewName("admin/libraryDelete");
+			mav.addObject("msg", "실패");
+		}
+		
+		return mav;
+	}
+	
+	//관리자 도서관 삭제
+	public String LibraryDrop(String lb_code) {
+		int result=0;
+		
+		result=aDao.LibraryDrop(lb_code);
+		
+		if(result!=0) {
+			return "성공";
+		}else {
+			return "실패";
+		}
+		
+	}
 
 	
 	

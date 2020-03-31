@@ -49,8 +49,8 @@
 	</div>
 	<div class="container p-3 my-3 border">
 
-		<table id="contents" class="table table-bordered table-hover">
-
+		<table  class="table table-bordered table-hover">
+		<thead>
 			<tr>
 				<th>도서관 코드</th>
 				<th>도서관 이름</th>
@@ -58,6 +58,10 @@
 				<th>사서 아이디</th>
 				<th>삭 제</th>
 			</tr>
+		</thead>
+		<tbody id="contents">
+		
+		</tbody>	
 		</table>
 		<div id="pagination"></div>
 	</div>
