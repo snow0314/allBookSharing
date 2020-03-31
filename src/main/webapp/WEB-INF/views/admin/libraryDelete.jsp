@@ -134,9 +134,12 @@
 
 				<tr>
 					<td><input type="hidden" name="_csrf" value="${_csrf.token}">
-
 						<input type="submit" id="librarydelete" class="btn btn-outline-success"
-						value="수정하기"></td>
+						value="수정하기">
+						<td><input type="submit" id="librarydrop" class="btn btn-outline-success" 
+						 value="삭제"></td>
+					
+					</td>
 				</tr>
 			</table>
 		</div>
@@ -200,7 +203,7 @@ function libraryinfo() {
 }).done((result) => {
 	console.log("result=",result);
 	$("#lb_code").val(result.lb_code);
-	$("#lb_name").val(result.lb_name);
+	//$("#lb_name").val(result.lb_name);
 	$("#lb_phone").val(result.lb_phone);
 	$("#lb_email").val(result.lb_email);
 	$("#lb_loc").val(result.lb_loc);
@@ -252,6 +255,31 @@ function mapCreate(latitude,longitude,roadAddr) {
 
     // 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
     map.setCenter(coords); 
+}
+
+function librarydrop(lb_code){ //삭제 버튼
+	
+	$.ajax({
+		url : "librarydrop",
+		type : "get",
+		data : {"lb_code" : lb_code},
+		dataType:'text'
+		
+}).done((result) => {
+	console.log("result=",result);
+	
+	if(result=="성공"){
+		toastr.success('성공', '삭제에 성공하셨습니다.');
+	}else{
+		toastr.error("실패", "삭제에 실패하셨습니다.");
+	}
+	
+	location.reload(true);
+	
+}).fail((xhr) => {
+	console.log("xhr=",xhr);
+}); //ajax End
+	
 }
 </script>
 </html>
