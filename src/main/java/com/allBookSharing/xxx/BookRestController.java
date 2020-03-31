@@ -190,6 +190,14 @@ public class BookRestController {
 		return mrList;
 	}
 	
+	@GetMapping(value="/selrecommend",produces="application/json;charset=UTF-8")
+	public List<Recommend> selrecommendList(String re_date) {
+		
+		List<Recommend> rcList=bm.selrecommendList(re_date);
+		System.out.println("rcList="+rcList);
+		return rcList;
+	} 
+	
 	
 	
 

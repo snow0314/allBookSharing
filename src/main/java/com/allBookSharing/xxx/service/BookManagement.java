@@ -165,18 +165,7 @@ public class BookManagement {
 		return mav;
 		
 	}
-	public ModelAndView recommendList(Recommend rm) {
-		mav=new ModelAndView();
-		String view=null;
-		
-		List<Recommend> rmList=bDao.recommendList(rm);
-		mav.addObject("rmList", rmList);
-		
-		view="recommendList";
-		mav.setViewName(view);
-		return mav;
-	}
-
+	
 	
 
 	
@@ -200,12 +189,11 @@ public class BookManagement {
 		return mrList;
 	}
 
-	
+	public List<Recommend> selrecommendList(String re_date) {
+		List<Recommend> rcList=bDao.selrecommendList(re_date);
+		return rcList;
+	}
 
-	
 
-
-
-	
 
 }

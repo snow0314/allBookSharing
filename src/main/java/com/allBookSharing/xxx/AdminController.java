@@ -172,6 +172,12 @@ public class AdminController {
 				return "admin/libraryDelete";
 			}
 	    
+	    @Secured("ROLE_ADMIN")
+	    @RequestMapping(value ="/recommendlistmove") 
+		 public String recommendListMove() {
+
+			 return "admin/recommendLists";
+		 }
 
 }
 

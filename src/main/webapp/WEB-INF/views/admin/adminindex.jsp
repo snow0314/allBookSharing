@@ -101,7 +101,7 @@
                                     <a href="#" onclick="adminmenuMove(6)">추천도서 등록</a>
                                 </li>
                                 <li>
-                                    <a href="index2.html">추천도서 목록</a>
+                                    <a href="#" onclick="adminmenuMove(7)">추천도서 목록</a>
                                 </li>
 
                             </ul>

@@ -31,7 +31,7 @@ public class Recommend {
 	private int re_bg_num; //대분류
 	private String bg_cate;//소분류 이름
 	private String re_contents; //추천글
-	private Timestamp re_date; //추천날짜
+	private String re_date; //추천날짜
 	private String re_image;
 	 
 }

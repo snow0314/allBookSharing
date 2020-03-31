@@ -48,10 +48,12 @@ public interface IBookDao {
 	List<Loan> mainPageTopTen(Loan lo);
 
 	Review bookRvGrade(String bk_code);
-	List<Recommend> recommendList(Recommend rm);
+	
 	List<Recommend> mainRecommend(Recommend recommend);
 	
 	Integer reservCount(Reservation r);
+	List<Recommend> selrecommendList(String re_date);
+
 	
 	
 	
