@@ -37,16 +37,25 @@ public class DeliveryRestController {
 		return dList;
 	}
 	
-	//배송 신청
+	//배송 신청버튼 클릭시 대출목록에 들어가는 메소드
 	@PreAuthorize("isAuthenticated()")
-	@RequestMapping(value = "/deliveryinsert", produces = "application/json;charset=UTF-8")
-	public String deliveryInsert(Principal principal, String json, String pl_inout) throws JsonParseException, JsonMappingException, IOException { 
+	@RequestMapping(value = "/borrowlistinsert", produces = "application/json;charset=UTF-8")
+	public String borrowListInsert(Principal principal, String json, String pl_inout) throws JsonParseException, JsonMappingException, IOException { 
 		// 제이슨 형태의 문자열을 객체로 변환
 		ObjectMapper mapper = new ObjectMapper();
 		List<DeliveryReq> dList = Arrays.asList(mapper.readValue(json, DeliveryReq[].class));
 		
-		System.out.println("배송신청:"+dList.toString());
 		
-		return "성공";
+		
+		return dm.borrowListInsert(dList,principal.getName(), pl_inout);
 	}
+	
+	//배송 신청버튼 클릭시 대출목록에 들어가는 메소드
+	@PreAuthorize("isAuthenticated()")
+	@RequestMapping(value = "/usergradecheck", produces = "application/json;charset=UTF-8")
+	public String userGradeCheck(Principal principal){ 
+			
+		
+		return dm.userGradeCheck(principal.getName());
+	}	
 }

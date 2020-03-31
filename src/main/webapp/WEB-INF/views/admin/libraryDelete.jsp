@@ -44,7 +44,7 @@
 						<div class="input-group-prepend">
 							<span class="input-group-text">지역</span>
 						</div>
-					<select name="lb_loc" id="lb_loc" onchange="getLocLibray()">
+					<select name="lb_loc" id="lb_loc" onclick="getLocLibray()">
 						<option selected>선택</option>
 					</select>
 					</div>
@@ -175,7 +175,7 @@ function getLocLibray() {
 	console.log("result2=",result);
  	var info=result;
  	$("#lb_name").empty();
-		$("<option>").text("선택").appendTo($("#lb_name"));
+	$("<option>").text("선택").appendTo($("#lb_name"));
 	for(var i=0;i<info.length;i++){
 		$("<option>").text(info[i].lb_name).attr("value",info[i].lb_code).appendTo($("#lb_name"));
 	} 
@@ -200,7 +200,7 @@ function libraryinfo() {
 }).done((result) => {
 	console.log("result=",result);
 	$("#lb_code").val(result.lb_code);
-	$("#lb_name").val(result.lb_name);
+	//$("#lb_name").val(result.lb_name);
 	$("#lb_phone").val(result.lb_phone);
 	$("#lb_email").val(result.lb_email);
 	$("#lb_loc").val(result.lb_loc);
