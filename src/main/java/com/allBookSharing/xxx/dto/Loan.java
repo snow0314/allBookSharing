@@ -15,6 +15,7 @@ import lombok.experimental.Accessors;
 public class Loan {
 
 
+		int bd_num;
 		int bo_num;
 		String bk_name;
 		String bk_image;
