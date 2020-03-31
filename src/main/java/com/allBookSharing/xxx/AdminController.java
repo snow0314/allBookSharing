@@ -171,7 +171,15 @@ public class AdminController {
 			 
 				return "admin/libraryDelete";
 			}
-	    
+	    //도서관 정보 수정
+	    @Secured("ROLE_ADMIN")
+		@RequestMapping(value = "/librarydelete")
+		public ModelAndView libraryDelete(Library lib) { 
+			System.out.println("도서관 정보:"+lib.toString());
+			mav=am.libraryDelete(lib);
+			
+			return mav;
+		}
 
 }
 
