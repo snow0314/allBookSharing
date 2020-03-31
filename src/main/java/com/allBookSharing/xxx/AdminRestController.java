@@ -47,5 +47,12 @@ public class AdminRestController {
 		return code;
 	}
 	
+	@RequestMapping(value = "/librarydrop", produces = "application/json;charset=UTF-8")
+	public String LibraryDrop(String lb_code) {
+		
+		String result= am.LibraryDrop(lb_code);
+
+		return result;
+	}
 	
 }

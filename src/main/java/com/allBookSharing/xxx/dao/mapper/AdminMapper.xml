@@ -66,4 +66,9 @@ JOIN LIBRARY ON LA_LCODE=LB_CODE
 						   LB_LONGITUDE = #{lb_longitude}
 					   WHERE LB_CODE = #{lb_code}	   
 	</update>	
+	
+<delete id="libraryDrop">
+	DELETE FROM LIBRARY WHERE LB_CODE=#{lb_code}
+</delete>	
+
 </mapper>

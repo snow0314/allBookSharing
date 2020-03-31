@@ -184,6 +184,20 @@ public class AdminManagement {
 		
 		return mav;
 	}
+	
+	//관리자 도서관 삭제
+	public String LibraryDrop(String lb_code) {
+		int result=0;
+		
+		result=aDao.LibraryDrop(lb_code);
+		
+		if(result!=0) {
+			return "성공";
+		}else {
+			return "실패";
+		}
+		
+	}
 
 	
 	
