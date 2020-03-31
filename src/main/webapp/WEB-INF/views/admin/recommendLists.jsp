@@ -1,6 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
- <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -25,10 +24,9 @@ font-family: 'Hanna', sans-serif;
 	margin-left:10%
 	}
 .recontents{
-width:370px;
+width:300px;
 vertical-align:middle;
 background-color:#F6D155;
-border-radius:20px;
 padding:10px;
 text-align:center;
 font-family: 'Noto Sans KR', sans-serif;
@@ -57,8 +55,8 @@ padding-left:20px;
 	}
 
 #recommendList{
-width:80%;
-margin-left:10%;
+width:73%;
+margin-left:5%;
  border-collapse: separate;
   border-spacing: 0 20px;
   margin-top:7%;
@@ -82,12 +80,22 @@ margin-right:10%;
 margin-bottom:20px;
 width:120px;
 height:40px;
-}
 
+}
+.delbtn{
+	width:95px;
+	height:38px;
+	border:1px solid #00539C;
+	font-size:15px;
+	color:#00539C;
+	font-weight:800;
+	background-color:white;
+	margin-left:30px;
+}
 
 </style>
 <body>
-<h1 id="d">추천도서</h1>
+<h1 id="d">추천도서리스트</h1>
 
 <select name="recomonth" id="recomonth" onchange=recoChange()>
     <option value="04" id="fourth">2020/04</option>
@@ -130,11 +138,11 @@ function recoChange(){
 		    	
 		    			var str="";
 		    			$.each(result,function(index,item){
-		    				str+='<tr class="ttr"><td><h2><i id="down" class="fa fa-thumbs-o-up"></i></h2></td>';
-		    				str+='<td><div class="recoimgdiv"><img src="'+item.re_image+'" class="recoimg"></div></td>';
+		    				
+		    				str+='<tr class="ttr"><td><div class="recoimgdiv"><img src="'+item.re_image+'" class="recoimg"></div></td>';
 		    				str+='<td class="recotd"><span class="bname">'+item.re_bname+'</span><br>'+item.re_bwriter+'<br>'+item.re_publisher+'<br>'+item.re_publicday+'<br>'
 		    				         +item.bg_cate+'/'+item.sg_cate+'<br><span onclick="introshow('+index+')"style="font-size:25px;" >서평<i class="fa fa-chevron-circle-down" style="margin-right:82%;margin-top:8px;font-size:25px"></i></span></td>';
-		    				str+='<td class="recontents"><h4>추천글</h4>'+item.re_contents+'</td></tr>';
+		    				str+='<td class="recontents"><h4>추천글</h4>'+item.re_contents+'</td><td><button class="delbtn">삭제</button></td></tr>';
 		    				str+=' <tr style="visibility:collapse;" class="introtr" id="'+index+'"><td  colspan="4" class="recointro">'+item.re_introduction+'</td></tr>';
 		    	    	});
 		    			

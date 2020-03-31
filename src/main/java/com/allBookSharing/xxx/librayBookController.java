@@ -72,8 +72,7 @@ public class librayBookController {
 	}
 	@GetMapping(value="/recommend")
 	public ModelAndView recommendList(Recommend rm) {
-		mav=bm.recommendList(rm);
-		return mav;
+		return new ModelAndView("recommendList");
 	}
 	
 	

@@ -171,6 +171,14 @@ public class AdminController {
 			 
 				return "admin/libraryDelete";
 			}
+
+	    @Secured("ROLE_ADMIN")
+	    @RequestMapping(value ="/recommendlistmove") 
+		 public String recommendListMove() {
+
+			 return "admin/recommendLists";
+		 }
+
 	    //도서관 정보 수정
 	    @Secured("ROLE_ADMIN")
 		@RequestMapping(value = "/librarydelete")
@@ -180,7 +188,6 @@ public class AdminController {
 			
 			return mav;
 		}
-
 }
 
 
