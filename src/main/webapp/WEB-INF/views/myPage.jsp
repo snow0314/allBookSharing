@@ -78,7 +78,44 @@ width: 400px;
 	margin-top: 50px;
 }
 
- 
+
+ #submenu {
+  		float: left;
+  		width: 15%;
+  		height: 100%;  
+  	  margin-left: 8%;
+  	  margin-top:2%;
+}
+    .subtopbtn{
+width:100%;
+font-family: 'Hanna', sans-serif;
+height:98px;
+background-color:#223A5E;
+color:white;
+}
+
+.subbtn{
+width:100%;
+background-color:white;
+height:55px;
+font-family: 'Nanum Gothic Coding', monospace;
+font-weight:bold;
+font-size:20px;
+border:none;
+}
+.subbtn:hover{
+background-color:#F0EAD6;
+}
+ #totalsearchlist{
+		float:right;
+		background-color:white;
+		width:65%;
+		height:auto;
+		margin-right: 8%;
+        margin-top:2%;
+        margin-bottom: 5%;
+        padding:0px;
+	}
 </style>
 
 
@@ -89,6 +126,17 @@ width: 400px;
 <body>
  <jsp:include page="header.jsp" />
 
+<nav id="submenu">
+	<button class="subtopbtn" disabled><h2>나의 도서관</h2></button><br>
+    <button class="subbtn" onclick="location.href = 'movemypage' " >마이 페이지</button><br>
+    <button class="subbtn" onclick="location.href = 'movedeliverylist' " >배송 목록</button><br>
+    <button class="subbtn" onclick="location.href = 'moveloanlist'">대출 목록</button><br>
+    <button class="subbtn" onclick="location.href = 'movehopelist'">희망 도서 신청 목록</button>
+</nav>
+
+
+
+<main id="totalsearchlist">
 	<div class="container">
 		<div id='topDiv'>
 
@@ -131,12 +179,20 @@ width: 400px;
 					
 					
 				</table>
-				<input id='btn' type="submit" value="개인정보 변경"/>
+				<input id='btn' type="submit"  value="개인정보 변경"/>
 				<input id='btn2' type="submit" value="회원탈퇴" formaction="./memberdrop?${_csrf.parameterName}=${_csrf.token}"/>
 				<input type="hidden" id="_csrf" name="_csrf" value="${_csrf.token}">
 			</form>
 			</div>
+			
+<script>
 
+$("#btn2").click(function(){
+	
+	return confirm("회원 탈퇴 하시겠습니까?");
+});
+
+</script>
 			<div id="myProfile_rest" style="height:280px;">
 				<table id="table_rest" class="table table-striped" style="width:478px;">
 					<tr>
@@ -247,6 +303,8 @@ width: 400px;
 			</div>
 		</div>
 	</div>
+	
+	</main>
 
 <script>
 
@@ -451,8 +509,10 @@ $.ajax({
 }); //end ajax
 
 
-
 //현재 예약 목록
+var rv_code;
+var spl;
+var rank;
 $.ajax({
 	type : 'get',
 	url :"reservationlist",
@@ -471,9 +531,15 @@ $.ajax({
         if(data[i].bk_state==1)
         $tr.append("<td id='state'>대출가능</td>");
         $tr.append("<td><button id='cart_btn'>담기</button></td>");
-        $tr.append("<td><span id='rank'>rank("+data[i].rv_num+") data-isbn='"+data[i].rv_code+"'</span>순위</td>");
-        $tr.append("<td><button onclick='reservationCancel("+data[i].rv_num+")  '>취소</button></td>");
+        spl=data[i].rv_code;//???
+        rv_code=spl.split(" ");	
+        rv_code=rv_code[0]+" "+rv_code[1];
+        console.log("rv_code=",rv_code);
+        rank=getRank(rv_code,data[i].rv_lcode);
+        console.log("rank=",rank);
+        $tr.append("<td style='text-align:center;' ><span id='rank' style='font-weight:bold;'>"+rank+"</span></td>");
         
+        $tr.append("<td><button onclick='reservationCancel("+data[i].rv_num+") '>취소</button></td>");
         }
         
      },
@@ -486,21 +552,29 @@ $.ajax({
 
 
 //예약 순위
-function rank(rv_num){
-	$.ajax({
+function getRank(rv_code,rv_lcode){
+	
+	console.log("rv_code",rv_code);
+	console.log("rv_lcode",rv_lcode);
+	
+	 $.ajax({
+		 
 		type : 'get',
 		url :"reservationrank",
-		data:{rv_num:rv_num},
+		data:{"rv_code":rv_code,"rv_lcode":rv_lcode},
 		success : function(data) {
-			console.log("랭크ajax=",data);
+			console.log("예약 순위ajax=",data);
+			$("#rank").html(data);
 		},
 		error : function(xhr, status) {
-        console.log("xhr=", xhr);
-        console.log("status=", status);
-     }
+       console.log("예약순위 에러");
+    }
 		
 	});	 //ajax End
-}
+	
+	
+	
+};
 
 
 /* //카트 담기

@@ -1,7 +1,6 @@
 package com.allBookSharing.xxx.dao;
 
 
-import java.security.Principal;
 import java.util.List;
 
 import org.apache.ibatis.annotations.Delete;
@@ -29,25 +28,19 @@ public interface IMemberDao {
 	int getBorrowCnt(String id);
 
 	//연체횟수
-	@Select("SELECT COUNT(BD_RETURN_DATE-BD_REAL_RETURN_DATE) FROM VEIW_BRROW WHERE BO_ID=#{id} AND (BD_RETURN_DATE-BD_REAL_RETURN_DATE)<0")
 	int getArrearsCnt(String id);
 
-	
 	//리뷰횟수(독서횟수)
 	@Select("SELECT COUNT(*) FROM REVIEW WHERE RV_ID=#{id}")
 	int getReviewcntCnt(String id);
 	
 	//누적 연체일수
-	@Select("SELECT SUM(BD_RETURN_DATE-BD_REAL_RETURN_DATE) FROM VEIW_BRROW WHERE BO_ID=#{id} AND (BD_RETURN_DATE-BD_REAL_RETURN_DATE)<0")
-	int getArrearsDay(String id);
+	Integer getArrearsDay(String id);
 	
-	@Select(
-			"SELECT bo_num,bk_name,bk_lcode,bd_date,bd_return_date,bd_return_extension,bk_image FROM BORROWLIST \r\n" + 
-			"JOIN BORROWDETAIL ON BO_NUM=BD_BO_NUM\r\n" + 
-			"JOIN BOOKS ON books.bk_code=borrowdetail.bd_bcode and bo_lcode=bk_lcode  WHERE BO_ID=#{id}")
+	//마이 페이지 대출 현황
 	List<Loan> getLoanList(String id);
 	
-	
+	//연체 목록
 	List<Loan> getArrearsList(String id);
 	
 	@Update("update member set mb_pw=#{pw} where mb_id=#{id}")
@@ -106,8 +99,8 @@ public interface IMemberDao {
 	@Select("SELECT * FROM LIBRARY WHERE LB_LOC=#{loc}")
 	List<Library> getLocLibray(String loc);
 	
-	@Select("")
-	int getreservationRank(int rv_num);
+	
+	int getreservationRank(Reservation res);
 	
 	//한줄평 등록
 	int reviewInsert(Review review);
