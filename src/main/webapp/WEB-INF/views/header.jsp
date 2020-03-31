@@ -134,8 +134,12 @@
       
       <sec:authorize access="hasRole('ROLE_USER')">
        <div class="container2">
+            <div class="eff-7" style="width:190px; margin-left:1520px; margin-top:20px; color:#2E2E2E;">
+                        
+            <span id=span><a href="movemypage"><sec:authentication property="principal.username"/></a></span>님 환영 합니다.
+          
+            </div>
          <div class="button-7">
-            <div class="eff-7"></div>
             <a id="logout" href="#" onclick="logoutGo()"> 로그아웃 </a>         
          </div>
         </div>

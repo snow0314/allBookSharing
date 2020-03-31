@@ -60,7 +60,7 @@
 	text-align: center;
 }
 #btn{
-  margin-right: 200px;
+  margin-right: 10px;
 }
 </style>
 
@@ -85,10 +85,12 @@
 		</table>
 
 	</div>
+	<div align="center" style="margin-top: 10px;">
 	<form action="movenoticewrite?${_csrf.parameterName}=${_csrf.token}"
 		method="post">
-		<input type="submit" value="글쓰기" id="btn">
+		<input type="submit" value="글쓰기" id="btn" class="btn btn-default btn-lg">
 	</form>
+	</div>
 
 	<script>
 		let list = ${nList};
