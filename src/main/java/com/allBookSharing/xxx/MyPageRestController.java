@@ -101,9 +101,12 @@ public class MyPageRestController {
 	
 	//예약 순위 
 	@RequestMapping(value = "/reservationrank" ,produces = "application/json;charset=UTF-8")
-	public int reservationRank(int rv_num) {
+	public int reservationRank(Reservation res,Principal principal) {
+		
 		System.out.println("현재 예약 순위 컨트롤러");
-		int rank=mm.getreservationRank(rv_num);
+		System.out.println("rv_lcode="+res.getRv_lcode());
+		System.out.println("rv_code="+res.getRv_code());
+		int rank=mm.getreservationRank(res,principal);
 		
 		return rank;
 	}

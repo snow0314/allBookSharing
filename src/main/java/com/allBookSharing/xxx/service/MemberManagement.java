@@ -123,13 +123,20 @@ public class MemberManagement {
 //		User username = (User) authentication.getPrincipal();
 //		System.out.println("user="+username.getUsername());
 //		System.out.println("id="+id);
+		
 		String id=principal.getName();
 		System.out.println("id="+id);
 		
 		//누적 연체일수
-		int arrearsDay=0;
-		arrearsDay=mDao.getArrearsDay(id)*-1;
-		
+		System.out.println("누적연체일수 ㄱㄱ");
+		Integer arrearsDay=0;
+		arrearsDay=mDao.getArrearsDay(id);
+		if(arrearsDay==null)
+			arrearsDay=0;
+		else if(arrearsDay<0)
+			arrearsDay=arrearsDay*-1;
+		else
+			arrearsDay=0;
 		
 		System.out.println("연체 일수 ="+arrearsDay);
 		
@@ -360,9 +367,9 @@ public class MemberManagement {
 		return list;
 	}
 	//예약 순위
-	public int getreservationRank(int rv_num) {
-
-		int rank=mDao.getreservationRank(rv_num);
+	public int getreservationRank(Reservation res, Principal principal) {
+		res.setRv_id(principal.getName());
+		int rank=mDao.getreservationRank(res);
 		
 		return rank;
 	}

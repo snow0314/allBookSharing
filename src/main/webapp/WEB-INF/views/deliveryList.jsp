@@ -33,11 +33,68 @@
     $.fn.bootstrapBtn = bootstrapButton            // give $().bootstrapBtn the Bootstrap functionality
     </script>
     
+    
+    <style>
+    #foo-table_paginate{
+text-align: center;
+}
+    #submenu {
+  		float: left;
+  		width: 15%;
+  		height: 100%;  
+  	  margin-left: 8%;
+  	  margin-top:2%;
+}
+    .subtopbtn{
+width:100%;
+font-family: 'Hanna', sans-serif;
+height:98px;
+background-color:#223A5E;
+color:white;
+}
+
+.subbtn{
+width:100%;
+background-color:white;
+height:55px;
+font-family: 'Nanum Gothic Coding', monospace;
+font-weight:bold;
+font-size:20px;
+border:none;
+}
+.subbtn:hover{
+background-color:#F0EAD6;
+}
+
+#totalsearchlist{
+		float:right;
+		background-color:white;
+		width:65%;
+		height:auto;
+		margin-right: 8%;
+        margin-top:2%;
+        margin-bottom: 5%;
+        padding:0px;
+	}
+	
+    </style>
+    
 </head>
 <body>
 <jsp:include page="header2.jsp" />
 
-		<div style="width:80%;">
+
+<nav id="submenu">
+	<button class="subtopbtn" disabled><h2>나의 도서관</h2></button><br>
+    <button class="subbtn" onclick="location.href = 'movemypage' " >마이 페이지</button><br>
+    <button class="subbtn" onclick="location.href = 'movedeliverylist' " >배송 목록</button><br>
+    <button class="subbtn" onclick="location.href = 'moveloanlist'">대출 목록</button><br>
+    <button class="subbtn" onclick="location.href = 'movehopelist'">희망 도서 신청 목록</button>
+</nav>
+<main id="totalsearchlist">
+
+		<div>
+<h1 style="margin-bottom:80px;">배송 목록</h1>
 <table id="foo-table" class="table table-bordered" >
 		<thead>
 			<tr>
@@ -55,6 +112,9 @@
     </table>
 
 		</div>
+
+</main>
+
 
 <script>
 let list=${list};

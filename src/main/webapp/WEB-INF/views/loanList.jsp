@@ -265,23 +265,6 @@ starRating();
     
     console.log("게시글",params);
     $("#rv_bcode").val(params);
-    /* $.ajaxSetup({         
-         beforeSend : function(xhr){
-            xhr.setRequestHeader("${_csrf.headerName}", "${_csrf.token}");}
-         });//먼저 보냄
-     
-         $.ajax({
-             url : "writereview",
-             type : "get",
-             data : {"rv_bcode":params}, 
-             success : function(response) {
-                $("#modal-header").empty();
-                 $("#modal-body").empty();
-                 console.log(response);
-                
-             }
- 
-         });      //ajax end */
          
  });      //modal end
 </script>

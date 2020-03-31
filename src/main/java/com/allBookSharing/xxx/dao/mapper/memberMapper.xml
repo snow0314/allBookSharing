@@ -3,6 +3,26 @@
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.allBookSharing.xxx.dao.IMemberDao">
 
+<select id="getLoanList" resultType="Loan">
+SELECT bo_num,bk_name,bk_lcode,bd_date,bd_return_date,bd_return_extension,bk_image FROM BORROWLIST JOIN BORROWDETAIL ON BO_NUM=BD_BO_NUM JOIN BOOKS ON books.bk_code=borrowdetail.bd_bcode and bd_lcode=bk_lcode  WHERE BO_ID=#{id}
+ </select>
+
+
+<select id="getArrearsDay" resultType="Integer">
+<![CDATA[ 
+SELECT SUM(BD_RETURN_DATE-BD_REAL_RETURN_DATE) FROM BORROWLIST JOIN BORROWDETAIL ON  BD_BO_NUM=BO_NUM WHERE BO_ID=#{id} AND (BD_RETURN_DATE-BD_REAL_RETURN_DATE)<0
+]]>
+</select>
+
+
+<select id="getArrearsCnt" resultType="Integer">
+<![CDATA[ 
+SELECT COUNT(BD_RETURN_DATE-BD_REAL_RETURN_DATE) FROM BORROWLIST JOIN BORROWDETAIL ON  BD_BO_NUM=BO_NUM WHERE BO_ID=#{id} AND (BD_RETURN_DATE-BD_REAL_RETURN_DATE)<0
+]]>
+</select>
+
+
+
 	<update id="updateprofileUs" parameterType="member">
 
 		<!-- UPDATE VEIW_MEMBER SET US_ADDRESS=#{us_address},US_PHONE=#{us_phone},US_EMAIL=#{us_email} 
@@ -20,16 +40,21 @@
 
 
 	<select id="getArrearsList" resultType="Loan">
+	<![CDATA[ 
 		SELECT
 		bo_num,bk_name,bd_date,bd_return_date,bd_real_return_date,bd_return_date-bd_real_return_date
 		as ARREARSDAY FROM BORROWLIST
 		JOIN BORROWDETAIL ON BO_NUM=BD_BO_NUM
-		JOIN BOOKS ON BD_BCODE=BK_CODE WHERE BO_ID=#{id}
+		JOIN BOOKS ON BD_BCODE=BK_CODE WHERE BO_ID=#{id} AND (BD_RETURN_DATE-BD_REAL_RETURN_DATE)<0
+	]]>
 	</select>
 
-  <!--   <select id="loginInfo" resultType="member">
-     SELECT * FROM MEMBER WHERE MB_ID=#{id}
-    </select> -->
+    <select id="getreservationRank" resultType="int">
+    
+     
+	SELECT RANK FROM (SELECT ROWNUM RANK,RESERVATION.* FROM RESERVATION WHERE RT_CODE=#{rv_code} ORDER BY RT_NUM) WHERE RT_ID=#{rv_id} AND RT_LCODE=#{rv_lcode}
+     
+    </select> 
 
 	<select id="getBorrowChart" resultType="BigGroup">
 		SELECT BG_CATE,COUNT(BK_BG_NUM) CNT FROM BORROWLIST
