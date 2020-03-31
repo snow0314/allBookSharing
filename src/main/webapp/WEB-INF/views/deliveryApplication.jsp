@@ -130,7 +130,7 @@ tr {
 		<div style="display: inline;">
 			배송비 :
 			<!-- <span id="cnt">권수</span> * -->
-			<span id="libCnt">도서관수</span> * 3000원= <span id="total">총배송비</span>
+			<span id="libCnt">도서관수</span> * 5000원= <span id="total">총배송비</span>
 		</div>
 		<div style="display: inline;">
 			<input id="apply" class="btn btn-outline-success" type="button"
@@ -143,6 +143,8 @@ tr {
 $(document).ready( function () {
 	pageShow();
 	var grade;
+	var borrowCnt;
+	var point;
 }); //ready End
 
 function pageShow(){
@@ -178,7 +180,7 @@ function pageShow(){
 		str+="<br><br>권수 : "+result[i].de_quantity+"";
 		str+="</td>";
 		str+="<td style='text-align: center; vertical-align:middle;'>";
-		str+="<input type='button' class='btn btn-outline-danger' value='삭제'>";
+		str+="<input type='button' id='delete' class='btn btn-outline-danger' data-decode='"+result[i].de_code+"' data-delcode='"+result[i].de_lcode+"' value='삭제'>";
 		str+="</td></tr>";
 	}
 	$(str).appendTo($("#delivery"));
@@ -197,6 +199,7 @@ $("div").on("change",".styled",function(){ //체크박스 클릭시 배송비 �
 	}else{
 		$(this).attr("checked",false);
 	}
+	
 	console.log("attr2",$(this).attr("checked"));
 	console.log("de_code",$(this).data("decode"));
 	console.log("de_lcode",$(this).data("delcode"));
@@ -209,11 +212,11 @@ $("div").on("change",".styled",function(){ //체크박스 클릭시 배송비 �
    });
 	console.log("temp",temp);
 	console.log("lib",lib);
-	console.log("유니크",$.unique(lib));
+	console.log("유니크",$.unique(lib).length);
 	
 	//$("#cnt").text(temp);
-	$("#libCnt").text($.unique(lib));
-	$("#total").text($.unique(lib)*3000+"원");
+	$("#libCnt").text($.unique(lib).length);
+	$("#total").text($.unique(lib).length*5000+"원");
 	
 });
 
@@ -221,7 +224,8 @@ $("#apply").on("click",function(){ //배송 신청 버튼 클릭시 작동하는
 	let conf=confirm("배송 신청하시겠습니까?");
 	if(conf){
 	gradeCheck();
-	
+	borrowCntCheck();
+	pointCheck();
 	let temp=0;
 	let lib=new Array();
 	let allData = new Array();
@@ -236,22 +240,46 @@ $("#apply").on("click",function(){ //배송 신청 버튼 클릭시 작동하는
 		lib.push($(this).data("delcode")); //도서관 개수
    });
 	console.log("alldata",allData);
+	
+	if($('.styled:checked').length==0){
+		toastr.error('실패', '배송 신청할 책을 선택해 주세요');
+		return false;
+	}
+	
 	if(grade=="일반"){
+		if(borrowCnt>3){
+			toastr.error('실패', '일반 회원은 최대 3권까지 대여할 수 있습니다.');
+			return false;
+		}else if(borrowCnt+temp>3){
+			toastr.error('실패', '일반 회원은 최대 3권까지 대여할 수 있습니다.');
+		}
+		
 		if(temp>3){
 			toastr.error('실패', '일반 회원은 최대 3권까지 대여할 수 있습니다.');
 			return false;
 		}
 	}else if(grade =="우수"){
+		if(borrowCnt>5){
+			toastr.error('실패', '우수 회원은 최대 5권까지 대여할 수 있습니다.');
+			return false;
+		}else if(borrowCnt+temp>5){
+			toastr.error('실패', '우수 회원은 최대 3권까지 대여할 수 있습니다.');
+		}
 		if(temp>5){
 			toastr.error('실패', '우수 회원은 최대 5권까지 대여할 수 있습니다.');
 			return false;
 		}
 	}
 	
+	if(point < $.unique(lib).length*3000){
+		toastr.error('실패', '포인트가 부족합니다.');
+		return false;
+	}
+	
 	$.ajax({ //배송 신청하러 가는 에이작스
 		url : "borrowlistinsert",
 		type : "post",
-		data : {"json" : JSON.stringify(allData), "pl_inout" : $.unique(lib)*3000},
+		data : {"json" : JSON.stringify(allData), "pl_inout" : $.unique(lib).length*5000},
 		dataType:'text'
 		
 }).done((result) => {
@@ -267,11 +295,15 @@ $("#apply").on("click",function(){ //배송 신청 버튼 클릭시 작동하는
 	}else{
 		return false;
 	} //if(conf) End
+	
+	grade=0;
+	borrowCnt=0;
+	point=0;
 });
 
-function gradeCheck(){
+function gradeCheck(){//사용자 등급 확인하러 가는 메소드
 	
-	$.ajax({ //사용자 등급 확인하러 가는 에이작스
+$.ajax({ 
 		url : "usergradecheck",
 		type : "get",
 		async: false,
@@ -285,6 +317,59 @@ function gradeCheck(){
 	console.log("xhr=",xhr);
 }); //ajax End
 }
+
+function borrowCntCheck(){//사용자가 현재 빌린 권수 확인하러 가는 메소드
+	$.ajax({ 
+		url : "borrowcntcheck",
+		type : "get",
+		async: false,
+		dataType:'text'
+		
+}).done((result) => {
+	console.log("권수=",result);
+	borrowCnt=result;
+	
+}).fail((xhr) => {
+	console.log("xhr=",xhr);
+}); //ajax End
+}
+
+function pointCheck(){ //사용자 포인트 가져오는 메소드
+	$.ajax({ 
+		url : "pointcheck",
+		type : "get",
+		async: false,
+		dataType:'text'
+		
+}).done((result) => {
+	console.log("포인트=",result);
+	point=result;
+	
+}).fail((xhr) => {
+	console.log("xhr=",xhr);
+}); //ajax End
+}
+
+$("#delete").on("click",function(){//삭제 버튼 클릭시
+	var data = {};
+	data.de_code = $(this).data("decode");
+	data.de_lcode = $(this).data("delcode");
+	data.
+	$.ajax({ 
+		url : "deliverydelete",
+		type : "post",
+		async: false,
+		data : {"json":data},
+		dataType:'text'
+		
+}).done((result) => {
+	console.log("포인트=",result);
+	point=result;
+	
+}).fail((xhr) => {
+	console.log("xhr=",xhr);
+}); //ajax End
+});
 
 </script>
 </html>
