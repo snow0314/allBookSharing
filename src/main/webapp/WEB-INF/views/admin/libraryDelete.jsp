@@ -34,7 +34,7 @@
 </style>
 </head>
 <body>
-<form action="libraryDelete" method="post">
+<form action="librarydelete" method="post">
 
 		<div class="container p-3 my-3 border" style="width:30%; float:left;">
 			<table class="table table-borderless">
@@ -91,7 +91,7 @@
 								<span class="input-group-text">전화번호</span>
 							</div>
 							<input type="number" class="form-control" id="lb_phone"
-								name="lb_phone">
+								name="lb_phone" required="required">
 						</div>
 					</td>
 				</tr>
@@ -103,7 +103,7 @@
 								<span class="input-group-text">이메일</span>
 							</div>
 							<input type="email" class="form-control" id="lb_email"
-								name="lb_email">
+								name="lb_email" required="required">
 						</div>
 					</td>
 				</tr>
@@ -124,7 +124,7 @@
 				</tr>
 				<tr>
 					<td><input type="text" id="lb_detailaddr" name="lb_detailaddr"
-						class="form-control" placeholder="상세주소" value=""></td>
+						class="form-control" placeholder="상세주소" value="" required="required"></td>
 					<td><input type="text" id="lb_extraaddr" name="lb_extraaddr"
 						class="form-control" placeholder="참고항목" value=""> <input
 						type="hidden" id="lb_Latitude" name="lb_latitude" value="">
@@ -135,7 +135,7 @@
 				<tr>
 					<td><input type="hidden" name="_csrf" value="${_csrf.token}">
 
-						<input type="submit" id="modify" class="btn btn-outline-success"
+						<input type="submit" id="librarydelete" class="btn btn-outline-success"
 						value="수정하기"></td>
 				</tr>
 			</table>
@@ -218,8 +218,40 @@ function libraryinfo() {
 }).fail((xhr) => {
 	console.log("xhr=",xhr);
 }); //ajax End
+}
+function mapCreate(latitude,longitude,roadAddr) {
 	
 	
+	var container = document.getElementById('map');
+	var options = {
+		center: new kakao.maps.LatLng(latitude, longitude),
+		level: 3
+	};
+	
+	var coords = new kakao.maps.LatLng(
+			latitude,
+			longitude);
+	
+	
+	var map = new kakao.maps.Map(container, options);
+	
+	// 결과값으로 받은 위치를 마커로 표시합니다
+    var marker = new kakao.maps.Marker({
+        map: map,
+        position: coords
+    });
+
+    // 인포윈도우로 장소에 대한 설명을 표시합니다
+    var infowindow = new kakao.maps.InfoWindow({
+        content: '<div style="width:150px;text-align:center;padding:6px 0;">' +
+            roadAddr +
+            '</div>'
+    });
+    infowindow
+        .open(map, marker);
+
+    // 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
+    map.setCenter(coords); 
 }
 </script>
 </html>

@@ -59,4 +59,11 @@ JOIN LIBRARY ON LA_LCODE=LB_CODE
 	)
 </insert>
 	
+<update id="libraryDelete" parameterType="Library">
+		UPDATE LIBRARY SET LB_POSTCODE=#{lb_postcode}, LB_ROADADDR=#{lb_roadaddr},
+						   LB_BRANCHADDR = #{lb_branchaddr}, LB_DETAILADDR = #{lb_detailaddr}, LB_EXTRAADDR = #{lb_extraaddr},
+						   LB_PHONE = #{lb_phone}, LB_EMAIL = #{lb_email}, LB_LATITUDE = #{lb_latitude},
+						   LB_LONGITUDE = #{lb_longitude}
+					   WHERE LB_CODE = #{lb_code}	   
+	</update>	
 </mapper>

@@ -27,5 +27,8 @@ public interface IAdminManagementDao { //AdminMapper.xml
 	//추천 도서 등록
 	int recommendInsert(Recommend recommend);
 	
+	//도서관 정보 수정
+	boolean libraryDelete(Library lib);
+	
 	
 }
