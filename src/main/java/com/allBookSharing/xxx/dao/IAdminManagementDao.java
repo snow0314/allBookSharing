@@ -32,12 +32,12 @@ public interface IAdminManagementDao { //AdminMapper.xml
 	boolean libraryDelete(Library lib);
 
 	//도서관 삭제
-	int LibraryDrop(String lb_code);
+	int libraryDrop(String lb_code);
 
 	Boolean recommendDelete(String re_bcode);
 
 	Boolean recommendModify(@Param("re_bcode")String re_bcode, @Param("re_contents")String re_contents);
-=======
+
 
 	
 	
