@@ -182,11 +182,8 @@ color:white;
 	<li>소장중 : 희망도서를 자료실에 비치한 상태</li>
 </ul>
 <br>
-<div class="btn_set" style="margin-left:330px; ">
- <a href="http://localhost:8081/xxx/hopebookapply" class="book_btn01"><input type="button" value="신청하기"></a> 
-						&nbsp;&nbsp;
-<a href="http://localhost:8081/xxx/" class="book_btn02"><input type="button" value="신청확인"></a> </div>
-						</section>
-						</main>
+<div class="btn_set"> <a href="hopebookapply" class="book_btn01"><span>신청하기</span></a> 
+						<a href="http://localhost:8081/xxx/" class="book_btn02"><span>신청확인</span></a> </div>
+
 </body>
 </html>
