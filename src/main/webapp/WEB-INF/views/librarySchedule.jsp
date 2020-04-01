@@ -172,7 +172,6 @@ ul {
 </style>
 </head>
 <body>
-<jsp:include page="header.jsp"/>
 	<div class="row">
 
 		<div id="nationsidebar" class="p-3 my-3 border"

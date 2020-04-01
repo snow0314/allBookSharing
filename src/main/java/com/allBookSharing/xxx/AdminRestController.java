@@ -55,4 +55,19 @@ public class AdminRestController {
 		return result;
 	}
 	
+	@RequestMapping(value = "/recommenddelete", produces = "application/json;charset=UTF-8")
+	public Boolean recommendDelete(String re_bcode) {
+		
+		Boolean result=am.recommendDelete(re_bcode);
+
+		return result;
+	}
+	@RequestMapping(value = "/recomodify", produces = "application/json;charset=UTF-8")
+	public Boolean recommendModify(String re_bcode,String re_contents) {
+		
+		Boolean result=am.recommendModify(re_bcode,re_contents);
+
+		return result;
+	}
+	
 }

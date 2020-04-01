@@ -5,6 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
 <script
@@ -14,18 +15,59 @@
 <script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
 <style>
+@import url(//fonts.googleapis.com/earlyaccess/hanna.css);
+
+@import url(//fonts.googleapis.com/earlyaccess/jejugothic.css);
+
+@import url(//fonts.googleapis.com/earlyaccess/notosanskr.css);
+
+@import url(//fonts.googleapis.com/earlyaccess/nanumgothiccoding.css);
 table, th, td {
 	border: 1px solid #bcbcbc;
 	font-size: 20px;
 }
 
-table {
-	width: 200px;
-	height: 150px;
+.table {
+    width: 75%;
+
 }
 
 #Reservation {
 	margin-left: 750px;
+}
+
+#submenu {
+	float: left;
+	width: 12%;
+	height: 100%;
+	margin-left: 6%;
+	margin-top: 1%;
+}
+
+.subbtn {
+	width: 100%;
+	background-color: white;
+	height: 55px;
+	font-family: 'Nanum Gothic Coding', monospace;
+	font-weight: bold;
+	font-size: 20px;
+	border: none;
+}
+
+.subtopbtn {
+	width: 100%;
+	font-family: 'Hanna', sans-serif;
+	height: 95px;
+	background-color: #223A5E;
+	color: white;
+}
+section{
+
+width:75%;
+float:right;
+}
+.subbtn:hover{
+background-color:#F0EAD6;
 }
 
 #submenu {
@@ -67,18 +109,21 @@ table {
 		<button class="subbtn"
 			onclick="location.href = 'readingroominformation' ">열람실 예약안내</button>
 		<br>
-		<button class="subbtn" onclick="location.href = 'membergrade' ">회원등급
+		<button class="subbtn" onclick="getPage('membergrade')">회원등급
 			기준</button>
 		<br>
 		<button class="subbtn" onclick="location.href = '#' ">배송서비스
 			안내</button>
 		<br>
 		<button class="subbtn"
-			onclick="location.href = 'libraryschedulemove' ">도서관 일정안내</button>
+			onclick="getPage('libraryschedulemove')">도서관 일정안내</button>
+		
+		<button class="subbtn"
+			onclick="getPage('libraryinformationmove')">도서관 정보</button>
 
 	</aside>
 
-	<main>
+	<main id="main">
 		<section>
 			<table class="table">
 				<thead class="thead-dark">
@@ -101,10 +146,27 @@ table {
 				</tbody>
 			</table>
 		</section>
-	</main>
-	<a href="readingroommove"><input type="submit" id="Reservation"
+		<a href="readingroommove"><input type="submit" id="Reservation"
 		value="열람실 예약" /></a>
+		
+	</main>
+
 
 
 </body>
+<script>
+function getPage(url) {
+
+	$.ajax({
+		url:url,
+		type:'get',
+		success:function(page){
+			$("#main").html(page);
+		},
+		error:function(){
+			alert("실패");
+		}
+	})
+	}  
+</script>
 </html>

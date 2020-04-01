@@ -199,6 +199,17 @@ public class AdminManagement {
 		
 	}
 
+	public Boolean recommendDelete(String re_bcode) {
+		Boolean result=aDao.recommendDelete(re_bcode);
+		
+		return result;
+	}
+
+	public Boolean recommendModify(String re_bcode, String re_contents) {
+		Boolean result=aDao.recommendModify(re_bcode,re_contents);
+		return result;
+	}
+
 	
 	
 
