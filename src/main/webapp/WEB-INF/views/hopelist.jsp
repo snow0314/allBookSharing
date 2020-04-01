@@ -33,6 +33,10 @@
 </head>
 <body>
 <jsp:include page="header2.jsp" />
+
+
+
+
 		<div>
 <table id="foo-table" class="table table-bordered">
 		<thead>
