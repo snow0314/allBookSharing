@@ -75,9 +75,10 @@
 	<select id="pointCheck" resultType="Integer">
 		SELECT US_POINT FROM USERS WHERE US_ID=#{id}
 	</select>
-	
+
 	<delete id="reservationDelete"> 
 		DELETE FROM RESERVATION WHERE rt_code = #{de_code} AND rt_lcode = #{de_lcode} AND rt_id = #{de_id}
 	</delete>
+
 	
 </mapper>

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.allBookSharing.xxx.dao.ILibraryDeliveryDao">
+
+<select id="getDeliveryList" resultType="LibraryDelivery">
+SELECT distinct BO_NUM,BO_ID,BD_STATE_NUM,BD_DATE 
+FROM BORROWLIST JOIN BORROWDETAIL 
+ON BO_NUM=BD_BO_NUM
+JOIN BOOKS ON BK_CODE=BD_BCODE
+WHERE BD_LCODE=#{lb_code}
+	
+	</select>
+	
+	
+</mapper>
