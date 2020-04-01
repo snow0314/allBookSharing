@@ -5,6 +5,8 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<h1 style="position: center;">도서목록</h1>
+<hr/>
 <!-- jQuery library -->
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
@@ -36,7 +38,7 @@
 <body>
 <form action="librarydelete" method="post">
 
-		<div class="container p-3 my-3 border" style="width:30%; float:left;">
+		<div class="col-lg-6" style="width:30%; float:left;">
 			<table class="table table-borderless">
 			<tr>
 				<td>
@@ -67,7 +69,7 @@
 		</div>
 		
 		
-		<div class="container p-3 my-3 border" style="width:63%; float:right;">
+		<div class="col-lg-6" style="width:63%; float:right;">
 			<table class="table table-borderless">
 			<tr>
 					<td>

@@ -93,6 +93,12 @@ cursor: pointer;
 </head>
 <body>
 <jsp:include page="header2.jsp" />
+<<<<<<< HEAD
+
+
+
+
+=======
 <nav id="submenu">
 	<button class="subtopbtn" disabled><h2>나의 도서관</h2></button><br>
     <button class="subbtn" onclick="location.href = 'movemypage' " >마이 페이지</button><br>
@@ -102,6 +108,7 @@ cursor: pointer;
 </nav>
 
 <main id="totalsearchlist">
+>>>>>>> 96ddbfcbb712bb087060eb56dd1db60856f07ea8
 		<div>
 		<h1 style="margin-bottom:80px;">희망 도서 목록</h1>
 		<hr />

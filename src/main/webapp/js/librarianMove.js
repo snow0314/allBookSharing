@@ -22,7 +22,12 @@ function menuMove(index){ //사서 페이지 메뉴 이동 메소드
 	case 7:
 		$("#contents").attr("src","libraycalendarmove");
 		break;
-		
+	case 8:
+		$("#contents").attr("src","deliverymanagementmove");
+		break;
+	case 9:
+		$("#contents").attr("src","");
+		break;
 	case 11:
 		$("#contents").attr("src","lbhopelist");
 		break;	

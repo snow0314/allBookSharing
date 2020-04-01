@@ -73,14 +73,17 @@ public class DeliveryRestController {
 		return dm.pointCheck(principal.getName());
 	}
 	
-	/*
-	 * @PreAuthorize("isAuthenticated()")
-	 * 
-	 * @RequestMapping(value = "/deliverydelete", produces =
-	 * "application/json;charset=UTF-8") public String deliveryDelete(Principal
-	 * principal,String json){ // 제이슨 형태의 문자열을 객체로 변환 ObjectMapper mapper = new
-	 * ObjectMapper(); DeliveryReq Delivery = mapper.readValue(json,
-	 * DeliveryReq.class); Delivery.setDe_id(principal.getName()); return
-	 * dm.deliveryDelete(Delivery); }
-	 */
+	
+	  @PreAuthorize("isAuthenticated()")
+	  @RequestMapping(value = "/deliverydelete", produces ="application/json;charset=UTF-8") 
+	  public String deliveryDelete(Principal principal,String json) throws JsonParseException, JsonMappingException, IOException{ 
+		  
+		  ObjectMapper mapper = new ObjectMapper();
+		  DeliveryReq delivery = mapper.readValue(json,DeliveryReq.class); 
+		  delivery.setDe_id(principal.getName());
+		  
+		  
+		  return dm.deliveryDelete(delivery);
+	  }
+	 
 }
