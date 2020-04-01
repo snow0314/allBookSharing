@@ -313,6 +313,9 @@ public class MemberManagement {
 		String id=principal.getName();
 		
 		List<Reservation> rList=mDao.getReservationlist(id);
+		for(int i=0;i<rList.size();i++) {
+			rList.get(i).setReservationCnt(mDao.getReservationCnt(rList.get(i))); //해당 책에 예약이 몇건 걸려있는지 알아오는 메소드
+		}
 		System.out.println("rList="+rList);
 		
 		return rList;

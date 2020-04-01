@@ -90,7 +90,7 @@ SELECT COUNT(BD_RETURN_DATE-BD_REAL_RETURN_DATE) FROM BORROWLIST JOIN BORROWDETA
 	<select id="getReservationlist" resultType="Reservation"
 		resultMap="resrv">
 		
-		SELECT * FROM BOOKS
+	  SELECT * FROM BOOKS
       JOIN RESERVATION ON BOOKS.BK_CODE=reservation.rt_code and books.bk_lcode=reservation.rt_lcode
       JOIN LIBRARY ON library.lb_code=reservation.rt_lcode WHERE RT_ID=#{id}
 
@@ -103,5 +103,9 @@ SELECT COUNT(BD_RETURN_DATE-BD_REAL_RETURN_DATE) FROM BORROWLIST JOIN BORROWDETA
 
 </insert>
 	
+	<select id="getReservationCnt" parameterType="reservation" resultType="int">
+		SELECT COUNT(*) FROM RESERVATION 
+		WHERE RT_CODE = #{rv_code} AND RT_LCODE = #{rv_lcode}
+	</select>
 
 </mapper>

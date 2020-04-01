@@ -526,17 +526,24 @@ $.ajax({
         $tr.append("<td>"+data[i].lb_name+"</td>");
         $tr.append("<td>"+data[i].bk_name+"</td>");
         $tr.append("<td>"+data[i].rv_date+"</td>");
-        if(data[i].bk_state==0)
-        $tr.append("<td id='state'>대출불가</td>");
-        if(data[i].bk_state==1)
-        $tr.append("<td id='state'>대출가능</td>");
-        $tr.append("<td><button id='cart_btn' >담기</button></td>");
         spl=data[i].rv_code;//???
         rv_code=spl.split(" ");	
         rv_code=rv_code[0]+" "+rv_code[1];
         console.log("rv_code=",rv_code);
         rank=getRank(rv_code,data[i].rv_lcode);
         console.log("rank=",rank);
+        
+        var temp = data[i].bk_quantity-data[i].bk_booklend; //대여할 수 있는 권수
+        if(temp >= rank){
+        	$tr.append("<td id='state' style='color: red;'>대출가능</td>");
+        	$tr.append("<td><button id='cart_btn' data-rv_code='"+data[i].rv_code+"' data-rv_lcode='"+data[i].rv_lcode+"' >담기</button></td>");
+        }else{
+        	$tr.append("<td id='state'>대출불가</td>");
+        	$tr.append("<td><button id='cart_btn' disabled >담기</button></td>");
+        }
+        console.log("temp",temp);
+        
+        
         $tr.append("<td style='text-align:center;' ><span id='rank' style='font-weight:bold;'>"+rank+"</span></td>");
         
         $tr.append("<td><button onclick='reservationCancel("+data[i].rv_num+") '>취소</button></td>");
@@ -556,14 +563,16 @@ function getRank(rv_code,rv_lcode){
 	
 	console.log("rv_code",rv_code);
 	console.log("rv_lcode",rv_lcode);
-	
+	var rank;
 	 $.ajax({
 		 
 		type : 'get',
 		url :"reservationrank",
 		data:{"rv_code":rv_code,"rv_lcode":rv_lcode},
+		async: false,
 		success : function(data) {
 			console.log("예약 순위ajax=",data);
+			rank = data;
 			$("#rank").html(data);
 		},
 		error : function(xhr, status) {
@@ -572,21 +581,29 @@ function getRank(rv_code,rv_lcode){
 		
 	});	 //ajax End
 	
-	
+	return rank;
 	
 };
 
 
-/* //카트 담기
-$("#cart_btn").on("click",function(){
-        if($("#state").html()=="대출불가"){
-        	alert("대출 불가 상품입니다.");
-        	return;
-        }
-        else if($("#state").html()=="대출가능"){
-        	
-        }
-}); */
+//카트 담기
+$(document).on("click","#cart_btn",function(){
+  
+  $.ajax({
+	type:'get',
+  	url:'deliinsert',
+  	data:{"de_code":$(this).data("rv_code"),
+  		  "de_lcode":$(this).data("rv_lcode")},
+  	success:function(result){
+  		alert("배송신청목록에 추가되었습니다.");
+  	},
+  	error:function(xhr,status){ 
+  		alert("이미 추가된 도서입니다.");
+	    	console.log("xhr2=", xhr);
+			console.log("status=", status);
+	 }
+	});//ajax End
+});
 
 //예약 취소하기
 function reservationCancel(rv_num){
