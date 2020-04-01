@@ -7,11 +7,12 @@
 <meta charset="UTF-8">
 <link rel="stylesheet" href="https://cdn.datatables.net/t/bs-3.3.6/jqc-1.12.0,dt-1.10.11/datatables.min.css"/> 
     <script src="https://cdn.datatables.net/t/bs-3.3.6/jqc-1.12.0,dt-1.10.11/datatables.min.js"></script>
-    
+      
 <script>
         jQuery(function($){
             $("#foo-table").DataTable({
             	 "dom": '<"top"il>t<"bottom"prf><"clear">',
+            	 "order": [[0, 'desc']], // asc 또는 desc
                  "language":{
                   "emptyTable": "데이터가 없어요.",
                   "info": "현재 _START_ - _END_ / _TOTAL_건",
@@ -40,6 +41,7 @@
     var bootstrapButton = $.fn.button.noConflict() // return $.fn.button to previously assigned value
     $.fn.bootstrapBtn = bootstrapButton            // give $().bootstrapBtn the Bootstrap functionality
     </script>
+  
     
     <style>
     #submenu {
@@ -104,6 +106,7 @@ cursor: pointer;
 
 		<div>
 		<h1 style="margin-bottom:80px;">희망 도서 목록</h1>
+		<hr />
 <table id="foo-table" class="table table-bordered">
 		<thead>
 			<tr>
@@ -184,16 +187,18 @@ $(document).on("click", "#modal_detail",function(e){
 	  
         $.ajax({
             url : "lbhopedetail",
-            type : "get",
+            type : "post",
             data : {"br_num":params}, 
             success : function(response) {
-           	 /* $("#modal-header").empty();
+            
+           	    $("#modal-header").empty();
                 $("#modal-body").empty();
-                $("#modal-footer").empty(); */
+                $("#modal-footer").empty(); 
                 console.log("1",response);
                 console.log(response.br_titile);
                 
                 $("#modal-header").append(response.br_titile).css("font-weight","bold").css("font-size","20px");
+                
                 var str="";
                 var footer="";
                 str+="<div>";
@@ -223,57 +228,15 @@ $(document).on("click", "#modal_detail",function(e){
                 str+="도서명 : "+response.br_name+"<br/><br/>ISBN 코드 : "+response.br_bcode+"<br/><br/>저  자 : "+response.br_writer+"<br/><br/>도서신청이유 : "+response.br_reason+"";
                 str+="</div>";
                $("#modal-body").append(str); 
-               console.log("상태=",response.br_situation);
-               if(response.br_situation == 1){		//상태가 1(처리중)이면 취소버튼만 활성화
-                   
-               footer+="<input type='submit' value='취소' formaction='hopecancel' class='btn btn-warning' style='float: left;'>";
-               footer+="<input type='hidden' name='be_bcode' value=\""+response.br_bcode+"\">";
-               	
-               }
-               else if(response.br_situation == 4){		//상태가 4(상호대차수락 )이면 처리완료만 활성화
-               	
-               	console.log("fasd",asd);
-               	
-	                footer+="<input type='submit'' value='처리완료' style='margin-right:10px;' formaction='hopecomplete' class='btn btn-primary'>";
-                   footer+="<input type='hidden' name='be_bcode' value=\""+response.br_bcode+"\">";
-                   	
-                   }
                
-				else if(response.br_situation == 5){		//상태가 5(상호대차거절 )이면 처리완료만 활성화
-               	footer+="<select name='br_false'  style='float: left; margin-right: 10px; height: 34px;'>";
-                   footer+="<option value=''>선택</option>";
-                   footer+="<option value='희망도서구입제한도서'>희망도서 구입제한 도서</option>";
-                   footer+="<option value='부적합한내용의도서'>부적합한내용의 도서</option>";
-                   footer+="<option value='구입불가능한도서'>구입불가능한 도서</option>";
-                   footer+="</select>";
-                   
-            	    footer+="<input type='submit' value='반려' formaction='hopereturn' class='btn btn-warning' style='float: left;'>";
-	                footer+="<input type='submit'' value='처리완료' style='margin-right:10px;' formaction='hopecomplete' class='btn btn-primary'>";
-                   footer+="<input type='hidden' name='be_bcode' value=\""+response.br_bcode+"\">";
-                   	
-                   }
                
-               else if(response.br_situation != 0){		//상태가 대기중이 아니면 버튼 감추기
-               
-               }
-               
-               else{	//그외에 모든 버튼 활성화
-               footer+="<select name='br_false'  style='float: left; margin-right: 10px; height: 34px;'>";
-               footer+="<option value=''>선택</option>";
-               footer+="<option value='희망도서구입제한도서'>희망도서 구입제한 도서</option>";
-               footer+="<option value='부적합한내용의도서'>부적합한내용의 도서</option>";
-               footer+="<option value='구입불가능한도서'>구입불가능한 도서</option>";
-               footer+="</select>";
-               
-               footer+="<input type='submit' value='반려' formaction='hopereturn' class='btn btn-warning' style='float: left;'>";
-               footer+="<input type='submit' value='처리완료' style='margin-right:5px;' formaction='hopecomplete' class='btn btn-primary'>";
-               footer+="<input type='button' value='상호대차' id='swap' class='btn btn-success' data-isbn=\""+response.br_bcode+"\"style='margin-right:10px;'>";
-               footer+="<input type='hidden' name='be_bcode' value=\""+response.br_bcode+"\">";
-               }
                
                footer+="<button type='button' class='btn btn-default' data-dismiss='modal'>Close</button>";
-               footer+="<div id='choice'>";
+               if(response.br_false!=null){
+               footer+="<div style='float:left; font-weight:bold; color:red;'>";
+               footer+="반려 사유 : "+response.br_false+"";
                footer+="</div>";
+           	}
                $("#modal-footer").append(footer);
                
             }, error : function(jqXHR, status, e) {

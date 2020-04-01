@@ -34,4 +34,6 @@ public interface IDeliveryManagementDao { //deliveryMapper.xml
 
 	Integer pointCheck(String id);
 
+	int reservationDelete(DeliveryReq deliveryReq);
+
 }

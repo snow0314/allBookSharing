@@ -19,6 +19,8 @@ public class Reservation {
 	private String rv_date; //예약날자
 	private String bk_state; //상태 0:대출불가, 1:대출가능, 2: 예약중
     private int rv_count;//예약자 수 
-	
+    private int bk_quantity; //초기 보유 권수
+    private int bk_booklend;//대출중인 책 권수
+	private int reservationCnt; //이 책에 걸려있는 예약수
 
 }

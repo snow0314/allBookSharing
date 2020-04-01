@@ -183,7 +183,9 @@ color:white;
 	<li>취소됨 : 구입에서 제외된 상태(취소 사유 확인 가능)</li>
 	<li>소장중 : 희망도서를 자료실에 비치한 상태</li>
 </ul>
+
 <br>
+
 <div class="btn_set" style="margin-left:330px; ">
  <a href="hopebookapply" class="book_btn01"><input type="button" value="신청하기"></a> 
 						&nbsp;&nbsp;
