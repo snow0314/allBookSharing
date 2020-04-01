@@ -256,7 +256,7 @@
 								    <ul>
 										<li><a href="readingroominformation">열람실 예약안내</a></li>
 										<li><a href="membergrade">회원등급 기준</a></li>
-										<li><a href="#">배송서비스 안내</a></li>
+										<li><a href="deliveryinformation">배송서비스 안내</a></li>
 										<li><a href="libraryschedulemove">도서관 일정안내</a></li>
 									</ul>
 								</li>
@@ -264,9 +264,9 @@
 								    <ul>              
 									<li><a href="readingroommove">열람실 예약</a></li>
 										<li><a href="questionmove">건의 사항</a></li>
-										<li><a href="hopebookmove">희망도서 신청</a></li>
 
-										<li><a href="noticemove">공지사항</a></li>
+										<li><a href="noticemove">공지 사항</a></li>
+										<li><a href="hopebookmove">희망도서 신청</a></li>
 									</ul>
 								</li>
 							</ul>

@@ -16,7 +16,8 @@
 		<script src="js/skel.min.js"></script>
 		<script src="js/skel-layers.min.js"></script>
 		<script src="js/init.js"></script>
-		
+		<script type="text/javascript"
+	src="//dapi.kakao.com/v2/maps/sdk.js?appkey=1b51d85dd9bcbc0b96d2984712a09ec4&libraries=services,clusterer,drawing"></script>
 		<!--[if lte IE 8]><link rel="stylesheet" href="css/ie/v8.css" /><![endif]-->
 		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"  crossorigin="anonymous">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js" type="text/javascript"></script>
@@ -177,7 +178,7 @@
 								    <ul>
 										<li><a href="readingroominformation">열람실 예약안내</a></li>
 										<li><a href="membergrade">회원등급 기준</a></li>
-										<li><a href="#">배송서비스 안내</a></li>
+										<li><a href="deliveryinformation">배송서비스 안내</a></li>
 										<li><a href="libraryschedulemove">도서관 일정안내</a></li>
 									</ul>
 								</li>
@@ -185,8 +186,8 @@
 								    <ul>
 										<li><a href="readingroommove">열람실 예약</a></li>
 										<li><a href="questionmove">건의 사항</a></li>
+										<li><a href="noticemove">공지 사항</a></li>
 										<li><a href="hopebookmove">희망도서 신청</a></li>
-										<li><a href="noticemove">공지사항</a></li>
 									</ul>
 								</li>
 							</ul>

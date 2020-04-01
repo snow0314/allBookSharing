@@ -186,7 +186,6 @@ public class BookRestController {
 	@RequestMapping(value="/mainrecommend",produces="application/json;charset=UTF-8")
 	public List<Recommend> mainRecommend(Recommend recommend) {
 		List<Recommend> mrList=bm.mainRecommend(recommend);
-		System.out.println("mrList="+mrList);
 		return mrList;
 	}
 	
@@ -194,8 +193,22 @@ public class BookRestController {
 	public List<Recommend> selrecommendList(String re_date) {
 		
 		List<Recommend> rcList=bm.selrecommendList(re_date);
-		System.out.println("rcList="+rcList);
 		return rcList;
+	} 
+	@GetMapping(value="/jiyucklib",produces="application/json;charset=UTF-8")
+	public List<Library> jiyuckLib(String lb_loc) {
+		
+		List<Library> lList=bm.jiyuckLib(lb_loc);
+		System.out.println("lList="+lList);
+		return lList;
+	} 
+	
+	@GetMapping(value="/libinformation",produces="application/json;charset=UTF-8")
+	public List<Library> libInformation(Integer lb_code) {
+		
+		List<Library> lList=bm.libInformation(lb_code);
+		System.out.println("lList="+lList);
+		return lList;
 	} 
 	
 	

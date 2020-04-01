@@ -168,5 +168,11 @@ GROUP BY L.LB_NAME,L.LB_CODE
    ON R.RE_SG_NUM =A.SG_BG_NUM
    WHERE SUBSTR(R.RE_DATE,4,2)='04'
 </select>
+<select id="jiyuckLib" parameterType="library" resultType="library" >
+  SELECT * FROM LIBRARY WHERE LB_LOC=#{lb_loc}
+</select>
+<select id="libInformation" parameterType="library" resultType="library" >
+  SELECT * FROM LIBRARY WHERE LB_CODE=#{lb_code}
+</select>
 
 </mapper>
