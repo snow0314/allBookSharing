@@ -63,12 +63,73 @@ jQuery(function($) {
 #foo-table_paginate {
 	text-align: center;
 }
+
+#submenu {
+  		float: left;
+  		width: 15%;
+  		height: 100%;  
+  	  margin-left: 8%;
+  	  margin-top:2%;
+}
+.subbtn{
+width:100%;
+background-color:white;
+height:55px;
+font-family: 'Nanum Gothic Coding', monospace;
+font-weight:bold;
+font-size:20px;
+border:none;
+
+
+}
+.subbtn:hover{
+background-color:#F0EAD6;
+}
+.subtopbtn{
+width:100%;
+font-family: 'Hanna', sans-serif;
+height:98px;
+background-color:#223A5E;
+color:white;
+}
+
+#totalsearchlist{
+		float:right;
+		background-color:white;
+		width:65%;
+		height:auto;
+		margin-right: 8%;
+        margin-top:2%;
+        margin-bottom: 5%;
+        padding:0px;
+	}
 </style>
 
 </head>
 <body>
 
 	<jsp:include page="header2.jsp" />
+	
+	<aside id="submenu">
+
+		<button class="subtopbtn" disabled>
+			<h2>도서관 서비스</h2>
+		</button>
+		<br>
+		<button class="subbtn"
+			onclick="location.href = 'readingroommove' ">열람실 예약</button>
+		<br>
+		<button class="subbtn" onclick="location.href = 'questionmove' ">건의 사항</button>
+		<br>
+		<button class="subbtn" onclick="location.href = 'hopebookmove' ">희망도서 신청</button>
+		<br>
+		<button class="subbtn"
+			onclick="location.href = 'noticemove' ">공지사항</button>
+
+	</aside>
+	
+	<main id="totalsearchlist">
+		<section>
 	<div style="width: 80%; margin: 0 10%;">
 		
 			<h3 style="margin-bottom: 50px;">공지사항</h3>
@@ -87,6 +148,8 @@ jQuery(function($) {
 			</table>
 
 	</div>
+	</section>
+	</main>
 <script>
 		let list = ${nList};
 		console.log(list);
