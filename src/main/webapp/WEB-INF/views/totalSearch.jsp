@@ -401,7 +401,7 @@ margin-top:-15px;
 
 <script>
 window.onload = function () {
-	console.log("bk_name",${bk_name});
+	console.log("bk_name",${bk_name}); 
 	$('#bookinput').val(${bk_name});
 	
 	if($('#bookinput').val()!=""){
@@ -466,7 +466,7 @@ function totalBookSearch(){//전국 통합 검색
 	    data:{"bk_search":$('#bookinput').val() ,"selectval":$('#select').val()},
 	    dataType:'json',
 	    success:function(result){
-	    	$("#contents").append("<div id='nationwide' class='tabcontent'><h2 id='a'>전국 통합검색</h2><table id='totalsearchList'><table></div><div id='nationsidebar'></div>");
+	    	$("#contents").append("<div id='nationwide' class='tabcontent'><h2 id='a'>전국 통합검색</h2><table id='totalsearchList'></table></div><div id='nationsidebar'></div>");
 
 	    	var data=result;
 	    	

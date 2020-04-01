@@ -75,6 +75,12 @@ public class librayBookController {
 		return new ModelAndView("recommendList");
 	}
 	
+	@GetMapping(value="/libraryinformationmove")
+	public ModelAndView libraryInformationMove(Recommend rm) {
+		return new ModelAndView("libraryInformation");
+	}
+	
+	
 	
 	@GetMapping(value="/mainbooksearch")
 	public ModelAndView mainBookSearch(String bk_name) {
