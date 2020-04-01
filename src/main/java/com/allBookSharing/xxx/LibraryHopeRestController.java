@@ -19,7 +19,7 @@ public class LibraryHopeRestController {
 	IHopeDao hDao;
 	
 	//사서 희망도서 상세보기
-		@Secured("ROLE_LIBRARIAN")
+		@Secured({"ROLE_LIBRARIAN","ROLE_USER"})
 		@RequestMapping(value = "/lbhopedetail")
 		public Hope lbHopeDetail(int br_num) {
 			

@@ -190,6 +190,7 @@ background-color:#F0EAD6;
 <main id="totalsearchlist">
 		<div>
 		<h1 style="margin-bottom:80px;">대출 목록</h1>
+		<hr />
 <table id="foo-table" class="table table-bordered">
 		<thead>
 			<tr>

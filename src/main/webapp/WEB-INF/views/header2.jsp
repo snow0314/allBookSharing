@@ -153,7 +153,7 @@
 <h1><a href="./" id="logo">온책나누리</a></h1>
 
 <!-- Nav -->
-						<nav id="nav">
+						<nav id="nav" style="font-size: 1.2em;">
 							<ul>
 								<li><a href="./">Home</a></li>
 								<li>
