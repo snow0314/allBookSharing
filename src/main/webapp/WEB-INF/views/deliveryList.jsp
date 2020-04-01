@@ -95,6 +95,7 @@ background-color:#F0EAD6;
 
 		<div>
 <h1 style="margin-bottom:80px;">배송 목록</h1>
+<hr />
 <table id="foo-table" class="table table-bordered" >
 		<thead>
 			<tr>
