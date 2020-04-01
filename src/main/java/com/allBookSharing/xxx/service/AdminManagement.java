@@ -186,10 +186,10 @@ public class AdminManagement {
 	}
 	
 	//관리자 도서관 삭제
-	public String LibraryDrop(String lb_code) {
+	public String libraryDrop(String lb_code) {
 		int result=0;
 		
-		result=aDao.LibraryDrop(lb_code);
+		result=aDao.libraryDrop(lb_code);
 		
 		if(result!=0) {
 			return "성공";
@@ -198,8 +198,6 @@ public class AdminManagement {
 		}
 		
 	}
-
-	
 	
 
 }

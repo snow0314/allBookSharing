@@ -238,10 +238,10 @@ $("#btn2").click(function(){
 			<thead>
 				<tr>
 					<td style="width: 80px; text-align: center;">순번</td>
-					<td style="width: 400px;">자료명</td>
-					<td style="width: 160px;">대출일</td>
-					<td style="width: 160px;">반납예정일</td>
-					<td style="width: 50px;">연장</td>
+					<td style="width: 350px;">자료명</td>
+					<td style="width: 100px;">대출일</td>
+					<td style="width: 100px;">반납예정일</td>
+					<td style="width: 60px;">연장</td>
 				</tr>
 				</thead>
 				
@@ -530,7 +530,7 @@ $.ajax({
         $tr.append("<td id='state'>대출불가</td>");
         if(data[i].bk_state==1)
         $tr.append("<td id='state'>대출가능</td>");
-        $tr.append("<td><button id='cart_btn'>담기</button></td>");
+        $tr.append("<td><button id='cart_btn' >담기</button></td>");
         spl=data[i].rv_code;//???
         rv_code=spl.split(" ");	
         rv_code=rv_code[0]+" "+rv_code[1];
@@ -592,6 +592,9 @@ $("#cart_btn").on("click",function(){
 function reservationCancel(rv_num){
 	
 	console.log("rv_num",rv_num);
+	
+	return confirm("취소하시겠습니까?");
+	
  	 $.ajax({
 		type : 'get',
 		url :"reservationcancell",
@@ -617,7 +620,7 @@ $.ajax({
 	url :"loanlist",
 	dataType:'json',
 	success : function(data) {
-        console.log("data2=",data);
+        console.log("대출 현황=",data);
 	for(var i=0;i<data.length;i++){   
     	console.log(data[i].bo_num);
     var $tr= $("<tr>").appendTo($("#borrow"));
@@ -626,9 +629,9 @@ $.ajax({
     $tr.append("<td>"+data[i].bd_date+"</td>");
     $tr.append("<td>"+data[i].bd_return_date+"</td>");
     if(data[i].bd_return_extension==0)
-    $tr.append("<td><button onclick='extend("+data[i].bo_num+")'>연장하기</button></td>");
+    $tr.append("<td><button onclick='extend("+data[i].bd_num+")' class='btn btn-info' >연장하기</button></td>");
     if(data[i].bd_return_extension==1)
-    $tr.append("<td><button onclick='extend("+data[i].bo_num+")' disabled >연장하기</button></td>");
+    $tr.append("<td><button onclick='extend("+data[i].bd_num+")' class='btn btn-info' disabled >연장하기</button></td>");
     }
      },
 	error : function(xhr, status) {
@@ -641,15 +644,18 @@ $.ajax({
 
 
 //반납일 연장하기
-function extend(bd_bo_num){
-	console.log(bd_bo_num);
+function extend(bd_num){
+	console.log(bd_num);
+	
+	return confirm("연장하시겠습니까?"); 
 
 	$.ajax({
 		type : 'get',
 		url :"loanextend",
-		data:{bd_bo_num:bd_bo_num},
+		data:{bd_num:bd_num},
 		async: false,
 		success : function(data) {
+			alert("성공?");
 				location.reload();
 			console.log("반납연장ajax=",data);
 			

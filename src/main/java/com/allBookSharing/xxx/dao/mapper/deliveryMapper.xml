@@ -8,7 +8,7 @@
        	   BK_BG_NUM,BG_CATE,BK_SG_NUM,SG_CATE
 	FROM delivery
 	JOIN BOOKS
-	ON DE_CODE = BK_CODE
+	ON DE_CODE = BK_CODE AND DE_LCODE=BK_LCODE
 	JOIN LIBRARY
 	ON DE_LCODE = LB_CODE
 	JOIN BIGGROUP
@@ -24,8 +24,14 @@
 	</insert>
 	
 	<insert id="borrowDetailInsert" parameterType="deliveryreq">
+	<if test="grade=='일반'">
       	INSERT INTO BORROWDETAIL(BD_NUM, BD_BO_NUM, BD_BCODE, BD_LCODE,BD_STATE_NUM,BD_COUNT,BD_DATE,BD_RETURN_DATE,BD_RETURN_EXTENSION,BD_ON_OFF) 
       		VALUES(BD_NUM.NEXTVAL, BO_NUM.CURRVAL, #{de_code},#{de_lcode}, 2, #{de_quantity}, SYSDATE, SYSDATE+14, 0, 1)
+	</if>
+	<if test="grade=='우수'">
+		INSERT INTO BORROWDETAIL(BD_NUM, BD_BO_NUM, BD_BCODE, BD_LCODE,BD_STATE_NUM,BD_COUNT,BD_DATE,BD_RETURN_DATE,BD_RETURN_EXTENSION,BD_ON_OFF) 
+      		VALUES(BD_NUM.NEXTVAL, BO_NUM.CURRVAL, #{de_code},#{de_lcode}, 2, #{de_quantity}, SYSDATE, SYSDATE+21, 0, 1)
+	</if>
 	</insert>
 
 	<update id="bookDrop" parameterType="deliveryreq">
@@ -59,4 +65,14 @@
 		SELECT us_grade FROM USERS WHERE us_id = #{id}
 	</select>
 
+	<select id="borrowCntCheck" resultType="Integer">
+		SELECT COUNT(*) FROM BORROWDETAIL
+		JOIN BORROWLIST
+		ON bo_num=bd_bo_num
+		WHERE  bd_real_return_date IS NULL AND BO_ID=#{id}
+	</select>
+	
+	<select id="pointCheck" resultType="Integer">
+		SELECT US_POINT FROM USERS WHERE US_ID=#{id}
+	</select>
 </mapper>

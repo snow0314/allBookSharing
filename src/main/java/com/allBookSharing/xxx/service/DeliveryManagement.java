@@ -34,8 +34,10 @@ public class DeliveryManagement {
 		for(int i=0;i<dList.size();i++) {
 			System.out.println("데이터확인:"+dList.get(i).toString());
 		}
-		
+		String grade = Dao.userGradeCheck(id);
 		for(int i=0;i<dList.size();i++) {
+			dList.get(i).setDe_id(id);
+			dList.get(i).setGrade(grade);
 			result+=Dao.borrowDetailInsert(dList.get(i)); //대출상세 테이블에 추가
 			result+=Dao.bookDrop(dList.get(i)); //책 테이블의 대출중인 책 증가
 			dList.get(i).setDe_id(id);
@@ -55,13 +57,30 @@ public class DeliveryManagement {
 			return "실패";
 		}
 		
-		
 	}
 
 	//사용자 등급 체크
 	public String userGradeCheck(String id) {
 		
 		return Dao.userGradeCheck(id);
+	}
+
+
+	public Integer borrowCntCheck(String id) {
+		
+		return Dao.borrowCntCheck(id);
+	}
+
+
+	public Integer pointCheck(String id) {
+		
+		return Dao.pointCheck(id);
+	}
+
+
+	public String deliveryDelete(DeliveryReq delivery) {
+		
+		return null;
 	}
 
 }

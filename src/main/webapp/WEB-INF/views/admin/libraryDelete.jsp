@@ -136,8 +136,8 @@
 					<td><input type="hidden" name="_csrf" value="${_csrf.token}">
 						<input type="submit" id="librarydelete" class="btn btn-outline-success"
 						value="수정하기">
-						<td><input type="submit" id="librarydrop" class="btn btn-outline-success" 
-						 value="삭제"></td>
+						<td><input type="button" class="btn btn-outline-success" 
+						 onclick="librarydrop()" value="삭제"></td>
 					
 					</td>
 				</tr>
@@ -257,12 +257,12 @@ function mapCreate(latitude,longitude,roadAddr) {
     map.setCenter(coords); 
 }
 
-function librarydrop(lb_code){ //삭제 버튼
+function librarydrop(){ //삭제 버튼
 	
 	$.ajax({
 		url : "librarydrop",
 		type : "get",
-		data : {"lb_code" : lb_code},
+		data : {"lb_code" : $("#lb_code").val()},
 		dataType:'text'
 		
 }).done((result) => {
