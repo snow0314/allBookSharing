@@ -29,12 +29,74 @@
 		cursor: pointer;
 		color: #337AB7;
 	}
+	
+	#submenu {
+  		float: left;
+  		width: 15%;
+  		height: 100%;  
+  	  margin-left: 8%;
+  	  margin-top:2%;
+}
+.subbtn{
+width:100%;
+background-color:white;
+height:55px;
+font-family: 'Nanum Gothic Coding', monospace;
+font-weight:bold;
+font-size:20px;
+border:none;
+
+
+}
+.subbtn:hover{
+background-color:#F0EAD6;
+}
+.subtopbtn{
+width:100%;
+font-family: 'Hanna', sans-serif;
+height:98px;
+background-color:#223A5E;
+color:white;
+}
+
+#totalsearchlist{
+		float:right;
+		background-color:white;
+		width:65%;
+		height:auto;
+		margin-right: 8%;
+        margin-top:2%;
+        margin-bottom: 5%;
+        padding:0px;
+	}
+	
 </style>
 	
 </head>
 
 <body>
  	<jsp:include page="header.jsp" />
+ 	
+ 	<aside id="submenu">
+
+		<button class="subtopbtn" disabled>
+			<h2>도서관 서비스</h2>
+		</button>
+		<br>
+		<button class="subbtn"
+			onclick="location.href = 'readingroommove' ">열람실 예약</button>
+		<br>
+		<button class="subbtn" onclick="location.href = 'questionmove' ">건의 사항</button>
+		<br>
+		<button class="subbtn" onclick="location.href = 'hopebookmove' ">희망도서 신청</button>
+		<br>
+		<button class="subbtn"
+			onclick="location.href = 'noticemove' ">공지사항</button>
+
+	</aside>
+ 	
+ 	<main id="totalsearchlist">
+ 	<section>
 	<div class="container p-3 my-3 border">
 		<h2 style="text-align: center">열람실 예약 안내문</h2>
 		<p>1. 열람실 예약은 신중히</p>
@@ -72,6 +134,8 @@
 			</div>
 		</div>
 	</div>
+	</section>
+ 	</main>
 </body>
 <script type="text/javascript">
 window.onload = function(){

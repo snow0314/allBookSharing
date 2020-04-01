@@ -79,8 +79,15 @@ public class DeliveryManagement {
 
 
 	public String deliveryDelete(DeliveryReq delivery) {
+		int result=Dao.deliveryDelete(delivery);
 		
-		return null;
+		if(result!=0) {
+			return "성공";
+		}else {
+			return "실패";
+		}
+		
+		
 	}
 
 }

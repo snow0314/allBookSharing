@@ -73,12 +73,13 @@ h3 {
 	padding-left: 20px;
 }
 
-.recoimg {
+.deliveryimg {
 	width: 100%;
 	height: 175px;
+	
 }
 
-.recoimgdiv {
+.deliveryimgdiv {
 	background-color: grey;
 	padding: 10px;
 	margin-left: 20px;
@@ -112,9 +113,18 @@ h3 {
 tr {
 	height: 100px;
 }
+element.style {
+    width: 100%;
+    height: 170px;
+}
+
 </style>
 
 <body>
+<header>
+<jsp:include page="header.jsp"/>
+</header>
+
 	<div class="container" style="margin-top: 100px;">
 		<table id="delivery" class="table table-bordered">
 			<colgroup>
@@ -166,7 +176,7 @@ function pageShow(){
 		str+="<label for='"+i+"'></label>";
 		str+="</div>";
 		str+="</td><td>";
-		str+="<div class='recoimgdiv'><img src='"+result[i].bk_image+"' class='recoimg'></div>";
+		str+="<div class='deliveryimgdiv'><img src='"+result[i].bk_image+"' class='deliveryimg'></div>";
 		str+="</td>";
 		str+="<td class='recotd'>";
 		str+="<span class='bname'>"+result[i].bk_name+"</span>";
@@ -180,7 +190,7 @@ function pageShow(){
 		str+="<br><br>권수 : "+result[i].de_quantity+"";
 		str+="</td>";
 		str+="<td style='text-align: center; vertical-align:middle;'>";
-		str+="<input type='button' id='delete' class='btn btn-outline-danger' data-decode='"+result[i].de_code+"' data-delcode='"+result[i].de_lcode+"' value='삭제'>";
+		str+="<input type='button' class='btn btn-outline-danger' data-decode='"+result[i].de_code+"' data-delcode='"+result[i].de_lcode+"' value='삭제'>";
 		str+="</td></tr>";
 	}
 	$(str).appendTo($("#delivery"));
@@ -350,21 +360,24 @@ function pointCheck(){ //사용자 포인트 가져오는 메소드
 }); //ajax End
 }
 
-$("#delete").on("click",function(){//삭제 버튼 클릭시
+$(document).on("click",".btn",function(){//삭제 버튼 클릭시
+	
 	var data = {};
 	data.de_code = $(this).data("decode");
 	data.de_lcode = $(this).data("delcode");
-	data.
+	console.log("삭제데이터:",data);
+	
 	$.ajax({ 
 		url : "deliverydelete",
 		type : "post",
 		async: false,
-		data : {"json":data},
+		data : {"json":JSON.stringify(data)},
 		dataType:'text'
 		
 }).done((result) => {
-	console.log("포인트=",result);
-	point=result;
+	console.log("삭제=",result);
+	toastr.success('성공', '해당 도서를 삭제했습니다.');
+	pageShow();
 	
 }).fail((xhr) => {
 	console.log("xhr=",xhr);
