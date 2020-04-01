@@ -83,7 +83,7 @@ color:white;
 		<br>
 		<button class="subbtn" onclick="location.href = 'membergrade' ">회원등급 기준</button>
 		<br>
-		<button class="subbtn" onclick="location.href = '#' ">배송서비스 안내</button>
+		<button class="subbtn" onclick="location.href = 'deliveryinformation' ">배송서비스 안내</button>
 		<br>
 		<button class="subbtn" onclick="location.href = 'libraryschedulemove' ">도서관 일정안내</button>
 
