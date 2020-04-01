@@ -5,6 +5,8 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<h1 style="position: center;">도서목록</h1>
+<hr/>
 <!-- jQuery library -->
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
@@ -36,7 +38,7 @@
 <body>
 <form action="librarydelete" method="post">
 
-		<div class="container p-3 my-3 border" style="width:30%; float:left;">
+		<div class="col-lg-6" style="width:30%; float:left;">
 			<table class="table table-borderless">
 			<tr>
 				<td>
@@ -67,7 +69,7 @@
 		</div>
 		
 		
-		<div class="container p-3 my-3 border" style="width:63%; float:right;">
+		<div class="col-lg-6" style="width:63%; float:right;">
 			<table class="table table-borderless">
 			<tr>
 					<td>
@@ -136,8 +138,8 @@
 					<td><input type="hidden" name="_csrf" value="${_csrf.token}">
 						<input type="submit" id="librarydelete" class="btn btn-outline-success"
 						value="수정하기">
-						<td><input type="submit" id="librarydrop" class="btn btn-outline-success" 
-						 value="삭제"></td>
+						<td><input type="button" class="btn btn-outline-success" 
+						 onclick="librarydrop()" value="삭제"></td>
 					
 					</td>
 				</tr>
@@ -257,12 +259,12 @@ function mapCreate(latitude,longitude,roadAddr) {
     map.setCenter(coords); 
 }
 
-function librarydrop(lb_code){ //삭제 버튼
+function librarydrop(){ //삭제 버튼
 	
 	$.ajax({
 		url : "librarydrop",
 		type : "get",
-		data : {"lb_code" : lb_code},
+		data : {"lb_code" : $("#lb_code").val()},
 		dataType:'text'
 		
 }).done((result) => {

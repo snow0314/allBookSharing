@@ -15,6 +15,7 @@ public class DeliveryReq {
 	private int de_lcode;//도서관 코드
 	private String lb_name;//도서관 이름
 	private String de_id; //사용자아이디
+	private String grade; //사용자 등급
 	private int de_quantity; //권수
 	private String bk_name; //책 제목
 	private String bk_introduction; //소개글

@@ -7,40 +7,118 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 
+
+<style type="text/css">
+
+
+
+table, th, td {
+	border: 1px solid #bcbcbc;
+	font-size: 20px;
+	text-align: center;
+}
+
+#submenu {
+  		float: left;
+  		width: 15%;
+  		height: 100%;  
+  	  margin-left: 8%;
+  	  margin-top:2%;
+}
+.subbtn{
+width:100%;
+background-color:white;
+height:55px;
+font-family: 'Nanum Gothic Coding', monospace;
+font-weight:bold;
+font-size:20px;
+border:none;
+
+
+}
+.subbtn:hover{
+background-color:#F0EAD6;
+}
+.subtopbtn{
+width:100%;
+font-family: 'Hanna', sans-serif;
+height:98px;
+background-color:#223A5E;
+color:white;
+}
+
+#totalsearchlist{
+		float:right;
+		background-color:white;
+		width:65%;
+		height:auto;
+		margin-right: 8%;
+        margin-top:2%;
+        margin-bottom: 5%;
+        padding:0px;
+	}
+
+</style>
 </head>
 <body>
 <jsp:include page="header2.jsp" />
  <%-- <jsp:include page="header.jsp" /> --%>
 
+<aside id="submenu">
+
+		<button class="subtopbtn" disabled>
+			<h2>도서관 서비스</h2>
+		</button>
+		<br>
+		<button class="subbtn"
+			onclick="location.href = 'readingroommove' ">열람실 예약</button>
+		<br>
+		<button class="subbtn" onclick="location.href = 'questionmove' ">건의 사항</button>
+		<br>
+		<button class="subbtn" onclick="location.href = 'noticemove' ">공지 사항</button>
+		<br>
+		<button class="subbtn" onclick="location.href = 'hopebookmove' ">희망도서 신청</button>
+		
+
+	</aside>
+
+
+<main id="totalsearchlist">
+ 	<section>
 <h4>희망도서 신청 안내</h4>
-<ul class="basic_ul">
-	<li>신청일 포함 1주 3권 이내(권당 5만원 이하)</li>
-	<li>신청대상 : 단행본(연속간행물, 비도서(전자책, 오디오북 등)은 신청 제외)</li>
-	<li>희망도서 선정 : 도서관 운영위원회 심의를 거쳐 선정함</li>
- 	<li>희망도서 비치 알림 : SMS 전송(안내 문자 수신을 위해 개인정보수정에서 SMS 수신 체크 확인)</li>
-	<li>우선대출기간 : 신청도서관 도서 비치일로부터 주말까지 </li>
-</ul>
+ 	<table class="table">
+				<thead class="thead-dark">
+<tr class="basic_ul">
+	<th>
+	&nbsp;-신청일 포함 1주 3권 이내(권당 5만원 이하)
+	<br>&nbsp;-신청대상 : 단행본(연속간행물, 비도서(전자책, 오디오북 등)은 신청 제외)
+	<br>&nbsp;-희망도서 선정 : 도서관 운영위원회 심의를 거쳐 선정함
+ 	<br>&nbsp;-희망도서 비치 알림 : SMS 전송(안내 문자 수신을 위해 개인정보수정에서 SMS 수신 체크 확인)
+	<br>&nbsp;-우선대출기간 : 신청도서관 도서 비치일로부터 주말까지 </th>
+</tr>
+</thead>
+ 	</table>
 <h4>희망도서 선정 제외기준</h4>
 <div class="over_table">
-	<table class="basic_table">
+	<table class="table">
 		<caption>
 		희망도서 신청 제외기준 내용 및 종류 등 안내
 		</caption>
-		<thead>
+		<thead class="thead-dark">
 			<tr>
-				<th scope="col">기 준</th>
-				<th scope="col">내  용</th>
-				<th scope="col">비 고 </th>
+				<td>기 준</td>
+				<td>내  용</td>
+				<td>비 고 </td>
 			</tr>
 		</thead>
-		<tbody>
+		<tbody style="text-align: center;">
 			<tr>
 				<td>가격</td>
 				<td>5만원 이상인 도서</td>
 				<td class="txt_left">&nbsp;</td>
 			</tr>
 			<tr>
-				<td rowspan="11">제외종류</td>
+				<td rowspan="11" style="vertical-align:middle">제외종류</td>
 				<td>소장도서, 중복 신청도서, 신간 구입 예정도서</td>
 				<td class="txt_left">&nbsp;</td>
 			</tr>
@@ -106,7 +184,13 @@
 	<li>소장중 : 희망도서를 자료실에 비치한 상태</li>
 </ul>
 
-<div class="btn_set"> <a href="http://localhost:8081/xxx/hopebookapply" class="book_btn01"><span>신청하기</span></a> 
-						<a href="http://localhost:8081/xxx/" class="book_btn02"><span>신청확인</span></a> </div>
+<br>
+
+<div class="btn_set" style="margin-left:330px; ">
+ <a href="hopebookapply" class="book_btn01"><input type="button" value="신청하기"></a> 
+						&nbsp;&nbsp;
+<a href="./" class="book_btn02"><input type="button" value="신청확인"></a> </div>
+						</section>
+						</main>
 </body>
 </html>

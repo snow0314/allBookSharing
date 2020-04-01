@@ -71,7 +71,7 @@ public interface IMemberDao {
 	
 	
 	//반납연장하기
-	int loanExtend(@Param("num")int bd_bo_num);
+	boolean loanExtend(@Param("num")int bd_bo_num);
 	
 	//현재 예약 목록
 	List<Reservation> getReservationlist(String id);
@@ -104,6 +104,9 @@ public interface IMemberDao {
 	
 	//한줄평 등록
 	int reviewInsert(Review review);
+	
+	//해당 책에 예약이 몇건 걸려있는지 알아오는 메소드
+	int getReservationCnt(Reservation reservation);
 	
 	/*
 	 * //로그인 정보 표시 Member loginInfo(String id);

@@ -300,12 +300,12 @@ public class MemberManagement {
 
 	}
 	//반납일 연장하기
-	public int loanExtend(int bd_bo_num) {
+	public boolean loanExtend(int bd_num) {
 		
-		int bd_return_extension=mDao.loanExtend(bd_bo_num);
-		System.out.println("bd_return_extension="+bd_return_extension);
+		boolean result=mDao.loanExtend(bd_num);
+		System.out.println("bd_return_extension="+result);
 		
-		return bd_return_extension;
+		return result;
 	}
 
 	//현재 예약 목록
@@ -313,6 +313,9 @@ public class MemberManagement {
 		String id=principal.getName();
 		
 		List<Reservation> rList=mDao.getReservationlist(id);
+		for(int i=0;i<rList.size();i++) {
+			rList.get(i).setReservationCnt(mDao.getReservationCnt(rList.get(i))); //해당 책에 예약이 몇건 걸려있는지 알아오는 메소드
+		}
 		System.out.println("rList="+rList);
 		
 		return rList;

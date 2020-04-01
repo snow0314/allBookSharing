@@ -110,26 +110,8 @@
                         <li class="has-sub">
                             <a class="js-arrow" href="#">
                                 <i class="fas fa-chart-bar"></i>도서관별 대출 현황</a>
-                            <ul class="navbar-mobile-sub__list list-unstyled js-sub-list">
-                                <li>
-                                    <a href="index.html">배송 관리</a>
-                                </li>
-                                <li>
-                                    <a href="index2.html">반납 관리</a>
-                                </li>
-                                <li>
-                                    <a href="index3.html">희망도서 관리</a>
-                                </li>
-                                <li>
-                                    <a href="index4.html">건의사항 관리</a>
-                                </li>
-                            </ul>
-                        </li>
-
-
-
-
-                    </ul>
+                       
+                       </li>
                 </nav>
             </div>
         </aside>

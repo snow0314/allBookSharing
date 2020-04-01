@@ -132,12 +132,12 @@ public class MyPageRestController {
 	
 	//반납일 연장하기
 		@RequestMapping(value = "/loanextend" ,produces = "application/json;charset=UTF-8")
-		public Integer loanExtend(int bd_bo_num) {
+		public boolean loanExtend(int bd_num) {
 			System.out.println("반납연장 컨트롤러");
-			System.out.println("bd_bo_num="+bd_bo_num);
-			int bd_return_extension=mm.loanExtend(bd_bo_num);
+			System.out.println("bd_bo_num="+bd_num);
+			boolean result=mm.loanExtend(bd_num);
 			
-			return bd_return_extension;
+			return result;
 		}
 		
 		//희망도서 신청페이지 지역정보 가져오는 메소드

@@ -30,4 +30,10 @@ public interface IDeliveryManagementDao { //deliveryMapper.xml
 
 	String userGradeCheck(String id);
 
+	Integer borrowCntCheck(String id);
+
+	Integer pointCheck(String id);
+
+	int reservationDelete(DeliveryReq deliveryReq);
+
 }

@@ -50,12 +50,40 @@ public class DeliveryRestController {
 		return dm.borrowListInsert(dList,principal.getName(), pl_inout);
 	}
 	
-	//배송 신청버튼 클릭시 대출목록에 들어가는 메소드
+	//사용자 등급 확인하는 메소드
 	@PreAuthorize("isAuthenticated()")
 	@RequestMapping(value = "/usergradecheck", produces = "application/json;charset=UTF-8")
 	public String userGradeCheck(Principal principal){ 
 			
-		
 		return dm.userGradeCheck(principal.getName());
 	}	
+	
+	//현재 대여중인 책 권수 확인하는 메소드
+	@PreAuthorize("isAuthenticated()")
+	@RequestMapping(value = "/borrowcntcheck", produces = "application/json;charset=UTF-8")
+	public Integer borrowCntCheck(Principal principal){ 
+				
+		return dm.borrowCntCheck(principal.getName());
+	}
+	
+	@PreAuthorize("isAuthenticated()")
+	@RequestMapping(value = "/pointcheck", produces = "application/json;charset=UTF-8")
+	public Integer pointCheck(Principal principal){ 
+				
+		return dm.pointCheck(principal.getName());
+	}
+	
+	
+	  @PreAuthorize("isAuthenticated()")
+	  @RequestMapping(value = "/deliverydelete", produces ="application/json;charset=UTF-8") 
+	  public String deliveryDelete(Principal principal,String json) throws JsonParseException, JsonMappingException, IOException{ 
+		  
+		  ObjectMapper mapper = new ObjectMapper();
+		  DeliveryReq delivery = mapper.readValue(json,DeliveryReq.class); 
+		  delivery.setDe_id(principal.getName());
+		  
+		  
+		  return dm.deliveryDelete(delivery);
+	  }
+	 
 }

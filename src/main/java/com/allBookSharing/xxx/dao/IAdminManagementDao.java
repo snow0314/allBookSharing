@@ -37,6 +37,8 @@ public interface IAdminManagementDao { //AdminMapper.xml
 	Boolean recommendDelete(String re_bcode);
 
 	Boolean recommendModify(@Param("re_bcode")String re_bcode, @Param("re_contents")String re_contents);
+=======
+
 	
 	
 }

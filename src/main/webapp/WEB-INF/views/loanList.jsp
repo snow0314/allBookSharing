@@ -103,16 +103,54 @@
     font:bold 18px Helvetica, Arial, sans-serif;
     vertical-align: middle;
 }
+#foo-table_paginate{
+text-align: center;
+}
 
+    #submenu {
+  		float: left;
+  		width: 15%;
+  		height: 100%;  
+  	  margin-left: 8%;
+  	  margin-top:2%;
+}
+    .subtopbtn{
+width:100%;
+font-family: 'Hanna', sans-serif;
+height:98px;
+background-color:#223A5E;
+color:white;
+}
+
+.subbtn{
+width:100%;
+background-color:white;
+height:55px;
+font-family: 'Nanum Gothic Coding', monospace;
+font-weight:bold;
+font-size:20px;
+border:none;
+}
+.subbtn:hover{
+background-color:#F0EAD6;
+}
+
+#totalsearchlist{
+		float:right;
+		background-color:white;
+		width:65%;
+		height:auto;
+		margin-right: 8%;
+        margin-top:2%;
+        margin-bottom: 5%;
+        padding:0px;
+	}
 
 </style>
 <meta charset="UTF-8">
 <link rel="stylesheet" href="https://cdn.datatables.net/t/bs-3.3.6/jqc-1.12.0,dt-1.10.11/datatables.min.css"/> 
     <script src="https://cdn.datatables.net/t/bs-3.3.6/jqc-1.12.0,dt-1.10.11/datatables.min.js"></script>
-<meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+      
 <script>
         jQuery(function($){
             $("#foo-table").DataTable({
@@ -135,10 +173,24 @@
     var bootstrapButton = $.fn.button.noConflict() // return $.fn.button to previously assigned value
     $.fn.bootstrapBtn = bootstrapButton            // give $().bootstrapBtn the Bootstrap functionality
     </script>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 </head>
 <body>
 <jsp:include page="header2.jsp" />
+<nav id="submenu">
+	<button class="subtopbtn" disabled><h2>나의 도서관</h2></button><br>
+    <button class="subbtn" onclick="location.href = 'movemypage' " >마이 페이지</button><br>
+    <button class="subbtn" onclick="location.href = 'movedeliverylist' " >배송 목록</button><br>
+    <button class="subbtn" onclick="location.href = 'moveloanlist'">대출 목록</button><br>
+    <button class="subbtn" onclick="location.href = 'movehopelist'">희망 도서 신청 목록</button>
+</nav>
+<main id="totalsearchlist">
 		<div>
+		<h1 style="margin-bottom:80px;">대출 목록</h1>
+		<hr />
 <table id="foo-table" class="table table-bordered">
 		<thead>
 			<tr>
@@ -223,6 +275,8 @@ for(let i=0;i<list.length;i++){
     </div>
   </div>
   </form>
+  
+  </main>
   
 <script type="text/javascript">
 //star rating

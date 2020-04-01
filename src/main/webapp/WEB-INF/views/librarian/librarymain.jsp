@@ -114,10 +114,10 @@
                                 <i class="fas fa-chart-bar"></i>고객 관리</a>
                             <ul class="navbar-mobile-sub__list list-unstyled js-sub-list">
                                 <li>
-                                    <a href="index.html">배송 관리</a>
+                                    <a href="#" onclick="menuMove(8)">배송 관리</a>
                                 </li>
                                 <li>
-                                    <a href="index2.html">반납 관리</a>
+                                    <a href="#" onclick="menuMove(9)">반납 관리</a>
                                 </li>
                                 <li>
                                     <a href="#" onclick="menuMove(11)">희망도서 관리</a>

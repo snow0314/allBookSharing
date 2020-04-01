@@ -4,8 +4,10 @@
 <mapper namespace="com.allBookSharing.xxx.dao.IMemberDao">
 
 <select id="getLoanList" resultType="Loan">
-SELECT bo_num,bk_name,bk_lcode,bd_date,bd_return_date,bd_return_extension,bk_image FROM BORROWLIST JOIN BORROWDETAIL ON BO_NUM=BD_BO_NUM JOIN BOOKS ON books.bk_code=borrowdetail.bd_bcode and bd_lcode=bk_lcode  WHERE BO_ID=#{id}
- </select>
+
+SELECT BD_NUM,bo_num,bk_name,bk_lcode,bd_date,bd_return_date,bd_return_extension,bk_image FROM BORROWLIST JOIN BORROWDETAIL ON BO_NUM=BD_BO_NUM JOIN BOOKS ON books.bk_code=borrowdetail.bd_bcode and bd_lcode=bk_lcode  WHERE BO_ID=#{id} AND bd_state_num=1 OR bd_state_num=2 OR bd_state_num=4 OR bd_state_num=5
+
+</select>
 
 
 <select id="getArrearsDay" resultType="Integer">
@@ -68,13 +70,9 @@ SELECT COUNT(BD_RETURN_DATE-BD_REAL_RETURN_DATE) FROM BORROWLIST JOIN BORROWDETA
 
 	<update id="loanExtend" parameterType="int" keyProperty="bd_return_extension">
 
-		<selectKey keyProperty="bd_return_extension" resultType="java.lang.Integer" order="AFTER">
-			SELECT bd_return_extension FROM
-			BORROWDETAIL WHERE BD_BO_NUM=#{num}
-		</selectKey>
 		UPDATE BORROWDETAIL SET
 		BD_RETURN_DATE=BD_RETURN_DATE+7,bd_return_extension=1 WHERE
-		BD_BO_NUM=#{num}
+		BD_NUM=#{num}
 
 	</update>
 
@@ -92,7 +90,7 @@ SELECT COUNT(BD_RETURN_DATE-BD_REAL_RETURN_DATE) FROM BORROWLIST JOIN BORROWDETA
 	<select id="getReservationlist" resultType="Reservation"
 		resultMap="resrv">
 		
-		SELECT * FROM BOOKS
+	  SELECT * FROM BOOKS
       JOIN RESERVATION ON BOOKS.BK_CODE=reservation.rt_code and books.bk_lcode=reservation.rt_lcode
       JOIN LIBRARY ON library.lb_code=reservation.rt_lcode WHERE RT_ID=#{id}
 
@@ -105,5 +103,9 @@ SELECT COUNT(BD_RETURN_DATE-BD_REAL_RETURN_DATE) FROM BORROWLIST JOIN BORROWDETA
 
 </insert>
 	
+	<select id="getReservationCnt" parameterType="reservation" resultType="int">
+		SELECT COUNT(*) FROM RESERVATION 
+		WHERE RT_CODE = #{rv_code} AND RT_LCODE = #{rv_lcode}
+	</select>
 
 </mapper>

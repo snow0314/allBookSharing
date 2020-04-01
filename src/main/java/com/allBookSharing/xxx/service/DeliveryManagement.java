@@ -34,12 +34,15 @@ public class DeliveryManagement {
 		for(int i=0;i<dList.size();i++) {
 			System.out.println("데이터확인:"+dList.get(i).toString());
 		}
-		
+		String grade = Dao.userGradeCheck(id);
 		for(int i=0;i<dList.size();i++) {
+			dList.get(i).setDe_id(id);
+			dList.get(i).setGrade(grade);
 			result+=Dao.borrowDetailInsert(dList.get(i)); //대출상세 테이블에 추가
 			result+=Dao.bookDrop(dList.get(i)); //책 테이블의 대출중인 책 증가
 			dList.get(i).setDe_id(id);
 			result+=Dao.deliveryDelete(dList.get(i)); //배송 신청한 책은 장바구니에서 지우기
+			result+=Dao.reservationDelete(dList.get(i)); //예약된 책이 있으면 테이블에서 지우기
 			int cnt = Dao.bookState(dList.get(i)); //보유권수 - 대출중인 책 권수 구하기
 			if(cnt==0) {
 				result+=Dao.bookStateChange(dList.get(i)); //보유권수 - 대출중인 책이 0이면 대출불가능 상태로 변경
@@ -55,13 +58,37 @@ public class DeliveryManagement {
 			return "실패";
 		}
 		
-		
 	}
 
 	//사용자 등급 체크
 	public String userGradeCheck(String id) {
 		
 		return Dao.userGradeCheck(id);
+	}
+
+
+	public Integer borrowCntCheck(String id) {
+		
+		return Dao.borrowCntCheck(id);
+	}
+
+
+	public Integer pointCheck(String id) {
+		
+		return Dao.pointCheck(id);
+	}
+
+
+	public String deliveryDelete(DeliveryReq delivery) {
+		int result=Dao.deliveryDelete(delivery);
+		
+		if(result!=0) {
+			return "성공";
+		}else {
+			return "실패";
+		}
+		
+		
 	}
 
 }
