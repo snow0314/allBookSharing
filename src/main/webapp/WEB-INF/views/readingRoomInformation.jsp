@@ -5,6 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
 <script
@@ -14,14 +15,21 @@
 <script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
 <style>
+@import url(//fonts.googleapis.com/earlyaccess/hanna.css);
+
+@import url(//fonts.googleapis.com/earlyaccess/jejugothic.css);
+
+@import url(//fonts.googleapis.com/earlyaccess/notosanskr.css);
+
+@import url(//fonts.googleapis.com/earlyaccess/nanumgothiccoding.css);
 table, th, td {
 	border: 1px solid #bcbcbc;
 	font-size: 20px;
 }
 
-table {
-	width: 200px;
-	height: 150px;
+.table {
+    width: 75%;
+
 }
 
 #Reservation {
@@ -46,31 +54,47 @@ border:none;
 
 
 }
+
+section{
+
+width:75%;
+float:right;
+}
 .subbtn:hover{
 background-color:#F0EAD6;
 }
-.subtopbtn{
-width:100%;
-font-family: 'Hanna', sans-serif;
-height:98px;
-background-color:#223A5E;
-color:white;
+
+#submenu {
+	float: left;
+	width: 12%;
+	height: 100%;
+	margin-left: 6%;
+	margin-top: 1%;
 }
 
-#totalsearchlist{
-		float:right;
-		background-color:white;
-		width:65%;
-		height:auto;
-		margin-right: 8%;
-        margin-top:2%;
-        margin-bottom: 5%;
-        padding:0px;
-	}
+.subbtn {
+	width: 100%;
+	background-color: white;
+	height: 55px;
+	font-family: 'Nanum Gothic Coding', monospace;
+	font-weight: bold;
+	font-size: 20px;
+	border: none;
+}
+
+.subtopbtn {
+	width: 100%;
+	font-family: 'Hanna', sans-serif;
+	height: 95px;
+	background-color: #223A5E;
+	color: white;
+}
+
+
 </style>
 </head>
 <body>
-	<jsp:include page="header2.jsp" />
+	<jsp:include page="header.jsp" />
 
 	<aside id="submenu">
 
@@ -81,18 +105,23 @@ color:white;
 		<button class="subbtn"
 			onclick="location.href = 'readingroominformation' ">열람실 예약안내</button>
 		<br>
-		<button class="subbtn" onclick="location.href = 'membergrade' ">회원등급
+		<button class="subbtn" onclick="getPage('membergrade')">회원등급
 			기준</button>
 		<br>
-		<button class="subbtn" onclick="location.href = '#' ">배송서비스
+		<button class="subbtn" onclick="getPage('deliveryinformation')">배송서비스
 			안내</button>
 		<br>
 		<button class="subbtn"
-			onclick="location.href = 'libraryschedulemove' ">도서관 일정안내</button>
+			onclick="getPage('libraryschedulemove')">도서관 일정안내</button>
+		
+		<button class="subbtn"
+			onclick="getPage('libraryinformationmove')">도서관 정보</button>
 
 	</aside>
 
-	<main id="totalsearchlist">
+
+	<main id="main">
+
 		<section>
 			<table class="table">
 				<thead class="thead-dark">
@@ -110,15 +139,44 @@ color:white;
 						 <br>- 외출시 열람실 출입게이트에서 ‘외출’버튼을 누르고 외출하여야 하며,외출 허용시간은 평상시 3시간, 시험기간(별도공지)시<br>
 							1시간30분동안 허용됩니다.<br> 
 						 <br>- 외출허용시간이 지나도록 출입게이트를 통하여 입실하지않으면 퇴실처리됩니다.
+						
 						</th>
 					</tr>
 				</tbody>
 			</table>
 		</section>
-	</main>
-	<a href="readingroommove"><input type="submit" id="Reservation"
+		<a href="readingroommove"><input type="submit" id="Reservation"
 		value="열람실 예약" /></a>
+		
+	</main>
+
 
 
 </body>
+<script>
+window.onload=function(){
+	console.log("location.search",location.search.substring(6));
+	if(location.search.substring(6)=="membergrade"){
+		getPage('membergrade');
+	}else if(location.search.substring(6)=="deliveryinformation")
+		getPage('deliveryinformation');
+	 else if(location.search.substring(6)=="libraryschedulemove")
+		getPage('libraryschedulemove');
+	 else if(location.search.substring(6)=="libraryinformationmove")
+			getPage('libraryinformationmove')
+}
+function getPage(url) {
+
+	$.ajax({
+		url:url,
+		type:'get',
+		success:function(page){
+			$("#main").html(page);
+		},
+		error:function(){
+			alert("실패");
+		}
+	})
+	}  
+</script>
 </html>

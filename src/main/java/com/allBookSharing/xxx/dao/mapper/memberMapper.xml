@@ -90,7 +90,7 @@ SELECT COUNT(BD_RETURN_DATE-BD_REAL_RETURN_DATE) FROM BORROWLIST JOIN BORROWDETA
 	<select id="getReservationlist" resultType="Reservation"
 		resultMap="resrv">
 		
-		SELECT * FROM BOOKS
+	  SELECT * FROM BOOKS
       JOIN RESERVATION ON BOOKS.BK_CODE=reservation.rt_code and books.bk_lcode=reservation.rt_lcode
       JOIN LIBRARY ON library.lb_code=reservation.rt_lcode WHERE RT_ID=#{id}
 
@@ -103,5 +103,24 @@ SELECT COUNT(BD_RETURN_DATE-BD_REAL_RETURN_DATE) FROM BORROWLIST JOIN BORROWDETA
 
 </insert>
 	
+	<select id="getReservationCnt" parameterType="reservation" resultType="int">
+		SELECT COUNT(*) FROM RESERVATION 
+		WHERE RT_CODE = #{rv_code} AND RT_LCODE = #{rv_lcode}
+	</select>
+	
+<update id="changeGrade" parameterType="String" >
 
+		UPDATE USERS SET
+		US_GRADE='우수'
+		WHERE US_ID=#{id}
+
+</update>
+<update id="plusPoint" parameterType="String" >
+	UPDATE USERS SET US_POINT=US_POINT+1000 WHERE US_ID=#{id}
+</update>
+<insert id='plustPointList' parameterType="Review">
+	INSERT INTO
+	POINTLIST
+	VALUES(PL_NUM.NEXTVAL,#{id},10000,'우수회원기념',SYSDATE)
+</insert>
 </mapper>

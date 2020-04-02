@@ -313,6 +313,9 @@ public class MemberManagement {
 		String id=principal.getName();
 		
 		List<Reservation> rList=mDao.getReservationlist(id);
+		for(int i=0;i<rList.size();i++) {
+			rList.get(i).setReservationCnt(mDao.getReservationCnt(rList.get(i))); //해당 책에 예약이 몇건 걸려있는지 알아오는 메소드
+		}
 		System.out.println("rList="+rList);
 		
 		return rList;
@@ -388,6 +391,27 @@ public class MemberManagement {
 		}
 	    
 		return mav;
+	}
+	//회원등급변경
+	public boolean changeGrade(Principal principal) {
+		String id=principal.getName();
+		System.out.println("회원등급변경아이디="+id);
+		Boolean result=mDao.changeGrade(id);
+		return result;
+	}
+
+	public boolean plusPoint(Principal principal) {
+		String id=principal.getName();
+		Boolean result=mDao.plusPoint(id);
+		
+		System.out.println("포인트서비스="+result);
+		return result;
+	}
+
+	public boolean plusPointList(Principal principal) {
+		String id=principal.getName();
+		Boolean result=mDao.plustPointList(id);
+		return result;
 	}
     
 	

@@ -19,6 +19,7 @@
 		JOIN LIBRARY ON BD_LCODE=LB_CODE
 		JOIN BOOKS ON BD_BCODE=BK_CODE and borrowdetail.bd_lcode=books.bk_lcode
 		WHERE BO_ID=#{id}
+		ORDER BY BD_DATE DESC
 	</select>
 	
 <!--희망도서목록 -->

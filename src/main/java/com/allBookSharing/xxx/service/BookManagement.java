@@ -194,6 +194,16 @@ public class BookManagement {
 		return rcList;
 	}
 
+	public List<Library> jiyuckLib(String lb_loc) {
+		List<Library> lList=bDao.jiyuckLib(lb_loc);
+		return lList;
+	}
+
+	public List<Library> libInformation(Integer lb_code) {
+		List<Library> lList=bDao.libInformation(lb_code);
+		return lList;
+	}
+
 
 
 }
