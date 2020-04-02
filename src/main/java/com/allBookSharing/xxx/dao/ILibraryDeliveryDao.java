@@ -10,7 +10,14 @@ import com.allBookSharing.xxx.dto.LibraryDelivery;
 @Service
 public interface ILibraryDeliveryDao {
 
-	//배송관리 목록
+	//사서 배송관리 목록
 	List<LibraryDelivery> getDeliveryList(int lb_code);
+
+	//사서 배송 상세 보기
+	List<LibraryDelivery> getLbDeliveryDetail(LibraryDelivery ld);
+
+	
+	//사서 배송 취소
+	boolean lbDeliveryCancel(LibraryDelivery ld);
 
 }

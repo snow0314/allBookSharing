@@ -147,74 +147,130 @@ $(document).on("click", "#modal_detail",function(e){
 	 
 	 console.log("bo_num",params);
 	 
-	 
-/*
 	 $.ajaxSetup({         
         beforeSend : function(xhr){
            xhr.setRequestHeader("${_csrf.headerName}", "${_csrf.token}");}
         });//먼저 보냄
 	  
         $.ajax({
-            url : "lbhopedetail",
+            url : "lbdeliverydetail",
             type : "post",
-            data : {"br_num":params}, 
+            data : {"bo_num":params}, 
             success : function(response) {
             
            	    $("#modal-header").empty();
                 $("#modal-body").empty();
                 $("#modal-footer").empty(); 
-                console.log("1",response);
-                console.log(response.br_titile);
                 
-                $("#modal-header").append(response.br_titile).css("font-weight","bold").css("font-size","20px");
+                console.log("1",response);
+                
+                $("#modal-header").append(""+response[0].bo_num+"번 배송 리스트").css("font-weight","bold").css("font-size","20px");
                 
                 var str="";
                 var footer="";
+                	
                 str+="<div>";
-                str+="<input type='hidden' name='br_num' value='"+response.br_num+"' />";
-                str+="<input type='hidden' name='be_rnum' value='"+response.br_num+"' />";
-                console.log("response.br_lcode",response.br_lcode);
-               // str+="<input type='hidden' name='be_res_lcode' value='"+response.br_lcode+"' />";
+                str+="<input type='hidden' name='br_num' value='"+response[0].bo_num+"' />";
+             // str+="<input type='hidden' name='be_rnum' value='"+response.br_num+"' />";
                 str+="<div style='padding: 0 8px; line-height: 40px; border-top: 1px solid rgba(0,0,0,0.2); border-bottom: 1px solid rgba(0,0,0,0.2); text-align: left; background-color:rgba(0,0,0,0.1)'>";
-                str+="<span>"+response.br_id+"</span>";
-                if(response.br_situation==0)
-                str+="<span id='state' style='font-size: 12px; color: red;'>(대기중)</span>";
-                if(response.br_situation==1)
-                str+="<span id='state' style='font-size: 12px; color: green;'>(처리중)</span>";
-                if(response.br_situation==2)
-                str+="<span id='state' style='font-size: 12px; color: orange;'>(반려)</span>";
-                if(response.br_situation==3)
-                str+="<span id='state' style='font-size: 12px; color: blue;'>(처리완료)</span>";
-                if(response.br_situation==4)
-                str+="<span id='state' style='font-size: 12px; color: green;'>(상호대차수락)</span>";
-                str+="<span style='float: right; font-size: 14px;'><i class='far fa-clock'></i>"+response.br_date+"</span>";
+                str+="<span>"+response[0].bo_id+"</span>";
+                if(response[0].bd_state_num==1)
+                str+="<span id='state' style='font-size: 12px; color: red;'>(대출중)</span>";
+                if(response[0].bd_state_num==2)
+                str+="<span id='state' style='font-size: 12px; color: red;'>(배송신청)</span>";
+                if(response[0].bd_state_num==3)
+                str+="<span id='state' style='font-size: 12px; color: red;'>(배송 취소)</span>";
+                if(response[0].bd_state_num==4)
+                str+="<span id='state' style='font-size: 12px; color: red;'>(배송 완료)</span>";
+                if(response[0].bd_state_num==5)
+                str+="<span id='state' style='font-size: 12px; color: red;'>(반납 신청)</span>";
+                if(response[0].bd_state_num==6)
+                str+="<span id='state' style='font-size: 12px; color: red;'>(오프라인 반납 완료)</span>";
+                if(response[0].bd_state_num==7)
+                str+="<span id='state' style='font-size: 12px; color: red;'>(반납 안료)</span>";
+                str+="<span style='float: right; font-size: 14px;'><i class='far fa-clock'></i>"+response[0].bd_date+"</span>";
                 str+="</div></div>";
-                str+="<div style='display:flex; margin:10px 10px;'>";
-                str+="<div style='margin-right:10px;'>";
-                str+="<img src='"+response.br_image+"' alt='도서 이미지' />";
+                for(var i=0;i<response.length;i++){
+                  str+="<div style='display:flex; margin:10px 10px;'>";
+                  
+                  str+="<div style='display:flex; margin:10px 10px;'>";
+                
+               	   str+="<div style='margin-right:10px;'>";
+               	   str+="<img src='"+response[i].bk_image+"' alt='도서 이미지' />";
+                   str+="</div>";
+                
+                  str+="<div>";
+                  str+="도서명 : "+response[i].bk_name+"<br/><br/>ISBN 코드 : "+response[i].bd_bcode+"<br/><br/>저  자 : "+response[i].bk_writer+"<br/><br/>신청 권수 : <input type='text' value='"+response[i].bd_count+"'  readOnly style='width:74px; text-align:right;'/>";
+                  str+="</div>";
+                  
                 str+="</div>";
-                str+="<div>";
-                str+="도서명 : "+response.br_name+"<br/><br/>ISBN 코드 : "+response.br_bcode+"<br/><br/>저  자 : "+response.br_writer+"<br/><br/>도서신청이유 : "+response.br_reason+"";
-                str+="</div>";
+
+                str+="<div style='text-align:center;'>";
+                str+="<select class='bd_reason' name='bd_reason'  style='float: left; margin-right: 10px; height: 34px; margin-top:50px; margin-bottom:15px;'>";
+                str+="<option value=''>취소 사유</option>";
+                str+="<option value='희망도서구입제한도서'>희망도서 구입제한 도서</option>";
+                str+="<option value='부적합한내용의도서'>부적합한내용의 도서</option>";
+                str+="<option value='구입불가능한도서'>구입불가능한 도서</option>";
+                
+                str+="</select>";
+                str+="<input type='button' id='deliveryCancel' class='btn btn-warning' data-number='"+response[i].bd_num+"' data-num="+i+"  value='취소' />"; 
+                
+                str+="</div>"; 
+                str+="</div>"; 
+                }
                $("#modal-body").append(str); 
-               
-               
+               for(var i=0;i<response.length;i++){
+            	   
+              if(response[i].bd_state_num==2)
+               footer="<input type='button' value='배송 완료' style='margin-right:10px;' class='btn btn-primary'>";
+               }
                
                footer+="<button type='button' class='btn btn-default' data-dismiss='modal'>Close</button>";
-               if(response.br_false!=null){
-               footer+="<div style='float:left; font-weight:bold; color:red;'>";
-               footer+="반려 사유 : "+response.br_false+"";
-               footer+="</div>";
-           	}
-               $("#modal-footer").append(footer);
+               $("#modal-footer").append(footer); 
+               
                
             }, error : function(jqXHR, status, e) {
                 console.error("희망도서 모달 에러");
             }
 
         });		//ajax end
- */        
+      
 });		//modal end
+
+
+$(document).on("click", "#deliveryCancel",function(e){
+	var params = e.target.dataset.number; 
+	var num = e.target.dataset.num; 
+	
+	var bd_reason = $(".bd_reason").eq(num).val(); 
+	console.log("상세 번호 = ",params);
+	console.log("번호 = ",num);
+	console.log($(".bd_reason").eq(num).val());
+	
+	
+	$.ajaxSetup({         
+        beforeSend : function(xhr){
+           xhr.setRequestHeader("${_csrf.headerName}", "${_csrf.token}");}
+        });//먼저 보냄
+        $.ajax({
+            url : "lbdeliverycancel",
+            type : "post",
+            data : {"bd_num":params,"bd_reason":bd_reason}, 
+            success : function(response) {
+           	 console.log("취소 결과 = ",response);
+           	 
+           	 
+           	     },
+            error : function(jqXHR, status, e) {
+                console.error("상호대차 도서관 에러");
+            }
+        
+            
+        });	//ajax End
+	
+	
+
+});
 
 </script>
 
