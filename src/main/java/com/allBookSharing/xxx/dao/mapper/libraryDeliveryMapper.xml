@@ -13,4 +13,19 @@ WHERE BD_LCODE=#{lb_code}
 	</select>
 	
 	
+<select  id="getLbDeliveryDetail" resultType="librarydelivery">
+SELECT *
+FROM BORROWLIST JOIN BORROWDETAIL 
+ON BO_NUM=BD_BO_NUM
+JOIN BOOKS ON BK_CODE=bd_bcode AND BK_LCODE=BD_LCODE
+WHERE BD_LCODE=#{bd_lcode} AND BO_NUM=#{bo_num}
+
+</select>
+	
+<update id="lbDeliveryCancel" parameterType="librarydelivery">
+
+UPDATE BORROWDETAIL SET BD_STATE_NUM=3,BD_REASON=#{bd_reason} WHERE BD_NUM=#{bd_num}
+
+</update>	
+	
 </mapper>

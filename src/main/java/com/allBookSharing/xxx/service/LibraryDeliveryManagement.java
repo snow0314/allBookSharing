@@ -18,7 +18,7 @@ public class LibraryDeliveryManagement {
 	@Autowired
 	ILibraryDeliveryDao ldDao;
 	
-	
+	//사서 배송 목록
 	public ModelAndView deliveryManagementMove(HttpServletRequest req) {
 		ModelAndView mav=new ModelAndView();
 		String view=null;
@@ -37,6 +37,28 @@ public class LibraryDeliveryManagement {
 		
 		
 		return mav;
+	}
+
+	//사서 배송 상세 보기
+	public List<LibraryDelivery> lbDeliveryDetail(HttpServletRequest req, LibraryDelivery ld) {
+		ModelAndView mav=new ModelAndView();
+		String view=null;
+		// 빅 데시멀 오류 발생 String.valueOf 사용하여 해결(도서관 코드)
+		ld.setBd_lcode(Integer.parseInt(String.valueOf(req.getSession().getAttribute("LB_CODE"))));
+		System.out.println("ld="+ld);
+		
+		List<LibraryDelivery> DeliveryDetail=ldDao.getLbDeliveryDetail(ld);		
+		
+		return DeliveryDetail;
+	}
+
+
+	//사서 배송 취소
+	public boolean lbDeliveryCancel(LibraryDelivery ld) {
+		
+		boolean result=ldDao.lbDeliveryCancel(ld);
+		
+		return result;
 	}
 
 }
