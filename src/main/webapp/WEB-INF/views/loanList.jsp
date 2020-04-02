@@ -150,7 +150,7 @@ background-color:#F0EAD6;
 <meta charset="UTF-8">
 <link rel="stylesheet" href="https://cdn.datatables.net/t/bs-3.3.6/jqc-1.12.0,dt-1.10.11/datatables.min.css"/> 
     <script src="https://cdn.datatables.net/t/bs-3.3.6/jqc-1.12.0,dt-1.10.11/datatables.min.js"></script>
-      
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>     
 <script>
         jQuery(function($){
             $("#foo-table").DataTable({
@@ -174,9 +174,20 @@ background-color:#F0EAD6;
     $.fn.bootstrapBtn = bootstrapButton            // give $().bootstrapBtn the Bootstrap functionality
     </script>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+  <!-- jQuery library -->
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+<!-- Popper JS -->
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+
+<!-- Latest compiled JavaScript -->
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
 </head>
 <body>
 <jsp:include page="header2.jsp" />
@@ -192,10 +203,19 @@ background-color:#F0EAD6;
 		<h1 style="margin-bottom:80px;">대출 목록</h1>
 		<hr />
 <table id="foo-table" class="table table-bordered">
+		<colgroup>
+			<col width="5%">
+			<col width="8%">
+			<col width="40%">
+			<col width="10%">
+			<col width="10%">
+			<col width="10%">
+			<col width="8%">
+			<col width="9%">
+		</colgroup>
 		<thead>
 			<tr>
 			<th>No</th>
-			<th>대출번호</th>
 			<th>도서관</th>
 			<th>도서명</th>
 			<th>대출일</th>
@@ -214,29 +234,66 @@ background-color:#F0EAD6;
 <script>
 let list=${list};
 console.log(list);
+var date = new Date();
+$('.dateview1').html(moment(date).format('YYYY MM DD HH:mm:ss'));
 
 for(let i=0;i<list.length;i++){
 	var $tr= $("<tr>").appendTo($("#tb"));
 	$tr.append("<td>"+(i+1)+"</td>");
-	$tr.append("<td>"+list[i].bo_num+"</td>");
 	$tr.append("<td>"+list[i].lb_name+"</td>");
 	$tr.append("<td>"+list[i].bk_name+"</td>");
-	$tr.append("<td>"+list[i].bd_date+"</td>");
-	$tr.append("<td>"+list[i].bd_return_date+"</td>");
-	$tr.append("<td>"+list[i].bd_real_return_date+"</td>");
-	if(list[i].bd_state_num==7){
-	$tr.append("<td style='color:blue;'>반납완료</td>");
-	$tr.append("<td><button id='modal_review' data-toggle='modal' data-target='#myModal' data-code=\""+list[i].bk_code+"\">리뷰쓰기</button></td>");		
+	$tr.append("<td>"+moment(list[i].bd_date).format('YYYY MM DD HH:mm:ss')+"</td>");
+	$tr.append("<td>"+moment(list[i].bd_return_date).format('YYYY MM DD HH:mm:ss')+"</td>");
+	if(list[i].bd_real_return_date == undefined){
+		$tr.append("<td>--------------</td>");
+	}else{
+		$tr.append("<td>"+moment(list[i].bd_real_return_date).format('YYYY MM DD HH:mm:ss')+"</td>");
 	}
-	else
-	$tr.append("<td><button disabled>리뷰쓰기</button></td>");
+	
+	switch (list[i].bd_state_num) {
+	case 1:
+		$tr.append("<td style='color:blue;'>대출중</td>");
+		$tr.append("<td><button disabled>리뷰쓰기</button></td>");
+		break;
+	case 2:
+		$tr.append("<td style='color:blue;'>배송신청</td>");
+		$tr.append("<td><button disabled>리뷰쓰기</button></td>");
+		break;
+	case 3:
+		$tr.append("<td style='color:blue;'>배송취소</td>");
+		$tr.append("<td><button disabled>리뷰쓰기</button></td>");
+		break;
+	case 4:
+		$tr.append("<td style='color:blue;'>배송완료</td>");
+		$tr.append("<td><button disabled>리뷰쓰기</button></td>");
+		break;
+	case 5:
+		$tr.append("<td style='color:blue;'>반납신청</td>");
+		$tr.append("<td><button disabled>리뷰쓰기</button></td>");
+		break;
+	case 6:
+		$tr.append("<td style='color:blue;'>반납완료</td>");
+		$tr.append("<td><button id='modal_review' data-toggle='modal' data-target='#myModal' data-code=\""+list[i].bk_code+"\">리뷰쓰기</button></td>");		
+
+		break;
+	case 7:
+		$tr.append("<td style='color:blue;'>반납완료</td>");
+		$tr.append("<td><button id='modal_review' data-toggle='modal' data-target='#myModal' data-code=\""+list[i].bk_code+"\">리뷰쓰기</button></td>");		
+			
+		break;		
+	default:
+		break;
+	}
+	
+	
 	
 }
 </script>
 
-<form action="reviewinsert" method="post" >
+
  <!-- Modal -->
-  <div class="modal fade" id="myModal" role="dialog">
+  <div class="modal fade" id="myModal" role="dialog" tabindex="-1">
+  <form action="reviewinsert" method="post" >
     <div class="modal-dialog">
     
       <!-- Modal content-->
@@ -267,14 +324,15 @@ for(let i=0;i<list.length;i++){
         </div>
        
         <div class="modal-footer">
-       	 <button type="submit" class="btn btn-default" >Submit</button>
+       	 <button type="submit" class="btn btn-default" >리뷰쓰기</button>
          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
         </div>
       </div>
       
     </div>
+     </form>
   </div>
-  </form>
+ 
   
   </main>
   
@@ -315,6 +373,7 @@ starRating();
 //리뷰 모달창 여는 메소드  
 
  $(document).on("click", "#modal_review",function(e){
+	
     var params = e.target.dataset.code; 
     
     console.log("게시글",params);

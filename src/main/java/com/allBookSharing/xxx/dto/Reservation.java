@@ -22,5 +22,5 @@ public class Reservation {
     private int bk_quantity; //초기 보유 권수
     private int bk_booklend;//대출중인 책 권수
 	private int reservationCnt; //이 책에 걸려있는 예약수
-
+	private int rv_timeLimit; //시간제한
 }

@@ -82,7 +82,7 @@
 
 <insert id="reservationInsert" parameterType="reservation">
 INSERT INTO RESERVATION
-VALUES( RV_SEQ.NEXTVAL,#{rv_code},#{rv_lcode},#{rv_id},SYSDATE)
+VALUES( RV_SEQ.NEXTVAL,#{rv_code},#{rv_lcode},#{rv_id},SYSDATE,DEFAULT)
 </insert>
 
 <select id="reservationConfirm" parameterType="reservation" resultType="Integer">
