@@ -94,7 +94,7 @@ background-color:#F0EAD6;
 </style>
 </head>
 <body>
-	<jsp:include page="header2.jsp" />
+	<jsp:include page="header.jsp" />
 
 	<aside id="submenu">
 
@@ -108,7 +108,7 @@ background-color:#F0EAD6;
 		<button class="subbtn" onclick="getPage('membergrade')">회원등급
 			기준</button>
 		<br>
-		<button class="subbtn" onclick="location.href = 'deliveryinformation' ">배송서비스
+		<button class="subbtn" onclick="getPage('deliveryinformation')">배송서비스
 			안내</button>
 		<br>
 		<button class="subbtn"
@@ -154,6 +154,17 @@ background-color:#F0EAD6;
 
 </body>
 <script>
+window.onload=function(){
+	console.log("location.search",location.search.substring(6));
+	if(location.search.substring(6)=="membergrade"){
+		getPage('membergrade');
+	}else if(location.search.substring(6)=="deliveryinformation")
+		getPage('deliveryinformation');
+	 else if(location.search.substring(6)=="libraryschedulemove")
+		getPage('libraryschedulemove');
+	 else if(location.search.substring(6)=="libraryinformationmove")
+			getPage('libraryinformationmove')
+}
 function getPage(url) {
 
 	$.ajax({

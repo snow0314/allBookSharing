@@ -166,7 +166,7 @@
                               <li><a href="movehopelist">희망도서목록</a></li>
                            </ul>
                         </li>
-                        <li><a href="./">자료검색</a>
+                        <li><a href="totalsearch">자료검색</a>
                              <ul>
                               <li><a href="totalsearch">통합검색</a></li>
                               <li><a href="totalsearch?kind=besttopten">인기도서</a></li>
@@ -176,10 +176,10 @@
                         <li><a href="./">도서관 이용안내</a>
                             <ul>
                               <li><a href="readingroominformation">열람실 예약안내</a></li>
-                              <li><a href="membergrade">회원등급 기준</a></li>
-                              <li><a href="deliveryinformation">배송서비스 안내</a></li>
-                              <li><a href="libraryschedulemove">도서관 일정안내</a></li>
-                              <li><a href="libraryinformationmove">도서관 정보</a></li>
+                              <li><a href="readingroominformation?kind=membergrade">회원등급 기준</a></li>
+                              <li><a href="readingroominformation?kind=deliveryinformation">배송서비스 안내</a></li>
+                              <li><a href="readingroominformation?kind=libraryschedulemove">도서관 일정안내</a></li>
+                              <li><a href="readingroominformation?kind=libraryinformationmove">도서관 정보</a></li>
                            </ul>
                         </li>
                         <li><a href="./">도서관 서비스</a>

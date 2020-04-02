@@ -107,5 +107,20 @@ SELECT COUNT(BD_RETURN_DATE-BD_REAL_RETURN_DATE) FROM BORROWLIST JOIN BORROWDETA
 		SELECT COUNT(*) FROM RESERVATION 
 		WHERE RT_CODE = #{rv_code} AND RT_LCODE = #{rv_lcode}
 	</select>
+	
+<update id="changeGrade" parameterType="String" >
 
+		UPDATE USERS SET
+		US_GRADE='우수'
+		WHERE US_ID=#{id}
+
+</update>
+<update id="plusPoint" parameterType="String" >
+	UPDATE USERS SET US_POINT=US_POINT+1000 WHERE US_ID=#{id}
+</update>
+<insert id='plustPointList' parameterType="Review">
+	INSERT INTO
+	POINTLIST
+	VALUES(PL_NUM.NEXTVAL,#{id},10000,'우수회원기념',SYSDATE)
+</insert>
 </mapper>
