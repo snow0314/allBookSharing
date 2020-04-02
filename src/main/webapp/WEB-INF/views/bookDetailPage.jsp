@@ -316,6 +316,7 @@ else if(${books.bk_state}==1)
 
  
  window.onload = function () {
+	 
 	
 	if($("#id").val()==""){
 		$("#dd").append("<button style='float:right;margin-right:20px;'  class='reservation' id='reserbtn'>예약</button>");
@@ -496,7 +497,7 @@ $("#dd").on("click","#reserccbtn",function(){
 						console.log("status3=", status);
 				 }
 				});//ajax End
-				reservCount()
+				reservCount();
 			}else{
 				alert("취소");
 			}

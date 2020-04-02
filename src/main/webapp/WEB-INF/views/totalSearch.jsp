@@ -345,6 +345,7 @@ float:right;
 #pagination{
 margin-left:30%;
 margin-top:-15px;
+margin-right:30%;
 }
 </style>
 </head>
@@ -489,7 +490,7 @@ function totalBookSearch(){//전국 통합 검색
 	    			$('#totalsearchList').html(str);
 	    		}
 	    	})
-	 
+	    	
 	    	
 	    	
 	    },
@@ -518,7 +519,8 @@ function totalBookSearch(){//전국 통합 검색
 $(document).ready(function(){
 	$('.bigregion').children("ul").slideUp();	
 });
-	$('.bigregion').click(function(){
+
+$('.bigregion').click(function(){
 		
 		$(this).find("ul").slideToggle("normal");
 	})
@@ -526,7 +528,7 @@ $(document).ready(function(){
 }
 	
 
-function jiyuckSearch(e){
+function jiyuckSearch(e){//통합검색 사이드 바 검색
 	console.log($(e).text());
 	$.ajax({
 		type:'get',
@@ -544,8 +546,7 @@ function jiyuckSearch(e){
 	    		pageSize: 5,
 	    		callback:function(data, pagination) {
 	    				var str="";
-	    				$.each(data,function(index,item){
-	    				   
+	    				$.each(data,function(index,item){  
 	    	    		str+='<tr id="tr"><td class="lefttd">'+'<image src="'+item.bk_image+'"></td>';
 	    	    		str+='<td class="righttd">'+'<a href="bookdetailpage?bk_code='+item.bk_code+'&bk_lcode='+item.bk_lcode+'" id="bkname">'+item.bk_name+'</a><br>'+item.bk_writer+'<br>'+
 	    	    		item.bk_publisher+'<br>'+item.bk_publicday+'<br><p class="lname">'+item.bk_lname+'</p></td></tr>';
@@ -562,7 +563,7 @@ function jiyuckSearch(e){
 	    }
 })
 }
-function regionlibSearch(lb_code){
+function regionlibSearch(lb_code){//내지역 사이드바 도서검색
 	$.ajax({
 		type:'get',
 		url:'regionlibsearch',
@@ -581,7 +582,6 @@ function regionlibSearch(lb_code){
 	    		callback:function(data,pagination){
 	    			var str="";
 	    			$.each(data,function(index,item){
-	    				   
 	    	    		str+='<tr id="tr"><td class="lefttd">'+'<image src="'+item.bk_image+'"></td>';
 	    	    		str+='<td class="righttd">'+'<a href="bookdetailpage?bk_code='+item.bk_code+'&bk_lcode='+item.bk_lcode+'" id="bkname">'+item.bk_name+'</a><br>'+item.bk_writer+'<br>'+
 	    	    		item.bk_publisher+'<br>'+item.bk_publicday+'<br><p class="lname">'+item.bk_lname+'</p></td></tr>';
@@ -599,7 +599,7 @@ function regionlibSearch(lb_code){
 })
 }
 
-function myregionSearch(){//내 지역 
+function myregionSearch(){//내 지역 도서관 목록
 	$.ajax({
 		type:'get',
 		url:'myregionlib',
@@ -622,13 +622,14 @@ function myregionSearch(){//내 지역
 	});//내지역 도서관 목록 가져오기
 
 	
-	$.ajax({//사이드 바 도서관 별 검색결과
+	$.ajax({//
 		type:'get',
 		url:'myregionsearch',
 		async: false,
 	    data:{"bk_search":$('#bookinput').val() ,"selectval":$('#select').val()},
 	    dataType:'json',
 	    success:function(result){
+	    	$("#contents").empty();
 	    	$("#contents").append("<div id='myRegion' class='tabcontent'><h2 id='e'>"+result[0].bk_loc+"</h2><table id='regionsearchList'><table></div><div id='sidebar'><ul id='myregionlb'></ul></div>");
 	    	
 	    	var data=result;
@@ -640,14 +641,14 @@ function myregionSearch(){//내 지역
 	    		pageSize:5,
 	    		callback:function(data,pagination){
 	    			var str="";
-	    			$.each(data,function(index,item){
-	    				   
+	    			$.each(data,function(index,item){ 
 	    	    		str+='<tr id="tr"><td class="lefttd">'+'<image src="'+item.bk_image+'"></td>';
 	    	    		str+='<td class="righttd">'+'<a href="bookdetailpage?bk_code='+item.bk_code+'&bk_lcode='+item.bk_lcode+'" id="bkname">'+item.bk_name+'</a><br>'+item.bk_writer+'<br>'+
 	    	    		item.bk_publisher+'<br>'+item.bk_publicday+'<br><p class="lname">'+item.bk_lname+'</p></td></tr>';
 	    	    	});
 	    			$('#regionsearchList').empty();
 	    			$('#regionsearchList').append(str);
+	    			
 	    		}
 	    	})
 	    	

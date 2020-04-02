@@ -12,13 +12,20 @@
 
 </head>
 <style>
-
+@import url(//fonts.googleapis.com/earlyaccess/hanna.css);
+@import url(//fonts.googleapis.com/earlyaccess/jejugothic.css);
 #nationsidebar{
 	width:20%;
 	float:right;
 	display:inline-block;
 	margin-right:10%;
 	}
+.li{
+color:black;}
+.br{
+font-family: 'Jeju Gothic', sans-serif;
+color:black;
+}
 .bigregion {
   border: none;
   text-decoration: none;
@@ -29,14 +36,57 @@
   width:100%;
   margin-bottom:-20px;
 }
+#main{
+width:75%;
+margin-left:23%;
+}
+.information{
+width:65%;
+float:left;
+}
+#title{
+font-family: 'Hanna', sans-serif;
+}
+.libbtn{
+	width:150px;
+	height:50px;
+	border:1px solid #00539C;
+	font-size:16px;
+	color:#00539C;
+	font-weight:800;
+	background-color:white;
+	margin-right:2px;
+	margin-bottom:2px;
+	font-weight:800;
+}
+.libbtn:hover{
+	background-color:#00539C;
+	color:white;
+	cursor:pointer;
+}
+#loclib{
+margin:20px 0;
+}
+i{
+float:right;
+}
+#map{
+margin-bottom:25px;
+}
+#phone{
+font-size:20px;
+font-family: 'Jeju Gothic', sans-serif;
+
+}
 </style>
 <body>
 
-<h1>도서관 정보</h1>
-<div id='loclib'>
-</div>
+<h1 id='title'>도서관 정보</h1>
+<div class="information">
+<div id='loclib'></div>
 <div id="map" style="width: 100%; height: 350px;"></div>
-<div id='info'></div>
+<div id='info' style="width: 40%;"></div>
+</div>
 <div id='nationsidebar'>
 <div class='bigregion'><h5 class='br'><a href=#; onclick='jiyuckLibrary(this)'>서울</a></h5></div>
 <br><hr><div class='bigregion'><h5 class='br'>경기도<i class='fa fa-plus'></i></h5><ul><li><a href=#; onclick='jiyuckLibrary(this)' class='li'>시흥</a></li><li><a href=#; onclick='jiyuckLibrary(this)' class='li'>부천</a></li><li><a href=#; onclick='jiyuckLibrary(this)' class='li'>성남</a></li></ul></div>
@@ -58,11 +108,9 @@
 
 
 <script>
-window.onload =function(){
+$(document).ready(function(){
 	$('.bigregion').children("ul").slideUp();	
-	
-	
-}
+});
 
 $('.bigregion').click(function(){
 	
@@ -104,7 +152,8 @@ $("#loclib").on("click",".libbtn",function(){
     	console.log(result);
     	var str="";
     	$.each(result,function(index,item){   
-    		str+="<div>전화번호"+item.lb_phone+"/이메일"+item.lb_email+"</div>";
+    		str+="<div id='phone'>도서관 이름 &nbsp;&nbsp"+item.lb_name+"<br>";
+    		str+="전화번호 &nbsp;&nbsp;"+item.lb_phone+"<br>이메일 &nbsp;&nbsp;"+item.lb_email+"</div>";
     		
     	});
     	$('#info').html(str); 

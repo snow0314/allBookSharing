@@ -28,13 +28,7 @@ table {
 	margin-left: 950px;
 }
 
-#submenu {
-  		float: left;
-  		width: 15%;
-  		height: 100%;  
-  	  margin-left: 8%;
-  	  margin-top:2%;
-}
+
 .subbtn{
 width:100%;
 background-color:white;
@@ -70,27 +64,7 @@ color:white;
 </style>
 </head>
 <body>
-	<jsp:include page="header2.jsp" />
 
-	<aside id="submenu">
-
-		<button class="subtopbtn" disabled>
-			<h2>도서관 이용안내</h2>
-		</button>
-		<br>
-		<button class="subbtn"
-			onclick="location.href = 'readingroominformation' ">열람실 예약안내</button>
-		<br>
-		<button class="subbtn" onclick="location.href = 'membergrade' ">회원등급
-			기준</button>
-		<br>
-		<button class="subbtn" onclick="location.href = 'deliveryinformation' ">배송서비스
-			안내</button>
-		<br>
-		<button class="subbtn"
-			onclick="location.href = 'libraryschedulemove' ">도서관 일정안내</button>
-
-	</aside>
 
 	<main id="totalsearchlist">
 		<section>

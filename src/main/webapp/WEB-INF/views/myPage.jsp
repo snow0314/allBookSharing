@@ -168,7 +168,7 @@ background-color:#F0EAD6;
 					</tr>
 					<tr>
 						<td>내등급 : </td>
-						<td>${mb.us_grade }</td>
+						<td id='grade'>${mb.us_grade }</td>
 					</tr>
 					<tr>
 						<td>포인트 : </td>
@@ -462,7 +462,22 @@ $.ajax({
 	url :"reviewcnt",
 	success : function(data) {
         $('#reviewCnt').html(data).css('color', 'black').css('font-weight','bold');
-0
+		if(data>=5 && $("#grade").text()=='일반'){
+			$.ajax({
+				type:'get',
+				url:"changegrade",
+				success:function(result){
+					console.log("등급변경",result);
+					plusPoint();
+				},
+				error:function(xhr, status){
+					console.log("xhr3=", xhr);
+					console.log("status=", status);
+				}
+				
+			})
+			
+		}
      },
 	error : function(xhr, status) {
      }
@@ -685,7 +700,20 @@ function extend(bd_num){
 		
 	}); 	//ajax End
 }	//fct End
-
+function plusPoint(){
+	$.ajax({
+		type:'get',
+		url:"pluspoint",
+		success:function(result){
+			console.log("포인트플러스",result);
+		},
+		error:function(xhr, status){
+			console.log("xhr3=", xhr);
+			console.log("status=", status);
+		}
+	
+})
+} 
 
 </script>
 
