@@ -204,6 +204,11 @@ public class BookManagement {
 		return lList;
 	}
 
+	public List<Library> getLibrary(Library lb) {
+		List<Library> lList=bDao.getLibrary(lb);
+		return lList;
+	}
+
 
 
 }

@@ -22,4 +22,12 @@
       </where>
 </delete>
   
+<select id="deliveryListCheck" resultType="boolean">
+	SELECT COUNT(*) FROM delivery WHERE DE_CODE = #{bk_code} AND DE_LCODE = #{lb_code} AND DE_ID = #{id}
+</select>  
+
+<insert id="deliveryListInsert">
+	INSERT INTO delivery VALUES(#{bk_code}, #{lb_code}, #{id}, 1)
+</insert>
+  
 </mapper>

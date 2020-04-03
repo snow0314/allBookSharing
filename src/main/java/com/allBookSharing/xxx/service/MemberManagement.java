@@ -430,15 +430,22 @@ public class MemberManagement {
 		
 	}
     
+	public int deliveryListInsert(List<LikedList> lList) {
+		int result = 0;
+		boolean check;
+		for(int i=0;i<lList.size();i++) {
+			check = mDao.deliveryListCheck(lList.get(i));
+			if(check) {
+				continue;
+			}
+			result += mDao.deliveryListInsert(lList.get(i));
+		}
+		
+		
+		
+		return result;
+	}
 	
-	/*
-	 * //로그인 정보 표시 public ModelAndView loginInfo(Principal principal) { mav = new
-	 * ModelAndView(); String id= principal.getName();
-	 * 
-	 * Member mb=mDao.loginInfo(id);
-	 * 
-	 * mav.addObject("member", mb); mav.setViewName("index");
-	 * 
-	 * return mav; }
-	 */
+
+	
 }

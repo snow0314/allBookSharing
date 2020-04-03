@@ -11,7 +11,7 @@
 <style type="text/css">
 
 table, th, td {
-	border: 1px solid #bcbcbc;
+	border: 2px solid #bcbcbc;
 	font-size: 20px;
 	text-align: center;
 }
@@ -97,7 +97,7 @@ color:white;
 <h4>희망도서 선정 제외기준</h4>
 <div class="over_table">
 	<table class="table">
-		<caption>
+		<caption style="color: black;">
 		희망도서 신청 제외기준 내용 및 종류 등 안내
 		</caption>
 		<thead class="thead-dark">

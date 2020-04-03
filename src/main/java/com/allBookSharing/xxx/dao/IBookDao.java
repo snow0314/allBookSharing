@@ -55,6 +55,7 @@ public interface IBookDao {
 	List<Recommend> selrecommendList(String re_date);
 	List<Library> jiyuckLib(String lb_loc);
 	List<Library> libInformation(Integer lb_code);
+	List<Library> getLibrary(Library lb);
 
 	
 	

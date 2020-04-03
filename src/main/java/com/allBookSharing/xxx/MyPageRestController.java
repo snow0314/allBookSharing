@@ -1,21 +1,29 @@
 package com.allBookSharing.xxx;
 
+import java.io.IOException;
 import java.security.Principal;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.allBookSharing.xxx.dto.BigGroup;
 import com.allBookSharing.xxx.dto.Classification;
 import com.allBookSharing.xxx.dto.Library;
+import com.allBookSharing.xxx.dto.LikedList;
 import com.allBookSharing.xxx.dto.Loan;
+import com.allBookSharing.xxx.dto.ReadingRoom;
 import com.allBookSharing.xxx.dto.Reservation;
 import com.allBookSharing.xxx.service.MemberManagement;
+import com.fasterxml.jackson.core.JsonParseException;
+import com.fasterxml.jackson.databind.JsonMappingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 @RestController
 public class MyPageRestController {
@@ -180,4 +188,19 @@ public class MyPageRestController {
 			return result;
 		}
 		
+		//회원등급 변경 후 포인트 충전
+		@RequestMapping(value = "/deliverylistinsert" ,produces = "application/json;charset=UTF-8")
+		public int deliveryListInsert(String json, Principal principal) throws JsonParseException, JsonMappingException, IOException { 
+			System.out.println("제이슨:"+json);
+			// 제이슨 형태의 문자열을 객체로 변환
+			ObjectMapper mapper = new ObjectMapper();
+			List<LikedList> lList = Arrays.asList(mapper.readValue(json, LikedList[].class));
+			for(int i=0;i<lList.size();i++) {
+				lList.get(i).setId(principal.getName());
+			}
+			
+			int result=mm.deliveryListInsert(lList);
+			
+			return result;
+		}
 }

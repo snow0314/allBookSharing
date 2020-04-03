@@ -73,4 +73,6 @@ public class MyPageController {
 		
 		return mav;
 }
+	
+	
 	}

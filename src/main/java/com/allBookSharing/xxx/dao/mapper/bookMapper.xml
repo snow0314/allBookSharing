@@ -174,5 +174,7 @@ GROUP BY L.LB_NAME,L.LB_CODE
 <select id="libInformation" parameterType="library" resultType="library" >
   SELECT * FROM LIBRARY WHERE LB_CODE=#{lb_code}
 </select>
-
+<select id="getLibrary" parameterType="library" resultType="library" >
+  SELECT * FROM LIBRARY
+</select>
 </mapper>

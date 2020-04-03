@@ -32,7 +32,7 @@
        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script> 
        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
-	
+	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=1b51d85dd9bcbc0b96d2984712a09ec4&libraries=clusterer"></script>
 		<style>
 		@import url(//fonts.googleapis.com/earlyaccess/hanna.css);
 		.text{font-family: 'Hanna', sans-serif;}
@@ -47,7 +47,7 @@
 	font-family: 'Hanna', sans-serif;
 	}
 			.container3{
-               padding:50px 10px;
+               padding:30px 10px;
                 margin:50px 10px;
             }
             #logo:hover{
@@ -138,11 +138,16 @@
             float:left;
         
             }
+           #map{
+           height:430px;
+           width:400px;
+           margin-left:14%;
+           }
           
        #popular{
      
        width:700px;
-       margin-left:-100px;
+       margin-left:-85px;
        }
        .card-header{
        height:40px;
@@ -155,6 +160,11 @@
    #indexmain{
            padding: 6em 0;
            }
+
+  .row>*{
+   padding-left:0;
+  
+   }
       </style>
 	</head>
 	<body class="homepage">
@@ -259,7 +269,7 @@
 										<li><a href="readingroominformation?kind=membergrade">회원등급 기준</a></li>
 										<li><a href="readingroominformation?kind=deliveryinformation">배송서비스 안내</a></li>
 										<li><a href="readingroominformation?kind=libraryschedulemove">도서관 일정안내</a></li>
-										<li><a href="libraryinformationmove">도서관 정보</a></li>
+										<li><a href="readingroominformation?kind=libraryinformationmove">도서관 정보</a></li>
 									</ul>
 								</li>
 								<li><a href="./">도서관 서비스</a>
@@ -342,7 +352,7 @@
 		<!-- Featured -->
 			<div class="wrapper style2" >
 				<section class="container3" >
-					<div class="row no-collapse-1">
+					<div class="row no-collapse-1" id="three">
 						<section class="4u" id="4u1" >
 						    <h2 class='text'>추천도서</h2>
 							
@@ -401,15 +411,15 @@
                         </section>
 						
                          <section class="4u" >
-						     <h2 class='text' style="margin-left:-60px;">인기도서</h2>
+						     <h2 class='text' style="margin-left:-85px;">인기도서</h2>
 							<div id="popular" >
 						
 							</div>
 							
 						</section>
 						<section class="4u" >
-						     <h2 class='text'>지도</h2>
-							<div id="jido"></div>
+						     <h2 class='text' style="margin-left: -50px;">지도</h2>
+							<div id="map"></div>
 							
 						</section>
 					</div>
@@ -485,6 +495,8 @@
 			</div>
 
 	</body>
+	
+	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=1b51d85dd9bcbc0b96d2984712a09ec4"></script>
 	<script src="http://code.jquery.com/jquery-1.4.4.min.js"></script>
 	<script type="text/javascript">
 	function mainBookSearch(){
@@ -562,7 +574,85 @@
 		    
 		});
 		
-	
+		
+		///지도
+		 var map = new kakao.maps.Map(document.getElementById('map'), { // 지도를 표시할 div
+		        center : new kakao.maps.LatLng(36.2683, 127.6358), // 지도의 중심좌표
+		        level : 14 // 지도의 확대 레벨
+		    });
+
+		   // 마커 클러스터러를 생성합니다
+		    // 마커 클러스터러를 생성할 때 disableClickZoom 값을 true로 지정하지 않은 경우
+		    // 클러스터 마커를 클릭했을 때 클러스터 객체가 포함하는 마커들이 모두 잘 보이도록 지도의 레벨과 영역을 변경합니다
+		    // 이 예제에서는 disableClickZoom 값을 true로 설정하여 기본 클릭 동작을 막고
+		    // 클러스터 마커를 클릭했을 때 클릭된 클러스터 마커의 위치를 기준으로 지도를 1레벨씩 확대합니다
+		    var clusterer = new kakao.maps.MarkerClusterer({
+		        map: map, // 마커들을 클러스터로 관리하고 표시할 지도 객체
+		        averageCenter: true, // 클러스터에 포함된 마커들의 평균 위치를 클러스터 마커 위치로 설정
+		        minLevel: 10, // 클러스터 할 최소 지도 레벨
+		        disableClickZoom: true // 클러스터 마커를 클릭했을 때 지도가 확대되지 않도록 설정한다
+		    });
+
+		    // 데이터를 가져오기 위해 jQuery를 사용합니다
+		    // 데이터를 가져와 마커를 생성하고YY 클러스터러 객체에 넘겨줍니다
+		    $.get("getlibrary", function(data) {
+		        // 데이터에서 좌표 값을 가지고 마커를 표시합니다
+		        // 마커 클러스터러로 관리할 마커 객체는 생성할 때 지도 객체를 설정하지 않습니다
+		        var markers = $(data).map(function(i, position) {
+		        	console.log("position",position);
+
+		            return new kakao.maps.Marker({
+		                position : new kakao.maps.LatLng(position.lb_longitude, position.lb_latitude)
+		            });
+		           
+		        });
+		        console.log("마커",markers);
+		        var infowindow = $(data).map(function(i, position) {
+		            return new kakao.maps.InfoWindow({
+		                position : new kakao.maps.LatLng(position.lb_longitude, position.lb_latitude),
+		            	content :position.lb_name
+		            });
+		           
+		        });
+		        console.log("장소",infowindow);
+		       
+		        // 클러스터러에 마커들을 추가합니다
+		        clusterer.addMarkers(markers);
+		        
+		        kakao.maps.event.addListener(clusterer, 'mouseover', function(){
+		        	infowindow.open(map, clusterer);
+		        });
+		        kakao.maps.event.addListener(clusterer, 'mouseout', function(){
+		            infowindow.close();
+		        });
+		    });
+
+
+
+		    // 마커 클러스터러에 클릭이벤트를 등록합니다
+		    // 마커 클러스터러를 생성할 때 disableClickZoom을 true로 설정하지 않은 경우
+		    // 이벤트 헨들러로 cluster 객체가 넘어오지 않을 수도 있습니다
+		    kakao.maps.event.addListener(clusterer, 'clusterclick', function(cluster) {
+
+		        // 현재 지도 레벨에서 1레벨 확대한 레벨
+		        var level = map.getLevel()-1;
+
+		        // 지도를 클릭된 클러스터의 마커의 위치를 기준으로 확대합니다
+		        map.setLevel(level, {anchor: cluster.getCenter()});
+		    }); 
+		 /* // 인포윈도우를 표시하는 클로저를 만드는 함수입니다 
+		    function makeOverListener(map, clusterer, infowindow) {
+		        return function() {
+		            infowindow.open(map, markers);
+		        };
+		    }
+
+		    // 인포윈도우를 닫는 클로저를 만드는 함수입니다 
+		    function makeOutListener(infowindow) {
+		        return function() {
+		            infowindow.close();
+		        };
+		    } */
 	</script>
 	
 </html>

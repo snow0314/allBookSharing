@@ -22,6 +22,7 @@ public class LikedList {
    private int bk_booklend; //대출권수
    private int lb_code; //도서관 코드
    private String bk_code; //isbn코드
+   private int bk_state; //책 상태
    
 
 }
