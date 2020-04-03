@@ -22,6 +22,7 @@ public class Loan {
 		int lb_code;
 		String lb_name;
 		String lb_loc;
+		int bd_on_off;
 		String bk_writer;
 		String bk_code;//isbn코드
 		int bd_state_num;//대출상태

@@ -19,7 +19,7 @@
  	
  	SELECT * FROM DUAL
  	</insert>
- 	
+
 
 
 	</mapper>

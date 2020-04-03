@@ -237,11 +237,13 @@ $("#btn2").click(function(){
 			<table class="table table-striped">
 			<thead>
 				<tr>
-					<td style="width: 80px; text-align: center;">순번</td>
-					<td style="width: 350px;">자료명</td>
-					<td style="width: 100px;">대출일</td>
-					<td style="width: 100px;">반납예정일</td>
-					<td style="width: 60px;">연장</td>
+					<td style="width: 8%; text-align: center;">순번</td>
+					<td style="width: 30%;">자료명</td>
+					<td style="width: 10%;">대출일</td>
+					<td style="width: 10%;">반납예정일</td>
+					<td style="width: 8%; text-align: center;">반납</td>
+					<td style="width: 8%; text-align: center;">연장</td>
+					   
 				</tr>
 				</thead>
 				
@@ -645,10 +647,16 @@ $.ajax({
     $tr.append("<td>"+data[i].bk_name+"</td>");
     $tr.append("<td>"+data[i].bd_date+"</td>");
     $tr.append("<td>"+data[i].bd_return_date+"</td>");
+    //반납버튼
+    if(data[i].bd_state_num==4 || data[i].bd_state_num==1 && data[i].bd_on_off==1)
+    $tr.append("<td style='text-align:center;'><button onclick='returnBooks("+data[i].bd_num+")' class='btn btn-info' >반납신청</button></td>");
+    else
+     $tr.append("<td style='text-align:center;'><button onclick='returnBooks("+data[i].bd_num+")' class='btn btn-info' disabled >반납신청</button></td>");
+    //연장버튼
     if(data[i].bd_return_extension==0)
-    $tr.append("<td><button onclick='extend("+data[i].bd_num+")' class='btn btn-info' >연장하기</button></td>");
+    $tr.append("<td style='text-align:center;'><button onclick='extend("+data[i].bd_num+")' class='btn btn-info' >연장하기</button></td>");
     if(data[i].bd_return_extension==1)
-    $tr.append("<td><button onclick='extend("+data[i].bd_num+")' class='btn btn-info' disabled >연장하기</button></td>");
+    $tr.append("<td style='text-align:center;'><button onclick='extend("+data[i].bd_num+")' class='btn btn-info' disabled >연장하기</button></td>");
     }
      },
 	error : function(xhr, status) {

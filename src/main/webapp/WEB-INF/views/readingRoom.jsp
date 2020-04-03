@@ -20,7 +20,22 @@
 <!-- Latest compiled JavaScript -->
 <script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+	
 <style type="text/css">
+	
+	table, th, td {
+	border: 1px solid #bcbcbc;
+	font-size: 20px;
+}
+
+.table {
+    width: 75%;
+
+}
+	
+	
+	
 	table{
 		text-align: center;
 		width: 100%;
@@ -96,43 +111,42 @@ color:white;
  	
  	<main id="totalsearchlist">
  	<section>
-	<div class="container p-3 my-3 border">
-		<h2 style="text-align: center">열람실 예약 안내문</h2>
-		<p>1. 열람실 예약은 신중히</p>
-		<p>2. 열람실 예약은 더 신중히</p>
-		<p>3. 열람실 예약은 더욱 더 신중히</p>
-		<p>4. 한번 예약하면 되돌릴 수 없습니다.</p>
-	</div>
+	<table class="table">
+				<thead class="thead-dark">
+					<tr>
+						<th>열람실 예약안내</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr style="text-align: left;">
+						<th>
+						 <p>
+						 &nbsp;1.근처 거주 지역을 선택하세요. ▶  &nbsp;
+						 2.인근 도서관을 선택하세요. ▶&nbsp;
+						 3.이용하실 열람실을 선택하세요. ▶&nbsp;
+						 4.원하시는 좌석을 선택하세요.</p>
+						</th>
+					</tr>
+				</tbody>
+			</table>
 
-	<div class="container p-3 my-3 border">
-		<div class="row">
-			<div class="col-md-4">
-				<div class="container p-3 my-3 border">
-					<select class="custom-select" id="lb_loc" name="lb_loc">
+	
+					<select class="custom-select" id="lb_loc" name="lb_loc" style="border:5; color: black; width: 320px; margin-top: 30px;">
+						
 						<option selected>도서관이 위치한 지역을 선택해 주세요.</option>
-
 					</select>
-					<div class="container p-3 my-3 border">지도?</div>
-				</div>
-
-			</div>
-
-			<div class="col-md-4">
-				<div class="container p-3 my-3 border">
-					<table id="libraryList">
+					
+			
+					<table id="libraryList" class="table" >
 					
 					</table>
-				</div>
-			</div>
-			<div class="col-md-4">
-				<div class="container p-3 my-3 border">
-					<table id="readingRoomList">
+			
+			
+					<table id="readingRoomList" class="table">
 					
 					</table>
-				</div>
-			</div>
-		</div>
-	</div>
+		
+	
 	</section>
  	</main>
 </body>

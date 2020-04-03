@@ -62,7 +62,9 @@
       </thead>
       <!-- tbody 태그 필요 없다. -->
    </table>
- <p><input type="submit" id="delivery" value="배송신청"></p>
+	<div style="display: inline;">
+			<button style="float:right;" id="deliveryreq">배송신청</button>
+		</div>
 					
    <script type="text/javascript" src="js/ajaxCsrf.js"></script>
    <script type="text/javascript">
