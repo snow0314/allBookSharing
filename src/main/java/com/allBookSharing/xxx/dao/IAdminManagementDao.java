@@ -32,6 +32,12 @@ public interface IAdminManagementDao { //AdminMapper.xml
 
 	//도서관 삭제
 	int libraryDrop(String lb_code);
+
+	//bar 차트
+	Integer barChart(int month);
+	
+	
+	
 	
 	
 }

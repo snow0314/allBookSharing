@@ -71,4 +71,7 @@ JOIN LIBRARY ON LA_LCODE=LB_CODE
 	DELETE FROM LIBRARY WHERE LB_CODE=#{lb_code}
 </delete>	
 
+<select id="barChart" parameterType="int" resultType="Integer">
+SELECT COUNT(DISTINCT BD_BO_NUM) FROM BORROWDETAIL WHERE #{month}=EXTRACT(MONTH FROM bd_date)
+</select>
 </mapper>

@@ -1,11 +1,16 @@
 package com.allBookSharing.xxx;
 
 
+import java.security.Principal;
 import java.util.List;
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
+
+import com.allBookSharing.xxx.dto.BigGroup;
 import com.allBookSharing.xxx.dto.Library;
 import com.allBookSharing.xxx.service.AdminManagement;
 import com.allBookSharing.xxx.service.LibrarianManagement;
@@ -54,5 +59,14 @@ public class AdminRestController {
 
 		return result;
 	}
+	
+	//대출 차트
+		@RequestMapping(value = "/barchart" ,produces = "application/json;charset=UTF-8")
+		public Map<Integer,Integer> barChart() {
+			System.out.println("월별 차트 컨트롤러");
+			Map<Integer,Integer> map=am.barChart();
+			
+			return map;
+		}
 	
 }
