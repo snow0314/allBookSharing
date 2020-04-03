@@ -34,7 +34,7 @@ table, th, td {
 background-color:#F0EAD6;
 }
 .table{
-margin-top:5%;
+/* margin-top:5%; */
 margin-left:9%;}
 
 
