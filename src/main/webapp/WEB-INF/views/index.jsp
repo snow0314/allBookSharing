@@ -602,14 +602,31 @@
 		        var markers = $(data).map(function(i, position) {
 		        	console.log("position",position);
 		        	console.log("position",position.lb_latitude);
+		        	
+		        	var infowindows = new kakao.maps.InfoWindow({
+					    position : new kakao.maps.LatLng(position.lb_longitude, position.lb_latitude), 
+					    content : position.lb_name 
+					});
+		        	
+		        	 infowindows.open(map, new kakao.maps.Marker({
+		        		    position: new kakao.maps.LatLng(position.lb_longitude, position.lb_latitude)
+		        	 }))
+		        	 
+		        	 
 		            return new kakao.maps.Marker({
-		                position : new kakao.maps.LatLng(position.lb_latitude, position.lb_longitude)
+		                position : new kakao.maps.LatLng(position.lb_longitude, position.lb_latitude)
 		            });
 		        });
 				console.log("마커스",markers);
+				
 		        // 클러스터러에 마커들을 추가합니다
 		        clusterer.addMarkers(markers);
-		    });
+		       
+		        
+		        });
+		        
+		        
+		    
 
 		    // 마커 클러스터러에 클릭이벤트를 등록합니다
 		    // 마커 클러스터러를 생성할 때 disableClickZoom을 true로 설정하지 않은 경우

@@ -113,7 +113,11 @@ public interface IMemberDao {
 	Boolean plusPoint(String id);
 	//리뷰 썻나 안썻나 확인
 	int reviewSearch(Review review);
+	
 	int reviewModify(Review review);
+	
+	int deliveryListInsert(LikedList likedList);
+	boolean deliveryListCheck(LikedList likedList);
 	
 
 }
