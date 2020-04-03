@@ -8,6 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.allBookSharing.xxx.dto.LibraryDelivery;
 import com.allBookSharing.xxx.service.LibraryDeliveryManagement;
 
 @Controller
@@ -27,4 +28,21 @@ public class librayDeliveryController {
 		return mav;
 		
 	}
+	
+	
+	@Secured("ROLE_LIBRARIAN")
+	@RequestMapping(value = "/lbdeliverycomplete")
+	public ModelAndView lbDeliveryComplete(LibraryDelivery ld) { //배송 관리 페이지 이동
+		ModelAndView mav=new ModelAndView();
+		
+		mav=ldm.lbDeliveryComplete(ld);
+		
+		return mav;
+		
+	}
+	
+	
+	
+	
+	
 }

@@ -60,5 +60,25 @@ public class LibraryDeliveryManagement {
 		
 		return result;
 	}
+	
+	
+	
+	//사서 배송 완료
+	public ModelAndView lbDeliveryComplete(LibraryDelivery ld) {
+		ModelAndView mav=new ModelAndView();
+		
+		boolean result=ldDao.lbDeliveryComplete(ld);
+		if(result)
+		mav.setViewName("redirect:/deliverymanagementmove");
+		
+		return mav;
+		
+	}
 
+	
+	
+	
+	
+	
+	
 }
