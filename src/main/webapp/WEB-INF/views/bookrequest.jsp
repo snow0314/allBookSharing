@@ -10,8 +10,6 @@
 
 <style type="text/css">
 
-
-
 table, th, td {
 	border: 1px solid #bcbcbc;
 	font-size: 20px;
@@ -33,7 +31,6 @@ font-family: 'Nanum Gothic Coding', monospace;
 font-weight:bold;
 font-size:20px;
 border:none;
-
 
 }
 .subbtn:hover{
@@ -62,7 +59,6 @@ color:white;
 </head>
 <body>
 <jsp:include page="header2.jsp" />
- <%-- <jsp:include page="header.jsp" /> --%>
 
 <aside id="submenu">
 

@@ -26,10 +26,7 @@
 <!-- Latest compiled JavaScript -->
 <script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
-<!-- 페이징 처리 플러그인 -->	
-<script src="https://cdnjs.cloudflare.com/ajax/libs/paginationjs/2.1.4/pagination.min.js"></script>	
-<!-- 페이징 처리 플러그인 CSS -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/paginationjs/2.1.4/pagination.css"/>	
+	
 <style type="text/css">
 img {
 	width: 300px;
@@ -57,16 +54,100 @@ margin:5px;
 margin:5px;
 }
 
+#ins_btn{
+all:unset;
+padding: 6px 12px;
+cursor: pointer;
+text-align: center;
+vertical-align: center;
+color: #fff;
+background-color: #28A745;
+font-weight: 400;
+border-radius: 5px;
+}
+
+#can_btn{
+all:unset;
+padding: 6px 12px;
+cursor: pointer;
+text-align: center;
+vertical-align: center;
+color: #fff;
+background-color: #28A745;
+font-weight: 400;
+border-radius: 5px;
+}
+
+#submenu {
+  		float: left;
+  		width: 15%;
+  		height: 100%;  
+  	  margin-left: 8%;
+  	  margin-top:2%;
+}
+.subbtn{
+width:100%;
+background-color:white;
+height:55px;
+font-family: 'Nanum Gothic Coding', monospace;
+font-weight:bold;
+font-size:20px;
+border:none;
+
+
+}
+.subbtn:hover{
+background-color:#F0EAD6;
+}
+.subtopbtn{
+width:100%;
+font-family: 'Hanna', sans-serif;
+height:98px;
+background-color:#223A5E;
+color:white;
+}
+
+#totalsearchlist{
+		float:right;
+		background-color:white;
+		width:65%;
+		height:auto;
+		margin-right: 8%;
+        margin-top:2%;
+        margin-bottom: 5%;
+        padding:0px;
+	}
+
 </style>
 </head>
 <body>
-<%-- <jsp:include page="header.jsp" /> --%>
+
+<jsp:include page="header.jsp" />
+
+<aside id="submenu">
+
+		<button class="subtopbtn" disabled>
+			<h2>도서관 서비스</h2>
+		</button>
+		<br>
+		<button class="subbtn"
+			onclick="location.href = 'readingroommove' ">열람실 예약</button>
+		<br>
+		<button class="subbtn" onclick="location.href = 'questionmove' ">건의 사항</button>
+		<br>
+		<button class="subbtn" onclick="location.href = 'hopebookmove' ">희망도서 신청</button>
+		<br>
+		<button class="subbtn"
+			onclick="location.href = 'noticemove' ">공지사항</button>
+
+	</aside>
+	<main id="totalsearchlist">
 <div class="container p-3 my-3 border">
 	<form class="well form-horizontal" action="bookrequestapply" method="post" id="contact_form">
 		
 			<!-- Form Name -->
-	
 	<legend>도서 신청</legend>
+	
 	
 	<p class="bbs_comment"><span class="w_star">*</span><font color="blue">도서관 선택 및 도서명을 입력 후 검색버튼을 눌러주세요.</font></p>
 	
@@ -157,17 +238,18 @@ margin:5px;
 			
 			<tr>
 				<td colspan="2" style="text-align: right">
-				<input type="submit" id="insertBtn"
-				class="btn btn-success btn-lg" value="등록">
+				<input type="submit" id="ins_btn"
+				class="btn btn-default" value="등록">
 				<input type="hidden" name="_csrf" value="${_csrf.token}">	
-				<input type="submit" id=""
-				class="btn btn-success btn-lg" value="취소">
+				<input type="button" id="can_btn"
+				class="btn btn-default" value="취소" onclick="location.href='./'">
 				</td>
 			</tr>
 		</tbody>
 	</table>
 	</form>
 </div>
+  </main>
  <!-- Modal: modalCart -->
     <div class="modal fade" id="modalCart" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-lg" role="document">
@@ -201,11 +283,15 @@ margin:5px;
             </div>
         </div>
     </div>
+  
     <!-- Modal: modalCart -->
 </body>
 <script type="text/javascript" src="js/bookInsert.js">
-
 </script>
+<!-- 페이징 처리 플러그인 -->	
+<script src="https://cdnjs.cloudflare.com/ajax/libs/paginationjs/2.1.4/pagination.min.js"></script>	
+<!-- 페이징 처리 플러그인 CSS -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/paginationjs/2.1.4/pagination.css"/>
 <script>
 
 $(function() {
@@ -287,14 +373,11 @@ function bookSearch() { //도서 검색하는 메소드
 	            	console.log("data=",data);
 	            	temp=data;
 	            	listShow(data);
-	            	
 	            }
 	        })	      
-			
 		}
 	});
 }
-
 
 </script>
 </html>

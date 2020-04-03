@@ -1,7 +1,9 @@
 package com.allBookSharing.xxx.service;
 
 import java.security.Principal;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -211,6 +213,16 @@ public class AdminManagement {
 
 	
 
+	
+	//bar 차트 
+	public Map<Integer, Integer> barChart() {
+		Map<Integer, Integer> map=new HashMap<Integer, Integer>();
+		
+		for(int i=1;i<13;i++) {
+			map.put(i, aDao.barChart(i));
+		}
+		return map;
+	}
 	
 
 }
