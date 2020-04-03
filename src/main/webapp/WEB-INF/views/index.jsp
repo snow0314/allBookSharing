@@ -600,9 +600,9 @@
 		        // 마커 클러스터러로 관리할 마커 객체는 생성할 때 지도 객체를 설정하지 않습니다
 		        var markers = $(data).map(function(i, position) {
 		        	console.log("position",position);
+
 		            return new kakao.maps.Marker({
 		                position : new kakao.maps.LatLng(position.lb_longitude, position.lb_latitude)
-		          
 		            });
 		           
 		        });
@@ -626,6 +626,8 @@
 		            infowindow.close();
 		        });
 		    });
+
+
 
 		    // 마커 클러스터러에 클릭이벤트를 등록합니다
 		    // 마커 클러스터러를 생성할 때 disableClickZoom을 true로 설정하지 않은 경우
