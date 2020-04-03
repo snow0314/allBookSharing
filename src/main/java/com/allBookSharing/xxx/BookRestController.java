@@ -210,6 +210,13 @@ public class BookRestController {
 		System.out.println("lList="+lList);
 		return lList;
 	} 
+	@GetMapping(value="/getlibrary",produces="application/json;charset=UTF-8")
+	public List<Library> getLibrary(Library lb) {
+		
+		List<Library> lList=bm.getLibrary(lb);
+		System.out.println("lList="+lList);
+		return lList;
+	} 
 	
 	
 	
