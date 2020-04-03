@@ -422,6 +422,13 @@ public class MemberManagement {
 		Boolean result=mDao.plustPointList(id);
 		return result;
 	}
+
+	public boolean returnBooks(int bd_num) {
+		Boolean result=mDao.returnBooks(bd_num);
+		
+		return result;
+		
+	}
     
 	
 	/*

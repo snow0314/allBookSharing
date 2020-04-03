@@ -43,4 +43,16 @@ public class librayDeliveryRestController {
 	}
 
 	
+	//반납신청 책 상세보기
+	@Secured("ROLE_LIBRARIAN")
+	@RequestMapping(value = "/returnbooksdetail")
+	public LibraryDelivery returnBooksDetail(HttpServletRequest req,LibraryDelivery ld) { //배송 관리 페이지 이동
+		
+		LibraryDelivery returnBooksDetail=ldm.returnbooksdetail(req,ld);
+		
+		return returnBooksDetail;
+		
+	}
+	
+	
 }

@@ -17,7 +17,7 @@ public class librayDeliveryController {
 	@Autowired
 	LibraryDeliveryManagement ldm;
 	
-	
+	//배송  관리 페이지 이동
 	@Secured("ROLE_LIBRARIAN")
 	@RequestMapping(value = "/deliverymanagementmove")
 	public ModelAndView deliveryManagementMove(HttpServletRequest req) { //배송 관리 페이지 이동
@@ -29,10 +29,10 @@ public class librayDeliveryController {
 		
 	}
 	
-	
+	//배송완료
 	@Secured("ROLE_LIBRARIAN")
 	@RequestMapping(value = "/lbdeliverycomplete")
-	public ModelAndView lbDeliveryComplete(LibraryDelivery ld) { //배송 관리 페이지 이동
+	public ModelAndView lbDeliveryComplete(LibraryDelivery ld) { 
 		ModelAndView mav=new ModelAndView();
 		
 		mav=ldm.lbDeliveryComplete(ld);
@@ -41,7 +41,30 @@ public class librayDeliveryController {
 		
 	}
 	
+	//반납관리 페이지이동
+	@Secured("ROLE_LIBRARIAN")
+	@RequestMapping(value = "/returnbooksmanagementmove")
+	public ModelAndView lbReturnBooksManagementMove(HttpServletRequest req) { 
+		ModelAndView mav=new ModelAndView();
+		
+		mav=ldm.lbReturnBooksManagementMove(req);
+		
+		return mav;
+		
+	}
 	
+	
+	//반납완료
+	@Secured("ROLE_LIBRARIAN")
+	@RequestMapping(value = "/returnbookcomplete")
+	public ModelAndView returnBookComplete(HttpServletRequest req,LibraryDelivery ld) { 
+		ModelAndView mav=new ModelAndView();
+		
+		mav=ldm.returnBookComplete(req,ld);
+		
+		return mav;
+		
+	}
 	
 	
 	

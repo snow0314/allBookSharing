@@ -132,4 +132,11 @@ SELECT COUNT(BD_RETURN_DATE-BD_REAL_RETURN_DATE) FROM BORROWLIST JOIN BORROWDETA
 	UPDATE REVIEW SET RV_CONTENTS = #{rv_contents} , RV_GRADE = #{rv_grade}
 	WHERE RV_BCODE = #{rv_bcode} AND RV_ID = #{rv_id}
 </update>
+
+
+<update id="returnBooks" parameterType="int">
+UPDATE BORROWDETAIL SET BD_STATE_NUM=5 WHERE BD_BO_NUM=57 AND BD_NUM=#{bd_num}
+</update>
+
+
 </mapper>
