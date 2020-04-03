@@ -25,7 +25,7 @@
 <style type="text/css">
 	
 	table, th, td {
-	border: 1px solid #bcbcbc;
+	border: 3px solid #bcbcbc;
 	font-size: 20px;
 }
 
@@ -121,7 +121,7 @@ color:white;
 					<tr style="text-align: left;">
 						<th>
 						 <p>
-						 &nbsp;1.근처 거주 지역을 선택하세요. ▶  &nbsp;
+						 1.근처 거주 지역을 선택하세요. ▶  &nbsp;
 						 2.인근 도서관을 선택하세요. ▶&nbsp;
 						 3.이용하실 열람실을 선택하세요. ▶&nbsp;
 						 4.원하시는 좌석을 선택하세요.</p>
@@ -131,11 +131,12 @@ color:white;
 			</table>
 
 	
-					<select class="custom-select" id="lb_loc" name="lb_loc" style="border:5; color: black; width: 320px; margin-top: 30px;">
+					<select class="custom-select" id="lb_loc" name="lb_loc" style="border:5; color: black; width: 320px; margin-top: 20px;">
 						
 						<option selected>도서관이 위치한 지역을 선택해 주세요.</option>
+						
 					</select>
-					
+					<br><br>
 			
 					<table id="libraryList" class="table" >
 					
