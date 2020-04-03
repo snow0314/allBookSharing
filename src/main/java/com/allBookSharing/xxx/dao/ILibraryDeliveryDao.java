@@ -20,4 +20,7 @@ public interface ILibraryDeliveryDao {
 	//사서 배송 취소
 	boolean lbDeliveryCancel(LibraryDelivery ld);
 
+	//사서 배송 완료
+	boolean lbDeliveryComplete(LibraryDelivery ld);
+
 }
