@@ -99,7 +99,7 @@ SELECT COUNT(BD_RETURN_DATE-BD_REAL_RETURN_DATE) FROM BORROWLIST JOIN BORROWDETA
 	<insert id='reviewInsert' parameterType="Review">
 	INSERT INTO
 	REVIEW(RV_BCODE,RV_ID,RV_CONTENTS,RV_GRADE)
-	VALUES(#{rv_bcode},#{rv_id},#{rv_contents},#{rv_grade2})
+	VALUES(#{rv_bcode},#{rv_id},#{rv_contents},#{rv_grade})
 
 </insert>
 	
@@ -123,4 +123,13 @@ SELECT COUNT(BD_RETURN_DATE-BD_REAL_RETURN_DATE) FROM BORROWLIST JOIN BORROWDETA
 	POINTLIST
 	VALUES(PL_NUM.NEXTVAL,#{id},10000,'우수회원기념',SYSDATE)
 </insert>
+
+<select id="reviewSearch" parameterType="review" resultType="int">
+	SELECT COUNT(*) FROM REVIEW WHERE RV_BCODE = #{rv_bcode} AND RV_ID = #{rv_id}
+</select>
+
+<update id="reviewModify" parameterType="review">
+	UPDATE REVIEW SET RV_CONTENTS = #{rv_contents} , RV_GRADE = #{rv_grade}
+	WHERE RV_BCODE = #{rv_bcode} AND RV_ID = #{rv_id}
+</update>
 </mapper>

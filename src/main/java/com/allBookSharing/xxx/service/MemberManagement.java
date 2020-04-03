@@ -379,16 +379,25 @@ public class MemberManagement {
 	
 	//한줄평 쓰기
 	public ModelAndView reviewInsert(Review review) {
+		int result;
 		mav = new ModelAndView();
 		System.out.println("한줄평2");
-		int result = mDao.reviewInsert(review);
-		if(result !=0) {
-			mav.setViewName("redirect:/moveloanlist");
-			mav.addObject("msg", "한줄평 등록에 성공하셨습니다.");
+		int cnt = mDao.reviewSearch(review);
+		if(cnt == 0) {
+			result = mDao.reviewInsert(review);
+			if(result !=0) {
+				mav.setViewName("redirect:/moveloanlist");
+				mav.addObject("msg", "한줄평 등록에 성공하셨습니다.");
+			}else {
+				mav.setViewName("redirect:/moveloanlist");
+				mav.addObject("msg", "한줄평 등록에 실패하셨습니다.");
+			}
 		}else {
+			result = mDao.reviewModify(review);
 			mav.setViewName("redirect:/moveloanlist");
-			mav.addObject("msg", "한줄평 등록에 실패하셨습니다.");
+			mav.addObject("msg", "한줄평을 수정하셨습니다.");
 		}
+		
 	    
 		return mav;
 	}

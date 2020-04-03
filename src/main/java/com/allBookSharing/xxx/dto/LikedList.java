@@ -13,8 +13,8 @@ import lombok.experimental.Accessors;
 @Accessors(chain=true)
 public class LikedList {
    private String id;
-   private String bg_num; //대분류
-   private String bg_cate; //소분류
+   private String bg_cate; //대분류
+   private String sg_cate; //소분류
    private String bk_name; //책 제목
    private String bk_writer; //저자
    private String lb_name; //도서관 이름

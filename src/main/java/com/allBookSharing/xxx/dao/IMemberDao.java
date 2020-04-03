@@ -111,14 +111,9 @@ public interface IMemberDao {
 
 	Boolean plustPointList(String id);
 	Boolean plusPoint(String id);
-	
-	/*
-	 * //로그인 정보 표시 Member loginInfo(String id);
-	 */
-	
-	
-	
-	
+	//리뷰 썻나 안썻나 확인
+	int reviewSearch(Review review);
+	int reviewModify(Review review);
 	
 
 }

@@ -129,7 +129,6 @@ background-color:#F0EAD6;
 <nav id="submenu">
 	<button class="subtopbtn" disabled><h2>나의 도서관</h2></button><br>
     <button class="subbtn" onclick="location.href = 'movemypage' " >마이 페이지</button><br>
-    <button class="subbtn" onclick="location.href = 'movedeliverylist' " >배송 목록</button><br>
     <button class="subbtn" onclick="location.href = 'moveloanlist'">대출 목록</button><br>
     <button class="subbtn" onclick="location.href = 'movehopelist'">희망 도서 신청 목록</button>
 </nav>
@@ -205,7 +204,7 @@ $("#btn2").click(function(){
 					</tr>
 					<tr>
 						<td class="table_box" style="cursor: pointer;"><a id="wishList" href="showwishlist">찜목록</a></td>
-						<td class="table_box" style="cursor: pointer;"><a id="readingRoom" href="">열람실 예약좌석보기</a></td>
+						<td class="table_box" style="cursor: pointer;"><a id="reservationCheck" href="#">열람실 예약좌석보기</a></td>
 					</tr>
 				</table>
 				
@@ -714,6 +713,23 @@ function plusPoint(){
 	
 })
 } 
+
+$("#reservationCheck").on("click",function(){ //열람실 예약 확인
+	$.ajax({
+		url : "reservationcheck",
+		type : "get",
+		dataType:'json'
+		
+}).done((result) => {
+	console.log("예약확인:",result);
+	alert(result.lb_name+"\n"+result.rm_name+"의 "+result.se_seatnum+"번 자리에 예약하셨습니다.");
+	
+}).fail((xhr) => {
+	console.log("xhr=",xhr);
+	alert("예약한 자리가 없습니다.")
+}); //ajax End 
+
+}); //click End
 
 </script>
 
