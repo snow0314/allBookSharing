@@ -19,10 +19,8 @@ table, th, td {
 	font-size: 20px;
 }
 
-table {
-	width: 200px;
-	height: 150px;
-}
+#table{
+width:80%;}
 
 #Reservation {
 	margin-left: 950px;
@@ -52,14 +50,16 @@ color:white;
 }
 
 #totalsearchlist{
-		float:right;
 		background-color:white;
-		width:65%;
+		width:85%;
 		height:auto;
-		margin-right: 8%;
+		margin-left: 5%;
         margin-top:2%;
         margin-bottom: 5%;
         padding:0px;
+	}
+#delivery{
+	margin-left:50%;
 	}
 </style>
 </head>
@@ -68,7 +68,7 @@ color:white;
 
 	<main id="totalsearchlist">
 		<section>
-			<table class="table">
+			<table class="table" id="table">
 				<thead class="thead-dark">
 					<tr>
 						<th>배송서비스 안내</th>
@@ -98,7 +98,7 @@ color:white;
 					</tr>
 				</tbody>
 			</table>
-			 <a href="#"><input type="submit" id="delivery" value="배송신청목록 바로가기" style="margin-left: 400px;" /></a>
+			 <a href="#"><input type="submit" id="delivery" value="배송신청목록 바로가기" /></a>
 		</section>
 	</main>
 	
