@@ -137,6 +137,16 @@ public class MyPageRestController {
 		
 		return bList;
 	}
+	//반납신청하기
+	@RequestMapping(value = "/returnbooks" ,produces = "application/json;charset=UTF-8")
+	public boolean returnBooks(int bd_num) {
+		System.out.println("반납연장 컨트롤러");
+		System.out.println("bd_bo_num="+bd_num);
+		boolean result=mm.returnBooks(bd_num);
+		
+		return result;
+	}
+	
 	
 	//반납일 연장하기
 		@RequestMapping(value = "/loanextend" ,produces = "application/json;charset=UTF-8")

@@ -423,6 +423,13 @@ public class MemberManagement {
 		return result;
 	}
 
+	public boolean returnBooks(int bd_num) {
+		Boolean result=mDao.returnBooks(bd_num);
+		
+		return result;
+		
+	}
+    
 	public int deliveryListInsert(List<LikedList> lList) {
 		int result = 0;
 		boolean check;
@@ -439,5 +446,6 @@ public class MemberManagement {
 		return result;
 	}
 	
+
 	
 }

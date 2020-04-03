@@ -115,6 +115,8 @@ public interface IMemberDao {
 	int reviewSearch(Review review);
 	
 	int reviewModify(Review review);
+	//반납신청하기
+	Boolean returnBooks(int bd_num);
 	
 	int deliveryListInsert(LikedList likedList);
 	boolean deliveryListCheck(LikedList likedList);
