@@ -33,13 +33,15 @@ table, th, td {
 .subbtn:hover{
 background-color:#F0EAD6;
 }
+.table{
+margin-top:5%;
+margin-left:9%;}
+
 
 </style>
 </head>
 <body>
-	<main>
-
-		<section>
+	
 			<div class="container tb">
 				<table class="table">
 					<thead class="thead-dark">
@@ -88,9 +90,7 @@ background-color:#F0EAD6;
 					</tbody>
 				</table>
 			</div>
-		</section>
 
-	</main>
 
 
 </body>

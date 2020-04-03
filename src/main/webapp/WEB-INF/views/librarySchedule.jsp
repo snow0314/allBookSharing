@@ -47,22 +47,36 @@
 @import url(//fonts.googleapis.com/earlyaccess/notosanskr.css);
 
 @import url(//fonts.googleapis.com/earlyaccess/nanumgothiccoding.css);
-
-#nationsidebar {
-	width: 25%;
-	float: right;
-	display: inline-block;
+#title{
+font-family: 'Hanna', sans-serif;
+margin-left:23%;
+}
+#nationsidebar{
+	width:15%;
+	float:right;
+	display:inline-block;
+	margin-right:10%;
+	}
+#lib{
+width:65%;
+float:left;
+margin-left:7%;
+}
+#wrap{
+width:65%;
+float:left;
+margin-left:20%;
 }
 
 .bigregion {
-	border: none;
-	text-decoration: none;
-	display: inline-block;
-	font-size: 16px;
-	transition-duration: 0.4s;
-	cursor: pointer;
-	width: 100%;
-	margin-bottom: -20px;
+  border: none;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  transition-duration: 0.4s;
+  cursor: pointer;
+  width:100%;
+  margin-bottom:-20px;
 }
 
 .br {
@@ -167,19 +181,22 @@ ul {
 
 #calendar {
 	float: left;
-	width: 900px;
+	width: 77%;
+	margin-left:40%;
+	margin-top:-10%;
+	margin-bottom:10%;
 }
+
 </style>
 </head>
 <body>
-	<div class="row">
 
-		<div id="nationsidebar" class="p-3 my-3 border"
-			style="text-align: center;">
+<h1 id='title'>도서관 일정</h1>
+		<div id="nationsidebar" >
 			
 				<div class='bigregion'>
 					<h5 class='br'>
-						<a href=#; >서울</a>
+						<a href=#; onclick='jiyuckLibrary(this)'>서울</a>
 					</h5>
 				</div>
 				<br>
@@ -189,16 +206,16 @@ ul {
 						경기도<i class='fa fa-plus'></i>
 					</h5>
 					<ul>
-						<li><a href=#;  class='li'>시흥</a></li>
-						<li><a href=#;  class='li'>부천</a></li>
-						<li><a href=#;  class='li'>성남</a></li>
+						<li><a href=#;  class='li' onclick='jiyuckLibrary(this)'>시흥</a></li>
+						<li><a href=#;  class='li' onclick='jiyuckLibrary(this)'>부천</a></li>
+						<li><a href=#;  class='li' onclick='jiyuckLibrary(this)'>성남</a></li>
 					</ul>
 				</div>
 				<br>
 				<hr>
 				<div class='bigregion'>
 					<h5 class='br'>
-						<a href=#; >인천</a>
+						<a href=#;  onclick='jiyuckLibrary(this)'>인천</a>
 					</h5>
 				</div>
 				<br>
@@ -208,16 +225,16 @@ ul {
 						강원도<i class='fa fa-plus'></i>
 					</h5>
 					<ul>
-						<li><a href=#;  class='li'>강릉</a></li>
-						<li><a href=#;  class='li'>속초</a></li>
-						<li><a href=#;  class='li'>원주</a></li>
+						<li><a href=#;  class='li' onclick='jiyuckLibrary(this)'>강릉</a></li>
+						<li><a href=#;  class='li' onclick='jiyuckLibrary(this)'>속초</a></li>
+						<li><a href=#;  class='li' onclick='jiyuckLibrary(this)'>원주</a></li>
 					</ul>
 				</div>
 				<br>
 				<hr>
 				<div class='bigregion'>
 					<h5 class='br'>
-						<a href=#; >대전</a>
+						<a href=#;  onclick='jiyuckLibrary(this)'>대전</a>
 					</h5>
 				</div>
 				<br>
@@ -227,9 +244,9 @@ ul {
 						충청남도<i class='fa fa-plus'></i>
 					</h5>
 					<ul>
-						<li><a href=#;  class='li'>서산</a></li>
-						<li><a href=#;  class='li'>천안</a></li>
-						<li><a href=#;  class='li'>공주</a></li>
+						<li><a href=#;  class='li' onclick='jiyuckLibrary(this)'>서산</a></li>
+						<li><a href=#;  class='li' onclick='jiyuckLibrary(this)'>천안</a></li>
+						<li><a href=#;  class='li' onclick='jiyuckLibrary(this)'>공주</a></li>
 					</ul>
 				</div>
 				<br>
@@ -239,9 +256,9 @@ ul {
 						충청북도 <i class='fa fa-plus'></i>
 					</h5>
 					<ul>
-						<li><a href=#;  class='li'>청주</a></li>
-						<li><a href=#;  class='li'>충주</a></li>
-						<li><a href=#;  class='li'>제천</a></li>
+						<li><a href=#;  class='li' onclick='jiyuckLibrary(this)'>청주</a></li>
+						<li><a href=#;  class='li' onclick='jiyuckLibrary(this)'>충주</a></li>
+						<li><a href=#;  class='li' onclick='jiyuckLibrary(this)'>제천</a></li>
 					</ul>
 				</div>
 				<br>
@@ -251,9 +268,9 @@ ul {
 						전라남도<i class='fa fa-plus'></i>
 					</h5>
 					<ul>
-						<li><a href=#;  class='li'>광주</a></li>
-						<li><a href=#;  class='li'>순천</a></li>
-						<li><a href=#;  class='li'>광양</a></li>
+						<li><a href=#;  class='li' onclick='jiyuckLibrary(this)'>광주</a></li>
+						<li><a href=#;  class='li' onclick='jiyuckLibrary(this)'>순천</a></li>
+						<li><a href=#;  class='li' onclick='jiyuckLibrary(this)'>광양</a></li>
 					</ul>
 				</div>
 				<br>
@@ -263,9 +280,9 @@ ul {
 						전라북도 <i class='fa fa-plus'></i>
 					</h5>
 					<ul>
-						<li><a href=#;  class='li'>전주</a></li>
-						<li><a href=#;  class='li'>군산</a></li>
-						<li><a href=#;  class='li'>남원</a></li>
+						<li><a href=#;  class='li' onclick='jiyuckLibrary(this)'>전주</a></li>
+						<li><a href=#;  class='li' onclick='jiyuckLibrary(this)'>군산</a></li>
+						<li><a href=#;  class='li' onclick='jiyuckLibrary(this)'>남원</a></li>
 					</ul>
 				</div>
 				<br>
@@ -275,30 +292,30 @@ ul {
 						경상남도<i class='fa fa-plus'></i>
 					</h5>
 					<ul>
-						<li><a href=#;  class='li'>창원</a></li>
-						<li><a href=#;  class='li'>통영</a></li>
-						<li><a href=#;  class='li'>김해</a></li>
+						<li><a href=#;  class='li'onclick='jiyuckLibrary(this)'>창원</a></li>
+						<li><a href=#;  class='li' onclick='jiyuckLibrary(this)'>통영</a></li>
+						<li><a href=#;  class='li' onclick='jiyuckLibrary(this)'>김해</a></li>
 					</ul>
 				</div>
 				<br>
 				<hr>
 				<div class='bigregion'>
 					<h5 class='br'>
-						<a href=#; >부산</a>
+						<a href=#; onclick='jiyuckLibrary(this)'>부산</a>
 					</h5>
 				</div>
 				<br>
 				<hr>
 				<div class='bigregion'>
 					<h5 class='br'>
-						<a href=#; >대구</a>
+						<a href=#; onclick='jiyuckLibrary(this)'>대구</a>
 					</h5>
 				</div>
 				<br>
 				<hr>
 				<div class='bigregion'>
 					<h5 class='br'>
-						<a href=#; >울산</a>
+						<a href=#; onclick='jiyuckLibrary(this)'>울산</a>
 					</h5>
 				</div>
 				<br>
@@ -308,17 +325,16 @@ ul {
 						경상북도<i class='fa fa-plus'></i>
 					</h5>
 					<ul>
-						<li><a href=#;  class='li'>경주</a></li>
-						<li class='li'><a href=#; 
-							class='li'>문경</a></li>
-						<li><a href=#;  class='li'>포항</a></li>
+						<li><a href=#;  class='li' onclick='jiyuckLibrary(this)'>경주</a></li>
+						<li><a href=#;  class='li' onclick='jiyuckLibrary(this)'>문경</a></li>
+						<li><a href=#;  class='li' onclick='jiyuckLibrary(this)'>포항</a></li>
 					</ul>
 				</div>
 				<br>
 				<hr>
 				<div class='bigregion'>
 					<h5 class='br'>
-						<a href=#; >제주도</a>
+						<a href=#; onclick='jiyuckLibrary(this)'>제주도</a>
 					</h5>
 				</div>
 				
@@ -327,7 +343,7 @@ ul {
 		</div>
 
 		<div class="col-9" style="padding-right: 50px;">
-			<div class="p-3 my-3 border">
+			<div  id='lib' class="p-3 my-3 border">
 			<div class="tab">
 			
 			</div>
@@ -341,7 +357,7 @@ ul {
 
 		</div>
 		</div>
-	</div>
+	
 
 </body>
 <script type="text/javascript">
@@ -354,12 +370,12 @@ $(function() {
 		$(this).find("ul").slideToggle("normal");
 	});//지역 클릭시 토글해주는 메소드
 	
-	$(".br").on("click","a", function(){ //지역 선택시 해당 지역에  속하는 도서관 보여주는 메소드
-		console.log($(this).text());
+	function jiyuckLibrary(e){ //지역 선택시 해당 지역에  속하는 도서관 보여주는 메소드
+		console.log($(e).text());
 		$.ajax({ //지역 정보에 해당하는 도서관 보여주는 에이작스
 			url : "getloclibray",
 			type : "get",
-			data : {"loc" : $(this).text()},
+			data : {"loc" : $(e).text()},
 			dataType:'json'
 			
 	}).done((result) => {
@@ -374,7 +390,7 @@ $(function() {
 	}).fail((xhr) => {
 		console.log("xhr=",xhr);
 	}); //ajax End
-	});
+	}
 	
 	$(".tab").on("click",".tablinks",function(){
 		$("#calendar").empty();	

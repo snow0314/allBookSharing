@@ -6,14 +6,11 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script
 	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-<script
-	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+
 <style>
 @import url(//fonts.googleapis.com/earlyaccess/hanna.css);
 
@@ -27,8 +24,11 @@ table, th, td {
 	font-size: 20px;
 }
 
-.table {
-    width: 75%;
+#table {
+    width: 70%;
+    margin-bottom:1rem;
+    margin-top:5%;
+    margin-left:23%;
 
 }
 
@@ -55,11 +55,6 @@ border:none;
 
 }
 
-section{
-
-width:75%;
-float:right;
-}
 .subbtn:hover{
 background-color:#F0EAD6;
 }
@@ -120,10 +115,10 @@ background-color:#F0EAD6;
 	</aside>
 
 
-	<main id="main">
 
+<main id="main">
 		<section>
-			<table class="table">
+			<table class="table" id="table">
 				<thead class="thead-dark">
 					<tr>
 						<th>열람실 이용안내</th>
@@ -148,8 +143,7 @@ background-color:#F0EAD6;
 		<a href="readingroommove"><input type="submit" id="Reservation"
 		value="열람실 예약" /></a>
 		
-	</main>
-
+</main>
 
 
 </body>
