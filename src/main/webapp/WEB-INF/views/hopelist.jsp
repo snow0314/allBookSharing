@@ -93,22 +93,16 @@ cursor: pointer;
 </head>
 <body>
 <jsp:include page="header2.jsp" />
-<<<<<<< HEAD
 
-
-
-
-=======
 <nav id="submenu">
 	<button class="subtopbtn" disabled><h2>나의 도서관</h2></button><br>
     <button class="subbtn" onclick="location.href = 'movemypage' " >마이 페이지</button><br>
-    <button class="subbtn" onclick="location.href = 'movedeliverylist' " >배송 목록</button><br>
     <button class="subbtn" onclick="location.href = 'moveloanlist'">대출 목록</button><br>
     <button class="subbtn" onclick="location.href = 'movehopelist'">희망 도서 신청 목록</button>
 </nav>
 
 <main id="totalsearchlist">
->>>>>>> 96ddbfcbb712bb087060eb56dd1db60856f07ea8
+
 		<div>
 		<h1 style="margin-bottom:80px;">희망 도서 목록</h1>
 		<hr />
@@ -164,12 +158,14 @@ for(let i=0;i<list.length;i++){
 	$tr.append("<td>"+list[i].br_date+"</td>");
 	if(list[i].br_situation==0)
 	$tr.append("<td style='color:red; font-weight:bold;'>대기중</td>");
-	if(list[i].br_situation==1&& list[i].br_situation==4 && list[i].br_situation==5)
+	if(list[i].br_situation==1|| list[i].br_situation==4 || list[i].br_situation==5)
 	$tr.append("<td style='color:green;font-weight:bold;'>처리중</td>");
 	if(list[i].br_situation==2)
 	$tr.append("<td style='color:orange; font-weight:bold;'>반려</td>");
 	if(list[i].br_situation==3)
 	$tr.append("<td style='color:blue;font-weight:bold;'>처리완료</td>");
+	
+	
 	
 }
 </script>

@@ -313,6 +313,9 @@ public class MemberManagement {
 		String id=principal.getName();
 		
 		List<Reservation> rList=mDao.getReservationlist(id);
+		for(int i=0;i<rList.size();i++) {
+			rList.get(i).setReservationCnt(mDao.getReservationCnt(rList.get(i))); //해당 책에 예약이 몇건 걸려있는지 알아오는 메소드
+		}
 		System.out.println("rList="+rList);
 		
 		return rList;
@@ -376,18 +379,48 @@ public class MemberManagement {
 	
 	//한줄평 쓰기
 	public ModelAndView reviewInsert(Review review) {
+		int result;
 		mav = new ModelAndView();
 		System.out.println("한줄평2");
-		int result = mDao.reviewInsert(review);
-		if(result !=0) {
-			mav.setViewName("redirect:/moveloanlist");
-			mav.addObject("msg", "한줄평 등록에 성공하셨습니다.");
+		int cnt = mDao.reviewSearch(review);
+		if(cnt == 0) {
+			result = mDao.reviewInsert(review);
+			if(result !=0) {
+				mav.setViewName("redirect:/moveloanlist");
+				mav.addObject("msg", "한줄평 등록에 성공하셨습니다.");
+			}else {
+				mav.setViewName("redirect:/moveloanlist");
+				mav.addObject("msg", "한줄평 등록에 실패하셨습니다.");
+			}
 		}else {
+			result = mDao.reviewModify(review);
 			mav.setViewName("redirect:/moveloanlist");
-			mav.addObject("msg", "한줄평 등록에 실패하셨습니다.");
+			mav.addObject("msg", "한줄평을 수정하셨습니다.");
 		}
+		
 	    
 		return mav;
+	}
+	//회원등급변경
+	public boolean changeGrade(Principal principal) {
+		String id=principal.getName();
+		System.out.println("회원등급변경아이디="+id);
+		Boolean result=mDao.changeGrade(id);
+		return result;
+	}
+
+	public boolean plusPoint(Principal principal) {
+		String id=principal.getName();
+		Boolean result=mDao.plusPoint(id);
+		
+		System.out.println("포인트서비스="+result);
+		return result;
+	}
+
+	public boolean plusPointList(Principal principal) {
+		String id=principal.getName();
+		Boolean result=mDao.plustPointList(id);
+		return result;
 	}
     
 	

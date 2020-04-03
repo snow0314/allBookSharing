@@ -60,6 +60,7 @@ public class AdminRestController {
 		return result;
 	}
 	
+
 	//대출 차트
 		@RequestMapping(value = "/barchart" ,produces = "application/json;charset=UTF-8")
 		public Map<Integer,Integer> barChart() {
@@ -68,5 +69,20 @@ public class AdminRestController {
 			
 			return map;
 		}
+
+	@RequestMapping(value = "/recommenddelete", produces = "application/json;charset=UTF-8")
+	public Boolean recommendDelete(String re_bcode) {
+		
+		Boolean result=am.recommendDelete(re_bcode);
+
+		return result;
+	}
+	@RequestMapping(value = "/recomodify", produces = "application/json;charset=UTF-8")
+	public Boolean recommendModify(String re_bcode,String re_contents) {
+		
+		Boolean result=am.recommendModify(re_bcode,re_contents);
+
+		return result;
+	}
 	
 }

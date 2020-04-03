@@ -3,6 +3,7 @@ package com.allBookSharing.xxx.dao;
 
 import java.util.List;
 
+import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Component;
 
 import com.allBookSharing.xxx.dto.Library;
@@ -33,11 +34,15 @@ public interface IAdminManagementDao { //AdminMapper.xml
 	//도서관 삭제
 	int libraryDrop(String lb_code);
 
+
 	//bar 차트
 	Integer barChart(int month);
 	
-	
-	
+
+	Boolean recommendDelete(String re_bcode);
+
+	Boolean recommendModify(@Param("re_bcode")String re_bcode, @Param("re_contents")String re_contents);
+
 	
 	
 }

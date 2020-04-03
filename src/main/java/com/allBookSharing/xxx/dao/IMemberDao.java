@@ -105,13 +105,15 @@ public interface IMemberDao {
 	//한줄평 등록
 	int reviewInsert(Review review);
 	
-	/*
-	 * //로그인 정보 표시 Member loginInfo(String id);
-	 */
-	
-	
-	
-	
+	//해당 책에 예약이 몇건 걸려있는지 알아오는 메소드
+	int getReservationCnt(Reservation reservation);
+	Boolean changeGrade(String id);
+
+	Boolean plustPointList(String id);
+	Boolean plusPoint(String id);
+	//리뷰 썻나 안썻나 확인
+	int reviewSearch(Review review);
+	int reviewModify(Review review);
 	
 
 }

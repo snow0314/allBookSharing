@@ -70,6 +70,12 @@ JOIN LIBRARY ON LA_LCODE=LB_CODE
 <delete id="libraryDrop">
 	DELETE FROM LIBRARY WHERE LB_CODE=#{lb_code}
 </delete>	
+<delete id="recommendDelete" parameterType="recommend">
+	DELETE FROM RECOMMAND WHERE RE_BCODE=#{re_bcode}
+</delete>
+<update id="recommendModify" parameterType="recommend">
+ 	UPDATE RECOMMAND SET RE_CONTENTS=#{re_contents} where RE_BCODE=#{re_bcode}
+</update>
 
 <select id="barChart" parameterType="int" resultType="Integer">
 SELECT COUNT(DISTINCT BD_BO_NUM) FROM BORROWDETAIL WHERE #{month}=EXTRACT(MONTH FROM bd_date)

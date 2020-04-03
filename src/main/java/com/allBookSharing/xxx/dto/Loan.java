@@ -3,6 +3,7 @@ package com.allBookSharing.xxx.dto;
 import java.util.Date;
 
 import org.apache.ibatis.type.Alias;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 

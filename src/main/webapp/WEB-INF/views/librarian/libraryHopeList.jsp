@@ -206,7 +206,7 @@ for(let i=0;i<list.length;i++){
                     footer+="</select>";
                     
              	    footer+="<input type='submit' value='반려' formaction='hopereturn' class='btn btn-warning' style='float: left;'>";
-	                footer+="<input type='submit'' value='처리완료' style='margin-right:10px;' formaction='hopecomplete' class='btn btn-primary'>";
+	                footer+="<input type='submit' value='처리완료' style='margin-right:10px;' formaction='hopecomplete' class='btn btn-primary'>";
                     footer+="<input type='hidden' name='be_bcode' value=\""+response.br_bcode+"\">";
                     	
                     }

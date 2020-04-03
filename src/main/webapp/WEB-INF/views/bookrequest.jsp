@@ -71,10 +71,10 @@ color:white;
 		<br>
 		<button class="subbtn" onclick="location.href = 'questionmove' ">건의 사항</button>
 		<br>
-		<button class="subbtn" onclick="location.href = 'hopebookmove' ">희망도서 신청</button>
+		<button class="subbtn" onclick="location.href = 'noticemove' ">공지 사항</button>
 		<br>
-		<button class="subbtn"
-			onclick="location.href = 'noticemove' ">공지사항</button>
+		<button class="subbtn" onclick="location.href = 'hopebookmove' ">희망도서 신청</button>
+		
 
 	</aside>
 
@@ -82,7 +82,8 @@ color:white;
 <main id="totalsearchlist">
  	<section>
 <h4>희망도서 신청 안내</h4>
- 	<table>
+ 	<table class="table">
+				<thead class="thead-dark">
 <tr class="basic_ul">
 	<th>
 	&nbsp;-신청일 포함 1주 3권 이내(권당 5만원 이하)
@@ -91,14 +92,15 @@ color:white;
  	<br>&nbsp;-희망도서 비치 알림 : SMS 전송(안내 문자 수신을 위해 개인정보수정에서 SMS 수신 체크 확인)
 	<br>&nbsp;-우선대출기간 : 신청도서관 도서 비치일로부터 주말까지 </th>
 </tr>
+</thead>
  	</table>
 <h4>희망도서 선정 제외기준</h4>
 <div class="over_table">
-	<table class="basic_table">
+	<table class="table">
 		<caption>
 		희망도서 신청 제외기준 내용 및 종류 등 안내
 		</caption>
-		<thead>
+		<thead class="thead-dark">
 			<tr>
 				<td>기 준</td>
 				<td>내  용</td>
@@ -112,7 +114,7 @@ color:white;
 				<td class="txt_left">&nbsp;</td>
 			</tr>
 			<tr>
-				<td rowspan="11">제외종류</td>
+				<td rowspan="11" style="vertical-align:middle">제외종류</td>
 				<td>소장도서, 중복 신청도서, 신간 구입 예정도서</td>
 				<td class="txt_left">&nbsp;</td>
 			</tr>
@@ -180,8 +182,11 @@ color:white;
 
 <br>
 
-<div class="btn_set"> <a href="hopebookapply" class="book_btn01"><span>신청하기</span></a> 
-						<a href="http://localhost:8081/xxx/" class="book_btn02"><span>신청확인</span></a> </div>
-
+<div class="btn_set" style="margin-left:330px; ">
+ <a href="hopebookapply" class="book_btn01"><input type="button" value="신청하기"></a> 
+						&nbsp;&nbsp;
+<a href="./" class="book_btn02"><input type="button" value="신청확인"></a> </div>
+						</section>
+						</main>
 </body>
 </html>

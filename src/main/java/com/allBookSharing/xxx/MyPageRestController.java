@@ -154,4 +154,20 @@ public class MyPageRestController {
 			
 			return list;
 		}
+		//회원등급 변경
+		@RequestMapping(value = "/changegrade" ,produces = "application/json;charset=UTF-8")
+		public boolean changeGrade(Principal principal) { 
+			boolean result=mm.changeGrade(principal);
+			
+			System.out.println("회원등급 결과="+result);
+			return result;
+		}
+		//회원등급 변경 후 포인트 충전
+		@RequestMapping(value = "/pluspoint" ,produces = "application/json;charset=UTF-8")
+		public boolean plusPoint(Principal principal) { 
+			boolean result=mm.plusPoint(principal);
+			result=mm.plusPointList(principal);
+			return result;
+		}
+		
 }

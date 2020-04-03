@@ -82,8 +82,8 @@ $(function() {
                "defaultContent": ""
               
            },
-           { 'data': 'bg_num', 'targets': 1}, //대분류
-           { 'data': 'bg_cate', 'targets': 2}, //소분류
+           { 'data': 'bg_cate', 'targets': 1}, //대분류
+           { 'data': 'sg_cate', 'targets': 2}, //소분류
            { 'data': 'bk_name', 'targets': 3}, //책 제목 
            { 'data': 'bk_writer', 'targets': 4}, //저자
            { 'data': 'lb_name', 'targets': 5}, //도서관 이름

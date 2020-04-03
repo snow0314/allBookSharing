@@ -115,10 +115,9 @@ color:white;
 		<br>
 		<button class="subbtn" onclick="location.href = 'questionmove' ">건의 사항</button>
 		<br>
-		<button class="subbtn" onclick="location.href = 'hopebookmove' ">희망도서 신청</button>
+		<button class="subbtn" onclick="location.href = 'noticemove' ">공지 사항</button>
 		<br>
-		<button class="subbtn"
-			onclick="location.href = 'noticemove' ">공지사항</button>
+		<button class="subbtn" onclick="location.href = 'hopebookmove' ">희망도서 신청</button>
 
 	</aside>
 	

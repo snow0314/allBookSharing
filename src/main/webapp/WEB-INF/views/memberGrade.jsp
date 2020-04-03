@@ -29,68 +29,19 @@ table, th, td {
 .tb {
 	margin-top: 10px;
 }
-#submenu {
-  		float: left;
-  		width: 15%;
-  		height: 100%;  
-  	  margin-left: 8%;
-  	  margin-top:2%;
-}
-.subbtn{
-width:100%;
-background-color:white;
-height:55px;
-font-family: 'Nanum Gothic Coding', monospace;
-font-weight:bold;
-font-size:20px;
-border:none;
 
-
-}
 .subbtn:hover{
 background-color:#F0EAD6;
 }
-.subtopbtn{
-width:100%;
-font-family: 'Hanna', sans-serif;
-height:98px;
-background-color:#223A5E;
-color:white;
-}
+.table{
+margin-top:5%;
+margin-left:9%;}
 
-#totalsearchlist{
-		float:right;
-		background-color:white;
-		width:65%;
-		height:auto;
-		margin-right: 8%;
-        margin-top:2%;
-        margin-bottom: 5%;
-        padding:0px;
-	}
+
 </style>
 </head>
 <body>
-	<jsp:include page="header2.jsp" />
-
-	<aside id="submenu">
-
-		<button class="subtopbtn" disabled>
-			<h2>도서관 이용안내</h2>
-		</button>
-		<br>
-		<button class="subbtn" onclick="location.href = 'readingroominformation' ">열람실 예약안내</button>
-		<br>
-		<button class="subbtn" onclick="location.href = 'membergrade' ">회원등급 기준</button>
-		<br>
-		<button class="subbtn" onclick="location.href = '#' ">배송서비스 안내</button>
-		<br>
-		<button class="subbtn" onclick="location.href = 'libraryschedulemove' ">도서관 일정안내</button>
-
-	</aside>
-
-	<main id="totalsearchlist">
-		<section>
+	
 			<div class="container tb">
 				<table class="table">
 					<thead class="thead-dark">
@@ -139,9 +90,7 @@ color:white;
 					</tbody>
 				</table>
 			</div>
-		</section>
 
-	</main>
 
 
 </body>
