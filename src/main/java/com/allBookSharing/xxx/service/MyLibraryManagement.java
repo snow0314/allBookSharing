@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.servlet.ModelAndView;
 import com.allBookSharing.xxx.dao.IMyLibraryDao;
 import com.allBookSharing.xxx.dto.Loan;
+import com.allBookSharing.xxx.dto.Review;
 import com.google.gson.Gson;
 
 @Service
@@ -97,6 +98,13 @@ public class MyLibraryManagement {
 		mav.setViewName(view);
 		
 		return mav;
+	}
+
+
+	public Review getReview(String rv_bcode, String id) {
+		Review review = mlDao.getReview(rv_bcode, id);
+		
+		return review;
 	}
 
 	//희망도서 상세보기

@@ -35,6 +35,9 @@
     #{br_reason},#{br_sms},SYSDATE,0,#{br_image})
 </insert>
 
+<select id="getReview" resultType="review">
+	SELECT * FROM REVIEW WHERE RV_BCODE = #{rv_bcode} AND RV_ID = #{id}
+</select>
 
 
 <!--희망도서 상세보기-->

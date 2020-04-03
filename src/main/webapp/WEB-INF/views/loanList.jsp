@@ -273,13 +273,11 @@ for(let i=0;i<list.length;i++){
 		break;
 	case 6:
 		$tr.append("<td style='color:blue;'>반납완료</td>");
-		$tr.append("<td><button id='modal_review' data-toggle='modal' data-target='#myModal' data-code=\""+list[i].bk_code+"\">리뷰쓰기</button></td>");		
-
+		$tr.append("<td><button id='modal_review' data-toggle='modal' data-target='#myModal' data-title='"+list[i].bk_name+"' data-code=\""+list[i].bk_code+"\">리뷰쓰기</button></td>");		
 		break;
 	case 7:
 		$tr.append("<td style='color:blue;'>반납완료</td>");
-		$tr.append("<td><button id='modal_review' data-toggle='modal' data-target='#myModal' data-code=\""+list[i].bk_code+"\">리뷰쓰기</button></td>");		
-			
+		$tr.append("<td><button id='modal_review' data-toggle='modal' data-target='#myModal' data-title='"+list[i].bk_name+"' data-code=\""+list[i].bk_code+"\">리뷰쓰기</button></td>");					
 		break;		
 	default:
 		break;
@@ -299,27 +297,27 @@ for(let i=0;i<list.length;i++){
       <!-- Modal content-->
       <div class="modal-content">
         <div class="modal-header" id="modal-header">
-          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <div id="title">span</div>
          <span class="star-input">
   <span class="input">
-    <input type="radio" name="rv_grade2" id="p1" value="1"><label for="p1">1</label>
-    <input type="radio" name="rv_grade2" id="p2" value="2"><label for="p2">2</label>
-    <input type="radio" name="rv_grade2" id="p3" value="3"><label for="p3">3</label>
-    <input type="radio" name="rv_grade2" id="p4" value="4"><label for="p4">4</label>
-    <input type="radio" name="rv_grade2" id="p5" value="5"><label for="p5">5</label>
-    <input type="radio" name="rv_grade2" id="p6" value="6"><label for="p6">6</label>
-    <input type="radio" name="rv_grade2" id="p7" value="7"><label for="p7">7</label>
-    <input type="radio" name="rv_grade2" id="p8" value="8"><label for="p8">8</label>
-    <input type="radio" name="rv_grade2" id="p9" value="9"><label for="p9">9</label>
-    <input type="radio" name="rv_grade2" id="p10" value="10"><label for="p10">10</label>
+    <input type="radio" name="rv_grade" id="p1" class="point" value="0.5"><label for="p1">0.5</label>
+    <input type="radio" name="rv_grade" id="p2" class="point" value="1"><label for="p2">1</label>
+    <input type="radio" name="rv_grade" id="p3" class="point" value="1.5"><label for="p3">1.5</label>
+    <input type="radio" name="rv_grade" id="p4" class="point" value="2"><label for="p4">2</label>
+    <input type="radio" name="rv_grade" id="p5" class="point" value="2.5"><label for="p5">2.5</label>
+    <input type="radio" name="rv_grade" id="p6" class="point" value="3"><label for="p6">3</label>
+    <input type="radio" name="rv_grade" id="p7" class="point" value="3.5"><label for="p7">3.5</label>
+    <input type="radio" name="rv_grade" id="p8" class="point" value="4"><label for="p8">4</label>
+    <input type="radio" name="rv_grade" id="p9" class="point" value="4.5"><label for="p9">4.5</label>
+    <input type="radio" name="rv_grade" id="p10" class="point" value="5"><label for="p10">5</label>
   </span>
   <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
-  <output for="star-input"><b>0</b>점</output>
+  <output for="star-input"><b id="score">0</b>점</output>
 </span>
         </div>
       
         <div class="modal-body" id="modal-body">
-          <input type="text" name="rv_contents">
+          <input type="text" name="rv_contents" id="rv_contents">
           <input type='hidden' name='rv_bcode' id='rv_bcode'>
         </div>
        
@@ -373,12 +371,30 @@ starRating();
 //리뷰 모달창 여는 메소드  
 
  $(document).on("click", "#modal_review",function(e){
-	
     var params = e.target.dataset.code; 
-    
     console.log("게시글",params);
     $("#rv_bcode").val(params);
-         
+    
+    $.ajax({
+		url : "getreview",
+		type : "get",
+		data : {"rv_bcode" : params},
+		dataType:'json'
+		
+}).done((result) => {
+	console.log("result=",result);
+	$("#rv_contents").empty();
+	$("#rv_contents").val(result.rv_contents);
+	$("input:radio[name='rv_grade']:radio[value='"+result.rv_grade+"']").prop('checked', true);
+	$("#score").text(result.rv_grade);
+	
+}).fail((xhr) => {
+	console.log("xhr=",xhr);
+	$("input:radio[name='rv_grade']").prop('checked', false);
+	$("#rv_contents").val("");
+	$("#score").text("0");
+});// ajax End
+      
  });      //modal end
 </script>
 </body>
