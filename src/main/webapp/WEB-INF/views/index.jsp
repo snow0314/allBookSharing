@@ -500,10 +500,10 @@
 			</div>
 
 	</body>
+	1b51d85dd9bcbc0b96d2984712a09ec4&libraries=services,clusterer,drawing
 	
-	
-	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=	925f29ba43e718aeb71e38ac29476a3e&libraries=clusterer"></script>
-	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=925f29ba43e718aeb71e38ac29476a3e"></script>
+	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=	1b51d85dd9bcbc0b96d2984712a09ec4&libraries=clusterer"></script>
+	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=1b51d85dd9bcbc0b96d2984712a09ec4"></script>
 	<script src="http://code.jquery.com/jquery-1.4.4.min.js"></script>
 <script src="//code.jquery.com/jquery-1.12.0.min.js"></script>
 	<script type="text/javascript">
