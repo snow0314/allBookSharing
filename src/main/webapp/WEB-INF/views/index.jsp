@@ -32,7 +32,7 @@
        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script> 
        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
-	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=1b51d85dd9bcbc0b96d2984712a09ec4&libraries=clusterer"></script>
+	
 		<style>
 		@import url(//fonts.googleapis.com/earlyaccess/hanna.css);
 		.text{font-family: 'Hanna', sans-serif;}
@@ -165,9 +165,14 @@
    padding-left:0;
   
    }
+   .infowindow{
+	padding:0;
+	font-size:23px;
+   }
       </style>
 	</head>
 	<body class="homepage">
+		
         <!--header-->
         <sec:authorize access="isAnonymous()">
         <div class="container2">
@@ -496,8 +501,11 @@
 
 	</body>
 	
-	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=1b51d85dd9bcbc0b96d2984712a09ec4"></script>
+	
+	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=	925f29ba43e718aeb71e38ac29476a3e&libraries=clusterer"></script>
+	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=925f29ba43e718aeb71e38ac29476a3e"></script>
 	<script src="http://code.jquery.com/jquery-1.4.4.min.js"></script>
+<script src="//code.jquery.com/jquery-1.12.0.min.js"></script>
 	<script type="text/javascript">
 	function mainBookSearch(){
 		var bk_name=document.getElementById("bookinput").value;
@@ -598,61 +606,53 @@
 		    $.get("getlibrary", function(data) {
 		        // 데이터에서 좌표 값을 가지고 마커를 표시합니다
 		        // 마커 클러스터러로 관리할 마커 객체는 생성할 때 지도 객체를 설정하지 않습니다
+		        console.log("data",data);
 		        var markers = $(data).map(function(i, position) {
 		        	console.log("position",position);
-
-		            return new kakao.maps.Marker({
+                  
+		        	var marker =new kakao.maps.Marker({
 		                position : new kakao.maps.LatLng(position.lb_longitude, position.lb_latitude)
 		            });
-		           
-		        });
-		        console.log("마커",markers);
-		        var infowindow = $(data).map(function(i, position) {
-		            return new kakao.maps.InfoWindow({
-		                position : new kakao.maps.LatLng(position.lb_longitude, position.lb_latitude),
-		            	content :position.lb_name
+		            var iwContent='<div class="infowindow"}>&nbsp;'+position.lb_name+'</div>';		 
+		            var infowindow= new kakao.maps.InfoWindow({
+				        content: iwContent // 인포윈도우에 표시할 내용
+				    });
+		            
+		            kakao.maps.event.addListener(marker, 'mouseover', function(){
+		            	  infowindow.open(map, marker);
 		            });
-		           
+				    kakao.maps.event.addListener(marker, 'mouseout', function(){
+				    	  infowindow.close();
+				    });    		
+		            		
+				    return marker;
 		        });
-		        console.log("장소",infowindow);
+		        
+		        kakao.maps.event.addListener(clusterer, 'clusterclick', function(cluster) {
+
+			        // 현재 지도 레벨에서 1레벨 확대한 레벨
+			        var level = map.getLevel()-1;
+
+			        // 지도를 클릭된 클러스터의 마커의 위치를 기준으로 확대합니다
+			        map.setLevel(level, {anchor: cluster.getCenter()});
+			    }); 
 		       
 		        // 클러스터러에 마커들을 추가합니다
 		        clusterer.addMarkers(markers);
 		        
-		        kakao.maps.event.addListener(clusterer, 'mouseover', function(){
-		        	infowindow.open(map, clusterer);
-		        });
-		        kakao.maps.event.addListener(clusterer, 'mouseout', function(){
-		            infowindow.close();
-		        });
-		    });
+		       
+		        
 
+				    // 마커에 표시할 인포윈도우를 생성합니다
+				    
+				    
+				});
+		
 
+			
 
-		    // 마커 클러스터러에 클릭이벤트를 등록합니다
-		    // 마커 클러스터러를 생성할 때 disableClickZoom을 true로 설정하지 않은 경우
-		    // 이벤트 헨들러로 cluster 객체가 넘어오지 않을 수도 있습니다
-		    kakao.maps.event.addListener(clusterer, 'clusterclick', function(cluster) {
-
-		        // 현재 지도 레벨에서 1레벨 확대한 레벨
-		        var level = map.getLevel()-1;
-
-		        // 지도를 클릭된 클러스터의 마커의 위치를 기준으로 확대합니다
-		        map.setLevel(level, {anchor: cluster.getCenter()});
-		    }); 
-		 /* // 인포윈도우를 표시하는 클로저를 만드는 함수입니다 
-		    function makeOverListener(map, clusterer, infowindow) {
-		        return function() {
-		            infowindow.open(map, markers);
-		        };
-		    }
-
-		    // 인포윈도우를 닫는 클로저를 만드는 함수입니다 
-		    function makeOutListener(infowindow) {
-		        return function() {
-		            infowindow.close();
-		        };
-		    } */
+		   
+		 
 	</script>
 	
 </html>
