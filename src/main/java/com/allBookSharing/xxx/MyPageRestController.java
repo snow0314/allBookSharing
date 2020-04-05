@@ -188,7 +188,7 @@ public class MyPageRestController {
 			return result;
 		}
 		
-		//회원등급 변경 후 포인트 충전
+		//찜 목록에 있는 도서를 배송신청목록에 등록
 		@RequestMapping(value = "/deliverylistinsert" ,produces = "application/json;charset=UTF-8")
 		public int deliveryListInsert(String json, Principal principal) throws JsonParseException, JsonMappingException, IOException { 
 			System.out.println("제이슨:"+json);

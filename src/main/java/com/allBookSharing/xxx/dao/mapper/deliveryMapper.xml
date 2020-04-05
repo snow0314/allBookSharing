@@ -69,7 +69,7 @@
 		SELECT COUNT(*) FROM BORROWDETAIL
 		JOIN BORROWLIST
 		ON bo_num=bd_bo_num
-		WHERE  bd_real_return_date IS NULL AND BO_ID=#{id}
+		WHERE BO_ID=#{id} AND (bd_state_num=1 OR bd_state_num=2 OR bd_state_num=4 OR bd_state_num=5)
 	</select>
 	
 	<select id="pointCheck" resultType="Integer">

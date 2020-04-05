@@ -44,6 +44,7 @@
     position: absolute;
     top: 0;
     left: 0;
+    
 }
 .star-input>.input>label:hover,
 .star-input>.input>input:focus+label,
@@ -194,6 +195,7 @@ background-color:#F0EAD6;
 <nav id="submenu">
 	<button class="subtopbtn" disabled><h2>나의 도서관</h2></button><br>
     <button class="subbtn" onclick="location.href = 'movemypage' " >마이 페이지</button><br>
+    <button class="subbtn" onclick="location.href = 'deliveryapplicationmove' " >배송신청목록</button><br>
     <button class="subbtn" onclick="location.href = 'moveloanlist'">대출 목록</button><br>
     <button class="subbtn" onclick="location.href = 'movehopelist'">희망 도서 신청 목록</button>
 </nav>
@@ -234,7 +236,7 @@ background-color:#F0EAD6;
 let list=${list};
 console.log(list);
 var date = new Date();
-$('.dateview1').html(moment(date).format('YYYY MM DD HH:mm:ss'));
+
 
 for(let i=0;i<list.length;i++){
 	var $tr= $("<tr>").appendTo($("#tb"));
@@ -259,7 +261,7 @@ for(let i=0;i<list.length;i++){
 		$tr.append("<td><button disabled>리뷰쓰기</button></td>");
 		break;
 	case 3:
-		$tr.append("<td style='color:blue;'>배송취소</td>");
+		$tr.append("<td onclick='showReason(\""+list[i].bd_reason+"\")' style='color:blue; cursor: pointer;'>배송취소</td>");
 		$tr.append("<td><button disabled>리뷰쓰기</button></td>");
 		break;
 	case 4:
@@ -272,11 +274,21 @@ for(let i=0;i<list.length;i++){
 		break;
 	case 6:
 		$tr.append("<td style='color:blue;'>반납완료</td>");
-		$tr.append("<td><button id='modal_review' data-toggle='modal' data-target='#myModal' data-title='"+list[i].bk_name+"' data-code=\""+list[i].bk_code+"\">리뷰쓰기</button></td>");		
+		if(list[i].rv_contents != null){
+			$tr.append("<td><button id='modal_review' data-toggle='modal' data-target='#myModal' data-title='"+list[i].bk_name+"' data-code=\""+list[i].bk_code+"\">리뷰수정</button></td>");		
+		}else{
+			$tr.append("<td><button id='modal_review' data-toggle='modal' data-target='#myModal' data-title='"+list[i].bk_name+"' data-code=\""+list[i].bk_code+"\">리뷰쓰기</button></td>");		
+		}
+		
 		break;
 	case 7:
 		$tr.append("<td style='color:blue;'>반납완료</td>");
-		$tr.append("<td><button id='modal_review' data-toggle='modal' data-target='#myModal' data-title='"+list[i].bk_name+"' data-code=\""+list[i].bk_code+"\">리뷰쓰기</button></td>");					
+		if(list[i].rv_contents != null){
+			$tr.append("<td><button id='modal_review' data-toggle='modal' data-target='#myModal' data-title='"+list[i].bk_name+"' data-code=\""+list[i].bk_code+"\">리뷰수정</button></td>");		
+		}else{
+			$tr.append("<td><button id='modal_review' data-toggle='modal' data-target='#myModal' data-title='"+list[i].bk_name+"' data-code=\""+list[i].bk_code+"\">리뷰쓰기</button></td>");					
+		}
+		
 		break;		
 	default:
 		break;
@@ -285,6 +297,8 @@ for(let i=0;i<list.length;i++){
 	
 	
 }
+
+
 </script>
 
 
@@ -395,6 +409,11 @@ starRating();
 });// ajax End
       
  });      //modal end
+ 
+ function showReason(reason){
+		console.log("reason",reason);
+		alert("현재 도서는 아래와 같은 이유로 배송취소 되었습니다.\n사유 : "+reason);
+	}
 </script>
 </body>
 </html>

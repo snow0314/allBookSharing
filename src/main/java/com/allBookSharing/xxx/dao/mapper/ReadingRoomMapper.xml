@@ -24,11 +24,12 @@
 </insert>
 
 <select id="getReadingRoomList" parameterType="integer" resultType="readingRoom">
-	SELECT readingroom.rm_code, readingroom.rm_name,count(case when se_place>0 then 1 end ) as totalSeat
+	SELECT readingroom.rm_lcode,readingroom.rm_code, readingroom.rm_name,count(case when se_place>0 then 1 end ) as totalSeat
 	FROM READINGROOM
 	JOIN SEATS
 	ON readingroom.rm_code=seats.se_code
-	group by rm_code,rm_name
+	group by rm_code,rm_name,rm_lcode
+    HAVING rm_lcode = #{lb_code}
 </select>
 
 <delete id="ReadingRoomDelete">

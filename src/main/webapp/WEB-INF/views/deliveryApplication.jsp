@@ -262,6 +262,7 @@ $("#apply").on("click",function(){ //배송 신청 버튼 클릭시 작동하는
 			return false;
 		}else if(borrowCnt+temp>3){
 			toastr.error('실패', '일반 회원은 최대 3권까지 대여할 수 있습니다.');
+			return false;
 		}
 		
 		if(temp>3){
@@ -274,6 +275,7 @@ $("#apply").on("click",function(){ //배송 신청 버튼 클릭시 작동하는
 			return false;
 		}else if(borrowCnt+temp>5){
 			toastr.error('실패', '우수 회원은 최대 3권까지 대여할 수 있습니다.');
+			return false;
 		}
 		if(temp>5){
 			toastr.error('실패', '우수 회원은 최대 5권까지 대여할 수 있습니다.');
