@@ -141,6 +141,7 @@ public class AdminController {
 				return mav;
 			}
 	    
+	    
 	  //추천도서 등록 페이지 이동
 	    @Secured("ROLE_ADMIN")
 		 @RequestMapping(value = "/recommendinsertmove")
@@ -188,6 +189,16 @@ public class AdminController {
 			
 			return mav;
 		}
+	    
+	  //인덱스 차트
+	    @Secured("ROLE_ADMIN")
+		 @RequestMapping(value = "/adminchartmove")
+		 public String adminChart() {
+			System.out.println("차트 보여주기");
+			
+			 
+				return "admin/libraryDelete";
+			}
 }
 
 

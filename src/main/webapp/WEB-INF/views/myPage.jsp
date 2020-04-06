@@ -425,6 +425,63 @@ var ctx1 = document.getElementById("myChart1"); var myPieChart = new Chart(ctx1,
     
 } });
 
+//대출차트
+var dataCnt=new Array();
+var dataName=new Array();
+$.ajax({
+	type : 'get',
+	url :"borrowchart",
+	async: false,	//true:동기, false:비동기 
+	success : function(result) {
+       // $('#borrowCnt').html(data).css('color', 'black').css('font-weight','bold');
+       console.log("데이타는?",result);
+       console.log("데이타는?",result[0].bg_cate);
+       for(var i=0;i<result.length;i++){
+       console.log("데이타는i?",result[i].cnt);
+       dataName[i]=result[i].bg_cate;
+       dataCnt[i]=result[i].cnt;
+       }
+       console.log(dataCnt);
+       console.log(dataName);
+
+     },
+	error : function(xhr, status) {
+     }
+   
+	
+}); //end ajax 
+
+
+data = {
+        datasets: [{
+            backgroundColor: [
+                'rgba(255,99,13,0.5)',
+                'rgba(54,162,235,0.5)',
+                'rgba(255,206,86,0.5)',
+                'rgba(75,192,192,0.5)',
+                'rgba(153,102,255,0.5)',
+                'rgba(255,159,64,0.5)',
+                'rgba(105,159,13,0.5)',
+                'rgba(30,199,13,0.5)',
+                'rgba(30,199,123,0.5)',
+                'rgba(40,139,50,0.5)',
+            ],
+            data: dataCnt
+        }], 
+    labels: dataName //이름
+    }; 
+
+
+
+
+// 가운데 구멍이 없는 파이형 차트 
+var ctx1 = document.getElementById("myChart1"); var myPieChart = new Chart(ctx1, { type: 'pie', data: data, options: {
+    title:{
+    display:true,
+    text:'장르별 대출 추이'   //차트 제목
+}
+    
+} });
 
 	
 //대출건수 조회
