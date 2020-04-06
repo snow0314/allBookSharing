@@ -49,7 +49,7 @@
 @import url(//fonts.googleapis.com/earlyaccess/nanumgothiccoding.css);
 #title{
 font-family: 'Hanna', sans-serif;
-margin-left:23%;
+
 }
 #nationsidebar{
 	width:15%;
@@ -58,14 +58,14 @@ margin-left:23%;
 	margin-right:10%;
 	}
 #lib{
-width:65%;
+width:90%;
 float:left;
-margin-left:7%;
+
 }
 #wrap{
 width:65%;
 float:left;
-margin-left:20%;
+
 }
 
 .bigregion {
@@ -122,10 +122,14 @@ ul {
   padding: 14px 16px;
   transition: 0.3s;
   font-size: 17px;
+  background-repeat: no-repeat
 }
 
 /* Change background color of buttons on hover */
 .tab button:hover {
+  background-color: #bbdefb;
+}
+.tab button:active {
   background-color: #bbdefb;
 }
 
@@ -181,9 +185,7 @@ ul {
 
 #calendar {
 	float: left;
-	width: 77%;
-	margin-left:40%;
-	margin-top:-10%;
+	width: 70%;
 	margin-bottom:10%;
 }
 
@@ -379,7 +381,7 @@ $(function() {
 			dataType:'json'
 			
 	}).done((result) => {
-		console.log("result2=",result);
+		
 		$(".tab").empty();
 		result.forEach(function(item){
 			$("<button>").addClass("tablinks").text(item.lb_name).attr("data-code",item.lb_code)
@@ -388,15 +390,17 @@ $(function() {
 		});
 		
 	}).fail((xhr) => {
-		console.log("xhr=",xhr);
+	
 	}); //ajax End
 	}
 	
 	$(".tab").on("click",".tablinks",function(){
 		$("#calendar").empty();	
 		calendarLoad($(this).data("code"));
+		$(".tablinks").removeClass("active");
+		$(this).addClass('active');
 	});		
-		
+	
 	function calendarLoad(lb_code) {
 				var Calendar = FullCalendar.Calendar;
 				
