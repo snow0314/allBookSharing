@@ -28,7 +28,10 @@
   <!-- ... -->
  
 <style>
-
+@import url(//fonts.googleapis.com/earlyaccess/hanna.css);
+@import url(//fonts.googleapis.com/earlyaccess/jejugothic.css);
+@import url(//fonts.googleapis.com/earlyaccess/notosanskr.css);
+@import url(//fonts.googleapis.com/earlyaccess/nanumgothiccoding.css);
 .table_box {
 	padding: 10px;
 	margin: 10px;
@@ -87,7 +90,7 @@ width: 400px;
   	  margin-left: 8%;
   	  margin-top:2%;
 }
-    .subtopbtn{
+.subtopbtn{
 width:100%;
 font-family: 'Hanna', sans-serif;
 height:98px;
@@ -130,9 +133,9 @@ background-color:#F0EAD6;
 <nav id="submenu">
 	<button class="subtopbtn" disabled><h2>나의 도서관</h2></button><br>
     <button class="subbtn" onclick="location.href = 'movemypage' " >마이 페이지</button><br>
-    <button class="subbtn" onclick="location.href = 'deliveryapplicationmove' " >배송신청목록</button><br>
-    <button class="subbtn" onclick="location.href = 'moveloanlist'">대출 목록</button><br>
-    <button class="subbtn" onclick="location.href = 'movehopelist'">희망 도서 신청 목록</button>
+    <button class="subbtn" onclick="getPage('deliveryapplicationmove')" >배송신청목록</button><br>
+    <button class="subbtn" onclick="getPage('moveloanlist')">대출 목록</button><br>
+    <button class="subbtn" onclick="getPage('movehopelist')">희망 도서 신청 목록</button>
 </nav>
 
 
@@ -759,7 +762,20 @@ $.ajax({
 	
 }); //end ajax
 
+function getPage(url) {
 
+	$.ajax({
+		url:url,
+		type:'get',
+		success:function(page){
+			$("#totalsearchlist").empty();
+			$("#totalsearchlist").html(page);
+		},
+		error:function(){
+			alert("실패");
+		}
+	})
+	}  
 //반납 신청하기
 function returnBooks(bd_num){
 	console.log(bd_num);
