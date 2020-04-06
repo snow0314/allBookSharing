@@ -68,7 +68,7 @@ cursor: pointer;
 <body>
 
 <div style="width:80%;margin:0 10%; ">
-<h1>배송 관리</h1>
+<h1>반납 관리</h1>
 <table id="foo-table" class="table table-bordered" >
       <thead>
          <tr>
@@ -92,7 +92,7 @@ for(let i=0;i<list.length;i++){
 	
    var $tr= $("<tr>").appendTo($("#tb"));
    $tr.append("<td>"+list[i].bo_num+"</td>");
-   $tr.append("<td><a id='modal_detail' data-toggle='modal' data-target='#myModal' data-number='"+list[i].bo_num+"'>반납 신청 확인바랍니다.</a></td>");
+   $tr.append("<td><a id='modal_detail' data-toggle='modal' data-target='#myModal' data-number='"+list[i].bd_num+"'>반납 신청 확인바랍니다.</a></td>");
    $tr.append("<td>"+list[i].bo_id+"</td>");
    $tr.append("<td>"+list[i].bd_date+"</td>");
    
@@ -138,7 +138,7 @@ for(let i=0;i<list.length;i++){
 $(document).on("click", "#modal_detail",function(e){
 	 var params = e.target.dataset.number; 
 	 
-	 console.log("bo_num",params);
+	 console.log("bd_num",params);
 	 
 	 	$.ajaxSetup({         
         beforeSend : function(xhr){
@@ -148,7 +148,7 @@ $(document).on("click", "#modal_detail",function(e){
         $.ajax({
             url : "returnbooksdetail",
             type : "post",
-            data : {"bo_num":params}, 
+            data : {"bd_num":params}, 
             success : function(response) {
             
            	    $("#modal-header").empty();
