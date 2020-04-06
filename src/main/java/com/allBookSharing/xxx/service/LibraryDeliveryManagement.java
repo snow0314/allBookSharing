@@ -101,7 +101,6 @@ public class LibraryDeliveryManagement {
 		
 		//빅 데시멀 오류 발생 String.valueOf 사용하여 해결(도서관 코드)
 		ld.setBd_lcode(Integer.parseInt(String.valueOf(req.getSession().getAttribute("LB_CODE"))));
-		
 		LibraryDelivery returnbook=ldDao.getReturnbooksdetail(ld);
 		
 		return returnbook;
