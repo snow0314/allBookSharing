@@ -182,20 +182,23 @@ border:none;
 .subbtn:hover{
 background-color:#F0EAD6;
 }
+
 </style>
 
 <body>
 <header>
 <jsp:include page="header.jsp"/>
-</header>
-	<div class="container" style="margin-top: 100px;">
-	<nav id="submenu">
+<!-- <nav id="submenu">
 	<button class="subtopbtn" disabled><h2>나의 도서관</h2></button><br>
     <button class="subbtn" onclick="location.href = 'movemypage' " >마이 페이지</button><br>
     <button class="subbtn" onclick="location.href = 'deliveryapplicationmove' " >배송신청목록</button><br>
     <button class="subbtn" onclick="location.href = 'moveloanlist'">대출 목록</button><br>
     <button class="subbtn" onclick="location.href = 'movehopelist'">희망 도서 신청 목록</button>
-	</nav>
+	</nav> -->
+
+</header>
+	<div class="container" style="margin-top: 100px;">
+	
 		<table id="delivery" class="table table-bordered">
 			<colgroup>
 				<col width="20%">
@@ -205,6 +208,8 @@ background-color:#F0EAD6;
 
 
 		</table>
+		
+		
 	</div>
 	<div class="container p-3 my-3 border" style="width: 1107px">
 		<div style="display: inline;">

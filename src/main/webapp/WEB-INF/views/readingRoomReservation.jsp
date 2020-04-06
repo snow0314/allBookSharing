@@ -157,6 +157,7 @@ float:right;
 	
 window.onload = function (){
 		
+	
 		//사이드에 열람실 목록 보여주는 부분
 		let info=${readingRoomList};
 		sideMenu(info);
