@@ -188,10 +188,6 @@ background-color:#F0EAD6;
 <header>
 <jsp:include page="header.jsp"/>
 </header>
-
-	
-
-
 	<div class="container" style="margin-top: 100px;">
 	<nav id="submenu">
 	<button class="subtopbtn" disabled><h2>나의 도서관</h2></button><br>

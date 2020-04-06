@@ -98,7 +98,7 @@ color:white;
 					</tr>
 				</tbody>
 			</table>
-			 <a href="#"><input type="submit" id="delivery" value="배송신청목록 바로가기" /></a>
+			 <a href="deliveryapplicationmove"><input type="submit" id="delivery" value="배송신청목록 바로가기" /></a>
 		</section>
 	</main>
 	
