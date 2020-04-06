@@ -18,7 +18,6 @@
 	width:20%;
 	float:right;
 	display:inline-block;
-	margin-right:10%;
 	}
 .li{
 color:black;}
@@ -38,14 +37,17 @@ color:black;
 }
 #main{
 width:75%;
-margin-left:23%;
+margin-left:20%;
+position:absolute;
 }
 .information{
 width:65%;
 float:left;
+margin-left:10%;
 }
 #title{
 font-family: 'Hanna', sans-serif;
+margin-left:10%;
 }
 .libbtn{
 	width:150px;

@@ -23,17 +23,23 @@ table, th, td {
 	border: 1px solid #bcbcbc;
 	font-size: 20px;
 }
-
+#thead{
+font-family: 'Noto Sans KR', sans-serif;
+}
 #table {
-    width: 70%;
+    width: 90%;
     margin-bottom:1rem;
     /* margin-top:%; */
-    margin-left:23%;
-
+    margin-left:5%;
+	margin-top:30px;
+	
 }
 
-#Reservation {
-	margin-left: 950px;
+#reservation {
+	margin-left: 39%;
+	margin-bottom:10%;
+	margin-top:30px;
+	background-color: #223A5E;
 }
 
 #submenu {
@@ -61,10 +67,10 @@ background-color:#F0EAD6;
 
 #submenu {
 	float: left;
-	width: 12%;
+	width: 15%;
 	height: 100%;
-	margin-left: 6%;
-	margin-top: 1%;
+	margin-left: 8%;
+	margin-top: 2%;
 }
 
 .subbtn {
@@ -80,12 +86,25 @@ background-color:#F0EAD6;
 .subtopbtn {
 	width: 100%;
 	font-family: 'Hanna', sans-serif;
-	height: 95px;
+	height: 98px;
 	background-color: #223A5E;
 	color: white;
 }
-
-
+#title{
+font-family: 'Hanna', sans-serif;
+  margin-left:5%;
+}
+#tbody{
+padding-bottom:40px;
+font-family: 'Jeju Gothic', sans-serif;
+}
+#main{
+width:65%;
+float:right;
+margin-right: 8%;
+margin-top:2%;
+margin-bottom: 5%;
+}
 </style>
 </head>
 <body>
@@ -117,30 +136,32 @@ background-color:#F0EAD6;
 
 
 <main id="main">
+	
 		<section>
+		<h1 id='title'>열람실 예약안내</h1>
 			<table class="table" id="table">
-				<thead class="thead-dark">
+				<thead class="thead-dark" id="thead">
 					<tr>
-						<th>열람실 이용안내</th>
+						<th>열람실 예약안내</th>
 					</tr>
 				</thead>
-				<tbody>
-					<tr>
-						<th>
-						 <br>- 열람실은 중학생이상만 사용가능합니다.<br>
-						 <br>-도서관회원증을 가지고 1층 로비에 마련된 좌석관리시스템을 통하여 좌석을 선택하신 후 이용합니다.<br> 
-						 <br>-홈페이지를 통해 열람실 예약을 하고 오신 분은 예약확인을 해주시고 입장 해주시기 바랍니다.<br>
-						 <br>-퇴실시 열람실 출입게이트에서 ‘퇴실’버튼을 누르고 퇴실하여야 합니다.<br> 
-						 <br>- 외출시 열람실 출입게이트에서 ‘외출’버튼을 누르고 외출하여야 하며,외출 허용시간은 평상시 3시간, 시험기간(별도공지)시<br>
-							&nbsp;&nbsp;1시간30분동안 허용됩니다.<br> 
-						 <br>- 외출허용시간이 지나도록 출입게이트를 통하여 입실하지않으면 퇴실처리됩니다.
+				<tbody >
+					<tr >
+						<th id="tbody">
+						 <br>- 열람실은 중학생 이상만 사용 가능합니다.<br>
+						 <br>- 도서관 회원증을 가지고 1층 로비에 마련된 좌석관리 시스템을 통하여 좌석을 선택하신 후 이용합니다.<br> 
+						 <br>- 홈페이지를 통해 열람실 예약을 하고 오신 분은 예약확인을 해주시고 입장 해주시기 바랍니다.<br>
+						 <br>- 퇴실시 열람실 출입 게이트에서 ‘퇴실’버튼을 누르고 퇴실 하여야 합니다.<br> 
+						 <br>- 외출시 열람실 출입 게이트에서 ‘외출’버튼을 누르고 외출 하여야 하며, 외출 허용 시간은 평상시 3시간, 시험기간(별도공지)시<br>
+							&nbsp;&nbsp;&nbsp;1시간 30분 동안 허용됩니다.<br> 
+						 <br>- 외출 허용시간이 지나도록 출입게이트를 통하여 입실 하지않으면 퇴실 처리됩니다.
 						
 						</th>
 					</tr>
 				</tbody>
 			</table>
 		</section>
-		<a href="readingroommove"><input type="submit" id="Reservation"
+		<a href="readingroommove"><input type="submit" id="reservation"
 		value="열람실 예약" /></a>
 		
 </main>
