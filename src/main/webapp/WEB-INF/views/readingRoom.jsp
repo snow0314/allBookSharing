@@ -205,6 +205,8 @@ $("#lb_loc").on("change", function(){ //지역 선택시 도서관 목록 보여
 }); //change End
 
 
+
+
 function readingRoomList(lb_code){ //도서관 클릭시 해당 도서관의 열람실 리스트 보여주는 메소드
 	console.log("lb_code=",lb_code)
 	$.ajax({
@@ -216,6 +218,9 @@ function readingRoomList(lb_code){ //도서관 클릭시 해당 도서관의 열
 }).done((result) => {
 	console.log("열람실:",result);
  	var info=result;
+ 	
+ 	$("#readingRoomList").empty();
+ 	
  	
  	let $tr;
  	for(var i=0;i<info.length;i++){
