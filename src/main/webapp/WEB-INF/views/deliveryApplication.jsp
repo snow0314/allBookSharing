@@ -125,6 +125,8 @@ element.style {
 <jsp:include page="header.jsp"/>
 </header>
 
+
+
 	<div class="container" style="margin-top: 100px;">
 		<table id="delivery" class="table table-bordered">
 			<colgroup>
