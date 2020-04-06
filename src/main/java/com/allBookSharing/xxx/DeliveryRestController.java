@@ -77,7 +77,7 @@ public class DeliveryRestController {
 	  @PreAuthorize("isAuthenticated()")
 	  @RequestMapping(value = "/deliverydelete", produces ="application/json;charset=UTF-8") 
 	  public String deliveryDelete(Principal principal,String json) throws JsonParseException, JsonMappingException, IOException{ 
-		  
+		  System.out.println("배송신청 후 삭제 :"+json);
 		  ObjectMapper mapper = new ObjectMapper();
 		  DeliveryReq delivery = mapper.readValue(json,DeliveryReq.class); 
 		  delivery.setDe_id(principal.getName());
