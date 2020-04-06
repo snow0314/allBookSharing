@@ -11,6 +11,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.allBookSharing.xxx.dao.IAdminManagementDao;
 import com.allBookSharing.xxx.dao.NoticeDao;
+import com.allBookSharing.xxx.dto.BigGroup;
 import com.allBookSharing.xxx.dto.Library;
 import com.allBookSharing.xxx.dto.Notice;
 import com.allBookSharing.xxx.dto.Recommend;
@@ -222,6 +223,17 @@ public class AdminManagement {
 			map.put(i, aDao.barChart(i));
 		}
 		return map;
+	}
+
+	
+	//pie 차트
+	public List<BigGroup> pieChart() {
+		
+		List<BigGroup> bList=aDao.pieChart();
+		System.out.println("bList="+bList);
+		
+		
+		return bList;
 	}
 	
 

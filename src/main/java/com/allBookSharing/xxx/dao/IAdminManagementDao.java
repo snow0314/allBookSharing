@@ -6,6 +6,7 @@ import java.util.List;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Component;
 
+import com.allBookSharing.xxx.dto.BigGroup;
 import com.allBookSharing.xxx.dto.Library;
 import com.allBookSharing.xxx.dto.Recommend;
 @Component
@@ -38,10 +39,15 @@ public interface IAdminManagementDao { //AdminMapper.xml
 	//bar 차트
 	Integer barChart(int month);
 	
+	//pie 차트
+	List<BigGroup> pieChart();
+	
 
 	Boolean recommendDelete(String re_bcode);
 
 	Boolean recommendModify(@Param("re_bcode")String re_bcode, @Param("re_contents")String re_contents);
+
+	
 
 	
 	

@@ -61,13 +61,22 @@ public class AdminRestController {
 	}
 	
 
-	//대출 차트
+	//bar 대출 차트
 		@RequestMapping(value = "/barchart" ,produces = "application/json;charset=UTF-8")
 		public Map<Integer,Integer> barChart() {
 			System.out.println("월별 차트 컨트롤러");
 			Map<Integer,Integer> map=am.barChart();
 			
 			return map;
+		}
+		
+	//pie 대출 차트
+		@RequestMapping(value = "/piechart" ,produces = "application/json;charset=UTF-8")
+		public List<BigGroup> pieChart() {
+			System.out.println("대출차트 컨트롤러");
+			List<BigGroup> bList=am.pieChart();
+			
+			return bList;
 		}
 
 	@RequestMapping(value = "/recommenddelete", produces = "application/json;charset=UTF-8")
