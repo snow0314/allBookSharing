@@ -185,17 +185,9 @@ background-color:#F0EAD6;
 </style>
 
 <body>
-<header>
-<jsp:include page="header.jsp"/>
-</header>
-	<div class="container" style="margin-top: 100px;">
-	<nav id="submenu">
-	<button class="subtopbtn" disabled><h2>나의 도서관</h2></button><br>
-    <button class="subbtn" onclick="location.href = 'movemypage' " >마이 페이지</button><br>
-    <button class="subbtn" onclick="location.href = 'deliveryapplicationmove' " >배송신청목록</button><br>
-    <button class="subbtn" onclick="location.href = 'moveloanlist'">대출 목록</button><br>
-    <button class="subbtn" onclick="location.href = 'movehopelist'">희망 도서 신청 목록</button>
-	</nav>
+
+	
+	
 		<table id="delivery" class="table table-bordered">
 			<colgroup>
 				<col width="20%">
@@ -205,7 +197,6 @@ background-color:#F0EAD6;
 
 
 		</table>
-	</div>
 	<div class="container p-3 my-3 border" style="width: 1107px">
 		<div style="display: inline;">
 			<span>총 배송비는 선택한 도서관 수 * 5000원 입니다.</span><br>
@@ -217,69 +208,7 @@ background-color:#F0EAD6;
 	</div>
 
 
-	<!-- Footer -->
-			<div id="footer">
-				<div class="container">
-
-					<!-- Lists -->
-						<div class="row">
-							<div class="8u">
-								<section>
-									<header class="major">
-										<h2>Donec dictum metus</h2>
-										<span class="byline">Quisque semper augue mattis wisi maecenas ligula</span>
-									</header>
-									<div class="row">
-										<section class="6u">
-											<ul class="default">
-												<li><a href="#">Pellentesque elit non gravida blandit.</a></li>
-												<li><a href="#">Lorem ipsum dolor consectetuer elit.</a></li>
-												<li><a href="#">Phasellus nibh pellentesque congue.</a></li>
-												<li><a href="#">Cras vitae metus aliquam  pharetra.</a></li>
-											</ul>
-										</section>
-										<section class="6u">
-											<ul class="default">
-												<li><a href="#">Pellentesque elit non gravida blandit.</a></li>
-												<li><a href="#">Lorem ipsum dolor consectetuer elit.</a></li>
-												<li><a href="#">Phasellus nibh pellentesque congue.</a></li>
-												<li><a href="#">Cras vitae metus aliquam  pharetra.</a></li>
-											</ul>
-										</section>
-									</div>
-								</section>
-							</div>
-							<div class="4u">
-								<section>
-									<header class="major">
-										<h2>Donec dictum metus</h2>
-										<span class="byline">Mattis wisi maecenas ligula</span>
-									</header>
-									<ul class="contact">
-										<li>
-											<span class="address">Address</span>
-											<span>1234 Somewhere Road #4285 <br />Nashville, TN 00000</span>
-										</li>
-										<li>
-											<span class="mail">Mail</span>
-											<span><a href="#">someone@untitled.tld</a></span>
-										</li>
-										<li>
-											<span class="phone">Phone</span>
-											<span>(000) 000-0000</span>
-										</li>
-									</ul>	
-								</section>
-							</div>
-						</div>
-
-					<!-- Copyright -->
-						<div class="copyright">
-							Design: <a href="http://templated.co">TEMPLATED</a> Images: <a href="http://unsplash.com">Unsplash</a> (<a href="http://unsplash.com/cc0">CC0</a>)
-						</div>
-
-				</div>
-			</div>
+	
 		
 </body>
 <script type="text/javascript" src="js/ajaxCsrf.js"></script>
