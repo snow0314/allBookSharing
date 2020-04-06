@@ -118,16 +118,84 @@ element.style {
     height: 170px;
 }
 
+/* 버튼 디자인 */
+.myButton{
+  background:#1AAB8A;
+  color:#fff;
+  border:none;
+  position:relative;
+  height:60px;
+  font-size:1.6em;
+  padding:0 2em;
+  cursor:pointer;
+  transition:800ms ease all;
+  outline:none;
+}
+.myButton:hover{
+  background:#fff;
+  color:#1AAB8A;
+}
+.myButton:before,button:after{
+  content:'';
+  position:absolute;
+  top:0;
+  right:0;
+  height:2px;
+  width:0;
+  background: #1AAB8A;
+  transition:400ms ease all;
+}
+.myButton:after{
+  right:inherit;
+  top:inherit;
+  left:0;
+  bottom:0;
+}
+.myButton:hover:before,button:hover:after{
+  width:100%;
+  transition:800ms ease all;
+}
+ #submenu {
+  		float: left;
+  		width: 15%;
+  		height: 100%;  
+  	  margin-left: 8%;
+  	  margin-top:2%;
+}
+    .subtopbtn{
+width:100%;
+font-family: 'Hanna', sans-serif;
+height:98px;
+background-color:#223A5E;
+color:white;
+}
+
+.subbtn{
+width:100%;
+background-color:white;
+height:55px;
+font-family: 'Nanum Gothic Coding', monospace;
+font-weight:bold;
+font-size:20px;
+border:none;
+}
+.subbtn:hover{
+background-color:#F0EAD6;
+}
 </style>
 
 <body>
 <header>
 <jsp:include page="header.jsp"/>
 </header>
-
-
-
 	<div class="container" style="margin-top: 100px;">
+	<nav id="submenu">
+	<button class="subtopbtn" disabled><h2>나의 도서관</h2></button><br>
+    <button class="subbtn" onclick="location.href = 'movemypage' " >마이 페이지</button><br>
+    <button class="subbtn" onclick="location.href = 'deliveryapplicationmove' " >배송신청목록</button><br>
+    <button class="subbtn" onclick="location.href = 'moveloanlist'">대출 목록</button><br>
+    <button class="subbtn" onclick="location.href = 'movehopelist'">희망 도서 신청 목록</button>
+	</nav>
 		<table id="delivery" class="table table-bordered">
 			<colgroup>
 				<col width="20%">
@@ -140,15 +208,79 @@ element.style {
 	</div>
 	<div class="container p-3 my-3 border" style="width: 1107px">
 		<div style="display: inline;">
-			배송비 :
-			<!-- <span id="cnt">권수</span> * -->
-			<span id="libCnt">도서관수</span> * 5000원= <span id="total">총배송비</span>
+			<span>총 배송비는 선택한 도서관 수 * 5000원 입니다.</span><br>
+			배송비 :<span id="libCnt">도서관수</span> * 5000원= <span id="total">총배송비</span>
 		</div>
-		<div style="display: inline;">
-			<input id="apply" class="btn btn-outline-success" type="button"
-				value="배송 신청">
+		<div style="display: inline; margin-left: 580px;">
+			<button id="apply" class='myButton' type="button">배송신청</button>
 		</div>
 	</div>
+
+
+	<!-- Footer -->
+			<div id="footer">
+				<div class="container">
+
+					<!-- Lists -->
+						<div class="row">
+							<div class="8u">
+								<section>
+									<header class="major">
+										<h2>Donec dictum metus</h2>
+										<span class="byline">Quisque semper augue mattis wisi maecenas ligula</span>
+									</header>
+									<div class="row">
+										<section class="6u">
+											<ul class="default">
+												<li><a href="#">Pellentesque elit non gravida blandit.</a></li>
+												<li><a href="#">Lorem ipsum dolor consectetuer elit.</a></li>
+												<li><a href="#">Phasellus nibh pellentesque congue.</a></li>
+												<li><a href="#">Cras vitae metus aliquam  pharetra.</a></li>
+											</ul>
+										</section>
+										<section class="6u">
+											<ul class="default">
+												<li><a href="#">Pellentesque elit non gravida blandit.</a></li>
+												<li><a href="#">Lorem ipsum dolor consectetuer elit.</a></li>
+												<li><a href="#">Phasellus nibh pellentesque congue.</a></li>
+												<li><a href="#">Cras vitae metus aliquam  pharetra.</a></li>
+											</ul>
+										</section>
+									</div>
+								</section>
+							</div>
+							<div class="4u">
+								<section>
+									<header class="major">
+										<h2>Donec dictum metus</h2>
+										<span class="byline">Mattis wisi maecenas ligula</span>
+									</header>
+									<ul class="contact">
+										<li>
+											<span class="address">Address</span>
+											<span>1234 Somewhere Road #4285 <br />Nashville, TN 00000</span>
+										</li>
+										<li>
+											<span class="mail">Mail</span>
+											<span><a href="#">someone@untitled.tld</a></span>
+										</li>
+										<li>
+											<span class="phone">Phone</span>
+											<span>(000) 000-0000</span>
+										</li>
+									</ul>	
+								</section>
+							</div>
+						</div>
+
+					<!-- Copyright -->
+						<div class="copyright">
+							Design: <a href="http://templated.co">TEMPLATED</a> Images: <a href="http://unsplash.com">Unsplash</a> (<a href="http://unsplash.com/cc0">CC0</a>)
+						</div>
+
+				</div>
+			</div>
+		
 </body>
 <script type="text/javascript" src="js/ajaxCsrf.js"></script>
 <script>
@@ -192,7 +324,7 @@ function pageShow(){
 		str+="<br><br>권수 : "+result[i].de_quantity+"";
 		str+="</td>";
 		str+="<td style='text-align: center; vertical-align:middle;'>";
-		str+="<input type='button' class='btn btn-outline-danger' data-decode='"+result[i].de_code+"' data-delcode='"+result[i].de_lcode+"' value='삭제'>";
+		str+="<button class='myButton' data-decode='"+result[i].de_code+"' data-delcode='"+result[i].de_lcode+"'>삭제</button>";
 		str+="</td></tr>";
 	}
 	$(str).appendTo($("#delivery"));
@@ -241,14 +373,14 @@ $("#apply").on("click",function(){ //배송 신청 버튼 클릭시 작동하는
 	let temp=0;
 	let lib=new Array();
 	let allData = new Array();
-	
+	console.log("borrowCnt:",borrowCnt);
 	$('.styled:checked').each(function() {
 		let data ={};
 		data.de_code = $(this).data("decode");
 		data.de_lcode = $(this).data("delcode");
 		data.de_quantity = $(this).data("quantity");
 		allData.push(data);
-		temp+=$(this).data("quantity"); //총 권수
+		temp+=Number($(this).data("quantity")); //총 권수
 		lib.push($(this).data("delcode")); //도서관 개수
    });
 	console.log("alldata",allData);
@@ -276,7 +408,9 @@ $("#apply").on("click",function(){ //배송 신청 버튼 클릭시 작동하는
 			toastr.error('실패', '우수 회원은 최대 5권까지 대여할 수 있습니다.');
 			return false;
 		}else if(borrowCnt+temp>5){
-			toastr.error('실패', '우수 회원은 최대 3권까지 대여할 수 있습니다.');
+			console.log("신청버튼 누름, 권수:",borrowCnt+temp);
+			console.log("temp",temp);
+			toastr.error('실패', '우수 회원은 최대 5권까지 대여할 수 있습니다.');
 			return false;
 		}
 		if(temp>5){
@@ -304,7 +438,7 @@ $("#apply").on("click",function(){ //배송 신청 버튼 클릭시 작동하는
 	}
 	
 }).fail((xhr) => {
-	console.log("xhr=",xhr);
+	console.log("배송신청 xhr=",xhr);
 }); //ajax End
 	}else{
 		return false;
@@ -341,7 +475,7 @@ function borrowCntCheck(){//사용자가 현재 빌린 권수 확인하러 가�
 		
 }).done((result) => {
 	console.log("권수=",result);
-	borrowCnt=result;
+	borrowCnt=Number(result);
 	
 }).fail((xhr) => {
 	console.log("xhr=",xhr);
@@ -384,7 +518,7 @@ $(document).on("click",".btn",function(){//삭제 버튼 클릭시
 	pageShow();
 	
 }).fail((xhr) => {
-	console.log("xhr=",xhr);
+	console.log("삭제 xhr=",xhr);
 }); //ajax End
 });
 
