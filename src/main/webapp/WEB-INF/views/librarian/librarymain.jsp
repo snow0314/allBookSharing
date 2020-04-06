@@ -202,7 +202,7 @@
 
                         <div class="row" style="height: 1000px">
                             <div class="col-md-12" >
-                                    <iframe id="contents" name="contents" width="100%" height="100%">
+                                    <iframe id="contents" name="contents" width="100%" height="100%" src="images/people.jpg">
                                     
                                     </iframe>
 
