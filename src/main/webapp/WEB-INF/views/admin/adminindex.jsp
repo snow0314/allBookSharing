@@ -177,7 +177,6 @@
             <!-- HEADER DESKTOP-->
 
             <!-- MAIN CONTENT-->
-<<<<<<< HEAD
               <iframe id="contents" name="contents" width="100%" height="100%">
                                     
               </iframe>
@@ -193,7 +192,6 @@
                                         <canvas id="myChart1"></canvas>
                                     </div>
                                 </div>
-=======
              <div class="main-content">
                 <div class="section__content section__content--p30">
                     <div class="container-fluid">
@@ -205,7 +203,6 @@
                                     </iframe>
 
 
->>>>>>> ca3e2dc1f67a4c79494c1b9f2e23ac2aa48f2046
                             </div>
 				<div class="col-lg-6">
                                 <div class="au-card m-b-30">
@@ -343,9 +340,6 @@
   //대출차트
     var dataCnt=new Array();
     var dataName=new Array();
-<<<<<<< HEAD
-    
-    
     $.ajax({
     	type : 'get',
     	url :"barchart",
@@ -426,13 +420,6 @@
     	url :"piechart",
     	async: false,	//true:동기, false:비동기 
     	success : function(result) {
-=======
-    $.ajax({
-       type : 'get',
-       url :"piechart",
-       async: false,   //true:동기, false:비동기 
-       success : function(result) {
->>>>>>> ca3e2dc1f67a4c79494c1b9f2e23ac2aa48f2046
            // $('#borrowCnt').html(data).css('color', 'black').css('font-weight','bold');
            console.log("데이타는?",result);
            console.log("데이타는?",result[0].bg_cate);
@@ -445,17 +432,9 @@
            console.log(dataName);
 
          },
-<<<<<<< HEAD
     	error : function(xhr, status) {
          }
        
-    	
-=======
-       error : function(xhr, status) {
-         }
-       
-       
->>>>>>> ca3e2dc1f67a4c79494c1b9f2e23ac2aa48f2046
     }); //end ajax 
 
 
@@ -496,11 +475,6 @@
     <!-- Main JS-->
     <script src="adminPage/js/main.js"></script>
 
-<<<<<<< HEAD
 	<script type="text/javascript" src="js/librarianMove.js"></script>
-=======
-   <script type="text/javascript" src="js/librarianMove.js"></script>
->>>>>>> ca3e2dc1f67a4c79494c1b9f2e23ac2aa48f2046
-
 </body></html>
 <!-- end document-->
