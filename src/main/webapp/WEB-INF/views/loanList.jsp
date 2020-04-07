@@ -249,72 +249,131 @@ margin-top:20px;
 
 		</div>
 
-<script>
-let list=${list};
-console.log(list);
-var date = new Date();
+
+ <!-- Modal -->
+  <div class="modal fade" id="myModal" role="dialog" tabindex="-1">
+  <form action="reviewinsert" method="post" >
+    <div class="modal-dialog">
+    
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header" id="modal-header">
+          <div id="title">span</div>
+         <span class="star-input">
+  <span class="input">
+    <input type="radio" name="rv_grade" id="p1" class="point" value="0.5"><label for="p1">0.5</label>
+    <input type="radio" name="rv_grade" id="p2" class="point" value="1"><label for="p2">1</label>
+    <input type="radio" name="rv_grade" id="p3" class="point" value="1.5"><label for="p3">1.5</label>
+    <input type="radio" name="rv_grade" id="p4" class="point" value="2"><label for="p4">2</label>
+    <input type="radio" name="rv_grade" id="p5" class="point" value="2.5"><label for="p5">2.5</label>
+    <input type="radio" name="rv_grade" id="p6" class="point" value="3"><label for="p6">3</label>
+    <input type="radio" name="rv_grade" id="p7" class="point" value="3.5"><label for="p7">3.5</label>
+    <input type="radio" name="rv_grade" id="p8" class="point" value="4"><label for="p8">4</label>
+    <input type="radio" name="rv_grade" id="p9" class="point" value="4.5"><label for="p9">4.5</label>
+    <input type="radio" name="rv_grade" id="p10" class="point" value="5"><label for="p10">5</label>
+  </span>
+  <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
+  <output for="star-input"><b id="score">0</b>점</output>
+</span>
+        </div>
+      
+        <div class="modal-body" id="modal-body">
+          <input type="text" name="rv_contents" id="rv_contents">
+          <input type='hidden' name='rv_bcode' id='rv_bcode'>
+        </div>
+       
+        <div class="modal-footer">
+       	 <button type="submit" class="btn btn-default" >리뷰쓰기</button>
+         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+      
+    </div>
+     </form>
+  </div>
+ 
+<script type="text/javascript" src="https://cdn.datatables.net/t/bs-3.3.6/jqc-1.12.0,dt-1.10.11/datatables.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>	
+<script type="text/javascript">
+var dtable;
+window.onload = function(){
+	  
+	    dtable=$("#foo-table").DataTable({
+     	 "dom": '<"top"il>t<"bottom"prf><"clear">',
+          "language":{
+           "emptyTable": "데이터가 없어요.",
+           "info": "현재 _START_ - _END_ / _TOTAL_건",
+           "infoEmpty": "데이터 없음",
+           "paginate": {
+                  "next": "다음",
+                  "previous": "이전"
+              }
+          }
+     });
+	    let list=${list};
+	    console.log(list);
+	    var date = new Date();
 
 
-for(let i=0;i<list.length;i++){
-	var $tr= $("<tr>").appendTo($("#tb"));
-	$tr.append("<td>"+(i+1)+"</td>");
-	$tr.append("<td>"+list[i].lb_name+"</td>");
-	$tr.append("<td>"+list[i].bk_name+"</td>");
-	$tr.append("<td>"+moment(list[i].bd_date).format('YYYY MM DD HH:mm:ss')+"</td>");
-	$tr.append("<td>"+moment(list[i].bd_return_date).format('YYYY MM DD HH:mm:ss')+"</td>");
-	if(list[i].bd_real_return_date == undefined){
-		$tr.append("<td>--------------</td>");
-	}else{
-		$tr.append("<td>"+moment(list[i].bd_real_return_date).format('YYYY MM DD HH:mm:ss')+"</td>");
-	}
-	
-	switch (list[i].bd_state_num) {
-	case 1:
-		$tr.append("<td style='color:blue;'>대출중</td>");
-		$tr.append("<td><button disabled>리뷰쓰기</button></td>");
-		break;
-	case 2:
-		$tr.append("<td style='color:blue;'>배송신청</td>");
-		$tr.append("<td><button disabled>리뷰쓰기</button></td>");
-		break;
-	case 3:
-		$tr.append("<td onclick='showReason(\""+list[i].bd_reason+"\")' style='color:blue; cursor: pointer;'>배송취소</td>");
-		$tr.append("<td><button disabled>리뷰쓰기</button></td>");
-		break;
-	case 4:
-		$tr.append("<td style='color:blue;'>배송완료</td>");
-		$tr.append("<td><button disabled>리뷰쓰기</button></td>");
-		break;
-	case 5:
-		$tr.append("<td style='color:blue;'>반납신청</td>");
-		$tr.append("<td><button disabled>리뷰쓰기</button></td>");
-		break;
-	case 6:
-		$tr.append("<td style='color:blue;'>반납완료</td>");
-		if(list[i].rv_contents != null){
-			$tr.append("<td><button id='modal_review' data-toggle='modal' data-target='#myModal' data-title='"+list[i].bk_name+"' data-code=\""+list[i].bk_code+"\">리뷰수정</button></td>");		
-		}else{
-			$tr.append("<td><button id='modal_review' data-toggle='modal' data-target='#myModal' data-title='"+list[i].bk_name+"' data-code=\""+list[i].bk_code+"\">리뷰쓰기</button></td>");		
-		}
-		
-		break;
-	case 7:
-		$tr.append("<td style='color:blue;'>반납완료</td>");
-		if(list[i].rv_contents != null){
-			$tr.append("<td><button id='modal_review' data-toggle='modal' data-target='#myModal' data-title='"+list[i].bk_name+"' data-code=\""+list[i].bk_code+"\">리뷰수정</button></td>");		
-		}else{
-			$tr.append("<td><button id='modal_review' data-toggle='modal' data-target='#myModal' data-title='"+list[i].bk_name+"' data-code=\""+list[i].bk_code+"\">리뷰쓰기</button></td>");					
-		}
-		
-		break;		
-	default:
-		break;
-	}
-	
-	
-	
+	    for(let i=0;i<list.length;i++){
+	    	var $tr= $("<tr>").appendTo($("#tb"));
+	    	$tr.append("<td>"+(i+1)+"</td>");
+	    	$tr.append("<td>"+list[i].lb_name+"</td>");
+	    	$tr.append("<td>"+list[i].bk_name+"</td>");
+	    	$tr.append("<td>"+moment(list[i].bd_date).format('YYYY MM DD HH:mm:ss')+"</td>");
+	    	$tr.append("<td>"+moment(list[i].bd_return_date).format('YYYY MM DD HH:mm:ss')+"</td>");
+	    	if(list[i].bd_real_return_date == undefined){
+	    		$tr.append("<td>--------------</td>");
+	    	}else{
+	    		$tr.append("<td>"+moment(list[i].bd_real_return_date).format('YYYY MM DD HH:mm:ss')+"</td>");
+	    	}
+	    	
+	    	switch (list[i].bd_state_num) {
+	    	case 1:
+	    		$tr.append("<td style='color:blue;'>대출중</td>");
+	    		$tr.append("<td><button disabled>리뷰쓰기</button></td>");
+	    		break;
+	    	case 2:
+	    		$tr.append("<td style='color:blue;'>배송신청</td>");
+	    		$tr.append("<td><button disabled>리뷰쓰기</button></td>");
+	    		break;
+	    	case 3:
+	    		$tr.append("<td onclick='showReason(\""+list[i].bd_reason+"\")' style='color:blue; cursor: pointer;'>배송취소</td>");
+	    		$tr.append("<td><button disabled>리뷰쓰기</button></td>");
+	    		break;
+	    	case 4:
+	    		$tr.append("<td style='color:blue;'>배송완료</td>");
+	    		$tr.append("<td><button disabled>리뷰쓰기</button></td>");
+	    		break;
+	    	case 5:
+	    		$tr.append("<td style='color:blue;'>반납신청</td>");
+	    		$tr.append("<td><button disabled>리뷰쓰기</button></td>");
+	    		break;
+	    	case 6:
+	    		$tr.append("<td style='color:blue;'>반납완료</td>");
+	    		if(list[i].rv_contents != null){
+	    			$tr.append("<td><button id='modal_review' data-toggle='modal' data-target='#myModal' data-title='"+list[i].bk_name+"' data-code=\""+list[i].bk_code+"\">리뷰수정</button></td>");		
+	    		}else{
+	    			$tr.append("<td><button id='modal_review' data-toggle='modal' data-target='#myModal' data-title='"+list[i].bk_name+"' data-code=\""+list[i].bk_code+"\">리뷰쓰기</button></td>");		
+	    		}
+	    		
+	    		break;
+	    	case 7:
+	    		$tr.append("<td style='color:blue;'>반납완료</td>");
+	    		if(list[i].rv_contents != null){
+	    			$tr.append("<td><button id='modal_review' data-toggle='modal' data-target='#myModal' data-title='"+list[i].bk_name+"' data-code=\""+list[i].bk_code+"\">리뷰수정</button></td>");		
+	    		}else{
+	    			$tr.append("<td><button id='modal_review' data-toggle='modal' data-target='#myModal' data-title='"+list[i].bk_name+"' data-code=\""+list[i].bk_code+"\">리뷰쓰기</button></td>");					
+	    		}
+	    		
+	    		break;		
+	    	default:
+	    		break;
+	    	}
+
+
 }
-
+}// onload End
 
 </script>
 

@@ -137,6 +137,10 @@
 
 				<tr>
 					<td><input type="hidden" name="_csrf" value="${_csrf.token}">
+						<input type="button"
+						class="btn btn-outline-success"
+						onclick="sample4_execDaumPostcode()" value="우편번호 찾기"
+						 />
 						<input type="submit" id="librarydelete" class="btn btn-outline-success"
 						value="수정하기">
 						<td><input type="button" class="btn btn-outline-success" 
@@ -283,6 +287,112 @@ function librarydrop(){ //삭제 버튼
 	console.log("xhr=",xhr);
 }); //ajax End
 	
+}
+
+function sample4_execDaumPostcode() { //주소 등록하는 
+    new daum.Postcode({
+        oncomplete: function(data) {
+            var roadAddr = data.roadAddress; // 도로명 주소 변수
+            var extraRoadAddr = ''; // 참고 항목 변수
+            if (data.bname !== '' &&
+                /[동|로|가]$/g.test(data.bname)) {
+                extraRoadAddr += data.bname;
+            }
+            if (data.buildingName !== '' &&
+                data.apartment === 'Y') {
+                extraRoadAddr += (extraRoadAddr !== '' ? ', ' +
+                    data.buildingName : data.buildingName);
+            }
+            if (extraRoadAddr !== '') {
+                extraRoadAddr = ' (' + extraRoadAddr + ')';
+            }
+
+            // 우편번호와 주소 정보를 해당 필드에 넣는다.
+            document.getElementById('lb_postcode').value = data.zonecode;
+            document.getElementById("lb_roadaddr").value = roadAddr;
+            document.getElementById("lb_branchaddr").value = data.jibunAddress;
+
+            // 참고항목 문자열이 있을 경우 해당 필드에 넣는다.
+            if (roadAddr !== '') {
+                document.getElementById("lb_extraaddr").value = extraRoadAddr;
+            } else {
+                document.getElementById("lb_extraaddr").value = '';
+            }
+
+            var guideTextBox = document.getElementById("guide");
+            // 사용자가 '선택 안함'을 클릭한 경우, 예상 주소라는 표시를 해준다.
+            if (data.autoRoadAddress) {
+                var expRoadAddr = data.autoRoadAddress +
+                    extraRoadAddr;
+                guideTextBox.innerHTML = '(예상 도로명 주소 : ' +
+                    expRoadAddr + ')';
+                guideTextBox.style.display = 'block';
+
+            } else if (data.autoJibunAddress) {
+                var expJibunAddr = data.autoJibunAddress;
+                guideTextBox.innerHTML = '(예상 지번 주소 : ' +
+                    expJibunAddr + ')';
+                guideTextBox.style.display = 'block';
+            } else {
+                guideTextBox.innerHTML = '';
+                guideTextBox.style.display = 'none';
+            }
+
+            var mapContainer = document.getElementById('map'), // 지도를 표시할 div
+                mapOption = {
+                    center: new kakao.maps.LatLng(33.450701,
+                        126.570667), // 지도의 중심좌표
+                    level: 3
+                    // 지도의 확대 레벨
+                };
+
+            // 지도를 생성합니다
+            var map = new kakao.maps.Map(mapContainer,
+                mapOption);
+
+            // 주소-좌표 변환 객체를 생성합니다
+            var geocoder = new kakao.maps.services.Geocoder();
+
+            // 주소로 좌표를 검색합니다
+            geocoder
+                .addressSearch(
+                    roadAddr,
+                    function(result, status) {
+
+                        // 정상적으로 검색이 완료됐으면
+                        if (status === kakao.maps.services.Status.OK) {
+
+                            var coords = new kakao.maps.LatLng(
+                                result[0].y,
+                                result[0].x);
+
+                            // 결과값으로 받은 위치를 마커로 표시합니다
+                            var marker = new kakao.maps.Marker({
+                                map: map,
+                                position: coords
+                            });
+
+                            // 인포윈도우로 장소에 대한 설명을 표시합니다
+                            var infowindow = new kakao.maps.InfoWindow({
+                                content: '<div style="width:150px;text-align:center;padding:6px 0;">' +
+                                    roadAddr +
+                                    '</div>'
+                            });
+                            infowindow
+                                .open(map, marker);
+
+                            // 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
+                            map.setCenter(coords);
+                            console.log("위도,경도:",coords);
+                            $("#lb_Latitude").val(coords.Ga);
+                            $("#lb_longitude").val(coords.Ha);
+                            
+                        }
+                    });
+
+        }
+
+    }).open();
 }
 </script>
 </html>

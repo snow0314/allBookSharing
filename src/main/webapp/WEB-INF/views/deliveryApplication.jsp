@@ -189,6 +189,7 @@ border:none;
 background-color:#F0EAD6;
 }
 
+
 #below{
 width: 1107px;
 float:right;
@@ -206,24 +207,26 @@ font-size:20px;
 </header>
 	
 	<nav id="submenu">
+
 	<button class="subtopbtn" disabled><h2>나의 도서관</h2></button><br>
     <button class="subbtn" onclick="location.href = 'movemypage' " >마이 페이지</button><br>
     <button class="subbtn" onclick="location.href = 'deliveryapplicationmove' " >배송신청목록</button><br>
     <button class="subbtn" onclick="location.href = 'moveloanlist'">대출 목록</button><br>
     <button class="subbtn" onclick="location.href = 'movehopelist'">희망 도서 신청 목록</button>
+
 	</nav>
 
 	<div class="container" style="float:right;margin-right:10%;margin-bottom:7%;">
 	<h1 id="d">배송신청목록</h1>
 		<table id="delivery" >
+
 			<colgroup>
 				<col width="20%">
 				<col width="15%">
 				<col width="65%">
 			</colgroup>
-
-
 		</table>
+
 
 	<div class="container p-3 my-3 border" id="below">
 		<div style="display: inline;">

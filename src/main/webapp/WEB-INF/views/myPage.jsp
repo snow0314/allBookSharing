@@ -791,7 +791,6 @@ $.ajax({
 	
 }); //end ajax
 
-
 //반납 신청하기
 function returnBooks(bd_num){
 	console.log(bd_num);

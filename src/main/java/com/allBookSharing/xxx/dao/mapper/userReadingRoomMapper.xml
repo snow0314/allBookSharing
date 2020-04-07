@@ -39,4 +39,8 @@
 		WHERE SE_ID = #{id}
 	</update>
 	
+	<select id="getLibName" parameterType="int" resultType="library">
+		SELECT * FROM LIBRARY WHERE lb_code = #{rm_lcode}
+	</select>
+	
 </mapper>
