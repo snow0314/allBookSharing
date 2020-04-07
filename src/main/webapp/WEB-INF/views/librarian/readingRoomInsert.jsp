@@ -183,8 +183,6 @@
 
         $("#seats").on("click","input",function(e){ //좌석 클릭시 checked 변경 및 총 좌석수 계산
             
-        	
-        	
             if($(this).attr("checked")=="checked"){
                 $(this).attr("checked",false);
             }else{
@@ -196,14 +194,7 @@
             
             $("#total_seat").val($('input:checkbox[name=seat]:checked').length);
          	
-           /*  $('input[type=checkbox]').dragcheck({
-            	ontainer:'label',// Using the tr as a container
-            	onSelect:function(obj, state) {
-           	        obj.prop('checked', state);
-            	    } 
-
-            }); */
-            $('label').dragcheck();
+            
         });   
         
         
