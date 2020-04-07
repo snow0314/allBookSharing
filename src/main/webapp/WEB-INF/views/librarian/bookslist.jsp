@@ -56,6 +56,16 @@
 <body>
 <div class="container p-3 my-3 border" style="width: 80%; height: 80%">
 	<table id="example" class="display" style="width:100%">
+	<colgroup>
+		<col width="3%">
+		<col width="3%">
+		<col width="3%">
+		<col width="10%">
+		<col width="20%">
+		<col width="10%">
+		<col width="3%">
+		<col width="3%">
+	</colgroup>
 	<thead>
 		<tr>
 					<th></th>
@@ -285,6 +295,7 @@
 		     buttons: [
 		         {
 		             text: '삭제',
+		             
 		             action: function ( e, dt, node, config ) {
 		            	 
 		            	 var conf=confirm("삭제 하시겠습니까?");
@@ -302,7 +313,10 @@
 		            		 bookList.push(books);
 		            	 }
 		            	 var json=JSON.stringify(bookList); //선택한 책의 ISBN 코드와 도서관 코드 JSON화
-		            			            	 
+		            	 if(rowData.length == 0){
+		            		 alert("도서를 선택해 주세요");
+		            		 return false;
+		            	 }		            	 
 		            	  $.ajax({ 
 		            			url : "libraybookdelete",
 		            			type : "post",
@@ -317,13 +331,15 @@
 		            	}); //ajax End  
 		            	
 		            	 }// confirm End
-		            
+		            	
 		             }
 		         }
 		     ],
-
+		     
 		}); //데이터 테이블 End
-
+		$('.dt-button').removeClass().addClass('btn btn-outline-secondary');
+		
+		
 		$.ajax({  //도서관 코드 가져오는 메소드
 			url : "getlibraycode",
 			type : "get",

@@ -47,12 +47,14 @@ public class UserReadingRoomManagement {
 		readingRoom.setSeats(seats);
 		//해당 도서관에 속하는 열람실 리스트 가져오기
 		List<ReadingRoom> list=rDao.getReadingRoomInfo(Integer.parseInt(rm_lcode));
+		Library lib = rDao.getLibName(Integer.parseInt(rm_lcode));
 		
 		Gson gson=new Gson();
 		
 		mav=new ModelAndView();
 		mav.addObject("readingRoom", gson.toJson(readingRoom));
 		mav.addObject("readingRoomList", gson.toJson(list));
+		mav.addObject("libName", lib.getLb_name());
 		mav.setViewName("readingRoomReservation");
 		
 		

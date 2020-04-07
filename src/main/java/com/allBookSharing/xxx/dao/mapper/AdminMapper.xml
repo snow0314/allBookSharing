@@ -13,13 +13,6 @@
 						    #{lb_longitude})
 </insert>
 
- <resultMap type="library" id="lib">
-		<result property="lb_loc" column="LB_LOC" />
-		<result property="lb_code" column="LB_CODE" />
-		<result property="lb_name" column="LB_NAME" />
-		<result property="la_id" column="LA_ID" />
-	</resultMap>
-	
 <select id="getlibraryinfo" resultType="Library" >
 SELECT * FROM  LIBRARY
 </select>
