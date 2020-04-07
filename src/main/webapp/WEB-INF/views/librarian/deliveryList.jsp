@@ -210,9 +210,7 @@ $(document).on("click", "#modal_detail",function(e){
                   str+="</div>";
                   
                 str+="</div>";
-				if(response[i].bd_state_num==7){
-				 
-				}else{
+				if(response[i].bd_state_num!=4){
 					str+="<div style='text-align:center;'>";
 	                str+="<select class='bd_reason' name='bd_reason'  style='float: left; margin-right: 10px; height: 34px; margin-top:50px; margin-bottom:15px;'>";
 	                str+="<option value=''>취소 사유</option>";

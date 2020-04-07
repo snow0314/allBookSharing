@@ -112,6 +112,7 @@
                                 <i class="fas fa-chart-bar"></i>도서관별 대출 현황</a>
                        
                        </li>
+                        </ul>
                 </nav>
             </div>
         </aside>
@@ -243,5 +244,6 @@
     
  </script>
 
-</body></html>
+</body>
+</html>
 <!-- end document-->

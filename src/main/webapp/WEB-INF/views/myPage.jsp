@@ -187,10 +187,6 @@ background-color:#F0EAD6;
 			
 <script>
 
-$("#btn2").click(function(){
-	
-	return confirm("회원 탈퇴 하시겠습니까?");
-});
 
 </script>
 			<div id="myProfile_rest" style="height:280px;">
@@ -743,11 +739,14 @@ $.ajax({
      $tr.append("<td style='text-align:center;'><button onclick='returnBooks("+data[i].bd_num+")' class='btn btn-info' disabled >반납신청</button></td>");
     }
     else{
-    	$tr.append("<td style='text-align:center;'>------</td>");
+    	$tr.append("<td style='text-align:center;'> </td>");
     }
     //연장버튼
-    if(data[i].bd_return_extension==0)
+    if(data[i].bd_return_extension==0 && data[i].bd_state_num==4)
     $tr.append("<td style='text-align:center;'><button onclick='extend("+data[i].bd_num+")' class='btn btn-info' >연장하기</button></td>");
+    else
+    	$tr.append("<td style='text-align:center;'> </td>");
+    	
     if(data[i].bd_return_extension==1)
     $tr.append("<td style='text-align:center;'><button onclick='extend("+data[i].bd_num+")' class='btn btn-info' disabled >연장하기</button></td>");
     }
