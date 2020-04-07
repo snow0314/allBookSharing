@@ -37,15 +37,17 @@
 	
 	
 <style type="text/css">
+@import url(//fonts.googleapis.com/earlyaccess/hanna.css);
 #pagination {
 	text-align: center;
 }
+.hn{font-family: 'Hanna', sans-serif;}
 </style>
 
 </head>
 <body>
 	<div class="container p-3 my-3 border" style="text-align: center">
-		<h3>${LB_NAME}</h3>
+		<h3 class="hn">${LB_NAME}</h3>
 	</div>
 	<div class="container p-3 my-3 border" style="text-align: center;">
 
