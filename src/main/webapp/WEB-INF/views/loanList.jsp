@@ -4,26 +4,9 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<meta charset="UTF-8">
-
-  <!-- jQuery library -->
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-<!-- Latest compiled and minified CSS -->
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
-<!-- Popper JS -->
-<script
-	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-
-<!-- Latest compiled JavaScript -->
-<script
-	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
-	
-<link rel="stylesheet" href="https://cdn.datatables.net/t/bs-3.3.6/jqc-1.12.0,dt-1.10.11/datatables.min.css"/> 
-
 <style>
+@import url(//fonts.googleapis.com/earlyaccess/hanna.css);
+@import url(//fonts.googleapis.com/earlyaccess/nanumgothiccoding.css);
 .star-input>.input,
 .star-input>.input>label:hover,
 .star-input>.input>input:focus+label,
@@ -123,24 +106,119 @@
     font:bold 18px Helvetica, Arial, sans-serif;
     vertical-align: middle;
 }
-#foo-table_paginate{
+#
+
+-table_paginate{
 text-align: center;
+display:inline
 }
 
+    #submenu {
+  		float: left;
+  		width: 15%;
+  		height: 100%;  
+  	  margin-left: 8%;
+  	  margin-top:2%;
+}
+    .subtopbtn{
+width:100%;
+font-family: 'Hanna', sans-serif;
+height:98px;
+background-color:#223A5E;
+color:white;
+}
 
+.subbtn{
+width:100%;
+background-color:white;
+height:55px;
+font-family: 'Nanum Gothic Coding', monospace;
+font-weight:bold;
+font-size:20px;
+border:none;
+}
+.subbtn:hover{
+background-color:#F0EAD6;
+}
+
+#totalsearchlist{
+		float:right;
+		background-color:white;
+		width:60%;
+		height:auto;
+		margin-right: 10%;
+        margin-top:2%;
+        margin-bottom: 5%;
+        padding:0px;
+	}
+.bottom{
+width:100%;
+}
+#foo-table_filter{
+float:right;
+display:inline;
+
+}
+#foo-table_paginate{
+display:inline;
+margin-left:40%;
+margin-top:20px;
+}
 </style>
-
-
+<meta charset="UTF-8">
+<link rel="stylesheet" href="https://cdn.datatables.net/t/bs-3.3.6/jqc-1.12.0,dt-1.10.11/datatables.min.css"/> 
+    <script src="https://cdn.datatables.net/t/bs-3.3.6/jqc-1.12.0,dt-1.10.11/datatables.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>     
+<script>
+        jQuery(function($){
+            $("#foo-table").DataTable({
+            	 "dom": '<"top"il>t<"bottom"prf><"clear">',
+                 "language":{
+                  "emptyTable": "데이터가 없어요.",
+                  "info": "현재 _START_ - _END_ / _TOTAL_건",
+                  "infoEmpty": "데이터 없음",
+                  "paginate": {
+                         "next": "다음",
+                         "previous": "이전"
+                     }
+                 }
+            });
+        });
+    </script>
 
 <title>대출목록</title>
+<script>
+    var bootstrapButton = $.fn.button.noConflict() // return $.fn.button to previously assigned value
+    $.fn.bootstrapBtn = bootstrapButton            // give $().bootstrapBtn the Bootstrap functionality
+    </script>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
+  <!-- jQuery library -->
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+<!-- Popper JS -->
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
 
+<!-- Latest compiled JavaScript -->
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
 </head>
 <body>
-
-
+<jsp:include page="header2.jsp" />
+<nav id="submenu">
+	<button class="subtopbtn" disabled><h2>나의 도서관</h2></button><br>
+    <button class="subbtn" onclick="location.href = 'movemypage' " >마이 페이지</button><br>
+    <button class="subbtn" onclick="location.href = 'deliveryapplicationmove' " >배송신청목록</button><br>
+    <button class="subbtn" onclick="location.href = 'moveloanlist'">대출 목록</button><br>
+    <button class="subbtn" onclick="location.href = 'movehopelist'">희망 도서 신청 목록</button>
+</nav>
+<main id="totalsearchlist">
 		<div>
-		<h1 style="margin-bottom:80px;">대출 목록</h1>
+		<h1 style="font-family: 'Hanna', sans-serif;margin-bottom: 30px;margin-top:4%;">대출 목록</h1>
 		<hr />
 <table id="foo-table" class="table table-bordered">
 		<colgroup>
@@ -170,8 +248,6 @@ text-align: center;
     </table>
 
 		</div>
-
-
 
 
  <!-- Modal -->
@@ -215,8 +291,6 @@ text-align: center;
     </div>
      </form>
   </div>
- 
-  
  
 <script type="text/javascript" src="https://cdn.datatables.net/t/bs-3.3.6/jqc-1.12.0,dt-1.10.11/datatables.min.js"></script>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>	
@@ -297,18 +371,59 @@ window.onload = function(){
 	    		break;
 	    	}
 
+
 }
 }// onload End
-/* if(dtable!=null){
-    dtable.destroy();
- } */
+
+</script>
 
 
+ <!-- Modal -->
+  <div class="modal fade" id="myModal" role="dialog" tabindex="-1">
+  <form action="reviewinsert" method="post" >
+    <div class="modal-dialog">
+    
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header" id="modal-header">
+          <div id="title">span</div>
+         <span class="star-input">
+  <span class="input">
+    <input type="radio" name="rv_grade" id="p1" class="point" value="0.5"><label for="p1">0.5</label>
+    <input type="radio" name="rv_grade" id="p2" class="point" value="1"><label for="p2">1</label>
+    <input type="radio" name="rv_grade" id="p3" class="point" value="1.5"><label for="p3">1.5</label>
+    <input type="radio" name="rv_grade" id="p4" class="point" value="2"><label for="p4">2</label>
+    <input type="radio" name="rv_grade" id="p5" class="point" value="2.5"><label for="p5">2.5</label>
+    <input type="radio" name="rv_grade" id="p6" class="point" value="3"><label for="p6">3</label>
+    <input type="radio" name="rv_grade" id="p7" class="point" value="3.5"><label for="p7">3.5</label>
+    <input type="radio" name="rv_grade" id="p8" class="point" value="4"><label for="p8">4</label>
+    <input type="radio" name="rv_grade" id="p9" class="point" value="4.5"><label for="p9">4.5</label>
+    <input type="radio" name="rv_grade" id="p10" class="point" value="5"><label for="p10">5</label>
+  </span>
+  <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
+  <output for="star-input"><b id="score">0</b>점</output>
+</span>
+        </div>
+      
+        <div class="modal-body" id="modal-body">
+          <input type="text" name="rv_contents" id="rv_contents">
+          <input type='hidden' name='rv_bcode' id='rv_bcode'>
+        </div>
+       
+        <div class="modal-footer">
+       	 <button type="submit" class="btn btn-default" >리뷰쓰기</button>
+         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+      
+    </div>
+     </form>
+  </div>
  
-
-
-
-
+  
+  </main>
+  
+<script type="text/javascript">
 //star rating
 var starRating = function(){
   var $star = $(".star-input"),

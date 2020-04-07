@@ -29,23 +29,30 @@
  
 <style>
 @import url(//fonts.googleapis.com/earlyaccess/hanna.css);
-@import url(//fonts.googleapis.com/earlyaccess/jejugothic.css);
-@import url(//fonts.googleapis.com/earlyaccess/notosanskr.css);
 @import url(//fonts.googleapis.com/earlyaccess/nanumgothiccoding.css);
+@import url(//fonts.googleapis.com/earlyaccess/notosanskr.css);
+@import url(//fonts.googleapis.com/earlyaccess/jejugothic.css);
+#d{
+		font-family: 'Hanna', sans-serif;
+		margin-bottom:10px;
+		margin-left:7%
+		}
 .table_box {
 	padding: 10px;
 	margin: 10px;
 	width: 100px;
 	
 }
-
+#loanList{
+margin-top:10px;
+}
 #myProfile {
 	float: left;
 	margin-right: 150px;
 }
 
 #myProfile_rest {
-	margin-bottom: 300px;
+	font-family: 'Jeju Gothic', sans-serif;
 	
 }
 
@@ -64,16 +71,32 @@ color: #007bff;
 all:unset;
 font-weight: bold;
 color: #007bff;
+
 }
 #btn{
  padding-bottom: 5px;
  padding-top: 5px;
- font-size: 16px;
+ font-size: 17px;
+ height:45px;
+ font-family: 'Nanum Gothic Coding', monospace;
+ margin-left:38px;
+ border-radius:7px;
+ border:2px solid #17a2b8;
+ color:#17a2b8;
+ background-color:white;
+ 
 }
 #btn2{
  padding-bottom: 5px;
  padding-top: 5px;
- font-size: 16px;
+ font-size: 17px;
+ height:45px;
+ font-family: 'Nanum Gothic Coding', monospace;
+ border-radius:7px;
+ border:2px solid #17a2b8;
+ color:#17a2b8;
+ background-color:white;
+ margin-left:10px;
 }
 #table_rest{
 width: 400px;
@@ -90,7 +113,7 @@ width: 400px;
   	  margin-left: 8%;
   	  margin-top:2%;
 }
-.subtopbtn{
+    .subtopbtn{
 width:100%;
 font-family: 'Hanna', sans-serif;
 height:98px;
@@ -120,6 +143,11 @@ background-color:#F0EAD6;
         margin-bottom: 5%;
         padding:0px;
 	}
+#myinfotable{
+height:416px;
+font-family: 'Jeju Gothic', sans-serif;
+margin-left:15px;
+}
 </style>
 
 
@@ -133,19 +161,20 @@ background-color:#F0EAD6;
 <nav id="submenu">
 	<button class="subtopbtn" disabled><h2>나의 도서관</h2></button><br>
     <button class="subbtn" onclick="location.href = 'movemypage' " >마이 페이지</button><br>
-    <button class="subbtn" onclick="getPage('deliveryapplicationmove')" >배송신청목록</button><br>
-    <button class="subbtn" onclick="getPage('moveloanlist')">대출 목록</button><br>
-    <button class="subbtn" onclick="getPage('movehopelist')">희망 도서 신청 목록</button>
+    <button class="subbtn" onclick="location.href = 'deliveryapplicationmove' " >배송신청목록</button><br>
+    <button class="subbtn" onclick="location.href = 'moveloanlist'">대출 목록</button><br>
+    <button class="subbtn" onclick="location.href = 'movehopelist'">희망 도서 신청 목록</button>
 </nav>
 
 
 <main id="totalsearchlist">
+<h1 id="d">마이페이지</h1>
 	<div class="container">
 		<div id='topDiv'>
 
 			<div id="myProfile" >
 			<form action="modifyprofile" method="post">
-				<table class="table table-striped" >
+				<table class="table table-striped"  id="myinfotable">
 					<tr>
 						<td>아이디 : </td>
 						<td>${mb.mb_id}</td>
@@ -196,7 +225,7 @@ $("#btn2").click(function(){
 });
 
 </script>
-			<div id="myProfile_rest" style="height:280px;">
+			<div id="myProfile_rest" >
 				<table id="table_rest" class="table table-striped" style="width:478px;">
 					<tr>
 						<td class="table_box">대출건수 <span id="borrowCnt"></span>회</td>
@@ -230,16 +259,16 @@ $("#btn2").click(function(){
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script> <!-- 차트 -->
 
-		<div class="container">
+		<div class="container" >
 		
 		<div style="display: flex;">
-			<h3>대출현황</h3><button id="loan_btn" style="height:"><i class="fas fa-angle-up"></i></button>
+			<h3 style="font-family: 'Jeju Gothic', sans-serif;">대출현황</h3>&nbsp;&nbsp;<button id="loan_btn" style="margin-bottom:8px;"><i class="fas fa-angle-up"></i></button>
 		</div>
 		
 			<div id="loanList">
-			<table class="table table-striped">
-			<thead>
-				<tr>
+			<table class="table table-striped" >
+			<thead >
+				<tr style="font-family:'Noto Sans KR', sans-serif;">
 					<td style="width: 5%; text-align: center;">순번</td>
 					<td style="width: 30%;">자료명</td>
 					<td style="width: 9%;">대출일</td>
@@ -251,7 +280,7 @@ $("#btn2").click(function(){
 				</tr>
 				</thead>
 				
-				<tbody id="borrow">
+				<tbody id="borrow" >
 				</tbody>
 			</table>
 			</div>
@@ -260,12 +289,12 @@ $("#btn2").click(function(){
 		<div class="container">
 			
 <div style="display: flex;">
-			<h3>연체목록</h3><button id="arrears_btn" style="height:"><i class="fas fa-angle-up"></i></button>
+			<h3 style="font-family: 'Jeju Gothic', sans-serif;">연체목록</h3>&nbsp;&nbsp;<button id="arrears_btn" style="margin-bottom:8px;"><i class="fas fa-angle-up"></i></button>
 		</div>
-		<div id="arrearsList">
-			<table class="table table-striped">
+		<div id="arrearsList" style="margin-top:10px;">
+			<table class="table table-striped" style="font-family: 'Nanum Gothic Coding', monospace;">
 			<thead>
-				<tr>
+				<tr style="font-family:'Noto Sans KR', sans-serif;">
 					<td style="width: 80px; text-align: center;">순번</td>
 					<td style="width: 400px;">자료명</td>
 					<td style="width: 200px;">대출일</td>
@@ -285,13 +314,13 @@ $("#btn2").click(function(){
 		<div class="container">
 			
 <div style="display: flex;">
-			<h3>현재 예약 목록</h3><button id="res_btn" style="height:"><i class="fas fa-angle-up"></i></button>
+			<h3 style="font-family: 'Jeju Gothic', sans-serif;">현재 예약 목록</h3>&nbsp;&nbsp;<button id="res_btn" style="margin-bottom:8px;"><i class="fas fa-angle-up"></i></button>
 		</div>
 		
-			<div id="resList">
-			<table class="table table-striped">
+			<div id="resList" style="margin-top:10px;">
+			<table class="table table-striped" style="font-family: 'Nanum Gothic Coding', monospace;">
 			<thead>
-				<tr>
+				<tr style="font-family:'Noto Sans KR', sans-serif;">
 					<td style="width: 80px; text-align: center;">예약번호</td>
 					<td style="width: 120px;">도서관 이름</td>
 					<td style="width: 210px;">자료명</td>
@@ -303,7 +332,7 @@ $("#btn2").click(function(){
 				</tr>
 				</thead>
 				
-				<tbody id="reservation">
+				<tbody id="reservation" >
 				</tbody>
 			</table>
 			</div>
@@ -762,21 +791,6 @@ $.ajax({
 	
 }); //end ajax
 
-function getPage(url) {
-
-	$.ajax({
-		url:url,
-		type:'get',
-		async: false,
-		success:function(page){
-		
-			$("#totalsearchlist").html(page);
-		},
-		error:function(){
-			alert("실패");
-		}
-	})
-	}  
 //반납 신청하기
 function returnBooks(bd_num){
 	console.log(bd_num);
