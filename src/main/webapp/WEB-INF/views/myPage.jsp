@@ -767,8 +767,9 @@ function getPage(url) {
 	$.ajax({
 		url:url,
 		type:'get',
+		async: false,
 		success:function(page){
-			$("#totalsearchlist").empty();
+		
 			$("#totalsearchlist").html(page);
 		},
 		error:function(){

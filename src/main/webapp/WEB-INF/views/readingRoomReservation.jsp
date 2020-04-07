@@ -81,7 +81,7 @@ float:right;
 <body>
 	<jsp:include page="header.jsp" />
 	<div style="text-align: center;">
-		<h1>도서관 이름</h1>
+		<h1>${libName}</h1>
 	</div>
 	<div class="row">
 
@@ -312,7 +312,7 @@ function showSeats(seats, low, col){
  									.appendTo($label);
  						cnt++;
         			}else{ //예약된 좌석
-        				let $label=$("<label>").addClass("btn btn-outline-success active")
+        				let $label=$("<label>").addClass("btn btn-outline-danger active")
 						   .text(cnt).appendTo($("#seats"));
  
  						$("<input>").attr("name","seat")
