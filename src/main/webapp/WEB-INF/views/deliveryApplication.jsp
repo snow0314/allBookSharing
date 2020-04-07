@@ -309,18 +309,24 @@ $("div").on("change",".styled",function(){ //체크박스 클릭시 배송비 �
 	console.log("de_lcode",$(this).data("delcode"));
 	console.log("de_quantity",$(this).data("quantity"));
 	let temp=0;
-	let lib=new Array();;
+	let lib=new Array();
 	$('.styled:checked').each(function() {
 		temp+=$(this).data("quantity");
 		lib.push($(this).data("delcode"));
    });
+	let uniqueLib = new Array();
+	
+	$.each(lib, function(i, el){
+	    if($.inArray(el, uniqueLib) === -1) uniqueLib.push(el);
+	});
+	
 	console.log("temp",temp);
 	console.log("lib",lib);
-	console.log("유니크",$.unique(lib).length);
+	console.log("유니크",uniqueLib);
 	
 	//$("#cnt").text(temp);
-	$("#libCnt").text($.unique(lib).length);
-	$("#total").text($.unique(lib).length*5000+"원");
+	$("#libCnt").text(uniqueLib.length);
+	$("#total").text(uniqueLib.length*5000+"원");
 	
 });
 
@@ -332,6 +338,7 @@ $("#apply").on("click",function(){ //배송 신청 버튼 클릭시 작동하는
 	pointCheck();
 	let temp=0;
 	let lib=new Array();
+	let uniqueLib=new Array();
 	let allData = new Array();
 	console.log("borrowCnt:",borrowCnt);
 	$('.styled:checked').each(function() {
@@ -343,6 +350,11 @@ $("#apply").on("click",function(){ //배송 신청 버튼 클릭시 작동하는
 		temp+=Number($(this).data("quantity")); //총 권수
 		lib.push($(this).data("delcode")); //도서관 개수
    });
+	
+	$.each(lib, function(i, el){
+	    if($.inArray(el, uniqueLib) === -1) uniqueLib.push(el);
+	});
+	
 	console.log("alldata",allData);
 	
 	if($('.styled:checked').length==0){
@@ -387,7 +399,7 @@ $("#apply").on("click",function(){ //배송 신청 버튼 클릭시 작동하는
 	$.ajax({ //배송 신청하러 가는 에이작스
 		url : "borrowlistinsert",
 		type : "post",
-		data : {"json" : JSON.stringify(allData), "pl_inout" : $.unique(lib).length*5000},
+		data : {"json" : JSON.stringify(allData), "pl_inout" : uniqueLib.length*5000},
 		dataType:'text'
 		
 }).done((result) => {
