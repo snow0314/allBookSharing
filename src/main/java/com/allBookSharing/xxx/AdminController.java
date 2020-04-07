@@ -197,7 +197,7 @@ public class AdminController {
 			System.out.println("차트 보여주기");
 			
 			 
-				return "admin/libraryDelete";
+				return "admin/adminChart";
 			}
 }
 

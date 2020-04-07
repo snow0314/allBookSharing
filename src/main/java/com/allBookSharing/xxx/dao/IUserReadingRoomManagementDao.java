@@ -26,5 +26,7 @@ public interface IUserReadingRoomManagementDao { //userReadingRoomMapper.xml과 
 
 	boolean userReadingRoomReservationCancel(String id);
 
+	Library getLibName(int rm_lcode);
+
 	
 }

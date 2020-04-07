@@ -37,17 +37,19 @@
 	
 	
 <style type="text/css">
+@import url(//fonts.googleapis.com/earlyaccess/hanna.css);
 #pagination {
 	text-align: center;
 }
+.hn{font-family: 'Hanna', sans-serif;}
 </style>
 
 </head>
 <body>
 	<div class="container p-3 my-3 border" style="text-align: center">
-		<h3>도서관 이름</h3>
+		<h3 class="hn">${LB_NAME}</h3>
 	</div>
-	<div class="container p-3 my-3 border">
+	<div class="container p-3 my-3 border" style="text-align: center;">
 
 		<table id="contents" class="table table-bordered table-hover">
 			<thead>
