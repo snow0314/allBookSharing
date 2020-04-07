@@ -47,6 +47,7 @@ public class Loan {
 		String br_id; //희망도서 글쓴이
 		String br_loc; //도서관 지역
 		String bd_reason; //취소사유
+		String br_reason; 
 		String br_bname;
 		String br_name;
 		String br_bcode;
