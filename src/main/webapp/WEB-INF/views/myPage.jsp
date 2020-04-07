@@ -262,7 +262,7 @@ $("#btn2").click(function(){
 		<div class="container" >
 		
 		<div style="display: flex;">
-			<h3 style="font-family: 'Jeju Gothic', sans-serif;">대출현황</h3>&nbsp;&nbsp;<button id="loan_btn" style="margin-bottom:8px;"><i class="fas fa-angle-up"></i></button>
+			<h3 style="font-family: 'Jeju Gothic', sans-serif;">현재 대출현황</h3>&nbsp;&nbsp;<button id="loan_btn" style="margin-bottom:8px;"><i class="fas fa-angle-up"></i></button>
 		</div>
 		
 			<div id="loanList">

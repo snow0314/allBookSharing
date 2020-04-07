@@ -7,6 +7,8 @@
 <style>
 @import url(//fonts.googleapis.com/earlyaccess/hanna.css);
 @import url(//fonts.googleapis.com/earlyaccess/nanumgothiccoding.css);
+@import url(//fonts.googleapis.com/earlyaccess/notosanskr.css);
+@import url(//fonts.googleapis.com/earlyaccess/jejugothic.css);
 .star-input>.input,
 .star-input>.input>label:hover,
 .star-input>.input>input:focus+label,
@@ -150,9 +152,11 @@ background-color:#F0EAD6;
         margin-top:2%;
         margin-bottom: 5%;
         padding:0px;
+        font-family: 'Jeju Gothic', sans-serif;
 	}
 .bottom{
 width:100%;
+margin-top:10px;
 }
 #foo-table_filter{
 float:right;
@@ -271,23 +275,23 @@ for(let i=0;i<list.length;i++){
 	switch (list[i].bd_state_num) {
 	case 1:
 		$tr.append("<td style='color:blue;'>대출중</td>");
-		$tr.append("<td><button disabled>리뷰쓰기</button></td>");
+		$tr.append("<td> </td>");
 		break;
 	case 2:
 		$tr.append("<td style='color:blue;'>배송신청</td>");
-		$tr.append("<td><button disabled>리뷰쓰기</button></td>");
+		$tr.append("<td> </td>");
 		break;
 	case 3:
-		$tr.append("<td onclick='showReason(\""+list[i].bd_reason+"\")' style='color:blue; cursor: pointer;'>배송취소</td>");
-		$tr.append("<td><button disabled>리뷰쓰기</button></td>");
+		$tr.append("<td onclick='showReason(\""+list[i].bd_reason+"\")' style='color:red; cursor: pointer;'>배송취소</td>");
+		$tr.append("<td> </td>");
 		break;
 	case 4:
 		$tr.append("<td style='color:blue;'>배송완료</td>");
-		$tr.append("<td><button disabled>리뷰쓰기</button></td>");
+		$tr.append("<td> </td>");
 		break;
 	case 5:
 		$tr.append("<td style='color:blue;'>반납신청</td>");
-		$tr.append("<td><button disabled>리뷰쓰기</button></td>");
+		$tr.append("<td> </td>");
 		break;
 	case 6:
 		$tr.append("<td style='color:blue;'>반납완료</td>");
