@@ -39,8 +39,9 @@
 
 <style>
 @import url(//fonts.googleapis.com/earlyaccess/hanna.css);
-
+@import url(//fonts.googleapis.com/earlyaccess/nanumgothiccoding.css);
 @import url(//fonts.googleapis.com/earlyaccess/notosanskr.css);
+@import url(//fonts.googleapis.com/earlyaccess/jejugothic.css);
 
 h4 {
 	font-family: 'Hanna', sans-serif;
@@ -53,7 +54,8 @@ h3 {
 #d {
 	font-family: 'Hanna', sans-serif;
 	margin-bottom: 30px;
-	margin-left: 10%
+	margin-top:4%;
+
 }
 
 .recontents {
@@ -71,6 +73,7 @@ h3 {
 	font-family: 'Noto Sans KR', sans-serif;
 	font-weight: 750;
 	padding-left: 20px;
+	padding-bottom:10px;
 }
 
 .deliveryimg {
@@ -84,6 +87,7 @@ h3 {
 	padding: 10px;
 	margin-left: 20px;
 	width: 160px;
+	margin-bottom:15px;
 }
 
 .bname {
@@ -120,20 +124,22 @@ element.style {
 
 /* 버튼 디자인 */
 .myButton{
-  background:#1AAB8A;
+  background:#17a2b8;
   color:#fff;
   border:none;
   position:relative;
-  height:60px;
-  font-size:1.6em;
+  height:50px;
+  font-size:1.3em;
   padding:0 2em;
   cursor:pointer;
   transition:800ms ease all;
   outline:none;
+  border-radius:4px;
+  font-family: 'Jeju Gothic', sans-serif;
 }
 .myButton:hover{
   background:#fff;
-  color:#1AAB8A;
+  color:#17a2b8;
 }
 .myButton:before,button:after{
   content:'';
@@ -142,7 +148,7 @@ element.style {
   right:0;
   height:2px;
   width:0;
-  background: #1AAB8A;
+  background: #17a2b8;
   transition:400ms ease all;
 }
 .myButton:after{
@@ -182,13 +188,34 @@ border:none;
 .subbtn:hover{
 background-color:#F0EAD6;
 }
+
+#below{
+width: 1107px;
+float:right;
+font-family: 'Jeju Gothic', sans-serif;
+font-size:25px;
+}
+#apply{
+font-size:20px;
+}
 </style>
 
 <body>
+<header>
+<jsp:include page="header.jsp"/>
+</header>
+	
+	<nav id="submenu">
+	<button class="subtopbtn" disabled><h2>나의 도서관</h2></button><br>
+    <button class="subbtn" onclick="location.href = 'movemypage' " >마이 페이지</button><br>
+    <button class="subbtn" onclick="location.href = 'deliveryapplicationmove' " >배송신청목록</button><br>
+    <button class="subbtn" onclick="location.href = 'moveloanlist'">대출 목록</button><br>
+    <button class="subbtn" onclick="location.href = 'movehopelist'">희망 도서 신청 목록</button>
+	</nav>
 
-	
-	
-		<table id="delivery" class="table table-bordered">
+	<div class="container" style="float:right;margin-right:10%;margin-bottom:7%;">
+	<h1 id="d">배송신청목록</h1>
+		<table id="delivery" >
 			<colgroup>
 				<col width="20%">
 				<col width="15%">
@@ -197,16 +224,17 @@ background-color:#F0EAD6;
 
 
 		</table>
-	<div class="container p-3 my-3 border" style="width: 1107px">
+
+	<div class="container p-3 my-3 border" id="below">
 		<div style="display: inline;">
 			<span>총 배송비는 선택한 도서관 수 * 5000원 입니다.</span><br>
 			배송비 :<span id="libCnt">도서관수</span> * 5000원= <span id="total">총배송비</span>
 		</div>
-		<div style="display: inline; margin-left: 580px;">
+		<div style="display: inline;  float:right; margin-right:10px; margin-top:-30px;">
 			<button id="apply" class='myButton' type="button">배송신청</button>
 		</div>
 	</div>
-
+	</div>
 
 	
 		
@@ -231,7 +259,7 @@ function pageShow(){
 	var str="";
 	$("#delivery").empty();
 	for(let i=0;i<result.length;i++){
-		str+="<tr>";
+		str+="<tr style='margin-bottom:5px;'>";
 		str+="<td style='text-align: center; vertical-align:middle;'>";
 		str+="<div class='checkbox checkbox-inline checkbox-success checkbox-md'>";
 		str+="<input type='checkbox' class='styled' id='"+i+"'  "
@@ -242,7 +270,7 @@ function pageShow(){
 		str+="<div class='deliveryimgdiv'><img src='"+result[i].bk_image+"' class='deliveryimg'></div>";
 		str+="</td>";
 		str+="<td class='recotd'>";
-		str+="<span class='bname'>"+result[i].bk_name+"</span>";
+		str+="<span class='bname'>"+result[i].bk_name+"</span><br>";
 		str+="<input type='hidden' name='de_code' value='"+result[i].de_code+"'";
 		str+="<br>저자 : "+result[i].bk_writer+"";
 		str+="<br>출판사 : "+result[i].bk_publisher+"";

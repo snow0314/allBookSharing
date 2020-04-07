@@ -9,8 +9,7 @@
     <script src="https://cdn.datatables.net/t/bs-3.3.6/jqc-1.12.0,dt-1.10.11/datatables.min.js"></script>
       
 <script>
-       window.onload=function(){
-        	setTimeout(() => {
+        jQuery(function($){
             $("#foo-table").DataTable({
             	 "dom": '<"top"il>t<"bottom"prf><"clear">',
             	 "order": [[0, 'desc']], // asc 또는 desc
@@ -34,8 +33,7 @@
             	 
             	 
             });
-        	},100);
-        };
+        });
     </script>
 
 <title>희망도서 신청 게시판</title>
@@ -46,6 +44,8 @@
   
     
     <style>
+    @import url(//fonts.googleapis.com/earlyaccess/hanna.css);
+    @import url(//fonts.googleapis.com/earlyaccess/nanumgothiccoding.css);
     #submenu {
   		float: left;
   		width: 15%;
@@ -94,7 +94,15 @@ cursor: pointer;
     
 </head>
 <body>
+<jsp:include page="header2.jsp" />
 
+<nav id="submenu">
+	<button class="subtopbtn" disabled><h2>나의 도서관</h2></button><br>
+    <button class="subbtn" onclick="location.href = 'movemypage' " >마이 페이지</button><br>
+    <button class="subbtn" onclick="location.href = 'deliveryapplicationmove' " >배송신청목록</button><br>
+    <button class="subbtn" onclick="location.href = 'moveloanlist'">대출 목록</button><br>
+    <button class="subbtn" onclick="location.href = 'movehopelist'">희망 도서 신청 목록</button>
+</nav>
 
 <main id="totalsearchlist">
 
