@@ -30,24 +30,32 @@
    src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
    
 <style>
-	
 </style>
 </head>
 <body>
-<div class="container p-3 my-3 border" style="text-align: center">
+
+
+<div class="container p-3 my-3 border" style="text-align: center" >
 		<h3>도서관 정보 수정</h3>
 	</div>
 <form action="librarydelete" method="post">
 
-		<div class="col-lg-6" style="width:30%; float:left;">
+		<!-- <div class="col-lg-6" style="width:37%; float:left;">
+			<table class="table table-borderless">
+			
+			</table>
+		</div> -->
+		
+		<div class="container p-3 my-3 border" >
+		<div class="col-lg-10">
 			<table class="table table-borderless">
 			<tr>
 				<td>
 					<div id="sidebar" class="input-group mb-3">
 						<div class="input-group-prepend">
-							<span class="input-group-text">지역</span>
+							<span class="input-group-text" style="width:110.39px;">지역</span>
 						</div>
-					<select name="lb_loc" id="lb_loc" onclick="getLocLibray()">
+					<select name="lb_loc" id="lb_loc" onclick="getLocLibray()" style="width:532px;">
 						<option selected>선택</option>
 					</select>
 					</div>
@@ -58,20 +66,14 @@
 				<td>
 					<div id="sidebar2" class="input-group mb-3">
 						<div class="input-group-prepend">
-							<span class="input-group-text">도서관</span>
+							<span class="input-group-text" style="width:110.39px;">도서관</span>
 						</div>
-					<select name="br_lcode" id="lb_name" onchange="libraryinfo()">
+					<select name="br_lcode" id="lb_name" onchange="libraryinfo()" style="width:532px;">
 						<option selected>선택</option>
 					</select>
 					</div>
 				</td>
 			</tr>
-			</table>
-		</div>
-		
-		
-		<div class="col-lg-6" style="width:63%; float:right;">
-			<table class="table table-borderless">
 			<tr>
 				<td>
 						<div class="input-group mb-3">
@@ -91,7 +93,7 @@
 					<td>
 						<div class="input-group mb-3">
 							<div class="input-group-prepend">
-								<span class="input-group-text">전화번호</span>
+								<span class="input-group-text" style="width:110.39px;">전화번호</span>
 							</div>
 							<input type="number" class="form-control" id="lb_phone"
 								name="lb_phone" required="required">
@@ -103,7 +105,7 @@
 					<td>
 						<div class="input-group mb-3">
 							<div class="input-group-prepend">
-								<span class="input-group-text">이메일</span>
+								<span class="input-group-text" style="width:110.39px;">이메일</span>
 							</div>
 							<input type="email" class="form-control" id="lb_email"
 								name="lb_email" required="required">
@@ -142,17 +144,16 @@
 						onclick="sample4_execDaumPostcode()" value="우편번호 찾기"
 						 />
 						<input type="submit" id="librarydelete" class="btn btn-outline-success"
-						value="수정하기">
+						value="수정하기"></td>
 						<td><input type="button" class="btn btn-outline-success" 
 						 onclick="librarydrop()" value="삭제"></td>
-					
-					</td>
 				</tr>
 			</table>
 		</div>
-		
+		</div>
 			
 </form>
+
 <script>
 $(function() {
 	var temp;
