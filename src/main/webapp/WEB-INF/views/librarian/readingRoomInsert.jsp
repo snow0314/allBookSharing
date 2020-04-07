@@ -39,6 +39,8 @@
 <script
    src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
 
+
+
 <style>
 .btn-group-toggle label {
 	width: 70px;
@@ -49,7 +51,7 @@
 </head>
 
 <body>
-	<form>
+	<form name='dragchkform'>
 		<div class="container p-3 my-3 border">
 			<div class="input-group mb-3">
 				<div class="input-group-prepend">
@@ -103,6 +105,7 @@
 
 
 </body>
+<script type="text/javascript" src="plugins/dragcheck.js"></script>
 <script type="text/javascript" src="js/ajaxCsrf.js"></script>
 <script>
 
@@ -174,10 +177,14 @@
                 }
                $("<br>").appendTo($("#seats"));
             }
+            
+            
         });
 
         $("#seats").on("click","input",function(e){ //좌석 클릭시 checked 변경 및 총 좌석수 계산
             
+        	
+        	
             if($(this).attr("checked")=="checked"){
                 $(this).attr("checked",false);
             }else{
@@ -188,8 +195,24 @@
             $('input:checkbox[name=seat]:checked').length;
             
             $("#total_seat").val($('input:checkbox[name=seat]:checked').length);
-         
-        });    
+         	
+           /*  $('input[type=checkbox]').dragcheck({
+            	ontainer:'label',// Using the tr as a container
+            	onSelect:function(obj, state) {
+           	        obj.prop('checked', state);
+            	    } 
 
-    </script>
+            }); */
+            $('label').dragcheck();
+        });   
+        
+        
+
+      
+ 
+   </script>    
+
+    
+    
+    
 </html>
