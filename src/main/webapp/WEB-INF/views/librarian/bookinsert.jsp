@@ -113,7 +113,7 @@ table {
 								<input id="bk_name" name="bk_name" type="text"
 									class="form-control" required>
 								<div class="input-group-append">
-									<button class="btn btn-success" type="button" data-toggle="modal"
+									<button class="btn btn-outline-success" type="button" data-toggle="modal"
 									        data-target="#modalCart">검색</button>
 								</div>
 							</div>
@@ -142,8 +142,8 @@ table {
 							</div>
 						</td>
 						<td rowspan="3" colspan="2">
-							<div class="form-group purple-border">
-  							<textarea class="form-control" id="bk_introduction" name="bk_introduction" rows="7"></textarea>
+							<div class="form-group purple-border" style="margin-left: 50px;">
+  							<textarea class="form-control" id="bk_introduction" name="bk_introduction" rows="7" readonly="readonly"></textarea>
 							</div>
 						</td>
 					</tr>
@@ -189,7 +189,7 @@ table {
 					<tr>
 						<td colspan="2" style="text-align: right">
 							<input type="submit" id="insertBtn"
-								class="btn btn-success btn-lg" value="등록">
+								class="btn btn-outline-secondary btn-lg" value="등록">
 							<input type="hidden" name="_csrf" value="${_csrf.token}">	
 						</td>
 						
@@ -231,7 +231,7 @@ table {
                 <!--Footer-->
                 <div class="modal-footer">
                     <button type="button" class="btn btn-outline-primary" data-dismiss="modal">Close</button>
-                    <button class="btn btn-primary">Checkout</button>
+              
                 </div>
             </div>
         </div>

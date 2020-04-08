@@ -39,8 +39,9 @@
 
 <style>
 @import url(//fonts.googleapis.com/earlyaccess/hanna.css);
-
+@import url(//fonts.googleapis.com/earlyaccess/nanumgothiccoding.css);
 @import url(//fonts.googleapis.com/earlyaccess/notosanskr.css);
+@import url(//fonts.googleapis.com/earlyaccess/jejugothic.css);
 
 h4 {
 	font-family: 'Hanna', sans-serif;
@@ -53,7 +54,8 @@ h3 {
 #d {
 	font-family: 'Hanna', sans-serif;
 	margin-bottom: 30px;
-	margin-left: 10%
+	margin-top:4%;
+
 }
 
 .recontents {
@@ -71,6 +73,7 @@ h3 {
 	font-family: 'Noto Sans KR', sans-serif;
 	font-weight: 750;
 	padding-left: 20px;
+	padding-bottom:10px;
 }
 
 .deliveryimg {
@@ -84,6 +87,7 @@ h3 {
 	padding: 10px;
 	margin-left: 20px;
 	width: 160px;
+	margin-bottom:15px;
 }
 
 .bname {
@@ -120,20 +124,22 @@ element.style {
 
 /* 버튼 디자인 */
 .myButton{
-  background:#1AAB8A;
+  background:#17a2b8;
   color:#fff;
   border:none;
   position:relative;
-  height:60px;
-  font-size:1.6em;
+  height:50px;
+  font-size:1.3em;
   padding:0 2em;
   cursor:pointer;
   transition:800ms ease all;
   outline:none;
+  border-radius:4px;
+  font-family: 'Jeju Gothic', sans-serif;
 }
 .myButton:hover{
   background:#fff;
-  color:#1AAB8A;
+  color:#17a2b8;
 }
 .myButton:before,button:after{
   content:'';
@@ -142,7 +148,7 @@ element.style {
   right:0;
   height:2px;
   width:0;
-  background: #1AAB8A;
+  background: #17a2b8;
   transition:400ms ease all;
 }
 .myButton:after{
@@ -182,104 +188,58 @@ border:none;
 .subbtn:hover{
 background-color:#F0EAD6;
 }
+
+
+#below{
+width: 1107px;
+float:right;
+font-family: 'Jeju Gothic', sans-serif;
+font-size:25px;
+}
+#apply{
+font-size:20px;
+}
 </style>
 
 <body>
 <header>
 <jsp:include page="header.jsp"/>
 </header>
-	<div class="container" style="margin-top: 100px;">
+	
 	<nav id="submenu">
+
 	<button class="subtopbtn" disabled><h2>나의 도서관</h2></button><br>
     <button class="subbtn" onclick="location.href = 'movemypage' " >마이 페이지</button><br>
     <button class="subbtn" onclick="location.href = 'deliveryapplicationmove' " >배송신청목록</button><br>
     <button class="subbtn" onclick="location.href = 'moveloanlist'">대출 목록</button><br>
     <button class="subbtn" onclick="location.href = 'movehopelist'">희망 도서 신청 목록</button>
+
 	</nav>
-		<table id="delivery" class="table table-bordered">
+
+	<div class="container" style="float:right;margin-right:10%;margin-bottom:7%;">
+	<h1 id="d">배송신청목록</h1>
+		<table id="delivery" >
+
 			<colgroup>
 				<col width="20%">
 				<col width="15%">
 				<col width="65%">
 			</colgroup>
-
-
 		</table>
-	</div>
-	<div class="container p-3 my-3 border" style="width: 1107px">
+
+
+	<div class="container p-3 my-3 border" id="below">
 		<div style="display: inline;">
 			<span>총 배송비는 선택한 도서관 수 * 5000원 입니다.</span><br>
 			배송비 :<span id="libCnt">도서관수</span> * 5000원= <span id="total">총배송비</span>
 		</div>
-		<div style="display: inline; margin-left: 580px;">
+		<div style="display: inline;  float:right; margin-right:10px; margin-top:-30px;">
 			<button id="apply" class='myButton' type="button">배송신청</button>
 		</div>
 	</div>
+	</div>
 
-
-	<!-- Footer -->
-			<div id="footer">
-				<div class="container">
-
-					<!-- Lists -->
-						<div class="row">
-							<div class="8u">
-								<section>
-									<header class="major">
-										<h2>Donec dictum metus</h2>
-										<span class="byline">Quisque semper augue mattis wisi maecenas ligula</span>
-									</header>
-									<div class="row">
-										<section class="6u">
-											<ul class="default">
-												<li><a href="#">Pellentesque elit non gravida blandit.</a></li>
-												<li><a href="#">Lorem ipsum dolor consectetuer elit.</a></li>
-												<li><a href="#">Phasellus nibh pellentesque congue.</a></li>
-												<li><a href="#">Cras vitae metus aliquam  pharetra.</a></li>
-											</ul>
-										</section>
-										<section class="6u">
-											<ul class="default">
-												<li><a href="#">Pellentesque elit non gravida blandit.</a></li>
-												<li><a href="#">Lorem ipsum dolor consectetuer elit.</a></li>
-												<li><a href="#">Phasellus nibh pellentesque congue.</a></li>
-												<li><a href="#">Cras vitae metus aliquam  pharetra.</a></li>
-											</ul>
-										</section>
-									</div>
-								</section>
-							</div>
-							<div class="4u">
-								<section>
-									<header class="major">
-										<h2>Donec dictum metus</h2>
-										<span class="byline">Mattis wisi maecenas ligula</span>
-									</header>
-									<ul class="contact">
-										<li>
-											<span class="address">Address</span>
-											<span>1234 Somewhere Road #4285 <br />Nashville, TN 00000</span>
-										</li>
-										<li>
-											<span class="mail">Mail</span>
-											<span><a href="#">someone@untitled.tld</a></span>
-										</li>
-										<li>
-											<span class="phone">Phone</span>
-											<span>(000) 000-0000</span>
-										</li>
-									</ul>	
-								</section>
-							</div>
-						</div>
-
-					<!-- Copyright -->
-						<div class="copyright">
-							Design: <a href="http://templated.co">TEMPLATED</a> Images: <a href="http://unsplash.com">Unsplash</a> (<a href="http://unsplash.com/cc0">CC0</a>)
-						</div>
-
-				</div>
-			</div>
+	
 		
 </body>
 <script type="text/javascript" src="js/ajaxCsrf.js"></script>
@@ -302,7 +262,7 @@ function pageShow(){
 	var str="";
 	$("#delivery").empty();
 	for(let i=0;i<result.length;i++){
-		str+="<tr>";
+		str+="<tr style='margin-bottom:5px;'>";
 		str+="<td style='text-align: center; vertical-align:middle;'>";
 		str+="<div class='checkbox checkbox-inline checkbox-success checkbox-md'>";
 		str+="<input type='checkbox' class='styled' id='"+i+"'  "
@@ -313,7 +273,7 @@ function pageShow(){
 		str+="<div class='deliveryimgdiv'><img src='"+result[i].bk_image+"' class='deliveryimg'></div>";
 		str+="</td>";
 		str+="<td class='recotd'>";
-		str+="<span class='bname'>"+result[i].bk_name+"</span>";
+		str+="<span class='bname'>"+result[i].bk_name+"</span><br>";
 		str+="<input type='hidden' name='de_code' value='"+result[i].de_code+"'";
 		str+="<br>저자 : "+result[i].bk_writer+"";
 		str+="<br>출판사 : "+result[i].bk_publisher+"";
@@ -349,18 +309,24 @@ $("div").on("change",".styled",function(){ //체크박스 클릭시 배송비 �
 	console.log("de_lcode",$(this).data("delcode"));
 	console.log("de_quantity",$(this).data("quantity"));
 	let temp=0;
-	let lib=new Array();;
+	let lib=new Array();
 	$('.styled:checked').each(function() {
 		temp+=$(this).data("quantity");
 		lib.push($(this).data("delcode"));
    });
+	let uniqueLib = new Array();
+	
+	$.each(lib, function(i, el){
+	    if($.inArray(el, uniqueLib) === -1) uniqueLib.push(el);
+	});
+	
 	console.log("temp",temp);
 	console.log("lib",lib);
-	console.log("유니크",$.unique(lib).length);
+	console.log("유니크",uniqueLib);
 	
 	//$("#cnt").text(temp);
-	$("#libCnt").text($.unique(lib).length);
-	$("#total").text($.unique(lib).length*5000+"원");
+	$("#libCnt").text(uniqueLib.length);
+	$("#total").text(uniqueLib.length*5000+"원");
 	
 });
 
@@ -372,6 +338,7 @@ $("#apply").on("click",function(){ //배송 신청 버튼 클릭시 작동하는
 	pointCheck();
 	let temp=0;
 	let lib=new Array();
+	let uniqueLib=new Array();
 	let allData = new Array();
 	console.log("borrowCnt:",borrowCnt);
 	$('.styled:checked').each(function() {
@@ -383,6 +350,11 @@ $("#apply").on("click",function(){ //배송 신청 버튼 클릭시 작동하는
 		temp+=Number($(this).data("quantity")); //총 권수
 		lib.push($(this).data("delcode")); //도서관 개수
    });
+	
+	$.each(lib, function(i, el){
+	    if($.inArray(el, uniqueLib) === -1) uniqueLib.push(el);
+	});
+	
 	console.log("alldata",allData);
 	
 	if($('.styled:checked').length==0){
@@ -427,7 +399,7 @@ $("#apply").on("click",function(){ //배송 신청 버튼 클릭시 작동하는
 	$.ajax({ //배송 신청하러 가는 에이작스
 		url : "borrowlistinsert",
 		type : "post",
-		data : {"json" : JSON.stringify(allData), "pl_inout" : $.unique(lib).length*5000},
+		data : {"json" : JSON.stringify(allData), "pl_inout" : uniqueLib.length*5000},
 		dataType:'text'
 		
 }).done((result) => {
@@ -498,8 +470,8 @@ function pointCheck(){ //사용자 포인트 가져오는 메소드
 }); //ajax End
 }
 
-$(document).on("click",".btn",function(){//삭제 버튼 클릭시
-	
+$(document).on("click",".myButton",function(){//삭제 버튼 클릭시
+	alert("삭제");
 	var data = {};
 	data.de_code = $(this).data("decode");
 	data.de_lcode = $(this).data("delcode");
