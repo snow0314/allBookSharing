@@ -30,7 +30,6 @@
 @import url(//fonts.googleapis.com/earlyaccess/jejugothic.css);
 body{font-family: 'Jeju Gothic', sans-serif;}
 </style>
-
 </head>
 
 <body>

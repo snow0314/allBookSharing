@@ -41,7 +41,6 @@
 #pagination {
 	text-align: center;
 }
-
 body{font-family: 'Jeju Gothic', sans-serif;}
 </style>
 

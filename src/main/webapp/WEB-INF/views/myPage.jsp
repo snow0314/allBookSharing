@@ -143,7 +143,7 @@ background-color:#F0EAD6;
         margin-bottom: 5%;
         padding:0px;
 	}
-<<<<<<< HEAD
+
 	
 	#modal_detail{
 	cursor: pointer;
@@ -153,13 +153,16 @@ background-color:#F0EAD6;
 	#modal_detail:hover{
 	text-decoration: underline;
 	}
-=======
+
 #myinfotable{
 height:416px;
 font-family: 'Jeju Gothic', sans-serif;
 margin-left:15px;
 }
->>>>>>> fd988423f2a65331b55f31c7feba6ac2a5c7538f
+
+@import url(//fonts.googleapis.com/earlyaccess/jejugothic.css);
+body{font-family: 'Jeju Gothic', sans-serif;}
+
 </style>
 
 

@@ -3,6 +3,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <!-- jQuery library -->
@@ -30,6 +31,8 @@
    src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
    
 <style>
+@import url(//fonts.googleapis.com/earlyaccess/jejugothic.css);
+body{font-family: 'Jeju Gothic', sans-serif;}
 </style>
 </head>
 <body>
@@ -40,82 +43,81 @@
    </div>
 <form action="librarydelete" method="post">
 
-      <!-- <div class="col-lg-6" style="width:37%; float:left;">
-         <table class="table table-borderless">
-         
-         </table>
-      </div> -->
-      
-      <div class="container p-3 my-3 border" >
-      <div class="col-lg-10">
-         <table class="table table-borderless">
-         <tr>
-            <td>
-               <div id="sidebar" class="input-group mb-3">
-                  <div class="input-group-prepend">
-                     <span class="input-group-text" style="width:110.39px;">지역</span>
-                  </div>
-               <select name="lb_loc" id="lb_loc" onclick="getLocLibray()" style="width:532px;">
-                  <option selected>선택</option>
-               </select>
-               </div>
-            </td>
-            <td rowspan="7">
-               <span id="guide"
-                  style="color: #999; display: none"></span>
-                  <div id="map" style="width: 200%; height: 600px;"></div></td>
-         </tr>
-         
-         <tr>
-            <td>
-               <div id="sidebar2" class="input-group mb-3">
-                  <div class="input-group-prepend">
-                     <span class="input-group-text" style="width:110.39px;">도서관</span>
-                  </div>
-               <select name="br_lcode" id="lb_name" onchange="libraryinfo()" style="width:532px;">
-                  <option selected>선택</option>
-               </select>
-               </div>
-            </td>
-         </tr>
-         <tr>
-            <td>
-                  <div class="input-group mb-3">
-                     <div class="input-group-prepend">
-                        <span class="input-group-text">도서관 코드</span>
-                     </div>
-                     <input type="text" class="form-control" id="lb_code"
-                        name="lb_code" readonly="readonly">
-                  </div>
-               </td>
-               
-            </tr>
-            
-            <tr>
-               <td>
-                  <div class="input-group mb-3">
-                     <div class="input-group-prepend">
-                        <span class="input-group-text" style="width:110.39px;">전화번호</span>
-                     </div>
-                     <input type="number" class="form-control" id="lb_phone"
-                        name="lb_phone" required="required">
-                  </div>
-               </td>
-            </tr>
-            
-            <tr>
-               <td>
-                  <div class="input-group mb-3">
-                     <div class="input-group-prepend">
-                        <span class="input-group-text" style="width:110.39px;">이메일</span>
-                     </div>
-                     <input type="email" class="form-control" id="lb_email"
-                        name="lb_email" required="required">
-                  </div>
-               </td>
-            </tr>
-            
-            <tr>
+		<!-- <div class="col-lg-6" style="width:37%; float:left;">
+			<table class="table table-borderless">
+			
+			</table>
+		</div> -->
+		
+		<div class="container p-3 my-3 border" >
+		<div class="col-lg-10">
+			<table class="table table-borderless">
+			<tr>
+				<td>
+					<div id="sidebar" class="input-group mb-3">
+						<div class="input-group-prepend">
+							<span class="input-group-text" style="width:110.39px;">지역</span>
+						</div>
+					<select name="lb_loc" id="lb_loc" onclick="getLocLibray()" style="width:532px;">
+						<option selected>선택</option>
+					</select>
+					</div>
+				</td>
+			</tr>
+			
+			<tr>
+				<td>
+					<div id="sidebar2" class="input-group mb-3">
+						<div class="input-group-prepend">
+							<span class="input-group-text" style="width:110.39px;">도서관</span>
+						</div>
+					<select name="br_lcode" id="lb_name" onchange="libraryinfo()" style="width:532px;">
+						<option selected>선택</option>
+					</select>
+					</div>
+				</td>
+			</tr>
+			<tr>
+				<td>
+						<div class="input-group mb-3">
+							<div class="input-group-prepend">
+								<span class="input-group-text">도서관 코드</span>
+							</div>
+							<input type="text" class="form-control" id="lb_code"
+								name="lb_code" readonly="readonly">
+						</div>
+					</td>
+					<td rowspan="5"><span id="guide"
+						style="color: #999; display: none"></span>
+						<div id="map" style="width: 80%; height: 350px;"></div></td>
+				</tr>
+				
+				<tr>
+					<td>
+						<div class="input-group mb-3">
+							<div class="input-group-prepend">
+								<span class="input-group-text" style="width:110.39px;">전화번호</span>
+							</div>
+							<input type="number" class="form-control" id="lb_phone"
+								name="lb_phone" required="required">
+						</div>
+					</td>
+				</tr>
+				
+				<tr>
+					<td>
+						<div class="input-group mb-3">
+							<div class="input-group-prepend">
+								<span class="input-group-text" style="width:110.39px;">이메일</span>
+							</div>
+							<input type="email" class="form-control" id="lb_email"
+								name="lb_email" required="required">
+						</div>
+					</td>
+				</tr>
+				
+				<tr>
+
 
                <td><label for="lb_address">주소</label> <input type="text"
                   id="lb_postcode" name="lb_postcode" class="form-control"

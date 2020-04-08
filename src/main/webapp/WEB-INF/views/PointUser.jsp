@@ -15,6 +15,8 @@
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
 
 <style>
+@import url(//fonts.googleapis.com/earlyaccess/jejugothic.css);
+body{font-family: 'Jeju Gothic', sans-serif;}
 #point {
 	align-content: center;
 }

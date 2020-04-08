@@ -199,6 +199,9 @@ font-size:25px;
 #apply{
 font-size:20px;
 }
+
+@import url(//fonts.googleapis.com/earlyaccess/jejugothic.css);
+body{font-family: 'Jeju Gothic', sans-serif;}
 </style>
 
 <body>

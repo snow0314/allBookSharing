@@ -29,6 +29,9 @@
     margin-left: 300px;
     margin-top: 40px;
    }
+ 
+@import url(//fonts.googleapis.com/earlyaccess/jejugothic.css);
+body{font-family: 'Jeju Gothic', sans-serif;}
 </style>
 
 </head>

@@ -4,6 +4,10 @@
 <html lang="en">
 
 <head>
+<style>
+@import url(//fonts.googleapis.com/earlyaccess/jejugothic.css);
+body{font-family: 'Jeju Gothic', sans-serif;}
+</style>
     <!-- Required meta tags-->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -36,7 +40,6 @@
 
     <!-- Main CSS-->
     <link href="adminPage/css/theme.css" rel="stylesheet" media="all">
-
 </head>
 
 <body class="animsition">
@@ -107,11 +110,6 @@
                             </ul>
                         </li>
 
-                        <li class="has-sub">
-                            <a class="js-arrow" href="#">
-                                <i class="fas fa-chart-bar"></i>도서관별 대출 현황</a>
-                       
-                       </li>
                         </ul>
                 </nav>
             </div>

@@ -7,8 +7,6 @@
 <head>
 <meta charset="UTF-8">
 <title>사서등록</title>
-<h1 style="">사서등록</h1>
-<hr/>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
@@ -20,23 +18,7 @@
 
 
 <style>
-#id2{
-display:flex;
 
-}
-form {
-   margin: auto;
-   height: 50%;
-   width: 810px;
-   padding: 30px;
-}
-
-#hag{
-
-padding: 5px 0;
-width: 100px;
-font-size: 17px;
-}
 #id_check {
    all:unset;
    color: #000000;
@@ -52,75 +34,105 @@ font-size: 17px;
    display: inline-block;
    border: none;
    cursor:pointer;
-   height: 43px;
+   height: 30px;
    width: 120px;
+   
+@import url(//fonts.googleapis.com/earlyaccess/jejugothic.css);
+body{font-family: 'Jeju Gothic', sans-serif;}
 }
-#id{
-width: 200px;
-}
+
 
 </style>
 </head>
 <body>
- 
-   <div id="div">
-		<form method="post">
-			<div id="join_background">
-				<table class="table table-bordered">
-				<tbody>
-					<tr>
-						<td width="180px">아이디</td>
-						<td><input type="text" name="la_id" maxlength="20" id="id" required>
-						<span id="result"></span></td>
-						<td colspan="2" ><input id="id_check" type="button" value="중복확인">
-						</td>
-					</tr>
-					<tr>
-						<td>비밀번호</td>
-						<td colspan="3">
+<div class="container p-3 my-3 border" style="text-align: center" >
+		<h3>사서 계정 등록</h3>
+	</div>
+<form method="post">
+		<div class="container p-3 my-3 border" >
+		<div class="col-lg-6">
+			<table class="table table-borderless">
+			<tr>
+				<td>
+				<div class="input-group mb-3">
+					<div class="input-group-prepend">
+						<span class="input-group-text" style="width:120.39px;height: 38px;">아이디</span>
+					</div>
+				<input type="text" name="la_id" maxlength="20" id="id" required style="height:38px;"/>
+				
+				<input id="id_check" type="button" value="중복확인"/>
+					</div>
+					<span id="result"></span>
+				</td>
+			</tr>
+			
+		<tr>
+			<td>
+				<div class="input-group mb-3">
+					<div class="input-group-prepend">
+						<span class="input-group-text" style="width:120.39px;">비밀번호</span>
+					</div>
 						<input type="password" name="la_pw" maxlength="30" id="pw">
-						</td>
-					</tr>
+					</div>
+			</td>
+		</tr>
 
-					<tr>
-						<td>비밀번호체크</td>
-						<td colspan="3">
-						<input type="password" maxlength="30" id="pwcheck">
-						</td>		
-					</tr>
 					
-					<tr>
-						<td>도서관 이름</td>
-						<td colspan="3">
+		<tr>
+			<td>
+				<div class="input-group mb-3">
+					<div class="input-group-prepend">
+						<span class="input-group-text" style="width:120.39px;">비밀번호 확인</span>
+					</div>
+						<input type="password" maxlength="30" id="pwcheck">
+					</div>
+			</td>
+		</tr>
+					
+		<tr>
+			<td>
+				<div class="input-group mb-3">
+					<div class="input-group-prepend">
+						<span class="input-group-text" style="width:120.39px;">도서관</span>
+					</div>
 					<select id="lb_name" name="lb_name" style="width:170px;">
 						<option value="">선택</option>		
 					</select>
-					</td>
-				</tr>
+				</div>
+			</td>
+		</tr>
 
-				<tr>
-						<td>도서관 코드</td>
-						<td colspan="3">
-						<input type="text" name="la_lcode" maxlength="30" readonly="readonly" id="lb">
-						</td>
-					</tr>
-					<tr>
-						<td>도서관 지역</td>
-						<td colspan="3">
-						<input type="text" name="la_loc" maxlength="30" readonly="readonly" id="lb2">
-						</td>
-					</tr>
-					
-			
-	</tbody>
+		<tr>
+			<td>
+				<div class="input-group mb-3">
+					<div class="input-group-prepend">
+						<span class="input-group-text">도서관 코드</span>
+					</div>
+					<input type="text" name="la_lcode" class="form-control" maxlength="30" readonly="readonly" id="lb" readonly="readonly">
+				</div>
+			</td>
+		</tr>
+		
+		<tr>
+			<td>
+				<div class="input-group mb-3">
+					<div class="input-group-prepend">
+						<span class="input-group-text" style="width:110.39px;">지역</span>
+				</div>
+					<input type="text" name="la_loc" maxlength="30" class="form-control" readonly="readonly" id="lb2">
+				</div>
+			</td>
+		</tr>
+		
+		<tr>
+			<td><input type="hidden" name="_csrf" value="${_csrf.token}">
+			<input class="btn btn-outline-success" type="submit" value="등록"  id="hag" formaction="librarianinsert">
+			<input id="hag"class="btn btn-outline-success" type="submit" value="취소" formaction="./"></td>
+		</tr>
 </table>
-
-				<input class="btn" type="submit" value="확인"  id="hag" formaction="librarianinsert"> 
-				<input id="hag"class="btn" type="submit" value="취소" formaction="./">
-				<input type="hidden" name="_csrf" value="${_csrf.token}">
-			</div>
-		</form>
-	</div>
+</div>
+</div>
+</form>
 <script>
 var data;
 
