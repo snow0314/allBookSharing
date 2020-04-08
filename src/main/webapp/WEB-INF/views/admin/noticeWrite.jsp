@@ -47,7 +47,7 @@ body{font-family: 'Jeju Gothic', sans-serif;}
 <div id="content">
 <textarea class="form-control" name="no_content" id="p_content"></textarea>
 </div>
-<div style="margin-top:70px;">
+<div style="margin-top:50px; margin-right:200px; float: right;">
 <input type="submit" id="sub_btn" value="등록" class="btn btn-success" style="margin-right:50px;" formaction="noticewrite?${_csrf.parameterName}=${_csrf.token}"/>
 <input type="button"  value="취소" class="btn btn-success" onclick="goBack();"/>
 </div>

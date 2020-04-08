@@ -29,7 +29,7 @@ body{font-family: 'Jeju Gothic', sans-serif;}
 		$("#foo-table").DataTable({
 			"info" : true,
 			"order" : [ [ 0, 'desc' ] ], // asc 또는 desc
-			"dom" : '<"top"il>t<"bottom"prf><"clear">',
+			"dom" : '<"top"ilrf>t<"bottom"p><"clear">',
 			"language" : {
 				"emptyTable" : "데이터가 없어요.",
 				"info" : "현재 _START_ - _END_ / _TOTAL_건",
@@ -91,7 +91,7 @@ body{font-family: 'Jeju Gothic', sans-serif;}
 		</table>
 
 	</div>
-	<div align="center" style="margin-top: 10px;">
+	<div align="center" style="margin-right: 150px; float: right;" >
 	<form action="movenoticewrite?${_csrf.parameterName}=${_csrf.token}"
 		method="post">
 		<input type="submit" value="글쓰기" id="btn" class="btn btn-default btn-lg">
