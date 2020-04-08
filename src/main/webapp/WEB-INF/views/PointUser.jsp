@@ -22,7 +22,7 @@
 <body>
 		<jsp:include page="header.jsp" />
 	<form method="POST">
-		<div class="container">
+		<div class="container" style="margin-top: 50px;">
 			<table class="table">
 				<thead class="thead-dark">
 					<tr>
@@ -58,8 +58,8 @@
 						<td>50000point + 20000point</td>
 					</tr>
 					<tr>
-					<td><p><button type="submit" class="btn btn-secondary btn-lg" formaction="movemypage">뒤로가기</button></p></td>
-					<td><p><button type="submit" class="btn btn-secondary btn-lg" formaction="okpoint">결제하기</button></p></td>
+					<td colspan="3" style='text-align: center;'><button type="submit" class="btn btn-secondary btn-lg" formaction="movemypage">뒤로가기</button>
+					<button type="submit" class="btn btn-secondary btn-lg" formaction="okpoint">결제하기</button></td>
 					</tr>
 				</tbody>
 			</table>
