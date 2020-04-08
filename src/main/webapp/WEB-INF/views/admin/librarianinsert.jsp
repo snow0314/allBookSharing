@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
    pageEncoding="UTF-8"%>
-   <%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
+ <%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 
 <!DOCTYPE html>
 <html>
@@ -16,9 +16,29 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css" integrity="sha256-ENFZrbVzylNbgnXx0n3I1g//2WeO47XxoPe0vkp3NC8=" crossorigin="anonymous" />
 <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js" integrity="sha256-3blsJd4Hli/7wCQ+bmgXfOdK7p/ZUMtPXY08jmxSSgk=" crossorigin="anonymous"></script>
 
-
 <style>
 @import url(//fonts.googleapis.com/earlyaccess/jejugothic.css);
+
+body{font-family: 'Jeju Gothic', sans-serif;}
+
+#id2{
+display:flex;
+
+}
+form {
+   margin: auto;
+   height: 50%;
+   width: 810px;
+   padding: 30px;
+}
+
+#hag{
+
+padding: 5px 0;
+width: 100px;
+font-size: 17px;
+}
+
 #id_check {
    all:unset;
    color: #000000;

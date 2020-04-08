@@ -48,8 +48,8 @@ body{font-family: 'Jeju Gothic', sans-serif;}
         <!-- MENU SIDEBAR-->
         <aside class="menu-sidebar d-none d-lg-block">
             <div class="logo">
-                <a href="#">
-                    <img src="images/logo.jpg" alt="Cool Admin" style="height: 100%"; width="100%"/>
+                <a href="librarymain">
+                    <img src="adminPage/images/icon/logo.png" alt="도서관" />
                 </a>
             </div>
             <div class="menu-sidebar__content js-scrollbar1">
@@ -57,7 +57,7 @@ body{font-family: 'Jeju Gothic', sans-serif;}
                     <ul class="list-unstyled navbar__list">
                         <li class="has-sub">
                             <a class="js-arrow" href="librarymain">
-                                <i class="fas fa-tachometer-alt" ></i>Dashboard</a>
+                                <i class="fas fa-tachometer-alt" ></i>사서메인</a>
                             <ul class="navbar-mobile-sub__list list-unstyled js-sub-list">
 
                             </ul>
@@ -204,6 +204,7 @@ body{font-family: 'Jeju Gothic', sans-serif;}
 
                         <div class="row" style="height: 1000px">
                             <div class="col-md-12" >
+
                                     <iframe id="contents" name="contents" width="100%" height="100%" src="images/library.jpg">
                                     
                                     </iframe>

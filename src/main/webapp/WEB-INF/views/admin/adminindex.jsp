@@ -40,6 +40,7 @@ body{font-family: 'Jeju Gothic', sans-serif;}
 
     <!-- Main CSS-->
     <link href="adminPage/css/theme.css" rel="stylesheet" media="all">
+
 </head>
 
 <body class="animsition">
