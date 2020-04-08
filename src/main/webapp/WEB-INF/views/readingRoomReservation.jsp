@@ -32,6 +32,10 @@
 <script
 	src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
 <style>
+@import url(//fonts.googleapis.com/earlyaccess/hanna.css);
+@import url(//fonts.googleapis.com/earlyaccess/jejugothic.css);
+@import url(//fonts.googleapis.com/earlyaccess/notosanskr.css);
+@import url(//fonts.googleapis.com/earlyaccess/nanumgothiccoding.css);
 .btn-group-toggle label {
 	width: 70px;
 	height: 70px;
@@ -81,19 +85,20 @@ float:right;
 <body>
 	<jsp:include page="header.jsp" />
 	<div style="text-align: center;">
-		<h1>${libName}</h1>
+	
 	</div>
-	<div class="row">
-
-			<nav id="submenu">
+	<nav id="submenu">
 				<button class="subtopbtn" disabled>
 					<h2>열람실</h2>
 				</button>
 		
 			</nav>
 		
-		<div class="col-9" style="padding-right: 50px;">
-			<div class="p-3 my-3 border">
+	
+	<div class="row" style="margin-bottom:10%;">
+				<h1 style="font-family: 'Hanna', sans-serif;margin-left:34%;margin-top:30px;">${libName}</h1>
+		<div class="col-9">
+			<div class="p-3 my-3 border"  style="width: 90%;margin-left:15%;">
 				<div class="input-group mb-3">
 					<div class="input-group-prepend">
 						<span class="input-group-text">열람실 이름</span>
@@ -143,7 +148,7 @@ float:right;
 				</div>
 
 			</div>
-			<div class="p-3 my-3 border" style="text-align: center">
+			<div class="p-3 my-3 border" style="text-align: center;width: 90%;margin-left:15%;margin-bottom:10%;">
 				<div id="seats" class="btn-group-toggle" data-toggle="buttons">
 
 				</div>
