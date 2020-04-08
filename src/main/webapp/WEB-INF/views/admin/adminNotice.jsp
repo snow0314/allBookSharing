@@ -3,6 +3,10 @@
 <!DOCTYPE html>
 <html>
 <head>
+<style>
+@import url(//fonts.googleapis.com/earlyaccess/jejugothic.css);
+body{font-family: 'Jeju Gothic', sans-serif;}
+</style>
 <meta charset="UTF-8">
 <title>공지사항</title>
 <!-- jquery -->

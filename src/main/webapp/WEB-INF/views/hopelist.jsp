@@ -46,6 +46,8 @@
     <style>
     @import url(//fonts.googleapis.com/earlyaccess/hanna.css);
     @import url(//fonts.googleapis.com/earlyaccess/nanumgothiccoding.css);
+    @import url(//fonts.googleapis.com/earlyaccess/jejugothic.css);
+    
     #submenu {
   		float: left;
   		width: 15%;
@@ -76,12 +78,13 @@ background-color:#F0EAD6;
  #totalsearchlist{
 		float:right;
 		background-color:white;
-		width:65%;
+		width:60%;
 		height:auto;
-		margin-right: 8%;
+		margin-right: 10%;
         margin-top:2%;
         margin-bottom: 5%;
         padding:0px;
+        font-family: 'Jeju Gothic', sans-serif;
 	}
 	#foo-table_paginate{
 text-align: center;
@@ -90,6 +93,9 @@ text-align: center;
 #modal_detail{
 cursor: pointer;
 }
+
+@import url(//fonts.googleapis.com/earlyaccess/jejugothic.css);
+body{font-family: 'Jeju Gothic', sans-serif;}
     </style>
     
 </head>
@@ -107,7 +113,7 @@ cursor: pointer;
 <main id="totalsearchlist">
 
 		<div>
-		<h1 style="margin-bottom:80px;">희망 도서 목록</h1>
+		<h1 style="font-family: 'Hanna', sans-serif;margin-bottom: 30px;margin-top:4%;">희망 도서 목록</h1>
 		<hr />
 <table id="foo-table" class="table table-bordered">
 		<thead>

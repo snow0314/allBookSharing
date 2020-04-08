@@ -199,6 +199,9 @@ font-size:25px;
 #apply{
 font-size:20px;
 }
+
+@import url(//fonts.googleapis.com/earlyaccess/jejugothic.css);
+body{font-family: 'Jeju Gothic', sans-serif;}
 </style>
 
 <body>
@@ -470,8 +473,8 @@ function pointCheck(){ //사용자 포인트 가져오는 메소드
 }); //ajax End
 }
 
-$(document).on("click",".btn",function(){//삭제 버튼 클릭시
-	
+$(document).on("click",".myButton",function(){//삭제 버튼 클릭시
+	alert("삭제");
 	var data = {};
 	data.de_code = $(this).data("decode");
 	data.de_lcode = $(this).data("delcode");

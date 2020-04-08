@@ -15,6 +15,7 @@
 <style>
 @import url(//fonts.googleapis.com/earlyaccess/jejugothic.css);
 body{font-family: 'Jeju Gothic', sans-serif;}
+
    #content{
     width: 900px;
     height: 650px;
@@ -31,6 +32,7 @@ body{font-family: 'Jeju Gothic', sans-serif;}
     margin-left: 300px;
     margin-top: 40px;
    }
+body{font-family: 'Jeju Gothic', sans-serif;}
 </style>
 
 </head>

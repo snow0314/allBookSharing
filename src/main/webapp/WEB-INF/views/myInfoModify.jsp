@@ -44,10 +44,20 @@
 
 
 <style>
+@import url(//fonts.googleapis.com/earlyaccess/hanna.css);
+@import url(//fonts.googleapis.com/earlyaccess/nanumgothiccoding.css);
+@import url(//fonts.googleapis.com/earlyaccess/notosanskr.css);
+@import url(//fonts.googleapis.com/earlyaccess/jejugothic.css);
+#mb_area{
+display:inline;
+width:150px;
+height:42px;
+margin-left:10px;
+}
 #table{
-width: 700px;
+width: 60%;
 border: red;
-margin-left: 400px;
+margin-left: 20%;
 }
 #mb_id{
 width: 200px;
@@ -62,24 +72,52 @@ height: 250px;
 text-align: center;
 }
 #pw1{
-width: 200px;
+width: 400px;
+height:42px;
 }
 #pw2{
-width: 200px;
+width: 400px;
+height:42px;
+display:inline;
 }
 #div_btn{
 margin-left: 550px;
 }
-#btn{
-padding:5px;
-width: 50px;
-}
+
 #pw_btn{
 	padding: 5px;
 	margin-top: 5px;
 	width: 100px;
-	font-size: 15px;
+	font-size: 17px;
+	display:inline;
+	margin-left:20px;
+	background-color:#17a2b8;
+   color:white;
+   border-radius:4px;
 }
+#modify{
+margin-left:17%;
+font-size:20px;
+background-color:#17a2b8;
+color:white;
+border-radius:4px;
+padding:5px;
+}
+#delete{
+font-size:20px;
+background-color:#17a2b8;
+color:white;
+border-radius:4px;
+padding:5px;
+}
+#area{
+width: 400px;
+height:42px;
+display:inline;
+}
+
+@import url(//fonts.googleapis.com/earlyaccess/jejugothic.css);
+body{font-family: 'Jeju Gothic', sans-serif;}
 </style>
 </head>
 <body>
@@ -88,33 +126,34 @@ width: 50px;
 <jsp:include page="header.jsp" />
 
 <div id="div_body">
-<form action="./profilecomplet?${_csrf.parameterName}=${_csrf.token}" enctype="multipart/form-data"  method="post">
+<form action="./profilecomplet?${_csrf.parameterName}=${_csrf.token}" enctype="multipart/form-data"  method="post" style="padding:50px 0;">
+<h1 style="font-family: 'Hanna', sans-serif;margin-bottom: 30px;margin-left:20%; ㅡ">개인정보 수정</h1>
 <table id="table" class="table table-bordered">
     <tbody>
     
      <tr>
-        <td id="pro_img"><label for="profile"><img id="show_profile" src="/img/profile/${mb.us_image }" width="150" height="220" alt="프로필 사진"/></label></td>
+        <td id="pro_img" style="font-family: 'Hanna', sans-serif;font-size:20px;"><label for="profile"><img id="show_profile" style="width:200px;" src="/img/profile/${mb.us_image }"  alt="프로필 사진"/></label></td>
         <td colspan="2"><input type="file" id="profile" class="form-control" name="us_image" accept=".jpg,.jpeg,.png,.gif,.bmp"><span class="help-block"
 				id="helper_profile">1mb이하만 가능</span></td>
       </tr>
     
       <tr>
-        <th>아이디</th>
+        <th style="text-align:center;font-family: 'Hanna', sans-serif;font-size:20px;">아이디</th>
         <td colspan="2"><input id="mb_id" type="text" name="mb_id"  value="${mb.mb_id}" readOnly></td>
       </tr>
       <tr>
-        <td>비밀번호</td>
+        <td style="text-align:center;font-family: 'Hanna', sans-serif;font-size:20px;">비밀번호</td>
         <td colspan="2"><input type="password" name="mb_pw" id="pw1" ></td>
       </tr>
       <tr>
-        <td>비밀번호 확인</td>
+        <td style="text-align:center;font-family: 'Hanna', sans-serif;font-size:20px;">비밀번호 확인</td>
         <td colspan="2"><input type="password" id="pw2" ><span id="pwCheck"></span><input type="button" id='pw_btn' value='비밀번호 변경' /></td>
       </tr>
       
       <tr>
-            <td><b>지역선택:</b></td>
-            <td><input type="text" id='area' readOnly name="mb_area" value="${mb.mb_area}" /></td>
-            <td><select id="mb_area" class="foot1">
+            <td style="text-align:center;font-family: 'Hanna', sans-serif;font-size:20px;">지역선택</td>
+            <td><input type="text" id='area' readOnly name="mb_area" value="${mb.mb_area}" />
+            <select id="mb_area" class="foot1">
                    <option value="">선택</option>
                   <option value="서울">서울</option>
                   <option value="인천">인천</option>
@@ -152,18 +191,18 @@ width: 50px;
          </tr>
       
       <tr>
-        <td>주소</td>
-        <td colspan="2"><input type="text" name="us_address" value="${mb.us_address}" required ></td>
+        <td style="text-align:center;font-family: 'Hanna', sans-serif;font-size:20px;">주소</td>
+        <td colspan="2"><input type="text" style="height:42px;"  name="us_address" value="${mb.us_address}" required ></td>
       </tr>
       
       <tr>
-        <td>핸드폰</td>
-        <td colspan="2"><input type="text" name="us_phone" value="${mb.us_phone}" required></td>
+        <td style="text-align:center;font-family: 'Hanna', sans-serif;font-size:20px;">핸드폰</td>
+        <td colspan="2"><input type="text" style="height:42px;" name="us_phone" value="${mb.us_phone}" required></td>
       </tr>
       
       <tr>
-        <td>이메일</td>
-        <td colspan="2"><input type="text" name="us_email" value="${mb.us_email}" required></td>
+        <td style="text-align:center;font-family: 'Hanna', sans-serif;font-size:20px;">이메일</td>
+        <td colspan="2"><input type="text" style="height:42px;" name="us_email" value="${mb.us_email}" required></td>
       </tr>
       
       
@@ -171,13 +210,17 @@ width: 50px;
   </table>
         <input type="hidden" id="_csrf" name="_csrf" value="${_csrf.token}">
   <div id="div_btn">
-  <input id="btn" type="submit" value="수정" />
-  <input id="btn" type="submit" value="취소" formaction="movemypage" />
+  <input id="modify" type="submit" value="수정" />
+  <input id="delete" type="button" value="취소" onclick="pageBack()" />
   </div>
 </form>
 </div>
 
 <script>
+function pageBack(){
+	
+	history.back();
+}
 //지역선택
 $("#mb_area").on('change', function(){
 	console.log($("#mb_area").val());

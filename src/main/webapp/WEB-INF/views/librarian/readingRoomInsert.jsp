@@ -39,23 +39,27 @@
 <script
    src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
 
+
+
 <style>
+@import url(//fonts.googleapis.com/earlyaccess/jejugothic.css);
 .btn-group-toggle label {
 	width: 70px;
 	height: 70px;
 }
+body{font-family: 'Jeju Gothic', sans-serif;}
 </style>
 
 </head>
 
 <body>
-	<form>
+	<form name='dragchkform'>
 		<div class="container p-3 my-3 border">
 			<div class="input-group mb-3">
 				<div class="input-group-prepend">
 					<span class="input-group-text">열람실 이름</span>
 				</div>
-				<input id="rm_name" name="rm_name" type="text" class="form-control">
+				<input id="rm_name" name="rm_name" type="text" class="form-control" placeholder="열람실 이름을 입력해 주세요">
 			</div>
 			<div class="row">
 				<div class="col-4">
@@ -85,16 +89,16 @@
 
 
 			<div class="col-md-4 ml-auto" style="text-align: right">
-				<button id="create_seat" type="button" class="btn btn-success">
+				<button id="create_seat" type="button" class="btn btn-outline-success">
 					<i class="fas fa-pen"></i>&nbsp; 좌석 생성
 				</button>
-				<button id="insert" type="button" class="btn btn-success">
-					<i class="fas fa-pen"></i>&nbsp; 등록
+				<button id="insert" type="button" class="btn btn-outline-primary">
+					<i class="fas fa-paper-plane"></i>&nbsp; 등록
 				</button>
 			</div>
 
 		</div>
-		<div class="container p-3 my-3 border" style="text-align: center">
+		<div class="container-fluid" style="text-align: center">
 			<div id="seats" class="btn-group-toggle" data-toggle="buttons">
 
 			</div>
@@ -107,6 +111,10 @@
 <script>
 
 		$("#insert").on("click", function() { //열람실 등록 메소드
+			if($("#rm_name").val() == ""){
+				alert("열람실 이름을 입력해 주세요");
+				return false;
+			}
 			let data={};
 			let name=$("#rm_name").val(); //열람실 이름
 			let col = $("#rm_col").val(); //행
@@ -131,7 +139,7 @@
 				checkbox.push(temp);
 	        });
 			data.seats=checkbox;
-	        
+	        console.log("등록:",data);
 	        $.ajax({ 
 				url : "libraryreadingroominsert",
 				type : "post",
@@ -174,6 +182,8 @@
                 }
                $("<br>").appendTo($("#seats"));
             }
+            
+            
         });
 
         $("#seats").on("click","input",function(e){ //좌석 클릭시 checked 변경 및 총 좌석수 계산
@@ -188,8 +198,17 @@
             $('input:checkbox[name=seat]:checked').length;
             
             $("#total_seat").val($('input:checkbox[name=seat]:checked').length);
-         
-        });    
+         	
+            
+        });   
+        
+        
 
-    </script>
+      
+ 
+   </script>    
+
+    
+    
+    
 </html>

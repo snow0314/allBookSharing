@@ -4,6 +4,10 @@
 <html lang="en">
 
 <head>
+<style>
+@import url(//fonts.googleapis.com/earlyaccess/jejugothic.css);
+body{font-family: 'Jeju Gothic', sans-serif;}
+</style>
     <!-- Required meta tags-->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -37,10 +41,6 @@
     <!-- Main CSS-->
     <link href="adminPage/css/theme.css" rel="stylesheet" media="all">
 
-<style type="text/css">
-@import url(//fonts.googleapis.com/earlyaccess/jejugothic.css);
-body{font-family: 'Jeju Gothic', sans-serif;}
-</style>
 </head>
 
 <body class="animsition">
@@ -58,7 +58,7 @@ body{font-family: 'Jeju Gothic', sans-serif;}
                 <nav class="navbar-sidebar">
                     <ul class="list-unstyled navbar__list">
                         <li class="has-sub">
-                            <a class="js-arrow" href="#">
+                            <a class="js-arrow" href="adminmain">
                                 <i class="fas fa-tachometer-alt"></i>Dashboard</a>
                             <ul class="navbar-mobile-sub__list list-unstyled js-sub-list">
 
@@ -111,11 +111,7 @@ body{font-family: 'Jeju Gothic', sans-serif;}
                             </ul>
                         </li>
 
-                        <li class="has-sub">
-                            <a class="js-arrow" href="#">
-                                <i class="fas fa-chart-bar"></i>도서관별 대출 현황</a>
-                       
-                       </li>
+                        </ul>
                 </nav>
             </div>
         </aside>
@@ -134,7 +130,7 @@ body{font-family: 'Jeju Gothic', sans-serif;}
                                 <div class="account-wrap">
                                     <div class="account-item clearfix js-item-menu">
                                         <div class="image">
-                                            <img src="./images/icia.jpg" />
+                                            <img src="./images/library logo2.jpg" />
                                         </div>
                                         <div class="content">
                                             <a class="js-acc-btn" href="#">mr.Pak</a>
@@ -143,7 +139,7 @@ body{font-family: 'Jeju Gothic', sans-serif;}
                                             <div class="info clearfix">
                                                 <div class="image">
                                                     <a href="#">
-                                                        <img src="./images/icia.jpg" />
+                                                        <img src="./images/library logo2.jpg" />
                                                     </a>
                                                 </div>
                                                 <div class="content">
@@ -246,7 +242,7 @@ body{font-family: 'Jeju Gothic', sans-serif;}
 
     <!-- Main JS-->
     <script src="adminPage/js/main.js"></script>
-
 	<script type="text/javascript" src="js/librarianMove.js"></script>
 </body></html>
 <!-- end document-->
+

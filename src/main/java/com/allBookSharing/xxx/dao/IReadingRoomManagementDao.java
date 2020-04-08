@@ -36,5 +36,8 @@ public interface IReadingRoomManagementDao { //ReadingRoomMapper.xml
 	
 	//선택한 열람실 좌석 예약 취소
 	boolean readingRoomCancel(Seats seat);
+	
+	//해당 열람실의 모든 예약 취소
+	boolean readingRoomAllCancel(int rm_code);
 
 }

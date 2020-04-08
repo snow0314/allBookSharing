@@ -35,13 +35,14 @@
 <style>
 @import url(//fonts.googleapis.com/earlyaccess/jejugothic.css);
 body{font-family: 'Jeju Gothic', sans-serif;}
-
 </style>
 
 </head>
 
 <body>
-<h1>도서관 등록</h1>
+<div class="container p-3 my-3 border" style="text-align: center" >
+		<h3>도서관 등록</h3>
+	</div>
 	<form action="libraryinsert" method="post">
 
 		<div class="container p-3 my-3 border">

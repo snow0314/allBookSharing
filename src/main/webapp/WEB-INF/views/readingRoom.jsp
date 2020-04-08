@@ -23,6 +23,8 @@
 
 	
 <style type="text/css">
+@import url(//fonts.googleapis.com/earlyaccess/jejugothic.css);
+body{font-family: 'Jeju Gothic', sans-serif;}
 	
 	table, th, td {
 	border: 3px solid #bcbcbc;

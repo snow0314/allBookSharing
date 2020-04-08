@@ -178,13 +178,13 @@ public class HomeController {
 	}
   
 	//회원등급 기준안내
-		@PreAuthorize("isAuthenticated()")
-		@RequestMapping(value="/membergrade")
-		public String membergrade() {
+	@PreAuthorize("isAuthenticated()")
+	@RequestMapping(value="/membergrade")
+	public String membergrade() {
 			
-			return "memberGrade";
+		return "memberGrade";
 
-		}
+	}
 
 	//도서관 일정보기 이동
 	@RequestMapping(value = "/libraryschedulemove")
@@ -194,6 +194,7 @@ public class HomeController {
 	}
 	
 	//배송신청 페이지 이동
+	@PreAuthorize("isAuthenticated()")
 	@RequestMapping(value = "/deliveryapplicationmove")
 	public String deliveryApplicationMove() {
 		

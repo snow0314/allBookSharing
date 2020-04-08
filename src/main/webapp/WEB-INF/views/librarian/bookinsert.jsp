@@ -33,6 +33,7 @@
 <!-- 페이징 처리 플러그인 CSS -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/paginationjs/2.1.4/pagination.css"/>	
 <style type="text/css">
+@import url(//fonts.googleapis.com/earlyaccess/jejugothic.css);
 img {
 	width: 300px;
 	height: 300px;
@@ -52,7 +53,7 @@ table {
 	background-color: blue;
 	
 }
-
+body{font-family: 'Jeju Gothic', sans-serif;}
 </style>
 </head>
 
@@ -189,7 +190,7 @@ table {
 					<tr>
 						<td colspan="2" style="text-align: right">
 							<input type="submit" id="insertBtn"
-								class="btn btn-outline-secondary btn-lg" value="등록">
+								class="btn btn-outline-success btn-lg" value="등록">
 							<input type="hidden" name="_csrf" value="${_csrf.token}">	
 						</td>
 						

@@ -7,6 +7,8 @@
 <style>
 @import url(//fonts.googleapis.com/earlyaccess/hanna.css);
 @import url(//fonts.googleapis.com/earlyaccess/nanumgothiccoding.css);
+@import url(//fonts.googleapis.com/earlyaccess/notosanskr.css);
+@import url(//fonts.googleapis.com/earlyaccess/jejugothic.css);
 .star-input>.input,
 .star-input>.input>label:hover,
 .star-input>.input>input:focus+label,
@@ -107,7 +109,8 @@
     vertical-align: middle;
 }
 #
-
+@import url(//fonts.googleapis.com/earlyaccess/jejugothic.css);
+body{font-family: 'Jeju Gothic', sans-serif;}
 -table_paginate{
 text-align: center;
 display:inline
@@ -150,9 +153,11 @@ background-color:#F0EAD6;
         margin-top:2%;
         margin-bottom: 5%;
         padding:0px;
+        font-family: 'Jeju Gothic', sans-serif;
 	}
 .bottom{
 width:100%;
+margin-top:10px;
 }
 #foo-table_filter{
 float:right;
@@ -314,7 +319,66 @@ window.onload = function(){
 	    console.log(list);
 	    var date = new Date();
 
-
+for(let i=0;i<list.length;i++){
+	var $tr= $("<tr>").appendTo($("#tb"));
+	$tr.append("<td>"+(i+1)+"</td>");
+	$tr.append("<td>"+list[i].lb_name+"</td>");
+	$tr.append("<td>"+list[i].bk_name+"</td>");
+	$tr.append("<td>"+moment(list[i].bd_date).format('YYYY년 MM월 DD일 HH시:mm분')+"</td>");
+	$tr.append("<td>"+moment(list[i].bd_return_date).format('YYYY MM DD HH:mm:ss')+"</td>");
+	if(list[i].bd_real_return_date == undefined){
+		$tr.append("<td>--------------</td>");
+	}else{
+		$tr.append("<td>"+moment(list[i].bd_real_return_date).format('YYYY MM DD HH:mm:ss')+"</td>");
+	}
+	
+	switch (list[i].bd_state_num) {
+	case 1:
+		$tr.append("<td style='color:blue;'>대출중</td>");
+		$tr.append("<td> </td>");
+		break;
+	case 2:
+		$tr.append("<td style='color:blue;'>배송신청</td>");
+		$tr.append("<td> </td>");
+		break;
+	case 3:
+		$tr.append("<td onclick='showReason(\""+list[i].bd_reason+"\")' style='color:red; cursor: pointer;'>배송취소</td>");
+		$tr.append("<td> </td>");
+		break;
+	case 4:
+		$tr.append("<td style='color:blue;'>배송완료</td>");
+		$tr.append("<td> </td>");
+		break;
+	case 5:
+		$tr.append("<td style='color:blue;'>반납신청</td>");
+		$tr.append("<td> </td>");
+		break;
+	case 6:
+		$tr.append("<td style='color:blue;'>반납완료</td>");
+		if(list[i].rv_contents != null){
+			$tr.append("<td><button id='modal_review' data-toggle='modal' data-target='#myModal' data-title='"+list[i].bk_name+"' data-code=\""+list[i].bk_code+"\">리뷰수정</button></td>");		
+		}else{
+			$tr.append("<td><button id='modal_review' data-toggle='modal' data-target='#myModal' data-title='"+list[i].bk_name+"' data-code=\""+list[i].bk_code+"\">리뷰쓰기</button></td>");		
+		}
+		
+		break;
+	case 7:
+		$tr.append("<td style='color:blue;'>반납완료</td>");
+		if(list[i].rv_contents != null){
+			$tr.append("<td><button id='modal_review' data-toggle='modal' data-target='#myModal' data-title='"+list[i].bk_name+"' data-code=\""+list[i].bk_code+"\">리뷰수정</button></td>");		
+		}else{
+			$tr.append("<td><button id='modal_review' data-toggle='modal' data-target='#myModal' data-title='"+list[i].bk_name+"' data-code=\""+list[i].bk_code+"\">리뷰쓰기</button></td>");					
+		}
+		
+		break;		
+	default:
+		break;
+	}
+	
+	
+	
+}
+=======
 	    for(let i=0;i<list.length;i++){
 	    	var $tr= $("<tr>").appendTo($("#tb"));
 	    	$tr.append("<td>"+(i+1)+"</td>");
@@ -371,6 +435,7 @@ window.onload = function(){
 	    		break;
 	    	}
 
+>>>>>>> 98cd7d27ee0fce3911c5a87c03c2563d9be2e4df
 
 }
 }// onload End

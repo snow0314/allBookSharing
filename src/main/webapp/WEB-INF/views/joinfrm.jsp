@@ -87,6 +87,9 @@ display: none;
 #id{
 width: 300px;
 }
+
+@import url(//fonts.googleapis.com/earlyaccess/jejugothic.css);
+body{font-family: 'Jeju Gothic', sans-serif;}
 </style>
 <script>
    //프사 출력하기 : 1 mb가 넘으면 오류
