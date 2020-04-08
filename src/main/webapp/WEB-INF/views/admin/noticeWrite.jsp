@@ -13,6 +13,7 @@
 <script type="text/javascript" src="./ckeditor/ckeditor.js"></script>
 
 <style>
+@import url(//fonts.googleapis.com/earlyaccess/jejugothic.css);
    #content{
     width: 900px;
     height: 650px;
@@ -29,8 +30,6 @@
     margin-left: 300px;
     margin-top: 40px;
    }
- 
-@import url(//fonts.googleapis.com/earlyaccess/jejugothic.css);
 body{font-family: 'Jeju Gothic', sans-serif;}
 </style>
 
