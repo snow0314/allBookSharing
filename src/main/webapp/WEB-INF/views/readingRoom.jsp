@@ -23,28 +23,26 @@
 
 	
 <style type="text/css">
+@import url(//fonts.googleapis.com/earlyaccess/hanna.css);
 @import url(//fonts.googleapis.com/earlyaccess/jejugothic.css);
-body{font-family: 'Jeju Gothic', sans-serif;}
-	
-	table, th, td {
-	border: 3px solid #bcbcbc;
-	font-size: 20px;
-}
+@import url(//fonts.googleapis.com/earlyaccess/notosanskr.css);
+@import url(//fonts.googleapis.com/earlyaccess/nanumgothiccoding.css);
+@import url(//fonts.googleapis.com/earlyaccess/kopubbatang.css);
+
+
 
 .table {
-    width: 75%;
-
+	border: 2px solid #223A5E;
+	font-size: 20px;
+	text-align: center;
+	width: 100%;
 }
 	
 	
-	
-	table{
-		text-align: center;
-		width: 100%;
-	}
+
 	a{
 		cursor: pointer;
-		color: #337AB7;
+		color: black;
 	}
 	
 	#submenu {
@@ -80,13 +78,72 @@ color:white;
 		float:right;
 		background-color:white;
 		width:65%;
-		height:auto;
 		margin-right: 8%;
         margin-top:2%;
-        margin-bottom: 5%;
+        margin-bottom: 10%;
         padding:0px;
 	}
+#libraryList {
+font-family: 'Jeju Gothic', sans-serif;
+border:none;
+font-size: 20px;
+text-align: center;
+width:95%;
+margin-left:2%;
+
+}
+#libraryList td{
+border:2px solid #223A5E;
+height:50px;
+padding:15px 0;
+}
+#libraryList td a{
+ text-decoration: none;
+ color:black;
+}
+#libraryList td a:hover{
+ text-decoration: none;
+ color:red;
+}
+
+#libraryList td a.active{
+color:blue;
+}
+
+#readingRoomList tr td {
+border:1px solid black;}
+hr{
+border:1px solid black;
+}
 	
+	
+#readingRoomList {
+font-family: 'Jeju Gothic', sans-serif;
+border:none;
+font-size: 20px;
+text-align: center;
+width:95%;
+margin-left:2%;
+
+}
+#readingRoomList td{
+border:2px solid #223A5E;
+height:50px;
+padding:15px 0;
+}
+
+#readingRoomList td a{
+ text-decoration: none;
+ color:black;
+}
+#readingRoomList td a:hover{
+ text-decoration: none;
+ color:red;
+}
+
+#readingRoomList td a.active{
+color:blue;
+}
 </style>
 	
 </head>
@@ -112,19 +169,21 @@ color:white;
 	</aside>
  	
  	<main id="totalsearchlist">
+ 	
  	<section>
-	<table class="table">
+ 	<h1 style="font-family: 'Hanna', sans-serif;margin-bottom:3%;margin-top:5px;">열람실 예약</h1>
+	<table class="table" style="margin-top:10px;">
 				<thead class="thead-dark">
 					<tr>
 						<th>열람실 예약안내</th>
 					</tr>
 				</thead>
 				<tbody>
-					<tr style="text-align: left;">
-						<th>
+					<tr style="text-align: center;">
+						<th style="font-family: 'Jeju Gothic', sans-serif;padding-top:30px;font-size:20px;">
 						 <p>
-						 1.근처 거주 지역을 선택하세요. ▶  &nbsp;
-						 2.인근 도서관을 선택하세요. ▶&nbsp;
+						 1.거주 지역을 선택하세요. ▶  &nbsp;
+						 2.도서관을 선택하세요. ▶&nbsp;
 						 3.이용하실 열람실을 선택하세요. ▶&nbsp;
 						 4.원하시는 좌석을 선택하세요.</p>
 						</th>
@@ -133,19 +192,21 @@ color:white;
 			</table>
 
 	
-					<select class="custom-select" id="lb_loc" name="lb_loc" style="border:5; color: black; width: 320px; margin-top: 20px;">
+					<select class="custom-select" id="lb_loc" name="lb_loc" style="border:5; color: black; width: 320px; margin-top: 20px;margin-left:2%;">
 						
-						<option selected>도서관이 위치한 지역을 선택해 주세요.</option>
+						<option selected>거주 지역을 선택해 주세요.</option>
 						
 					</select>
 					<br><br>
 			
-					<table id="libraryList" class="table" >
+					<table id="libraryList"  >
 					
 					</table>
+					
+		        	<div id="fdkfk"></div>
+			    
 			
-			
-					<table id="readingRoomList" class="table">
+					<table id="readingRoomList">
 					
 					</table>
 		
@@ -175,6 +236,8 @@ window.onload = function(){
 }
 
 
+
+
 $("#lb_loc").on("change", function(){ //지역 선택시 도서관 목록 보여주는 메소드
 	console.log("선택한 지역:",$(this).val());
 	
@@ -185,21 +248,25 @@ $("#lb_loc").on("change", function(){ //지역 선택시 도서관 목록 보여
 		dataType:'json'
 		
 }).done((result) => {
+	
 	console.log("result2=",result);
  	var info=result;
  	$("#libraryList").empty();
  	
  	let $tr;
 	for(var i=0;i<info.length;i++){
-		if(i%2 == 0){
+		$("#fdkfk").empty();
+		 $("#fdkfk").append("<hr style='border:1px solid black;width:95%;margin-left:2%;margin-bottom:30px;'>");
+		if(i%3 == 0){
 			$tr = $("<tr>").appendTo($("#libraryList"));
+			
 		}
 		
 		let $td = $("<td>").appendTo($tr);
-		$("<a href='javascript:readingRoomList("+info[i].lb_code+");'>").html(info[i].lb_name).appendTo($td);
+		$("<a class='atag' href='javascript:readingRoomList("+info[i].lb_code+");'>").html(info[i].lb_name).appendTo($td);
 		
 	} 
-	
+
 }).fail((xhr) => {
 	console.log("xhr=",xhr);
 }); //ajax End
@@ -207,7 +274,10 @@ $("#lb_loc").on("change", function(){ //지역 선택시 도서관 목록 보여
 }); //change End
 
 
-
+$("#libraryList").on("click",".atag",function(){
+	$(".atag").removeClass("active");
+	$(this).addClass('active');
+});	
 
 function readingRoomList(lb_code){ //도서관 클릭시 해당 도서관의 열람실 리스트 보여주는 메소드
 	console.log("lb_code=",lb_code)
@@ -226,7 +296,7 @@ function readingRoomList(lb_code){ //도서관 클릭시 해당 도서관의 열
  	
  	let $tr;
  	for(var i=0;i<info.length;i++){
-		if(i%2 == 0){
+		if(i%3 == 0){
 			$tr = $("<tr>").appendTo($("#readingRoomList"));
 		}
 		

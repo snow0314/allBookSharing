@@ -56,8 +56,12 @@ jQuery(function($) {
 </script>
 
 <style>
+
+@import url(//fonts.googleapis.com/earlyaccess/hanna.css);
 @import url(//fonts.googleapis.com/earlyaccess/jejugothic.css);
-body{font-family: 'Jeju Gothic', sans-serif;}
+@import url(//fonts.googleapis.com/earlyaccess/notosanskr.css);
+@import url(//fonts.googleapis.com/earlyaccess/nanumgothiccoding.css);
+
 #btn {
 	margin: 0 43%;
 }
@@ -105,6 +109,14 @@ color:white;
         margin-bottom: 5%;
         padding:0px;
 	}
+#foo-table_paginate{
+	display:inline;
+	margin-left:40%;
+}
+#foo-table_filter{
+	display:inline;
+	float:right;
+}
 </style>
 
 </head>
@@ -131,9 +143,9 @@ color:white;
 	
 	<main id="totalsearchlist">
 		<section>
-	<div style="width: 80%; margin: 0 10%;">
+	<div style="width: 95%; margin-left:2%;">
 		
-			<h3 style="margin-bottom: 50px;">공지사항</h3>
+			<h1 style="font-family: 'Hanna', sans-serif;">공지사항</h1>
 			<table id="foo-table" class="table table-bordered">
 				<thead>
 					<tr>

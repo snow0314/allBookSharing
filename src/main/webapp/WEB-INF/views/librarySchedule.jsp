@@ -402,7 +402,6 @@ $(function() {
 		$(".tablinks").removeClass("active");
 		$(this).addClass('active');
 	});		
-	
 	function calendarLoad(lb_code) {
 				var Calendar = FullCalendar.Calendar;
 				
