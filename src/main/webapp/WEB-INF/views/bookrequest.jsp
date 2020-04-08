@@ -59,6 +59,8 @@ color:white;
         padding:0px;
 	}
 
+@import url(//fonts.googleapis.com/earlyaccess/jejugothic.css);
+body{font-family: 'Jeju Gothic', sans-serif;}
 </style>
 </head>
 <body>
@@ -192,7 +194,9 @@ color:white;
 <div class="btn_set" style="margin-left:330px;    ">
  <a href="hopebookapply" class="book_btn01"><input type="button" value="신청하기" style="background-color: #223A5E;margin-left:70px;"></a> 
 						&nbsp;&nbsp;
+
 <a href="./" class="book_btn02"><input type="button" value="신청확인" style="background-color: #223A5E;"></a> </div>
+
 						</section>
 						</main>
 </body>

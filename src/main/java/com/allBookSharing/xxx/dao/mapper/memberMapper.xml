@@ -73,11 +73,11 @@ SELECT COUNT(BD_RETURN_DATE-BD_REAL_RETURN_DATE) FROM BORROWLIST JOIN BORROWDETA
 	</select>
 
 
-	<update id="loanExtend" parameterType="int" keyProperty="bd_return_extension">
+	<update id="loanExtend" parameterType="int">
 
 		UPDATE BORROWDETAIL SET
 		BD_RETURN_DATE=BD_RETURN_DATE+7,bd_return_extension=1 WHERE
-		BD_NUM=#{num}
+		BD_NUM=#{bd_num}
 
 	</update>
 

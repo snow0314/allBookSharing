@@ -30,6 +30,7 @@
 @import url(//fonts.googleapis.com/earlyaccess/kopubbatang.css);
 
 
+
 .table {
 	border: 2px solid #223A5E;
 	font-size: 20px;

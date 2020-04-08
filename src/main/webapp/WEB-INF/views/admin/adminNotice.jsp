@@ -3,6 +3,10 @@
 <!DOCTYPE html>
 <html>
 <head>
+<style>
+@import url(//fonts.googleapis.com/earlyaccess/jejugothic.css);
+body{font-family: 'Jeju Gothic', sans-serif;}
+</style>
 <meta charset="UTF-8">
 <title>공지사항</title>
 <!-- jquery -->
@@ -25,7 +29,7 @@
 		$("#foo-table").DataTable({
 			"info" : true,
 			"order" : [ [ 0, 'desc' ] ], // asc 또는 desc
-			"dom" : '<"top"il>t<"bottom"prf><"clear">',
+			"dom" : '<"top"ilrf>t<"bottom"p><"clear">',
 			"language" : {
 				"emptyTable" : "데이터가 없어요.",
 				"info" : "현재 _START_ - _END_ / _TOTAL_건",
@@ -56,6 +60,8 @@
 </script>
 
 <style>
+@import url(//fonts.googleapis.com/earlyaccess/jejugothic.css);
+body{font-family: 'Jeju Gothic', sans-serif;}
 #foo-table_paginate {
 	text-align: center;
 }
@@ -85,7 +91,7 @@
 		</table>
 
 	</div>
-	<div align="center" style="margin-top: 10px;">
+	<div align="center" style="margin-right: 150px; float: right;" >
 	<form action="movenoticewrite?${_csrf.parameterName}=${_csrf.token}"
 		method="post">
 		<input type="submit" value="글쓰기" id="btn" class="btn btn-default btn-lg">

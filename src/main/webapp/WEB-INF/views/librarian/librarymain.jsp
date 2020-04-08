@@ -5,6 +5,10 @@
 <html lang="en">
 
 <head>
+<style>
+@import url(//fonts.googleapis.com/earlyaccess/jejugothic.css);
+body{font-family: 'Jeju Gothic', sans-serif;}
+</style>
     <!-- Required meta tags-->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -27,12 +31,10 @@
 
     <!-- Vendor CSS-->
     <link href="adminPage/vendor/animsition/animsition.min.css" rel="stylesheet" media="all">
-    <link href="adminPage/vendor/bootstrap-progressbar/bootstrap-progressbar-3.3.4.min.css" rel="stylesheet" media="all">
     <link href="adminPage/vendor/wow/animate.css" rel="stylesheet" media="all">
     <link href="adminPage/vendor/css-hamburgers/hamburgers.min.css" rel="stylesheet" media="all">
     <link href="adminPage/vendor/slick/slick.css" rel="stylesheet" media="all">
     <link href="adminPage/vendor/select2/select2.min.css" rel="stylesheet" media="all">
-    <link href="adminPage/vendor/perfect-scrollbar/perfect-scrollbar.css" rel="stylesheet" media="all">
 
     <!-- Main CSS-->
     <link href="adminPage/css/theme.css" rel="stylesheet" media="all">
@@ -46,8 +48,8 @@
         <!-- MENU SIDEBAR-->
         <aside class="menu-sidebar d-none d-lg-block">
             <div class="logo">
-                <a href="#">
-                    <img src="adminPage/images/icon/logo.png" alt="Cool Admin" />
+                <a href="librarymain">
+                    <img src="adminPage/images/icon/logo.png" alt="도서관" />
                 </a>
             </div>
             <div class="menu-sidebar__content js-scrollbar1">
@@ -55,7 +57,7 @@
                     <ul class="list-unstyled navbar__list">
                         <li class="has-sub">
                             <a class="js-arrow" href="librarymain">
-                                <i class="fas fa-tachometer-alt" ></i>Dashboard</a>
+                                <i class="fas fa-tachometer-alt" ></i>사서메인</a>
                             <ul class="navbar-mobile-sub__list list-unstyled js-sub-list">
 
                             </ul>
@@ -151,7 +153,7 @@
                                 <div class="account-wrap">
                                     <div class="account-item clearfix js-item-menu">
                                         <div class="image">
-                                            <img src="adminPage/images/icon/avatar-01.jpg" alt="John Doe" />
+                                            <img src="images/library logo2.jpg" alt="John Doe" />
                                         </div>
                                         <div class="content">
                                             <a class="js-acc-btn" href="#">${LB_NAME}</a>
@@ -160,7 +162,7 @@
                                             <div class="info clearfix">
                                                 <div class="image">
                                                     <a href="#">
-                                                        <img src="adminPage/images/icon/avatar-01.jpg" alt="John Doe" />
+                                                        <img src="images/library logo2.jpg" alt="John Doe" />
                                                     </a>
                                                 </div>
                                                 <div class="content">
@@ -202,7 +204,8 @@
 
                         <div class="row" style="height: 1000px">
                             <div class="col-md-12" >
-                                    <iframe id="contents" name="contents" width="100%" height="100%" src="images/people.jpg">
+
+                                    <iframe id="contents" name="contents" width="100%" height="100%" src="images/library.jpg">
                                     
                                     </iframe>
 

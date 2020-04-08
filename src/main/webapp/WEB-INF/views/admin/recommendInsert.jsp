@@ -42,6 +42,10 @@
 <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/paginationjs/2.1.4/pagination.css" />
 <style type="text/css">
+@import url(//fonts.googleapis.com/earlyaccess/jejugothic.css);
+
+body{font-family: 'Jeju Gothic', sans-serif;}
+
 img {
 	width: 300px;
 	height: 300px;
@@ -60,6 +64,7 @@ table {
 .container p-3 my-3 border:hover {
 	background-color: blue;
 }
+body{font-family: 'Jeju Gothic', sans-serif;}
 </style>
 </head>
 
@@ -114,7 +119,7 @@ table {
 								<input id="bk_name" name="re_bname" type="text"
 									class="form-control" required>
 								<div class="input-group-append">
-									<button class="btn btn-success" type="button"
+									<button class="btn btn-outline-success" type="button"
 										data-toggle="modal" data-target="#modalCart">검색</button>
 								</div>
 							</div>
@@ -189,7 +194,7 @@ table {
 					
 					<tr>
 						<td colspan="2" style="text-align: right; padding-top: 100px;"><input
-							type="submit" id="insertBtn" class="btn btn-success btn-lg"
+							type="submit" id="insertBtn" class="btn btn-outline-success btn-lg"
 							value="등록"> <input type="hidden" name="_csrf"
 							value="${_csrf.token}"></td>
 

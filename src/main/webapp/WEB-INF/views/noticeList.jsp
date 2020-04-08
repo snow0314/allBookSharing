@@ -56,10 +56,12 @@ jQuery(function($) {
 </script>
 
 <style>
+
 @import url(//fonts.googleapis.com/earlyaccess/hanna.css);
 @import url(//fonts.googleapis.com/earlyaccess/jejugothic.css);
 @import url(//fonts.googleapis.com/earlyaccess/notosanskr.css);
 @import url(//fonts.googleapis.com/earlyaccess/nanumgothiccoding.css);
+
 #btn {
 	margin: 0 43%;
 }

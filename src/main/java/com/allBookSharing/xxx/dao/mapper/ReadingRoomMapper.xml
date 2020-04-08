@@ -82,4 +82,9 @@
 	WHERE SE_LOW = #{se_low} AND SE_COL = #{se_col} AND SE_CODE = #{se_code}
 </update>
 
+<update id="readingRoomAllCancel" parameterType="int">
+	UPDATE SEATS SET SE_ID = NULL, SE_PLACE = 1, SE_SEATNUM = NULL
+	WHERE SE_CODE = #{rm_code} AND SE_PLACE = 2
+</update>
+
 </mapper>

@@ -36,6 +36,7 @@
 @import url(//fonts.googleapis.com/earlyaccess/jejugothic.css);
 @import url(//fonts.googleapis.com/earlyaccess/notosanskr.css);
 @import url(//fonts.googleapis.com/earlyaccess/nanumgothiccoding.css);
+
 .btn-group-toggle label {
 	width: 70px;
 	height: 70px;

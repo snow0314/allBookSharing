@@ -66,6 +66,8 @@ background-color:#F0EAD6;
         padding:0px;
 	}
 
+@import url(//fonts.googleapis.com/earlyaccess/jejugothic.css);
+body{font-family: 'Jeju Gothic', sans-serif;}
 </style>
 </head>
 

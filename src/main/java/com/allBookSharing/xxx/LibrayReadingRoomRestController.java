@@ -106,4 +106,14 @@ public class LibrayReadingRoomRestController {
 				
 			return rm.readingRoomCancel(seat);
 		}
+		
+		// 사서가 열람실 좌석 예약 취소하는 메소드
+		@Secured("ROLE_LIBRARIAN")
+		@RequestMapping(value = "/librayreadingroomreservationallcancel", produces = "application/json;charset=UTF-8")
+		public String readingRoomAllCancel(String rm_code){
+			System.out.println("모든 예약 취소:"+rm_code);
+			
+			return rm.readingRoomAllCancel(rm_code);
+		}
+		
 }

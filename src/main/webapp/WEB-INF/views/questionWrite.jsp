@@ -14,7 +14,6 @@
 
 <style>
 @import url(//fonts.googleapis.com/earlyaccess/hanna.css);
-
    #content{
     width: 900px;
     height: 650px;

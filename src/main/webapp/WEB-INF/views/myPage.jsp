@@ -143,11 +143,26 @@ background-color:#F0EAD6;
         margin-bottom: 5%;
         padding:0px;
 	}
+
+	
+	#modal_detail{
+	cursor: pointer;
+	color: #007bff;
+	text-decoration: none;
+	}
+	#modal_detail:hover{
+	text-decoration: underline;
+	}
+
 #myinfotable{
 height:416px;
 font-family: 'Jeju Gothic', sans-serif;
 margin-left:15px;
 }
+
+@import url(//fonts.googleapis.com/earlyaccess/jejugothic.css);
+body{font-family: 'Jeju Gothic', sans-serif;}
+
 </style>
 
 
@@ -205,7 +220,7 @@ margin-left:15px;
 					<tr>
 						<td>포인트 : </td>
 						<td><a href=pointlist>${mb.us_point} point</a></td>
-						<td><a href=./insertpoint >포인트 충전 바로가기</a></td>
+						<td><a id='modal_detail' data-toggle='modal' data-target='#myModal'>포인트 충전 바로가기</a></td>
 					</tr>
 					
 					
@@ -336,6 +351,80 @@ margin-left:15px;
 	</div>
 	
 	</main>
+
+
+
+
+<!-- Modal -->
+        <form method="POST">
+  <div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog">
+    
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div id='modal-header' class="modal-header">
+        <h3>포인트 충전하기</h3>
+          <button type='button' class='close' data-dismiss='modal'>&times;</button>
+        </div>
+        <div id='modal-body' class="modal-body">
+		<div class="container" style="margin-top: 50px;">
+			<table class="table">
+				<thead class="thead-dark">
+					<tr>
+						<th>선택</th>
+						<th>충전금액</th>
+						<th>충전포인트</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td><input id="point" type="radio" name='us_point' value="5000"></label></td>
+						<td>5000원</td>
+						<td>5000point</td>
+					</tr>
+					<tr>
+						<td><input id="point" type="radio" name='us_point' value="10000"></label></td>
+						<td>10,000원</td>
+						<td>10000point</td>
+					</tr>
+					<tr>
+						<td><input id="point" type="radio" name='us_point' value="20000"></label></td>
+						<td>20,000원</td>
+						<td>20000point</td>
+					</tr>
+					<tr>
+						<td><input id="point" type="radio" name='us_point' value="35000"></label></td>
+						<td>30,000원</td>
+						<td><label for="point">30000point + 5000point</label></td>
+					</tr>
+					<tr>
+						<td><input id="point" type="radio" name='us_point' value="70000"></label></td>
+						<td>50,000원</td>
+						<td>50000point + 20000point</td>
+					</tr>
+					<tr>
+					<td colspan="3" style='text-align: center;'>
+					<button type="submit" class="btn btn-secondary btn-lg" formaction="okpoint">결제하기</button>
+					</td>
+					</tr>
+				</tbody>
+			</table>
+			<input type="hidden" id="_csrf" name="_csrf" value="${_csrf.token}">
+			
+		
+		</div>
+        </div>
+        <div id='modal-footer' class="modal-footer">
+  		 <button type='button'class="btn btn-secondary btn-lg"  data-dismiss='modal'>Close</button>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+  <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
+ </form>
+
+
 
 <script>
 
@@ -776,7 +865,7 @@ $.ajax({
     //연장버튼
     if(data[i].bd_return_extension==0 && data[i].bd_state_num==4)
     $tr.append("<td style='text-align:center;'><button onclick='extend("+data[i].bd_num+")' class='btn btn-info' >연장하기</button></td>");
-    else
+    else if(data[i].bd_state_num!=4)
     	$tr.append("<td style='text-align:center;'> </td>");
     	
     if(data[i].bd_return_extension==1)
@@ -827,27 +916,30 @@ function returnBooks(bd_num){
 function extend(bd_num){
 	console.log(bd_num);
 	
-	return confirm("연장하시겠습니까?"); 
+	var res=confirm("연장하시겠습니까?"); 
 
+	if(res){
+		
 	$.ajax({
 		type : 'get',
 		url :"loanextend",
 		data:{bd_num:bd_num},
 		async: false,
 		success : function(data) {
-			alert("성공?");
 				location.reload();
-			console.log("반납연장ajax=",data);
-			
-			
+			console.log("반납연장ajax=",data);	
 		},
 		error : function(xhr, status) {
+			alert("실패");
         console.log("xhr=", xhr);
         console.log("status=", status);
      }
 		
 	}); 	//ajax End
+	}
 }	//fct End
+
+
 function plusPoint(){
 	$.ajax({
 		type:'get',

@@ -32,6 +32,7 @@
 <script
 	src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
 <style>
+@import url(//fonts.googleapis.com/earlyaccess/jejugothic.css);
 .btn-group-toggle label {
 	width: 70px;
 	height: 70px;
@@ -74,16 +75,10 @@ td a {
 	background-color: #223A5E;
 	color: white;
 }
-
-i {
-	float: right;
-}
+body{font-family: 'Jeju Gothic', sans-serif;}
 </style>
 </head>
 <body>
-	<div style="text-align: center;">
-		<h1>${LB_NAME}</h1>
-	</div>
 	<div class="row">
 
 
@@ -127,13 +122,13 @@ i {
 
 
 			<div class="col-md-4 ml-auto" style="text-align: right">
-				<button id="reservationCancel" type="button" class="btn btn-success">
-					<i class="fas fa-pen"></i>&nbsp; 예약취소
+				<button id="reservationCancel" type="button" class="btn btn-outline-danger">
+					<i class="fas fa-eraser"></i>&nbsp; 예약취소
 				</button>
 			</div>
 
 		</div>
-		<div class="container p-3 my-3 border" style="text-align: center">
+		<div class="container-fluid" style="text-align: center">
 			<div id="seats" class="btn-group-toggle" data-toggle="buttons">
 
 			</div>
@@ -144,11 +139,11 @@ i {
 </body>
 <script type="text/javascript" src="js/ajaxCsrf.js"></script>
 <script type="text/javascript">
-	
+var readingRoom;
 window.onload = function (){
-		console.log(${readingRoom})
+		console.log(${readingRoom});
 		
-		var readingRoom=${readingRoom};
+		readingRoom=${readingRoom};
 		$("#rm_name").val(readingRoom.rm_name);
 		$("#rm_code").val(readingRoom.rm_code);
 		numberOfSeatsInUse(readingRoom.rm_code); //사용중인 좌석, 잔여 좌석 구하기 및 그리기
@@ -212,6 +207,32 @@ $("#seats").on("click","input",function(event){ //예약 취소하는 메소드
 		console.log(this);
 		return false;
 	}
+	
+});
+
+$("#reservationCancel").on("click",function(){
+	let confirm = window.confirm("모든 자리의 예약을 취소 하시겠습니까?");
+	if(confirm == false){
+		return false;
+	}
+	
+	$.ajax({
+		url : "librayreadingroomreservationallcancel",
+		type : "post",
+		data : {"rm_code" : readingRoom.rm_code},
+		dataType:'text'
+		
+}).done((result) => {
+	if(result == "실패"){
+		alert("예약된 자리가 없습니다.");
+	}else{
+		alert(result);
+		location.reload();
+	}
+
+}).fail((xhr) => {
+console.log("xhr=",xhr);
+}); //ajax End 
 	
 });
 

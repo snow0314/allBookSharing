@@ -46,12 +46,14 @@
 
 
 <style>
+@import url(//fonts.googleapis.com/earlyaccess/jejugothic.css);
 #foo-table_paginate{
 text-align: center;
 }
 #modal_detail{
 cursor: pointer;
 }
+body{font-family: 'Jeju Gothic', sans-serif;}
 </style>
 
 </head>
