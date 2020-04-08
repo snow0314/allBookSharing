@@ -37,24 +37,27 @@
 	
 	
 <style type="text/css">
-@import url(//fonts.googleapis.com/earlyaccess/hanna.css);
+@import url(//fonts.googleapis.com/earlyaccess/jejugothic.css);
 #pagination {
 	text-align: center;
 }
-.hn{font-family: 'Hanna', sans-serif;}
-
-@import url(//fonts.googleapis.com/earlyaccess/jejugothic.css);
 body{font-family: 'Jeju Gothic', sans-serif;}
 </style>
 
 </head>
 <body>
-	<div class="container p-3 my-3 border" style="text-align: center">
-		<h3 class="hn">${LB_NAME}</h3>
+	<div class="container-fluid" style="text-align: center; margin-top: 60px; margin-bottom: 30px; font-size: 50px;">
+		<span>${LB_NAME}</span>
 	</div>
-	<div class="container p-3 my-3 border" style="text-align: center;">
+	<div class="container-fluid" style="text-align: center;">
 
-		<table id="contents" class="table table-bordered table-hover">
+		<table id="contents" class="table table-bordered table-hover" style="font-size: 25px">
+			<colgroup>
+				<col width="10%">
+				<col width="50%">
+				<col width="10%">
+				<col width="10%">
+			</colgroup>
 			<thead>
 			<tr>
 				<th>번호</th>
@@ -67,7 +70,7 @@ body{font-family: 'Jeju Gothic', sans-serif;}
 			
 			</tbody>
 		</table>
-		<div id="pagination"></div>
+		<div id="pagination" style="margin-left: 45%"></div>
 	</div>
 </body>
 <script type="text/javascript">
@@ -94,7 +97,7 @@ $(document).ready( function () {
 	    		$("<td>").text(i+1).appendTo($tr);
 	    		$("<a>").text(data[i].rm_name).attr("href","readingroommodify?rm_code="+data[i].rm_code).appendTo($("<td>").appendTo($tr));
 	    		$("<td>").text(data[i].totalSeat).appendTo($tr);
-	    		$("<td>").append($("<button>").text("삭제").addClass("btn btn-outline-success")
+	    		$("<td>").append($("<button>").text("삭제").addClass("btn btn-outline-danger")
 	    			                      .attr("onclick","readingRoomDelete("+data[i].rm_code+")"))
 	    	.appendTo($tr);
 	    	}

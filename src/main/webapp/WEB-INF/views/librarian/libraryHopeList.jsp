@@ -47,14 +47,13 @@
 
 
 <style>
+@import url(//fonts.googleapis.com/earlyaccess/jejugothic.css);
 #foo-table_paginate{
 text-align: center;
 }
 #modal_detail{
 cursor: pointer;
 }
-
-@import url(//fonts.googleapis.com/earlyaccess/jejugothic.css);
 body{font-family: 'Jeju Gothic', sans-serif;}
 </style>
 
@@ -79,7 +78,7 @@ body{font-family: 'Jeju Gothic', sans-serif;}
     </table>
       </div>
 
-
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
 <script>
 
 let list=${list};
@@ -91,7 +90,8 @@ for(let i=0;i<list.length;i++){
    $tr.append("<td>"+list[i].lb_name+"</td>");	
    $tr.append("<td><a id='modal_detail' data-toggle='modal' data-target='#myModal' data-number='"+list[i].br_num+"' onclick='mutualLoanQty("+list[i].br_num+")'  >"+list[i].br_titile+"</a></td>");
    $tr.append("<td>"+list[i].br_id+"</td>");
-   $tr.append("<td>"+list[i].br_date+"</td>");
+   $tr.append("<td>"+moment(list[i].br_date).format('YYYY년 MM월 DD일 HH시:mm분')+"</td>");
+   
    if(list[i].br_situation==0)
 	   $tr.append("<td><span style='color:red; font-weight:bold;'>대기중</span></td>");
    if(list[i].br_situation==1)

@@ -71,7 +71,7 @@ public interface IMemberDao {
 	
 	
 	//반납연장하기
-	boolean loanExtend(@Param("num")int bd_num);
+	boolean loanExtend(int bd_num);
 	
 	//현재 예약 목록
 	List<Reservation> getReservationlist(String id);

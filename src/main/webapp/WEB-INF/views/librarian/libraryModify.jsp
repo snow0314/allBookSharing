@@ -63,6 +63,7 @@ body{font-family: 'Jeju Gothic', sans-serif;}
 					</td>
 				</tr>
 
+							
 				<tr>
 					<td>
 						<div class="input-group mb-3">
@@ -70,7 +71,7 @@ body{font-family: 'Jeju Gothic', sans-serif;}
 								<span class="input-group-text">소속지역</span>
 							</div>
 
-							<select name="lb_loc" id="lb_loc" class="foot1"
+							<select name="lb_loc" id="lb_loc" class="custom-select"
 								required="required">
 								<option value="">선택</option>
 								<option value="서울">서울</option>
@@ -144,8 +145,8 @@ body{font-family: 'Jeju Gothic', sans-serif;}
 						value=""></td>
 				</tr>
 
-				<tr>
-					<td><input type="hidden" name="_csrf" value="${_csrf.token}">
+				<tr style="text-align: right;">
+					<td colspan="2"><input type="hidden" name="_csrf" value="${_csrf.token}">
 
 						<input type="submit" id="modify" class="btn btn-outline-success"
 						value="수정하기"></td>
