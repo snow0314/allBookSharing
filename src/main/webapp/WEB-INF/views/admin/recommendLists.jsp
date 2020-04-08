@@ -116,6 +116,9 @@ background-color:blue;
 opacity:0.5;
 cursor:pointer;
 }
+
+@import url(//fonts.googleapis.com/earlyaccess/jejugothic.css);
+body{font-family: 'Jeju Gothic', sans-serif;}
 </style>
 <body>
 <h1 id="d">추천도서리스트</h1>

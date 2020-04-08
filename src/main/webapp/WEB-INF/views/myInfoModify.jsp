@@ -115,6 +115,9 @@ width: 400px;
 height:42px;
 display:inline;
 }
+
+@import url(//fonts.googleapis.com/earlyaccess/jejugothic.css);
+body{font-family: 'Jeju Gothic', sans-serif;}
 </style>
 </head>
 <body>

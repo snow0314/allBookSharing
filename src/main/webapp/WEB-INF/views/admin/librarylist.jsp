@@ -40,8 +40,9 @@
 #pagination {
 	text-align: center;
 }
+@import url(//fonts.googleapis.com/earlyaccess/jejugothic.css);
+body{font-family: 'Jeju Gothic', sans-serif;}
 </style>
-
 </head>
 <body>
 	<div class="container p-3 my-3 border" style="text-align: center">
@@ -63,7 +64,7 @@
 		
 		</tbody>	
 		</table>
-		<div id="pagination"></div>
+		<div id="pagination" style="margin-left:35%";></div>
 	</div>
 </body>
 <script type="text/javascript">

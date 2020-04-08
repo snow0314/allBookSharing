@@ -3,7 +3,10 @@
 <!DOCTYPE html>
 <html>
 <head>
-
+<style>
+@import url(//fonts.googleapis.com/earlyaccess/jejugothic.css);
+body{font-family: 'Jeju Gothic', sans-serif;}
+</style>
 <meta name="description" content="" />
 		<meta name="keywords" content="" />
 		

@@ -109,7 +109,8 @@
     vertical-align: middle;
 }
 #
-
+@import url(//fonts.googleapis.com/earlyaccess/jejugothic.css);
+body{font-family: 'Jeju Gothic', sans-serif;}
 -table_paginate{
 text-align: center;
 display:inline

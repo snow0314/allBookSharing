@@ -60,6 +60,9 @@ table {
 .container p-3 my-3 border:hover {
 	background-color: blue;
 }
+
+@import url(//fonts.googleapis.com/earlyaccess/jejugothic.css);
+body{font-family: 'Jeju Gothic', sans-serif;}
 </style>
 </head>
 

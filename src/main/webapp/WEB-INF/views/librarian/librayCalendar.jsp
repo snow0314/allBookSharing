@@ -65,6 +65,9 @@ body{
 	float: right;
 	width: 900px;
 }
+
+@import url(//fonts.googleapis.com/earlyaccess/jejugothic.css);
+body{font-family: 'Jeju Gothic', sans-serif;}
 </style>
 <title>Insert title here</title>
 

@@ -3,6 +3,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <!-- jQuery library -->
@@ -30,6 +31,8 @@
    src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
    
 <style>
+@import url(//fonts.googleapis.com/earlyaccess/jejugothic.css);
+body{font-family: 'Jeju Gothic', sans-serif;}
 </style>
 </head>
 <body>
@@ -86,7 +89,7 @@
 					</td>
 					<td rowspan="5"><span id="guide"
 						style="color: #999; display: none"></span>
-						<div id="map" style="width: 100%; height: 350px;"></div></td>
+						<div id="map" style="width: 80%; height: 350px;"></div></td>
 				</tr>
 				
 				<tr>
