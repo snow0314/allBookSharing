@@ -129,7 +129,7 @@ body{font-family: 'Jeju Gothic', sans-serif;}
                                 <div class="account-wrap">
                                     <div class="account-item clearfix js-item-menu">
                                         <div class="image">
-                                            <img src="./images/icia.jpg" />
+                                            <img src="./images/library logo2.jpg" />
                                         </div>
                                         <div class="content">
                                             <a class="js-acc-btn" href="#">mr.Pak</a>
@@ -138,7 +138,7 @@ body{font-family: 'Jeju Gothic', sans-serif;}
                                             <div class="info clearfix">
                                                 <div class="image">
                                                     <a href="#">
-                                                        <img src="./images/icia.jpg" />
+                                                        <img src="./images/library logo2.jpg" />
                                                     </a>
                                                 </div>
                                                 <div class="content">

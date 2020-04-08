@@ -190,7 +190,7 @@ body{font-family: 'Jeju Gothic', sans-serif;}
 					<tr>
 						<td colspan="2" style="text-align: right">
 							<input type="submit" id="insertBtn"
-								class="btn btn-outline-secondary btn-lg" value="등록">
+								class="btn btn-outline-success btn-lg" value="등록">
 							<input type="hidden" name="_csrf" value="${_csrf.token}">	
 						</td>
 						

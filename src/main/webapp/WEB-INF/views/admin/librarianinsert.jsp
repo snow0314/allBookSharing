@@ -18,7 +18,7 @@
 
 
 <style>
-
+@import url(//fonts.googleapis.com/earlyaccess/jejugothic.css);
 #id_check {
    all:unset;
    color: #000000;
@@ -36,12 +36,9 @@
    cursor:pointer;
    height: 30px;
    width: 120px;
-   
-@import url(//fonts.googleapis.com/earlyaccess/jejugothic.css);
+   }
+
 body{font-family: 'Jeju Gothic', sans-serif;}
-}
-
-
 </style>
 </head>
 <body>
