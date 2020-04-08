@@ -37,6 +37,10 @@
     <!-- Main CSS-->
     <link href="adminPage/css/theme.css" rel="stylesheet" media="all">
 
+<style type="text/css">
+@import url(//fonts.googleapis.com/earlyaccess/jejugothic.css);
+body{font-family: 'Jeju Gothic', sans-serif;}
+</style>
 </head>
 
 <body class="animsition">

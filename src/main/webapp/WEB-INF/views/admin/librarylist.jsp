@@ -37,6 +37,8 @@
 	
 	
 <style type="text/css">
+@import url(//fonts.googleapis.com/earlyaccess/jejugothic.css);
+body{font-family: 'Jeju Gothic', sans-serif;}
 #pagination {
 	text-align: center;
 }

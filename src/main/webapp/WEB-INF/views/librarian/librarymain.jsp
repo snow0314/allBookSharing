@@ -46,8 +46,8 @@
         <!-- MENU SIDEBAR-->
         <aside class="menu-sidebar d-none d-lg-block">
             <div class="logo">
-                <a href="#">
-                    <img src="adminPage/images/icon/logo.png" alt="Cool Admin" />
+                <a href="librarymain">
+                    <img src="adminPage/images/icon/logo.png" alt="도서관" />
                 </a>
             </div>
             <div class="menu-sidebar__content js-scrollbar1">
@@ -55,7 +55,7 @@
                     <ul class="list-unstyled navbar__list">
                         <li class="has-sub">
                             <a class="js-arrow" href="librarymain">
-                                <i class="fas fa-tachometer-alt" ></i>Dashboard</a>
+                                <i class="fas fa-tachometer-alt" ></i>사서메인</a>
                             <ul class="navbar-mobile-sub__list list-unstyled js-sub-list">
 
                             </ul>
@@ -202,7 +202,7 @@
 
                         <div class="row" style="height: 1000px">
                             <div class="col-md-12" >
-                                    <iframe id="contents" name="contents" width="100%" height="100%" src="images/people.jpg">
+                                    <iframe id="contents" name="contents" width="100%" height="100%" src="">
                                     
                                     </iframe>
 
