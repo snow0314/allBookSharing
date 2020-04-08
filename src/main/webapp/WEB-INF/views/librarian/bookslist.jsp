@@ -34,6 +34,7 @@
 <script
 	src="https://cdn.datatables.net/select/1.2.1/js/dataTables.select.min.js"></script>
 <style type="text/css">
+@import url(//fonts.googleapis.com/earlyaccess/jejugothic.css);
 	img{
 		width: 250px;
 		height: 250px;
@@ -51,6 +52,7 @@
     width: 100px;
     text-align: center;
 }
+body{font-family: 'Jeju Gothic', sans-serif;}
 </style>	
 </head>
 <body>
@@ -58,8 +60,8 @@
 	<table id="example" class="display" style="width:100%">
 	<colgroup>
 		<col width="3%">
-		<col width="3%">
-		<col width="3%">
+		<col width="5%">
+		<col width="5%">
 		<col width="10%">
 		<col width="20%">
 		<col width="10%">
@@ -214,9 +216,9 @@
 						</td>
 					</tr>
 					<tr>
-						<td colspan="2" style="text-align: right">
+						<td colspan="4" style="text-align: right">
 							<input type="submit" id="insertBtn"
-								class="btn btn-success btn-lg" value="수정">
+								class="btn btn-outline-success btn-lg" value="수정">
 							<input type="hidden" name="_csrf" value="${_csrf.token}">	
 						</td>
 						

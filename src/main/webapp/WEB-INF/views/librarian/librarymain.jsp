@@ -47,7 +47,7 @@
         <aside class="menu-sidebar d-none d-lg-block">
             <div class="logo">
                 <a href="#">
-                    <img src="adminPage/images/icon/logo.png" alt="Cool Admin" />
+                    <img src="images/logo.jpg" alt="Cool Admin" style="height: 100%"; width="100%"/>
                 </a>
             </div>
             <div class="menu-sidebar__content js-scrollbar1">

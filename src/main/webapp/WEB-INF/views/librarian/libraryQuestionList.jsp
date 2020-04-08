@@ -9,7 +9,7 @@
 <!-- date table  -->
 <link rel="stylesheet" href="https://cdn.datatables.net/t/bs-3.3.6/jqc-1.12.0,dt-1.10.11/datatables.min.css" />
 <script src="https://cdn.datatables.net/t/bs-3.3.6/jqc-1.12.0,dt-1.10.11/datatables.min.js"></script>
-
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
 
 <script>
 	jQuery(function($) {
@@ -42,9 +42,11 @@
 
 
 <style>
+@import url(//fonts.googleapis.com/earlyaccess/jejugothic.css);
 #foo-table_paginate{
 text-align: center;
 }
+body{font-family: 'Jeju Gothic', sans-serif;}
 </style>
 
 </head>
@@ -80,7 +82,8 @@ for(let i=0;i<list.length;i++){
    $tr.append("<td>"+list[i].lb_name+"</td>");	
    $tr.append("<td><a href='lbqsdetail?qs_num="+list[i].qs_num+"'>"+list[i].qs_title+"</td>");
    $tr.append("<td>"+list[i].qs_id+"</td>");
-   $tr.append("<td>"+list[i].qs_date+"</td>");
+   $tr.append("<td>"+moment(list[i].qs_date).format('YYYY년 MM월 DD일 HH시:mm분')+"</td>");
+   
    if(list[i].qs_state=="대기중")
 	   $tr.append("<td><span style='color:red; font-weight:bold;'>"+list[i].qs_state+"</span></td>");
    if(list[i].qs_state=="답변완료")

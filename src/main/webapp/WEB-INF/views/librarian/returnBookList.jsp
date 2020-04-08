@@ -9,7 +9,7 @@
 <!-- date table  -->
 <link rel="stylesheet" href="https://cdn.datatables.net/t/bs-3.3.6/jqc-1.12.0,dt-1.10.11/datatables.min.css" />
 <script src="https://cdn.datatables.net/t/bs-3.3.6/jqc-1.12.0,dt-1.10.11/datatables.min.js"></script>
-
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
 
 <script>
 	jQuery(function($) {
@@ -55,13 +55,14 @@
 
 
 <style>
+@import url(//fonts.googleapis.com/earlyaccess/jejugothic.css);
 #foo-table_paginate{
 text-align: center;
 }
 #modal_detail{
 cursor: pointer;
 }
-
+body{font-family: 'Jeju Gothic', sans-serif;}
 </style>
 
 </head>
@@ -94,7 +95,7 @@ for(let i=0;i<list.length;i++){
    $tr.append("<td>"+list[i].bo_num+"</td>");
    $tr.append("<td><a id='modal_detail' data-toggle='modal' data-target='#myModal' data-number='"+list[i].bd_num+"'>반납 신청 확인바랍니다.</a></td>");
    $tr.append("<td>"+list[i].bo_id+"</td>");
-   $tr.append("<td>"+list[i].bd_date+"</td>");
+   $tr.append("<td>"+moment(list[i].bd_date).format('YYYY년 MM월 DD일 HH시:mm분')+"</td>");
    
    if(list[i].bd_state_num==7)
 	   $tr.append("<td><span style='color:red; font-weight:bold;'>반납완료</span></td>");

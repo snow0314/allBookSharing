@@ -318,14 +318,12 @@ window.onload = function(){
 	    console.log(list);
 	    var date = new Date();
 
-
-<<<<<<< HEAD
 for(let i=0;i<list.length;i++){
 	var $tr= $("<tr>").appendTo($("#tb"));
 	$tr.append("<td>"+(i+1)+"</td>");
 	$tr.append("<td>"+list[i].lb_name+"</td>");
 	$tr.append("<td>"+list[i].bk_name+"</td>");
-	$tr.append("<td>"+moment(list[i].bd_date).format('YYYY MM DD HH:mm:ss')+"</td>");
+	$tr.append("<td>"+moment(list[i].bd_date).format('YYYY년 MM월 DD일 HH시:mm분')+"</td>");
 	$tr.append("<td>"+moment(list[i].bd_return_date).format('YYYY MM DD HH:mm:ss')+"</td>");
 	if(list[i].bd_real_return_date == undefined){
 		$tr.append("<td>--------------</td>");

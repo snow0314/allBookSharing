@@ -125,5 +125,14 @@ public class ReadingRoomManagement {
 		}
 		
 	}
+	public String readingRoomAllCancel(String rm_code) {
+		
+		boolean result = rDao.readingRoomAllCancel(Integer.parseInt(rm_code));
+		if(result) {
+			return "예약을 취소했습니다.";
+		}else {
+			return "실패";
+		}
+	}
 	
 }

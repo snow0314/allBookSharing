@@ -21,18 +21,23 @@
 	src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
 
 <style>
+@import url(//fonts.googleapis.com/earlyaccess/jejugothic.css);
 body{
 	background-color: white;
+	font-family: 'Jeju Gothic', sans-serif;
 }
 
 #wrap {
+	
 	width: 1100px;
 	margin: 0 auto;
+
 }
 
 #external-events {
+	
 	float: left;
-	width: 150px;
+	width: 140px;
 	padding: 0 10px;
 	border: 1px solid #ccc;
 	background: #eee;
@@ -62,6 +67,7 @@ body{
 }
 
 #calendar {
+	margin-right: 30px;
 	float: right;
 	width: 900px;
 }
@@ -70,7 +76,7 @@ body{
 
 </head>
 <body>
-	
+	<div class="container-fluid" style="margin-top: 50px;"> 
 		<div id='wrap'>
 
 			<div id='external-events'>
@@ -91,7 +97,7 @@ body{
 			<div style='clear: both'></div>
 
 		</div>
-	
+	</div>
 </body>
 <script type="text/javascript" src="js/ajaxCsrf.js"></script>
 <script>
