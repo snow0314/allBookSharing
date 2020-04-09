@@ -37,11 +37,16 @@
 	
 	
 <style type="text/css">
+@import url(//fonts.googleapis.com/earlyaccess/jejugothic.css);
+
+body{font-family: 'Jeju Gothic', sans-serif;}
+
 #pagination {
 	text-align: center;
 }
-</style>
 
+body{font-family: 'Jeju Gothic', sans-serif;}
+</style>
 </head>
 <body>
 	<div class="container p-3 my-3 border" style="text-align: center">
@@ -49,7 +54,14 @@
 	</div>
 	<div class="container p-3 my-3 border">
 
-		<table  class="table table-bordered table-hover">
+		<table  class="table table-bordered table-hover" style="text-align: center;">
+		<colgroup>
+			<col width="5%">
+			<col width="20%">
+			<col width="10%">
+			<col width="10%">
+			<col width="5%">
+		</colgroup>
 		<thead>
 			<tr>
 				<th>도서관 코드</th>
@@ -63,7 +75,7 @@
 		
 		</tbody>	
 		</table>
-		<div id="pagination"></div>
+		<div id="pagination" style="margin-left:35%";></div>
 	</div>
 </body>
 <script type="text/javascript">
@@ -91,7 +103,7 @@ $(document).ready( function () {
 	    	$("<td>").text(data[i].lb_name).appendTo($tr);
 	    	$("<td>").text(data[i].lb_loc).appendTo($tr);
 	    	$("<td>").text(data[i].la_id).appendTo($tr);
-	    	$("<td>").append($("<button>").text("삭제").addClass("btn btn-outline-success")
+	    	$("<td>").append($("<button>").text("삭제").addClass("btn btn-outline-danger")
 	    			                      .attr("onclick","librarianDelete('"+data[i].la_id+"')"))
 	    	.appendTo($tr);
 	    	}

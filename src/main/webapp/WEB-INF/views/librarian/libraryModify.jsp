@@ -27,8 +27,9 @@
 	src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 
 <style>
+@import url(//fonts.googleapis.com/earlyaccess/jejugothic.css);
+body{font-family: 'Jeju Gothic', sans-serif;}
 </style>
-
 </head>
 
 <body>
@@ -62,14 +63,15 @@
 					</td>
 				</tr>
 
+							
 				<tr>
 					<td>
 						<div class="input-group mb-3">
 							<div class="input-group-prepend">
-								<span class="input-group-text">소속지역</span>
+								<span class="input-group-text" style="width: 100px">소속지역</span>
 							</div>
 
-							<select name="lb_loc" id="lb_loc" class="foot1"
+							<select name="lb_loc" id="lb_loc" class="custom-select"
 								required="required">
 								<option value="">선택</option>
 								<option value="서울">서울</option>
@@ -95,7 +97,7 @@
 					<td>
 						<div class="input-group mb-3">
 							<div class="input-group-prepend">
-								<span class="input-group-text">전화번호</span>
+								<span class="input-group-text" style="width: 100px">전화번호</span>
 							</div>
 							<input type="number" class="form-control" id="lb_phone"
 								name="lb_phone">
@@ -106,7 +108,7 @@
 					<td>
 						<div class="input-group mb-3">
 							<div class="input-group-prepend">
-								<span class="input-group-text">이메일</span>
+								<span class="input-group-text" style="width: 100px">이메일</span>
 							</div>
 							<input type="email" class="form-control" id="lb_email"
 								name="lb_email">
@@ -143,8 +145,8 @@
 						value=""></td>
 				</tr>
 
-				<tr>
-					<td><input type="hidden" name="_csrf" value="${_csrf.token}">
+				<tr style="text-align: right;">
+					<td colspan="2"><input type="hidden" name="_csrf" value="${_csrf.token}">
 
 						<input type="submit" id="modify" class="btn btn-outline-success"
 						value="수정하기"></td>

@@ -237,6 +237,9 @@
 	line-height:25px;
 	
 	}
+	
+@import url(//fonts.googleapis.com/earlyaccess/jejugothic.css);
+body{font-family: 'Jeju Gothic', sans-serif;}
 </style>
 <body>
 <h1 id="title">상세보기</h1>

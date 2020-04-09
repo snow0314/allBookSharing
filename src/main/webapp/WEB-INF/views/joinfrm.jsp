@@ -87,6 +87,9 @@ display: none;
 #id{
 width: 300px;
 }
+
+@import url(//fonts.googleapis.com/earlyaccess/jejugothic.css);
+body{font-family: 'Jeju Gothic', sans-serif;}
 </style>
 <script>
    //프사 출력하기 : 1 mb가 넘으면 오류
@@ -281,13 +284,15 @@ width: 300px;
           success : function(data) {
              $('#result').html(data).css('color', 'red');
              console.log("data=", data);
-             /* console.log("data=", result);
-             console.log("status=", status);
-             console.log("xhr=", xhr); */
-
           },
           error : function(xhr, status) {
-             $('#result').html(xhr.responseText).css('color', 'green');
+        	  if(xhr.responseText=="사용불가능한 아이디입니다"){
+        		  $('#result').html(xhr.responseText).css('color', 'red');
+        	  }else{
+        		  $('#result').html(xhr.responseText).css('color', 'green');
+        	  }
+        	  
+             
              console.log("xhr=", xhr);
              console.log("status=", status);
              if (status == "error") {
@@ -296,11 +301,7 @@ width: 300px;
                 idck = 1;
              }
           }
-
-
        }); //end ajax
-	   
-	   
    });	//fct end
    
    

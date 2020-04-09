@@ -6,10 +6,14 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-
+<script src='https://kit.fontawesome.com/a076d05399.js'></script>
 
 <style type="text/css">
-
+@import url(//fonts.googleapis.com/earlyaccess/hanna.css);
+@import url(//fonts.googleapis.com/earlyaccess/jejugothic.css);
+@import url(//fonts.googleapis.com/earlyaccess/notosanskr.css);
+@import url(//fonts.googleapis.com/earlyaccess/nanumgothiccoding.css);
+@import url(//fonts.googleapis.com/earlyaccess/jejumyeongjo.css);
 table, th, td {
 	border: 2px solid #bcbcbc;
 	font-size: 20px;
@@ -55,6 +59,8 @@ color:white;
         padding:0px;
 	}
 
+@import url(//fonts.googleapis.com/earlyaccess/jejugothic.css);
+body{font-family: 'Jeju Gothic', sans-serif;}
 </style>
 </head>
 <body>
@@ -81,33 +87,35 @@ color:white;
 
 <main id="totalsearchlist">
  	<section>
-<h4>희망도서 신청 안내</h4>
+ 	<h1 style="font-family: 'Hanna', sans-serif;">희망도서 신청</h1>
+<h3 style="font-family: 'Hanna', sans-serif;margin-top:30px;"><i class='far fa-hand-point-right'></i>희망도서 신청 안내</h3>
  	<table class="table">
 				<thead class="thead-dark">
-<tr class="basic_ul">
-	<th>
-	&nbsp;-신청일 포함 1주 3권 이내(권당 5만원 이하)
-	<br>&nbsp;-신청대상 : 단행본(연속간행물, 비도서(전자책, 오디오북 등)은 신청 제외)
-	<br>&nbsp;-희망도서 선정 : 도서관 운영위원회 심의를 거쳐 선정함
- 	<br>&nbsp;-희망도서 비치 알림 : SMS 전송(안내 문자 수신을 위해 개인정보수정에서 SMS 수신 체크 확인)
-	<br>&nbsp;-우선대출기간 : 신청도서관 도서 비치일로부터 주말까지 </th>
+<tr class="basic_ul"  >
+	<th style="font-family: 'Noto Sans KR', sans-serif;padding-top:20px;padding-bottom:20px;">
+	&nbsp;- 신청일 포함 1주 3권 이내(권당 5만원 이하)
+	<br>&nbsp;- 신청 대상 : 단행본(연속간행물, 비도서(전자책, 오디오북 등)은 신청 제외)
+	<br>&nbsp;- 희망도서 선정 : 도서관 운영위원회 심의를 거쳐 선정함
+ 	<br>&nbsp;- 희망도서 비치 알림 : SMS 전송(안내 문자 수신을 위해 개인정보수정에서 SMS 수신 체크 확인)
+	<br>&nbsp;- 우선대출 기간 : 신청도서관 도서 비치일로부터 주말까지 
+	</th>
 </tr>
 </thead>
  	</table>
-<h4>희망도서 선정 제외기준</h4>
+<h3 style="font-family: 'Hanna', sans-serif;"><i class='far fa-hand-point-right'></i>희망도서 선정 제외기준</h3>
 <div class="over_table">
 	<table class="table">
-		<caption style="color: black;">
+		<caption style="color: black;font-family: 'Noto Sans KR', sans-serif;">
 		희망도서 신청 제외기준 내용 및 종류 등 안내
 		</caption>
-		<thead class="thead-dark">
+		<thead class="thead-dark" style="font-family: 'Jeju Myeongjo', serif;">
 			<tr>
 				<td>기 준</td>
 				<td>내  용</td>
 				<td>비 고 </td>
 			</tr>
 		</thead>
-		<tbody style="text-align: center;">
+		<tbody style="text-align: center;font-family: 'Jeju Myeongjo', serif;">
 			<tr>
 				<td>가격</td>
 				<td>5만원 이상인 도서</td>
@@ -172,8 +180,9 @@ color:white;
 	</table>
 </div>
 <p class="basic_p">※ 신청하신 자료는 자료선정위원회의 심의를 거쳐 구입, 정리 후 이용자에게 제공됩니다.</p>
-<h4>희망도서 선정 확인</h4>
-<ul class="basic_ul">
+
+<h3 style="font-family: 'Hanna', sans-serif;"><i class='far fa-hand-point-right'></i>희망도서 선정 확인</h3>
+<ul class="basic_ul" style="font-family: 'Nanum Gothic Coding', monospace;font-size:15px;">
 	<li>신청중 : 희망도서 담당자가 구입 타당성 검토 및 서지사항 확인 중인 상태</li>
 	<li>처리중 : 희망도서를 구입에 반영하여 주문 중인 상태</li>
 	<li>취소됨 : 구입에서 제외된 상태(취소 사유 확인 가능)</li>
@@ -181,11 +190,13 @@ color:white;
 </ul>
 
 <br>
-
-<div class="btn_set" style="margin-left:330px; ">
- <a href="hopebookapply" class="book_btn01"><input type="button" value="신청하기"></a> 
+ 
+<div class="btn_set" style="margin-left:330px;    ">
+ <a href="hopebookapply" class="book_btn01"><input type="button" value="신청하기" style="background-color: #223A5E;margin-left:70px;"></a> 
 						&nbsp;&nbsp;
-<a href="movehopelist" class="book_btn02"><input type="button" value="신청확인"></a> </div>
+
+<a href="movehopelist" class="book_btn02"><input type="button" value="신청확인" style="background-color: #223A5E;"></a> </div>
+
 						</section>
 						</main>
 </body>

@@ -3,6 +3,10 @@
 <!DOCTYPE html>
 <html>
 <head>
+<style>
+@import url(//fonts.googleapis.com/earlyaccess/jejugothic.css);
+body{font-family: 'Jeju Gothic', sans-serif;}
+</style>
  <!-- Required meta tags-->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -39,6 +43,7 @@
 <title>Insert title here</title>
 </head>
 <body>
+	
 	<div class="main-content">
 		<div class="section__content section__content--p30">
 			<div class="container-fluid">

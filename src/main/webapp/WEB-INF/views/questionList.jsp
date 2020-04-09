@@ -51,13 +51,21 @@
 </script>
 
 <style>
-#btn{
-margin: 0 43%;
-}
+@import url(//fonts.googleapis.com/earlyaccess/hanna.css);
+@import url(//fonts.googleapis.com/earlyaccess/jejugothic.css);
+@import url(//fonts.googleapis.com/earlyaccess/notosanskr.css);
+@import url(//fonts.googleapis.com/earlyaccess/nanumgothiccoding.css);
+
 #foo-table_paginate{
 text-align: center;
-}
 
+}
+#btn {
+    margin-left: 39%;
+    margin-bottom: 10%;
+    margin-top: 30px;
+    background-color: #223A5E;
+}
 #submenu {
   		float: left;
   		width: 15%;
@@ -97,6 +105,17 @@ color:white;
         margin-bottom: 5%;
         padding:0px;
 	}
+#foo-table_paginate{
+display:inline;
+margin-left:40%;
+}
+#foo-table_filter{
+display:inline;
+float:right;
+}
+#foo-table{
+width:100%;
+}
 </style>
 
 </head>
@@ -123,8 +142,8 @@ color:white;
 	
 	<main id="totalsearchlist">
 		<section>
-   <div style="width:80%;margin:0 10%; ">
-	<h3 style="margin-bottom: 50px;">건의사항</h3>
+   <div style="width:95%; margin-left:2%; ">
+	<h1 style="font-family: 'Hanna', sans-serif;">건의사항</h1>
 <table id="foo-table" class="table table-bordered" >
       <thead>
          <tr>

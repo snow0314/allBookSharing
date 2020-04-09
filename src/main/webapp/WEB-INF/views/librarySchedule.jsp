@@ -189,6 +189,7 @@ ul {
 	margin-bottom:10%;
 }
 
+
 </style>
 </head>
 <body>
@@ -400,7 +401,6 @@ $(function() {
 		$(".tablinks").removeClass("active");
 		$(this).addClass('active');
 	});		
-	
 	function calendarLoad(lb_code) {
 				var Calendar = FullCalendar.Calendar;
 				

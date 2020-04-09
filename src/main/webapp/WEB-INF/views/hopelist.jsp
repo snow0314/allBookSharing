@@ -44,9 +44,10 @@
   
     
     <style>
-    @import url(//fonts.googleapis.com/earlyaccess/hanna.css);
-    @import url(//fonts.googleapis.com/earlyaccess/nanumgothiccoding.css);
-    @import url(//fonts.googleapis.com/earlyaccess/jejugothic.css);
+   @import url(//fonts.googleapis.com/earlyaccess/hanna.css);
+@import url(//fonts.googleapis.com/earlyaccess/jejugothic.css);
+@import url(//fonts.googleapis.com/earlyaccess/notosanskr.css);
+@import url(//fonts.googleapis.com/earlyaccess/nanumgothiccoding.css);
     
     #submenu {
   		float: left;
@@ -93,6 +94,9 @@ text-align: center;
 #modal_detail{
 cursor: pointer;
 }
+
+@import url(//fonts.googleapis.com/earlyaccess/jejugothic.css);
+body{font-family: 'Jeju Gothic', sans-serif;}
     </style>
     
 </head>

@@ -4,6 +4,10 @@
 <html lang="en">
 
 <head>
+<style>
+@import url(//fonts.googleapis.com/earlyaccess/jejugothic.css);
+body{font-family: 'Jeju Gothic', sans-serif;}
+</style>
     <!-- Required meta tags-->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -54,8 +58,8 @@
                 <nav class="navbar-sidebar">
                     <ul class="list-unstyled navbar__list">
                         <li class="has-sub">
-                            <a class="js-arrow" href="#">
-                                <i class="fas fa-tachometer-alt"></i>Dashboard</a>
+                            <a class="js-arrow" href="adminmain">
+                                <i class="fas fa-tachometer-alt"></i>관리자 메인</a>
                             <ul class="navbar-mobile-sub__list list-unstyled js-sub-list">
 
                             </ul>
@@ -107,11 +111,6 @@
                             </ul>
                         </li>
 
-                        <li class="has-sub">
-                            <a class="js-arrow" href="#">
-                                <i class="fas fa-chart-bar"></i>도서관별 대출 현황</a>
-                       
-                       </li>
                         </ul>
                 </nav>
             </div>
@@ -131,7 +130,7 @@
                                 <div class="account-wrap">
                                     <div class="account-item clearfix js-item-menu">
                                         <div class="image">
-                                            <img src="./images/icia.jpg" />
+                                            <img src="./images/library logo2.jpg" />
                                         </div>
                                         <div class="content">
                                             <a class="js-acc-btn" href="#">mr.Pak</a>
@@ -140,7 +139,7 @@
                                             <div class="info clearfix">
                                                 <div class="image">
                                                     <a href="#">
-                                                        <img src="./images/icia.jpg" />
+                                                        <img src="./images/library logo2.jpg" />
                                                     </a>
                                                 </div>
                                                 <div class="content">

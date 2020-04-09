@@ -10,8 +10,9 @@
 	content="${_csrf.headerName}" />
 <title>Document</title>
 <style>
+@import url(//fonts.googleapis.com/earlyaccess/jejugothic.css);
+body{font-family: 'Jeju Gothic', sans-serif;}
 </style>
-
 
 <!-- Latest compiled and minified CSS -->
 <link rel="stylesheet"
@@ -40,10 +41,12 @@
 	src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
 
 <style>
+@import url(//fonts.googleapis.com/earlyaccess/jejugothic.css);
 .btn-group-toggle label {
 	width: 70px;
 	height: 70px;
 }
+body{font-family: 'Jeju Gothic', sans-serif;}
 </style>
 
 </head>
@@ -86,13 +89,13 @@
 
 
 			<div class="col-md-4 ml-auto" style="text-align: right">
-				<button id="insert" type="button" class="btn btn-success">
-					<i class="fas fa-pen"></i>&nbsp; 수정하기
+				<button id="insert" type="button" class="btn btn-outline-primary">
+					<i class="fas fa-paper-plane"></i>&nbsp; 수정하기
 				</button>
 			</div>
 
 		</div>
-		<div class="container p-3 my-3 border" style="text-align: center">
+		<div class="container-fluid"" style="text-align: center">
 			<div id="seats" class="btn-group-toggle" data-toggle="buttons">
 
 			</div>
