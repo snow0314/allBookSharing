@@ -77,11 +77,11 @@ body{font-family: 'Jeju Gothic', sans-serif;}
 					<td>
 						<div class="input-group mb-3">
 							<div class="input-group-prepend">
-								<span class="input-group-text">소속지역</span>
+								<span class="input-group-text" style="width:100px;">소속지역</span>
 							</div>
 
 							<select name="lb_loc" id="lb_loc" class="foot1"
-								required="required">
+								required="required" style="width:100px;">
 								<option value="">선택</option>
 								<option value="서울">서울</option>
 								<option value="인천">인천</option>
@@ -121,7 +121,7 @@ body{font-family: 'Jeju Gothic', sans-serif;}
 					<td>
 						<div class="input-group mb-3">
 							<div class="input-group-prepend">
-								<span class="input-group-text">전화번호</span>
+								<span class="input-group-text" style="width:100px;">전화번호</span>
 							</div>
 							<input type="number" class="form-control" id="lb_phone"
 								name="lb_phone">
@@ -132,7 +132,7 @@ body{font-family: 'Jeju Gothic', sans-serif;}
 					<td>
 						<div class="input-group mb-3">
 							<div class="input-group-prepend">
-								<span class="input-group-text">이메일</span>
+								<span class="input-group-text" style="width:100px;">이메일</span>
 							</div>
 							<input type="email" class="form-control" id="lb_email"
 								name="lb_email">

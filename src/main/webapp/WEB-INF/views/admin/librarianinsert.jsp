@@ -215,7 +215,13 @@ $("#la_loc").on("change",function(){
 	             console.log("data=", data);
 	          },
 	          error : function(xhr, status) {
-	             $('#result').html(xhr.responseText).css('color', 'green');
+	        	  if(xhr.responseText=="사용불가능한 아이디입니다"){
+	        		  $('#result').html(xhr.responseText).css('color', 'red');
+	        	  }else{
+	        		  $('#result').html(xhr.responseText).css('color', 'green');
+	        	  }
+	        	  
+	             
 	             console.log("xhr=", xhr);
 	             console.log("status=", status);
 	             if (status == "error") {
