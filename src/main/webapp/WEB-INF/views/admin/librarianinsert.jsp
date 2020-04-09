@@ -21,24 +21,6 @@
 
 body{font-family: 'Jeju Gothic', sans-serif;}
 
-#id2{
-display:flex;
-
-}
-form {
-   margin: auto;
-   height: 50%;
-   width: 810px;
-   padding: 30px;
-}
-
-#hag{
-
-padding: 5px 0;
-width: 100px;
-font-size: 17px;
-}
-
 #id_check {
    all:unset;
    color: #000000;
@@ -58,7 +40,6 @@ font-size: 17px;
    width: 120px;
    }
 
-body{font-family: 'Jeju Gothic', sans-serif;}
 </style>
 </head>
 <body>
