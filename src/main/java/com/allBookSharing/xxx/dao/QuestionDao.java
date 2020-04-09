@@ -27,5 +27,11 @@ public interface QuestionDao {
 	//내가 쓴 글 삭제
 	boolean deleteQuestion(Question qus);
 
+	//수정페이지 이동(글 썼던 내용 가져감)
+	Question questionUdateMove(Question qus);
+
+	//글 수정하기
+	boolean questionUdate(Question qus);
+
 	
 }

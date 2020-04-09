@@ -15,7 +15,7 @@
 	jQuery(function($) {
 		$("#foo-table").DataTable({
 			"info" : true,
-			"order": [[0, 'desc']], // asc 또는 desc
+			"order": [[3, 'desc']], // asc 또는 desc
 			"dom" : '<"top"il>t<"bottom"prf><"clear">',
 			"language" : {
 				"emptyTable" : "데이터가 없어요.",
@@ -98,9 +98,9 @@ for(let i=0;i<list.length;i++){
    $tr.append("<td>"+moment(list[i].bd_date).format('YYYY년 MM월 DD일 HH시:mm분')+"</td>");
    
    if(list[i].bd_state_num==7)
-	   $tr.append("<td><span style='color:red; font-weight:bold;'>반납완료</span></td>");
+	   $tr.append("<td><span style='color:blue; font-weight:bold;'>반납완료</span></td>");
    if(list[i].bd_state_num==6)
-	   $tr.append("<td><span style='color:red; font-weight:bold;'>오프라인반납완료</span></td>");
+	   $tr.append("<td><span style='color:blue; font-weight:bold;'>오프라인반납완료</span></td>");
    if(list[i].bd_state_num==5)
 	   $tr.append("<td><span style='color:red; font-weight:bold;'>반납신청</span></td>");
  

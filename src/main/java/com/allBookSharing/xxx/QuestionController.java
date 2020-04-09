@@ -70,6 +70,33 @@ public class QuestionController {
 			 
 			return mav;
 		}
+		
+		
+		
+		//건의사항 수정페이지로 이동
+		@PreAuthorize("isAuthenticated()")
+		@PostMapping(value = "/updatequs")
+		public ModelAndView questionUdateMove(Question qus) {
+			
+			ModelAndView mav=new ModelAndView();
+			
+			mav = qm.questionUdateMove(qus);
+			
+			return mav;
+		}
+		
+		
+		//건의사항 내가 쓴 글 수정
+		@PreAuthorize("isAuthenticated()")
+		@PostMapping(value = "/updatequestion")
+		public ModelAndView questionUdate(Question qus) {
+			System.out.println("수정하기 컨트롤러");
+			ModelAndView mav=new ModelAndView();
+			
+			mav = qm.questionUdate(qus);
+			
+			return mav;
+		}
 	
 	
 	//건의사항 글쓰기 페이지 이동
