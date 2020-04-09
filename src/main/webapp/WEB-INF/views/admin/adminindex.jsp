@@ -59,7 +59,7 @@ body{font-family: 'Jeju Gothic', sans-serif;}
                     <ul class="list-unstyled navbar__list">
                         <li class="has-sub">
                             <a class="js-arrow" href="adminmain">
-                                <i class="fas fa-tachometer-alt"></i>Dashboard</a>
+                                <i class="fas fa-tachometer-alt"></i>관리자 메인</a>
                             <ul class="navbar-mobile-sub__list list-unstyled js-sub-list">
 
                             </ul>

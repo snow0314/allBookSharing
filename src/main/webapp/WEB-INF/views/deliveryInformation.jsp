@@ -71,8 +71,6 @@ font-family: 'Hanna', sans-serif;
 #table{
 }
 
-@import url(//fonts.googleapis.com/earlyaccess/jejugothic.css);
-body{font-family: 'Jeju Gothic', sans-serif;}
 </style>
 </head>
 <body>
