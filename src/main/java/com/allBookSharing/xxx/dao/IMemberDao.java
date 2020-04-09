@@ -24,7 +24,8 @@ public interface IMemberDao {
 	
 	@Select("SELECT * FROM VIEW_MEMBER WHERE MB_ID=#{id}")
 	Member getMyPage(String id);
-	@Select("SELECT COUNT(*) FROM BORROWLIST WHERE BO_ID=#{id}")
+	
+	@Select("SELECT COUNT(*) FROM BORROWDETAIL JOIN BORROWLIST ON BO_NUM=BD_BO_NUM WHERE BO_ID=#{id}")
 	int getBorrowCnt(String id);
 
 	//연체횟수

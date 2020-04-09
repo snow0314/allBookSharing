@@ -118,6 +118,7 @@ ${answer.aw_contents}
 <form action="deletequestion?${_csrf.parameterName}=${_csrf.token}" method="post">
 <div id="del" style="float:right;">
 </div>
+<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
 </form>
 </div>
 </div>
@@ -155,6 +156,7 @@ $("#del_btn").click(function(){
 	
 	return confirm("삭제하시겠습니까?");
 });
+
 $("#update_btn").click(function(){
 	
 	return confirm("수정하시겠습니까?");
