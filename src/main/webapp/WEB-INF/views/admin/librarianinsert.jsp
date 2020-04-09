@@ -21,6 +21,9 @@
 
 body{font-family: 'Jeju Gothic', sans-serif;}
 
+#pw{
+
+}
 #id_check {
    all:unset;
    color: #000000;
@@ -70,7 +73,7 @@ body{font-family: 'Jeju Gothic', sans-serif;}
 					<div class="input-group-prepend">
 						<span class="input-group-text" style="width:120.39px;">비밀번호</span>
 					</div>
-						<input type="password" name="la_pw" maxlength="30" id="pw">
+						<input type="text" name="la_pw" maxlength="30" id="pw">
 					</div>
 			</td>
 		</tr>
