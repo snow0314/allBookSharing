@@ -89,7 +89,7 @@ body{font-family: 'Jeju Gothic', sans-serif;}
 					</td>
 					<td rowspan="5"><span id="guide"
 						style="color: #999; display: none"></span>
-						<div id="map" style="width: 80%; height: 350px;"></div></td>
+						<div id="map" style="width: 200%; height: 350px;"></div></td>
 				</tr>
 				
 				<tr>
