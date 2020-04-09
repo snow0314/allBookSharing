@@ -14,9 +14,22 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css" />
   
   <style>
+@import url(//fonts.googleapis.com/earlyaccess/hanna.css);
+@import url(//fonts.googleapis.com/earlyaccess/nanumgothiccoding.css);
 
-  @import url(//fonts.googleapis.com/earlyaccess/hanna.css);
-  @import url(//fonts.googleapis.com/earlyaccess/nanumgothiccoding.css);
+#update_btn{
+all:unset;
+padding: 6px 12px;
+cursor: pointer;
+text-align: center;
+vertical-align: center;
+color: #fff;
+background-color: #5bc0de;
+font-weight: 400;
+border-radius: 5px;
+margin-right: 25px;
+  }
+ 
   
 #del_btn{
 all:unset;
@@ -131,9 +144,21 @@ console.log("id="+id);
 console.log("logid="+logid);
 
 if(id==logid){
+	
 	$("<input>").attr("type","hidden").attr("value",${question.qs_num}).prop("name","qs_num").appendTo($("#del"));	
+	$("<input>").attr("type","submit").attr("value","수정").prop("id","update_btn").attr("formaction","updatequs").appendTo($("#del"));
 	$("<input>").attr("type","submit").attr("value","삭제").prop("id","del_btn").appendTo($("#del"));	
+	
 }
+
+$("#del_btn").click(function(){
+	
+	return confirm("삭제하시겠습니까?");
+});
+$("#update_btn").click(function(){
+	
+	return confirm("수정하시겠습니까?");
+});
 
 
 </script>
