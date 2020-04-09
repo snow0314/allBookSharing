@@ -220,7 +220,7 @@ body{font-family: 'Jeju Gothic', sans-serif;}
                     <div class="input-group mb-3">
                         <input id="bookName" type="text" class="form-control" placeholder="Search">
                         <div class="input-group-append">
-                            <button class="btn btn-success" type="button" onclick="bookSearch()">Go</button>
+                            <button id="searchGo" class="btn btn-success" type="button" onclick="bookSearch();">Go</button>
                         </div>
                     </div>
                     <div id="contents">
@@ -238,8 +238,6 @@ body{font-family: 'Jeju Gothic', sans-serif;}
         </div>
     </div>
     <!-- Modal: modalCart -->
-
-
 
 </body>
 <script type="text/javascript" src="js/bookInsert.js?ver2"></script>
@@ -259,6 +257,12 @@ $(document).ready( function () { //도서관 코드,이름 가져오는 메소�
 }).fail((xhr) => {
 	console.log("xhr=",xhr);
 }); 
+	
+	 $("#bookName").keypress(function (e) {
+	        if (e.which == 13){
+	        	bookSearch();  // 실행할 이벤트
+	        }
+	    });
 	
 	
 });
