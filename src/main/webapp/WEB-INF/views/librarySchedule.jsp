@@ -52,15 +52,15 @@ font-family: 'Hanna', sans-serif;
 
 }
 #nationsidebar{
-	width:15%;
+	width:25%;
 	float:right;
 	display:inline-block;
-	margin-right:10%;
+
 	}
 #lib{
 width:90%;
 float:left;
-
+margin-left:30px;
 }
 #wrap{
 width:65%;
@@ -148,8 +148,9 @@ ul {
 
 /* 달력 스타일 */
 #wrap {
-	width: 1100px;
+	width: 90%;
 	margin: 0 auto;
+	margin-left:30px;
 }
 
 #external-events {
@@ -185,165 +186,35 @@ ul {
 
 #calendar {
 	float: left;
-	width: 70%;
+	width: 100%;
 	margin-bottom:10%;
 }
 
-
+ .ul{
+display:none;
+}
 </style>
 </head>
 <body>
 
 <h1 id='title'>도서관 일정</h1>
-		<div id="nationsidebar" >
-			
-				<div class='bigregion'>
-					<h5 class='br'>
-						<a href=#; onclick='jiyuckLibrary(this)'>서울</a>
-					</h5>
-				</div>
-				<br>
-				<hr>
-				<div class='bigregion'>
-					<h5 class='br'>
-						경기도<i class='fa fa-plus'></i>
-					</h5>
-					<ul>
-						<li><a href=#;  class='li' onclick='jiyuckLibrary(this)'>시흥</a></li>
-						<li><a href=#;  class='li' onclick='jiyuckLibrary(this)'>부천</a></li>
-						<li><a href=#;  class='li' onclick='jiyuckLibrary(this)'>성남</a></li>
-					</ul>
-				</div>
-				<br>
-				<hr>
-				<div class='bigregion'>
-					<h5 class='br'>
-						<a href=#;  onclick='jiyuckLibrary(this)'>인천</a>
-					</h5>
-				</div>
-				<br>
-				<hr>
-				<div class='bigregion'>
-					<h5 class='br'>
-						강원도<i class='fa fa-plus'></i>
-					</h5>
-					<ul>
-						<li><a href=#;  class='li' onclick='jiyuckLibrary(this)'>강릉</a></li>
-						<li><a href=#;  class='li' onclick='jiyuckLibrary(this)'>속초</a></li>
-						<li><a href=#;  class='li' onclick='jiyuckLibrary(this)'>원주</a></li>
-					</ul>
-				</div>
-				<br>
-				<hr>
-				<div class='bigregion'>
-					<h5 class='br'>
-						<a href=#;  onclick='jiyuckLibrary(this)'>대전</a>
-					</h5>
-				</div>
-				<br>
-				<hr>
-				<div class='bigregion'>
-					<h5 class='br'>
-						충청남도<i class='fa fa-plus'></i>
-					</h5>
-					<ul>
-						<li><a href=#;  class='li' onclick='jiyuckLibrary(this)'>서산</a></li>
-						<li><a href=#;  class='li' onclick='jiyuckLibrary(this)'>천안</a></li>
-						<li><a href=#;  class='li' onclick='jiyuckLibrary(this)'>공주</a></li>
-					</ul>
-				</div>
-				<br>
-				<hr>
-				<div class='bigregion'>
-					<h5 class='br'>
-						충청북도 <i class='fa fa-plus'></i>
-					</h5>
-					<ul>
-						<li><a href=#;  class='li' onclick='jiyuckLibrary(this)'>청주</a></li>
-						<li><a href=#;  class='li' onclick='jiyuckLibrary(this)'>충주</a></li>
-						<li><a href=#;  class='li' onclick='jiyuckLibrary(this)'>제천</a></li>
-					</ul>
-				</div>
-				<br>
-				<hr>
-				<div class='bigregion'>
-					<h5 class='br'>
-						전라남도<i class='fa fa-plus'></i>
-					</h5>
-					<ul>
-						<li><a href=#;  class='li' onclick='jiyuckLibrary(this)'>광주</a></li>
-						<li><a href=#;  class='li' onclick='jiyuckLibrary(this)'>순천</a></li>
-						<li><a href=#;  class='li' onclick='jiyuckLibrary(this)'>광양</a></li>
-					</ul>
-				</div>
-				<br>
-				<hr>
-				<div class='bigregion'>
-					<h5 class='br'>
-						전라북도 <i class='fa fa-plus'></i>
-					</h5>
-					<ul>
-						<li><a href=#;  class='li' onclick='jiyuckLibrary(this)'>전주</a></li>
-						<li><a href=#;  class='li' onclick='jiyuckLibrary(this)'>군산</a></li>
-						<li><a href=#;  class='li' onclick='jiyuckLibrary(this)'>남원</a></li>
-					</ul>
-				</div>
-				<br>
-				<hr>
-				<div class='bigregion'>
-					<h5 class='br'>
-						경상남도<i class='fa fa-plus'></i>
-					</h5>
-					<ul>
-						<li><a href=#;  class='li'onclick='jiyuckLibrary(this)'>창원</a></li>
-						<li><a href=#;  class='li' onclick='jiyuckLibrary(this)'>통영</a></li>
-						<li><a href=#;  class='li' onclick='jiyuckLibrary(this)'>김해</a></li>
-					</ul>
-				</div>
-				<br>
-				<hr>
-				<div class='bigregion'>
-					<h5 class='br'>
-						<a href=#; onclick='jiyuckLibrary(this)'>부산</a>
-					</h5>
-				</div>
-				<br>
-				<hr>
-				<div class='bigregion'>
-					<h5 class='br'>
-						<a href=#; onclick='jiyuckLibrary(this)'>대구</a>
-					</h5>
-				</div>
-				<br>
-				<hr>
-				<div class='bigregion'>
-					<h5 class='br'>
-						<a href=#; onclick='jiyuckLibrary(this)'>울산</a>
-					</h5>
-				</div>
-				<br>
-				<hr>
-				<div class='bigregion'>
-					<h5 class='br'>
-						경상북도<i class='fa fa-plus'></i>
-					</h5>
-					<ul>
-						<li><a href=#;  class='li' onclick='jiyuckLibrary(this)'>경주</a></li>
-						<li><a href=#;  class='li' onclick='jiyuckLibrary(this)'>문경</a></li>
-						<li><a href=#;  class='li' onclick='jiyuckLibrary(this)'>포항</a></li>
-					</ul>
-				</div>
-				<br>
-				<hr>
-				<div class='bigregion'>
-					<h5 class='br'>
-						<a href=#; onclick='jiyuckLibrary(this)'>제주도</a>
-					</h5>
-				</div>
-				
-			
-
-		</div>
+<div id='nationsidebar'>
+<div class='bigregion'><h5 class='br'><a href=#; onclick='jiyuckLibrary(this)'>서울</a></h5></div>
+<br><hr><div class='bigregion'><h5 class='br'>경기도<i class='fa fa-plus'></i></h5><ul class='ul'><li><a href=#; onclick='jiyuckLibrary(this)' class='li'>시흥</a></li><li><a href=#; onclick='jiyuckLibrary(this)' class='li'>부천</a></li><li><a href=#; onclick='jiyuckLibrary(this)' class='li'>성남</a></li></ul></div>
+<br><hr><div class='bigregion'><a href=#; onclick='jiyuckLibrary(this)'><h5 class='br'>인천</h5></a></div>
+<br><hr><div class='bigregion'><h5 class='br'>강원도<i class='fa fa-plus'></i></h5><ul class='ul'><li><a href=#; onclick='jiyuckLibrary(this)' class='li'>강릉</a></li><li><a href=#; onclick='jiyuckLibrary(this)' class='li'>속초</a></li><li><a href=#; onclick='jiyuckLibrary(this)' class='li'>원주</a></li></ul></div>
+<br><hr><div class='bigregion'><a href=#; onclick='jiyuckLibrary(this)'><h5 class='br'>대전</h5></a></div>
+<br><hr><div class='bigregion'><h5 class='br'>충청남도<i class='fa fa-plus'></i> </h5><ul class='ul'><li><a href=#; onclick='jiyuckLibrary(this)' class='li'>서산</a></li><li><a href=#; onclick='jiyuckLibrary(this)' class='li'>천안</a></li><li><a href=#; onclick='jiyuckLibrary(this)' class='li'>공주</a></li></ul></div>
+<br><hr><div class='bigregion'><h5 class='br'>충청북도 <i class='fa fa-plus'></i></h5><ul class='ul'><li><a href=#; onclick='jiyuckLibrary(this)' class='li'>청주</a></li><li><a href=#; onclick='jiyuckLibrary(this)' class='li'>충주</a></li><li><a href=#; onclick='jiyuckLibrary(this)' class='li'>제천</a></li></ul></div>
+<br><hr><div class='bigregion'><h5 class='br'>전라남도<i class='fa fa-plus'></i></h5><ul class='ul'> <li><a href=#; onclick='jiyuckLibrary(this)' class='li'>광주</a></li><li><a href=#; onclick='jiyuckLibrary(this)' class='li'>순천</a></li><li><a href=#; onclick='jiyuckLibrary(this)' class='li'>광양</a></li></ul></div>
+<br><hr><div class='bigregion'><h5 class='br'>전라북도 <i class='fa fa-plus'></i></h5><ul class='ul'><li><a href=#; onclick='jiyuckLibrary(this)' class='li'>전주</a></li><li><a href=#; onclick='jiyuckLibrary(this)' class='li'>군산</a></li><li><a href=#; onclick='jiyuckLibrary(this)' class='li'>남원</a></li></ul></div>
+<br><hr><div class='bigregion'><h5 class='br'>경상남도<i class='fa fa-plus'></i> </h5><ul class='ul'><li><a href=#; onclick='jiyuckLibrary(this)' class='li'>창원</a></li><li><a href=#; onclick='jiyuckLibrary(this)' class='li'>통영</a></li><li><a href=#; onclick='jiyuckLibrary(this)' class='li'>김해</a></li></ul></div>
+<br><hr><div class='bigregion'><a href=#; onclick='jiyuckLibrary(this)'><h5 class='br'>부산</h5></a></div>
+<br><hr><div class='bigregion'><a href=#; onclick='jiyuckLibrary(this)'><h5 class='br'>대구</h5></a></div>
+<br><hr><div class='bigregion'><a href=#; onclick='jiyuckLibrary(this)'><h5 class='br'>울산</h5></a></div>
+<br><hr><div class='bigregion'><h5 class='br'>경상북도<i class='fa fa-plus'></i> </h5><ul class='ul'><li><a href=#; onclick='jiyuckLibrary(this)' class='li'>경주</a></li><li class='li'><a href=#; onclick='jiyuckLibrary(this)' class='li'>문경</a></li><li><a href=#; onclick='jiyuckLibrary(this)' class='li'>포항</a></li></ul></div>
+<br><hr><div class='bigregion'><a href=#; onclick='jiyuckLibrary(this)'><h5 class='br'>제주도</h5></a></div>
+</div>
 
 		<div class="col-9" style="padding-right: 50px;">
 			<div  id='lib' class="p-3 my-3 border">
@@ -364,11 +235,7 @@ ul {
 
 </body>
 <script type="text/javascript">
-$(function() {
 
-		$('.bigregion').children("ul").slideUp();
-}); //ready End
-	
 	$('.bigregion').click(function() {
 		$(this).find("ul").slideToggle("normal");
 	});//지역 클릭시 토글해주는 메소드

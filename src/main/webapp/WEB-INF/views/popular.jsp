@@ -11,8 +11,7 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
 </head>
 <style>
-@import url(//fonts.googleapis.com/earlyaccess/jejugothic.css);
-body{font-family: 'Jeju Gothic', sans-serif;}
+ 
 @import url(//fonts.googleapis.com/earlyaccess/jejugothic.css);
 h4{
 font-family: 'Jeju Gothic', sans-serif;
