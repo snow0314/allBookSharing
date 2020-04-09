@@ -16,8 +16,6 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
 <style>
-@import url(//fonts.googleapis.com/earlyaccess/jejugothic.css);
-body{font-family: 'Jeju Gothic', sans-serif;}
 @import url(//fonts.googleapis.com/earlyaccess/hanna.css);
 @import url(//fonts.googleapis.com/earlyaccess/jejugothic.css);
 @import url(//fonts.googleapis.com/earlyaccess/notosanskr.css);

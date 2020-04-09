@@ -28,6 +28,8 @@
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
 	
 <style type="text/css">
+ @import url(//fonts.googleapis.com/earlyaccess/hanna.css);
+  @import url(//fonts.googleapis.com/earlyaccess/nanumgothiccoding.css);
 img {
 	width: 300px;
 	height: 300px;
@@ -119,7 +121,7 @@ color:white;
 	}
 
 @import url(//fonts.googleapis.com/earlyaccess/jejugothic.css);
-body{font-family: 'Jeju Gothic', sans-serif;}
+
 </style>
 </head>
 <body>
