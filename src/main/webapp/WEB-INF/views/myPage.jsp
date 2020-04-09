@@ -479,7 +479,7 @@ $("#res_btn").click(function(){
 //회원탈퇴 버튼 클릭시 컨펌창
 $("#btn2").on("click",function(){
 	
-	confirm("정말 회원 탈퇴를 하시겠습니까?");
+	return confirm("정말 회원 탈퇴를 하시겠습니까?");
 	
 });
 
