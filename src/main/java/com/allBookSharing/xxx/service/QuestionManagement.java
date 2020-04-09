@@ -125,4 +125,32 @@ public class QuestionManagement {
 		return mav;
 	}
 
+
+	public ModelAndView questionUdateMove(Question qus) {
+		ModelAndView mav= new ModelAndView();
+		String view=null;
+		Question updateQuestion=qDao.questionUdateMove(qus);
+		view="questionUpdate";
+		
+		String json=new Gson().toJson(updateQuestion);
+		
+		mav.addObject("json",json);
+		mav.setViewName(view);
+		
+		return mav;
+	}
+
+
+	public ModelAndView questionUdate(Question qus) {
+		ModelAndView mav= new ModelAndView();
+		String view=null;
+		
+		boolean result=qDao.questionUdate(qus);
+		if(result) {
+			view="questionList";
+		}
+		
+		return  mav;
+	}
+
 }
