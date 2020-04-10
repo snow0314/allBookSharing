@@ -865,12 +865,15 @@ $.ajax({
     //연장버튼
     if(data[i].bd_return_extension==0 && data[i].bd_state_num==4)
     $tr.append("<td style='text-align:center;'><button onclick='extend("+data[i].bd_num+")' class='btn btn-info' >연장하기</button></td>");
+    
+    else if(data[i].bd_return_extension==1)
+    $tr.append("<td style='text-align:center;'><button onclick='extend("+data[i].bd_num+")' class='btn btn-info' disabled >연장하기</button></td>");
+    
     else if(data[i].bd_state_num!=4)
     	$tr.append("<td style='text-align:center;'> </td>");
     	
-    if(data[i].bd_return_extension==1)
-    $tr.append("<td style='text-align:center;'><button onclick='extend("+data[i].bd_num+")' class='btn btn-info' disabled >연장하기</button></td>");
     }
+	
      },
 	error : function(xhr, status) {
         console.log("xhr=", xhr);
@@ -895,7 +898,7 @@ function returnBooks(bd_num){
 		data:{bd_num:bd_num},
 		async: false,
 		success : function(data) {
-			alert("성공?");
+			
 				location.reload();
 			console.log("반납연장ajax=",data);
 			
