@@ -177,28 +177,40 @@
         <!--header-->
         <sec:authorize access="isAnonymous()">
         <div class="container2">
-        <div class="button-7">
+        <div class="button-7" onclick="joinfrm()">
             <div class="eff-7"></div>
-            <a href="joinfrm"> 회원가입 </a>         
+            <a href="#"> 회원가입 </a>         
          </div>
-         <div class="button-7">
+         <div class="button-7" onclick="loginfrm()">
             <div class="eff-7"></div>
-            <a href="loginfrm"> 로그인 </a>         
+            <a href="#"> 로그인 </a>         
          </div>
         </div>
         </sec:authorize>
+        
+        <script>
+        //로그인페이지
+        function loginfrm(){
+        	window.location.href="loginfrm";
+        }
+        
+        //회원가입페이지
+        function joinfrm(){
+        	window.location.href="joinfrm";
+        }
+        </script>
         
         
         
           <sec:authorize access="hasRole('ROLE_ADMIN')">
           <div class="container2">
-        <div class="button-7">
+        <div class="button-7" onclick="adminmain()">
             <div class="eff-7"></div>
-           <a href="adminmain">관리자 페이지</a>         
+           <a href="#">관리자 페이지</a>         
          </div>
-         <div class="button-7">
+         <div class="button-7" onclick="logoutGo()">
             <div class="eff-7"></div>
-            <a id="logout" href="#" onclick="logoutGo()"> 로그아웃 </a>         
+            <a id="logout" href="#" > 로그아웃 </a>         
          </div>
         </div>
         <form action="logout" name="logoutform" method="post">
@@ -207,13 +219,13 @@
         </sec:authorize>
         <sec:authorize access="hasRole('ROLE_LIBRARIAN')">
        <div class="container2">
-        <div class="button-7">
+        <div class="button-7" onclick="librarymain()">
             <div class="eff-7"></div>
            <a href="librarymain">사서 페이지</a>         
          </div>
-         <div class="button-7">
+         <div class="button-7" onclick="logoutGo()">
             <div class="eff-7"></div>
-            <a id="logout" href="#" onclick="logoutGo()"> 로그아웃 </a>         
+            <a id="logout" href="#" > 로그아웃 </a>         
          </div>
         </div>
         <form action="logout" name="logoutform" method="post">
@@ -228,9 +240,9 @@
             <span id=span><a href="movemypage"><sec:authentication property="principal.username"/></a></span>님 환영 합니다.
           
             </div>
-         <div class="button-7">
+         <div class="button-7" onclick="logoutGo()">
             <div class="eff-7"></div>
-            <a id="logout" href="#" onclick="logoutGo()"> 로그아웃 </a>         
+            <a id="logout" href="#" > 로그아웃 </a>         
          </div>
        </div>  
        
@@ -239,7 +251,16 @@
         </form>
         </sec:authorize>
         
+<script>
+function adminmain(){
+	window.location.href="adminmain";
+}
 
+function librarymain(){
+	window.location.href="librarymain";
+}
+
+</script>
         
 	<!-- banner -->
 			<div id="header">

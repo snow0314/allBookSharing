@@ -184,7 +184,7 @@ $(document).on("click", "#modal_detail",function(e){
                 if(response[0].bd_state_num==3)
                 str+="<span id='state' style='font-size: 12px; color: red;'>(배송 취소)</span>";
                 if(response[0].bd_state_num==4)
-                str+="<span id='state' style='font-size: 12px; color: red;'>(배송 완료)</span>";
+                str+="<span id='state' style='font-size: 12px; color: blue;'>(배송 완료)</span>";
                 if(response[0].bd_state_num==5)
                 str+="<span id='state' style='font-size: 12px; color: red;'>(반납 신청)</span>";
                 if(response[0].bd_state_num==6)

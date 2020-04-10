@@ -144,13 +144,14 @@ public class QuestionManagement {
 	public ModelAndView questionUdate(Question qus) {
 		ModelAndView mav= new ModelAndView();
 		String view=null;
-		System.out.println("수정 전");
 		boolean result=qDao.questionUdate(qus);
-		System.out.println("수정 후");
+		
 		
 		if(result) {
-			view="questionList";
+			view="redirect:/questionmove";
 		}
+		
+		mav.setViewName(view);
 		
 		return  mav;
 	}

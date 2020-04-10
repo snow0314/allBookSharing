@@ -6,11 +6,12 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Insert title here</title>
+
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
-<script type="text/javascript" src="./ckeditor/ckeditor.js"></script>
+  <script type="text/javascript" src="./ckeditor/ckeditor.js"></script>
 
 <style>
 @import url(//fonts.googleapis.com/earlyaccess/hanna.css);
@@ -78,8 +79,7 @@ color:white;
 		<br>
 		<button class="subbtn" onclick="location.href = 'hopebookmove' ">희망도서 신청</button>
 		<br>
-		<button class="subbtn"
-			onclick="location.href = 'noticemove' ">공지사항</button>
+		<button class="subbtn" onclick="location.href = 'noticemove' ">공지사항</button>
 			
 </aside>
 <h1 style="font-family: 'Hanna', sans-serif;margin-left:35%;margin-top:3%;">수정</h1>
