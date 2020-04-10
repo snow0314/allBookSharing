@@ -101,7 +101,7 @@ body{font-family: 'Jeju Gothic', sans-serif;}
 									<span class="input-group-text">ISBN 코드</span>
 								</div>
 								<input id="bk_code" name="bk_code" type="text"
-									class="form-control" required>
+									class="form-control" readonly="readonly" required >
 							</div>
 						</td>
 					</tr>
@@ -112,7 +112,7 @@ body{font-family: 'Jeju Gothic', sans-serif;}
 									<span class="input-group-text">도서명</span>
 								</div>
 								<input id="bk_name" name="bk_name" type="text"
-									class="form-control" required>
+									class="form-control" readonly="readonly" required>
 								<div class="input-group-append">
 									<button class="btn btn-outline-success" type="button" data-toggle="modal"
 									        data-target="#modalCart">검색</button>
@@ -127,7 +127,7 @@ body{font-family: 'Jeju Gothic', sans-serif;}
 									<span class="input-group-text">저자</span>
 								</div>
 								<input id="bk_writer" name="bk_writer" type="text"
-									class="form-control" required>
+									class="form-control" readonly="readonly" required>
 							</div>
 						</td>
 					</tr>
@@ -138,7 +138,7 @@ body{font-family: 'Jeju Gothic', sans-serif;}
 									<span class="input-group-text">출판일</span>
 								</div>
 								<input id="bk_publicday" name="bk_publicday" type="text"
-									class="form-control" required>
+									class="form-control" readonly="readonly" required>
 
 							</div>
 						</td>
@@ -155,7 +155,7 @@ body{font-family: 'Jeju Gothic', sans-serif;}
 									<span class="input-group-text">출판사</span>
 								</div>
 								<input id="bk_publisher" name="bk_publisher" type="text"
-									class="form-control" required>
+									class="form-control" readonly="readonly" required>
 							</div>
 						</td>
 					</tr>
@@ -220,7 +220,7 @@ body{font-family: 'Jeju Gothic', sans-serif;}
                     <div class="input-group mb-3">
                         <input id="bookName" type="text" class="form-control" placeholder="Search">
                         <div class="input-group-append">
-                            <button class="btn btn-success" type="button" onclick="bookSearch()">Go</button>
+                            <button id="searchGo" class="btn btn-success" type="button" onclick="bookSearch();">Go</button>
                         </div>
                     </div>
                     <div id="contents">
@@ -238,8 +238,6 @@ body{font-family: 'Jeju Gothic', sans-serif;}
         </div>
     </div>
     <!-- Modal: modalCart -->
-
-
 
 </body>
 <script type="text/javascript" src="js/bookInsert.js?ver2"></script>
@@ -259,6 +257,12 @@ $(document).ready( function () { //도서관 코드,이름 가져오는 메소�
 }).fail((xhr) => {
 	console.log("xhr=",xhr);
 }); 
+	
+	 $("#bookName").keypress(function (e) {
+	        if (e.which == 13){
+	        	bookSearch();  // 실행할 이벤트
+	        }
+	    });
 	
 	
 });

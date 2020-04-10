@@ -80,35 +80,29 @@ color:white;
 		<br>
 		<button class="subbtn"
 			onclick="location.href = 'noticemove' ">공지사항</button>
-
+			
 </aside>
-<h1 style="font-family: 'Hanna', sans-serif;margin-left:35%;margin-top:3%;">건의사항 글쓰기</h1>
+<h1 style="font-family: 'Hanna', sans-serif;margin-left:35%;margin-top:3%;">수정</h1>
 
-<form method="post" style="width:70%;margin-left:35%; margin-top:2%;">
+<form  action="updatequestion" method="post" style="width:70%;margin-left:35%; margin-top:2%;">
 
-<select id="lb_loc" required="required" name="qs_lcode">
-<option value="">선택</option>
-</select>
-<input type="text" name="qs_title" placeholder="제목" required="required" style="width:300px; margin-bottom:10px;   height:36px;"/>
+<input type="text" name="qs_title" id="qs_title1" placeholder="제목" required="required" style="width:300px; margin-bottom:10px;   height:36px;"/>
 
 
 
 <div id="content">
-<textarea class="form-control" name="qs_content" id="p_content"></textarea>
+<textarea class="form-control" name="qs_content" id=p_content></textarea>
 <div style="margin-top: 10px;">
-<select name="qs_show" id="qs_show" required="required" >
-<option value="">선택</option>
-<option value="0">공개</option>
-<option value="1">비공개</option>
-</select>
 <input type="hidden" id='sel' name="qs_pw" placeholder="숫자 4자리" maxlength="4" />
 <span id="pw_ck"></span>
 </div>
 </div>
-<div style="margin-top:120px;margin-left:15%;margin-bottom:10%;">
-<input type="submit" id="sub_btn" value="등록" class="btn btn-success" style="margin-right:20px;background-color:#223A5E;" formaction="questionwrite?${_csrf.parameterName}=${_csrf.token}"/>
+<div style="margin-top:80px;margin-left:15%;margin-bottom:10%;">
+<input type="submit" id="sub_btn" value="수정" class="btn btn-success" style="margin-right:20px;background-color:#223A5E;"/>
 <input type="button"  value="취소" class="btn btn-success" style="background-color:#223A5E;" onclick="goBack();"/>
 </div>
+<input type="hidden" name="qs_num" id="qs_num1" />
+<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
 </form>
 
 <script type="text/javascript">
@@ -120,15 +114,7 @@ function goBack(){
 </script>
 
 
-<!-- 도서관 코드 불러오기 -->
-<script>
-let list=${list};
-console.log(list);
-for(var i=0;i<list.length;i++){
-	$("<option>").text(list[i].lb_name).attr("value",list[i].lb_code).appendTo($("#lb_loc"));
-}
 
-</script>
 
 
 <script type="text/javascript">
@@ -143,7 +129,7 @@ CKEDITOR.replace('p_content'
 $("#qs_show").on("change",function(){
 	console.log($("#qs_show").val());
 	if($("#qs_show").val()==1){
-		$("#sel").attr("type","text").attr("required",true).css("width","200px").css("float","right").css("margin-right","20px").attr("disabled",false);
+		$("#sel").attr("type","text").attr("required",true).attr("disabled",false);
 	}
 	else{
 		$("#sel").attr("type","hidden").attr("required",false).attr("disabled",true);
@@ -169,7 +155,12 @@ $("#sel").on("blur", function(){
 });
 
 
+var json=${json};
+console.log("json=",json);
 
+$("#qs_title1").val(json.qs_title);
+$("#p_content").val(json.qs_content);
+$("#qs_num1").val(json.qs_num);
 </script>
 </body>
 </html>

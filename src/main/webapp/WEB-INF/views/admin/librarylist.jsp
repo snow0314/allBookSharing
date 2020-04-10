@@ -54,7 +54,14 @@ body{font-family: 'Jeju Gothic', sans-serif;}
 	</div>
 	<div class="container p-3 my-3 border">
 
-		<table  class="table table-bordered table-hover">
+		<table  class="table table-bordered table-hover" style="text-align: center;">
+		<colgroup>
+			<col width="5%">
+			<col width="20%">
+			<col width="10%">
+			<col width="10%">
+			<col width="5%">
+		</colgroup>
 		<thead>
 			<tr>
 				<th>도서관 코드</th>
@@ -96,7 +103,7 @@ $(document).ready( function () {
 	    	$("<td>").text(data[i].lb_name).appendTo($tr);
 	    	$("<td>").text(data[i].lb_loc).appendTo($tr);
 	    	$("<td>").text(data[i].la_id).appendTo($tr);
-	    	$("<td>").append($("<button>").text("삭제").addClass("btn btn-outline-success")
+	    	$("<td>").append($("<button>").text("삭제").addClass("btn btn-outline-danger")
 	    			                      .attr("onclick","librarianDelete('"+data[i].la_id+"')"))
 	    	.appendTo($tr);
 	    	}

@@ -12,7 +12,6 @@
 	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
 
 <style>
-
 @import url(//fonts.googleapis.com/earlyaccess/hanna.css);
 
 @import url(//fonts.googleapis.com/earlyaccess/jejugothic.css);

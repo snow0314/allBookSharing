@@ -37,4 +37,16 @@ SELECT * FROM ANSWER WHERE AW_Q_NUM=#{qs_num}
 DELETE FROM QUESTION WHERE QS_NUM=#{qs_num}
 </delete>
 
+
+<select  id="questionUdateMove" resultType="Question">
+SELECT * FROM QUESTION WHERE QS_NUM=#{qs_num}
+</select>
+
+<update id="questionUdate" parameterType="Question">
+UPDATE QUESTION SET QS_TITLE=#{qs_title},QS_CONTENT=#{qs_content} where QS_NUM=#{qs_num}
+</update>
+
+
+
+
 </mapper>

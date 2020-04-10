@@ -133,7 +133,7 @@ body{font-family: 'Jeju Gothic', sans-serif;}
 									<span class="input-group-text">ISBN 코드</span>
 								</div>
 								<input id="bk_code" name="bk_code" type="text"
-									class="form-control" required>
+									class="form-control" readonly="readonly" required>
 							</div>
 						</td>
 					</tr>
@@ -144,7 +144,7 @@ body{font-family: 'Jeju Gothic', sans-serif;}
 									<span class="input-group-text">도서명</span>
 								</div>
 								<input id="bk_name" name="bk_name" type="text"
-									class="form-control" required>
+									class="form-control" readonly="readonly" required>
 							</div>
 						</td>
 					</tr>
@@ -155,7 +155,7 @@ body{font-family: 'Jeju Gothic', sans-serif;}
 									<span class="input-group-text">저자</span>
 								</div>
 								<input id="bk_writer" name="bk_writer" type="text"
-									class="form-control" required>
+									class="form-control" readonly="readonly" required>
 							</div>
 						</td>
 					</tr>
@@ -166,7 +166,7 @@ body{font-family: 'Jeju Gothic', sans-serif;}
 									<span class="input-group-text">출판일</span>
 								</div>
 								<input id="bk_publicday" name="bk_publicday" type="text"
-									class="form-control" required>
+									class="form-control" readonly="readonly" required>
 
 							</div>
 						</td>
@@ -183,7 +183,7 @@ body{font-family: 'Jeju Gothic', sans-serif;}
 									<span class="input-group-text">출판사</span>
 								</div>
 								<input id="bk_publisher" name="bk_publisher" type="text"
-									class="form-control" required>
+									class="form-control" readonly="readonly" required>
 							</div>
 						</td>
 					</tr>
