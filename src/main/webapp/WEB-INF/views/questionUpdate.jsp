@@ -93,8 +93,6 @@ color:white;
 <div id="content">
 <textarea class="form-control" name="qs_content" id=p_content></textarea>
 <div style="margin-top: 10px;">
-<input type="hidden" id='sel' name="qs_pw" placeholder="숫자 4자리" maxlength="4" />
-<span id="pw_ck"></span>
 </div>
 </div>
 <div style="margin-top:80px;margin-left:15%;margin-bottom:10%;">
@@ -103,6 +101,7 @@ color:white;
 </div>
 <input type="hidden" name="qs_num" id="qs_num1" />
 <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
+
 </form>
 
 <script type="text/javascript">
@@ -125,35 +124,6 @@ CKEDITOR.replace('p_content'
 </script>
 
 <script>
-
-$("#qs_show").on("change",function(){
-	console.log($("#qs_show").val());
-	if($("#qs_show").val()==1){
-		$("#sel").attr("type","text").attr("required",true).attr("disabled",false);
-	}
-	else{
-		$("#sel").attr("type","hidden").attr("required",false).attr("disabled",true);
-		
-	}
-});
-
-
-//비밀번호 정규식 확인
-$("#sel").on("blur", function(){
-	 var password=$("#sel").val();
-		var patt=/^[0-9]{4}$/;
-		if(password.length==0)
-			return $("#pw_ck").text("필수 입력입니다.").css("color","red");
-			else if(!patt.test(password)){
-					
-				$("#pw_ck").text("비밀번호는 숫자 4글자 입니다.").css("color","red");
-				return $("#sel").val("");
-			}
-		$("#pw_ck").text("");
-			return true;
-	 
-});
-
 
 var json=${json};
 console.log("json=",json);
