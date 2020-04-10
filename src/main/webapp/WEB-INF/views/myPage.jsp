@@ -680,7 +680,7 @@ $.ajax({
 	url :"arrearslist",
 	dataType:'json',
 	success : function(data) {
-        console.log("data=",data);
+        console.log("연채 목록=",data);
         for(var i=0;i<data.length;i++){   
         	console.log(data[i].bo_num);
         var $tr= $("<tr>").appendTo($("#arrears"));

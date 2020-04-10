@@ -474,7 +474,6 @@ function pointCheck(){ //사용자 포인트 가져오는 메소드
 }
 
 $(document).on("click",".myButton",function(){//삭제 버튼 클릭시
-	alert("삭제");
 	var data = {};
 	data.de_code = $(this).data("decode");
 	data.de_lcode = $(this).data("delcode");
