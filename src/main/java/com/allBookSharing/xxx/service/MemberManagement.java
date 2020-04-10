@@ -180,7 +180,7 @@ public class MemberManagement {
 		// 1.이클립스의 물리적 저장경로 찾기
 					String root = multi.getSession().getServletContext().getRealPath("/");
 					System.out.println("root=" + root);
-					String path ="C:/img/profile/";
+					String path ="K:\\springWork\\allBookSharing\\upload\\";
 					System.out.println("path="+path);
 					// 2.폴더 생성을 꼭 할것...
 					File dir = new File(path);

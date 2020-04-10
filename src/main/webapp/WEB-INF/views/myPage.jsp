@@ -194,7 +194,7 @@ body{font-family: 'Jeju Gothic', sans-serif;}
 						<td>아이디 : </td>
 						<td>${mb.mb_id}</td>
 						<td rowspan="6">
-						<img src="/img/profile/${mb.us_image}" width="150" height="220" alt="프로필 사진" />						
+						<img src="/img/${mb.us_image}" width="150" height="220" alt="프로필 사진" />						
 						</td>
 					</tr>
 					<tr>
