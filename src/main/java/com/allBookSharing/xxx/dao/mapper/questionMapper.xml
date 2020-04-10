@@ -42,7 +42,8 @@ DELETE FROM QUESTION WHERE QS_NUM=#{qs_num}
 SELECT * FROM QUESTION WHERE QS_NUM=#{qs_num}
 </select>
 
-<update id="questionUdate" parameterType="Question">
+
+<update id="questionUdate" parameterType="Question" >
 UPDATE QUESTION SET QS_TITLE=#{qs_title},QS_CONTENT=#{qs_content} where QS_NUM=#{qs_num}
 </update>
 

@@ -51,7 +51,7 @@ font-family: 'Hanna', sans-serif;
 margin-left:14%;
 }
 .libbtn{
-	width:150px;
+	width:170px;
 	height:50px;
 	border:1px solid #00539C;
 	font-size:16px;
