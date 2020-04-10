@@ -231,6 +231,7 @@ font-weight:bold;
 	vertical-align:middle;
 	padding-left:5%;
 	font-weight:500;
+	width:800px;
 	}
 	#regionsearchList td{
 	 border-bottom: 2px solid #c0c0c0;
@@ -243,6 +244,7 @@ font-weight:bold;
 	vertical-align:middle;
 	padding-left:5%;
 	font-weight:500;
+		width:800px;
 	}
 	#totalsearchList .lefttd{
 	padding:7px;
@@ -629,6 +631,7 @@ function myregionSearch(){//내 지역 도서관 목록
 	    data:{"bk_search":$('#bookinput').val() ,"selectval":$('#select').val()},
 	    dataType:'json',
 	    success:function(result){
+	    	console.log
 	    	$("#contents").empty();
 	    	$("#contents").append("<div id='myRegion' class='tabcontent'><h2 id='e'>"+result[0].bk_loc+"</h2><table id='regionsearchList'><table></div><div id='sidebar'><ul id='myregionlb'></ul></div>");
 	    	
