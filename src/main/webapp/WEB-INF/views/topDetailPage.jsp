@@ -11,40 +11,66 @@
 <script src='https://kit.fontawesome.com/a076d05399.js'></script>
 </head>
 <style>
-@import url(//fonts.googleapis.com/earlyaccess/jejugothic.css);
-body{font-family: 'Jeju Gothic', sans-serif;}
+
 @import url(//fonts.googleapis.com/earlyaccess/hanna.css);
 @import url(//fonts.googleapis.com/earlyaccess/jejugothic.css);
+@import url(//fonts.googleapis.com/earlyaccess/notosanskr.css);
+@import url(//fonts.googleapis.com/earlyaccess/nanumgothiccoding.css);
+#submenu {
+  		float: left;
+  		width: 15%;
+  		height: 100%;  
+  	  margin-left: 8%;
+  	  margin-top:2%;
+}
+.subbtn{
+	width:100%;
+	background-color:white;
+	height:55px;
+	font-family: 'Nanum Gothic Coding', monospace;
+	font-weight:bold;
+	font-size:20px;
+	border:none;
 
-	#detailinfo{
-		border:3px solid #838487;
+
+}
+.subbtn:hover{
+	background-color:#F0EAD6;
+}
+.subtopbtn{
+	width:100%;
+	font-family: 'Hanna', sans-serif;
+	height:98px;
+	background-color:#223A5E;
+	color:white;
+}
+#detailinfo{
 		padding:7px;
 		height:300px;
 		flex:3;
 		border-radius: 10px;
 		margin-right:5%;	
+		background-color:#e7eaed;
+		margin-top:20px;
 	}
-	#img{
+#img{
 	flex:1;
 	border:1px solid #fde978;
-	height:300px;
-	margin-right:5%
+	height:280px;
+	margin-right:5%;
+	margin-top:20px;
+	
 	}
-	h1{
-	font-family: 'Hanna', sans-serif;
-	}
-	td{
+
+td{
 
 	}
-	.dd{
+.dd{
 		font-weight:750;
 		font-size:20px;
 		padding-left:10px;
 	}
-	body{
-		padding-left:10%;
-		padding-right:10%;
-	}
+ 
 	.tt{
 	text-align:right;
 	font-size:18px;
@@ -57,45 +83,48 @@ body{font-family: 'Jeju Gothic', sans-serif;}
 	margin-top:15px;
 	margin-left:12%
 	}
-	#have{
+#have{
 	border:1px solid #4a8af4;
 	width:60%;
 	}
-	#review{
+#review{
 	
 	width:77%;
 	}
-	#container{
+#container{
 	display:flex;
 	margin-left:10%;
 	margin-right:10%;
 	}
-	#state{
+#state{
 	color:red;
 	
 	}
-	#reviewlist{
+#reviewlist{
 	width:100%;
 	text-align:center;
 	}
-	#reviewlist th{
+#reviewlist th{
 	background-color:#b7b8ba;
 	height:30px;
 	font-size:18px;
 	}
-	#review{
+#review{
 	margin-left:12%;
 	margin-top:5%;
 	width:77%;
 	}
-	#title{
-	 margin-left:10%;
-	 font-family: 'Hanna', sans-serif;
-	 margin-top:2%;
-	 font-size:45px;
-	 font-weight:600;
-	 margin-bottom:10px;
+#title{
+	margin-left:10%;
+	font-family: 'Hanna', sans-serif;
+	margin-top:3%;
+	font-size:45px;
+	font-weight:560;
+	margin-bottom:-5px;
 	 
+	}
+h1{
+	font-family: 'Hanna', sans-serif;
 	}
 	#bname{
 		color:#00498c;
@@ -115,21 +144,36 @@ body{font-family: 'Jeju Gothic', sans-serif;}
 	margin-top:18px;
 	margin-bottom:25px;
 	}
-	#sidebar{
+#sidebar{
 	flex:1;
 	float:left;
 	background-color:#F0EAD6;
 	border-radius: 20px;
 	text-align:center;
     vertical-align:middle;
-    height:100px;
+    height:50%;
     font-family: 'Jeju Gothic', sans-serif;
     font-size:23px;
-    padding-top:50px;
+   	padding:15px;
+   	margin-top:20px;
 	}
+#topdetailmain{
+	float:right;
+	width:70%;
+	margin-right:4%;
+	margin-bottom:7%;
+}
 </style>
 <body>
-<h1 id="title">상세보기</h1>
+<jsp:include page="header.jsp"></jsp:include>
+<nav id="submenu">
+	<button class="subtopbtn" disabled><h2>자료검색</h2></button><br>
+    <button class="subbtn" onclick="location.href = 'totalsearch' " >통합검색</button><br>
+    <button class="subbtn" onclick="location.href = 'totalsearch?kind=besttopten'">인기도서</button><br>
+    <button class="subbtn" onclick="location.href = 'totalsearch?kind=recommend'">추천도서</button>
+</nav>
+<main id="topdetailmain">
+<h2 id="title">상세보기</h2>
 
 
 
@@ -176,7 +220,7 @@ body{font-family: 'Jeju Gothic', sans-serif;}
 	</table>
  </div>
  
-
+</main>
 </body>
 <script>
 window.onload = function () {

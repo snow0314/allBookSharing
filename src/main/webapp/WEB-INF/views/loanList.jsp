@@ -323,7 +323,7 @@ body {
 						</div>
 
 						<div class="modal-footer">
-							<button type="submit" class="btn btn-default">리뷰쓰기</button>
+							<button type="submit" class="btn btn-default" >리뷰쓰기</button>
 							<button type="button" class="btn btn-default"
 								data-dismiss="modal">Close</button>
 						</div>
@@ -395,18 +395,18 @@ for(let i=0;i<list.length;i++){
 	case 6:
 		$tr.append("<td style='color:blue;'>반납완료</td>");
 		if(list[i].rv_contents != null){
-			$tr.append("<td><button id='modal_review' data-toggle='modal' data-target='#myModal' data-title='"+list[i].bk_name+"' data-code=\""+list[i].bk_code+"\">리뷰수정</button></td>");		
+			$tr.append("<td><button id='modal_review' style='background-color:#2A4B7C;color:white;border-radius:5px;width:90px;height:40px;' data-toggle='modal' data-target='#myModal' data-title='"+list[i].bk_name+"' data-code=\""+list[i].bk_code+"\">리뷰수정</button></td>");		
 		}else{
-			$tr.append("<td><button id='modal_review' data-toggle='modal' data-target='#myModal' data-title='"+list[i].bk_name+"' data-code=\""+list[i].bk_code+"\">리뷰쓰기</button></td>");		
+			$tr.append("<td><button id='modal_review' style='background-color:#DD4132;border-radius:5px;width:90px;height:40px;color:white;' data-toggle='modal' data-target='#myModal' data-title='"+list[i].bk_name+"' data-code=\""+list[i].bk_code+"\">리뷰쓰기</button></td>");		
 		}
 		
 		break;
 	case 7:
 		$tr.append("<td style='color:blue;'>반납완료</td>");
 		if(list[i].rv_contents != null){
-			$tr.append("<td><button id='modal_review' data-toggle='modal' data-target='#myModal' data-title='"+list[i].bk_name+"' data-code=\""+list[i].bk_code+"\">리뷰수정</button></td>");		
+			$tr.append("<td><button id='modal_review' style='background-color:#2A4B7C;color:white;border-radius:5px;width:90px;height:40px;' data-toggle='modal' data-target='#myModal' data-title='"+list[i].bk_name+"' data-code=\""+list[i].bk_code+"\">리뷰수정</button></td>");		
 		}else{
-			$tr.append("<td><button id='modal_review' data-toggle='modal' data-target='#myModal' data-title='"+list[i].bk_name+"' data-code=\""+list[i].bk_code+"\">리뷰쓰기</button></td>");					
+			$tr.append("<td><button id='modal_review' style='background-color:#DD4132;border-radius:5px;width:90px;height:40px;color:white;' data-toggle='modal' data-target='#myModal' data-title='"+list[i].bk_name+"' data-code=\""+list[i].bk_code+"\">리뷰쓰기</button></td>");					
 		}
 		
 		break;		
@@ -462,7 +462,7 @@ for(let i=0;i<list.length;i++){
 						</div>
 
 						<div class="modal-footer">
-							<button type="submit" class="btn btn-default">리뷰쓰기</button>
+							<button type="submit" class="btn btn-default" >리뷰쓰기</button>
 							<button type="button" class="btn btn-default"
 								data-dismiss="modal">Close</button>
 						</div>
