@@ -300,12 +300,20 @@ public class MemberManagement {
 
 	}
 	//반납일 연장하기
-	public boolean loanExtend(int bd_num) {
-		
+	public List<Loan> loanExtend(int bd_num, Principal principal) {
+		String id=principal.getName();
+		System.out.println("반납연장 서비스");
 		boolean result=mDao.loanExtend(bd_num);
+		List<Loan> lList=null;
+		
+		if(result) {
+			System.out.println("반납연장후 리스트");
+			 lList=mDao.getLoanList(id);
+		}
+		
 		System.out.println("bd_return_extension="+result);
 		
-		return result;
+		return lList;
 	}
 
 	//현재 예약 목록
@@ -423,10 +431,16 @@ public class MemberManagement {
 		return result;
 	}
 
-	public boolean returnBooks(int bd_num) {
-		Boolean result=mDao.returnBooks(bd_num);
+	//반납신청하기
+	public List<Loan> returnBooks(int bd_num, Principal principal) {
+		String id=principal.getName();
 		
-		return result;
+		Boolean result=mDao.returnBooks(bd_num);
+		List<Loan> lList=null;
+		if(result)
+			lList=mDao.getLoanList(id);
+		
+		return lList;
 		
 	}
     
