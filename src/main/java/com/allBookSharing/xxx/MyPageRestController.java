@@ -121,9 +121,9 @@ public class MyPageRestController {
 	
 	//현재 예약 취소 
 	@RequestMapping(value = "/reservationcancell" ,produces = "application/json;charset=UTF-8")
-	public List<Loan> reservationcancell(int rv_num,Principal principal) {
+	public List<Reservation> reservationcancell(int rv_num,Principal principal) {
 		System.out.println("현재 예약 목록 컨트롤러");
-		List<Loan> lList=mm.reservationcancell(rv_num,principal);
+		List<Reservation> lList=mm.reservationcancell(rv_num,principal);
 		
 		return lList;
 	}

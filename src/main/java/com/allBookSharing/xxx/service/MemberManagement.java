@@ -360,14 +360,19 @@ public class MemberManagement {
 	   
 
 	 //마이페이지에서 예약 취소
-	public List<Loan> reservationcancell(int rv_num, Principal principal) {
+	public List<Reservation> reservationcancell(int rv_num, Principal principal) {
 		String id=principal.getName();
 
 		boolean result=mDao.reservationcancell(rv_num);
-		List<Loan> lList=null;
-		if(result)
-			lList=mDao.getLoanList(id);
+		List<Reservation> lList=null;
+		if(result) {
+			
+			 lList=mDao.getReservationlist(id);
+		for(int i=0;i<lList.size();i++) {
+			lList.get(i).setReservationCnt(mDao.getReservationCnt(lList.get(i))); //해당 책에 예약이 몇건 걸려있는지 알아오는 메소드
+		}
 		
+		}
 		return lList;
 	}
 

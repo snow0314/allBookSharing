@@ -127,13 +127,12 @@ width: 400px;
 	margin-top: 50px;
 }
 
-
- #submenu {
-  		float: left;
-  		width: 15%;
-  		height: 100%;  
-  	  margin-left: 8%;
-  	  margin-top:2%;
+#submenu {
+  	float: left;
+  	width: 15%;
+  	height: 100%;  
+  	 margin-left: 8%;
+  	 margin-top:2%;
 }
     .subtopbtn{
 width:100%;
@@ -744,8 +743,8 @@ $.ajax({
         rv_code=spl.split(" ");	
         rv_code=rv_code[0]+" "+rv_code[1];
         console.log("rv_code=",rv_code);
-        rank=getRank(rv_code,data[i].rv_lcode);
-        console.log("rank=",rank);
+        rank=getRank(data[i].rv_code,data[i].rv_lcode);
+        console.log("rank"+i+"=",rank);
         
         var temp = data[i].bk_quantity-data[i].bk_booklend; //대여할 수 있는 권수
         if(temp >= rank){
@@ -761,7 +760,8 @@ $.ajax({
         $tr.append("<td style='text-align:center;' ><span id='rank' style='font-weight:bold;'>"+rank+"</span></td>");
         
         $tr.append("<td><button id='cancel_btn' onclick='reservationCancel("+data[i].rv_num+") '>취소</button></td>");
-        }
+        
+        } //for End
         
      },
 	error : function(xhr, status) {
@@ -787,7 +787,7 @@ function getRank(rv_code,rv_lcode){
 		success : function(data) {
 			console.log("예약 순위ajax=",data);
 			rank = data;
-			$("#rank").html(data);
+			
 		},
 		error : function(xhr, status) {
        console.log("예약순위 에러");
@@ -847,7 +847,7 @@ var result=confirm("취소하시겠습니까?");
 	        rv_code=spl.split(" ");	
 	        rv_code=rv_code[0]+" "+rv_code[1];
 	        console.log("rv_code=",rv_code);
-	        rank=getRank(rv_code,data[i].rv_lcode);
+	        rank=getRank(data[i].rv_code,data[i].rv_lcode);
 	        console.log("rank=",rank);
 	        
 	        var temp = data[i].bk_quantity-data[i].bk_booklend; //대여할 수 있는 권수
@@ -861,9 +861,9 @@ var result=confirm("취소하시겠습니까?");
 	        console.log("temp",temp);
 	        
 	        
-	        $tr.append("<td style='text-align:center;' ><span id='rank' style='font-weight:bold;'>"+rank+"</span></td>");
+	        $tr.append("<td style='text-align:center;' ><span id='rank' style='font-weight:bold;'>"+getRank(data[i].rv_code,data[i].rv_lcode)+"</span></td>");
 	        
-	        $tr.append("<td><button onclick='reservationCancel("+data[i].rv_num+") '>취소</button></td>");
+	        $tr.append("<td><button id='cancel_btn' onclick='reservationCancel("+data[i].rv_num+") '>취소</button></td>");
 	        }
 			
 			
