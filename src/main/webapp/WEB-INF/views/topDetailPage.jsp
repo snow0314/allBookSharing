@@ -123,9 +123,7 @@ td{
 	margin-bottom:-5px;
 	 
 	}
-h1{
-	font-family: 'Hanna', sans-serif;
-	}
+
 	#bname{
 		color:#00498c;
 		font-size:27px;
