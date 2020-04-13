@@ -175,7 +175,9 @@
    }
 
       </style>
+
 	</head>
+	
 	<body class="homepage">
 		
         <!--header-->
@@ -387,7 +389,7 @@ function librarymain(){
 						<section class="4u" id="4u1" >
 						    <h2 class='text'>추천도서</h2>
 							
-                            <div id="demo" class="carousel slide" data-ride="carousel"> 
+                            <div id="demo" class="carousel slide" data-ride="carousel" data-interval="2000"> 
                                 <div class="carousel-inner"> 
 							<!-- 슬라이드 쇼 --> 
 							<div class="carousel-item active"> 
@@ -430,7 +432,7 @@ function librarymain(){
 							
 							<!-- 인디케이터 --> 
 							<ul class="carousel-indicators"> 
-							<li data-target="#demo" data-slide-to="0" class="active"></li> <!--0번부터시작--> 
+							<li data-target="#demo" data-slide-to="0" class="active" ></li> <!--0번부터시작--> 
 							<li data-target="#demo" data-slide-to="1"></li> 
 							<li data-target="#demo" data-slide-to="2"></li> 
 							<li data-target="#demo" data-slide-to="3"></li> 
@@ -526,12 +528,13 @@ function librarymain(){
 			</div>
 
 	</body>
-	1b51d85dd9bcbc0b96d2984712a09ec4&libraries=services,clusterer,drawing
+
 	
 	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=	1b51d85dd9bcbc0b96d2984712a09ec4&libraries=clusterer"></script>
 	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=1b51d85dd9bcbc0b96d2984712a09ec4"></script>
 	<script src="http://code.jquery.com/jquery-1.4.4.min.js"></script>
 <script src="//code.jquery.com/jquery-1.12.0.min.js"></script>
+
 	<script type="text/javascript">
 	function mainBookSearch(){
 		var bk_name=document.getElementById("bookinput").value;
@@ -561,6 +564,7 @@ function librarymain(){
 		}
 		
 		$(document).ready(function(){
+			
 			$.ajax({
 				type:'get',
 		    	url:'mainpagetopten',
@@ -675,7 +679,7 @@ function librarymain(){
 				});
 		
 
-			
+		    
 
 		   
 		 

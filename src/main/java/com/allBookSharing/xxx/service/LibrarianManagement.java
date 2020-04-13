@@ -42,7 +42,7 @@ public class LibrarianManagement {
 		System.out.println("result="+result);
 		
 		if(result) {
-		mav.setViewName("admin/adminindex");
+		mav.setViewName("admin/librarianinsert");
 		}
 		else {
 			mav.setViewName("admin/librarianinsert");

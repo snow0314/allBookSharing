@@ -200,8 +200,20 @@ font-size:25px;
 font-size:20px;
 }
 
-@import url(//fonts.googleapis.com/earlyaccess/jejugothic.css);
-body{font-family: 'Jeju Gothic', sans-serif;}
+<mx:Style>
+  Alert {
+   titleStyleName: "alertTitle";
+   messageStyleName: "alertMessage";
+  }
+  
+  .alertTitle {
+      fontSize: 20;
+  }
+  
+  .alertMessage {
+      fontSize: 20;
+  }
+ </mx:Style>
 </style>
 
 <body>
