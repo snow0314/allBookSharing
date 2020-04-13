@@ -169,6 +169,10 @@
 	padding:0;
 	font-size:23px;
    }
+   
+   h1{
+	font-family: 'Hanna', sans-serif;
+	}
 
       </style>
 	</head>
