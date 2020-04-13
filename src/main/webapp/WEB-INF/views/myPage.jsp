@@ -98,6 +98,28 @@ color: #007bff;
  background-color:white;
  margin-left:10px;
 }
+#cart_btn{
+ padding-bottom: 5px;
+ padding-top: 5px;
+ font-size: 17px;
+ height:45px;
+ font-family: 'Nanum Gothic Coding', monospace;
+ border-radius:7px;
+ border:2px solid #17a2b8;
+ color:#17a2b8;
+ background-color:none;
+}
+#cancel_btn{
+padding-bottom: 5px;
+ padding-top: 5px;
+ font-size: 17px;
+ height:45px;
+ font-family: 'Nanum Gothic Coding', monospace;
+ border-radius:7px;
+ border:2px solid #17a2b8;
+ color:#17a2b8;
+ background-color:none;
+}
 #table_rest{
 width: 400px;
 }
@@ -738,7 +760,7 @@ $.ajax({
         
         $tr.append("<td style='text-align:center;' ><span id='rank' style='font-weight:bold;'>"+rank+"</span></td>");
         
-        $tr.append("<td><button onclick='reservationCancel("+data[i].rv_num+") '>취소</button></td>");
+        $tr.append("<td><button id='cancel_btn' onclick='reservationCancel("+data[i].rv_num+") '>취소</button></td>");
         }
         
      },
@@ -831,7 +853,7 @@ var result=confirm("취소하시겠습니까?");
 	        var temp = data[i].bk_quantity-data[i].bk_booklend; //대여할 수 있는 권수
 	        if(temp >= rank){
 	        	$tr.append("<td id='state' style='color: red;'>대출가능</td>");
-	        	$tr.append("<td><button id='cart_btn' data-rv_code='"+data[i].rv_code+"' data-rv_lcode='"+data[i].rv_lcode+"' >담기</button></td>");
+	        	$tr.append("<td><button id='cart_btn'  data-rv_code='"+data[i].rv_code+"' data-rv_lcode='"+data[i].rv_lcode+"' >담기</button></td>");
 	        }else{
 	        	$tr.append("<td id='state'>대출불가</td>");
 	        	$tr.append("<td><button id='cart_btn' disabled >담기</button></td>");
