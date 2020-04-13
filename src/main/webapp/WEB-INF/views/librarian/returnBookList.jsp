@@ -80,7 +80,7 @@ body{font-family: 'Jeju Gothic', sans-serif;}
          <th>상태</th>
          </tr>
       </thead>
-      <tbody id='tb'>
+      <tbody id='tb' style="font-size:20px;font-weight:bold;">
       </tbody>
     </table>
       </div>
@@ -117,7 +117,7 @@ for(let i=0;i<list.length;i++){
     <div class="modal-dialog">
     
       <!-- Modal content-->
-      <div class="modal-content">
+      <div class="modal-content"  style="font-size:20px;font-weight:blod;">
         <div id='modal-header' class="modal-header">
           <button type='button' class='close' data-dismiss='modal'>&times;</button>
         </div>
@@ -170,13 +170,13 @@ $(document).on("click", "#modal_detail",function(e){
                 str+="<span>"+response.bo_id+"</span>";
                 
                 if(response.bd_state_num==5)
-                str+="<span id='state' style='font-size: 12px; color: red;'>(반납 신청)</span>";
+                str+="<span id='state' style='font-size: 18px; color: red;'>(반납 신청)</span>";
                 if(response.bd_state_num==6)
-                str+="<span id='state' style='font-size: 12px; color: blue;'>(오프라인 반납 완료)</span>";
+                str+="<span id='state' style='font-size: 18px; color: blue;'>(오프라인 반납 완료)</span>";
                 if(response.bd_state_num==7)
-                str+="<span id='state' style='font-size: 12px; color: blue;'>(반납 안료)</span>";
+                str+="<span id='state' style='font-size: 18px; color: blue;'>(반납 안료)</span>";
                 
-                str+="<span style='float: right; font-size: 14px;'><i class='far fa-clock'></i>"+response.bd_date+"</span>";
+                str+="<span style='float: right; font-size: 18px;'><i class='far fa-clock'></i>"+response.bd_date+"</span>";
                 str+="</div></div>";
                 
                   str+="<div style='display:flex; margin:10px 10px;'>";

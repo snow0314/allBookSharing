@@ -155,7 +155,7 @@ width:100%;
          <th>상태</th>
          </tr>
       </thead>
-      <tbody id='tb'>
+      <tbody id='tb' style="font-size:20px;font-weight:bold;">
       </tbody>
     </table>
 

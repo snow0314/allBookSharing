@@ -38,8 +38,7 @@ font-weight: 400;
 border-radius: 5px;
 }
 
-@import url(//fonts.googleapis.com/earlyaccess/jejugothic.css);
-body{font-family: 'Jeju Gothic', sans-serif;}
+
 </style>
 
 
@@ -55,7 +54,7 @@ body{font-family: 'Jeju Gothic', sans-serif;}
 <span style="float: right; font-size: 14px;"><i class="far fa-clock"></i> ${question.qs_date}</span>
 </div>
 </div>
-<pre style="text-align:left; margin-top:10px; width: 80%; border: 1px solid rgba(0,0,0,0.2);">
+<pre style="text-align:left; margin-top:10px; width: 80%; border: 1px solid rgba(0,0,0,0.2);height:450px;font-size:20px;">
 ${question.qs_content}
 </pre>
 </div>
@@ -75,7 +74,7 @@ ${answer.aw_contents}
 <form action="questionanswer?${_csrf.parameterName}=${_csrf.token}" method="post">
 <input type="hidden" name="aw_q_num" value='${question.qs_num}' />
 <div id='ans' style=" margin-top: 10px;" >
-<textarea  name="aw_contents" id="text" cols="133" rows="20">
+<textarea  name="aw_contents" id="text" cols="133" rows="10">
 
 </textarea>
 </div>

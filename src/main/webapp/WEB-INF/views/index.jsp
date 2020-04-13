@@ -526,13 +526,14 @@ function librarymain(){
 			</div>
 
 	</body>
-	1b51d85dd9bcbc0b96d2984712a09ec4&libraries=services,clusterer,drawing
+
 	
 	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=	1b51d85dd9bcbc0b96d2984712a09ec4&libraries=clusterer"></script>
 	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=1b51d85dd9bcbc0b96d2984712a09ec4"></script>
 	<script src="http://code.jquery.com/jquery-1.4.4.min.js"></script>
 <script src="//code.jquery.com/jquery-1.12.0.min.js"></script>
 	<script type="text/javascript">
+
 	function mainBookSearch(){
 		var bk_name=document.getElementById("bookinput").value;
 		if(bk_name==""){
@@ -561,6 +562,7 @@ function librarymain(){
 		}
 		
 		$(document).ready(function(){
+			
 			$.ajax({
 				type:'get',
 		    	url:'mainpagetopten',
@@ -593,7 +595,7 @@ function librarymain(){
 						$("#Forth").attr("src",result[3].re_image);
 						$("#Fifth").attr("src",result[4].re_image);
 		    	
-		    	
+					
 		    		
 		    	},
 		    	error:function(){ 

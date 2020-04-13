@@ -73,7 +73,7 @@ body{font-family: 'Jeju Gothic', sans-serif;}
          <th>상태</th>
          </tr>
       </thead>
-      <tbody id='tb'>
+      <tbody id='tb' style="font-size:20px;font-weight:bold;">
       </tbody>
     </table>
       </div>
@@ -113,7 +113,7 @@ for(let i=0;i<list.length;i++){
     <div class="modal-dialog">
     
       <!-- Modal content-->
-      <div class="modal-content">
+      <div class="modal-content"  style="font-size:20px;font-weight:blod;">
         <div id='modal-header' class="modal-header">
           <button type='button' class='close' data-dismiss='modal'>&times;</button>
         </div>
@@ -165,16 +165,16 @@ for(let i=0;i<list.length;i++){
                  str+="<div style='padding: 0 8px; line-height: 40px; border-top: 1px solid rgba(0,0,0,0.2); border-bottom: 1px solid rgba(0,0,0,0.2); text-align: left; background-color:rgba(0,0,0,0.1)'>";
                  str+="<span>"+response.br_id+"</span>";
                  if(response.br_situation==0)
-                 str+="<span id='state' style='font-size: 12px; color: red;'>(대기중)</span>";
+                 str+="<span id='state' style='font-size: 18px; color: red;'>(대기중)</span>";
                  if(response.br_situation==1)
-                 str+="<span id='state' style='font-size: 12px; color: green;'>(처리중)</span>";
+                 str+="<span id='state' style='font-size: 18px; color: green;'>(처리중)</span>";
                  if(response.br_situation==2)
-                 str+="<span id='state' style='font-size: 12px; color: orange;'>(반려)</span>";
+                 str+="<span id='state' style='font-size: 18px; color: orange;'>(반려)</span>";
                  if(response.br_situation==3)
-                 str+="<span id='state' style='font-size: 12px; color: blue;'>(처리완료)</span>";
+                 str+="<span id='state' style='font-size: 18px; color: blue;'>(처리완료)</span>";
                  if(response.br_situation==4)
-                 str+="<span id='state' style='font-size: 12px; color: green;'>(상호대차수락)</span>";
-                 str+="<span style='float: right; font-size: 14px;'><i class='far fa-clock'></i>"+response.br_date+"</span>";
+                 str+="<span id='state' style='font-size: 18px; color: green;'>(상호대차수락)</span>";
+                 str+="<span style='float: right; font-size: 18px;'><i class='far fa-clock'></i>"+response.br_date+"</span>";
                  str+="</div></div>";
                  str+="<div style='display:flex; margin:10px 10px;'>";
                  str+="<div style='margin-right:10px;'>";
