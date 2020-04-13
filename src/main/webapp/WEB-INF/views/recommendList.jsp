@@ -83,7 +83,13 @@ margin-bottom:20px;
 width:120px;
 height:40px;
 }
+.spsp{
+font-size:25px;
+}
+.spsp:hover{
+cursor: pointer;
 
+}
 
 </style>
 <body>
@@ -133,7 +139,7 @@ function recoChange(){
 		    				str+='<tr class="ttr"><td><h2><i id="down" class="fa fa-thumbs-o-up"></i></h2></td>';
 		    				str+='<td><div class="recoimgdiv"><img src="'+item.re_image+'" class="recoimg"></div></td>';
 		    				str+='<td class="recotd"><span class="bname">'+item.re_bname+'</span><br>'+item.re_bwriter+'<br>'+item.re_publisher+'<br>'+item.re_publicday+'<br>'
-		    				         +item.bg_cate+'/'+item.sg_cate+'<br><span onclick="introshow('+index+')"style="font-size:25px;" >서평<i class="fa fa-chevron-circle-down" style="margin-right:82%;margin-top:8px;font-size:25px"></i></span></td>';
+		    				         +item.bg_cate+'/'+item.sg_cate+'<br><span onclick="introshow('+index+')" class="spsp" >서평<i class="fa fa-chevron-circle-down" style="margin-right:82%;margin-top:8px;font-size:25px"></i></span></td>';
 		    				str+='<td class="recontents"><h4>추천글</h4>'+item.re_contents+'</td></tr>';
 		    				str+=' <tr style="visibility:collapse;" class="introtr" id="'+index+'"><td  colspan="4" class="recointro">'+item.re_introduction+'</td></tr>';
 		    	    	});

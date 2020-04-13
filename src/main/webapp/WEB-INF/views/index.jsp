@@ -132,6 +132,10 @@
 			.rocoimg:hover{
 			cursor: pointer;
 			}
+			
+			.carousel-inner:hover{
+			cursor: pointer;
+			}
 		
             .card{
             width:20%;
