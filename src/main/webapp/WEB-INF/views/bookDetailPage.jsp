@@ -560,7 +560,6 @@ $('#heart').click(function(){
 		    	url:'likecancel',
 		    	data:{"lk_bcode":"${books.bk_code}","lk_lcode":${books.bk_lcode}},
 		    	success:function(result){
-		    		alert("찜목록에서 삭제되었습니다.");
 		    		$('#heart').removeClass('btn_unlike');
 		    		$('.ani_heart_m').removeClass('hi');
 		    		$('.ani_heart_m').addClass('bye');
@@ -582,7 +581,6 @@ $('#heart').click(function(){
 			    	url:'likeinsert',
 			    	data:{"lk_bcode":"${books.bk_code}","lk_lcode":${books.bk_lcode}},
 			    	success:function(result){
-			    		alert("찜목록에 추가되었습니다.");
 			    		$('#heart').addClass('btn_unlike');
 					  	$('.ani_heart_m').addClass('hi');
 				     	$('.ani_heart_m').removeClass('bye');
