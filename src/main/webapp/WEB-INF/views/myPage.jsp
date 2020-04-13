@@ -801,8 +801,10 @@ $(document).on("click","#cart_btn",function(){
 function reservationCancel(rv_num){
 	
 	console.log("rv_num",rv_num);
+var result=confirm("취소하시겠습니까?");
 	
-	return confirm("취소하시겠습니까?");
+	if(result){
+		
 	
  	 $.ajax({
 		type : 'get',
@@ -810,7 +812,40 @@ function reservationCancel(rv_num){
 		data:{rv_num:rv_num},
 		success : function(data) {
 			console.log("예약취소ajax=",data);
-				location.reload();
+			$("#reservation").empty();	
+			
+			for(var i=0;i<data.length;i++){   
+	        //console.log(data[i].bo_num);
+	        var $tr= $("<tr>").appendTo($("#reservation"));
+	        $tr.append("<td style='text-align: center;'>"+data[i].rv_num+"</td>");
+	        $tr.append("<td>"+data[i].lb_name+"</td>");
+	        $tr.append("<td>"+data[i].bk_name+"</td>");
+	        $tr.append("<td>"+data[i].rv_date+"</td>");
+	        spl=data[i].rv_code;//???
+	        rv_code=spl.split(" ");	
+	        rv_code=rv_code[0]+" "+rv_code[1];
+	        console.log("rv_code=",rv_code);
+	        rank=getRank(rv_code,data[i].rv_lcode);
+	        console.log("rank=",rank);
+	        
+	        var temp = data[i].bk_quantity-data[i].bk_booklend; //대여할 수 있는 권수
+	        if(temp >= rank){
+	        	$tr.append("<td id='state' style='color: red;'>대출가능</td>");
+	        	$tr.append("<td><button id='cart_btn' data-rv_code='"+data[i].rv_code+"' data-rv_lcode='"+data[i].rv_lcode+"' >담기</button></td>");
+	        }else{
+	        	$tr.append("<td id='state'>대출불가</td>");
+	        	$tr.append("<td><button id='cart_btn' disabled >담기</button></td>");
+	        }
+	        console.log("temp",temp);
+	        
+	        
+	        $tr.append("<td style='text-align:center;' ><span id='rank' style='font-weight:bold;'>"+rank+"</span></td>");
+	        
+	        $tr.append("<td><button onclick='reservationCancel("+data[i].rv_num+") '>취소</button></td>");
+	        }
+			
+			
+			
 		},
 		error : function(xhr, status) {
         console.log("xhr=", xhr);
@@ -818,6 +853,8 @@ function reservationCancel(rv_num){
      }
 		
 	});	 //ajax End
+	
+	}	//조건식 마무리
 	
 }; //reservationCancel end
 
