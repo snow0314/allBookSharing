@@ -180,7 +180,7 @@ public class MemberManagement {
 		// 1.이클립스의 물리적 저장경로 찾기
 					String root = multi.getSession().getServletContext().getRealPath("/");
 					System.out.println("root=" + root);
-					String path ="C:/img/profile/";
+					String path ="K:\\springWork\\allBookSharing\\upload\\";
 					System.out.println("path="+path);
 					// 2.폴더 생성을 꼭 할것...
 					File dir = new File(path);
@@ -300,12 +300,20 @@ public class MemberManagement {
 
 	}
 	//반납일 연장하기
-	public boolean loanExtend(int bd_num) {
-		
+	public List<Loan> loanExtend(int bd_num, Principal principal) {
+		String id=principal.getName();
+		System.out.println("반납연장 서비스");
 		boolean result=mDao.loanExtend(bd_num);
+		List<Loan> lList=null;
+		
+		if(result) {
+			System.out.println("반납연장후 리스트");
+			 lList=mDao.getLoanList(id);
+		}
+		
 		System.out.println("bd_return_extension="+result);
 		
-		return result;
+		return lList;
 	}
 
 	//현재 예약 목록
@@ -352,11 +360,15 @@ public class MemberManagement {
 	   
 
 	 //마이페이지에서 예약 취소
-	public boolean reservationcancell(int rv_num) {
+	public List<Loan> reservationcancell(int rv_num, Principal principal) {
+		String id=principal.getName();
 
 		boolean result=mDao.reservationcancell(rv_num);
+		List<Loan> lList=null;
+		if(result)
+			lList=mDao.getLoanList(id);
 		
-		return result;
+		return lList;
 	}
 
 	//희망도서 신청에서 지역 정보 가져오는 메소드
@@ -423,10 +435,16 @@ public class MemberManagement {
 		return result;
 	}
 
-	public boolean returnBooks(int bd_num) {
-		Boolean result=mDao.returnBooks(bd_num);
+	//반납신청하기
+	public List<Loan> returnBooks(int bd_num, Principal principal) {
+		String id=principal.getName();
 		
-		return result;
+		Boolean result=mDao.returnBooks(bd_num);
+		List<Loan> lList=null;
+		if(result)
+			lList=mDao.getLoanList(id);
+		
+		return lList;
 		
 	}
     

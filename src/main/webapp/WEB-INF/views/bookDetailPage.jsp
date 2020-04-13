@@ -15,7 +15,7 @@
 @import url(//fonts.googleapis.com/earlyaccess/hanna.css);
 @import url(//fonts.googleapis.com/earlyaccess/jejugothic.css);
 @import url(//fonts.googleapis.com/earlyaccess/notosanskr.css);
-
+@import url(//fonts.googleapis.com/earlyaccess/nanumgothiccoding.css);
 	.reservation{
 	width:95px;
 	height:38px;
@@ -50,7 +50,7 @@
 	#title{
 	margin-left:10%;
 	font-family: 'Hanna', sans-serif;
-	margin-top:2%;
+	margin-top:3%;
 	font-size:45px;
 	font-weight:560;
 	margin-bottom:-5px;
@@ -59,18 +59,20 @@
 	font-family: 'Hanna', sans-serif;
 	}
 	#detailinfo{
-		border:3px solid #838487;
+		
 		padding:7px;
 		height:300px;
 		flex:3;
 		border-radius: 10px;
 		margin-right:5%;	
+		background-color:#e7eaed;
 	}
 	#img{
 	flex:1;
 	border:1px solid #fde978;
 	height:300px;
-	margin-right:5%
+	margin-right:5%;
+
 	}
 	
 	#bname{
@@ -85,10 +87,8 @@
 		font-size:20px;
 		padding-left:10px;
 	}
-	body{
-		padding-left:10%;
-		padding-right:10%;
-	}
+
+
 	.tt{
 	text-align:right;
 	font-size:18px;
@@ -101,10 +101,10 @@
 	border-radius: 20px;
 	text-align:center;
     vertical-align:middle;
-    height:120px;
+    height:50%;
     font-family: 'Jeju Gothic', sans-serif;
     font-size:23px;
-    padding-top:50px;
+   	padding:15px;
 	}
 	#intro{
 	width:77%;
@@ -130,7 +130,7 @@
 	
 	.btn_like {
 	  position: relative;
-	  margin-left: 68%;
+	  margin-left: 65%;
 	  margin-bottom:7px;
 	  display: block;
 	  width: 46px;
@@ -238,11 +238,53 @@
 	
 	}
 	
-@import url(//fonts.googleapis.com/earlyaccess/jejugothic.css);
-body{font-family: 'Jeju Gothic', sans-serif;}
+#submenu {
+  		float: left;
+  		width: 15%;
+  		height: 100%;  
+  	  margin-left: 8%;
+  	  margin-top:2%;
+}
+.subbtn{
+	width:100%;
+	background-color:white;
+	height:55px;
+	font-family: 'Nanum Gothic Coding', monospace;
+	font-weight:bold;
+	font-size:20px;
+	border:none;
+
+
+}
+.subbtn:hover{
+	background-color:#F0EAD6;
+}
+.subtopbtn{
+	width:100%;
+	font-family: 'Hanna', sans-serif;
+	height:98px;
+	background-color:#223A5E;
+	color:white;
+}
+#detailmain{
+	float:right;
+	width:70%;
+	margin-right:4%;
+	margin-bottom:7%;
+}
 </style>
 <body>
-<h1 id="title">상세보기</h1>
+<jsp:include page="header.jsp"></jsp:include>
+<nav id="submenu">
+	<button class="subtopbtn" disabled><h2>자료검색</h2></button><br>
+    <button class="subbtn" onclick="location.href = 'totalsearch' " >통합검색</button><br>
+    <button class="subbtn" onclick="location.href = 'totalsearch?kind=besttopten'">인기도서</button><br>
+    <button class="subbtn" onclick="location.href = 'totalsearch?kind=recommend'">추천도서</button>
+</nav>
+
+<main id="detailmain">
+<h2 id="title">상세보기</h2>
+
 
 <button type="button" class="btn_like" id="heart">
 	<span class="img_emoti">좋아요</span>
@@ -306,7 +348,7 @@ body{font-family: 'Jeju Gothic', sans-serif;}
   <sec:authorize access="isAnonymous()"> 
 <input id="id" type="hidden" value=""/>
 </sec:authorize>
-
+</main>
 </body>
 <script>
 var dc=0;

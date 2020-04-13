@@ -121,11 +121,11 @@ public class MyPageRestController {
 	
 	//현재 예약 취소 
 	@RequestMapping(value = "/reservationcancell" ,produces = "application/json;charset=UTF-8")
-	public boolean reservationcancell(int rv_num) {
+	public List<Loan> reservationcancell(int rv_num,Principal principal) {
 		System.out.println("현재 예약 목록 컨트롤러");
-		boolean result=mm.reservationcancell(rv_num);
+		List<Loan> lList=mm.reservationcancell(rv_num,principal);
 		
-		return result;
+		return lList;
 	}
 	
 	
@@ -139,23 +139,23 @@ public class MyPageRestController {
 	}
 	//반납신청하기
 	@RequestMapping(value = "/returnbooks" ,produces = "application/json;charset=UTF-8")
-	public boolean returnBooks(int bd_num) {
-		System.out.println("반납연장 컨트롤러");
+	public List<Loan> returnBooks(int bd_num,Principal principal) {
+		System.out.println("반납신청 컨트롤러");
 		System.out.println("bd_bo_num="+bd_num);
-		boolean result=mm.returnBooks(bd_num);
+		List<Loan> lList=mm.returnBooks(bd_num,principal);
 		
-		return result;
+		return lList;
 	}
 	
 	
 	//반납일 연장하기
 		@RequestMapping(value = "/loanextend" ,produces = "application/json;charset=UTF-8")
-		public boolean loanExtend(int bd_num) {
+		public List<Loan> loanExtend(int bd_num,Principal principal) {
 			System.out.println("반납연장 컨트롤러");
 			System.out.println("bd_bo_num="+bd_num);
-			boolean result=mm.loanExtend(bd_num);
+			List<Loan> lList=mm.loanExtend(bd_num,principal);
 			
-			return result;
+			return lList;
 		}
 		
 		//희망도서 신청페이지 지역정보 가져오는 메소드

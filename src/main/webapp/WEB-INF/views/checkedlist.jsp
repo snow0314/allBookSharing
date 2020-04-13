@@ -237,7 +237,7 @@ window.onload = function(){
         ],
 
    });
-
+   $('.dt-button').removeClass().addClass('btn btn-outline-secondary');
 }
 
 

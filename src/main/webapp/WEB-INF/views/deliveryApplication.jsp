@@ -361,41 +361,49 @@ $("#apply").on("click",function(){ //배송 신청 버튼 클릭시 작동하는
 	console.log("alldata",allData);
 	
 	if($('.styled:checked').length==0){
-		toastr.error('실패', '배송 신청할 책을 선택해 주세요');
+		//toastr.error('실패', '배송 신청할 책을 선택해 주세요');
+		alert("실패 : 배송 신청할 책을 선택해 주세요.");
 		return false;
 	}
 	
 	if(grade=="일반"){
 		if(borrowCnt>3){
-			toastr.error('실패', '일반 회원은 최대 3권까지 대여할 수 있습니다.');
+			//toastr.error('실패', '일반 회원은 최대 3권까지 대여할 수 있습니다.');
+			alert("실패 : 일반 회원은 최대 3권까지 대여할 수 있습니다.");
 			return false;
 		}else if(borrowCnt+temp>3){
-			toastr.error('실패', '일반 회원은 최대 3권까지 대여할 수 있습니다.');
+			//toastr.error('실패', '일반 회원은 최대 3권까지 대여할 수 있습니다.');
+			alert("실패 : 일반회원은 최대 3권까지 대여할 수 있습니다.");
 			return false;
 		}
 		
 		if(temp>3){
-			toastr.error('실패', '일반 회원은 최대 3권까지 대여할 수 있습니다.');
+			//toastr.error('실패', '일반 회원은 최대 3권까지 대여할 수 있습니다.');
+			alert("실패 : 일반회원은 최대 3권까지 대여할 수 있습니다.");
 			return false;
 		}
 	}else if(grade =="우수"){
 		if(borrowCnt>5){
-			toastr.error('실패', '우수 회원은 최대 5권까지 대여할 수 있습니다.');
+			//toastr.error('실패', '우수 회원은 최대 5권까지 대여할 수 있습니다.');
+			alert("실패 : 우수회원은 최대 5권까지 대여할 수 있습니다.");
 			return false;
 		}else if(borrowCnt+temp>5){
 			console.log("신청버튼 누름, 권수:",borrowCnt+temp);
 			console.log("temp",temp);
-			toastr.error('실패', '우수 회원은 최대 5권까지 대여할 수 있습니다.');
+			//toastr.error('실패', '우수 회원은 최대 5권까지 대여할 수 있습니다.');
+			alert("실패 : 우수회원은 최대 5권까지 대여할 수 있습니다.");
 			return false;
 		}
 		if(temp>5){
-			toastr.error('실패', '우수 회원은 최대 5권까지 대여할 수 있습니다.');
+			//toastr.error('실패', '우수 회원은 최대 5권까지 대여할 수 있습니다.');
+			alert("실패 : 우수회원은 최대 5권까지 대여할 수 있습니다.");
 			return false;
 		}
 	}
 	
 	if(point < $.unique(lib).length*3000){
-		toastr.error('실패', '포인트가 부족합니다.');
+		//toastr.error('실패', '포인트가 부족합니다.');
+		alert("실패 : 포인트가 부족합니다.");
 		return false;
 	}
 	
@@ -408,7 +416,8 @@ $("#apply").on("click",function(){ //배송 신청 버튼 클릭시 작동하는
 }).done((result) => {
 	console.log("result=",result);
 	if(result == "성공"){
-		toastr.success('성공', '성공적으로 배송신청 하셨습니다.');
+		//toastr.success('성공', '성공적으로 배송신청 하셨습니다.');
+		alert("성공 : 성공적으로 배송신청하였습니다.");
 		pageShow();
 	}
 	
@@ -474,7 +483,6 @@ function pointCheck(){ //사용자 포인트 가져오는 메소드
 }
 
 $(document).on("click",".myButton",function(){//삭제 버튼 클릭시
-	alert("삭제");
 	var data = {};
 	data.de_code = $(this).data("decode");
 	data.de_lcode = $(this).data("delcode");
@@ -489,7 +497,8 @@ $(document).on("click",".myButton",function(){//삭제 버튼 클릭시
 		
 }).done((result) => {
 	console.log("삭제=",result);
-	toastr.success('성공', '해당 도서를 삭제했습니다.');
+	//toastr.success('성공', '해당 도서를 삭제했습니다.');
+	alert("성공 : 해당 도서를 삭제했습니다.");
 	pageShow();
 	
 }).fail((xhr) => {

@@ -37,7 +37,7 @@
 				}
 			},
 			"columnDefs": [
-				{ "width": "3%", "targets": 0 },
+				{ "width": "6%", "targets": 0 },
 				{ "width": "8%", "targets": 1 },
 				{ "width": "30%", "targets": 2 },
 				{ "width": "8%", "targets": 3 },

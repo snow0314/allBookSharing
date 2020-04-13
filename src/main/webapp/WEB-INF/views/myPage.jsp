@@ -194,7 +194,7 @@ body{font-family: 'Jeju Gothic', sans-serif;}
 						<td>아이디 : </td>
 						<td>${mb.mb_id}</td>
 						<td rowspan="6">
-						<img src="/img/profile/${mb.us_image}" width="150" height="220" alt="프로필 사진" />						
+						<img src="/img/${mb.us_image}" width="150" height="220" alt="프로필 사진" />						
 						</td>
 					</tr>
 					<tr>
@@ -680,7 +680,7 @@ $.ajax({
 	url :"arrearslist",
 	dataType:'json',
 	success : function(data) {
-        console.log("data=",data);
+        console.log("연채 목록=",data);
         for(var i=0;i<data.length;i++){   
         	console.log(data[i].bo_num);
         var $tr= $("<tr>").appendTo($("#arrears"));
@@ -801,8 +801,10 @@ $(document).on("click","#cart_btn",function(){
 function reservationCancel(rv_num){
 	
 	console.log("rv_num",rv_num);
+var result=confirm("취소하시겠습니까?");
 	
-	return confirm("취소하시겠습니까?");
+	if(result){
+		
 	
  	 $.ajax({
 		type : 'get',
@@ -810,7 +812,40 @@ function reservationCancel(rv_num){
 		data:{rv_num:rv_num},
 		success : function(data) {
 			console.log("예약취소ajax=",data);
-				location.reload();
+			$("#reservation").empty();	
+			
+			for(var i=0;i<data.length;i++){   
+	        //console.log(data[i].bo_num);
+	        var $tr= $("<tr>").appendTo($("#reservation"));
+	        $tr.append("<td style='text-align: center;'>"+data[i].rv_num+"</td>");
+	        $tr.append("<td>"+data[i].lb_name+"</td>");
+	        $tr.append("<td>"+data[i].bk_name+"</td>");
+	        $tr.append("<td>"+data[i].rv_date+"</td>");
+	        spl=data[i].rv_code;//???
+	        rv_code=spl.split(" ");	
+	        rv_code=rv_code[0]+" "+rv_code[1];
+	        console.log("rv_code=",rv_code);
+	        rank=getRank(rv_code,data[i].rv_lcode);
+	        console.log("rank=",rank);
+	        
+	        var temp = data[i].bk_quantity-data[i].bk_booklend; //대여할 수 있는 권수
+	        if(temp >= rank){
+	        	$tr.append("<td id='state' style='color: red;'>대출가능</td>");
+	        	$tr.append("<td><button id='cart_btn' data-rv_code='"+data[i].rv_code+"' data-rv_lcode='"+data[i].rv_lcode+"' >담기</button></td>");
+	        }else{
+	        	$tr.append("<td id='state'>대출불가</td>");
+	        	$tr.append("<td><button id='cart_btn' disabled >담기</button></td>");
+	        }
+	        console.log("temp",temp);
+	        
+	        
+	        $tr.append("<td style='text-align:center;' ><span id='rank' style='font-weight:bold;'>"+rank+"</span></td>");
+	        
+	        $tr.append("<td><button onclick='reservationCancel("+data[i].rv_num+") '>취소</button></td>");
+	        }
+			
+			
+			
 		},
 		error : function(xhr, status) {
         console.log("xhr=", xhr);
@@ -818,6 +853,8 @@ function reservationCancel(rv_num){
      }
 		
 	});	 //ajax End
+	
+	}	//조건식 마무리
 	
 }; //reservationCancel end
 
@@ -885,6 +922,9 @@ $.ajax({
 //반납 신청하기
 function returnBooks(bd_num){
 	console.log(bd_num);
+	var result=confirm("반납하시겠습니까?");
+	
+	if(result){	
 	
 	 $.ajaxSetup({         
          beforeSend : function(xhr){
@@ -897,10 +937,54 @@ function returnBooks(bd_num){
 		url :"returnbooks",
 		data:{bd_num:bd_num},
 		async: false,
-		success : function(data) {
-			
-				location.reload();
-			console.log("반납연장ajax=",data);
+		success : function(data) {		
+//			location.reload();
+			console.log("반납신청ajax=",data);
+			$("#borrow").empty();
+			for(var i=0;i<data.length;i++){   
+		    	console.log(data[i].bo_num);
+		    var $tr= $("<tr>").appendTo($("#borrow"));
+		    $tr.append("<td style='text-align: center;'>"+(i+1)+"</td>");
+		    $tr.append("<td>"+data[i].bk_name+"</td>");
+		    $tr.append("<td>"+data[i].bd_date+"</td>");
+		    $tr.append("<td>"+data[i].bd_return_date+"</td>");
+		    if(data[i].bd_state_num==1)
+		    $tr.append("<td style='font-weight:bold;'>대출중</td>");
+		    if(data[i].bd_state_num==2)
+		    $tr.append("<td style='font-weight:bold;'>배송 신청</td>");
+		    if(data[i].bd_state_num==3)
+		    $tr.append("<td style='font-weight:bold;'>배송 취소</td>");
+		    if(data[i].bd_state_num==4)
+		    $tr.append("<td style='font-weight:bold;'>배송 완료</td>");
+		    if(data[i].bd_state_num==5)
+		    $tr.append("<td style='font-weight:bold;'>반납 신청</td>");
+		    if(data[i].bd_state_num==6)
+		    $tr.append("<td style='font-weight:bold;'>오프라인 반납완료</td>");
+		    if(data[i].bd_state_num==7)
+		    $tr.append("<td style='font-weight:bold;'>온라인 반납완료</td>");
+		    if(data[i].bd_state_num!=2){
+		    	
+		    //반납버튼
+		    if(data[i].bd_state_num==4 || data[i].bd_state_num==1 && data[i].bd_on_off==1)
+		    $tr.append("<td style='text-align:center;'><button onclick='returnBooks("+data[i].bd_num+")' class='btn btn-info' >반납신청</button></td>");
+		    else
+		     $tr.append("<td style='text-align:center;'><button onclick='returnBooks("+data[i].bd_num+")' class='btn btn-info' disabled >반납신청</button></td>");
+		    }
+		    else{
+		    	$tr.append("<td style='text-align:center;'> </td>");
+		    }
+		    //연장버튼
+		    if(data[i].bd_return_extension==0 && data[i].bd_state_num==4)
+		    $tr.append("<td style='text-align:center;'><button onclick='extend("+data[i].bd_num+")' class='btn btn-info' >연장하기</button></td>");
+		    
+		    else if(data[i].bd_return_extension==1)
+		    $tr.append("<td style='text-align:center;'><button onclick='extend("+data[i].bd_num+")' class='btn btn-info' disabled >연장하기</button></td>");
+		    
+		    else if(data[i].bd_state_num!=4)
+		    	$tr.append("<td style='text-align:center;'> </td>");
+		    	
+		    }
+
 			
 			
 		},
@@ -911,7 +995,7 @@ function returnBooks(bd_num){
 		
 	}); 	//ajax End
 	
-	
+	}
 	
 }
 
@@ -929,8 +1013,54 @@ function extend(bd_num){
 		data:{bd_num:bd_num},
 		async: false,
 		success : function(data) {
-				location.reload();
+//			location.reload();
 			console.log("반납연장ajax=",data);	
+			$("#borrow").empty();
+			for(var i=0;i<data.length;i++){   
+		    	console.log(data[i].bo_num);
+		    var $tr= $("<tr>").appendTo($("#borrow"));
+		    $tr.append("<td style='text-align: center;'>"+(i+1)+"</td>");
+		    $tr.append("<td>"+data[i].bk_name+"</td>");
+		    $tr.append("<td>"+data[i].bd_date+"</td>");
+		    $tr.append("<td>"+data[i].bd_return_date+"</td>");
+		    if(data[i].bd_state_num==1)
+		    $tr.append("<td style='font-weight:bold;'>대출중</td>");
+		    if(data[i].bd_state_num==2)
+		    $tr.append("<td style='font-weight:bold;'>배송 신청</td>");
+		    if(data[i].bd_state_num==3)
+		    $tr.append("<td style='font-weight:bold;'>배송 취소</td>");
+		    if(data[i].bd_state_num==4)
+		    $tr.append("<td style='font-weight:bold;'>배송 완료</td>");
+		    if(data[i].bd_state_num==5)
+		    $tr.append("<td style='font-weight:bold;'>반납 신청</td>");
+		    if(data[i].bd_state_num==6)
+		    $tr.append("<td style='font-weight:bold;'>오프라인 반납완료</td>");
+		    if(data[i].bd_state_num==7)
+		    $tr.append("<td style='font-weight:bold;'>온라인 반납완료</td>");
+		    if(data[i].bd_state_num!=2){
+		    	
+		    //반납버튼
+		    if(data[i].bd_state_num==4 || data[i].bd_state_num==1 && data[i].bd_on_off==1)
+		    $tr.append("<td style='text-align:center;'><button onclick='returnBooks("+data[i].bd_num+")' class='btn btn-info' >반납신청</button></td>");
+		    else
+		     $tr.append("<td style='text-align:center;'><button onclick='returnBooks("+data[i].bd_num+")' class='btn btn-info' disabled >반납신청</button></td>");
+		    }
+		    else{
+		    	$tr.append("<td style='text-align:center;'> </td>");
+		    }
+		    //연장버튼
+		    if(data[i].bd_return_extension==0 && data[i].bd_state_num==4)
+		    $tr.append("<td style='text-align:center;'><button onclick='extend("+data[i].bd_num+")' class='btn btn-info' >연장하기</button></td>");
+		    
+		    else if(data[i].bd_return_extension==1)
+		    $tr.append("<td style='text-align:center;'><button onclick='extend("+data[i].bd_num+")' class='btn btn-info' disabled >연장하기</button></td>");
+		    
+		    else if(data[i].bd_state_num!=4)
+		    	$tr.append("<td style='text-align:center;'> </td>");
+		    	
+		    }
+
+			
 		},
 		error : function(xhr, status) {
 			alert("실패");
