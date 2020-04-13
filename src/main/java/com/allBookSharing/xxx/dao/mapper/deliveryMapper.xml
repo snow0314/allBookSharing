@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.allBookSharing.xxx.dao.IDeliveryManagementDao">
+	
+	<select id="getDeliveryList" parameterType="String" resultType="deliveryreq">
+	SELECT DISTINCT DE_CODE, DE_ID, DE_LCODE, LB_NAME, de_Quantity, BK_NAME, BK_INTRODUCTION,BK_PUBLISHER,BK_PUBLICDAY, BK_WRITER, BK_IMAGE,
+       	   BK_BG_NUM,BG_CATE,BK_SG_NUM,SG_CATE
+	FROM delivery
+	JOIN BOOKS
+	ON DE_CODE = BK_CODE AND DE_LCODE=BK_LCODE
+	JOIN LIBRARY
+	ON DE_LCODE = LB_CODE
+	JOIN BIGGROUP
+	ON BK_BG_NUM = BG_NUM
+	JOIN SMALLGROUP 
+	ON BK_SG_NUM = SG_BG_NUM
+    WHERE DE_ID =#{id}
+	</select>
+	
+	<insert id="borrowListInsert">
+		INSERT INTO BORROWLIST VALUES(bo_num.NEXTVAL,#{id})
+		
+	</insert>
+	
+	<insert id="borrowDetailInsert" parameterType="deliveryreq">
+	<if test="grade=='일반'">
+      	INSERT INTO BORROWDETAIL(BD_NUM, BD_BO_NUM, BD_BCODE, BD_LCODE,BD_STATE_NUM,BD_COUNT,BD_DATE,BD_RETURN_DATE,BD_RETURN_EXTENSION,BD_ON_OFF) 
+      		VALUES(BD_NUM.NEXTVAL, BO_NUM.CURRVAL, #{de_code},#{de_lcode}, 2, #{de_quantity}, SYSDATE, SYSDATE+14, 0, 1)
+	</if>
+	<if test="grade=='우수'">
+		INSERT INTO BORROWDETAIL(BD_NUM, BD_BO_NUM, BD_BCODE, BD_LCODE,BD_STATE_NUM,BD_COUNT,BD_DATE,BD_RETURN_DATE,BD_RETURN_EXTENSION,BD_ON_OFF) 
+      		VALUES(BD_NUM.NEXTVAL, BO_NUM.CURRVAL, #{de_code},#{de_lcode}, 2, #{de_quantity}, SYSDATE, SYSDATE+21, 0, 1)
+	</if>
+	</insert>
+
+	<update id="bookDrop" parameterType="deliveryreq">
+		UPDATE BOOKS SET bk_booklend=bk_booklend+#{de_quantity}
+		WHERE BK_CODE=#{de_code} AND BK_LCODE = #{de_lcode}
+	</update>
+	
+	<select id="bookState" resultType="int">
+		SELECT BK_QUANTITY-BK_BOOKLEND FROM BOOKS WHERE BK_CODE=#{de_code} AND BK_LCODE=#{de_lcode}
+	</select>
+	
+	<update id="bookStateChange">
+		UPDATE BOOKS SET bk_state=0
+		WHERE BK_CODE=#{de_code} AND BK_LCODE = #{de_lcode}
+	</update>
+	
+	<update id="userPointDown">
+		UPDATE USERS SET US_POINT=US_POINT-#{pl_inout}
+		WHERE US_ID = #{id}
+	</update>
+	
+	<insert id="userPointListInsert">
+		INSERT INTO POINTLIST VALUES(PL_NUM.NEXTVAL,#{id},-#{pl_inout},'사용',SYSDATE)
+	</insert>
+
+	<delete id="deliveryDelete" parameterType="deliveryreq" >
+		DELETE FROM DELIVERY WHERE DE_CODE = #{de_code} AND DE_LCODE = #{de_lcode} AND DE_ID = #{de_id}
+	</delete>
+	
+	<select id="userGradeCheck" resultType="String">
+		SELECT us_grade FROM USERS WHERE us_id = #{id}
+	</select>
+
+	<select id="borrowCntCheck" resultType="Integer">
+		SELECT COUNT(*) FROM BORROWDETAIL
+		JOIN BORROWLIST
+		ON bo_num=bd_bo_num
+		WHERE BO_ID=#{id} AND (bd_state_num=1 OR bd_state_num=2 OR bd_state_num=4 OR bd_state_num=5)
+	</select>
+	
+	<select id="pointCheck" resultType="Integer">
+		SELECT US_POINT FROM USERS WHERE US_ID=#{id}
+	</select>
+
+	<delete id="reservationDelete"> 
+		DELETE FROM RESERVATION WHERE rt_code = #{de_code} AND rt_lcode = #{de_lcode} AND rt_id = #{de_id}
+	</delete>
+
+	
+</mapper>
