@@ -80,7 +80,7 @@ color:white;
 <span style="float: right; font-size: 14px;"><i class="far fa-clock"></i> ${notice.no_date}</span>
 </div>
 </div>
-<pre style="text-align:left; margin-top:10px; width: 70%; border: 1px solid rgba(0,0,0,0.2);margin-bottom: 10%;margin-right:7%;height:450px;padding:10px;">
+<pre style="text-align:left; margin-top:10px; width: 70%; border: 1px solid rgba(0,0,0,0.2);margin-bottom: 10%;margin-right:7%;height:450px;padding:10px;font-size:20px;">
 ${notice.no_content}
 </pre>
 </div>

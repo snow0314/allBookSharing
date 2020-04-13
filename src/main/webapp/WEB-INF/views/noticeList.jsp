@@ -156,7 +156,7 @@ color:white;
 						
 					</tr>
 				</thead>
-				<tbody id='tb'>
+				<tbody id='tb' style="font-size:20px;font-weight:bold;">
 				</tbody>
 			</table>
 

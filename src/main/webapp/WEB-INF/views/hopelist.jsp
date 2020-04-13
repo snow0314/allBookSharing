@@ -126,7 +126,7 @@ body{font-family: 'Jeju Gothic', sans-serif;}
 			<th>상태</th>
 			</tr>
 		</thead>
-		<tbody id='tb'>
+		<tbody id='tb' style='font-size:20px;vertical-align:middle;'>
 		</tbody>
     </table>
 
@@ -138,7 +138,7 @@ body{font-family: 'Jeju Gothic', sans-serif;}
     <div class="modal-dialog">
     
       <!-- Modal content-->
-      <div class="modal-content">
+      <div class="modal-content" style="font-size:20px;">
         <div id='modal-header' class="modal-header">
           <button type='button' class='close' data-dismiss='modal'>&times;</button>
         </div>
@@ -167,13 +167,13 @@ for(let i=0;i<list.length;i++){
 	$tr.append("<td><a id='modal_detail' data-toggle='modal' data-target='#myModal' data-number='"+list[i].br_num+"' >"+list[i].br_titile+"</a></td>");
 	$tr.append("<td>"+list[i].br_date+"</td>");
 	if(list[i].br_situation==0)
-	$tr.append("<td style='color:red; font-weight:bold;'>대기중</td>");
+	$tr.append("<td style='color:red; font-weight:bold;font-size:20px;'>대기중</td>");
 	if(list[i].br_situation==1|| list[i].br_situation==4 || list[i].br_situation==5)
-	$tr.append("<td style='color:green;font-weight:bold;'>처리중</td>");
+	$tr.append("<td style='color:green;font-weight:bold;font-size:20px;'>처리중</td>");
 	if(list[i].br_situation==2)
-	$tr.append("<td style='color:orange; font-weight:bold;'>반려</td>");
+	$tr.append("<td style='color:orange; font-weight:bold;font-size:20px;'>반려</td>");
 	if(list[i].br_situation==3)
-	$tr.append("<td style='color:blue;font-weight:bold;'>처리완료</td>");
+	$tr.append("<td style='color:blue;font-weight:bold;font-size:20px;'>처리완료</td>");
 	
 	
 	
@@ -218,15 +218,15 @@ $(document).on("click", "#modal_detail",function(e){
                 str+="<div style='padding: 0 8px; line-height: 40px; border-top: 1px solid rgba(0,0,0,0.2); border-bottom: 1px solid rgba(0,0,0,0.2); text-align: left; background-color:rgba(0,0,0,0.1)'>";
                 str+="<span>"+response.br_id+"</span>";
                 if(response.br_situation==0)
-                str+="<span id='state' style='font-size: 12px; color: red;'>(대기중)</span>";
+                str+="<span id='state' style='font-size: 18px; color: red;'>(대기중)</span>";
                 if(response.br_situation==1)
-                str+="<span id='state' style='font-size: 12px; color: green;'>(처리중)</span>";
+                str+="<span id='state' style='font-size: 18px; color: green;'>(처리중)</span>";
                 if(response.br_situation==2)
-                str+="<span id='state' style='font-size: 12px; color: orange;'>(반려)</span>";
+                str+="<span id='state' style='font-size: 18px; color: orange;'>(반려)</span>";
                 if(response.br_situation==3)
-                str+="<span id='state' style='font-size: 12px; color: blue;'>(처리완료)</span>";
+                str+="<span id='state' style='font-size: 18px; color: blue;'>(처리완료)</span>";
                 if(response.br_situation==4)
-                str+="<span id='state' style='font-size: 12px; color: green;'>(상호대차수락)</span>";
+                str+="<span id='state' style='font-size: 18px; color: green;'>(상호대차수락)</span>";
                 str+="<span style='float: right; font-size: 14px;'><i class='far fa-clock'></i>"+response.br_date+"</span>";
                 str+="</div></div>";
                 str+="<div style='display:flex; margin:10px 10px;'>";

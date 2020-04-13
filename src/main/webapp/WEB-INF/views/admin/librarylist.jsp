@@ -71,7 +71,7 @@ body{font-family: 'Jeju Gothic', sans-serif;}
 				<th>삭 제</th>
 			</tr>
 		</thead>
-		<tbody id="contents">
+		<tbody id="contents" style="font-size:20px;font-weight:bold;">
 		
 		</tbody>	
 		</table>

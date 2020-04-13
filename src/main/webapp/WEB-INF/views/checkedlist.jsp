@@ -24,6 +24,10 @@
    href="https://cdn.datatables.net/select/1.3.1/css/select.dataTables.min.css"
    rel="stylesheet" />
 <style>
+@import url(//fonts.googleapis.com/earlyaccess/hanna.css);
+@import url(//fonts.googleapis.com/earlyaccess/jejugothic.css);
+@import url(//fonts.googleapis.com/earlyaccess/notosanskr.css);
+@import url(//fonts.googleapis.com/earlyaccess/nanumgothiccoding.css);
 #tit {
    text-align: center;
 }
@@ -66,8 +70,11 @@ background-color:#F0EAD6;
         padding:0px;
 	}
 
-@import url(//fonts.googleapis.com/earlyaccess/jejugothic.css);
-body{font-family: 'Jeju Gothic', sans-serif;}
+#example{
+font-size:20px;
+width:100%;
+font-weight:bold;
+}
 </style>
 </head>
 
@@ -128,6 +135,15 @@ window.onload = function(){
    example_tbl = $('#example').DataTable({
       data:data,
       'columnDefs': [
+    	  
+    	  { "width": "3%", "targets": 0 },
+			{ "width": "6%", "targets": 1 },
+			{ "width": "6%", "targets": 2 },
+			{ "width": "25%", "targets": 3 },
+			{ "width": "8%", "targets": 4 },
+			{ "width": "10%", "targets": 5},
+			{ "width": "6%", "targets": 6 },
+    	  
            {
               orderable: false,
               'targets': 0,

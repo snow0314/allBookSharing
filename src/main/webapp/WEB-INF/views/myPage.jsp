@@ -45,6 +45,8 @@
 }
 #loanList{
 margin-top:10px;
+font-size:20px;
+font-weight:bold;
 }
 #myProfile {
 	float: left;
@@ -158,10 +160,10 @@ background-color:#F0EAD6;
 height:416px;
 font-family: 'Jeju Gothic', sans-serif;
 margin-left:15px;
+font-size:18px;
 }
 
-@import url(//fonts.googleapis.com/earlyaccess/jejugothic.css);
-body{font-family: 'Jeju Gothic', sans-serif;}
+
 
 </style>
 
@@ -237,7 +239,7 @@ body{font-family: 'Jeju Gothic', sans-serif;}
 
 </script>
 			<div id="myProfile_rest" >
-				<table id="table_rest" class="table table-striped" style="width:478px;">
+				<table id="table_rest" class="table table-striped" style="width:478px;font-size:19px;">
 					<tr>
 						<td class="table_box">대출건수 <span id="borrowCnt"></span>회</td>
 						<td class="table_box">연체건수 <span id="arrearsCnt"></span>회</td>
@@ -302,7 +304,7 @@ body{font-family: 'Jeju Gothic', sans-serif;}
 <div style="display: flex;">
 			<h3 style="font-family: 'Jeju Gothic', sans-serif;">연체목록</h3>&nbsp;&nbsp;<button id="arrears_btn" style="margin-bottom:8px;"><i class="fas fa-angle-up"></i></button>
 		</div>
-		<div id="arrearsList" style="margin-top:10px;">
+		<div id="arrearsList" style="margin-top:10px;font-size:20px; font-weight:bold;">
 			<table class="table table-striped" style="font-family: 'Nanum Gothic Coding', monospace;">
 			<thead>
 				<tr style="font-family:'Noto Sans KR', sans-serif;">
@@ -328,7 +330,7 @@ body{font-family: 'Jeju Gothic', sans-serif;}
 			<h3 style="font-family: 'Jeju Gothic', sans-serif;">현재 예약 목록</h3>&nbsp;&nbsp;<button id="res_btn" style="margin-bottom:8px;"><i class="fas fa-angle-up"></i></button>
 		</div>
 		
-			<div id="resList" style="margin-top:10px;">
+			<div id="resList" style="margin-top:10px;font-size:20px;font-weight:bold;">
 			<table class="table table-striped" style="font-family: 'Nanum Gothic Coding', monospace;">
 			<thead>
 				<tr style="font-family:'Noto Sans KR', sans-serif;">

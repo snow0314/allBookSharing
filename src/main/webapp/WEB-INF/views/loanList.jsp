@@ -277,7 +277,7 @@ body {
 						<th>리뷰</th>
 					</tr>
 				</thead>
-				<tbody id='tb'>
+				<tbody id='tb'  style='font-size:20px;vertical-align:middle;'>
 				</tbody>
 			</table>
 
@@ -364,11 +364,11 @@ for(let i=0;i<list.length;i++){
 	$tr.append("<td>"+list[i].lb_name+"</td>");
 	$tr.append("<td>"+list[i].bk_name+"</td>");
 	$tr.append("<td>"+moment(list[i].bd_date).format('YYYY년 MM월 DD일 HH시:mm분')+"</td>");
-	$tr.append("<td>"+moment(list[i].bd_return_date).format('YYYY MM DD HH:mm:ss')+"</td>");
+	$tr.append("<td>"+moment(list[i].bd_return_date).format('YYYY년 MM월 DD일 HH시:mm분')+"</td>");
 	if(list[i].bd_real_return_date == undefined){
 		$tr.append("<td>--------------</td>");
 	}else{
-		$tr.append("<td>"+moment(list[i].bd_real_return_date).format('YYYY MM DD HH:mm:ss')+"</td>");
+		$tr.append("<td>"+moment(list[i].bd_real_return_date).format('YYYY년 MM월 DD일 HH시:mm분')+"</td>");
 	}
 	
 	switch (list[i].bd_state_num) {

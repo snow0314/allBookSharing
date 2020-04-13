@@ -53,6 +53,10 @@
     text-align: center;
 }
 body{font-family: 'Jeju Gothic', sans-serif;}
+#example_wrapper{
+font-size:20px;
+font-weight:bold;
+}
 </style>	
 </head>
 <body>

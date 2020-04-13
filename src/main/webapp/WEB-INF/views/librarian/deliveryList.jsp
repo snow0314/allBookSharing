@@ -80,7 +80,7 @@ body{font-family: 'Jeju Gothic', sans-serif;}
          <th>상태</th>
          </tr>
       </thead>
-      <tbody id='tb'>
+      <tbody id='tb' style="font-size:20px;font-weight:bold;">
       </tbody>
     </table>
       </div>
@@ -126,7 +126,7 @@ for(let i=0;i<list.length;i++){
     <div class="modal-dialog">
     
       <!-- Modal content-->
-      <div class="modal-content">
+      <div class="modal-content"  style="font-size:20px;font-weight:blod;">
         <div id='modal-header' class="modal-header">
           <button type='button' class='close' data-dismiss='modal'>&times;</button>
         </div>
@@ -178,20 +178,20 @@ $(document).on("click", "#modal_detail",function(e){
                 str+="<div style='padding: 0 8px; line-height: 40px; border-top: 1px solid rgba(0,0,0,0.2); border-bottom: 1px solid rgba(0,0,0,0.2); text-align: left; background-color:rgba(0,0,0,0.1)'>";
                 str+="<span>"+response[0].bo_id+"</span>";
                 if(response[0].bd_state_num==1)
-                str+="<span id='state' style='font-size: 12px; color: red;'>(대출중)</span>";
+                str+="<span id='state' style='font-size: 18px; color: red;'>(대출중)</span>";
                 if(response[0].bd_state_num==2)
-                str+="<span id='state' style='font-size: 12px; color: red;'>(배송신청)</span>";
+                str+="<span id='state' style='font-size: 18px; color: red;'>(배송신청)</span>";
                 if(response[0].bd_state_num==3)
-                str+="<span id='state' style='font-size: 12px; color: red;'>(배송 취소)</span>";
+                str+="<span id='state' style='font-size: 18px; color: red;'>(배송 취소)</span>";
                 if(response[0].bd_state_num==4)
-                str+="<span id='state' style='font-size: 12px; color: blue;'>(배송 완료)</span>";
+                str+="<span id='state' style='font-size: 18px; color: blue;'>(배송 완료)</span>";
                 if(response[0].bd_state_num==5)
-                str+="<span id='state' style='font-size: 12px; color: red;'>(반납 신청)</span>";
+                str+="<span id='state' style='font-size: 18px; color: red;'>(반납 신청)</span>";
                 if(response[0].bd_state_num==6)
-                str+="<span id='state' style='font-size: 12px; color: red;'>(오프라인 반납 완료)</span>";
+                str+="<span id='state' style='font-size: 18px; color: red;'>(오프라인 반납 완료)</span>";
                 if(response[0].bd_state_num==7)
-                str+="<span id='state' style='font-size: 12px; color: red;'>(반납 완료)</span>";
-                str+="<span style='float: right; font-size: 14px;'><i class='far fa-clock'></i>"+response[0].bd_date+"</span>";
+                str+="<span id='state' style='font-size: 18px; color: red;'>(반납 완료)</span>";
+                str+="<span style='float: right; font-size: 18px;'><i class='far fa-clock'></i>"+response[0].bd_date+"</span>";
                 str+="</div></div>";
                 for(var i=0;i<response.length;i++){
                   str+="<div style='display:flex; margin:10px 10px;'>";

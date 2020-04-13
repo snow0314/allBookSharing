@@ -102,13 +102,13 @@ color:white;
 <span style="float: right; font-size: 14px;"><i class="far fa-clock"></i> ${question.qs_date}</span>
 </div>
 </div>
-<pre style="text-align:left; margin-top:10px; margin-right:7%; width: 70%; border: 1px solid rgba(0,0,0,0.2);">
+<pre style="text-align:left; margin-top:10px; margin-right:7%; width: 70%; border: 1px solid rgba(0,0,0,0.2);height:450px;font-size:30px;">
 ${question.qs_content}
 </pre>
 
 </div>
 <div style="width: 70%; margin-top: 40px;">
-<div style="width: 80%; text-align: left;margin-left:21%; font-size:20px; font-weight: bold; margin-bottom:10%;">
+<div style="width: 80%; text-align: left;margin-left:21%; font-size:30px; font-weight: bold; margin-bottom:10%;">
 <i class="fas fa-comment-dots"></i> 답변
 
 
