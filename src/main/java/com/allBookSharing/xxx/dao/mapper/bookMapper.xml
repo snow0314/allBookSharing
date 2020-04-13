@@ -147,7 +147,7 @@ GROUP BY L.LB_NAME,L.LB_CODE
    <![CDATA[where rownum <= 10]]>
 </select>
 <select id="bookRvGrade" parameterType="review" resultType="review">
-	SELECT NVL(AVG(RV_GRADE),0) AS AVG FROM REVIEW WHERE RV_BCODE=#{bk_code}
+	SELECT ROUND(NVL(AVG(RV_GRADE),0),2) AS AVG FROM REVIEW WHERE RV_BCODE=#{bk_code}
 </select>
 <select id="reservCount" parameterType="reservation" resultType="Integer">
  	select count(*) as rv_count from reservation where rt_code=#{rv_code} and rt_lcode=#{rv_lcode}

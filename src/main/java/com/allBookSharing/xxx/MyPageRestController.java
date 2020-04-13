@@ -121,11 +121,11 @@ public class MyPageRestController {
 	
 	//현재 예약 취소 
 	@RequestMapping(value = "/reservationcancell" ,produces = "application/json;charset=UTF-8")
-	public boolean reservationcancell(int rv_num) {
+	public List<Loan> reservationcancell(int rv_num,Principal principal) {
 		System.out.println("현재 예약 목록 컨트롤러");
-		boolean result=mm.reservationcancell(rv_num);
+		List<Loan> lList=mm.reservationcancell(rv_num,principal);
 		
-		return result;
+		return lList;
 	}
 	
 	

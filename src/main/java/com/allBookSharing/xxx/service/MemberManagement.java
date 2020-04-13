@@ -360,11 +360,15 @@ public class MemberManagement {
 	   
 
 	 //마이페이지에서 예약 취소
-	public boolean reservationcancell(int rv_num) {
+	public List<Loan> reservationcancell(int rv_num, Principal principal) {
+		String id=principal.getName();
 
 		boolean result=mDao.reservationcancell(rv_num);
+		List<Loan> lList=null;
+		if(result)
+			lList=mDao.getLoanList(id);
 		
-		return result;
+		return lList;
 	}
 
 	//희망도서 신청에서 지역 정보 가져오는 메소드
