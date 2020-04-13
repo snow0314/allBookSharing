@@ -560,10 +560,6 @@ $('#heart').click(function(){
 		    	url:'likecancel',
 		    	data:{"lk_bcode":"${books.bk_code}","lk_lcode":${books.bk_lcode}},
 		    	success:function(result){
-<<<<<<< HEAD
-		    		
-=======
->>>>>>> 6d1db2ec3a7bc8f3757327797a3375cf7359977e
 		    		$('#heart').removeClass('btn_unlike');
 		    		$('.ani_heart_m').removeClass('hi');
 		    		$('.ani_heart_m').addClass('bye');
@@ -585,10 +581,6 @@ $('#heart').click(function(){
 			    	url:'likeinsert',
 			    	data:{"lk_bcode":"${books.bk_code}","lk_lcode":${books.bk_lcode}},
 			    	success:function(result){
-<<<<<<< HEAD
-			    		
-=======
->>>>>>> 6d1db2ec3a7bc8f3757327797a3375cf7359977e
 			    		$('#heart').addClass('btn_unlike');
 					  	$('.ani_heart_m').addClass('hi');
 				     	$('.ani_heart_m').removeClass('bye');
