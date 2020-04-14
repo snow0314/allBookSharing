@@ -282,11 +282,11 @@ function librarymain(){
 					
 					<!-- Nav -->
 						<nav id="nav">
-							<ul>
+							<ul style="font-size:22px;font-weight:bold;">
 								<li><a href="./">Home</a></li>
 								<li>
 									<a href="movemypage">나의 도서관</a>
-									<ul>
+									<ul style="font-size:20px;font-weight:bold;">
 										<li><a href="movemypage">마이페이지</a></li>
 										<li><a href="deliveryapplicationmove">배송신청목록</a></li>
 										<li><a href="moveloanlist">대출목록</a></li>
@@ -294,14 +294,14 @@ function librarymain(){
 									</ul>
 								</li>
 								<li><a href="totalsearch">자료검색</a>
-								     <ul>
+								     <ul style="font-size:20px;font-weight:bold;">
 										<li><a href="totalsearch">통합검색</a></li>
 										<li><a href="totalsearch?kind=besttopten">인기도서</a></li>
 										<li><a href="totalsearch?kind=recommend">추천도서</a></li>
 									</ul>
 								</li>
 								<li><a href="readingroominformation">도서관 이용안내</a>
-								    <ul>
+								    <ul style="font-size:20px;font-weight:bold;">
 										<li><a href="readingroominformation">열람실 예약안내</a></li>
 										<li><a href="readingroominformation?kind=membergrade">회원등급 기준</a></li>
 										<li><a href="readingroominformation?kind=deliveryinformation">배송서비스 안내</a></li>
@@ -310,7 +310,7 @@ function librarymain(){
 									</ul>
 								</li>
 								<li><a href="readingroommove">도서관 서비스</a>
-								    <ul>              
+								    <ul style="font-size:20px;font-weight:bold;">              
 									<li><a href="readingroommove">열람실 예약</a></li>
 										<li><a href="questionmove">건의 사항</a></li>
 
