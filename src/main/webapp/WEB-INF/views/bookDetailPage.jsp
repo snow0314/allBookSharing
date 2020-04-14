@@ -152,7 +152,9 @@
 	  background-color: rgba(228,89,89,0.02);
 	  box-shadow: 0 2px 4px 0 #dc4d41;
 	}
-
+	.btn_like:focus{
+	outline:none;
+	}
 	.btn_unlike .img_emoti {
     	background-position: -30px -120px;
 	}
@@ -272,6 +274,7 @@
 	margin-right:4%;
 	margin-bottom:7%;
 }
+
 </style>
 <body>
 <jsp:include page="header.jsp"></jsp:include>
