@@ -183,15 +183,10 @@ font-family: 'Jeju Gothic', sans-serif;
 margin-left:15px;
 font-size:18px;
 }
-
-<<<<<<< HEAD
-=======
-
-
->>>>>>> 6d1db2ec3a7bc8f3757327797a3375cf7359977e
 </style>
 
-
+<script type="text/javascript"
+	src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
 
 </head>
 
@@ -306,7 +301,7 @@ font-size:18px;
 			<table class="table table-striped" >
 			<thead >
 				<tr style="font-family:'Noto Sans KR', sans-serif;">
-					<td style="width: 5%; text-align: center;">순번</td>
+					<td style="width: 5%; text-align: center;">No</td>
 					<td style="width: 30%;">자료명</td>
 					<td style="width: 9%;">대출일</td>
 					<td style="width: 9%;">반납예정일</td>
@@ -332,7 +327,7 @@ font-size:18px;
 			<table class="table table-striped" style="font-family: 'Nanum Gothic Coding', monospace;">
 			<thead>
 				<tr style="font-family:'Noto Sans KR', sans-serif;">
-					<td style="width: 80px; text-align: center;">순번</td>
+					<td style="width: 80px; text-align: center;">No</td>
 					<td style="width: 400px;">자료명</td>
 					<td style="width: 200px;">대출일</td>
 					<td style="width: 160px;">반납예정일</td>
@@ -359,14 +354,14 @@ font-size:18px;
 			<table class="table table-striped" style="font-family: 'Nanum Gothic Coding', monospace;">
 			<thead>
 				<tr style="font-family:'Noto Sans KR', sans-serif;">
-					<td style="width: 80px; text-align: center;">예약번호</td>
-					<td style="width: 120px;">도서관 이름</td>
-					<td style="width: 210px;">자료명</td>
-					<td style="width: 150px;">예약일자</td>
-					<td style="width: 100px;">상태</td>
-					<td style="width: 80px;">장바구니</td>
-					<td style="width: 50px;">순위</td>
-					<td style="width: 50px;">취소</td>
+					<td style="width: 60px; text-align: center;">No</td>
+					<td style="width: 120px; text-align:center;">도서관 이름</td>
+					<td style="width: 250px; text-align:center;">자료명</td>
+					<td style="width: 140px; text-align:center;">예약일자</td>
+					<td style="width: 90px; text-align:center;">상태</td>
+					<td style="width: 100px; text-align:center;">장바구니</td>
+					<td style="width: 61px; text-align:center;">순위</td>
+					<td style="width: 61px; text-align:center;">취소</td>
 				</tr>
 				</thead>
 				
@@ -744,7 +739,7 @@ $.ajax({
         $tr.append("<td style='text-align: center;'>"+data[i].rv_num+"</td>");
         $tr.append("<td>"+data[i].lb_name+"</td>");
         $tr.append("<td>"+data[i].bk_name+"</td>");
-        $tr.append("<td>"+data[i].rv_date+"</td>");
+        $tr.append("<td>"+moment(data[i].rv_date).format('YYYY년 MM월 DD일 HH시:mm분')+"</td>");
         spl=data[i].rv_code;//???
         rv_code=spl.split(" ");	
         rv_code=rv_code[0]+" "+rv_code[1];
@@ -754,18 +749,18 @@ $.ajax({
         
         var temp = data[i].bk_quantity-data[i].bk_booklend; //대여할 수 있는 권수
         if(temp >= rank){
-        	$tr.append("<td id='state' style='color: red;'>대출가능</td>");
+        	$tr.append("<td id='state' style='color: blue;'>대출가능</td>");
         	$tr.append("<td><button id='cart_btn' data-rv_code='"+data[i].rv_code+"' data-rv_lcode='"+data[i].rv_lcode+"' >담기</button></td>");
         }else{
-        	$tr.append("<td id='state'>대출불가</td>");
-        	$tr.append("<td><button id='cart_btn' disabled >담기</button></td>");
+        	$tr.append("<td id='state' style='color: red;'>대출불가</td>");
+        	$tr.append("<td style='text-align:center;'><button id='cart_btn' disabled >담기</button></td>");
         }
         console.log("temp",temp);
         
         
-        $tr.append("<td style='text-align:center;' ><span id='rank' style='font-weight:bold;'>"+rank+"</span></td>");
+        $tr.append("<td style='text-align:center;'><span id='rank' style='font-weight:bold;'>"+rank+"</span></td>");
         
-        $tr.append("<td><button id='cancel_btn' onclick='reservationCancel("+data[i].rv_num+") '>취소</button></td>");
+        $tr.append("<td><button id='cancel_btn' style='text-align:center;' onclick='reservationCancel("+data[i].rv_num+") '>취소</button></td>");
         
         } //for End
         
@@ -843,37 +838,35 @@ var result=confirm("취소하시겠습니까?");
 			$("#reservation").empty();	
 			
 			for(var i=0;i<data.length;i++){   
-	        //console.log(data[i].bo_num);
+	        	//console.log(data[i].bo_num);
 	        var $tr= $("<tr>").appendTo($("#reservation"));
 	        $tr.append("<td style='text-align: center;'>"+data[i].rv_num+"</td>");
 	        $tr.append("<td>"+data[i].lb_name+"</td>");
 	        $tr.append("<td>"+data[i].bk_name+"</td>");
-	        $tr.append("<td>"+data[i].rv_date+"</td>");
+	        $tr.append("<td>"+moment(data[i].rv_date).format('YYYY년 MM월 DD일 HH시:mm분')+"</td>");
 	        spl=data[i].rv_code;//???
 	        rv_code=spl.split(" ");	
 	        rv_code=rv_code[0]+" "+rv_code[1];
 	        console.log("rv_code=",rv_code);
 	        rank=getRank(data[i].rv_code,data[i].rv_lcode);
-	        console.log("rank=",rank);
+	        console.log("rank"+i+"=",rank);
 	        
 	        var temp = data[i].bk_quantity-data[i].bk_booklend; //대여할 수 있는 권수
 	        if(temp >= rank){
-	        	$tr.append("<td id='state' style='color: red;'>대출가능</td>");
-	        	$tr.append("<td><button id='cart_btn'  data-rv_code='"+data[i].rv_code+"' data-rv_lcode='"+data[i].rv_lcode+"' >담기</button></td>");
+	        	$tr.append("<td id='state' style='color: blue;'>대출가능</td>");
+	        	$tr.append("<td><button id='cart_btn' data-rv_code='"+data[i].rv_code+"' data-rv_lcode='"+data[i].rv_lcode+"' >담기</button></td>");
 	        }else{
-	        	$tr.append("<td id='state'>대출불가</td>");
-	        	$tr.append("<td><button id='cart_btn' disabled >담기</button></td>");
+	        	$tr.append("<td id='state' style='color: red;'>대출불가</td>");
+	        	$tr.append("<td style='text-align:center;'><button id='cart_btn' disabled >담기</button></td>");
 	        }
 	        console.log("temp",temp);
 	        
 	        
-	        $tr.append("<td style='text-align:center;' ><span id='rank' style='font-weight:bold;'>"+getRank(data[i].rv_code,data[i].rv_lcode)+"</span></td>");
+	        $tr.append("<td style='text-align:center;'><span id='rank' style='font-weight:bold;'>"+rank+"</span></td>");
 	        
-	        $tr.append("<td><button id='cancel_btn' onclick='reservationCancel("+data[i].rv_num+") '>취소</button></td>");
-	        }
-			
-			
-			
+	        $tr.append("<td><button id='cancel_btn' style='text-align:center;' onclick='reservationCancel("+data[i].rv_num+") '>취소</button></td>");
+	        
+	        } //for End
 		},
 		error : function(xhr, status) {
         console.log("xhr=", xhr);
