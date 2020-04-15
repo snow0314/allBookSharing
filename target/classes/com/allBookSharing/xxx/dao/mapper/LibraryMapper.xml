@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.allBookSharing.xxx.dao.ILibrayManagementDao">
+	<select id="getLibraryInfo" parameterType="Integer" resultType="Library"> 
+		SELECT * FROM LIBRARY WHERE LB_CODE=#{lb_code}
+	</select>
+
+	<update id="libraryModify" parameterType="Library">
+		UPDATE LIBRARY SET LB_NAME = #{lb_name}, LB_POSTCODE=#{lb_postcode}, LB_ROADADDR=#{lb_roadaddr},
+						   LB_BRANCHADDR = #{lb_branchaddr}, LB_DETAILADDR = #{lb_detailaddr}, LB_EXTRAADDR = #{lb_extraaddr},
+						   LB_LOC = #{lb_loc}, LB_PHONE = #{lb_phone}, LB_EMAIL = #{lb_email}, LB_LATITUDE = #{lb_latitude},
+						   LB_LONGITUDE = #{lb_longitude}
+					   WHERE LB_CODE = #{lb_code}	   
+	</update>
+
+	<resultMap type="schedule" id="Calendar">
+		<result property="sd_lcode" column="SD_LCODE" />
+		<result property="start" column="SD_START" />
+		<result property="end" column="SD_END" />
+		<result property="title" column="SD_TITLE" />
+	</resultMap>
+
+	<select id="getLibraryCalendarInfo" parameterType="Integer" resultType="Schedule" resultMap="Calendar">
+		SELECT * FROM SCHEDULE WHERE SD_LCODE=#{lb_code}
+	</select>
+	
+	<insert id="setLibraySchedule" parameterType="Schedule">
+		INSERT INTO SCHEDULE VALUES(#{sd_lcode}, #{start}, #{end}, #{title})
+	</insert>
+	
+	<delete id="scheduleDelete">
+		DELETE FROM SCHEDULE WHERE SD_LCODE=#{sd_lcode} AND SD_START=#{start} AND SD_END=#{end} AND SD_TITLE=#{title}
+	</delete>
+
+</mapper>

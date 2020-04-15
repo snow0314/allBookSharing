@@ -22,7 +22,7 @@ public class Schedule {
 		 rm.readingRoomInitialize();
 	 }
 	 
-	 @Scheduled(cron = "0 0/2 * * * *") 
+	 @Scheduled(cron = "0 0/1 * * * *") 
 	 public void reservationTimeLimit() {
 		 System.out.println("예약정보 삭제");
 		 rtm.reservationTimeLimit();

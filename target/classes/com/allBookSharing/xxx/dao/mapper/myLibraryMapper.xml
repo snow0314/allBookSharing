@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.allBookSharing.xxx.dao.IMyLibraryDao">
+
+<!--배송목록 -->
+<select id="getDeliveryList" resultType="loan"> 
+		SELECT * FROM BORROWLIST 
+		JOIN BORROWDETAIL ON BO_NUM=BD_BO_NUM
+		JOIN LIBRARY ON BD_LCODE=LB_CODE
+		JOIN BOOKS ON BD_BCODE=BK_CODE and BORROWDETAIL.bd_lcode=books.bk_lcode
+		WHERE BORROWLIST.BO_ID=#{id} AND BORROWDETAIL.BD_ON_OFF=1
+	</select>
+
+<!--대출목록 -->
+<select id="getLoanList" resultType="loan">
+		SELECT * FROM BORROWLIST 
+		JOIN BORROWDETAIL 
+        ON BO_NUM=BD_BO_NUM
+		JOIN LIBRARY 
+        ON BD_LCODE=LB_CODE
+		JOIN BOOKS 
+        ON BD_BCODE=BK_CODE and borrowdetail.bd_lcode=books.bk_lcode
+        LEFT OUTER JOIN REVIEW
+        ON RV_BCODE = BD_BCODE AND RV_ID = BO_ID
+		WHERE BO_ID=#{id}
+		ORDER BY BD_DATE DESC
+	</select>
+	
+<!--희망도서목록 -->
+<select id="getHopeList" resultType="loan">
+		SELECT * FROM BOOKREQUEST JOIN LIBRARY ON LB_CODE=BR_LCODE WHERE BR_ID=#{id}
+	</select>
+	
+<!--희망도서 신청 -->
+<insert id="bookRequestApply" parameterType="Loan">
+    INSERT INTO 
+    BOOKREQUEST(BR_NUM,BR_LCODE,BR_ID,BR_NAME,BR_BCODE,BR_WRITER,BR_TITILE,BR_REASON,BR_SMS,BR_DATE,BR_SITUATION,BR_IMAGE) 
+    VALUES(BR_NUM.NEXTVAL,#{br_lcode},#{br_id},#{br_name},#{br_bcode},#{br_writer},#{br_titile},
+    #{br_reason},#{br_sms},SYSDATE,0,#{br_image})
+</insert>
+
+<select id="getReview" resultType="review">
+	SELECT * FROM REVIEW WHERE RV_BCODE = #{rv_bcode} AND RV_ID = #{id}
+</select>
+
+
+<!--희망도서 상세보기-->
+</mapper>

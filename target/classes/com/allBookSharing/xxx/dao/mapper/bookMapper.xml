@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.allBookSharing.xxx.dao.IBookDao">
+
+
+ <resultMap type="books" id="booksearch">
+    <result property="bk_lname" column="LB_NAME" />
+    <result property="bk_name" column="BK_NAME" />
+    <result property="bk_image" column="BK_IMAGE" />
+    <result property="bk_writer" column="BK_WRITER" />
+    <result property="bk_publisher" column="BK_PUBLISHER" />
+    <result property="bk_publicday" column="BK_PUBLICDAY" />
+    <result property="bk_code" column="BK_CODE" />
+    <result property="bk_bg_cate" column="BG_CATE" />
+    <result property="bk_sg_cate" column="SG_CATE" />
+    <result property="bk_introduction" column="BK_INTRODUCTION" />
+    <result property="bk_Quantity" column="BK_QUANTITY" />
+    <result property="bk_booklend" column="BK_BOOKLEND" />
+    <result property="bk_lcode" column="LB_CODE"/>
+    <result property="bk_loc" column="LB_LOC"/>
+    <result property="bk_state" column="BK_STATE"/>
+ </resultMap>
+ <resultMap type="loan" id="popularlist">
+ 	<result property="bk_name" column="BK_NAME" />
+ 	<result property="bk_image" column="BK_IMAGE" />
+ 	<result property="bk_writer" column="BK_WRITER" />
+ 	<result property="bk_publisher" column="BK_PUBLISHER" />
+ 	<result property="bk_publicday" column="BK_PUBLICDAY" />
+ 	<result property="bk_code" column="BK_CODE" />
+ 	<result property="bd_count" column="COUNT" />
+ </resultMap>
+ 
+<select id="bookSearch"  resultType="books" resultMap="booksearch">
+   SELECT L.LB_NAME,B.BK_NAME,B.BK_IMAGE,B.BK_WRITER,BK_PUBLISHER,BK_PUBLICDAY,BK_CODE,L.LB_CODE
+   FROM BOOKS B INNER JOIN LIBRARY L 
+   ON B.BK_LCODE=L.LB_CODE 
+   WHERE ${selectval} LIKE '%'||#{bk_search}||'%'
+</select>
+
+<select id="myRegionSearch"  resultType="books" resultMap="booksearch">
+   SELECT L.LB_NAME,B.BK_NAME,B.BK_IMAGE,B.BK_WRITER,BK_PUBLISHER,BK_PUBLICDAY,BK_CODE,L.LB_LOC,L.LB_CODE
+   FROM BOOKS B INNER JOIN LIBRARY L ON B.BK_LCODE=L.LB_CODE 
+   WHERE ${selectval} LIKE '%'||#{bk_search}||'%' AND L.LB_LOC=#{region}
+</select>
+<select id="regionLibSearch"  resultType="books" resultMap="booksearch">
+   SELECT L.LB_NAME,B.BK_NAME,B.BK_IMAGE,B.BK_WRITER,BK_PUBLISHER,BK_PUBLICDAY,BK_CODE,L.LB_LOC,L.LB_CODE
+   FROM BOOKS B INNER JOIN LIBRARY L ON B.BK_LCODE=L.LB_CODE 
+   WHERE ${selectval} LIKE '%'||#{bk_search}||'%' AND L.LB_CODE=#{bk_lcode}
+</select>
+<select id="jiyuckSearch"  resultType="books" resultMap="booksearch">
+   SELECT L.LB_NAME,B.BK_NAME,B.BK_IMAGE,B.BK_WRITER,BK_PUBLISHER,BK_PUBLICDAY,BK_CODE,L.LB_LOC,L.LB_CODE
+   FROM BOOKS B INNER JOIN LIBRARY L ON B.BK_LCODE=L.LB_CODE 
+   WHERE ${selectval} LIKE '%'||#{bk_search}||'%' AND L.LB_LOC=#{bk_loc}
+</select>
+
+<select id="topDetailPage" resultType="books" resultMap="booksearch">
+    
+   SELECT DISTINCT B.BK_NAME,B.BK_IMAGE,B.BK_WRITER,B.BK_PUBLISHER,B.BK_PUBLICDAY,B.BK_CODE,A.BG_CATE,A.SG_CATE,B.BK_INTRODUCTION
+   FROM BOOKS B
+   JOIN ALLGROUP A
+   ON B.BK_SG_NUM =A.SG_BG_NUM
+   WHERE B.BK_CODE=#{bk_code}
+</select>
+
+<select id="bookDetailPage" resultType="books" resultMap="booksearch">
+   SELECT L.LB_NAME,B.BK_NAME,B.BK_IMAGE,B.BK_WRITER,B.BK_PUBLISHER,B.BK_PUBLICDAY,
+          B.BK_CODE,A.BG_CATE,A.SG_CATE,B.BK_INTRODUCTION,B.BK_QUANTITY,B.BK_BOOKLEND,L.LB_CODE,B.BK_STATE
+   FROM BOOKS B
+   JOIN ALLGROUP A
+   ON B.BK_SG_NUM =A.SG_BG_NUM
+   JOIN library L
+   ON B.BK_LCODE=L.LB_CODE
+   WHERE B.BK_CODE=#{bk_code} AND L.LB_CODE=#{bk_lcode}
+</select>
+
+<select id="bookReviewList" resultType="review" >
+ SELECT RV_BCODE,RV_ID,RV_CONTENTS,RV_GRADE
+ FROM REVIEW 
+ WHERE RV_BCODE=#{bk_code} 
+</select>
+
+<insert id="reservationInsert" parameterType="reservation">
+INSERT INTO RESERVATION
+VALUES( RV_SEQ.NEXTVAL,#{rv_code},#{rv_lcode},#{rv_id},SYSDATE,DEFAULT)
+</insert>
+
+<select id="reservationConfirm" parameterType="reservation" resultType="Integer">
+ SELECT COUNT(*) FROM RESERVATION
+ WHERE RT_CODE=#{rv_code} AND RT_LCODE=#{rv_lcode} AND RT_ID=#{rv_id}
+</select>
+
+<delete id="reservationCancel" parameterType="reservation">
+ DELETE FROM RESERVATION 
+ WHERE RT_CODE=#{rv_code} AND RT_LCODE=#{rv_lcode} AND RT_ID=#{rv_id}
+</delete>
+
+<insert id="likeInsert" parameterType="liked">
+INSERT INTO LIKED
+VALUES(#{lk_bcode},#{lk_id},#{lk_lcode})
+</insert>
+
+<delete id="likeCancel" parameterType="liked">
+ DELETE FROM LIKED 
+ WHERE LK_BCODE=#{lk_bcode} AND LK_ID=#{lk_id} AND LK_LCODE=#{lk_lcode}
+</delete>
+
+<select id="likedConfirm" parameterType="liked" resultType="Integer">
+ SELECT COUNT(*) FROM LIKED
+ WHERE LK_BCODE=#{lk_bcode} AND LK_ID=#{lk_id} AND LK_LCODE=#{lk_lcode}
+</select>
+<select id="likeCount" parameterType="liked" resultType="Integer">
+ SELECT COUNT(*) FROM LIKED
+ WHERE LK_BCODE=#{lk_bcode} 
+</select>
+
+<select id="deliCount" parameterType="deliveryreq" resultType="Integer">
+SELECT COUNT(*) FROM DELIVERY
+WHERE DE_CODE=#{de_code} AND DE_LCODE=#{de_lcode} AND DE_ID=#{de_id}
+</select>
+
+<insert id="deliInsert" parameterType="deliveryreq">
+INSERT INTO DELIVERY
+VALUES(#{de_code},#{de_lcode},#{de_id},DEFAULT)
+</insert>
+<select id="myRegionLib" resultType="library">
+SELECT L.LB_NAME,SUM(B.BK_QUANTITY) AS LB_QUANTITY,L.LB_CODE
+FROM LIBRARY L INNER JOIN BOOKS B
+ON B.BK_LCODE=L.LB_CODE
+WHERE ${selectval} LIKE '%'||#{bk_search}||'%' AND LB_LOC=#{region}
+GROUP BY L.LB_NAME,L.LB_CODE
+</select>
+<select id="bestList"  resultType="loan" resultMap="popularlist">
+ SELECT * FROM (SELECT B.BK_NAME,B.BK_IMAGE,B.BK_WRITER,BK_PUBLISHER,BK_PUBLICDAY,BK_CODE,SUM(BD_COUNT) AS COUNT 
+   FROM BOOKS B INNER JOIN BORROWDETAIL
+   ON BORROWDETAIL.BD_BCODE=B.BK_CODE
+   GROUP BY B.BK_NAME,B.BK_IMAGE,B.BK_WRITER,BK_PUBLISHER,BK_PUBLICDAY,BK_CODE,BD_BCODE
+   ORDER BY COUNT DESC)
+   <![CDATA[where rownum <= 10]]>
+</select>
+<select id="mainPageTopTen"  resultType="loan" resultMap="popularlist">
+    SELECT * FROM (SELECT B.BK_NAME,B.BK_IMAGE,B.BK_WRITER,BK_PUBLISHER,BK_PUBLICDAY,BK_CODE,SUM(BD_COUNT) AS COUNT 
+   FROM BOOKS B INNER JOIN BORROWDETAIL
+   ON BORROWDETAIL.BD_BCODE=B.BK_CODE
+   GROUP BY B.BK_NAME,B.BK_IMAGE,B.BK_WRITER,BK_PUBLISHER,BK_PUBLICDAY,BK_CODE,BD_BCODE
+   ORDER BY COUNT DESC)
+   <![CDATA[where rownum <= 10]]>
+</select>
+<select id="bookRvGrade" parameterType="review" resultType="review">
+	SELECT ROUND(NVL(AVG(RV_GRADE),0),2) AS AVG FROM REVIEW WHERE RV_BCODE=#{bk_code}
+</select>
+<select id="reservCount" parameterType="reservation" resultType="Integer">
+ 	select count(*) as rv_count from reservation where rt_code=#{rv_code} and rt_lcode=#{rv_lcode}
+</select>
+<select id="selrecommendList" parameterType="recommend" resultType="recommend" >
+   SELECT R.RE_BCODE,R.RE_BNAME,R.RE_BWRITER,R.RE_PUBLISHER,R.RE_PUBLICDAY,R.RE_INTRODUCTION,R.RE_CONTENTS,R.RE_IMAGE,A.BG_CATE,A.SG_CATE
+   FROM RECOMMAND R
+   JOIN ALLGROUP A
+   ON R.RE_SG_NUM =A.SG_BG_NUM
+   WHERE SUBSTR(R.RE_DATE,4,2)=#{re_date}
+</select>
+
+
+<select id="mainRecommend" parameterType="recommend" resultType="recommend" >
+ SELECT R.RE_BCODE,R.RE_BNAME,R.RE_BWRITER,R.RE_PUBLISHER,R.RE_PUBLICDAY,R.RE_INTRODUCTION,R.RE_CONTENTS,R.RE_IMAGE,A.BG_CATE,A.SG_CATE
+   FROM RECOMMAND R
+   JOIN ALLGROUP A
+   ON R.RE_SG_NUM =A.SG_BG_NUM
+   WHERE SUBSTR(R.RE_DATE,4,2)='04'
+</select>
+<select id="jiyuckLib" parameterType="library" resultType="library" >
+  SELECT * FROM LIBRARY WHERE LB_LOC=#{lb_loc}
+</select>
+<select id="libInformation" parameterType="library" resultType="library" >
+  SELECT * FROM LIBRARY WHERE LB_CODE=#{lb_code}
+</select>
+<select id="getLibrary" parameterType="library" resultType="library" >
+  SELECT * FROM LIBRARY
+</select>
+</mapper>
